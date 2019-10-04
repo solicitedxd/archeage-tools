@@ -52,6 +52,12 @@ let theme = createMuiTheme({
         textAlign: 'center',
       },
     },
+    MuiExpansionPanelDetails: {
+      root: {
+        display: 'block',
+        padding: '4px 12px 12px',
+      }
+    }
   },
 });
 theme = responsiveFontSizes(theme);

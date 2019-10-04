@@ -27,6 +27,7 @@ import {
   REWARD,
   TYPE,
 } from 'constants/dailies';
+import RewardsDisplay from './RewardsDisplay';
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -53,7 +54,7 @@ class Filters extends Component {
   handleCompleteChange = (event, value) => this.props.filterComplete(value);
 
   render() {
-    const { continents, faction, rewards, types, hideComplete } = this.props;
+    const { continents, faction, rewards, types, hideComplete, availableRewards, claimedRewards } = this.props;
 
     return (
       <div>
@@ -87,7 +88,7 @@ class Filters extends Component {
           >
             {Object.values(CONTINENT).map(continent => (
               <MenuItem key={continent.name} value={continent.name}>
-                <Checkbox checked={continents.indexOf(continent.name) > -1} />
+                <Checkbox checked={continents.indexOf(continent.name) > -1} color="primary" />
                 <ListItemText primary={continent.name} />
               </MenuItem>
             ))}
@@ -105,7 +106,7 @@ class Filters extends Component {
           >
             {Object.values(REWARD).sort().map(reward => (
               <MenuItem key={reward} value={reward}>
-                <Checkbox checked={rewards.indexOf(reward) > -1} />
+                <Checkbox checked={rewards.indexOf(reward) > -1} color="primary" />
                 <ListItemIcon><span className={cn('dropdown-icon', reward)} /></ListItemIcon>
                 <ListItemText primary={reward} />
               </MenuItem>
@@ -124,7 +125,7 @@ class Filters extends Component {
           >
             {Object.values(TYPE).sort().map(type => (
               <MenuItem key={type} value={type}>
-                <Checkbox checked={types.indexOf(type) > -1} />
+                <Checkbox checked={types.indexOf(type) > -1} color="primary" />
                 <ListItemText primary={type} />
               </MenuItem>
             ))}
@@ -137,10 +138,13 @@ class Filters extends Component {
                 checked={hideComplete}
                 onChange={this.handleCompleteChange}
                 color="primary"
-                />
+              />
             }
             label="Hide Completed Quests" />
         </FormControl>
+
+        <RewardsDisplay title="Earned Rewards" rewards={claimedRewards} expanded />
+        <RewardsDisplay title="Available Rewards" rewards={availableRewards} />
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import {
   DIFFICULTY,
+  FACTION,
   REWARD,
   TYPE,
   ZONE,
@@ -83,5 +84,37 @@ export default [
     rewards: [{ type: REWARD.COIN, count: 5427 }, { type: REWARD.GILDA, count: 3 }, { type: REWARD.HONOR, count: 200 }],
     type: TYPE.WORLD_BOSS,
     difficulty: DIFFICULTY.LEGENDARY,
+  },
+  {
+    name: 'A Grand Construction 1',
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 3 }, { type: REWARD.GUILD_XP, count: 4 }],
+  },
+  {
+    name: 'A Grand Construction 2',
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 5 }, { type: REWARD.GUILD_XP, count: 8 }],
+  },
+  {
+    name: 'A Grand Construction 3',
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 6 }, { type: REWARD.GUILD_XP, count: 12 }],
+  },
+  {
+    name: 'Construct the Nuian Alliance Bridge',
+    faction: FACTION.NUIA,
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 3 }, { type: REWARD.GUILD_XP, count: 3 }, { type: REWARD.GILDA, count: 1 }],
+  },
+  {
+    name: 'Construct the Haranyan Alliance Bridge',
+    faction: FACTION.HARANYA,
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 3 }, { type: REWARD.GUILD_XP, count: 3 }, { type: REWARD.GILDA, count: 1 }],
+  },
+  {
+    name: 'Reinforce the Ramparts',
+    zones: [ZONE.DIAMOND_SHORES],
+    rewards: [{ type: REWARD.PRESTIGE, count: 3 }, { type: REWARD.GUILD_XP, count: 3 }, { type: REWARD.GILDA, count: 1 }],
   },
 ];

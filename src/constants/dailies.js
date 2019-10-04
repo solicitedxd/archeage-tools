@@ -139,6 +139,7 @@ export const TYPE = Object.freeze({
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',
   FAMILY: 'Family Quest',
+  GUILD: 'Guild Mission',
   OTHER: 'Other',
 });
 

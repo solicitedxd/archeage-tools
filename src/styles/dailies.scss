@@ -1,8 +1,11 @@
 .quest-container {
   display: flex;
   align-items: flex-start;
+  justify-content: center;
 
   .quest-list {
+    max-width: 920px;
+
     .quest-card {
       cursor: pointer;
 
@@ -78,9 +81,22 @@
   }
 
   .quest-filters {
+    max-width: 280px;
+
     .filter-field {
       display: block;
-      margin: 6px;
+      margin: 8px 12px;
+    }
+
+    .reward-panel-texts {
+      display: flex;
+      justify-content: space-between;
+      padding: 0 6px 6px;
+    }
+
+    .reward-panel-items {
+      display: flex;
+      flex-wrap: wrap;
     }
   }
 }
