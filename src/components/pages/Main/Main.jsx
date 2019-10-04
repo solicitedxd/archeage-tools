@@ -46,6 +46,12 @@ let theme = createMuiTheme({
         marginRight: 8,
       },
     },
+    MuiListItemIcon: {
+      root: {
+        minWidth: 24,
+        textAlign: 'center',
+      },
+    },
   },
 });
 theme = responsiveFontSizes(theme);
@@ -78,9 +84,19 @@ class Main extends React.PureComponent {
               <Typography variant="h6" color="inherit" className="title-text">
                 ArcheAge Tools
               </Typography>
-              <Typography>
+              <Typography className="nav-item">
                 <MuiLink component={Link} to="/dailies" color="inherit">
                   Daily Quests
+                </MuiLink>
+              </Typography>
+              <Typography className="nav-item">
+                <MuiLink component={Link} to="/skills" color="inherit">
+                  Skill Calculator
+                </MuiLink>
+              </Typography>
+              <Typography className="nav-item">
+                <MuiLink component={Link} to="/tradepacks" color="inherit">
+                  Trade Pack Calculator
                 </MuiLink>
               </Typography>
             </Toolbar>

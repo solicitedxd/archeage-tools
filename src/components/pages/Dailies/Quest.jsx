@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   arrayOf,
   number,
@@ -12,11 +13,13 @@ import {
   Typography,
 } from '@material-ui/core';
 import cn from 'classnames';
+import { setQuestStatus } from 'actions/dailies';
 import { REWARD } from 'constants/dailies';
 import ITEM from 'constants/items';
 import Item from 'components/Item';
 import Currency from 'components/Currency';
 import XP from 'components/XP';
+import { getQuestId } from 'utils/string';
 
 class Quest extends Component {
   static propTypes = {
@@ -35,25 +38,33 @@ class Quest extends Component {
     idx: null,
   };
 
-  state = {
-    checked: false,
+  getQuestId = () => {
+    const { name, idx } = this.props;
+    return getQuestId({ name, idx });
   };
 
-  componentDidMount() {
-    // check if this quest idx is
-  }
+  handleChange = (e, status) => {
+    this.props.setQuestStatus(this.getQuestId(), status);
+  };
 
   render() {
-    const { name, zones, difficulty, rewards, type } = this.props;
+    const { name, zones, difficulty, rewards, quests } = this.props;
+
+    const checked = quests[this.getQuestId()] || false;
 
     const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA);
     const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP);
     const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP);
 
     return (
-      <Card>
+      <Card onClick={() => this.handleChange(null, !checked)}>
         <CardHeader
-          avatar={<Checkbox />}
+          className={cn('quest-card', { 'checked': checked })}
+          avatar={<Checkbox
+            checked={checked}
+            onChange={this.handleChange}
+            color="primary"
+          />}
           title={<Typography variant="subtitle1" className="quest-name"><span>{name}{difficulty &&
           <span className={cn('difficulty', difficulty)} />}</span></Typography>}
           subheader={<Typography variant="overline">{zones.join(', ')}</Typography>}
@@ -90,4 +101,12 @@ class Quest extends Component {
   }
 }
 
-export default Quest;
+const mapStateToProps = ({ dailies: { quests } }) => ({
+  quests,
+});
+
+const mapDispatchToProps = {
+  setQuestStatus,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Quest);

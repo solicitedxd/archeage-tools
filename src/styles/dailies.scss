@@ -3,6 +3,21 @@
   align-items: flex-start;
 
   .quest-list {
+    .quest-card {
+      cursor: pointer;
+
+      &:hover {
+        background: rgba(0, 150, 136, 0.2);
+      }
+      &.checked {
+        background: rgba(82, 80, 63, 0.125);
+        text-decoration: line-through;
+
+        &:hover {
+          background: rgba(82, 80, 63, 0.2);
+        }
+      }
+    }
     .quest-name > span {
       position: relative;
     }
@@ -63,11 +78,14 @@
   }
 
   .quest-filters {
-
+    .filter-field {
+      display: block;
+      margin: 6px;
+    }
   }
 }
 
-.currency {
+.currency, .dropdown-icon {
   position: relative;
   font-size: 15px;
   color: #6D4916;
@@ -83,7 +101,7 @@
     background: url(../images/money_window.png) no-repeat;
   }
 
-  &.gold:after {
+  &.gold:after, &.Coin:after {
     background-position: 0 -28px;
   }
 
@@ -95,22 +113,50 @@
     background-position: -32px -28px;
   }
 
-  &.Honor {
-    top: -3px;
-
-    &:after {
-      width: 12px;
-      height: 19px;
-      background-position: -49px -32px;
-      top: 4px;
-    }
+  &.Honor:after {
+    width: 12px;
+    height: 19px;
+    background-position: -49px -32px;
+    top: 3px;
   }
 
-  &.Leadership {
-    &:after {
-      width: 14px;
-      height: 15px;
-      background-position: -173px -29px;
-    }
+  &.Leadership:after {
+    width: 14px;
+    height: 15px;
+    background-position: -173px -29px;
+  }
+
+  &.Item:after {
+    width: 11px;
+    height: 16px;
+    background-position: -223px -12px;
+  }
+
+  &.Vocation:after {
+    width: 17px;
+    height: 15px;
+    background-position: -190px -13px;
+  }
+
+  &.Gilda:after {
+    width: 18px;
+    height: 18px;
+    background-position: -136px -29px;
+    top: 3px;
+  }
+
+  &.Prestige:after {
+    width: 14px;
+    height: 18px;
+    background-position: -239px -28px;
+    top: 3px;
+  }
+
+  &.Family.XP:after {
+    background-position: -189px -29px;
+  }
+
+  &.Guild.XP:after {
+    background-position: -96px -29px;
   }
 }

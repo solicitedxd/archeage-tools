@@ -1,3 +1,11 @@
+export const QUEST_STATUS = 'QUEST_STATUS';
+export const QUEST_RESET = 'QUEST_RESET';
+export const QUEST_FILTER_FACTION = 'QUEST_FILTER_FACTION';
+export const QUEST_FILTER_REWARD = 'QUEST_FILTER_REWARD';
+export const QUEST_FILTER_CONTINENT = 'QUEST_FILTER_CONTINENT';
+export const QUEST_FILTER_TYPE = 'QUEST_FILTER_TYPE';
+export const QUEST_FILTER_COMPLETE = 'QUEST_FILTER_COMPLETE';
+
 export const ZONE = Object.freeze({
   ARCUM_IRIS: 'Arcum Iris',
   FALCORTH_PLAINS: 'Falcorth Plains',
@@ -131,6 +139,7 @@ export const TYPE = Object.freeze({
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',
   FAMILY: 'Family Quest',
+  OTHER: 'Other',
 });
 
 export const DIFFICULTY = Object.freeze({
