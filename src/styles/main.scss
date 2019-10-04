@@ -18,6 +18,9 @@ body {
 /** Title Bar **/
 #logo-icon-wrapper {
   margin-right: 6px;
+}
+
+.icon-button {
   padding: 0!important;
 }
 
@@ -30,4 +33,14 @@ body {
 
 .title-text {
   flex: 1;
+}
+
+.section {
+  margin: 20px 15px 0;
+}
+
+.MuiCardHeader-action.class-rewards {
+  align-self: initial;
+  margin-top: 0;
+  margin-right: 0;
 }

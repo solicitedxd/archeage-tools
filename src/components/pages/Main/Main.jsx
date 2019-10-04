@@ -1,9 +1,10 @@
-import React  from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import {
   AppBar,
   IconButton,
+  Link as MuiLink,
   Snackbar,
   Toolbar,
   Typography,
@@ -12,6 +13,8 @@ import {
   createMuiTheme,
   responsiveFontSizes,
 } from '@material-ui/core/styles';
+import createPalette from '@material-ui/core/styles/createPalette';
+import createTypography from '@material-ui/core/styles/createTypography';
 import { ThemeProvider } from '@material-ui/styles';
 import {
   pink,
@@ -19,16 +22,21 @@ import {
 } from '@material-ui/core/colors';
 import CloseIcon from '@material-ui/icons/Close';
 import { Link } from 'react-router-dom';
-// import Settings from 'components/Settings';
 import Favicon from 'images/favicon.ico';
 import { clearNotification } from 'actions/notification';
+import ItemTooltip from 'components/Item/ItemTooltip';
 import 'styles/index';
 
+const palette = createPalette({
+  primary: teal,
+  accent: pink,
+});
+
 let theme = createMuiTheme({
-  palette: {
-    primary: teal,
-    accent: pink,
-  },
+  palette: palette,
+  typography: createTypography(palette, {
+    fontFamily: '"Flareserif821BT-Roman"',
+  }),
 });
 theme = responsiveFontSizes(theme);
 
@@ -38,8 +46,7 @@ class Main extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-    };
+    this.state = {};
   }
 
   render() {
@@ -53,17 +60,19 @@ class Main extends React.PureComponent {
       <ThemeProvider theme={theme}>
         <div>
           <link rel="shortcut icon" href={Favicon} />
-          <AppBar position="static" id="title-bar">
-            <Toolbar>
-              <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper">
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper" className="icon-button">
                 <Link id="logo-icon" to="/" />
               </IconButton>
-              <Typography variant="overline" color="inherit" className="title-text">
+              <Typography variant="h6" color="inherit" className="title-text">
                 ArcheAge Tools
               </Typography>
-              {/*{isAuthenticated && (*/}
-              {/*  <Settings badgeCount={badgeCount} />*/}
-              {/*)}*/}
+              <Typography>
+                <MuiLink component={Link} to="/dailies" color="inherit">
+                  Daily Quests
+                </MuiLink>
+              </Typography>
             </Toolbar>
           </AppBar>
           {children}
@@ -91,6 +100,7 @@ class Main extends React.PureComponent {
               </IconButton>,
             ]}
           />
+          <ItemTooltip />
         </div>
       </ThemeProvider>
     );

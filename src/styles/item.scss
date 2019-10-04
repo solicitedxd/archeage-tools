@@ -1,0 +1,249 @@
+.reward-list {
+  display: flex;
+
+  & > div {
+    margin-right: 8px;
+  }
+}
+
+.reward-items {
+  display: flex;
+  flex-direction: row;
+
+  & > div {
+    margin-right: 4px;
+  }
+}
+
+.reward-currencies, .reward-xps {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.currency {
+  position: relative;
+  font-size: 15px;
+  color: #6D4916;
+
+  &:after {
+    content: "";
+    position: relative;
+    height: 16px;
+    width: 16px;
+    margin-left: 2px;
+    top: 1px;
+    display: inline-block;
+    background: url(../images/money_window.png) no-repeat;
+  }
+
+  & + .currency {
+    margin-left: 4px;
+  }
+
+  &.gold:after {
+    background-position: 0 -28px;
+  }
+
+  &.silver:after {
+    background-position: -16px -28px;
+  }
+
+  &.copper:after {
+    background-position: -32px -28px;
+  }
+
+  &.honor {
+    top: -4px;
+
+    &:after {
+      width: 12px;
+      height: 18px;
+      background-position: -49px -32px;
+      top: 4px;
+    }
+  }
+}
+
+/**
+ Item icon
+ */
+.item-icon {
+  display: inline-block;
+  position: relative;
+  width: 48px;
+  height: 48px;
+  border: 1px solid black;
+  border-radius: 1px;
+  box-shadow: 0 0 3px #000000;
+}
+
+.item-icon:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  content: "";
+  z-index: 1;
+}
+
+.item-icon img {
+  height: 48px;
+  width: 48px;
+}
+
+.item-icon .count {
+  position: absolute;
+  bottom: 2px;
+  right: 4px;
+  z-index: 2;
+  color: white;
+  text-shadow: -1px -1px 0 #000000,
+  1px -1px 0 #000000,
+  -1px 1px 0 #000000,
+  1px 1px 0 #000000;
+}
+
+[data-quality="Poor"] .item-icon:after {
+  background-image: url('../images/grades/0poor.png');
+}
+
+[data-quality="Poor"] .quality-color {
+  color: #949293;
+}
+
+[data-quality="Basic"] .item-icon:after {
+  background-image: url('../images/grades/1common.png');
+}
+
+[data-quality="Basic"] .quality-color {
+  color: #BA976D;
+}
+
+[data-quality="Grand"] .item-icon:after {
+  background-image: url('../images/grades/2uncommon.png');
+}
+
+[data-quality="Grand"] .quality-color {
+  color: #77B064;
+}
+
+[data-quality="Rare"] .item-icon:after {
+  background-image: url('../images/grades/3rare.png');
+}
+
+[data-quality="Rare"] .quality-color {
+  color: #558FD6;
+}
+
+[data-quality="Celestial"] .item-icon:after {
+  background-image: url('../images/grades/7artifact.png');
+}
+
+[data-quality="Celestial"] .quality-color {
+  color: #F85252;
+}
+
+/**
+ Tooltips
+ */
+.archeage-tooltip {
+  position: absolute;
+  z-index: 9999;
+  font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
+  width: 216px;
+  background: rgba(82, 80, 63, 0.9);
+  color: #D0BFAC;
+  padding: 16px;
+  border-radius: 3px;
+  line-height: 1.4;
+  margin-top: 3px;
+
+  border: 1px solid #34341A;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+
+  .header {
+    display: flex;
+  }
+
+  p {
+    margin: 0 auto;
+    font-size: 12px;
+  }
+
+  section + section:before {
+    content: "";
+    display: block;
+    height: 0;
+    margin: 6px auto;
+    border-top: 1px solid rgba(208, 191, 172, 0.3);
+  }
+
+  h4 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  h5 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  .item-icon {
+    margin: 0 6px 2px 0;
+    background-color: #AD9D7F;
+    vertical-align: middle;
+  }
+
+  .item-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .tt-orange {
+    color: #FF9D28;
+  }
+
+  .tt-yellow {
+    color: #F6CC66;
+  }
+
+  .tt-blue {
+    color: #8DC2DF;
+  }
+
+  .tt-green {
+    color: #95B84B;
+  }
+
+  .tt-use {
+    color: #919191;
+    display: block;
+  }
+
+  .no-sell {
+    color: #C13D36;
+  }
+
+  .currency {
+    font-size: 14px;
+    color: #6D4916;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
