@@ -1,0 +1,33 @@
+html {
+  font-size: 100%;
+  background: url(../images/background.png) no-repeat center bottom;
+  background-attachment: fixed;
+  //background-size: cover;
+  //-webkit-background-size: cover;
+  //-moz-background-size: cover;
+  //-o-background-size: cover;
+  font-family: "Helvetica", "Arial", sans-serif !important;
+  min-height: 100%;
+}
+
+body {
+  font-family: "Helvetica", "Arial", sans-serif !important;
+  margin: 0;
+}
+
+/** Title Bar **/
+#logo-icon-wrapper {
+  margin-right: 6px;
+  padding: 0!important;
+}
+
+#logo-icon {
+  width: 48px;
+  height: 48px;
+  background: url(../images/ucc-white.png) no-repeat;
+  background-size: 48px;
+}
+
+.title-text {
+  flex: 1;
+}
