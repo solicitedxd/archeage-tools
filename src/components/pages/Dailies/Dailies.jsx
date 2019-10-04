@@ -7,6 +7,11 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Settings } from '@material-ui/icons';
+import cn from 'classnames';
+import {
+  Controller,
+  Scene,
+} from 'react-scrollmagic';
 import dailyQuests from 'data/dailies';
 import Quest from './Quest';
 
@@ -19,7 +24,7 @@ class Dailies extends Component {
     width: window.innerWidth,
   };
 
-  componentWillMount() {
+  componentDidMount() {
     window.addEventListener('resize', this.handleWindowResize);
   }
 
@@ -40,8 +45,8 @@ class Dailies extends Component {
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
 
     return (
-      <div style={{ display: 'flex' }}>
-        <Paper className="section" style={mainStyle}>
+      <div className="quest-container">
+        <Paper className={cn('section', 'quest-list')} style={mainStyle}>
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography variant="h6" className="title-text">Dailies Checklist</Typography>
@@ -51,16 +56,20 @@ class Dailies extends Component {
               </IconButton>}
             </Toolbar>
           </AppBar>
-          {dailyQuests.map((quest) => <Quest key={quest.name} {...quest} />)}
+          {dailyQuests.map((quest) => <Quest key={`${quest.name}${quest.idx && `-${quest.idx}`}`} {...quest} />)}
         </Paper>
         {!this.showSettingsMenu() &&
-        <Paper className="section" style={{ width: '20%', minWidth: '200px' }}>
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1">Config and Rewards</Typography>
-            </Toolbar>
-          </AppBar>
-        </Paper>}
+        <Controller>
+          <Scene duration={300} pin enabled>
+            <Paper className={cn('section', 'quest-filters')} style={{ width: '20%', minWidth: '200px' }}>
+              <AppBar position="static">
+                <Toolbar variant="dense">
+                  <Typography variant="subtitle1">Config and Rewards</Typography>
+                </Toolbar>
+              </AppBar>
+            </Paper>
+          </Scene>
+        </Controller>}
       </div>
     );
   }

@@ -1,0 +1,116 @@
+.quest-container {
+  display: flex;
+  align-items: flex-start;
+
+  .quest-list {
+    .quest-name > span {
+      position: relative;
+    }
+
+    .difficulty {
+      position: absolute;
+      display: inline-block;
+      width: 39px;
+      height: 30px;
+      top: -9px;
+      right: -42px;
+      background: url('../images/quest_level.png') no-repeat;
+
+      &.Elite {
+      }
+
+      &.Epic {
+        background-position: 0 -30px;
+      }
+
+      &.Legendary {
+        width: 54px;
+        background-position: 0 -60px;
+        right: -57px;
+      }
+
+      &.Mythic {
+        background-position: 0 -90px;
+      }
+    }
+
+    .reward-list {
+      display: flex;
+
+      & > div {
+        margin-right: 8px;
+      }
+
+      .currency {
+        color: #2E6689;
+      }
+    }
+
+    .reward-items {
+      display: flex;
+      flex-direction: row;
+
+      & > div {
+        margin-right: 4px;
+      }
+    }
+
+    .reward-currencies, .reward-xps {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+  }
+
+  .quest-filters {
+
+  }
+}
+
+.currency {
+  position: relative;
+  font-size: 15px;
+  color: #6D4916;
+
+  &:after {
+    content: "";
+    position: relative;
+    height: 16px;
+    width: 16px;
+    margin-left: 2px;
+    top: 1px;
+    display: inline-block;
+    background: url(../images/money_window.png) no-repeat;
+  }
+
+  &.gold:after {
+    background-position: 0 -28px;
+  }
+
+  &.silver:after {
+    background-position: -16px -28px;
+  }
+
+  &.copper:after {
+    background-position: -32px -28px;
+  }
+
+  &.Honor {
+    top: -3px;
+
+    &:after {
+      width: 12px;
+      height: 19px;
+      background-position: -49px -32px;
+      top: 4px;
+    }
+  }
+
+  &.Leadership {
+    &:after {
+      width: 14px;
+      height: 15px;
+      background-position: -173px -29px;
+    }
+  }
+}

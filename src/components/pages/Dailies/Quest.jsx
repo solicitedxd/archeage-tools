@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   arrayOf,
+  number,
   object,
   string,
 } from 'react-proptypes';
@@ -10,6 +11,7 @@ import {
   Checkbox,
   Typography,
 } from '@material-ui/core';
+import cn from 'classnames';
 import { REWARD } from 'constants/dailies';
 import ITEM from 'constants/items';
 import Item from 'components/Item';
@@ -23,15 +25,23 @@ class Quest extends Component {
     difficulty: string,
     rewards: arrayOf(object),
     type: string,
+    idx: number,
   };
 
   static defaultProps = {
     zones: [],
     difficulty: '',
     type: '',
+    idx: null,
   };
 
-  state = {};
+  state = {
+    checked: false,
+  };
+
+  componentDidMount() {
+    // check if this quest idx is
+  }
 
   render() {
     const { name, zones, difficulty, rewards, type } = this.props;
@@ -44,8 +54,9 @@ class Quest extends Component {
       <Card>
         <CardHeader
           avatar={<Checkbox />}
-          title={<Typography variant="subtitle1">{name}</Typography>}
-          subheader={<Typography variant="overline">{zones.join(', ')} {type && `[${type}]`}</Typography>}
+          title={<Typography variant="subtitle1" className="quest-name"><span>{name}{difficulty &&
+          <span className={cn('difficulty', difficulty)} />}</span></Typography>}
+          subheader={<Typography variant="overline">{zones.join(', ')}</Typography>}
           disableTypography
           action={<div className="reward-list">
             {rewardItems.length > 0 &&

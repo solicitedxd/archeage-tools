@@ -3,6 +3,10 @@ import ReactHintFactory from 'react-hint';
 import { Typography } from '@material-ui/core';
 import ITEMS from 'constants/items';
 import Currency from 'components/Currency';
+import {
+  QUALITY,
+  REWARD,
+} from 'constants/dailies';
 
 const ReactHint = ReactHintFactory(React);
 
@@ -21,11 +25,13 @@ const renderItemTooltip = (target) => {
     <div>
       <section className="header" data-quality={quality}>
         <div className="item-icon">
-          <img src={icon} alt={name} />
+          <img src={icon} alt="" />
           <Typography className="count">{count > 1 && count}</Typography>
         </div>
         <div className="item-name">
           <Typography variant="h5" component="h5">{type}</Typography>
+          {quality !== QUALITY.BASIC &&
+          <Typography variant="h5" component="h5" className="quality-color">{quality}</Typography>}
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
       </section>
@@ -37,7 +43,7 @@ const renderItemTooltip = (target) => {
       </section>
       <section>
         {price > 0 ?
-          <p><Currency type={REWARD.COIN} count={price} /></p> :
+          <div className="shop-price"><p>Shop Price:</p> <Currency type={REWARD.COIN} count={price * count} /></div> :
           <p className="no-sell">Cannot Sell</p>}
       </section>
     </div>
@@ -50,7 +56,6 @@ const ItemTooltip = () => (
     className="archeage-tooltip"
     events
     onRenderContent={renderItemTooltip}
-    // position="left"
     autoPosition
   />
 );

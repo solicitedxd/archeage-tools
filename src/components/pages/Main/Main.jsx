@@ -37,6 +37,16 @@ let theme = createMuiTheme({
   typography: createTypography(palette, {
     fontFamily: '"Flareserif821BT-Roman"',
   }),
+  overrides: {
+    MuiCardHeader: {
+      root: {
+        padding: 8,
+      },
+      avatar: {
+        marginRight: 8,
+      },
+    },
+  },
 });
 theme = responsiveFontSizes(theme);
 
