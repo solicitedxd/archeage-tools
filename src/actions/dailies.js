@@ -8,6 +8,16 @@ import {
   QUEST_STATUS,
 } from 'constants/dailies';
 
+export const triggerLocalStorageUpdate = [
+  QUEST_FILTER_COMPLETE,
+  QUEST_FILTER_CONTINENT,
+  QUEST_FILTER_FACTION,
+  QUEST_FILTER_REWARD,
+  QUEST_FILTER_TYPE,
+  QUEST_RESET,
+  QUEST_STATUS,
+];
+
 export const setQuestStatus = (questId, status) => (dispatch) => {
   dispatch({ type: QUEST_STATUS, questId, status });
 };

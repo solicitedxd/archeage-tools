@@ -12,6 +12,7 @@ const rootReducer = (history) => combineReducers({
 });
 
 export const getLocalData = {
+  dailies: ({ dailies }) => dailies,
 };
 
 export default rootReducer;

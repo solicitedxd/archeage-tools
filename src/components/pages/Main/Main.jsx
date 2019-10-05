@@ -82,8 +82,6 @@ class Main extends React.PureComponent {
   handleWindowResize = () => {
     const { mobile, setMobile } = this.props;
     const shouldMobile = window.innerWidth < 640;
-    console.debug(`Window resized to ${window.innerWidth}, ${shouldMobile ? 'considering mobile'
-      : 'not considering mobile'}`);
 
     if (mobile !== shouldMobile) {
       setMobile(shouldMobile);
@@ -129,7 +127,7 @@ class Main extends React.PureComponent {
                 ArcheAge Tools
               </Typography>
               {!mobile && navigation.map(navLink => !navLink.disabled && (
-                <Typography className="nav-item">
+                <Typography className="nav-item" key={navLink.path}>
                   <MuiLink component={Link} to={navLink.path} color="inherit">
                     {navLink.short || navLink.name}
                   </MuiLink>
@@ -142,7 +140,7 @@ class Main extends React.PureComponent {
               <Drawer anchor="right" open={mobile && drawerOpen} onClose={this.handleClose}>
                 <List style={{ width: 250 }}>
                   {navigation.map(navLink => !navLink.disabled && (
-                    <Link to={navLink.path} className="no-link" onClick={this.handleClose}>
+                    <Link to={navLink.path} className="no-link" onClick={this.handleClose} key={navLink.path}>
                       <ListItem button key={navLink.path}>
                         <ListItemIcon><span className={cn('nav-icon', getNavId(navLink.path))} /></ListItemIcon>
                         <ListItemText primary={navLink.name} />

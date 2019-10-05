@@ -11,7 +11,7 @@ import navigation from 'constants/navigation';
 const Home = () => (
   <div>
     <div className="home-banners section">
-      {navigation.map(navLink => <Banner path={navLink.path} text={navLink.name} disabled={navLink.disabled} />)}
+      {navigation.map(navLink => <Banner path={navLink.path} text={navLink.name} disabled={navLink.disabled} key={navLink.path} />)}
     </div>
     <Paper className="section">
       <AppBar position="static">

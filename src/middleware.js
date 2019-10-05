@@ -1,11 +1,11 @@
 import thunk from 'redux-thunk';
 import { routerMiddleware } from 'connected-react-router';
-// import { triggerLocalStorageUpdate as session } from 'actions/session';
+import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { setItem } from 'utils/localStorage';
 import { getLocalData } from 'reducers';
 
 const keysAndActionTypes = {
-  // session,
+  dailies,
 };
 
 const updateLocalAfterActions = (store) => (next) => (action) => {

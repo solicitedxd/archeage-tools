@@ -130,7 +130,7 @@ class Dailies extends Component {
               </IconButton>}
             </Toolbar>
           </AppBar>
-          {visibleQuests.map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
+          {visibleQuests.sort((a, b) => a.name > b.name).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
         </Paper>
         {!this.showSettingsMenu() &&
         <Paper className={cn('section', 'quest-filters')} style={{ width: '20%', minWidth: '200px' }}>
