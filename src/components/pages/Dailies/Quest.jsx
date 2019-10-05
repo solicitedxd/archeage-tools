@@ -70,15 +70,6 @@ class Quest extends Component {
           subheader={<Typography variant="overline">{zones.join(', ')}</Typography>}
           disableTypography
           action={<div className="reward-list">
-            {rewardItems.length > 0 &&
-            <div className="reward-items">
-              {rewardItems.map(reward => {
-                if (reward.type === REWARD.GILDA) {
-                  reward.item = ITEM.GILDA_STAR;
-                }
-                return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
-              })}
-            </div>}
             {rewardCurrencies.length > 0 &&
             <div className="reward-currencies">
               {rewardCurrencies.map(reward => {
@@ -89,6 +80,15 @@ class Quest extends Component {
             <div className="reward-xps">
               {rewardXps.map(reward => {
                 return <XP key={reward.type} {...reward} />;
+              })}
+            </div>}
+            {rewardItems.length > 0 &&
+            <div className="reward-items">
+              {rewardItems.map(reward => {
+                if (reward.type === REWARD.GILDA) {
+                  reward.item = ITEM.GILDA_STAR;
+                }
+                return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
               })}
             </div>}
           </div>}

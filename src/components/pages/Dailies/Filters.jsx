@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { array } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
   Checkbox,
@@ -41,11 +42,15 @@ const MenuProps = {
 };
 
 class Filters extends Component {
-  static propTypes = {};
+  static propTypes = {
+    availableRewards: array,
+    claimedRewards: array,
+  };
 
-  static defaultProps = {};
-
-  state = {};
+  static defaultProps = {
+    availableRewards: [],
+    claimedRewards: [],
+  };
 
   handleFactionChange = (event) => this.props.filterFaction(event.target.value);
   handleContinentChange = (event) => this.props.filterContinents(event.target.value);

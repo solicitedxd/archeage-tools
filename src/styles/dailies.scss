@@ -82,26 +82,28 @@
 
   .quest-filters {
     max-width: 280px;
-
-    .filter-field {
-      display: block;
-      margin: 8px 12px;
-    }
-
-    .reward-panel-texts {
-      display: flex;
-      justify-content: space-between;
-      padding: 0 6px 6px;
-    }
-
-    .reward-panel-items {
-      display: flex;
-      flex-wrap: wrap;
-    }
   }
 }
 
-.currency, .dropdown-icon {
+.quest-filters {
+  .filter-field {
+    display: block;
+    margin: 8px 12px;
+  }
+
+  .reward-panel-texts {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 6px 6px;
+  }
+
+  .reward-panel-items {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.currency, .dropdown-icon, .MuiTypography-body1.currency {
   position: relative;
   font-size: 15px;
   color: #6D4916;

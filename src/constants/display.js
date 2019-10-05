@@ -1,0 +1,1 @@
+export const DISPLAY_MOBILE = 'DISPLAY_MOBILE';

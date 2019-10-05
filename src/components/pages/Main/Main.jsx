@@ -1,10 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import { Link } from 'react-router-dom';
 import {
   AppBar,
+  Drawer,
   IconButton,
   Link as MuiLink,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
   Snackbar,
   Toolbar,
   Typography,
@@ -20,11 +26,17 @@ import {
   pink,
   teal,
 } from '@material-ui/core/colors';
-import CloseIcon from '@material-ui/icons/Close';
-import { Link } from 'react-router-dom';
-import Favicon from 'images/favicon.ico';
+import {
+  Close,
+  Menu,
+} from '@material-ui/icons';
+import cn from 'classnames';
 import { clearNotification } from 'actions/notification';
 import ItemTooltip from 'components/Item/ItemTooltip';
+import { setMobile } from 'actions/display';
+import navigation from 'constants/navigation';
+import Favicon from 'images/favicon.ico';
+import { getNavId } from 'utils/string';
 import 'styles/index';
 
 const palette = createPalette({
@@ -56,27 +68,53 @@ let theme = createMuiTheme({
       root: {
         display: 'block',
         padding: '4px 12px 12px',
-      }
-    }
+      },
+    },
   },
 });
 theme = responsiveFontSizes(theme);
 
 class Main extends React.PureComponent {
-  static propTypes = {};
-  static defaultProps = {};
+  state = {
+    drawerOpen: false,
+  };
 
-  constructor(props) {
-    super(props);
-    this.state = {};
+  handleWindowResize = () => {
+    const { mobile, setMobile } = this.props;
+    const shouldMobile = window.innerWidth < 640;
+    console.debug(`Window resized to ${window.innerWidth}, ${shouldMobile ? 'considering mobile'
+      : 'not considering mobile'}`);
+
+    if (mobile !== shouldMobile) {
+      setMobile(shouldMobile);
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener('resize', this.handleWindowResize);
+    this.handleWindowResize();
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.handleWindowResize);
+  }
+
+  handleClose = () => {
+    this.setState({ drawerOpen: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ drawerOpen: true });
+  };
 
   render() {
     const {
       children,
       notification,
       clearNotification,
+      mobile,
     } = this.props;
+    const { drawerOpen } = this.state;
 
     return (
       <ThemeProvider theme={theme}>
@@ -90,21 +128,29 @@ class Main extends React.PureComponent {
               <Typography variant="h6" color="inherit" className="title-text">
                 ArcheAge Tools
               </Typography>
-              <Typography className="nav-item">
-                <MuiLink component={Link} to="/dailies" color="inherit">
-                  Daily Quests
-                </MuiLink>
-              </Typography>
-              <Typography className="nav-item">
-                <MuiLink component={Link} to="/skills" color="inherit">
-                  Skill Calculator
-                </MuiLink>
-              </Typography>
-              <Typography className="nav-item">
-                <MuiLink component={Link} to="/tradepacks" color="inherit">
-                  Trade Pack Calculator
-                </MuiLink>
-              </Typography>
+              {!mobile && navigation.map(navLink => !navLink.disabled && (
+                <Typography className="nav-item">
+                  <MuiLink component={Link} to={navLink.path} color="inherit">
+                    {navLink.short || navLink.name}
+                  </MuiLink>
+                </Typography>
+              ))}
+              {mobile &&
+              <IconButton color="inherit" aria-label="Open Drawer" onClick={this.handleOpen}>
+                <Menu />
+              </IconButton>}
+              <Drawer anchor="right" open={mobile && drawerOpen} onClose={this.handleClose}>
+                <List style={{ width: 250 }}>
+                  {navigation.map(navLink => !navLink.disabled && (
+                    <Link to={navLink.path} className="no-link" onClick={this.handleClose}>
+                      <ListItem button key={navLink.path}>
+                        <ListItemIcon><span className={cn('nav-icon', getNavId(navLink.path))} /></ListItemIcon>
+                        <ListItemText primary={navLink.name} />
+                      </ListItem>
+                    </Link>
+                  ))}
+                </List>
+              </Drawer>
             </Toolbar>
           </AppBar>
           {children}
@@ -128,7 +174,7 @@ class Main extends React.PureComponent {
                 className="notification-close"
                 onClick={clearNotification}
               >
-                <CloseIcon />
+                <Close />
               </IconButton>,
             ]}
           />
@@ -139,12 +185,14 @@ class Main extends React.PureComponent {
   }
 }
 
-const mapStateToProps = ({ notification }) => ({
+const mapStateToProps = ({ notification, display: { mobile } }) => ({
   notification,
+  mobile,
 });
 
 const mapDispatchToProps = {
   clearNotification,
+  setMobile,
 };
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Main));

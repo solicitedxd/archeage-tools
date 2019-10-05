@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
   AppBar,
+  Dialog,
   IconButton,
   Paper,
   Toolbar,
@@ -9,6 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
+  Close,
   Replay,
   Settings,
 } from '@material-ui/icons';
@@ -30,28 +32,24 @@ class Dailies extends Component {
   static defaultProps = {};
 
   state = {
-    width: window.innerWidth,
+    filtersOpen: false,
   };
-
-  componentDidMount() {
-    window.addEventListener('resize', this.handleWindowResize);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.handleWindowResize);
-  }
 
   showSettingsMenu = () => {
-    const { width } = this.state;
-    return (width < 540);
+    return this.props.displayMobile;
   };
 
-  handleWindowResize = () => {
-    this.setState({ width: window.innerWidth });
+  handleClose = () => {
+    this.setState({ filtersOpen: false });
+  };
+
+  handleOpen = () => {
+    this.setState({ filtersOpen: true });
   };
 
   render() {
     const { continents, faction, rewards, types, hideComplete, resetQuests, quests } = this.props;
+    const { filtersOpen } = this.state;
     const zonesFromContinents = [].concat.apply([], continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones));
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
 
@@ -121,15 +119,15 @@ class Dailies extends Component {
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography variant="h6" className="title-text">Daily Quest Checklist</Typography>
-              {this.showSettingsMenu() &&
-              <IconButton color="inherit" aria-label="Menu">
-                <Settings />
-              </IconButton>}
               <Tooltip title="Reset all quests.">
                 <IconButton color="inherit" aria-label="Reset" onClick={() => resetQuests()}>
                   <Replay />
                 </IconButton>
               </Tooltip>
+              {this.showSettingsMenu() &&
+              <IconButton color="inherit" aria-label="Menu" onClick={this.handleOpen}>
+                <Settings />
+              </IconButton>}
             </Toolbar>
           </AppBar>
           {visibleQuests.map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
@@ -143,18 +141,32 @@ class Dailies extends Component {
           </AppBar>
           <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
         </Paper>}
+        <Dialog open={this.showSettingsMenu() && filtersOpen} onClose={this.handleClose}>
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Typography variant="subtitle1" className="title-text">Filters</Typography>
+              <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
+                <Close />
+              </IconButton>
+            </Toolbar>
+          </AppBar>
+          <div className="quest-filters">
+            <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
+          </div>
+        </Dialog>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete, quests } }) => ({
+const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete, quests }, display: { mobile } }) => ({
   continents,
   faction,
   rewards,
   types,
   hideComplete,
   quests,
+  displayMobile: mobile,
 });
 
 const mapDispatchToProps = {
