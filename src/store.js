@@ -3,6 +3,7 @@ import {
   compose,
   createStore,
 } from 'redux';
+import config from 'config';
 import rootReducer from 'reducers';
 import middleware from './middleware';
 
@@ -12,7 +13,7 @@ const validDevTools = window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTO
 
 const getReduxDevTools = (enableDevTools = false) => (enableDevTools ? validDevTools : dummyDevTools);
 
-const enhancer = (history) => compose(applyMiddleware(...middleware(history)), getReduxDevTools(true));
+const enhancer = (history) => compose(applyMiddleware(...middleware(history)), getReduxDevTools(config.devTools));
 
 const configureStore = (history) => {
   const store = createStore(

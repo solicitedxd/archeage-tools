@@ -3,7 +3,6 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const { join, resolve } = path;
 
@@ -29,6 +28,7 @@ module.exports = {
     alias: {
       actions: join(src, 'actions'),
       components: join(src, 'components'),
+      config: join(src, 'config', 'development.js'),
       constants: join(src, 'constants'),
       data: join(src, 'data'),
       images: join(src, 'images'),
@@ -61,24 +61,12 @@ module.exports = {
   plugins: [
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
-    // new ExtractTextPlugin({
-    //   filename: 'style.css',
-    //   allChunks: true,
-    // }),
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
       template: './src/template.html',
       files: {
-        // css: ['style.css'],
         js: ['bundle.js'],
       },
-    }),
-    // timestamps
-    function() {
-      this.hooks.done.tap('BuildStatsPlugin', function() {
-        console.log(' ');
-        console.log(new Date().toLocaleTimeString());
-      });
-    }
+    })
   ],
 };

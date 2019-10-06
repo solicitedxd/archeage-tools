@@ -47,14 +47,16 @@ class Quest extends Component {
     this.props.setQuestStatus(this.getQuestId(), status);
   };
 
+  sortReward = (a, b) => a.type > b.type;
+
   render() {
     const { name, zones, difficulty, rewards, quests } = this.props;
 
     const checked = quests[this.getQuestId()] || false;
 
-    const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA);
-    const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP);
-    const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP);
+    const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA).sort(this.sortReward);
+    const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP).sort(this.sortReward);
+    const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP).sort(this.sortReward);
 
     return (
       <Card onClick={() => this.handleChange(null, !checked)}>
@@ -67,7 +69,7 @@ class Quest extends Component {
           />}
           title={<Typography variant="subtitle1" className="quest-name"><span>{name}{difficulty &&
           <span className={cn('difficulty', difficulty)} />}</span></Typography>}
-          subheader={<Typography variant="overline">{zones.join(', ')}</Typography>}
+          subheader={<Typography variant="overline">{zones.sort().join(', ')}</Typography>}
           disableTypography
           action={<div className="reward-list">
             {rewardCurrencies.length > 0 &&

@@ -59,6 +59,13 @@ export const ZONE = Object.freeze({
   FREEDICH_ISLAND: 'Freedich Island',
   GROWLGATE_ISLE: 'Growlgate Isle',
   AEGIS_ISLAND: 'Aegis Island',
+
+  FARMERS_WORKSTATION: 'Farmer\'s Workstation',
+  FARMHOUSE: 'Farmhouse',
+  SPICE_SEED_BUNDLE: 'Spice Seed Bundle',
+  IRON_VEIN: 'Iron Vein',
+  PRODUCE_SEED_BUNDLE: 'Produce Seed Bundle',
+  GOOSE_CAGE: 'Small Bamboo Goose Cage',
 });
 
 export const CONTINENT = Object.freeze({
@@ -126,6 +133,17 @@ export const CONTINENT = Object.freeze({
       ZONE.EXELOCH,
     ],
   },
+  CRAFTED: {
+    name: 'Placeable',
+    zones: [
+      ZONE.FARMERS_WORKSTATION,
+      ZONE.FARMHOUSE,
+      ZONE.SPICE_SEED_BUNDLE,
+      ZONE.IRON_VEIN,
+      ZONE.PRODUCE_SEED_BUNDLE,
+      ZONE.GOOSE_CAGE,
+    ],
+  },
 });
 
 export const FACTION = Object.freeze({
@@ -135,12 +153,14 @@ export const FACTION = Object.freeze({
 
 export const TYPE = Object.freeze({
   BLUE_SALT: 'Blue Salt Brotherhood',
+  SUPPLY_DEMAND: 'Supply Demand',
   HUNTING_REQUEST: 'Hunting Request',
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',
   FAMILY: 'Family Quest',
   GUILD: 'Guild Mission',
   OTHER: 'Other',
+  RIFT: 'Rift',
 });
 
 export const DIFFICULTY = Object.freeze({

@@ -40,13 +40,15 @@ class RewardsDisplay extends Component {
     this.setState({ expanded });
   };
 
+  sortRewards = (a, b) => a.type > b.type;
+
   render() {
     const { title, rewards } = this.props;
     const { expanded } = this.state;
 
-    const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA);
-    const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP);
-    const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP);
+    const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA).sort(this.sortRewards);
+    const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP).sort(this.sortRewards);
+    const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP).sort(this.sortRewards);
 
     return (
       <ExpansionPanel expanded={expanded} onChange={this.handleChange}>
