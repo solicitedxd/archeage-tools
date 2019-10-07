@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactHintFactory from 'react-hint';
 import { Typography } from '@material-ui/core';
+import cn from 'classnames';
 import ITEMS from 'constants/items';
 import Currency from 'components/Currency';
 import {
@@ -11,7 +12,7 @@ import {
 const ReactHint = ReactHintFactory(React);
 
 const renderItemTooltip = (target) => {
-  const { itemName, count } = target.dataset;
+  const { itemName } = target.dataset;
 
   const item = Object.values(ITEMS).find((item) => item.name === itemName);
   // validate item exists
@@ -19,14 +20,13 @@ const renderItemTooltip = (target) => {
     return;
   }
 
-  const { name, icon, type, description, quality, bindsOnPickup, price } = item;
+  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified } = item;
 
   return (
     <div>
       <section className="header" data-quality={quality}>
-        <div className="item-icon">
+        <div className={cn('item-icon', { 'unidentified': unidentified })}>
           <img src={icon} alt="" />
-          <Typography className="count">{count > 1 && count}</Typography>
         </div>
         <div className="item-name">
           <Typography variant="h5" component="h5">{type}</Typography>
@@ -43,7 +43,7 @@ const renderItemTooltip = (target) => {
       </section>
       <section>
         {price > 0 ?
-          <div className="shop-price"><p>Shop Price:</p> <Currency type={REWARD.COIN} count={price * count} /></div> :
+          <div className="shop-price"><p>Shop Price:</p> <Currency type={REWARD.COIN} count={price} /></div> :
           <p className="no-sell">Cannot Sell</p>}
       </section>
     </div>

@@ -12,6 +12,7 @@
       &:hover {
         background: rgba(0, 150, 136, 0.2);
       }
+
       &.checked {
         background: rgba(82, 80, 63, 0.125);
         text-decoration: line-through;
@@ -22,6 +23,7 @@
         }
       }
     }
+
     .quest-name > span {
       position: relative;
     }
@@ -84,6 +86,8 @@
   }
 
   .quest-filters {
+    width: 20%;
+    min-width: 200px;
     max-width: 280px;
   }
 }
@@ -104,6 +108,23 @@
     display: flex;
     flex-wrap: wrap;
   }
+
+  .footnote {
+    margin: 12px;
+    color: #FFFFFF;
+    text-shadow: -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+    display: block;
+    text-align: justify;
+  }
+}
+
+.footnote-dialog {
+  margin: 12px!important;
+  display: block;
+  text-align: justify;
 }
 
 .currency, .dropdown-icon, .MuiTypography-body1.currency {

@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
+  array,
   arrayOf,
   number,
   object,
+  oneOfType,
   string,
 } from 'react-proptypes';
 import {
@@ -19,12 +21,16 @@ import ITEM from 'constants/items';
 import Item from 'components/Item';
 import Currency from 'components/Currency';
 import XP from 'components/XP';
-import { getQuestId } from 'utils/string';
+import {
+  getQuestId,
+  getZones,
+  splitRewards,
+} from 'utils/dailies';
 
 class Quest extends Component {
   static propTypes = {
     name: string.isRequired,
-    zones: arrayOf(string),
+    zones: oneOfType([object, array]),
     difficulty: string,
     rewards: arrayOf(object),
     type: string,
@@ -47,16 +53,12 @@ class Quest extends Component {
     this.props.setQuestStatus(this.getQuestId(), status);
   };
 
-  sortReward = (a, b) => a.type > b.type;
-
   render() {
-    const { name, zones, difficulty, rewards, quests } = this.props;
+    const { name, zones: zoneObj, difficulty, rewards, quests, faction } = this.props;
+    const { rewardItems, rewardXps, rewardCurrencies } = splitRewards(rewards);
+    const zones = getZones(zoneObj, faction);
 
     const checked = quests[this.getQuestId()] || false;
-
-    const rewardItems = rewards.filter((reward) => reward.type === REWARD.ITEM || reward.type === REWARD.GILDA).sort(this.sortReward);
-    const rewardXps = rewards.filter((reward) => reward.type === REWARD.GUILD_XP || reward.type === REWARD.FAMILY_XP).sort(this.sortReward);
-    const rewardCurrencies = rewards.filter((reward) => reward.type === REWARD.COIN || reward.type === REWARD.HONOR || reward.type === REWARD.VOCATION || reward.type === REWARD.PRESTIGE || reward.type === REWARD.LEADERSHIP).sort(this.sortReward);
 
     return (
       <Card onClick={() => this.handleChange(null, !checked)}>
@@ -103,8 +105,9 @@ class Quest extends Component {
   }
 }
 
-const mapStateToProps = ({ dailies: { quests } }) => ({
+const mapStateToProps = ({ dailies: { quests, faction } }) => ({
   quests,
+  faction,
 });
 
 const mapDispatchToProps = {

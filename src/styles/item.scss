@@ -11,7 +11,7 @@
   box-shadow: 0 0 3px #000000;
 }
 
-.item-icon:after {
+.item-icon:after, .item-icon.unidentified:before {
   display: block;
   position: absolute;
   top: 0;
@@ -19,6 +19,11 @@
   width: 48px;
   height: 48px;
   content: "";
+  z-index: 2;
+}
+
+.item-icon.unidentified:before {
+  background-image: url('../images/item/unidentified.png');
   z-index: 1;
 }
 
@@ -39,44 +44,94 @@
   1px 1px 0 #000000;
 }
 
-[data-quality="Poor"] .item-icon:after {
-  background-image: url('../images/grades/0poor.png');
+[data-quality="Poor"] {
+  .item-icon:after {
+    background-image: url('../images/grades/0poor.png');
+  }
+
+  .quality-color {
+    color: #949293;
+  }
 }
 
-[data-quality="Poor"] .quality-color {
-  color: #949293;
+[data-quality="Basic"] {
+  .item-icon:after {
+    background-image: url('../images/grades/1common.png');
+  }
+
+  .quality-color {
+    color: #BA976D;
+  }
 }
 
-[data-quality="Basic"] .item-icon:after {
-  background-image: url('../images/grades/1common.png');
+[data-quality="Grand"] {
+  .item-icon:after {
+    background-image: url('../images/grades/2uncommon.png');
+  }
+
+  .quality-color {
+    color: #77B064;
+  }
 }
 
-[data-quality="Basic"] .quality-color {
-  color: #BA976D;
+[data-quality="Rare"] {
+  .item-icon:after {
+    background-image: url('../images/grades/3rare.png');
+  }
+
+  .quality-color {
+    color: #558FD6;
+  }
 }
 
-[data-quality="Grand"] .item-icon:after {
-  background-image: url('../images/grades/2uncommon.png');
+[data-quality="Arcane"] {
+  .item-icon:after {
+    background-image: url('../images/grades/4ancient.png');
+  }
+
+  .quality-color {
+    color: #CB72D8;
+  }
 }
 
-[data-quality="Grand"] .quality-color {
-  color: #77B064;
+[data-quality="Heroic"] {
+  .item-icon:after {
+    background-image: url('../images/grades/5heroic.png');
+  }
+
+  .quality-color {
+    color: #D78B06;
+  }
 }
 
-[data-quality="Rare"] .item-icon:after {
-  background-image: url('../images/grades/3rare.png');
+[data-quality="Unique"] {
+  .item-icon:after {
+    background-image: url('../images/grades/6unique.png');
+  }
+
+  .quality-color {
+    color: #E17853;
+  }
 }
 
-[data-quality="Rare"] .quality-color {
-  color: #558FD6;
+[data-quality="Celestial"] {
+  .item-icon:after {
+    background-image: url('../images/grades/7artifact.png');
+  }
+
+  .quality-color {
+    color: #F85252;
+  }
 }
 
-[data-quality="Celestial"] .item-icon:after {
-  background-image: url('../images/grades/7artifact.png');
-}
+[data-quality="Divine"] {
+  .item-icon:after {
+    background-image: url('../images/grades/8wonder.png');
+  }
 
-[data-quality="Celestial"] .quality-color {
-  color: #F85252;
+  .quality-color {
+    color: #CF7D5D;
+  }
 }
 
 /**
@@ -206,3 +261,4 @@
     opacity: 1;
   }
 }
+

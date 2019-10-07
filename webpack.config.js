@@ -22,7 +22,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: join(root, 'public'),
-    filename: 'bundle.js',
+    filename: 'bundle.[hash].js',
   },
   resolve: {
     alias: {
@@ -64,9 +64,6 @@ module.exports = {
     new DashboardPlugin(),
     new HtmlWebpackPlugin({
       template: './src/template.html',
-      files: {
-        js: ['bundle.js'],
-      },
     })
   ],
 };

@@ -59,6 +59,8 @@ export const ZONE = Object.freeze({
   FREEDICH_ISLAND: 'Freedich Island',
   GROWLGATE_ISLE: 'Growlgate Isle',
   AEGIS_ISLAND: 'Aegis Island',
+  SEA_OF_DROWNED_LOVE: 'Sea of Drowned Love',
+  ARCADIAN_SEA: 'Arcadian Sea',
 
   FARMERS_WORKSTATION: 'Farmer\'s Workstation',
   FARMHOUSE: 'Farmhouse',
@@ -66,6 +68,11 @@ export const ZONE = Object.freeze({
   IRON_VEIN: 'Iron Vein',
   PRODUCE_SEED_BUNDLE: 'Produce Seed Bundle',
   GOOSE_CAGE: 'Small Bamboo Goose Cage',
+
+  THE_FALL_OF_HIRAM_CITY: 'The Fall of Hiram City (Instance)',
+  RED_DRAGONS_KEEP: 'Red Dragon\'s Keep (Instance)',
+  MISTMERROW: 'Mistmerrow (Instance)',
+  GOLDEN_PLAINS: 'Golden Plains Battle (Instance)',
 });
 
 export const CONTINENT = Object.freeze({
@@ -113,7 +120,8 @@ export const CONTINENT = Object.freeze({
     zones: [
       ZONE.FREEDICH_ISLAND,
       ZONE.GROWLGATE_ISLE,
-      ZONE.AEGIS_ISLAND,
+      ZONE.ARCADIAN_SEA,
+      ZONE.SEA_OF_DROWNED_LOVE,
     ],
   },
   AURORIA: {
@@ -131,6 +139,7 @@ export const CONTINENT = Object.freeze({
       ZONE.HEEDMAR,
       ZONE.NUIMARI,
       ZONE.EXELOCH,
+      ZONE.AEGIS_ISLAND,
     ],
   },
   CRAFTED: {
@@ -142,6 +151,15 @@ export const CONTINENT = Object.freeze({
       ZONE.IRON_VEIN,
       ZONE.PRODUCE_SEED_BUNDLE,
       ZONE.GOOSE_CAGE,
+    ],
+  },
+  INSTANCE: {
+    name: 'Instance',
+    zones: [
+      ZONE.THE_FALL_OF_HIRAM_CITY,
+      ZONE.RED_DRAGONS_KEEP,
+      ZONE.MISTMERROW,
+      ZONE.GOLDEN_PLAINS,
     ],
   },
 });
@@ -161,6 +179,7 @@ export const TYPE = Object.freeze({
   GUILD: 'Guild Mission',
   OTHER: 'Other',
   RIFT: 'Rift',
+  HIRAM: 'Hiram Progression',
 });
 
 export const DIFFICULTY = Object.freeze({
@@ -187,7 +206,11 @@ export const QUALITY = Object.freeze({
   BASIC: 'Basic',
   GRAND: 'Grand',
   RARE: 'Rare',
+  ARCANE: 'Arcane',
+  HEROIC: 'Heroic',
+  UNIQUE: 'Unique',
   CELESTIAL: 'Celestial',
+  DIVINE: 'Divine',
 });
 
 

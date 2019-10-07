@@ -17,9 +17,9 @@ module.exports = {
   ],
   mode: 'production',
   output: {
-    publicPath: './',
-    path: path.join(__dirname, 'public'),
-    filename: '[chunkhash].js',
+    publicPath: '/',
+    path: path.join(root, 'public'),
+    filename: 'bundle.[hash].js',
   },
   resolve: {
     alias: Object.assign({}, devConfig.resolve.alias, {
@@ -40,9 +40,6 @@ module.exports = {
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
       template: './src/template.html',
-      files: {
-        js: ['bundle.js'],
-      },
     }),
   ],
 };

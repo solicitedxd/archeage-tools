@@ -15,7 +15,6 @@ import {
   Settings,
 } from '@material-ui/icons';
 import { resetQuests } from 'actions/dailies';
-import cn from 'classnames';
 import dailyQuests from 'data/dailies';
 import Quest from './Quest';
 import Filters from './Filters';
@@ -24,13 +23,12 @@ import {
   REWARD,
   TYPE,
 } from 'constants/dailies';
-import { getQuestId } from 'utils/string';
+import {
+  getQuestId,
+  getZones,
+} from 'utils/dailies';
 
 class Dailies extends Component {
-  static propTypes = {};
-
-  static defaultProps = {};
-
   state = {
     filtersOpen: false,
   };
@@ -69,7 +67,8 @@ class Dailies extends Component {
       }
 
       // continent is selected and quest zone not in
-      if (visible && zonesFromContinents.length > 0 && !zonesFromContinents.some(zone => quest.zones.includes(zone))) {
+      const zones = getZones(quest.zones, faction);
+      if (visible && zonesFromContinents.length > 0 && !zonesFromContinents.some(zone => zones.includes(zone))) {
         visible = false;
       }
 
@@ -113,12 +112,14 @@ class Dailies extends Component {
       return visible;
     });
 
+    const footnote = 'Note: This comprehensive list does not include most quests that aren\'t completable every day, such as some world boss quests.';
+
     return (
       <div className="quest-container">
-        <Paper className={cn('section', 'quest-list')} style={mainStyle}>
+        <Paper className="section quest-list" style={mainStyle}>
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="h6" className="title-text">Daily Quest Checklist</Typography>
+              <Typography variant="h6" className="title-text">Daily Checklist</Typography>
               <Tooltip title="Reset all quests.">
                 <IconButton color="inherit" aria-label="Reset" onClick={() => resetQuests()}>
                   <Replay />
@@ -138,14 +139,17 @@ class Dailies extends Component {
           }).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
         </Paper>
         {!this.showSettingsMenu() &&
-        <Paper className={cn('section', 'quest-filters')} style={{ width: '20%', minWidth: '200px' }}>
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Filters</Typography>
-            </Toolbar>
-          </AppBar>
-          <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
-        </Paper>}
+        <div className="section quest-filters">
+          <Paper>
+            <AppBar position="static">
+              <Toolbar variant="dense">
+                <Typography variant="subtitle1" className="title-text">Filters</Typography>
+              </Toolbar>
+            </AppBar>
+            <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
+          </Paper>
+          <Typography variant="overline" className="footnote">{footnote}</Typography>
+        </div>}
         <Dialog open={this.showSettingsMenu() && filtersOpen} onClose={this.handleClose}>
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -158,6 +162,7 @@ class Dailies extends Component {
           <div className="quest-filters">
             <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
           </div>
+          <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
         </Dialog>
       </div>
     );
