@@ -24,6 +24,7 @@ import XP from 'components/XP';
 import {
   getQuestId,
   getZones,
+  sortItems,
   splitRewards,
 } from 'utils/dailies';
 
@@ -88,23 +89,20 @@ class Quest extends Component {
             </div>}
             {rewardItems.length > 0 &&
             <div className="reward-items">
-              {rewardItems.map(reward => {
+              {rewardItems.sort(sortItems).map(reward => {
                 if (reward.type === REWARD.GILDA) {
                   reward.item = ITEM.GILDA_STAR;
                 }
                 return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
               })}
             </div>}
-            {rewardItemChoices.length > 0 &&
+            {rewardItemChoices.sort(sortItems).length > 0 &&
             <div className="reward-item-choices">
               <Typography variant="overline" className="choose-one">Choose One:</Typography>
               <div className="reward-items">
-                {rewardItemChoices.map(reward => {
-                  if (reward.type === REWARD.GILDA) {
-                    reward.item = ITEM.GILDA_STAR;
-                  }
-                  return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
-                })}
+                {rewardItemChoices.sort(sortItems).map(reward =>
+                  <Item key={reward.item.name} {...reward.item} count={reward.count} />,
+                )}
               </div>
             </div>}
           </div>}

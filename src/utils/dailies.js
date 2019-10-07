@@ -1,11 +1,22 @@
 import {
   FACTION,
   REWARD,
-} from 'constants/dailies';
+} from 'constants/dailies'
+import ITEM from 'constants/items';
 
 export const getQuestId = (quest) => `${quest.name}${quest.idx && `-${quest.idx}` || ''}`;
 
 export const sortReward = (a, b) => a.type > b.type;
+
+export const sortItems = (a, b) => {
+  if (a.type === REWARD.GILDA && !a.item) {
+    a.item = ITEM.GILDA_STAR
+  }
+  if (b.type === REWARD.GILDA && !a.item) {
+    b.item = ITEM.GILDA_STAR
+  }
+  return a.item.name > b.item.name;
+};
 
 export const splitRewards = (rewards) => {
   const rewardItems = rewards.filter((reward) => (reward.type === REWARD.ITEM || reward.type === REWARD.GILDA) && !reward.choice).sort(sortReward);

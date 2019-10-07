@@ -40,7 +40,8 @@ export default [
     name: 'Crimson Rift: Crimson Omens',
     zones: [ZONE.YNYSTERE, ZONE.CINDERSTONE_MOOR, ZONE.SUNGOLD_FIELDS],
     difficulty: DIFFICULTY.ELITE,
-    rewards: [{ type: REWARD.ITEM, item: ITEM.IMPROVED_INFUSION_KIT, count: 9 }, { type: REWARD.HONOR, count: 900 }],
+    rewards: [{ type: REWARD.ITEM, item: ITEM.IMPROVED_INFUSION_KIT, count: 9 }, { type: REWARD.HONOR, count: 900 },
+      { type: REWARD.LEADERSHIP, count: 10 }],
     type: TYPE.RIFT,
   },
   {
@@ -391,7 +392,8 @@ export default [
   {
     name: 'Grimghast Rift: Halting the Crimson Tide',
     zones: [ZONE.YNYSTERE, ZONE.CINDERSTONE_MOOR],
-    rewards: [{ type: REWARD.HONOR, count: 900 }, { type: REWARD.LEADERSHIP, count: 10 }],
+    rewards: [{ type: REWARD.HONOR, count: 900 }, { type: REWARD.LEADERSHIP, count: 10 },
+      { type: REWARD.ITEM, item: ITEM.IMPROVED_INFUSION_KIT, count: 9 }],
     difficulty: DIFFICULTY.ELITE,
     type: TYPE.RIFT,
   },

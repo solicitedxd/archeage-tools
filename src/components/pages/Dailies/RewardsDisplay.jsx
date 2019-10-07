@@ -11,12 +11,13 @@ import {
   Typography,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
-import { REWARD } from 'constants/dailies';
 import Currency from 'components/Currency';
 import XP from 'components/XP';
-import ITEM from 'constants/items';
 import Item from 'components/Item';
-import { splitRewards } from 'utils/dailies';
+import {
+  sortItems,
+  splitRewards,
+} from 'utils/dailies';
 
 class RewardsDisplay extends Component {
   static propTypes = {
@@ -65,12 +66,9 @@ class RewardsDisplay extends Component {
             }
           </div>
           <div className="reward-panel-items">
-            {rewardItems.concat(rewardItemChoices).map(item => {
-              if (item.type === REWARD.GILDA) {
-                item.item = ITEM.GILDA_STAR;
-              }
-              return <Item key={item.item.name} {...item.item} count={item.count} />;
-            })}
+            {rewardItems.concat(rewardItemChoices).sort(sortItems).map(item =>
+              <Item key={item.item.name} {...item.item} count={item.count} />,
+            )}
           </div>
           {rewards.length === 0 && <Typography variant="subtitle1">No rewards</Typography>}
         </ExpansionPanelDetails>
