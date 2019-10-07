@@ -55,7 +55,7 @@ class Quest extends Component {
 
   render() {
     const { name, zones: zoneObj, difficulty, rewards, quests, faction } = this.props;
-    const { rewardItems, rewardXps, rewardCurrencies } = splitRewards(rewards);
+    const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
     const zones = getZones(zoneObj, faction);
 
     const checked = quests[this.getQuestId()] || false;
@@ -94,6 +94,18 @@ class Quest extends Component {
                 }
                 return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
               })}
+            </div>}
+            {rewardItemChoices.length > 0 &&
+            <div className="reward-item-choices">
+              <Typography variant="overline" className="choose-one">Choose One:</Typography>
+              <div className="reward-items">
+                {rewardItemChoices.map(reward => {
+                  if (reward.type === REWARD.GILDA) {
+                    reward.item = ITEM.GILDA_STAR;
+                  }
+                  return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
+                })}
+              </div>
             </div>}
           </div>}
           classes={{

@@ -68,9 +68,24 @@
       }
     }
 
+    .reward-item-choices {
+      position: relative;
+      padding-top: 6px;
+
+      .choose-one {
+        position: absolute;
+        top: -17px;
+      }
+
+      .reward-items {
+        padding: 0 2px 6px;
+      }
+    }
+
     .reward-items {
       display: flex;
       flex-direction: row;
+      padding: 6px 2px;
 
       & > div {
         margin-right: 4px;

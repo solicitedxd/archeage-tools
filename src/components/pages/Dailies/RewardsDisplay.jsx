@@ -44,7 +44,7 @@ class RewardsDisplay extends Component {
   render() {
     const { title, rewards } = this.props;
     const { expanded } = this.state;
-    const { rewardItems, rewardXps, rewardCurrencies } = splitRewards(rewards);
+    const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
 
     return (
       <ExpansionPanel expanded={expanded} onChange={this.handleChange}>
@@ -65,7 +65,7 @@ class RewardsDisplay extends Component {
             }
           </div>
           <div className="reward-panel-items">
-            {rewardItems.map(item => {
+            {rewardItems.concat(rewardItemChoices).map(item => {
               if (item.type === REWARD.GILDA) {
                 item.item = ITEM.GILDA_STAR;
               }

@@ -3,6 +3,7 @@ import { QUALITY } from 'constants/dailies';
 import GildaStarIcon from 'images/item/gilda_star.png';
 import ShatigonsSandIcon from 'images/item/shatigons_sand.png';
 import HonorableVictoryIcon from 'images/item/honorable_victory.png';
+import HonorableVocationIcon from 'images/item/honorable_vocation.png';
 import LaborRechargeIcon from 'images/item/labor_recharge.png';
 import SupplyKitIcon from 'images/item/supply_box.png';
 import BlueSaltBondIcon from 'images/item/blue_salt_bond.png';
@@ -62,6 +63,15 @@ export default Object.freeze({
     type: 'Potion',
     description: <span><span className="tt-use">Use:</span><span
       className="tt-green">Gain 1,500 Honor Points.</span></span>,
+    quality: QUALITY.DIVINE,
+    bindsOnPickup: true,
+  },
+  HONORABLE_VOCATION_4: {
+    name: 'Honorable Vocation Potion Rank 4',
+    icon: HonorableVocationIcon,
+    type: 'Potion',
+    description: <span><span className="tt-use">Use:</span><span
+      className="tt-green">Gain 1,500 Vocation Badges.</span></span>,
     quality: QUALITY.DIVINE,
     bindsOnPickup: true,
   },
