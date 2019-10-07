@@ -12,7 +12,7 @@ export const sortItems = (a, b) => {
   if (a.type === REWARD.GILDA && !a.item) {
     a.item = ITEM.GILDA_STAR
   }
-  if (b.type === REWARD.GILDA && !a.item) {
+  if (b.type === REWARD.GILDA && !b.item) {
     b.item = ITEM.GILDA_STAR
   }
   return a.item.name > b.item.name;
