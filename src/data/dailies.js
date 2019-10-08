@@ -1052,18 +1052,6 @@ export default [
     type: TYPE.WORLD_BOSS,
   },
   {
-    name: 'Build the Haranyan Haje\'s Tower',
-    zones: [ZONE.REEDWIND],
-    rewards: [{ type: REWARD.GILDA, count: 1 }, { type: REWARD.COIN, count: 3728 }],
-    faction: FACTION.HARANYA,
-  },
-  {
-    name: 'Build the Nuian Haje\'s Tower',
-    zones: [ZONE.REEDWIND],
-    rewards: [{ type: REWARD.GILDA, count: 1 }, { type: REWARD.COIN, count: 3728 }],
-    faction: FACTION.NUIA,
-  },
-  {
     name: 'Diamond Shores Guard',
     zones: [ZONE.DIAMOND_SHORES],
     rewards: [{ type: REWARD.COIN, count: 3197 },
