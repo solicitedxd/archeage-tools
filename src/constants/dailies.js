@@ -142,17 +142,6 @@ export const CONTINENT = Object.freeze({
       ZONE.AEGIS_ISLAND,
     ],
   },
-  CRAFTED: {
-    name: 'Placeable',
-    zones: [
-      ZONE.FARMERS_WORKSTATION,
-      ZONE.FARMHOUSE,
-      ZONE.SPICE_SEED_BUNDLE,
-      ZONE.IRON_VEIN,
-      ZONE.PRODUCE_SEED_BUNDLE,
-      ZONE.GOOSE_CAGE,
-    ],
-  },
   INSTANCE: {
     name: 'Instance',
     zones: [
@@ -160,6 +149,17 @@ export const CONTINENT = Object.freeze({
       ZONE.RED_DRAGONS_KEEP,
       ZONE.MISTMERROW,
       ZONE.GOLDEN_PLAINS,
+    ],
+  },
+  CRAFTED: {
+    name: 'Your Farm',
+    zones: [
+      ZONE.FARMERS_WORKSTATION,
+      ZONE.FARMHOUSE,
+      ZONE.SPICE_SEED_BUNDLE,
+      ZONE.IRON_VEIN,
+      ZONE.PRODUCE_SEED_BUNDLE,
+      ZONE.GOOSE_CAGE,
     ],
   },
 });
@@ -170,16 +170,16 @@ export const FACTION = Object.freeze({
 });
 
 export const TYPE = Object.freeze({
-  BLUE_SALT: 'Blue Salt Brotherhood',
+  BLUE_SALT: 'Blue Salt',
   SUPPLY_DEMAND: 'Supply Demand',
   HUNTING_REQUEST: 'Hunting Request',
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',
-  FAMILY: 'Family Quest',
+  FAMILY: 'Family',
   GUILD: 'Guild Mission',
   OTHER: 'Other',
   RIFT: 'Rift',
-  HIRAM: 'Hiram Progression',
+  HIRAM: 'Hiram',
 });
 
 export const DIFFICULTY = Object.freeze({
@@ -198,7 +198,7 @@ export const REWARD = Object.freeze({
   LEADERSHIP: 'Leadership',
   GUILD_XP: 'Guild XP',
   FAMILY_XP: 'Family XP',
-  ITEM: 'Item',
+  ITEM: 'Items',
 });
 
 export const QUALITY = Object.freeze({

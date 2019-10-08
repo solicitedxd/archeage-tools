@@ -107,10 +107,33 @@
   }
 }
 
+.MuiDialogContent-root.quest-filters .filter-field {
+  margin: 8px 0 0;
+}
+
 .quest-filters {
   .filter-field {
     display: block;
     margin: 8px 12px;
+
+    .label {
+      color: rgba(0, 0, 0, 0.54);
+    }
+
+    .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: stretch;
+
+      button {
+        border-radius: 0;
+      }
+
+      &:not(.rewards) button {
+        //max-width: 50%;
+        flex-grow: 1;
+      }
+    }
   }
 
   .reward-panel-texts {
@@ -137,7 +160,6 @@
 }
 
 .footnote-dialog {
-  margin: 12px!important;
   display: block;
   text-align: justify;
 }
@@ -183,7 +205,7 @@
     background-position: -173px -29px;
   }
 
-  &.Item:after {
+  &.Items:after {
     width: 11px;
     height: 16px;
     background-position: -223px -12px;
