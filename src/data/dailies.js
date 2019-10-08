@@ -1178,19 +1178,8 @@ export default [
   },
   {
     name: 'Cargo Delivery',
-    rewards: [{ type: REWARD.VOCATION, count: 1500 }, { type: REWARD.FAMILY_XP, count: 100 }],
-    type: TYPE.FAMILY,
-  },
-  {
-    name: 'Cargo Delivery (Haranya)',
-    zones: [ZONE.SOLIS_HEADLANDS, ZONE.VILLANELLE, ZONE.YNYSTERE],
-    rewards: [{ type: REWARD.ITEM, item: ITEM.ONYX_ARCHEUM_ESSENCE, count: 20 }],
-    type: TYPE.FAMILY,
-  },
-  {
-    name: 'Cargo Delivery (Nuia)',
-    zones: [ZONE.SOLZREED_PENINSULA, ZONE.TWO_CROWNS, ZONE.CINDERSTONE_MOOR],
-    rewards: [{ type: REWARD.ITEM, item: ITEM.ONYX_ARCHEUM_ESSENCE, count: 20 }],
+    zones: [ZONE.SOLIS_HEADLANDS, ZONE.VILLANELLE, ZONE.YNYSTERE, ZONE.SOLZREED_PENINSULA, ZONE.TWO_CROWNS, ZONE.CINDERSTONE_MOOR],
+    rewards: [{ type: REWARD.VOCATION, count: 1500 }, { type: REWARD.FAMILY_XP, count: 100 }, { type: REWARD.ITEM, item: ITEM.ONYX_ARCHEUM_ESSENCE, count: 20 }],
     type: TYPE.FAMILY,
   },
   {
