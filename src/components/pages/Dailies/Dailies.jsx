@@ -23,6 +23,7 @@ import {
   REWARD,
   TYPE,
 } from 'constants/dailies';
+import ITEM from 'constants/items';
 import {
   getQuestId,
   getZones,
@@ -105,7 +106,11 @@ class Dailies extends Component {
           rewardGroup.count += reward.count || 1;
         } else {
           // create new reward entry
-          rewardArray.push({ ...reward, count: reward.count || 1 });
+          const newGroup = { ...reward, count: reward.count || 1 };
+          if (reward.type === REWARD.GILDA) {
+            newGroup.item = ITEM.GILDA_STAR;
+          }
+          rewardArray.push(newGroup);
         }
       });
 

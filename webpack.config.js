@@ -3,6 +3,7 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const pkg = require('./package.json');
 
 const { join, resolve } = path;
 
@@ -62,6 +63,9 @@ module.exports = {
     new webpack.NoEmitOnErrorsPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new DashboardPlugin(),
+    new webpack.DefinePlugin({
+      __VERSION__: JSON.stringify(pkg.version),
+    }),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     })

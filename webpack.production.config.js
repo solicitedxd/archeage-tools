@@ -3,6 +3,7 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const pkg = require('./package.json');
 
 const devConfig = require('./webpack.config.js');
 
@@ -36,6 +37,7 @@ module.exports = {
       'process.env': {
         NODE_ENV: '"production"',
       },
+      __VERSION__: JSON.stringify(pkg.version),
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({
