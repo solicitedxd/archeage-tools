@@ -19,7 +19,11 @@ import {
 } from '@material-ui/icons';
 import SkillTree from 'components/pages/Skills/SkillTree';
 import { MAX_POINTS } from 'constants/skills';
-import { findClassName } from 'utils/skills';
+import {
+  findClassName,
+  getPointReq,
+  getTreePoints,
+} from 'utils/skills';
 
 class Skills extends Component {
   state = {
@@ -63,7 +67,28 @@ class Skills extends Component {
   setSkill = (treeId, skillId, value) => {
     const { skillTrees: skillTreesOld } = this.state;
     const skillTrees = [...skillTreesOld];
-    const { skills } = [...skillTrees[treeId].skills];
+    const skills = [...skillTrees[treeId].skills];
+
+    const remainingPoints = MAX_POINTS - this.getSpentPoints();
+    const spentPoints = getTreePoints(skills);
+    const currentValue = Boolean(skills[skillId]);
+
+    // no change, do nothing
+    if (value === currentValue) return;
+
+    // validate the change
+    if (value === true) {
+      // no points available, do nothing
+      if (remainingPoints === 0) return;
+      // not enough points spent to unlock
+      if (spentPoints < getPointReq(skillId)) return;
+    } else {
+      // can't take points out of skills if it would lock out a learned skill
+      if (skillId !== 11 && Boolean(skills[11]) && getPointReq(11) > spentPoints - 2) return;
+      if (skillId !== 7 && Boolean(skills[7]) && getPointReq(7) > spentPoints - 2) return;
+      if (skillId !== 3 && Boolean(skills[3]) && getPointReq(3) > spentPoints - 2) return;
+    }
+
     skills[skillId] = value;
     skillTrees[treeId].skills = skills;
     this.setState({ skillTrees });
@@ -109,6 +134,15 @@ class Skills extends Component {
     this.setState({ copied: true });
   };
 
+  getSpentPoints = () => {
+    return this.state.skillTrees.map(tree => {
+      if (tree.skills.length > 0) {
+        return tree.skills.reduce((a, value) => a + (Boolean(value) ? 1 : 0));
+      }
+      return 0;
+    }).reduce((a, b) => a + b);
+  };
+
   render() {
     const { skillTrees, share, shareCode, copied } = this.state;
     const { location, mobile } = this.props;
@@ -119,7 +153,7 @@ class Skills extends Component {
     }
     const selectedClasses = skillTrees.map(tree => tree.treeName);
 
-    const spentPoints = 0;
+    const spentPoints = this.getSpentPoints();
     const remainingPoints = MAX_POINTS - spentPoints;
 
     return (

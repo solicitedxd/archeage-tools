@@ -21,6 +21,7 @@ import {
 } from '@material-ui/icons';
 import SKILLSET from 'constants/skillsets';
 import Skill from 'components/Skill';
+import { getTreePoints } from 'utils/skills';
 
 class SkillTree extends Component {
   static propTypes = {
@@ -49,16 +50,12 @@ class SkillTree extends Component {
     this.setState({ selectingSkillset });
   };
 
-  setSkill = (skillId, value) => {
-
-  };
-
   render() {
     const { skillTree, setSkillTree, resetSkillTree, setSkill, treeId, selectedClasses } = this.props;
     const { treeName, skills } = skillTree;
     const skillSet = SKILLSET[treeName];
     const { selectingSkillset } = this.state;
-    const spentPoints = skills.length > 0 ? skills.reduce((a, b) => a + b) : 0;
+    const spentPoints = getTreePoints(skills);
 
     return (
       <Paper className="skill-tree">
@@ -106,7 +103,7 @@ class SkillTree extends Component {
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
                 <Skill
                   slot={index}
-                  onClick={() => console.log('Clicked ', skill.name, index)}
+                  onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
                   learned={Boolean(skills[index])}
                   spentPoints={spentPoints}
                   {...skill}
@@ -120,7 +117,7 @@ class SkillTree extends Component {
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
                 <Skill
                   passive
-                  active={(spentPoints >= index + 2)}
+                  learned={(spentPoints >= index + 2)}
                   slot={index}
                   {...skill}
                 />

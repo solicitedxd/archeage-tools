@@ -12,7 +12,6 @@ import { MAX_POINTS } from 'constants/skills';
 class Skill extends Component {
   static propTypes = {
     icon: string.isRequired,
-    active: bool,
     passive: bool,
     learned: bool,
     spentPoints: number,
@@ -31,12 +30,16 @@ class Skill extends Component {
   state = {};
 
   render() {
-    const { icon, name, active, passive, spentPoints, slot, onClick } = this.props;
+    const { icon, name, passive, spentPoints, slot, onClick, learned } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
-    const disabled = passive ? !active : (spentPoints < pointsRequired || spentPoints === MAX_POINTS);
+    const disabled = passive ? !learned : (spentPoints < pointsRequired || (spentPoints === MAX_POINTS && !learned));
 
     return (
-      <div className={cn('skill', { 'disabled': disabled })} onClick={disabled ? null : onClick}>
+      <div
+        className={cn('skill', { 'disabled': disabled }, { 'available': !disabled && !learned })}
+        onClick={disabled ? null : onClick}
+        data-points-req={pointsRequired}
+      >
         <img src={icon} alt="" />
       </div>
     );
