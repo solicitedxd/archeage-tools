@@ -11,8 +11,7 @@ module.exports = [
       'css-loader',
       {
         loader: 'sass-loader',
-        options: {
-        },
+        options: {},
       },
     ],
     exclude: /(node_modules)/,
@@ -23,7 +22,24 @@ module.exports = [
     exclude: /(node_modules)/,
   },
   {
-    test: /\.(jpe?g|gif|png|svg|woff|ttf|wav|mp3|ico)$/,
+    test: /\.(ico)$/,
     loader: 'file-loader',
+    options: {
+      name: '[name].[ext]',
+    },
+  },
+  {
+    test: /\.(jpe?g|gif|png|wav|mp3)$/,
+    loader: 'file-loader',
+    options: {
+      name: 'images/[name].[ext]',
+    },
+  },
+  {
+    test: /\.(svg|woff|ttf|eot|woff2)$/,
+    loader: 'file-loader',
+    options: {
+      name: 'fonts/[name].[ext]',
+    },
   },
 ];
