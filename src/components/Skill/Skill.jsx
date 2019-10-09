@@ -16,6 +16,7 @@ class Skill extends Component {
     learned: bool,
     spentPoints: number,
     slot: number.isRequired,
+    skillset: string.isRequired,
     onClick: func,
   };
 
@@ -30,7 +31,7 @@ class Skill extends Component {
   state = {};
 
   render() {
-    const { icon, name, passive, spentPoints, slot, onClick, learned } = this.props;
+    const { icon, passive, spentPoints, slot, onClick, learned, skillset } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
     const disabled = passive ? !learned : (spentPoints < pointsRequired || (spentPoints === MAX_POINTS && !learned));
 
@@ -39,6 +40,11 @@ class Skill extends Component {
         className={cn('skill', { 'disabled': disabled }, { 'available': !disabled && !learned })}
         onClick={disabled ? null : onClick}
         data-points-req={pointsRequired}
+        data-skill={true}
+        data-skillset={skillset}
+        data-skill-id={slot}
+        data-passive={passive}
+        data-disabled={disabled}
       >
         <img src={icon} alt="" />
       </div>

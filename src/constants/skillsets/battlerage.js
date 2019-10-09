@@ -104,7 +104,7 @@ export default Object.freeze([
   },
 ]);
 
-export const passives = [
+export const passives = Object.freeze([
   {
     icon: DeflectAndRetaliateIcon,
     name: 'Deflect and Retaliate',
@@ -129,4 +129,4 @@ export const passives = [
     icon: DeadlyDuelistIcon,
     name: 'Deadly Duelist',
   },
-];
+]);

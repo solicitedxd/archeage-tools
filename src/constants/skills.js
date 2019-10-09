@@ -89,3 +89,15 @@ export const COMBO_TYPE = Object.freeze({
   CAUSES: 0,
   EMPOWERS: 1,
 });
+
+export const ELEMENT = Object.freeze({
+  BASIC: 'Basic',
+  FLAME: 'Flame',
+  LIGHTNING: 'Lightning',
+  GALE: 'Gale',
+  MIST: 'Mist',
+  WAVE: 'Wave',
+  STONE: 'Stone',
+  QUAKE: 'Quake',
+  LIFE: 'Life',
+});

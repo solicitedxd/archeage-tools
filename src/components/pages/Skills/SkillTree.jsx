@@ -68,7 +68,7 @@ class SkillTree extends Component {
             <div>
               {!selectingSkillset &&
               <Tooltip title="Reset Tree">
-                <IconButton color="inherit" aria-label="Reset">
+                <IconButton color="inherit" aria-label="Reset" onClick={() => resetSkillTree(treeId)}>
                   <Replay />
                 </IconButton>
               </Tooltip>}
@@ -102,6 +102,7 @@ class SkillTree extends Component {
             {Object.values(skillSet.skills).map((skill, index) =>
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
                 <Skill
+                  skillset={treeName}
                   slot={index}
                   onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
                   learned={Boolean(skills[index])}
@@ -116,6 +117,7 @@ class SkillTree extends Component {
             {skillSet.passives.map((skill, index) =>
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
                 <Skill
+                  skillset={treeName}
                   passive
                   learned={(spentPoints >= index + 2)}
                   slot={index}

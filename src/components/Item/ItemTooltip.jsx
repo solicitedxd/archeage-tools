@@ -25,10 +25,10 @@ const renderItemTooltip = (target) => {
   return (
     <div>
       <section className="header" data-quality={quality}>
-        <div className={cn('item-icon', { 'unidentified': unidentified })}>
+        <div className={cn('item-icon', 'icon', { 'unidentified': unidentified })}>
           <img src={icon} alt="" />
         </div>
-        <div className="item-name">
+        <div className="name">
           <Typography variant="h5" component="h5">{type}</Typography>
           {quality !== QUALITY.BASIC &&
           <Typography variant="h5" component="h5" className="quality-color">{quality}</Typography>}

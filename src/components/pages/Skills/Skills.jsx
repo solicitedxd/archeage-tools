@@ -17,13 +17,14 @@ import {
   Replay,
   Share,
 } from '@material-ui/icons';
-import SkillTree from 'components/pages/Skills/SkillTree';
+import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
 import {
   findClassName,
   getPointReq,
   getTreePoints,
 } from 'utils/skills';
+import SkillTree from './SkillTree';
 
 class Skills extends Component {
   state = {
@@ -61,6 +62,7 @@ class Skills extends Component {
     const { skillTrees: skillTreesOld } = this.state;
     const skillTrees = [...skillTreesOld];
     skillTrees[treeId] = { treeName, skills: [] };
+    console.log(treeId);
     this.setState({ skillTrees });
   };
 
@@ -96,7 +98,11 @@ class Skills extends Component {
 
   resetSkillTree = (treeId) => {
     const { skillTrees } = this.state;
-    this.setSkillTree(treeId, skillTrees[treeId].skillTree);
+    this.setSkillTree(treeId, skillTrees[treeId].treeName);
+  };
+
+  resetAllTrees = () => {
+    [0, 1, 2].forEach(treeId => this.resetSkillTree(treeId));
   };
 
   encodeSkillTrees = () => {
@@ -135,12 +141,7 @@ class Skills extends Component {
   };
 
   getSpentPoints = () => {
-    return this.state.skillTrees.map(tree => {
-      if (tree.skills.length > 0) {
-        return tree.skills.reduce((a, value) => a + (Boolean(value) ? 1 : 0));
-      }
-      return 0;
-    }).reduce((a, b) => a + b);
+    return this.state.skillTrees.map(tree => getTreePoints(tree.skills)).reduce((a, b) => a + b);
   };
 
   render() {
@@ -166,7 +167,7 @@ class Skills extends Component {
                   Calculator{className && `: ${className}`}</Typography>
                 <Typography variant="subtitle2">{spentPoints}/{MAX_POINTS}</Typography>
                 <Tooltip title="Reset All Trees">
-                  <IconButton color="inherit" aria-label="Reset">
+                  <IconButton color="inherit" aria-label="Reset" onClick={this.resetAllTrees}>
                     <Replay />
                   </IconButton>
                 </Tooltip>
@@ -220,6 +221,7 @@ class Skills extends Component {
               link</Typography>
           </DialogContent>
         </Dialog>
+        <SkillTooltip />
       </div>
     );
   }

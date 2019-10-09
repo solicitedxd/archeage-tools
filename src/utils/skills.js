@@ -21,7 +21,7 @@ export const getTreePoints = (skills) => {
   if (skills.length === 1) {
     return boolToInt(skills[0]);
   }
-  return skills.reduce((a, b) => {
+  const size = skills.reduce((a, b) => {
     if (Boolean(a) === a || a === undefined) {
       a = boolToInt(a);
     }
@@ -30,6 +30,7 @@ export const getTreePoints = (skills) => {
     }
     return a + b;
   });
+  return size === true ? 1 : size;
 };
 
 export const getPointReq = (skillId) => {
