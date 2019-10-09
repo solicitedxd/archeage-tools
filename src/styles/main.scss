@@ -43,12 +43,15 @@ body {
   &.dailies {
     background-position: -33px -66px;
   }
+
   &.skills {
     background-position: -33px -33px;
   }
+
   &.trade-packs {
     background-position: -33px -99px;
   }
+
   &.calendar {
     background-position: -33px -330px;
   }
@@ -146,4 +149,10 @@ body {
   -1px 1px 0 #000000,
   1px 1px 0 #000000;
   margin-top: 0;
+}
+
+.fab {
+  position: fixed !important;
+  bottom: 16px;
+  right: 16px;
 }

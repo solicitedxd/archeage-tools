@@ -5,14 +5,17 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
+  Fab,
   IconButton,
   Paper,
   Toolbar,
   Tooltip,
   Typography,
+  Zoom,
 } from '@material-ui/core';
 import {
   Close,
+  ExpandLess,
   Replay,
   Settings,
 } from '@material-ui/icons';
@@ -34,7 +37,20 @@ import {
 class Dailies extends Component {
   state = {
     filtersOpen: false,
+    scrollY: 0,
   };
+
+  handleWindowScroll = () => {
+    this.setState({ scrollY: document.documentElement.scrollTop });
+  };
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleWindowScroll);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleWindowScroll);
+  }
 
   showSettingsMenu = () => {
     return this.props.displayMobile;
@@ -50,7 +66,7 @@ class Dailies extends Component {
 
   render() {
     const { continents, faction, rewards, types, hideComplete, resetQuests, quests } = this.props;
-    const { filtersOpen } = this.state;
+    const { filtersOpen, scrollY } = this.state;
     const zonesFromContinents = [].concat.apply([], continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones));
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
 
@@ -173,6 +189,15 @@ class Dailies extends Component {
             <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
           </DialogContent>
         </Dialog>
+        <Zoom in={scrollY >= 720} unmountOnExit>
+          <Fab
+            color="primary"
+            className="fab"
+            onClick={() => document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          >
+            <ExpandLess />
+          </Fab>
+        </Zoom>
       </div>
     );
   }
