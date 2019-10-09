@@ -7,4 +7,5 @@ export default {
   rewards: [],
   types: [],
   hideComplete: false,
+  version: 1,
 }

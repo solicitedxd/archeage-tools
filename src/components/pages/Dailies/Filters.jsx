@@ -2,15 +2,13 @@ import React, { Component } from 'react';
 import { array } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
+  Button,
+  ButtonGroup,
   Checkbox,
   FormControl,
   FormControlLabel,
-  Input,
-  InputLabel,
-  ListItemIcon,
-  ListItemText,
-  MenuItem,
-  Select,
+  Tooltip,
+  Typography,
 } from '@material-ui/core';
 import cn from 'classnames';
 import {
@@ -30,17 +28,6 @@ import {
 } from 'constants/dailies';
 import RewardsDisplay from './RewardsDisplay';
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 230,
-    },
-  },
-};
-
 class Filters extends Component {
   static propTypes = {
     availableRewards: array,
@@ -52,10 +39,37 @@ class Filters extends Component {
     claimedRewards: [],
   };
 
-  handleFactionChange = (event) => this.props.filterFaction(event.target.value);
-  handleContinentChange = (event) => this.props.filterContinents(event.target.value);
-  handleRewardChange = (event) => this.props.filterRewards(event.target.value);
-  handleTypeChange = (event) => this.props.filterTypes(event.target.value);
+  handleFactionChange = (value) => this.props.filterFaction(value);
+  handleContinentChange = (value) => {
+    const { continents: old } = this.props;
+    const newValue = [...old];
+    if (newValue.indexOf(value) > -1) {
+      newValue.splice(newValue.indexOf(value), 1);
+    } else {
+      newValue.push(value);
+    }
+    this.props.filterContinents(newValue);
+  };
+  handleRewardChange = (value) => {
+    const { rewards: old } = this.props;
+    const newValue = [...old];
+    if (newValue.indexOf(value) > -1) {
+      newValue.splice(newValue.indexOf(value), 1);
+    } else {
+      newValue.push(value);
+    }
+    this.props.filterRewards(newValue);
+  };
+  handleTypeChange = (value) => {
+    const { types: old } = this.props;
+    const newValue = [...old];
+    if (newValue.indexOf(value) > -1) {
+      newValue.splice(newValue.indexOf(value), 1);
+    } else {
+      newValue.push(value);
+    }
+    this.props.filterTypes(newValue);
+  };
   handleCompleteChange = (event, value) => this.props.filterComplete(value);
 
   render() {
@@ -63,79 +77,66 @@ class Filters extends Component {
 
     return (
       <div>
-        <FormControl className="filter-field">
-          <InputLabel htmlFor="select-faction">Faction</InputLabel>
-          <Select
-            value={faction}
-            onChange={this.handleFactionChange}
-            inputProps={{
-              name: 'faction',
-              id: 'select-faction',
-            }}
-            fullWidth
-          >
-            {Object.values(FACTION).map(faction => (
-              <MenuItem key={faction} value={faction}>
-                <ListItemText primary={faction} />
-              </MenuItem>
+        <div className="filter-field">
+          <Typography variant="subtitle2" className="label">Faction</Typography>
+          <ButtonGroup className="filter-group">
+            {Object.values(FACTION).map(f => (
+              <Button
+                key={f}
+                variant={faction === f ? 'contained' : 'outlined'}
+                className={cn({ selected: faction === f })}
+                onClick={() => this.handleFactionChange(f)}>
+                {f}
+              </Button>
             ))}
-          </Select>
-        </FormControl>
-        <FormControl className="filter-field">
-          <InputLabel htmlFor="select-continent">Continents</InputLabel>
-          <Select
-            multiple
-            value={continents}
-            onChange={this.handleContinentChange}
-            input={<Input id="select-continent" fullWidth />}
-            renderValue={selected => selected.join(', ')}
-            MenuProps={MenuProps}
-          >
+          </ButtonGroup>
+        </div>
+        <div className="filter-field">
+          <Typography variant="subtitle2" className="label">Continents</Typography>
+          <div className="filter-group">
             {Object.values(CONTINENT).map(continent => (
-              <MenuItem key={continent.name} value={continent.name}>
-                <Checkbox checked={continents.indexOf(continent.name) > -1} color="primary" />
-                <ListItemText primary={continent.name} />
-              </MenuItem>
+              <Button
+                key={continent.name}
+                variant={continents.includes(continent.name) ? 'contained' : 'outlined'}
+                className={cn({ selected: continents.includes(continent.name) })}
+                onClick={() => this.handleContinentChange(continent.name)}
+              >
+                {continent.name}
+              </Button>
             ))}
-          </Select>
-        </FormControl>
-        <FormControl className="filter-field">
-          <InputLabel htmlFor="select-rewards">Rewards</InputLabel>
-          <Select
-            multiple
-            value={rewards}
-            onChange={this.handleRewardChange}
-            input={<Input id="select-rewards" fullWidth />}
-            renderValue={selected => selected.join(', ')}
-            MenuProps={MenuProps}
-          >
+          </div>
+        </div>
+        <div className="filter-field">
+          <Typography variant="subtitle2" className="label">Rewards</Typography>
+          <div className="filter-group rewards">
             {Object.values(REWARD).sort().map(reward => (
-              <MenuItem key={reward} value={reward}>
-                <Checkbox checked={rewards.indexOf(reward) > -1} color="primary" />
-                <ListItemIcon><span className={cn('dropdown-icon', reward)} /></ListItemIcon>
-                <ListItemText primary={reward} />
-              </MenuItem>
+              <Tooltip title={reward} key={reward}>
+                <Button
+                  variant={rewards.includes(reward) ? 'contained' : 'outlined'}
+                  className={cn({ selected: rewards.includes(reward) })}
+                  onClick={() => this.handleRewardChange(reward)}
+                >
+                  <span className={cn('dropdown-icon', reward)} />
+                </Button>
+              </Tooltip>
             ))}
-          </Select>
-        </FormControl>
-        <FormControl className="filter-field">
-          <InputLabel htmlFor="select-types">Quest Types</InputLabel>
-          <Select
-            multiple
-            value={types}
-            onChange={this.handleTypeChange}
-            input={<Input id="select-types" fullWidth />}
-            renderValue={selected => selected.join(', ')}
-            MenuProps={MenuProps}
-          >
+          </div>
+        </div>
+        <div className="filter-field">
+          <Typography variant="subtitle2" className="label">Quest Types</Typography>
+          <div className="filter-group">
             {Object.values(TYPE).sort().map(type => (
-              <MenuItem key={type} value={type}>
-                <Checkbox checked={types.indexOf(type) > -1} color="primary" />
-                <ListItemText primary={type} />
-              </MenuItem>
+              <Button
+                key={type}
+                variant={types.includes(type) ? 'contained' : 'outlined'}
+                className={cn({ selected: types.includes(type) })}
+                onClick={() => this.handleTypeChange(type)}
+              >
+                {type}
+              </Button>
             ))}
-          </Select>
-        </FormControl>
+          </div>
+        </div>
         <FormControl className="filter-field">
           <FormControlLabel
             control={

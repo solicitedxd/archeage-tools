@@ -23,7 +23,7 @@ import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
 import { ThemeProvider } from '@material-ui/styles';
 import {
-  pink,
+  blueGrey,
   teal,
 } from '@material-ui/core/colors';
 import {
@@ -41,7 +41,7 @@ import 'styles/index';
 
 const palette = createPalette({
   primary: teal,
-  accent: pink,
+  secondary: blueGrey,
 });
 
 let theme = createMuiTheme({
@@ -68,6 +68,11 @@ let theme = createMuiTheme({
       root: {
         display: 'block',
         padding: '4px 12px 12px',
+      },
+    },
+    MuiDialogTitle: {
+      root: {
+        padding: 0,
       },
     },
   },

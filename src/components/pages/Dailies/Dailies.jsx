@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import {
   AppBar,
   Dialog,
+  DialogContent,
+  DialogTitle,
   IconButton,
   Paper,
   Toolbar,
@@ -156,18 +158,20 @@ class Dailies extends Component {
           <Typography variant="overline" className="footnote">{footnote}</Typography>
         </div>}
         <Dialog open={this.showSettingsMenu() && filtersOpen} onClose={this.handleClose}>
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Filters</Typography>
-              <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <Close />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <div className="quest-filters">
+          <DialogTitle>
+            <AppBar position="static">
+              <Toolbar variant="dense">
+                <Typography variant="subtitle1" className="title-text">Filters</Typography>
+                <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
+                  <Close />
+                </IconButton>
+              </Toolbar>
+            </AppBar>
+          </DialogTitle>
+          <DialogContent className="quest-filters">
             <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
-          </div>
-          <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
+            <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
+          </DialogContent>
         </Dialog>
       </div>
     );
