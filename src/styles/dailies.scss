@@ -127,6 +127,10 @@
 
       button {
         border-radius: 0;
+
+        &.selected {
+          background-color: #b2dfdb;
+        }
       }
 
       &:not(.rewards) button {

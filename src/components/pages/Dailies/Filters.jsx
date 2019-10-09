@@ -79,11 +79,12 @@ class Filters extends Component {
       <div>
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Faction</Typography>
-          <ButtonGroup>
+          <ButtonGroup className="filter-group">
             {Object.values(FACTION).map(f => (
               <Button
                 key={f}
                 variant={faction === f ? 'contained' : 'outlined'}
+                className={cn({ selected: faction === f })}
                 onClick={() => this.handleFactionChange(f)}>
                 {f}
               </Button>
@@ -97,6 +98,7 @@ class Filters extends Component {
               <Button
                 key={continent.name}
                 variant={continents.includes(continent.name) ? 'contained' : 'outlined'}
+                className={cn({ selected: continents.includes(continent.name) })}
                 onClick={() => this.handleContinentChange(continent.name)}
               >
                 {continent.name}
@@ -111,6 +113,7 @@ class Filters extends Component {
               <Tooltip title={reward} key={reward}>
                 <Button
                   variant={rewards.includes(reward) ? 'contained' : 'outlined'}
+                  className={cn({ selected: rewards.includes(reward) })}
                   onClick={() => this.handleRewardChange(reward)}
                 >
                   <span className={cn('dropdown-icon', reward)} />
@@ -126,6 +129,7 @@ class Filters extends Component {
               <Button
                 key={type}
                 variant={types.includes(type) ? 'contained' : 'outlined'}
+                className={cn({ selected: types.includes(type) })}
                 onClick={() => this.handleTypeChange(type)}
               >
                 {type}

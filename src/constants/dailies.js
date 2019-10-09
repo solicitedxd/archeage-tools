@@ -171,7 +171,7 @@ export const FACTION = Object.freeze({
 
 export const TYPE = Object.freeze({
   BLUE_SALT: 'Blue Salt',
-  SUPPLY_DEMAND: 'Supply Demand',
+  SUPPLY_DEMAND: 'Bonds',
   HUNTING_REQUEST: 'Hunting Request',
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',

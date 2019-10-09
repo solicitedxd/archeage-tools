@@ -10,7 +10,7 @@ import {
 import initialState from 'initialStates/dailies';
 import { getItem } from 'utils/localStorage'
 
-const dailies = (state = getItem('dailies') || initialState, action) => {
+const dailies = (state = getItem('dailies', initialState), action) => {
   switch (action.type) {
     case QUEST_STATUS:
       return {
