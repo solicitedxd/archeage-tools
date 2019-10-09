@@ -1,15 +1,26 @@
-import BattlerageSkills, { passives as BattleragePassives } from 'constants/skillsets/battlerage';
+import ArcherySkills, { passives as ArcheryPassives } from './archery';
+import AuramancySkills, { passives as AuramancyPassives } from './auramancy';
+import BattlerageSkills, { passives as BattleragePassives } from './battlerage';
+import DefenseSkills, { passives as DefensePassives } from './defense';
+import MaledictionSkills, { passives as MaledictionPassives } from './malediction';
+import OccultismSkills, { passives as OccultismPassives } from './occultism';
+import ShadowplaySkills, { passives as ShadowplayPassives } from './shadowplay';
+import SongcraftSkills, { passives as SongcraftPassives } from './songcraft';
+import SorcerySkills, { passives as SorceryPassives } from './sorcery';
+import SwiftbladeSkills, { passives as SwiftbladePassives } from './swiftblade';
+import VitalismSkills, { passives as VitalismPassives } from './vitalism';
+import WitchcraftSkills, { passives as WitchcraftPassives } from './witchcraft';
 
 export default Object.freeze({
   ARCHERY: {
     name: 'Archery',
-    skills: [],
-    passives: [],
+    skills: ArcherySkills,
+    passives: ArcheryPassives,
   },
   AURAMANCY: {
     name: 'Auramancy',
-    skills: [],
-    passives: [],
+    skills: AuramancySkills,
+    passives: AuramancyPassives,
   },
   BATTLERAGE: {
     name: 'Battlerage',
@@ -18,47 +29,47 @@ export default Object.freeze({
   },
   DEFENSE: {
     name: 'Defense',
-    skills: [],
-    passives: [],
+    skills: DefenseSkills,
+    passives: DefensePassives,
   },
   MALEDICTION: {
     name: 'Malediction',
-    skills: [],
-    passives: [],
+    skills: MaledictionSkills,
+    passives: MaledictionPassives,
   },
   OCCULTISM: {
     name: 'Occultism',
-    skills: [],
-    passives: [],
+    skills: OccultismSkills,
+    passives: OccultismPassives,
   },
   SHADOWPLAY: {
     name: 'Shadowplay',
-    skills: [],
-    passives: [],
+    skills: ShadowplaySkills,
+    passives: ShadowplayPassives,
   },
   SONGCRAFT: {
     name: 'Songcraft',
-    skills: [],
-    passives: [],
+    skills: SongcraftSkills,
+    passives: SongcraftPassives,
   },
   SORCERY: {
     name: 'Sorcery',
-    skills: [],
-    passives: [],
+    skills: SorcerySkills,
+    passives: SorceryPassives,
   },
   SWIFTBLADE: {
     name: 'Swiftblade',
-    skills: [],
-    passives: [],
+    skills: SwiftbladeSkills,
+    passives: SwiftbladePassives,
   },
   VITALISM: {
     name: 'Vitalism',
-    skills: [],
-    passives: [],
+    skills: VitalismSkills,
+    passives: VitalismPassives,
   },
   WITCHCRAFT: {
     name: 'Witchcraft',
-    skills: [],
-    passives: [],
+    skills: WitchcraftSkills,
+    passives: WitchcraftPassives,
   },
 });

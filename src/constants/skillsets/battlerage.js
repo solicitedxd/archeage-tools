@@ -24,7 +24,7 @@ import WeaponsMasteryIcon from 'images/skill/battlerage/Weapons_Mastery.png';
 import DeadlyDuelistIcon from 'images/skill/battlerage/Deadly_Duelist.png';
 
 export default Object.freeze([
- {
+  {
     icon: TripleSlashIcon,
     name: 'Triple Slash',
     rank: 1,
