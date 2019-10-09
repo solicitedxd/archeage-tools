@@ -12,25 +12,11 @@ export const findClassName = (skillset0, skillset1, skillset2) => {
   }
 };
 
-const boolToInt = (bool) => bool === true ? 1 : 0;
-
 export const getTreePoints = (skills) => {
   if (skills.length === 0) {
     return 0;
   }
-  if (skills.length === 1) {
-    return boolToInt(skills[0]);
-  }
-  const size = skills.reduce((a, b) => {
-    if (Boolean(a) === a || a === undefined) {
-      a = boolToInt(a);
-    }
-    if (Boolean(b) === b || b === undefined) {
-      b = boolToInt(b);
-    }
-    return a + b;
-  });
-  return size === true ? 1 : size;
+  return skills.reduce((a, b) => (a || 0) + (b || 0));
 };
 
 export const getPointReq = (skillId) => {

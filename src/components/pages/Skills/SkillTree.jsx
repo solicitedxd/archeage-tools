@@ -51,7 +51,7 @@ class SkillTree extends Component {
   };
 
   render() {
-    const { skillTree, setSkillTree, resetSkillTree, setSkill, treeId, selectedClasses } = this.props;
+    const { skillTree, setSkillTree, resetSkillTree, setSkill, treeId, selectedClasses, remainingPoints } = this.props;
     const { treeName, skills } = skillTree;
     const skillSet = SKILLSET[treeName];
     const { selectingSkillset } = this.state;
@@ -86,7 +86,10 @@ class SkillTree extends Component {
             const { name } = SKILLSET[skillTreeId];
             return (
               <Button
-                onClick={() => setSkillTree(treeId, skillTreeId)}
+                onClick={() => {
+                  this.toggleSelecting(false);
+                  setSkillTree(treeId, skillTreeId);
+                }}
                 key={`${treeId}-${skillTreeId}`}
                 className="skill-set-button"
               >
@@ -97,7 +100,7 @@ class SkillTree extends Component {
         </div>}
         {(treeName && !selectingSkillset) &&
         <div className="skill-list-container">
-          <Typography variant="overline">Combat</Typography>
+          <Typography variant="overline" className="skill-list-title">Combat</Typography>
           <div className="skill-list combat">
             {Object.values(skillSet.skills).map((skill, index) =>
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
@@ -107,12 +110,13 @@ class SkillTree extends Component {
                   onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
                   learned={Boolean(skills[index])}
                   spentPoints={spentPoints}
+                  remainingPoints={remainingPoints}
                   {...skill}
                 />
               </div>,
             )}
           </div>
-          <Typography variant="overline">Passive</Typography>
+          <Typography variant="overline" className="skill-list-title">Passive</Typography>
           <div className="skill-list passive">
             {skillSet.passives.map((skill, index) =>
               <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>

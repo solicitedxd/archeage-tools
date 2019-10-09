@@ -19,6 +19,7 @@ import {
 } from '@material-ui/icons';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
+import SKILLSET from 'constants/skillsets';
 import {
   findClassName,
   getPointReq,
@@ -62,7 +63,6 @@ class Skills extends Component {
     const { skillTrees: skillTreesOld } = this.state;
     const skillTrees = [...skillTreesOld];
     skillTrees[treeId] = { treeName, skills: [] };
-    console.log(treeId);
     this.setState({ skillTrees });
   };
 
@@ -91,7 +91,7 @@ class Skills extends Component {
       if (skillId !== 3 && Boolean(skills[3]) && getPointReq(3) > spentPoints - 2) return;
     }
 
-    skills[skillId] = value;
+    skills[skillId] = value === true ? 1 : 0;
     skillTrees[treeId].skills = skills;
     this.setState({ skillTrees });
   };
@@ -102,19 +102,39 @@ class Skills extends Component {
   };
 
   resetAllTrees = () => {
-    [0, 1, 2].forEach(treeId => this.resetSkillTree(treeId));
+    const { skillTrees } = this.state;
+    this.setState({
+      skillTrees: [
+        { treeName: skillTrees[0].treeName, skills: [] },
+        { treeName: skillTrees[1].treeName, skills: [] },
+        { treeName: skillTrees[2].treeName, skills: [] },
+      ],
+    })
   };
 
   encodeSkillTrees = () => {
     const { skillTrees } = this.state;
-    const treeData = skillTrees.map(tree => `${tree.treeName || ''}${tree.skills ? tree.skills.join(',')
+    const treeData = skillTrees.map(tree => `${tree.treeName ? tree.treeName : ''},${tree.skills ? tree.skills.join(',')
       : ''}`).join('\r');
     return btoa(treeData);
   };
 
   decodeSkillTrees = (data) => {
-    const decodedTrees = atob(data).split('\r').map(rawTree => {
-      const [treeName, ...skills] = rawTree.split(',');
+    let decodedData;
+    try {
+      decodedData = atob(data);
+    } catch (e) {
+      // invalid data
+      decodedData = '';
+    }
+    const decodedTrees = decodedData.split('\r').map(rawTree => {
+      let [treeName, ...skills] = rawTree.split(',');
+      if (!SKILLSET[treeName]) {
+        treeName = null;
+        skills = []
+      } else {
+        skills = skills.map(skill => skill ? Number(skill) : null);
+      }
       return { treeName, skills };
     });
     while (decodedTrees.length < 3) {

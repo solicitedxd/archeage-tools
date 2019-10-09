@@ -29,6 +29,12 @@
     .skill-list-container {
       padding: 8px;
 
+      .skill-list-title {
+        position: relative;
+        top: 2px;
+        line-height: 1.5;
+      }
+
       .skill-list {
         display: flex;
         justify-content: start;

@@ -7,7 +7,6 @@ import {
 } from 'react-proptypes';
 import cn from 'classnames';
 import { getPointReq } from 'utils/skills';
-import { MAX_POINTS } from 'constants/skills';
 
 class Skill extends Component {
   static propTypes = {
@@ -17,6 +16,7 @@ class Skill extends Component {
     spentPoints: number,
     slot: number.isRequired,
     skillset: string.isRequired,
+    remainingPoints: number,
     onClick: func,
   };
 
@@ -25,15 +25,16 @@ class Skill extends Component {
     passive: false,
     learned: false,
     spentPoints: 0,
+    remainingPoints: 0,
     onClick: () => {},
   };
 
   state = {};
 
   render() {
-    const { icon, passive, spentPoints, slot, onClick, learned, skillset } = this.props;
+    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
-    const disabled = passive ? !learned : (spentPoints < pointsRequired || (spentPoints === MAX_POINTS && !learned));
+    const disabled = passive ? !learned : (spentPoints < pointsRequired || (remainingPoints === 0 && !learned));
 
     return (
       <div
@@ -44,7 +45,7 @@ class Skill extends Component {
         data-skillset={skillset}
         data-skill-id={slot}
         data-passive={passive}
-        data-disabled={disabled}
+        data-disabled={disabled && spentPoints < pointsRequired}
       >
         <img src={icon} alt="" />
       </div>
