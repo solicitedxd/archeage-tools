@@ -23,6 +23,10 @@ import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
 import SKILLSET from 'constants/skillsets';
 import {
+  decodeAncestrals,
+  decodeSkillHex,
+  encodeAncestrals,
+  encodeSkillsAsHex,
   findClassName,
   getPointReq,
   getTreePoints,
@@ -130,35 +134,24 @@ class Skills extends Component {
 
   encodeSkillTrees = () => {
     const { skillTrees } = this.state;
-    const treeData = skillTrees.map(tree => `${tree.treeName ? tree.treeName
-      : ''},${tree.skills.map(v => v === 1 ? 1 : '').join(',')}:${tree.ancestrals.map(v => (v === 1 || v === 2) ? v
-      : '').join(',')}`).join('\r');
-    return btoa(treeData);
+    return skillTrees.map(tree => {
+      if (!tree.treeName) {
+        return '';
+      }
+      return `${tree.treeName},${encodeSkillsAsHex(tree.skills)},${encodeAncestrals(tree.ancestrals)}`;
+    }).join(':');
   };
 
   decodeSkillTrees = (data) => {
-    let decodedData;
-    try {
-      decodedData = atob(data);
-    } catch (e) {
-      // invalid data
-      decodedData = '';
-    }
-    const decodedTrees = decodedData.split('\r').map(rawTree => {
-      let other;
-      let ancestrals = [];
-      if (rawTree.indexOf(':') >= 0) {
-        [other, ancestrals] = rawTree.split(':');
-        ancestrals = ancestrals.split(',').map(ancestral => ancestral ? Number(ancestral) : null);
-      } else {
-        other = rawTree;
-      }
-      let [treeName, ...skills] = other.split(',');
+    const decodedTrees = data.split(':').map(rawTree => {
+      let [treeName, skills, ancestrals] = rawTree.split(',');
       if (!SKILLSET[treeName]) {
         treeName = null;
         skills = [];
+        ancestrals = [];
       } else {
-        skills = skills.map(skill => skill ? Number(skill) : null);
+        skills = decodeSkillHex(skills);
+        ancestrals = decodeAncestrals(ancestrals);
       }
       return { treeName, skills, ancestrals };
     });

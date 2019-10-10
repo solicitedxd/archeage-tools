@@ -48,7 +48,7 @@ const skills = Object.freeze([
   },
   {
     icon: DoubleTimeIcon,
-    name: 'Double Time',
+    name: 'Double-Time',
   },
   {
     icon: OdetoRecoveryIcon,
