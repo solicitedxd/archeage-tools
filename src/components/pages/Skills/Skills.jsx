@@ -5,6 +5,7 @@ import {
   AppBar,
   Dialog,
   DialogContent,
+  Button,
   IconButton,
   Paper,
   TextField,
@@ -16,6 +17,7 @@ import {
   Close,
   Replay,
   Share,
+  FileCopy,
 } from '@material-ui/icons';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
@@ -255,10 +257,18 @@ class Skills extends Component {
                 ref: (node) => this.copyTextfield = node,
               }}
               fullWidth
-              helperText={<span style={{ color: 'green' }}>{copied ? 'Copied!' : ''}</span>}
+              multiline
+              helperText={copied ? <span style={{ color: 'green' }}>Copied!</span> : null}
             />
-            <Typography variant="overline" onClick={this.handleCopyShare} style={{ cursor: 'pointer' }}>Copy
-              link</Typography>
+            <Button
+              onClick={this.handleCopyShare}
+              startIcon={<FileCopy />}
+              color="primary"
+              variant="contained"
+              style={{ marginTop: 8 }}
+            >
+              Copy link
+            </Button>
           </DialogContent>
         </Dialog>
         <SkillTooltip />

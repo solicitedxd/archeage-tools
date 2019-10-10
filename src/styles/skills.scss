@@ -71,13 +71,15 @@
         flex-direction: column;
         background-color: rgba(176, 149, 107, 0.47);
         border-radius: 6px;
-        padding: 6px;
+        padding: 12px 6px;
+
+        .ancestral-selected {
+          margin-left: 16px;
+        }
 
         .ancestral-row {
           display: flex;
           padding: 2px;
-          border: 1px solid rgba(160, 131, 88, 0.5);
-          border-radius: 3px;
 
           .ancestral-options {
             display: flex;
