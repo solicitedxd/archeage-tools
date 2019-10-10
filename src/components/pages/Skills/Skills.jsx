@@ -3,9 +3,9 @@ import { connect } from 'react-redux';
 import cn from 'classnames';
 import {
   AppBar,
+  Button,
   Dialog,
   DialogContent,
-  Button,
   IconButton,
   Paper,
   TextField,
@@ -15,9 +15,9 @@ import {
 } from '@material-ui/core';
 import {
   Close,
+  FileCopy,
   Replay,
   Share,
-  FileCopy,
 } from '@material-ui/icons';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
@@ -113,15 +113,19 @@ class Skills extends Component {
     this.setSkillTree(treeId, skillTrees[treeId].treeName);
   };
 
-  resetAllTrees = () => {
-    const { skillTrees } = this.state;
+  selectAllTrees = (trees) => {
     this.setState({
       skillTrees: [
-        { treeName: skillTrees[0].treeName, skills: [], ancestrals: [] },
-        { treeName: skillTrees[1].treeName, skills: [], ancestrals: [] },
-        { treeName: skillTrees[2].treeName, skills: [], ancestrals: [] },
+        { treeName: trees[0], skills: [], ancestrals: [] },
+        { treeName: trees[1], skills: [], ancestrals: [] },
+        { treeName: trees[2], skills: [], ancestrals: [] },
       ],
     });
+  };
+
+  resetAllTrees = () => {
+    const { skillTrees } = this.state;
+    this.selectAllTrees(skillTrees.map(tree => tree.treeName));
   };
 
   encodeSkillTrees = () => {
