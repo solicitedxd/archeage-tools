@@ -16,8 +16,20 @@ import IllusionsFavorIcon from 'images/skill/witchcraft/Illusions_Favor.png';
 import ExploitationIcon from 'images/skill/witchcraft/Exploitation.png';
 import AugmentWitchcraftIcon from 'images/skill/witchcraft/Augment_Witchcraft.png';
 import EnshroudIcon from 'images/skill/witchcraft/Enshroud.png';
+import EarthenGripLightning from 'images/skill/witchcraft/Earthen_Grip_Lightning.png';
+import EarthenGripQuake from 'images/skill/witchcraft/Earthen_Grip_Quake.png';
+import BubbleTrapGale from 'images/skill/witchcraft/Bubble_Trap_Gale.png';
+import BubbleTrapMist from 'images/skill/witchcraft/Bubble_Trap_Mist.png';
+import BansheeWailMist from 'images/skill/witchcraft/Banshee_Wail_Mist.png';
+import BansheeWailStone from 'images/skill/witchcraft/Banshee_Wail_Stone.png';
+import MirrorWarpFlame from 'images/skill/witchcraft/Mirror_Warp_Flame.png';
+import MirrorWarpStone from 'images/skill/witchcraft/Mirror_Warp_Stone.png';
+import DahutasBreathMist from 'images/skill/witchcraft/Dahutas_Breath_Mist.png';
+import DahutasBreathQuake from 'images/skill/witchcraft/Dahutas_Breath_Quake.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: EarthenGripIcon,
     name: 'Earthen Grip',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Enshroud',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Earthen Grip'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: EarthenGripLightning,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: EarthenGripQuake,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Bubble Trap'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: BubbleTrapGale,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: BubbleTrapMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Banshee Wail'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: BansheeWailMist,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: BansheeWailStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Mirror Warp'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: MirrorWarpFlame,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: MirrorWarpStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Dahuta\'s Breath'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: DahutasBreathMist,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: DahutasBreathQuake,
+      },
+    ],
+  },
+]);
+
+export default skills;

@@ -16,8 +16,18 @@ import GleefulDestructionIcon from 'images/skill/malediction/Gleeful_Destruction
 import WrathfulCastingIcon from 'images/skill/malediction/Wrathful_Casting.png';
 import CuttingMaliceIcon from 'images/skill/malediction/Cutting_Malice.png';
 import MurderousIntentIcon from 'images/skill/malediction/Murderous_Intent.png';
+import ManaBoltsQuake from 'images/skill/malediction/Mana_Bolts_Quake.png';
+import ManaBoltsWave from 'images/skill/malediction/Mana_Bolts_Wave.png';
+import BladeFallFlame from 'images/skill/malediction/Bladefall_Flame.png';
+import BladeFallLightning from 'images/skill/malediction/Bladefall_Lightning.png';
+import SerpentBiteFlame from 'images/skill/malediction/Serpent_Bite_Flame.png';
+import SerpentBiteStone from 'images/skill/malediction/Serpent_Bite_Stone.png';
+import GraspingVoidFlame from 'images/skill/malediction/Grasping_Void_Flame.png';
+import GraspingVoidMist from 'images/skill/malediction/Grasping_Void_Mist.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: ManaBoltsIcon,
     name: 'Mana Bolts',
@@ -94,3 +104,60 @@ export const passives = Object.freeze([
     name: 'Murderous Intent',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Mana Bolts'),
+    variants: [
+      {
+        element: ELEMENT.QUAKE,
+        icon: ManaBoltsQuake,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: ManaBoltsWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Bladefall'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: BladeFallFlame,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: BladeFallLightning,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Serpent Bite'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: SerpentBiteFlame,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: SerpentBiteStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Grasping Void'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: GraspingVoidFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: GraspingVoidMist,
+      },
+    ],
+  },
+]);
+
+export default skills;

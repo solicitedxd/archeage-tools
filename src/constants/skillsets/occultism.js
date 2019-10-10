@@ -16,8 +16,20 @@ import InevitabilityIcon from 'images/skill/occultism/Inevitability.png';
 import BurningBrandIcon from 'images/skill/occultism/Burning_Brand.png';
 import DeathsBeckoningIcon from 'images/skill/occultism/Deaths_Beckoning.png';
 import CriticalFailureIcon from 'images/skill/occultism/Critical_Failure.png';
+import CripplingMireQuake from 'images/skill/occultism/Crippling_Mire_Quake.png';
+import CripplingMireStone from 'images/skill/occultism/Crippling_Mire_Stone.png';
+import HellSpearFlame from 'images/skill/occultism/Hell_Spear_Flame.png';
+import HellSpearMist from 'images/skill/occultism/Hell_Spear_Mist.png';
+import SummonWraithMist from 'images/skill/occultism/Summon_Wraith_Mist.png';
+import SummonWraithWave from 'images/skill/occultism/Summon_Wraith_Wave.png';
+import ShadowStepLightning from 'images/skill/occultism/Shadowstep_Lightning.png';
+import ShadowStepMist from 'images/skill/occultism/Shadowstep_Mist.png';
+import AbsorbLifeforceFlame from 'images/skill/occultism/Absorb_Life_Flame.png';
+import AbsorbLifeforceStone from 'images/skill/occultism/Absorb_Life_Stone.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: CripplingMireIcon,
     name: 'Crippling Mire',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Critical Failure',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Crippling Mire'),
+    variants: [
+      {
+        element: ELEMENT.QUAKE,
+        icon: CripplingMireQuake,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: CripplingMireStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Hell Spear'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: HellSpearFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: HellSpearMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Summon Wraith'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: SummonWraithMist,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: SummonWraithWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Shadow Step'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: ShadowStepLightning,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: ShadowStepMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Absorb Lifeforce'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: AbsorbLifeforceFlame,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: AbsorbLifeforceStone,
+      },
+    ],
+  },
+]);
+
+export default skills;

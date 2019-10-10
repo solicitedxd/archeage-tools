@@ -28,16 +28,15 @@ class SkillTree extends Component {
     treeId: number.isRequired,
     setSkillTree: func.isRequired,
     setSkill: func.isRequired,
+    setAncestral: func.isRequired,
     resetSkillTree: func.isRequired,
     skillTree: object.isRequired,
-    skills: array,
     remainingPoints: number,
     selectedClasses: array,
   };
 
   static defaultProps = {
     skillTree: null,
-    skills: [],
     remainingPoints: 0,
     selectedClasses: [],
   };
@@ -51,8 +50,8 @@ class SkillTree extends Component {
   };
 
   render() {
-    const { skillTree, setSkillTree, resetSkillTree, setSkill, treeId, selectedClasses, remainingPoints } = this.props;
-    const { treeName, skills } = skillTree;
+    const { skillTree, setSkillTree, resetSkillTree, setSkill, setAncestral, treeId, selectedClasses, remainingPoints } = this.props;
+    const { treeName, skills, ancestrals } = skillTree;
     const skillSet = SKILLSET[treeName];
     const { selectingSkillset } = this.state;
     const spentPoints = getTreePoints(skills);
@@ -102,19 +101,27 @@ class SkillTree extends Component {
         <div className="skill-list-container">
           <Typography variant="overline" className="skill-list-title">Combat</Typography>
           <div className="skill-list combat">
-            {Object.values(skillSet.skills).map((skill, index) =>
-              <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
-                <Skill
-                  skillset={treeName}
-                  slot={index}
-                  onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
-                  learned={Boolean(skills[index])}
-                  spentPoints={spentPoints}
-                  remainingPoints={remainingPoints}
-                  {...skill}
-                />
-              </div>,
-            )}
+            {Object.values(skillSet.skills).map((skill, index) => {
+              const ancestral = skillSet.ancestrals.find(anc => anc.skillId === index);
+              if (ancestral) {
+                const ancestralId = skillSet.ancestrals.indexOf(ancestral);
+                if (ancestralId >= 0 && ancestrals[ancestralId] > 0) {
+                  skill = { ...skill, ...ancestral.variants[ancestrals[ancestralId] - 1] };
+                }
+              }
+              return (
+                <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
+                  <Skill
+                    skillset={treeName}
+                    slot={index}
+                    onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
+                    learned={Boolean(skills[index])}
+                    spentPoints={spentPoints}
+                    remainingPoints={remainingPoints}
+                    {...skill}
+                  />
+                </div>);
+            })}
           </div>
           <Typography variant="overline" className="skill-list-title">Passive</Typography>
           <div className="skill-list passive">
@@ -129,6 +136,52 @@ class SkillTree extends Component {
                 />
               </div>,
             )}
+          </div>
+          <Typography variant="overline" className="skill-list-title">Ancestral</Typography>
+          <div className="ancestral-list">
+            {skillSet.ancestrals.map((ancestral, ancestralId) => {
+              const original = skillSet.skills.find((skill, id) => id === ancestral.skillId);
+              const selected = ancestrals[ancestralId];
+              const selectedVariant = selected > 0 ? ancestral.variants[selected - 1] : original;
+              return (
+                <div className="ancestral-row" key={ancestralId}>
+                  <div className="ancestral-selected">
+                    <Skill
+                      skillset={treeName}
+                      slot={ancestral.skillId}
+                      learned={Boolean(skills[ancestral.skillId])}
+                      spentPoints={spentPoints}
+                      {...original}
+                      {...selectedVariant}
+                    />
+                  </div>
+                  <div className="ancestral-options">
+                    <Skill
+                      skillset={treeName}
+                      ancestral
+                      slot={ancestral.skillId}
+                      onClick={() => setAncestral(treeId, ancestralId, 0)}
+                      learned={selected !== 1 && selected !== 2}
+                      spentPoints={spentPoints}
+                      {...original}
+                    />
+                    {ancestral.variants.map((element, id) => (
+                      <Skill
+                        key={`${ancestral.skillId}-${element.element}`}
+                        skillset={treeName}
+                        ancestral
+                        slot={ancestral.skillId}
+                        onClick={() => setAncestral(treeId, ancestralId, id + 1)}
+                        learned={selected === id + 1}
+                        spentPoints={spentPoints}
+                        {...original}
+                        {...element}
+                      />
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
         }

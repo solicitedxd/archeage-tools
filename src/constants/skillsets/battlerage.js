@@ -2,6 +2,7 @@ import {
   ATTACK,
   BUFF,
   COMBO_TYPE,
+  ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
 import TripleSlashIcon from 'images/skill/battlerage/Triple_Slash.png';
@@ -22,15 +23,27 @@ import PunctureIcon from 'images/skill/battlerage/Puncture.png';
 import AttackSpeedTrainingIcon from 'images/skill/battlerage/Attack_Speed_Training.png';
 import WeaponsMasteryIcon from 'images/skill/battlerage/Weapons_Mastery.png';
 import DeadlyDuelistIcon from 'images/skill/battlerage/Deadly_Duelist.png';
+import TripleSlashLightning from 'images/skill/battlerage/Triple_Slash_Lightning.png';
+import TripleSlashQuake from 'images/skill/battlerage/Triple_Slash_Quake.png';
+import PrecisionStrikeGale from 'images/skill/battlerage/Precision_Strike_Gale.png';
+import PrecisionStrikeWave from 'images/skill/battlerage/Precision_Strike_Wave.png';
+import TigerStrikeLife from 'images/skill/battlerage/Tiger_Strike_Life.png';
+import TigerStrikeLightning from 'images/skill/battlerage/Tiger_Strike_Lightning.png';
+import BehindEnemyLinesGale from 'images/skill/battlerage/Behind_Enemy_Lines_Gale.png';
+import BehindEnemyLinesStone from 'images/skill/battlerage/Behind_Enemy_Lines_Stone.png';
+import SunderEarthMist from 'images/skill/battlerage/Sunder_Earth_Mist.png';
+import SunderEarthQuake from 'images/skill/battlerage/Sunder_Earth_Quake.png';
+import { getSkillIdByName } from 'utils/skillsets';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: TripleSlashIcon,
     name: 'Triple Slash',
     rank: 1,
     mana: 12,
     range: [0, 4],
-    damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 154 } },
+    effectRange: 0,
+    damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 174 } },
     castTime: 0,
     cooldown: 0,
     description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Physical Damage.\n' +
@@ -130,3 +143,84 @@ export const passives = Object.freeze([
     name: 'Deadly Duelist',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Triple Slash'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: TripleSlashLightning,
+        mana: 9,
+        damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 136 } },
+        description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Physical Damage.\n' +
+          'On each 3rd attack, this skill deals #+20%# more damage and affects all enemies with in a #3m# radius of the primary target.\n' +
+          'This skill attacks faster than basic Triple Slash, but deals less damage.',
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: TripleSlashQuake,
+        range: [0],
+        effectRange: 5,
+        damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 312 } },
+        description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Melee Damage to all enemies within #${effectRange}m# of the primary target..\n' +
+          'On each 3rd attack, this skill deals #+20%# more damage up to 20 enemies within #${effectRange}#.\n' +
+          'This skill attacks slower than Basic Triple Slash, but can deal damage to multiple enemies with each attack.',
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Precision Strike'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: PrecisionStrikeGale,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: PrecisionStrikeWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Tiger Strike'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: TigerStrikeLife,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: TigerStrikeLightning,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Behind Enemy Lines'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: BehindEnemyLinesGale,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: BehindEnemyLinesStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Sunder Earth'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: SunderEarthMist,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: SunderEarthQuake,
+      },
+    ],
+  },
+]);
+
+export default skills;

@@ -17,7 +17,7 @@ import AdrenalineRushIcon from 'images/skill/swiftblade/Adrenaline_Rush.png';
 import WindwalkerIcon from 'images/skill/swiftblade/Windwalker.png';
 import RendingMasteryIcon from 'images/skill/swiftblade/Rending_Mastery.png';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: BladeFlurryIcon,
     name: 'Blade Flurry',
@@ -94,3 +94,7 @@ export const passives = Object.freeze([
     name: 'Rending Mastery',
   },
 ]);
+
+export const ancestrals = Object.freeze([]);
+
+export default skills;

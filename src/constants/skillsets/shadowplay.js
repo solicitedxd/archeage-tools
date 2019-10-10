@@ -16,8 +16,20 @@ import RuthlessAssaultIcon from 'images/skill/shadowplay/Ruthless_Assault.png';
 import BloodthirstIntensifiedIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import LethalToxinsIcon from 'images/skill/shadowplay/Lethal_Toxins.png';
 import ShadowMasteryIcon from 'images/skill/shadowplay/Shadow_Mastery.png';
+import OverwhelmFlame from 'images/skill/shadowplay/Overwhelm_Flame.png';
+import OverwhelmLightning from 'images/skill/shadowplay/Overwhelm_Lightning.png';
+import DropBackMist from 'images/skill/shadowplay/Drop_Back_Mist.png';
+import DropBackWave from 'images/skill/shadowplay/Drop_Back_Wave.png';
+import ShadowsmiteLightning from 'images/skill/shadowplay/Shadowsmite_Lightning.png';
+import ShadowsmiteMist from 'images/skill/shadowplay/Shadowsmite_Mist.png';
+import FreerunnerFlame from 'images/skill/shadowplay/Freerunner_Flame.png';
+import FreerunnerQuake from 'images/skill/shadowplay/Freerunner_Quake.png';
+import PoisonedWeaponsFlame from 'images/skill/shadowplay/Poisoned_Weapons_Flame.png';
+import PoisonedWeaponsWave from 'images/skill/shadowplay/Poisoned_Weapons_Wave.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: RapidStrikeIcon,
     name: 'Rapid Strike',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Shadow Mastery',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Overwhelm'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: OverwhelmFlame,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: OverwhelmLightning,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Drop Back'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: DropBackMist,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: DropBackWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Shadowsmite'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: ShadowsmiteLightning,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: ShadowsmiteMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Freerunner'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: FreerunnerFlame,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: FreerunnerQuake,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Poisoned Weapons'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: PoisonedWeaponsFlame,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: PoisonedWeaponsWave,
+      },
+    ],
+  },
+]);
+
+export default skills;

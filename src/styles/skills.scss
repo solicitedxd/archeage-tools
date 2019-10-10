@@ -65,6 +65,40 @@
           }
         }
       }
+
+      .ancestral-list {
+        display: flex;
+        flex-direction: column;
+        background-color: rgba(176, 149, 107, 0.47);
+        border-radius: 6px;
+        padding: 6px;
+
+        .ancestral-row {
+          display: flex;
+          padding: 2px;
+          border: 1px solid rgba(160, 131, 88, 0.5);
+          border-radius: 3px;
+
+          .ancestral-options {
+            display: flex;
+            flex: 1;
+            justify-content: space-evenly;
+            align-items: center;
+
+            &:before {
+              content: "";
+              height: 20px;
+              width: 20px;
+              background: url(../images/successor.png) -376px -266px;
+              transform: rotate(-90deg);
+            }
+          }
+
+          & + .ancestral-row {
+            margin-top: 6px;
+          }
+        }
+      }
     }
   }
 }
@@ -74,12 +108,92 @@
   height: 48px;
   position: relative;
 
+  &.ancestral {
+    width: 52px;
+    height: 52px;
+    background: url(../images/successor.png) -376px -76px;
+
+    &[data-element]:before {
+      width: 18px;
+      height: 18px;
+      position: absolute;
+      z-index: 4;
+      background: url(../images/successor.png);
+      content: "";
+      bottom: 2px;
+      right: 2px;
+    }
+
+    &[data-element="Flame"]:before {
+      background-position: -418px -128px;
+    }
+
+    &[data-element="Life"]:before {
+      background-position: -436px -128px;
+    }
+
+    &[data-element="Quake"]:before {
+      background-position: -454px -128px;
+    }
+
+    &[data-element="Stone"]:before {
+      background-position: -472px -128px;
+    }
+
+    &[data-element="Wave"]:before {
+      background-position: -490px -128px;
+    }
+
+    &[data-element="Mist"]:before {
+      background-position: -418px -146px;
+    }
+
+    &[data-element="Gale"]:before {
+      background-position: -436px -146px;
+    }
+
+    &[data-element="Lightning"]:before {
+      background-position: -454px -146px;
+    }
+
+    &.available {
+      background-position: -428px -76px;
+
+      &:after {
+        background-color: rgba(176, 149, 107, 0.47);
+      }
+
+      &[data-points-req]:not([data-points-req="0"]):after {
+        color: #AA9872;
+        font-size: 21px;
+        line-height: 48px;
+      }
+    }
+
+    img {
+      width: 42px;
+      height: 42px;
+      top: 5px;
+      left: 5px;
+      border: none;
+      border-radius: 0;
+    }
+
+    &:after {
+      width: 42px;
+      height: 42px;
+      top: 5px;
+      left: 5px;
+    }
+  }
+
   img {
     position: relative;
     width: 48px;
     height: 48px;
     border: 1px solid #000000;
     border-radius: 2px;
+    z-index: 1;
   }
 
   &:after {
@@ -95,6 +209,7 @@
     font-size: 24px;
     line-height: 52px;
     text-align: center;
+    z-index: 3;
   }
 
   &.available {

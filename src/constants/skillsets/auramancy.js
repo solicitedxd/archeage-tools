@@ -16,8 +16,20 @@ import UnassailableIcon from 'images/skill/auramancy/Unassailable.png';
 import WardMasteryIcon from 'images/skill/auramancy/Ward_Mastery.png';
 import AcceleratedCastingIcon from 'images/skill/auramancy/Accelerated_Casting.png';
 import UnwaveringWillIcon from 'images/skill/auramancy/Unwavering_Will.png';
+import ThwartMist from 'images/skill/auramancy/Thwart_Mist.png';
+import ThwartStone from 'images/skill/auramancy/Thwart_Stone.png';
+import ConversionShieldFlame from 'images/skill/auramancy/Conversion_Shield_Flame.png';
+import ConversionShieldMist from 'images/skill/auramancy/Conversion_Shield_Mist.png';
+import ProtectiveWingsFlame from 'images/skill/auramancy/Protective_Wings_Flame.png';
+import ProtectiveWingsMist from 'images/skill/auramancy/Protective_Wings_Mist.png';
+import TeleportationLightning from 'images/skill/auramancy/Teleportation_Lightning.png';
+import TeleportationMist from 'images/skill/auramancy/Teleportation_Mist.png';
+import ViciousImplosionFlame from 'images/skill/auramancy/Vicious_Implosion_Flame.png';
+import ViciousImplosionStone from 'images/skill/auramancy/Vicious_Implosion_Stone.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: ThwartIcon,
     name: 'Thwart',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Unwavering Will',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Thwart'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: ThwartMist,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: ThwartStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Conversion Shield'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ConversionShieldFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: ConversionShieldMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Protective Wings'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ProtectiveWingsFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: ProtectiveWingsMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Teleportation'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: TeleportationLightning,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: TeleportationMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Vicious Implosion'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ViciousImplosionFlame,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: ViciousImplosionStone,
+      },
+    ],
+  },
+]);
+
+export default skills;

@@ -30,9 +30,9 @@ import SkillTree from './SkillTree';
 class Skills extends Component {
   state = {
     skillTrees: [
-      { treeName: null, skills: [] },
-      { treeName: null, skills: [] },
-      { treeName: null, skills: [] },
+      { treeName: null, skills: [], ancestrals: [] },
+      { treeName: null, skills: [], ancestrals: [] },
+      { treeName: null, skills: [], ancestrals: [] },
     ],
     share: false,
     shareCode: null,
@@ -62,7 +62,7 @@ class Skills extends Component {
   setSkillTree = (treeId, treeName) => {
     const { skillTrees: skillTreesOld } = this.state;
     const skillTrees = [...skillTreesOld];
-    skillTrees[treeId] = { treeName, skills: [] };
+    skillTrees[treeId] = { treeName, skills: [], ancestrals: [] };
     this.setState({ skillTrees });
   };
 
@@ -96,6 +96,16 @@ class Skills extends Component {
     this.setState({ skillTrees });
   };
 
+  setAncestral = (treeId, ancestralId, value) => {
+    const { skillTrees: skillTreesOld } = this.state;
+    const skillTrees = [...skillTreesOld];
+    const ancestrals = [...skillTrees[treeId].ancestrals];
+
+    ancestrals[ancestralId] = value;
+    skillTrees[treeId].ancestrals = ancestrals;
+    this.setState({ skillTrees });
+  };
+
   resetSkillTree = (treeId) => {
     const { skillTrees } = this.state;
     this.setSkillTree(treeId, skillTrees[treeId].treeName);
@@ -105,17 +115,18 @@ class Skills extends Component {
     const { skillTrees } = this.state;
     this.setState({
       skillTrees: [
-        { treeName: skillTrees[0].treeName, skills: [] },
-        { treeName: skillTrees[1].treeName, skills: [] },
-        { treeName: skillTrees[2].treeName, skills: [] },
+        { treeName: skillTrees[0].treeName, skills: [], ancestrals: [] },
+        { treeName: skillTrees[1].treeName, skills: [], ancestrals: [] },
+        { treeName: skillTrees[2].treeName, skills: [], ancestrals: [] },
       ],
-    })
+    });
   };
 
   encodeSkillTrees = () => {
     const { skillTrees } = this.state;
-    const treeData = skillTrees.map(tree => `${tree.treeName ? tree.treeName : ''},${tree.skills ? tree.skills.join(',')
-      : ''}`).join('\r');
+    const treeData = skillTrees.map(tree => `${tree.treeName ? tree.treeName
+      : ''},${tree.skills.map(v => v === 1 ? 1 : '').join(',')}:${tree.ancestrals.map(v => (v === 1 || v === 2) ? v
+      : '').join(',')}`).join('\r');
     return btoa(treeData);
   };
 
@@ -128,17 +139,25 @@ class Skills extends Component {
       decodedData = '';
     }
     const decodedTrees = decodedData.split('\r').map(rawTree => {
-      let [treeName, ...skills] = rawTree.split(',');
+      let other;
+      let ancestrals = [];
+      if (rawTree.indexOf(':') >= 0) {
+        [other, ancestrals] = rawTree.split(':');
+        ancestrals = ancestrals.split(',').map(ancestral => ancestral ? Number(ancestral) : null);
+      } else {
+        other = rawTree;
+      }
+      let [treeName, ...skills] = other.split(',');
       if (!SKILLSET[treeName]) {
         treeName = null;
-        skills = []
+        skills = [];
       } else {
         skills = skills.map(skill => skill ? Number(skill) : null);
       }
-      return { treeName, skills };
+      return { treeName, skills, ancestrals };
     });
     while (decodedTrees.length < 3) {
-      decodedTrees.push({ treeName: null, skills: [] });
+      decodedTrees.push({ treeName: null, skills: [], ancestrals: [] });
     }
     if (decodedTrees.length > 3) {
       decodedTrees.unshift(decodedTrees.length - 3);
@@ -207,6 +226,7 @@ class Skills extends Component {
               key={`tree-${treeId}`}
               setSkillTree={this.setSkillTree}
               setSkill={this.setSkill}
+              setAncestral={this.setAncestral}
               resetSkillTree={this.resetSkillTree}
               skillTree={skillTrees[treeId]}
               remainingPoints={remainingPoints}

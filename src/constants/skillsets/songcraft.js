@@ -16,8 +16,20 @@ import ZealIcon from 'images/skill/songcraft/Zeal.png';
 import DisciplinedPerformanceIcon from 'images/skill/songcraft/Disciplined_Performance.png';
 import LingeringImpactIcon from 'images/skill/songcraft/Lingering_Impact.png';
 import LoudspeakerIcon from 'images/skill/songcraft/Loudspeaker.png';
+import StartlingStrainLife from 'images/skill/songcraft/Startling_Strain_Life.png';
+import StartlingStrainWave from 'images/skill/songcraft/Startling_Strain_Wave.png';
+import HealingHymnStone from 'images/skill/songcraft/Healing_Hymn_Stone.png';
+import HealingHymnWave from 'images/skill/songcraft/Healing_Hymn_Wave.png';
+import SonicWaveLife from 'images/skill/songcraft/Sonic_Wave_Life.png';
+import SonicWaveMist from 'images/skill/songcraft/Sonic_Wave_Mist.png';
+import DoubleTimeFlame from 'images/skill/songcraft/Double-Time_Flame.png';
+import DoubleTimeWave from 'images/skill/songcraft/Double-Time_Wave.png';
+import CriticalDiscordFlame from 'images/skill/songcraft/Critical_Discord_Flame.png';
+import CriticalDiscordQuake from 'images/skill/songcraft/Critical_Discord_Quake.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: CriticalDiscordIcon,
     name: 'Critical Discord',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Loudspeaker',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Startling Strain'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: StartlingStrainLife,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: StartlingStrainWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Healing Hymn'),
+    variants: [
+      {
+        element: ELEMENT.STONE,
+        icon: HealingHymnStone,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: HealingHymnWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Sonic Wave'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: SonicWaveLife,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: SonicWaveMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Double-Time'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: DoubleTimeFlame,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: DoubleTimeWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Critical Discord'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: CriticalDiscordFlame,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: CriticalDiscordQuake,
+      },
+    ],
+  },
+]);
+
+export default skills;

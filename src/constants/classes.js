@@ -1,4 +1,4 @@
-import SKILLSET  from 'constants/skillsets';
+import SKILLSET from 'constants/skillsets';
 
 const classes = [];
 

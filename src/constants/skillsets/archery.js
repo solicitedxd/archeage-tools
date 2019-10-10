@@ -16,8 +16,20 @@ import SharpshootingIcon from 'images/skill/archery/Sharpshooting.png';
 import FeralClawsIcon from 'images/skill/archery/Feral_Claws.png';
 import MarksmanIcon from 'images/skill/archery/Marksman.png';
 import EagleEyesIcon from 'images/skill/archery/Eagle_Eyes.png';
+import ChargedBoltFlame from 'images/skill/archery/Charged_Bolt_Flame.png';
+import ChargedBoltGale from 'images/skill/archery/Charged_Bolt_Gale.png';
+import ConcussiveArrowFlame from 'images/skill/archery/Concussive_Arrow_Flame.png';
+import ConcussiveArrowMist from 'images/skill/archery/Concussive_Arrow_Mist.png';
+import MissileRainFlame from 'images/skill/archery/Missile_Rain_Flame.png';
+import MissileRainMist from 'images/skill/archery/Missile_Rain_Mist.png';
+import EndlessArrowsFlame from 'images/skill/archery/Endless_arrows_Flame.png';
+import EndlessArrowsStone from 'images/skill/archery/Endless_Arrows_Stone.png';
+import SnipeFlame from 'images/skill/archery/Snipe_Flame.png';
+import SnipeLightning from 'images/skill/archery/Snipe_Lightning.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: EndlessArrowsIcon,
     name: 'Endless Arrows',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Eagle Eyes',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Charged Bolt'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ChargedBoltFlame,
+      },
+      {
+        element: ELEMENT.GALE,
+        icon: ChargedBoltGale,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Concussive Arrow'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ConcussiveArrowFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: ConcussiveArrowMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Missile Rain'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: MissileRainFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: MissileRainMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Endless Arrows'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: EndlessArrowsFlame,
+      },
+      {
+        element: ELEMENT.STONE,
+        icon: EndlessArrowsStone,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Snipe'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: SnipeFlame,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: SnipeLightning,
+      },
+    ],
+  },
+]);
+
+export default skills;

@@ -16,8 +16,20 @@ import ShieldofSteelIcon from 'images/skill/defense/Shield_of_Steel.png';
 import BearsVigorIcon from 'images/skill/defense/Bears_Vigor.png';
 import UrsineRoarIcon from 'images/skill/defense/Ursine_Roar.png';
 import ShieldMasteryIcon from 'images/skill/defense/Shield_Mastery.png';
+import ShieldSlamGale from 'images/skill/defense/Shield_Slam_Gale.png';
+import ShieldSlamQuake from 'images/skill/defense/Shield_Slam_Quake.png';
+import RedoubtGale from 'images/skill/defense/Redoubt_Gale.png';
+import RedoubtLife from 'images/skill/defense/Redoubt_Life.png';
+import ImprisonMist from 'images/skill/defense/Imprison_Mist.png';
+import ImprisonWave from 'images/skill/defense/Imprison_Wave.png';
+import LassoGale from 'images/skill/defense/Lasso_Gale.png';
+import LassoLife from 'images/skill/defense/Lasso_Life.png';
+import RetributionFlame from 'images/skill/defense/Retribution_Flame.png';
+import RetributionMist from 'images/skill/defense/Retribution_Mist.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: ShieldSlamIcon,
     name: 'Shield Slam',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Shield Mastery',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Shield Slam'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: ShieldSlamGale,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: ShieldSlamQuake,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Redoubt'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: RedoubtGale,
+      },
+      {
+        element: ELEMENT.LIFE,
+        icon: RedoubtLife,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Imprison'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: ImprisonMist,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: ImprisonWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Lasso'),
+    variants: [
+      {
+        element: ELEMENT.GALE,
+        icon: LassoGale,
+      },
+      {
+        element: ELEMENT.LIFE,
+        icon: LassoLife,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Retribution'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: RetributionFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: RetributionMist,
+      },
+    ],
+  },
+]);
+
+export default skills;

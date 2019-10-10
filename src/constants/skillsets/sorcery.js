@@ -16,8 +16,20 @@ import MindOverMatterIcon from 'images/skill/sorcery/Mind_Over_Matter.png';
 import ManaFountainIcon from 'images/skill/sorcery/Mana_Fountain.png';
 import HeirtoAyanadIcon from 'images/skill/sorcery/Heir_to_Ayanad.png';
 import SorceryAdeptIcon from 'images/skill/sorcery/Sorcery_Adept.png';
+import FlameboltFlame from 'images/skill/sorcery/Flamebolt_Flame.png';
+import FlameboltLightning from 'images/skill/sorcery/Flamebolt_Lightning.png';
+import ChainLightningFlame from 'images/skill/sorcery/Chain_Lightning_Flame.png';
+import ChainLightningWave from 'images/skill/sorcery/Chain_Lightning_Wave.png';
+import MeteorStrikeLightning from 'images/skill/sorcery/Meteor_Strike_Lightning.png';
+import MeteorStrikeWave from 'images/skill/sorcery/Meteor_Strike_Wave.png';
+import GodsWhipLightning from 'images/skill/sorcery/Gods_Whip_Lightning.png';
+import GodsWhipWave from 'images/skill/sorcery/Gods_Whip_Wave.png';
+import FlameBarrierMist from 'images/skill/sorcery/Flame_Barrier_Mist.png';
+import FlameBarrierWave from 'images/skill/sorcery/Flame_Barrier_Wave.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: FlameboltIcon,
     name: 'Flamebolt',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Sorcery Adept',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Flamebolt'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: FlameboltFlame,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: FlameboltLightning,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Chain Lightning'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: ChainLightningFlame,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: ChainLightningWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Meteor Strike'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: MeteorStrikeLightning,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: MeteorStrikeWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Gods\' Whip'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: GodsWhipLightning,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: GodsWhipWave,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Flame Barrier'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: FlameBarrierMist,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: FlameBarrierWave,
+      },
+    ],
+  },
+]);
+
+export default skills;

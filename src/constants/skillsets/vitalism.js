@@ -16,8 +16,20 @@ import VibrantCastingIcon from 'images/skill/vitalism/Vibrant_Casting.png';
 import MartyrsWayIcon from 'images/skill/vitalism/Martyrs_Way.png';
 import InvigoratedHealingIcon from 'images/skill/vitalism/Invigorated_Healing.png';
 import JoyousSpiritIcon from 'images/skill/vitalism/Joyous_Spirit.png';
+import AntithesisLife from 'images/skill/vitalism/Antithesis_Life.png';
+import AntithesisQuake from 'images/skill/vitalism/Antithesis_Quake.png';
+import SkewerFlame from 'images/skill/vitalism/Skewer_Flame.png';
+import SkewerLife from 'images/skill/vitalism/Skewer_Life.png';
+import FerventHealingFlame from 'images/skill/vitalism/Fervent_Healing_Flame.png';
+import FerventHealingLightning from 'images/skill/vitalism/Fervent_Healing_Lightning.png';
+import HolyBoltFlame from 'images/skill/vitalism/Holy_Bolt_Flame.png';
+import HolyBoltMist from 'images/skill/vitalism/Holy_Bolt_Mist.png';
+import HealingCircleLife from 'images/skill/vitalism/Healing_Circle_Life.png';
+import HealingCircleWave from 'images/skill/vitalism/Healing_Circle_Wave.png';
+import { getSkillIdByName } from 'utils/skillsets';
+import { ELEMENT } from 'constants/skills';
 
-export default Object.freeze([
+const skills = Object.freeze([
   {
     icon: HolyBoltIcon,
     name: 'Holy Bolt',
@@ -94,3 +106,73 @@ export const passives = Object.freeze([
     name: 'Joyous Spirit',
   },
 ]);
+
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Antithesis'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: AntithesisLife,
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: AntithesisQuake,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Skewer'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: SkewerFlame,
+      },
+      {
+        element: ELEMENT.LIFE,
+        icon: SkewerLife,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Fervent Healing'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: FerventHealingFlame,
+      },
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: FerventHealingLightning,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Holy Bolt'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: HolyBoltFlame,
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: HolyBoltMist,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Healing Circle'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: HealingCircleLife,
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: HealingCircleWave,
+      },
+    ],
+  },
+]);
+
+export default skills;
