@@ -20,7 +20,7 @@ const renderSkillTooltip = (target) => {
   const skillSet = SKILLSET[skillSetKey];
   const skills = passive ? skillSet.passives : skillSet.skills;
 
-  const skill = skills[skillId];
+  let skill = skills[skillId];
   // validate skill exists
   if (!skill) return;
   element = Object.values(ELEMENT).find(ele => ele === element);
@@ -29,6 +29,15 @@ const renderSkillTooltip = (target) => {
   }
 
   const { name: skillsetName } = skillSet;
+  if (element !== ELEMENT.BASIC) {
+    const ancestral = skillSet.ancestrals.find(anc => anc.skillId === skillId);
+    if (ancestral) {
+      const variant = ancestral.variants.find(ele => ele.element === element);
+      if (variant) {
+        skill = { ...skill, ...variant };
+      }
+    }
+  }
   const { name, icon } = skill;
 
   return (
