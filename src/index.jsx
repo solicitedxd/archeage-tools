@@ -6,6 +6,7 @@ import { ConnectedRouter as Router } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import configureStore from './store';
 import routes from './routes';
+import './images/favicon.ico';
 
 const history = createBrowserHistory();
 const store = configureStore(history);

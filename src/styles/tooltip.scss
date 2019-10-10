@@ -1,0 +1,168 @@
+/**
+ Tooltips
+ */
+.archeage-tooltip {
+  position: absolute;
+  z-index: 9999;
+  font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
+  width: 216px;
+  background: rgba(82, 80, 63, 0.95);
+  color: #D0BFAC;
+  padding: 16px;
+  border-radius: 3px;
+  line-height: 1.4;
+  font-size: 14px;
+
+  &.spell-tooltip {
+    width: 262px;
+  }
+
+  border: 1px solid #34341A;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+
+  .header {
+    display: flex;
+
+    & + section:before {
+      margin-top: 10px;
+    }
+  }
+
+  p {
+    margin: 0 auto;
+    font-size: 13px;
+  }
+
+  section + section:before {
+    content: "";
+    display: block;
+    height: 0;
+    margin: 6px auto;
+    border-top: 1px solid rgba(208, 191, 172, 0.3);
+  }
+
+  h4 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 14px;
+  }
+
+  h5 {
+    margin: 0;
+    font-weight: normal;
+    font-size: 12px;
+  }
+
+  h5 + h5 {
+    font-size: 13px;
+  }
+
+  .icon {
+    margin: 0 8px 2px 0;
+    background-color: #AD9D7F;
+    vertical-align: middle;
+  }
+
+  .name, .skill-name {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .skill-name {
+    width: 100%;
+    justify-content: flex-end;
+    height: 46px;
+
+    h4 {
+      font-size: 15px;
+      &:not(.passive-skill) {
+        color: #FFFFFF;
+      }
+    }
+
+    h5 {
+      font-size: 13px;
+    }
+
+    .skill-types {
+      display: flex;
+
+      .skillset {
+        flex: 1;
+      }
+    }
+  }
+
+  .tt-orange {
+    color: #FF9D28;
+  }
+
+  .tt-yellow {
+    color: #F6CC66;
+  }
+
+  .tt-blue {
+    color: #8DC2DF;
+  }
+
+  .tt-green {
+    color: #95B84B;
+  }
+
+  .tt-bgreen {
+    color: #02FE46;
+  }
+
+  .tt-use {
+    color: #919191;
+    display: block;
+  }
+
+  .shop-price {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+
+    .currency {
+      color: inherit;
+      font-size: 12px;
+
+      &:after {
+        top: 3px;
+      }
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .skill-requirements {
+    color: #BE3D36;
+  }
+
+  .passive .skill-requirements:before {
+    margin-bottom: 12px;
+  }
+
+  .no-sell {
+    color: #C13D36;
+  }
+
+  .currency {
+    color: #6D4916;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}

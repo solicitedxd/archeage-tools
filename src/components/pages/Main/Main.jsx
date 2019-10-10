@@ -35,7 +35,6 @@ import { clearNotification } from 'actions/notification';
 import ItemTooltip from 'components/Item/ItemTooltip';
 import { setMobile } from 'actions/display';
 import navigation from 'constants/navigation';
-import Favicon from 'images/favicon.ico';
 import { getNavId } from 'utils/string';
 import 'styles/index';
 
@@ -122,7 +121,6 @@ class Main extends React.PureComponent {
     return (
       <ThemeProvider theme={theme}>
         <div>
-          <link rel="shortcut icon" href={Favicon} />
           <AppBar position="static">
             <Toolbar variant="dense">
               <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper" className="icon-button">
