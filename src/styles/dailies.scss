@@ -241,4 +241,10 @@
   &.Guild.XP:after {
     background-position: -96px -29px;
   }
+
+  &.Ancestral:after {
+    background-position: -219px -29px;
+    width: 20px;
+    height: 20px;
+  }
 }

@@ -73,8 +73,13 @@
         border-radius: 6px;
         padding: 12px 6px;
 
-        .ancestral-selected {
-          margin-left: 16px;
+        .ancestral-level {
+          margin-left: 10px;
+          width: 40px;
+          color: #9F7849;
+          display: flex;
+          justify-content: center;
+          align-items: center;
         }
 
         .ancestral-row {
@@ -86,14 +91,6 @@
             flex: 1;
             justify-content: space-evenly;
             align-items: center;
-
-            &:before {
-              content: "";
-              height: 20px;
-              width: 20px;
-              background: url(../images/successor.png) -376px -266px;
-              transform: rotate(-90deg);
-            }
           }
 
           & + .ancestral-row {
