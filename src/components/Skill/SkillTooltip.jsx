@@ -4,7 +4,6 @@ import cn from 'classnames';
 import { Typography } from '@material-ui/core';
 import SKILLSET from 'constants/skillsets';
 import {
-  COMBO_TYPE,
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
@@ -50,7 +49,7 @@ const renderSkillTooltip = (target) => {
     }
   }
 
-  const { name, icon, rank, mana, range, effectRange, damage, castTime, cooldown, effects, description: rawDescription, descriptionNote, combos, globalCooldown, continuousHold, unblockable, movement, cannotMiss } = skill;
+  const { name, icon, rank, mana, range, effectRange, damage, castTime, cooldown, effects, description: rawDescription, combos } = skill;
 
   // prepare description
   let description = rawDescription || '';
@@ -60,6 +59,7 @@ const renderSkillTooltip = (target) => {
     effects: effects && effects.map(effect => effect.name),
   });
 
+  const { descriptionNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls } = skill;
   let descriptionNotes = [];
   if (descriptionNote) {
     descriptionNotes.push(descriptionNote);
@@ -88,11 +88,20 @@ const renderSkillTooltip = (target) => {
   if (cannotMiss) {
     descriptionNotes.push('This skill never miss.');
   }
+  if (castTimeLevel) {
+    descriptionNotes.push('Cast time increases as this skill levels up.');
+  }
   if (unblockable) {
     descriptionNotes.push('This skill cannot be evaded, blocked, or parried.');
   }
   if (movement) {
     descriptionNotes.push('Can\'t be used while snared.');
+  }
+  if (noCombat) {
+    descriptionNotes.push('Can\'t be used while in combat.');
+  }
+  if (noWalls) {
+    descriptionNotes.push('Can\'t pass through obstacles like walls.');
   }
   if (descriptionNotes.length > 0) {
     description += `\r\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
@@ -162,9 +171,9 @@ const renderSkillTooltip = (target) => {
             text = applyTooltipColor(text);
             return (<div className="combo" key={index}>
               <EffectIcon {...combo.buff} />
-              {combo.type === COMBO_TYPE.CAUSES &&
+              {combo.causes &&
               <div className="combo-arrow"><img alt="" /></div>}
-              {combo.type === COMBO_TYPE.CAUSES &&
+              {combo.causes &&
               <EffectIcon {...combo.causes} />}
               <p className="tt-green" dangerouslySetInnerHTML={{ __html: text }} />
             </div>);

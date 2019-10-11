@@ -30,7 +30,6 @@ import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
-  COMBO_TYPE,
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
@@ -84,19 +83,16 @@ const skills = Object.freeze([
     description: 'Causes a deep wound that deals ${damage} Melee Damage and inflicts #${effects[0]}# for #14sec,# dealing an additional &(1135 + 157% Melee Attack)&#-#&(1135 + 160% Melee Attack)& Melee Damage over the duration.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.POISONED,
         causes: BUFF.SILENCED,
         text: 'Inflicts Silence on ${b} targets for #3sec#.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.BLOODTHIRST,
         causes: BUFF.STAGGER,
         text: 'Inflicts ${c} for #1 sec# when used while under the effects of ${b}.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.BLEEDING,
         causes: BUFF.BLEEDING,
         text: 'Inflicts a higher rank of ${c} on targets already under ${b} effects.',
@@ -115,13 +111,11 @@ const skills = Object.freeze([
     movement: true,
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.BLOODTHIRST,
         causes: BUFF.STAGGER,
         text: 'Inflicts ${c} for #1sec# when used while under the effects of ${b}.',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.MARKED,
         text: 'Cannot be evaded, blocked or parried when used on a ${b} target.',
       },
@@ -149,13 +143,11 @@ const skills = Object.freeze([
     description: 'Launches four attacks in quick succession, dealing ${damage} Melee Damage.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.BLOODTHIRST,
         causes: BUFF.STAGGER,
         text: 'Inflicts ${c} for #0.3sec# when used while under the effects of ${b}.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.POISONED,
         causes: BUFF.VULNERABLE,
         text: 'Inflicts Vulnerability on ${b} targets, increasing Damage Received +1.4% for #10sec#. Stacks up to 4 times.',
@@ -194,24 +186,20 @@ const skills = Object.freeze([
       'Backstabbing adds damage equal to #400%# of Melee Attack.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.STUNNED,
         causes: BUFF.TRIPPED,
         text: 'Trips ${b} targets for #2.5sec.#',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.STEALTHED,
         text: 'Deals an additional +98% damage when the caster is ${b}.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.STEALTHED,
         causes: BUFF.BLOODTHIRST_EXPLOSION,
         text: 'If used while ${b}, consumes all stacks of Bloodthirst and grants #0.5 sec# of ${r} for each stack consumed in this way.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.POISONED,
         causes: BUFF.SHACKLE,
         text: 'Inflicts ${c} on ${b} targets for #5.7sec#.',
@@ -227,12 +215,10 @@ const skills = Object.freeze([
     description: 'Steals #1 to 3# random buffs from an enemy and applies them to yourself.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.CONVERSION_SHIELD,
         text: 'Guaranteed to steal ${b}.',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.COURAGEOUS_ACTION,
         text: 'Steal ${b} from enemies.',
       },
@@ -252,12 +238,10 @@ const skills = Object.freeze([
       'Effect lasts up to #3sec#.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.DROP_BACK,
         text: 'Increases range by 10m if used while under the effects of ${b}.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.POISONED,
         causes: BUFF.SLOWED,
         text: 'Inflicts Slow on ${b} targets for #3 sec#. [Reduces Move Speed]',
@@ -327,7 +311,6 @@ export const ancestrals = Object.freeze([
           '83517 DO NOT TRANSLATE for #1sec#.',
         combos: [
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.MARKED,
             text: 'Cannot be evaded, blocked or parried when used on a ${b} target.',
           },
@@ -364,18 +347,15 @@ export const ancestrals = Object.freeze([
           'This skill has increased range and allows you to teleport to the target, but does not have a combo with Poison.',
         combos: [
           {
-            type: COMBO_TYPE.CAUSES,
             buff: BUFF.STUNNED,
             causes: BUFF.TRIPPED,
             text: 'Trips ${b} targets for #2.5sec.#',
           },
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.STEALTHED,
             text: 'Deals an additional +98% damage when the caster is ${b}.',
           },
           {
-            type: COMBO_TYPE.CAUSES,
             buff: BUFF.STEALTHED,
             causes: BUFF.BLOODTHIRST_EXPLOSION,
             text: 'If used while ${b}, consumes all stacks of Bloodthirst and grants #0.5 sec# of ${r} for each stack consumed in this way.',
@@ -390,24 +370,20 @@ export const ancestrals = Object.freeze([
           'This skill Trips targets that are under the effects of Provoke, but does not have a combo with Stun.',
         combos: [
           {
-            type: COMBO_TYPE.CAUSES,
             buff: BUFF.PROVOKE,
             causes: BUFF.TRIPPED,
             text: 'Trips ${b} targets for #2.5sec.#',
           },
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.STEALTHED,
             text: 'Deals an additional +98% damage when the caster is ${b}.',
           },
           {
-            type: COMBO_TYPE.CAUSES,
             buff: BUFF.STEALTHED,
             causes: BUFF.BLOODTHIRST_EXPLOSION,
             text: 'If used while ${b}, consumes all stacks of Bloodthirst and grants #0.5 sec# of ${r} for each stack consumed in this way.',
           },
           {
-            type: COMBO_TYPE.CAUSES,
             buff: BUFF.POISONED,
             causes: BUFF.SHACKLE,
             text: 'Inflicts ${c} on ${b} targets for #5.7sec#.',

@@ -45,9 +45,14 @@ import FrigidTracksIcon from 'images/skill/sorcery/Frigid_Tracks.png';
 import InsulatingLensIcon from 'images/skill/sorcery/Insulating_Lens.png';
 import BloodthirstIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import MarkedIcon from 'images/skill/shadowplay/Stalkers_Mark.png';
-import StealthIcon from 'images/skill/shadowplay/Stealth.png'
+import StealthIcon from 'images/skill/shadowplay/Stealth.png';
 import ConversionShieldIcon from 'images/skill/auramancy/Conversion_Shield.png';
 import CourageousActionIcon from 'images/skill/auramancy/Courageous_Action.png';
+import FreerunnerIcon from 'images/skill/shadowplay/Freerunner.png';
+import RenewalIcon from 'images/skill/vitalism/Renewal.png';
+import PainHarvestIcon from 'images/skill/occultism/Pain_Harvest.png';
+import DeathsVengeanceIcon from 'images/skill/occultism/Deaths_Vengeance.png';
+import HealingCircleIcon from 'images/skill/vitalism/Healing_Circle.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -112,6 +117,11 @@ export const BUFF = Object.freeze({
   STEALTHED: { name: 'Stealthed', icon: StealthIcon },
   CONVERSION_SHIELD: { name: 'Conversion Shield', icon: ConversionShieldIcon },
   COURAGEOUS_ACTION: { name: 'Courageous Action', icon: CourageousActionIcon },
+  FREERUNNER: { name: 'FreeRunner', icon: FreerunnerIcon },
+  RENEWAL: { name: 'Renewal', icon: RenewalIcon },
+  PAIN_HARVEST: { name: 'Pain Harvest', icon: PainHarvestIcon },
+  DEATHS_VENGEANCE: { name: 'Death\'s Vengeance', icon: DeathsVengeanceIcon },
+  HEALING_CIRCLE: { name: 'Healing Circle', icon: HealingCircleIcon },
 });
 
 export const GLOBAL_CD = Object.freeze({
@@ -120,11 +130,6 @@ export const GLOBAL_CD = Object.freeze({
   REDUCED: 2,
   NO_TRIGGER_REDUCED: 3,
   NORMAL: 4,
-});
-
-export const COMBO_TYPE = Object.freeze({
-  CAUSES: 0,
-  EMPOWERS: 1,
 });
 
 export const ELEMENT = Object.freeze({

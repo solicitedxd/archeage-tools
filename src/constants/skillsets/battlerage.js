@@ -1,7 +1,6 @@
 import {
   ATTACK,
   BUFF,
-  COMBO_TYPE,
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
@@ -54,18 +53,15 @@ const skills = Object.freeze([
     movement: false,
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.SNARED,
         causes: BUFF.SHAKEN,
         text: 'First attack: ${b} targets are ${c} for #3 sec.#',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.TRIPPED,
         text: 'Second attack: deals +48% additional damage to ${b} targets.',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.TOUGHEN,
         text: 'Increases Aggro +300% if used while under the effects of Toughen.',
       },

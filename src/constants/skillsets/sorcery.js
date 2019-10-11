@@ -30,7 +30,6 @@ import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
-  COMBO_TYPE,
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
@@ -52,12 +51,10 @@ const skills = Object.freeze([
     continuousHold: true,
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.ELECTROCUTED,
         text: 'Deals +12% additional damage to ${b} targets.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.BURNING,
         causes: BUFF.CONFLAGRATION,
         text: 'Third attack: inflicts ${c} for #7sec# on ${b} targets.',
@@ -78,13 +75,11 @@ const skills = Object.freeze([
       'This counts as a Freezing effect.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.FREEZING,
         causes: BUFF.DEEPFREEZE,
         text: 'Inflicts ${c} on targets already under ${b} effects, Confining them for #14sec.# (#-50%# duration in PvP.)',
       },
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.FRIGID_TRACKS,
         text: 'Removes the cast time and decreases Range -3m under the effect of ${b}',
       },
@@ -119,7 +114,6 @@ const skills = Object.freeze([
       'Increases Critical Damage +70% if used on a target with Burning, Frozen, and Electric Shocked effects.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.BURNING,
         text: 'Deals +30% additional damage to Burning targets.',
       },
@@ -152,7 +146,6 @@ const skills = Object.freeze([
       'Snare duration reduced #-50%% in PVP.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.FREEZING,
         causes: BUFF.DEEPFREEZE,
         text: 'Inflicts ${c} on targets already under ${b} effects, Confining them for #8sec.# (#-50%# duration in PvP.)',
@@ -173,7 +166,6 @@ const skills = Object.freeze([
       'This counts as a Burning effect.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.ELECTROCUTED,
         text: 'Deals +41% additional damage to ${b} targets.',
       },
@@ -194,13 +186,11 @@ const skills = Object.freeze([
       'Inflicts strong #Electrical Shock# on all affected enemies, dealing an additional &(555 + 300% Magic Attack)& Magic Damage over #8sec# and spreading to enemies within a #2m# radius.',
     combos: [
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.INSULATING_LENS,
         causes: BUFF.STUNNED,
         text: 'Stuns the primary target for #1.5sec# if used while under the effects of ${b}.',
       },
       {
-        type: COMBO_TYPE.CAUSES,
         buff: BUFF.INSULATING_LENS,
         causes: BUFF.SILENCED,
         text: 'Silences the primary target for #1.5sec# if used while under the effects of ${b}.',
@@ -223,7 +213,6 @@ const skills = Object.freeze([
       'Inflicts #${effects[0]}# on all affected enemies, making them more susceptible to certain spell effects for #4.2sec#.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.ELECTROCUTED,
         text: 'Deals +44% additional damage to ${b} targets.',
       },
@@ -258,7 +247,6 @@ const skills = Object.freeze([
       'Inflicts Knockback and ${effects[0]} on all affected enemies, and Trips them for #2.5 sec.#',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.ELECTROCUTED,
         text: 'Deals +30% additional damage to ${b} targets.',
       },
@@ -281,7 +269,6 @@ const skills = Object.freeze([
       'Each hit inflicts a strong #Electric Shock,# dealing an additional &(575 + 300% Magic Attack)& Magic Damage over #8 sec# and spreading to enemies within a #2m# radius.',
     combos: [
       {
-        type: COMBO_TYPE.EMPOWERS,
         buff: BUFF.BURNING,
         text: 'Deals +20% additional damage to ${b} targets.',
       },
@@ -355,12 +342,10 @@ export const ancestrals = Object.freeze([
         globalCooldown: GLOBAL_CD.NORMAL,
         combos: [
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.BURNING,
             text: 'Deals +12% additional damage to ${b} targets.',
           },
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.DROP_BACK,
             text: 'No Cooldown if used while under the effects of Drop Back.',
           },
@@ -406,7 +391,6 @@ export const ancestrals = Object.freeze([
           'Enemies under the effects of Greater Shock inflict strong #Electric Shock# on other enemies within #2m,# damaging them over time.',
         combos: [
           {
-            type: COMBO_TYPE.EMPOWERS,
             buff: BUFF.BURNING,
             text: 'Deals +20% additional damage to ${b} targets.',
           },
