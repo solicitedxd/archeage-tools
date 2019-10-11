@@ -43,7 +43,7 @@ const skills = Object.freeze([
     mana: 12,
     range: [0, 4],
     effectRange: 0,
-    damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 174 } },
+    damage: { base: 0, attack: ATTACK.MELEE, ratio: 174 },
     castTime: 0,
     cooldown: 0,
     description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Physical Damage.\n' +
@@ -152,7 +152,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.LIGHTNING,
         icon: TripleSlashLightning,
         mana: 9,
-        damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 136 } },
+        damage: { base: 0, attack: ATTACK.MELEE, ratio: 136 },
         description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Physical Damage.\n' +
           'On each 3rd attack, this skill deals #+20%# more damage and affects all enemies with in a #3m# radius of the primary target.\n' +
           'This skill attacks faster than basic Triple Slash, but deals less damage.',
@@ -162,8 +162,8 @@ export const ancestrals = Object.freeze([
         icon: TripleSlashQuake,
         range: [0],
         effectRange: 5,
-        damage: { base: 0, scaling: { attack: ATTACK.MELEE, ratio: 312 } },
-        description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Melee Damage to all enemies within #${effectRange}m# of the primary target..\n' +
+        damage: { base: 0, attack: ATTACK.MELEE, ratio: 312 },
+        description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Melee Damage to all enemies within #${effectRange}m# of the primary target.\n' +
           'On each 3rd attack, this skill deals #+20%# more damage up to 20 enemies within #${effectRange}#.\n' +
           'This skill attacks slower than Basic Triple Slash, but can deal damage to multiple enemies with each attack.',
       },

@@ -3,10 +3,21 @@ import ReactHintFactory from 'react-hint';
 import cn from 'classnames';
 import { Typography } from '@material-ui/core';
 import SKILLSET from 'constants/skillsets';
-import { ELEMENT } from 'constants/skills';
+import {
+  COMBO_TYPE,
+  ELEMENT,
+  GLOBAL_CD,
+} from 'constants/skills';
 import { getPointReq } from 'utils/skills';
+import EffectIcon from 'components/Skill/EffectIcon';
+import { substitute } from 'utils/string';
 
 const ReactHint = ReactHintFactory(React);
+
+const applyTooltipColor = (string) => string
+.replace(/(#([\w\s,.%+():-]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
+.replace(/(&([\w\s,.%+():-]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
+.replace(/\r/g, () => '<br />');
 
 const renderSkillTooltip = (target) => {
   let { skillset, skillId, passive, element, disabled } = target.dataset;
@@ -38,7 +49,56 @@ const renderSkillTooltip = (target) => {
       }
     }
   }
-  const { name, icon } = skill;
+
+  const { name, icon, rank, mana, range, effectRange, damage, castTime, cooldown, effects, description: rawDescription, descriptionNote, combos, globalCooldown, continuousHold, unblockable, movement, cannotMiss } = skill;
+
+  // prepare description
+  let description = rawDescription || '';
+  description = substitute(description, {
+    ...skill,
+    damage: damage && `&(${damage.base} + ${damage.ratio}% ${damage.attack})&`,
+    effects: effects && effects.map(effect => effect.name),
+  });
+
+  let descriptionNotes = [];
+  if (descriptionNote) {
+    descriptionNotes.push(descriptionNote);
+  }
+
+  switch (globalCooldown) {
+    case GLOBAL_CD.NONE:
+      descriptionNotes.push('This skill does not trigger a Global Cooldown, and can be used during Global Cooldowns.');
+      break;
+    case GLOBAL_CD.NO_TRIGGER:
+      descriptionNotes.push('This skill does not trigger a Global Cooldown.');
+      break;
+    case GLOBAL_CD.NO_TRIGGER_REDUCED:
+      descriptionNotes.push('This skill does not trigger a Global Cooldown.\rThis skill has a reduced Global Cooldown.');
+      break;
+    case GLOBAL_CD.REDUCED:
+      descriptionNotes.push('This skill has a reduced Global Cooldown.');
+      break;
+    case GLOBAL_CD.NORMAL:
+    default:
+    // do nothing
+  }
+  if (continuousHold) {
+    descriptionNotes.push('Hold for continuous use.');
+  }
+  if (cannotMiss) {
+    descriptionNotes.push('This skill never miss.');
+  }
+  if (unblockable) {
+    descriptionNotes.push('This skill cannot be evaded, blocked, or parried.');
+  }
+  if (movement) {
+    descriptionNotes.push('Can\'t be used while snared.');
+  }
+  if (descriptionNotes.length > 0) {
+    description += `\r\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
+  }
+
+  description = applyTooltipColor(description);
 
   return (
     <div className={cn({ 'passive': passive })}>
@@ -50,16 +110,63 @@ const renderSkillTooltip = (target) => {
           {!passive &&
           <div className="skill-types">
             <Typography variant="h5" component="h5" className="tt-orange skillset">{skillsetName}</Typography>
-            <Typography variant="h5" component="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'tt-orange' : 'tt-yellow')}>{element}</Typography>
+            <Typography variant="h5" component="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'tt-orange'
+              : 'tt-yellow')}>{element}</Typography>
           </div>}
           {passive && <Typography variant="h5" component="h5" className="passive-skill">Passive Skill</Typography>}
-          <Typography variant="h4" component="h4" className="passive-skill">{name}</Typography>
+          <Typography variant="h4" component="h4"
+                      className="passive-skill">{name}{!passive && ` (Rank ${rank || 1})`}</Typography>
         </div>
       </section>
+      {!passive &&
+      <section>
+        <p>Mana {mana || 0}</p>
+        <p>Range: {range && range.length > 1 ? `${range.join('-')} m` : 'Caster only'}</p>
+        {effectRange && <p>Effect Range: {effectRange} m</p>}
+        <p>{damage && `${damage.attack} +${damage.ratio}%`}</p>
+      </section>}
+      {!passive &&
+      <section>
+        <p>{castTime > 0 ? `Cast Time: ${castTime} sec` : 'Instant'}</p>
+        {cooldown > 0 && <p>{cooldown}sec Cooldown</p>}
+      </section>}
+      {!passive && effects && effects.length > 0 &&
+      <section>
+        <p>Effect Granted</p>
+        <div className="skill-effects">
+          {effects.map((effect, id) => <EffectIcon key={id} {...effect} />)}
+        </div>
+      </section>}
+      <section>
+        <p dangerouslySetInnerHTML={{ __html: description }} />
+      </section>
+      {combos && combos.length > 0 &&
+      <section className="combos">
+        <div className="combo-rows">
+          {combos.map((combo, index) => {
+            const buff = combo.cause || combo.buff;
+            let { text } = combo;
+            text = substitute(text, {
+              b: combo.buff && combo.buff.name,
+              c: combo.cause && combo.cause.name,
+              r: combo.result && combo.result.name,
+            });
+            text = applyTooltipColor(text);
+            return (<div className="combo" key={index}>
+              <EffectIcon {...buff} />
+              {combo.type === COMBO_TYPE.CAUSES &&
+              <div className="combo-arrow"><img alt="" /></div>}
+              {combo.type === COMBO_TYPE.CAUSES &&
+              <EffectIcon {...combo.result} />}
+              <p className="tt-green" dangerouslySetInnerHTML={{ __html: text }} />
+            </div>);
+          })}
+        </div>
+      </section>}
       {disabled &&
       <section className="skill-requirements">
-        <Typography>Learning Req.: [{skillsetName}] {passive ? skillId + 2 : getPointReq(skillId)} or
-          higher</Typography>
+        <p>Learning Req.: [{skillsetName}] {passive ? skillId + 2 : getPointReq(skillId)} or
+          higher</p>
       </section>
       }
     </div>

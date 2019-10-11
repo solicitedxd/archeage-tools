@@ -10,8 +10,9 @@
   color: #D0BFAC;
   padding: 16px;
   border-radius: 3px;
-  line-height: 1.4;
+  line-height: 1.2;
   font-size: 14px;
+  margin: 3px 5px;
 
   &.spell-tooltip {
     width: 262px;
@@ -30,6 +31,10 @@
     }
   }
 
+  section {
+    position: relative;
+  }
+
   p {
     margin: 0 auto;
     font-size: 13px;
@@ -41,6 +46,16 @@
     height: 0;
     margin: 6px auto;
     border-top: 1px solid rgba(208, 191, 172, 0.3);
+  }
+
+  section.combos:after {
+    content: "";
+    position: absolute;
+    width: 41px;
+    height: 28px;
+    background: url(../images/combo.png);
+    top: -12px;
+    left: calc(50% - 20px);
   }
 
   h4 {
@@ -78,6 +93,7 @@
 
     h4 {
       font-size: 15px;
+
       &:not(.passive-skill) {
         color: #FFFFFF;
       }
@@ -96,6 +112,56 @@
     }
   }
 
+  .skill-effects {
+    display: flex;
+  }
+
+  .effect-icon {
+    margin-top: 6px;
+    border: 1px solid #32D51D;
+    box-shadow: 0 0 2px #32D51D;
+    position: relative;
+    width: 28px;
+    height: 28px;
+
+    & + .effect-icon {
+      margin-left: 6px;
+    }
+
+    $arrowSize: 5px;
+
+    &:before {
+      position: absolute;
+      content: "";
+      width: 0;
+      height: 0;
+      left: 9px;
+      bottom: 0;
+      border-bottom: $arrowSize solid #3BFF22;
+      border-left: $arrowSize solid transparent;
+      border-right: $arrowSize solid transparent;
+    }
+
+    &.debuff {
+      border-color: #EA3C16;
+      box-shadow: 0 0 2px #EA3C16;
+    }
+
+    &.debuff:before {
+      border-bottom: none;
+      border-top: $arrowSize solid #C43415;
+      border-left: $arrowSize solid transparent;
+      border-right: $arrowSize solid transparent;
+      top: 0;
+      bottom: auto;
+    }
+
+    img {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
   .tt-orange {
     color: #FF9D28;
   }
@@ -106,6 +172,10 @@
 
   .tt-blue {
     color: #8DC2DF;
+  }
+
+  .tt-scale {
+    color: #81D85D;
   }
 
   .tt-green {
@@ -146,6 +216,51 @@
 
   .passive .skill-requirements:before {
     margin-bottom: 12px;
+  }
+
+  .description-note {
+    padding-bottom: 8px;
+    display: block;
+  }
+
+  .combos {
+    margin-top: 14px;
+  }
+
+  .combo-rows {
+    display: flex;
+    flex-direction: column;
+
+    .combo {
+      display: flex;
+      align-items: center;
+      margin-top: 2px;
+
+      .effect-icon {
+        margin-top: 0;
+      }
+
+      .combo-arrow {
+        width: 15px;
+        height: 13px;
+        background: url(../images/combo.png) 0 -32px;
+
+        img {
+          width: 15px;
+          height: 13px;
+          opacity: 0;
+        }
+      }
+
+      div + div, div + p {
+        margin-left: 6px;
+      }
+
+     & + .combo {
+       margin-top: 4px;
+     }
+    }
+
   }
 
   .no-sell {

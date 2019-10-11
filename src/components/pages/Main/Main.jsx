@@ -31,9 +31,10 @@ import {
   Menu,
 } from '@material-ui/icons';
 import cn from 'classnames';
+import { setMobile } from 'actions/display';
 import { clearNotification } from 'actions/notification';
 import ItemTooltip from 'components/Item/ItemTooltip';
-import { setMobile } from 'actions/display';
+import SkillTooltip from 'components/Skill/SkillTooltip';
 import navigation from 'constants/navigation';
 import { getNavId } from 'utils/string';
 import 'styles/index';
@@ -183,6 +184,7 @@ class Main extends React.PureComponent {
             ]}
           />
           <ItemTooltip />
+          <SkillTooltip />
         </div>
       </ThemeProvider>
     );
