@@ -100,6 +100,16 @@ const renderSkillTooltip = (target) => {
 
   description = applyTooltipColor(description);
 
+  let cooldownTime = '';
+  if (cooldown > 0) {
+    if (cooldown > 59) {
+      cooldownTime = `${Math.floor(cooldown / 60)}min`;
+    }
+    if (cooldown % 60 > 0) {
+      cooldownTime += ` ${cooldown % 60}sec`;
+    }
+  }
+
   return (
     <div className={cn({ 'passive': passive })}>
       <section className="header">
@@ -123,12 +133,12 @@ const renderSkillTooltip = (target) => {
         <p>Mana {mana || 0}</p>
         <p>Range: {range && range.length > 1 ? `${range.join('-')} m` : 'Caster only'}</p>
         {effectRange && <p>Effect Range: {effectRange} m</p>}
-        <p>{damage && `${damage.attack} +${damage.ratio}%`}</p>
+        <p>{damage ? `${damage.attack} +${damage.ratio}%` : <span>&nbsp;</span>}</p>
       </section>}
       {!passive &&
       <section>
         <p>{castTime > 0 ? `Cast Time: ${castTime} sec` : 'Instant'}</p>
-        {cooldown > 0 && <p>{cooldown}sec Cooldown</p>}
+        {cooldownTime && <p>{cooldownTime} Cooldown</p>}
       </section>}
       {!passive && effects && effects.length > 0 &&
       <section>
@@ -144,20 +154,18 @@ const renderSkillTooltip = (target) => {
       <section className="combos">
         <div className="combo-rows">
           {combos.map((combo, index) => {
-            const buff = combo.cause || combo.buff;
             let { text } = combo;
             text = substitute(text, {
               b: combo.buff && combo.buff.name,
-              c: combo.cause && combo.cause.name,
-              r: combo.result && combo.result.name,
+              c: combo.causes && combo.causes.name,
             });
             text = applyTooltipColor(text);
             return (<div className="combo" key={index}>
-              <EffectIcon {...buff} />
+              <EffectIcon {...combo.buff} />
               {combo.type === COMBO_TYPE.CAUSES &&
               <div className="combo-arrow"><img alt="" /></div>}
               {combo.type === COMBO_TYPE.CAUSES &&
-              <EffectIcon {...combo.result} />}
+              <EffectIcon {...combo.causes} />}
               <p className="tt-green" dangerouslySetInnerHTML={{ __html: text }} />
             </div>);
           })}

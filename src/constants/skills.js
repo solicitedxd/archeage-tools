@@ -43,6 +43,11 @@ import ToughenIcon from 'images/skill/defense/Toughen.png';
 import DropBackIcon from 'images/skill/shadowplay/Drop_Back.png';
 import FrigidTracksIcon from 'images/skill/sorcery/Frigid_Tracks.png';
 import InsulatingLensIcon from 'images/skill/sorcery/Insulating_Lens.png';
+import BloodthirstIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
+import MarkedIcon from 'images/skill/shadowplay/Stalkers_Mark.png';
+import StealthIcon from 'images/skill/shadowplay/Stealth.png'
+import ConversionShieldIcon from 'images/skill/auramancy/Conversion_Shield.png';
+import CourageousActionIcon from 'images/skill/auramancy/Courageous_Action.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -102,6 +107,11 @@ export const BUFF = Object.freeze({
   DROP_BACK: { name: 'Drop Back', icon: DropBackIcon },
   FRIGID_TRACKS: { name: 'Frigid Tracks', icon: FrigidTracksIcon },
   INSULATING_LENS: { name: 'Insulating Lens', icon: InsulatingLensIcon },
+  BLOODTHIRST: { name: 'Bloodthirst', icon: BloodthirstIcon },
+  MARKED: { name: 'Marked', icon: MarkedIcon, negative: true },
+  STEALTHED: { name: 'Stealthed', icon: StealthIcon },
+  CONVERSION_SHIELD: { name: 'Conversion Shield', icon: ConversionShieldIcon },
+  COURAGEOUS_ACTION: { name: 'Courageous Action', icon: CourageousActionIcon },
 });
 
 export const GLOBAL_CD = Object.freeze({

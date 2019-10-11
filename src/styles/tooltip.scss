@@ -224,7 +224,7 @@
   }
 
   .combos {
-    margin-top: 14px;
+    margin-top: 10px;
   }
 
   .combo-rows {
@@ -235,6 +235,10 @@
       display: flex;
       align-items: center;
       margin-top: 2px;
+
+      &:first-child {
+        margin-top: 6px;
+      }
 
       .effect-icon {
         margin-top: 0;

@@ -55,9 +55,9 @@ const skills = Object.freeze([
     combos: [
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.SNARED,
-        result: BUFF.SHAKEN,
-        text: 'First attack: ${c} targets are ${r} for #3 sec.#',
+        buff: BUFF.SNARED,
+        causes: BUFF.SHAKEN,
+        text: 'First attack: ${b} targets are ${c} for #3 sec.#',
       },
       {
         type: COMBO_TYPE.EMPOWERS,

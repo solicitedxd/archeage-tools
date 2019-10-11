@@ -58,9 +58,9 @@ const skills = Object.freeze([
       },
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.BURNING,
-        result: BUFF.CONFLAGRATION,
-        text: 'Third attack: inflicts ${r} for #7sec# on ${c} targets.',
+        buff: BUFF.BURNING,
+        causes: BUFF.CONFLAGRATION,
+        text: 'Third attack: inflicts ${c} for #7sec# on ${b} targets.',
       },
     ],
   },
@@ -79,13 +79,13 @@ const skills = Object.freeze([
     combos: [
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.FREEZING,
-        result: BUFF.DEEPFREEZE,
-        text: 'Inflicts ${r} on targets already under ${c} effects, Confining them for #14sec.# (#-50%# duration in PvP.)',
+        buff: BUFF.FREEZING,
+        causes: BUFF.DEEPFREEZE,
+        text: 'Inflicts ${c} on targets already under ${b} effects, Confining them for #14sec.# (#-50%# duration in PvP.)',
       },
       {
         type: COMBO_TYPE.EMPOWERS,
-        cause: BUFF.FRIGID_TRACKS,
+        buff: BUFF.FRIGID_TRACKS,
         text: 'Removes the cast time and decreases Range -3m under the effect of ${b}',
       },
     ],
@@ -153,9 +153,9 @@ const skills = Object.freeze([
     combos: [
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.FREEZING,
-        result: BUFF.DEEPFREEZE,
-        text: 'Inflicts ${r} on targets already under ${c} effects, Confining them for #8sec.# (#-50%# duration in PvP.)',
+        buff: BUFF.FREEZING,
+        causes: BUFF.DEEPFREEZE,
+        text: 'Inflicts ${c} on targets already under ${b} effects, Confining them for #8sec.# (#-50%# duration in PvP.)',
       },
     ],
   },
@@ -195,15 +195,15 @@ const skills = Object.freeze([
     combos: [
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.INSULATING_LENS,
-        result: BUFF.STUNNED,
-        text: 'Stuns the primary target for #1.5sec# if used while under the effects of ${c}.',
+        buff: BUFF.INSULATING_LENS,
+        causes: BUFF.STUNNED,
+        text: 'Stuns the primary target for #1.5sec# if used while under the effects of ${b}.',
       },
       {
         type: COMBO_TYPE.CAUSES,
-        cause: BUFF.INSULATING_LENS,
-        result: BUFF.SILENCED,
-        text: 'Silences the primary target for #1.5sec# if used while under the effects of ${c}.',
+        buff: BUFF.INSULATING_LENS,
+        causes: BUFF.SILENCED,
+        text: 'Silences the primary target for #1.5sec# if used while under the effects of ${b}.',
       },
     ],
   },
