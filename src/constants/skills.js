@@ -29,7 +29,7 @@ import PurgeIcon from 'images/buff/Purge_Buff.png';
 import ResurgenceIcon from 'images/buff/Resurgence_Buff.png';
 import ShackleIcon from 'images/buff/Shackle.png';
 import ShakenIcon from 'images/buff/Shaken.png';
-import ShrugItOffIcon from 'images/buff/Shrug_It_Off_Buff.png';
+import MagicShieldIcon from 'images/buff/Magic_Shield.png';
 import SilencedIcon from 'images/buff/Silenced.png';
 import SleepingIcon from 'images/buff/Sleeping.png';
 import SlowedIcon from 'images/buff/Slowed.png';
@@ -47,12 +47,17 @@ import BloodthirstIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png
 import MarkedIcon from 'images/skill/shadowplay/Stalkers_Mark.png';
 import StealthIcon from 'images/skill/shadowplay/Stealth.png';
 import ConversionShieldIcon from 'images/skill/auramancy/Conversion_Shield.png';
+import ConversionShieldFlameIcon from 'images/skill/auramancy/Conversion_Shield_Flame.png';
 import CourageousActionIcon from 'images/skill/auramancy/Courageous_Action.png';
 import FreerunnerIcon from 'images/skill/shadowplay/Freerunner.png';
 import RenewalIcon from 'images/skill/vitalism/Renewal.png';
 import PainHarvestIcon from 'images/skill/occultism/Pain_Harvest.png';
 import DeathsVengeanceIcon from 'images/skill/occultism/Deaths_Vengeance.png';
 import HealingCircleIcon from 'images/skill/vitalism/Healing_Circle.png';
+import WardingLightIcon from 'images/buff/Warding_Light.png';
+import ShrugItOffIcon from 'images/skill/auramancy/Shrug_It_Off.png';
+import FlightDisabledIcon from 'images/buff/Flight_Disabled.png';
+import PotionsDisabledIcon from 'images/buff/Potion_Disabled.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -91,12 +96,12 @@ export const BUFF = Object.freeze({
   PETRIFIED: { name: 'Petrified', icon: PetrifiedIcon, negative: true },
   POISONED: { name: 'Poisoned', icon: PoisonedIcon, negative: true },
   PRAYER: { name: 'Prayer', icon: PrayerIcon },
-  PROVOKE: { name: 'Provoke', icon: ProvokeIcon, negative: true },
+  PROVOKE: { name: 'Provoked', icon: ProvokeIcon, negative: true },
   PURGE: { name: 'Purge', icon: PurgeIcon },
   RESURGENCE: { name: 'Resurgence', icon: ResurgenceIcon },
   SHACKLE: { name: 'Shackle', icon: ShackleIcon, negative: true },
   SHAKEN: { name: 'Shaken', icon: ShakenIcon, negative: true },
-  SHRUG_IT_OFF: { name: 'Shrug It Off', icon: ShrugItOffIcon },
+  MAGIC_SHIELD: { name: 'Magic Shield', icon: MagicShieldIcon },
   SILENCED: { name: 'Silenced', icon: SilencedIcon, negative: true },
   SLEEPING: { name: 'Sleeping', icon: SleepingIcon, negative: true },
   SLOWED: { name: 'Slowed', icon: SlowedIcon, negative: true },
@@ -107,6 +112,9 @@ export const BUFF = Object.freeze({
   VULNERABLE: { name: 'Vulnerable', icon: VulnerableIcon, negative: true },
   WEAKNESS: { name: 'Weakness', icon: WeaknessIcon, negative: true },
 
+  FLIGHT_DISABLED: { name: 'Flight Disabled', icon: FlightDisabledIcon, negative: true },
+  POTIONS_DISABLED: { name: 'Potions Disabled', icon: PotionsDisabledIcon, negative: true },
+
   // buffs from skills
   TOUGHEN: { name: 'Toughen', icon: ToughenIcon },
   DROP_BACK: { name: 'Drop Back', icon: DropBackIcon },
@@ -116,12 +124,15 @@ export const BUFF = Object.freeze({
   MARKED: { name: 'Marked', icon: MarkedIcon, negative: true },
   STEALTHED: { name: 'Stealthed', icon: StealthIcon },
   CONVERSION_SHIELD: { name: 'Conversion Shield', icon: ConversionShieldIcon },
+  CONVERSION_SHIELD_FLAME: { name: 'Conversion Shield', icon: ConversionShieldFlameIcon },
   COURAGEOUS_ACTION: { name: 'Courageous Action', icon: CourageousActionIcon },
   FREERUNNER: { name: 'FreeRunner', icon: FreerunnerIcon },
   RENEWAL: { name: 'Renewal', icon: RenewalIcon },
   PAIN_HARVEST: { name: 'Pain Harvest', icon: PainHarvestIcon },
   DEATHS_VENGEANCE: { name: 'Death\'s Vengeance', icon: DeathsVengeanceIcon },
   HEALING_CIRCLE: { name: 'Healing Circle', icon: HealingCircleIcon },
+  WARDING_LIGHT: { name: 'Warding Light', icon: WardingLightIcon },
+  SHRUG_IT_OFF: { name: 'Shrug It Off', icon: ShrugItOffIcon },
 });
 
 export const GLOBAL_CD = Object.freeze({

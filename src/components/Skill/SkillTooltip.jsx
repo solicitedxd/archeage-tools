@@ -14,8 +14,8 @@ import { substitute } from 'utils/string';
 const ReactHint = ReactHintFactory(React);
 
 const applyTooltipColor = (string) => string
-.replace(/(#([\w\s,.%+():-]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
-.replace(/(&([\w\s,.%+():-]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
+.replace(/(#([\w\s,.'%+():-]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
+.replace(/(&([\w\s,.'%+():-]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
 .replace(/\r/g, () => '<br />');
 
 const renderSkillTooltip = (target) => {
@@ -49,7 +49,7 @@ const renderSkillTooltip = (target) => {
     }
   }
 
-  const { name, icon, rank, mana, range, effectRange, damage, castTime, cooldown, effects, description: rawDescription, combos } = skill;
+  const { name, icon, rank, mana, range, effectRange, damage, castTime, channeled, cooldown, effects, description: rawDescription, combos } = skill;
 
   // prepare description
   let description = rawDescription || '';
@@ -59,7 +59,7 @@ const renderSkillTooltip = (target) => {
     effects: effects && effects.map(effect => effect.name),
   });
 
-  const { descriptionNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls } = skill;
+  const { descriptionNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls, incapacitated } = skill;
   let descriptionNotes = [];
   if (descriptionNote) {
     descriptionNotes.push(descriptionNote);
@@ -102,6 +102,9 @@ const renderSkillTooltip = (target) => {
   }
   if (noWalls) {
     descriptionNotes.push('Can\'t pass through obstacles like walls.');
+  }
+  if (incapacitated) {
+    descriptionNotes.push('This skill can be used while the caster is incapacitated.');
   }
   if (descriptionNotes.length > 0) {
     description += `\r\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
@@ -146,7 +149,8 @@ const renderSkillTooltip = (target) => {
       </section>}
       {!passive &&
       <section>
-        <p>{castTime > 0 ? `Cast Time: ${castTime} sec` : 'Instant'}</p>
+        {!channeled && <p>{castTime > 0 ? `Cast Time: ${castTime} sec` : 'Instant'}</p>}
+        {channeled && <p>Channeled Skill</p>}
         {cooldownTime && <p>{cooldownTime} Cooldown</p>}
       </section>}
       {!passive && effects && effects.length > 0 &&
