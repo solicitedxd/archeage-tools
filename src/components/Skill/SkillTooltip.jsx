@@ -100,7 +100,7 @@ const renderSkillTooltip = (target) => {
   let description = rawDescription || '';
   const desc = { ...skill };
   Object.keys(desc).forEach(key => {
-    if (key.match(/(damage|healing)/i)) {
+    if (key.match(/(damage|healing)/i) && desc[key]) {
       const { base, ratio, attack } = desc[key];
       desc[key] = `&(${base} + ${ratio}% ${attack})&`;
     }
@@ -110,10 +110,12 @@ const renderSkillTooltip = (target) => {
   });
   description = substitute(description, desc);
 
-  const { descriptionNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls, incapacitated } = skill;
+  const { descriptionNote, ancestralNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls, incapacitated } = skill;
   let descriptionNotes = [];
   if (descriptionNote) {
     descriptionNotes.push(descriptionNote);
+  } else {
+    descriptionNotes.push('');
   }
 
   switch (globalCooldown) {
@@ -157,8 +159,12 @@ const renderSkillTooltip = (target) => {
   if (incapacitated) {
     descriptionNotes.push('This skill can be used while the caster is incapacitated.');
   }
-  if (descriptionNotes.length > 0) {
-    description += `\r\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
+  if (descriptionNotes.length > 1 || descriptionNote) {
+    description += `\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
+  }
+
+  if (ancestralNote) {
+    description += `<span class="tt-ancestral">${ancestralNote}</span>`;
   }
 
   description = applyTooltipColor(description);
@@ -173,7 +179,7 @@ const renderSkillTooltip = (target) => {
     }
   }
 
-  const damage = skill.damage || skill[Object.keys(skill).find(key => key.match(/(damage|healing)/i))];
+  const damage = skill.damage || skill[Object.keys(skill).find(key => key.match(/(damage|healing)/i) && skill[key])];
 
   return (
     <div className={cn({ 'passive': passive })}>
@@ -213,7 +219,7 @@ const renderSkillTooltip = (target) => {
           {effects.map((effect, id) => <EffectIcon key={id} {...effect} />)}
         </div>
       </section>}
-      <section>
+      <section className="description">
         <p dangerouslySetInnerHTML={{ __html: description }} />
       </section>
       {combos && combos.length > 0 &&
@@ -226,7 +232,7 @@ const renderSkillTooltip = (target) => {
               c: combo.causes && combo.causes.name,
             };
             Object.keys(skill).forEach(key => {
-              if (key.match(/(damage|healing)/i)) {
+              if (key.match(/(damage|healing)/i) && skill[key]) {
                 const { base, ratio, attack } = skill[key];
                 textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
               }

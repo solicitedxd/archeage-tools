@@ -191,6 +191,10 @@
     display: block;
   }
 
+  .tt-ancestral {
+    color: #FCCE3F;
+  }
+
   .shop-price {
     display: flex;
     justify-content: space-between;
@@ -219,8 +223,11 @@
   }
 
   .description-note {
-    padding-bottom: 8px;
     display: block;
+  }
+
+  .description {
+    padding-bottom: 8px;
   }
 
   .combos {

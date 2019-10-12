@@ -58,6 +58,12 @@ import WardingLightIcon from 'images/buff/Warding_Light.png';
 import ShrugItOffIcon from 'images/skill/auramancy/Shrug_It_Off.png';
 import FlightDisabledIcon from 'images/buff/Flight_Disabled.png';
 import PotionsDisabledIcon from 'images/buff/Potion_Disabled.png';
+import BattleFocusIcon from 'images/skill/battlerage/Battle_Focus.png';
+import FrenzyIcon from 'images/skill/battlerage/Frenzy.png';
+import BullRushIcon from 'images/skill/defense/Bull_Rush.png';
+import RetributionIcon from 'images/skill/defense/Retribution.png';
+import RedoubtIcon from 'images/skill/defense/Redoubt.png';
+import RedoubtLife from 'images/skill/defense/Redoubt_Life.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -133,6 +139,12 @@ export const BUFF = Object.freeze({
   HEALING_CIRCLE: { name: 'Healing Circle', icon: HealingCircleIcon },
   WARDING_LIGHT: { name: 'Warding Light', icon: WardingLightIcon },
   SHRUG_IT_OFF: { name: 'Shrug It Off', icon: ShrugItOffIcon },
+  BATTLE_FOCUS: { name: 'Battle Focus', icon: BattleFocusIcon },
+  FRENZY: { name: 'Frenzy', icon: FrenzyIcon },
+  BULL_RUSH_AGGRO: { name: 'Bull Rush: Aggro Boost', icon: BullRushIcon },
+  RETRIBUTION: { name: 'Retribution', icon: RetributionIcon },
+  REDOUBT: { name: 'Redoubt', icon: RedoubtIcon },
+  REDOUBT_LIFE: { name: 'Redoubt', icon: RedoubtLife },
 });
 
 export const GLOBAL_CD = Object.freeze({

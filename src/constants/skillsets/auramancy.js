@@ -305,6 +305,9 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.MIST,
         icon: ProtectiveWingsMist,
         range: [0, 20],
+        description: 'Grants #+50%# Magic Damage Reduction to the caster and up to #20 allies# within 5m for #12sec#.\r' +
+          'Caster and all affected allies are immune to Silence.',
+        descriptionNote: 'This skill ends early if the caster moves or stops channeling.',
       },
     ],
   },

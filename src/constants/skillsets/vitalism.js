@@ -127,7 +127,7 @@ const skills = Object.freeze([
     effects: [BUFF.IMPALED],
     description: 'Summons four skewers within a 20m circle at the target area, dealing ${damage} Magic Damage to all enemies within the radius and inflicting Impale, preventing all actions for #2.6sec#.\r' +
       'Skewers deal more damage where they overlap.',
-    descriptionNote: 'Damage increases as this skill levels up.',
+    descriptionNote: '\rDamage increases as this skill levels up.',
     combos: [
       {
         buff: BUFF.IMPALED,
@@ -226,7 +226,7 @@ const skills = Object.freeze([
     description: 'Calls forth energy from the land to bless the caster or an ally for #30 sec#.\r\r' +
       'Grants a #25%# chance to trigger Gradual Recovery whenever the target is damaged by an attack, healing them for ${allyHealing} Health, healing the caster for ${selfHealing} Health over the next #5.5sec#.\r' +
       'Ends when Gradual Recovery is triggered.',
-    descriptionNote: 'Multiple casters can grant Renewal to the same target.',
+    descriptionNote: '\rMultiple casters can grant Renewal to the same target.',
   },
   {
     icon: AranzebsBoonIcon,
@@ -487,7 +487,7 @@ export const ancestrals = Object.freeze([
         selfHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },
         cooldown: 90,
         description: 'Creates a Healing Flower that heals ${selfHealing} Health to the caster and ${allyHealing} Health to up to #20# raid members within a #${effectRange}# radius every 3 seconds over 1 minute.',
-        descriptionNote: 'The Healing Flower can be destroyed if attacked.',
+        descriptionNote: '\rThe Healing Flower can be destroyed if attacked.',
       },
     ],
   },
