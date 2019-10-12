@@ -32,6 +32,7 @@ import {
   BUFF,
   ELEMENT,
   GLOBAL_CD,
+  SKILLMOD,
 } from 'constants/skills';
 
 const skills = Object.freeze([
@@ -43,10 +44,11 @@ const skills = Object.freeze([
     range: [0, 23],
     damage: { base: 0, attack: ATTACK.MAGIC, ratio: 209 },
     castTime: 1,
+    duration: 3.2,
     effects: [BUFF.BURNING],
     description: 'Hurl a ball of fire, dealing ${damage} Magic Damage to a single enemy.\r' +
       'Can be repeated up to #3 times# in a row before starting its Cooldown.\r' +
-      'The first attack inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #3.2sec.#',
+      'The first attack inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
     globalCooldown: GLOBAL_CD.REDUCED,
     continuousHold: true,
     combos: [
@@ -106,11 +108,12 @@ const skills = Object.freeze([
     mana: 188,
     range: [0, 23],
     damage: { base: 3638, attack: ATTACK.MAGIC, ratio: 902 },
+    shockDuration: 8,
     castTime: 3.8,
     cooldown: 8,
     effects: [BUFF.ELECTROCUTED],
     description: 'Unleashes a powerful bolt of lightning at a single enemy, dealing ${damage} Magic Damage.\r' +
-      'Inflicts a strong #Electric Shock# on hit, dealing an additional Magic Damage over #8sec# and spreading to nearby enemies with a #2m# radius.\r\r' +
+      'Inflicts a strong #Electric Shock# on hit, dealing an additional Magic Damage over #${shockDuration}sec# and spreading to nearby enemies with a #2m# radius.\r\r' +
       'Increases Critical Damage +70% if used on a target with Burning, Frozen, and Electric Shocked effects.',
     combos: [
       {
@@ -141,9 +144,10 @@ const skills = Object.freeze([
     damage: { base: 748, attack: ATTACK.MAGIC, ratio: 140 },
     castTime: 0,
     cooldown: 28,
+    freezingDuration: 6.2,
     effects: [BUFF.FREEZING, BUFF.SNARED],
-    description: 'Unleashes a blast of ice, dealing ${damage} Magic Damage to all enemies within the radius. Inflicts Ice Shard on all affected enemies, Snaring them in place for #6.2sec# and preventing them from moving or turning.\r' +
-      'Snare duration reduced #-50%% in PVP.',
+    description: 'Unleashes a blast of ice, dealing ${damage} Magic Damage to all enemies within the radius. Inflicts Ice Shard on all affected enemies, Snaring them in place for #${freezingDuration}sec# and preventing them from moving or turning.\r' +
+      'Snare duration reduced #-50%# in PvP.',
     combos: [
       {
         buff: BUFF.FREEZING,
@@ -158,11 +162,12 @@ const skills = Object.freeze([
     rank: 7,
     mana: 473,
     range: [0],
-    damage: { base: 1331, attack: ATTACK.MAGIC, ratio: 400 },
+    burningDamage: { base: 1331, attack: ATTACK.MAGIC, ratio: 400 },
+    duration: 5,
     castTime: 0,
     cooldown: 26,
     effects: [BUFF.BURNING, BUFF.SLOWED],
-    description: 'Calls forth a #20m# wide wall of fire for #10 sec,# which Slows all enemies within its area of effect. Decreases Move Speed #-40%#. Inflicts #Flame Barrier# on enemies that touch it, dealing ${damage} Magic Damage over #5sec.#\r' +
+    description: 'Calls forth a #20m# wide wall of fire for #10 sec,# which Slows all enemies within its area of effect. Decreases Move Speed #-40%#. Inflicts #Flame Barrier# on enemies that touch it, dealing ${burningDamage} Magic Damage over #${duration}sec.#\r' +
       'This counts as a Burning effect.',
     combos: [
       {
@@ -178,12 +183,13 @@ const skills = Object.freeze([
     mana: 198,
     range: [0, 12],
     damage: { base: 390, attack: ATTACK.MAGIC, ratio: 209 },
+    shockDuration: 8,
     castTime: 0,
     cooldown: 30,
     effects: [BUFF.ELECTROCUTED],
     description: 'Sends lightning to ravage your enemies. Deals ${damage} Magic Damage to the primary target and then bounces to another enemy within #5m,# hitting up to #5# total targets.\r' +
       'Deals #-50%# less damage with each subsequent hit.\r' +
-      'Inflicts strong #Electrical Shock# on all affected enemies, dealing an additional &(555 + 300% Magic Attack)& Magic Damage over #8sec# and spreading to enemies within a #2m# radius.',
+      'Inflicts strong #Electrical Shock# on all affected enemies, dealing an additional &(555 + 300% Magic Attack)& Magic Damage over #${shockDuration}sec# and spreading to enemies within a #2m# radius.',
     combos: [
       {
         buff: BUFF.INSULATING_LENS,
@@ -205,12 +211,13 @@ const skills = Object.freeze([
     range: [0],
     effectRange: 10,
     damage: { base: 966, attack: ATTACK.MAGIC, ratio: 300 },
+    duration: 4.2,
     castTime: 2.5,
     cooldown: 13,
     effects: [BUFF.BURNING],
     description: 'Rains down fire on all enemies in a #10m# radius for #7 sec,# dealing ${damage} Magic Damage per second.\r' +
       'The skill grants #Immunity# to all debuffs for the same period of time.\r' +
-      'Inflicts #${effects[0]}# on all affected enemies, making them more susceptible to certain spell effects for #4.2sec#.',
+      'Inflicts #${effects[0]}# on all affected enemies, making them more susceptible to certain spell effects for #${duration}sec#.',
     combos: [
       {
         buff: BUFF.ELECTROCUTED,
@@ -227,8 +234,9 @@ const skills = Object.freeze([
     castTime: 2,
     cooldown: 40,
     effects: [BUFF.FREEZING, BUFF.CONFINED],
+    freezingDuration: 8,
     description: 'Leaves a trail of icy footprints behind you for #9sec#.\r' +
-      'The footprints last 3 sec after appearing, and inflict #Frozen Solid# on any enemy hat step on them (max 8 enemies), Confining them for #8sec# and preventing all actions.\r' +
+      'The footprints last 3 sec after appearing, and inflict #Frozen Solid# on any enemy hat step on them (max 8 enemies), Confining them for #${freezingDuration}sec# and preventing all actions.\r' +
       'Confinement duration reduced #-50%# in PvP.\r' +
       'Grants affected enemies temporary #Freeze Immunity# when the Confinement effect expires.',
   },
@@ -260,13 +268,14 @@ const skills = Object.freeze([
     range: [0, 25],
     effectRange: 6,
     damage: { base: 432, attack: ATTACK.MAGIC, ratio: 120 },
+    shockDuration: 8,
     castTime: 1,
     cooldown: 21,
     effects: [BUFF.ELECTROCUTED],
     globalCooldown: GLOBAL_CD.REDUCED,
     description: 'Calls down consecutive lightning strikes in the target area, dealing ${damage} Magic Damage to all enemies in a #6m# radius.\r' +
       'Can be repeated up to #5 times# in a row before starting its Cooldown.\r' +
-      'Each hit inflicts a strong #Electric Shock,# dealing an additional &(575 + 300% Magic Attack)& Magic Damage over #8 sec# and spreading to enemies within a #2m# radius.',
+      'Each hit inflicts a strong #Electric Shock,# dealing an additional &(575 + 300% Magic Attack)& Magic Damage over #${shockDuration} sec# and spreading to enemies within a #2m# radius.',
     combos: [
       {
         buff: BUFF.BURNING,
@@ -286,11 +295,35 @@ export const passives = Object.freeze([
     icon: AranzebsInfusionIcon,
     name: 'Aranzeb\'s Infusion',
     description: 'Decreases Cast Time of Sorcery Skills #-8%.#',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { castTime: 0.92 },
+        skills: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      },
+    ],
   },
   {
     icon: MindOverMatterIcon,
     name: 'Mind Over Matter',
     description: 'Increases duration of Burning, Freeze and Electric Shock #+30%#.',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { shockDuration: 1.3, freezingDuration: 1.3 },
+        skills: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      },
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { burningDamage: 1.3, duration: 1.3 },
+        skills: [6],
+      },
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { duration: 1.3 },
+        skills: [0, 8],
+      },
+    ],
   },
   {
     icon: ManaFountainIcon,
@@ -305,12 +338,26 @@ export const passives = Object.freeze([
     icon: HeirtoAyanadIcon,
     name: 'Heir to Ayanad',
     description: 'Increases Magic Skill Damage from Sorcery Skills #+10%.#',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { damage: 1.1 },
+        skills: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      },
+    ],
   },
   {
     icon: SorceryAdeptIcon,
     name: 'Sorcery Adept',
     description: 'Increase Magic Critical Rate #+6%#\r' +
       'Increases Sorcery Skill Damage +5%',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { damage: 1.05 },
+        skills: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      },
+    ],
   },
 ]);
 
@@ -325,7 +372,7 @@ export const ancestrals = Object.freeze([
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 360 },
         castTime: 1.5,
         description: 'Hurl a single powerful flamebolt at the target, dealing ${damage} Magic Damage.\r' +
-          'Inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #3.2sec.#',
+          'Inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
         globalCooldown: GLOBAL_CD.NORMAL,
       },
       {
@@ -334,11 +381,12 @@ export const ancestrals = Object.freeze([
         mana: 21,
         range: [0, 20],
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 80 },
+        shockDuration: 8,
         castTime: 0,
         cooldown: 2,
         effects: [BUFF.ELECTROCUTED],
         description: 'Hurls 3 bolts of electricity at a single target, dealing ${damage} Magic Damage.\r' +
-          'Each hit inflicts a minor #Electric Shock,# dealing an additional &(40 + 350% Magic Attack)& Magic Damage over #8sec# and spreading to enemies with a #2m# radius.',
+          'Each hit inflicts a minor #Electric Shock,# dealing an additional &(40 + 350% Magic Attack)& Magic Damage over #${shockDuration}sec# and spreading to enemies with a #2m# radius.',
         globalCooldown: GLOBAL_CD.NORMAL,
         combos: [
           {
@@ -384,10 +432,11 @@ export const ancestrals = Object.freeze([
         range: [0, 25],
         effectRange: 4,
         damage: { base: 1161, attack: ATTACK.MAGIC, ratio: 320 },
+        shockDuration: 8,
         castTime: 0,
         effects: [BUFF.ELECTROCUTED, BUFF.SLOWED],
         description: 'Summons a massive thunderbolt at the target location, dealing ${damage} Magic Damage to enemies within its range.\r' +
-          'Inflicts #Greater Shock# on all enemies in the initial area of effect, dealing an additional &(338 + 100% Magic Attack)& Magic Damage over #8 sec.# This effect also Slows their Attack Speed #-666# and Move Speed #-90%,# which gradually recover over the duration.\r' +
+          'Inflicts #Greater Shock# on all enemies in the initial area of effect, dealing an additional &(338 + 100% Magic Attack)& Magic Damage over #${shockDuration} sec.# This effect also Slows their Attack Speed #-666# and Move Speed #-90%,# which gradually recover over the duration.\r' +
           'Enemies under the effects of Greater Shock inflict strong #Electric Shock# on other enemies within #2m,# damaging them over time.',
         combos: [
           {
@@ -419,7 +468,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.LIGHTNING,
         icon: GodsWhipLightning,
         range: [0, 22],
-        damage: { base: 288, attack: ATTACK.MAGIC, ratio: 80},
+        damage: { base: 288, attack: ATTACK.MAGIC, ratio: 80 },
         castTime: 0,
         globalCooldown: GLOBAL_CD.NO_TRIGGER_REDUCED,
       },
@@ -443,10 +492,11 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.MIST,
         icon: FlameBarrierMist,
         range: [0, 20],
-        damage: { base: 1982, attack: ATTACK.MAGIC, ratio: 600 },
-        description: 'Inflicts Flame Mark on the target, dealing ${damage} Magic Damage over #4 sec#, then creates a wide wall of fire after #5 sec#.\r' +
+        burningDamage: { base: 1982, attack: ATTACK.MAGIC, ratio: 600 },
+        duration: 4,
+        description: 'Inflicts Flame Mark on the target, dealing ${burningDamage} Magic Damage over #${duration} sec#, then creates a wide wall of fire after #5 sec#.\r' +
           'The #Flame Barrier# lasts for #10 sec#, dealing Flame Barrier damage when Stalker\'s Mark ends.\r' +
-          'Engulfs the target in flames and inflicts ${damage} Magic Damage over time.\r' +
+          'Engulfs the target in flames and inflicts ${burningDamage} Magic Damage over time.\r' +
           'Move Speed #-60%#',
       },
       {

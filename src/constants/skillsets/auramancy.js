@@ -32,6 +32,7 @@ import {
   BUFF,
   ELEMENT,
   GLOBAL_CD,
+  SKILLMOD,
 } from 'constants/skills';
 
 const skills = Object.freeze([
@@ -43,7 +44,8 @@ const skills = Object.freeze([
     effectRange: 6,
     cooldown: 15,
     effects: [BUFF.WARDING_LIGHT, BUFF.SHAKEN],
-    description: 'Grants the caster 1 stack of #Warding Light# for #20sec.#\r\r' +
+    stacks: 1,
+    description: 'Grants the caster ${stacks} stack of #Warding Light# for #20sec.#\r\r' +
       '#Warding Light:#\r' +
       '- Absorbs up to #5000# damage from the next instance of received damage.\r' +
       '- Reduces active Cooldowns for #Comet\'s Boon, Vicious Implosion,# and #Shrug It Off# by #-4 sec# when cast.\r' +
@@ -214,6 +216,13 @@ export const passives = Object.freeze([
     icon: WardMasteryIcon,
     name: 'Ward Mastery',
     description: '#Warding Light# stacks twice.',
+    skillMod: [
+      {
+        type: SKILLMOD.SET,
+        vars: { stacks: 2 },
+        skills: [0],
+      },
+    ],
   },
   {
     icon: AcceleratedCastingIcon,
@@ -248,7 +257,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.STONE,
         icon: ThwartStone,
         effects: [BUFF.WARDING_LIGHT],
-        description: 'Grants the caster 1 stack of #Warding Light# for #20sec.#\r\r' +
+        description: 'Grants the caster ${stacks} stack of #Warding Light# for #20sec.#\r\r' +
           '#Warding Light:#\r' +
           '- Absorbs up to #5000# damage from the next instance of received damage.\r' +
           '- Reduces active Cooldowns for #Comet\'s Boon, Vicious Implosion,# and #Shrug It Off# by #-4 sec# when cast.\r' +

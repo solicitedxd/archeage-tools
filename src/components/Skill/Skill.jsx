@@ -54,6 +54,7 @@ class Skill extends Component {
         data-skill-id={slot}
         data-passive={passive}
         data-disabled={disabled && spentPoints < pointsRequired}
+        data-spent-points={spentPoints}
         data-element={element}
       >
         <img src={icon} alt="" />

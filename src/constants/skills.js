@@ -154,3 +154,9 @@ export const ELEMENT = Object.freeze({
   QUAKE: 'Quake',
   LIFE: 'Life',
 });
+
+export const SKILLMOD = Object.freeze({
+  SET: 0,
+  FLAT: 1,
+  PERCENT: 2,
+});

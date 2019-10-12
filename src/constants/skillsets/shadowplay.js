@@ -32,6 +32,7 @@ import {
   BUFF,
   ELEMENT,
   GLOBAL_CD,
+  SKILLMOD,
 } from 'constants/skills';
 
 const skills = Object.freeze([
@@ -54,10 +55,12 @@ const skills = Object.freeze([
     rank: 18,
     mana: 93,
     damage: { base: 1274, attack: ATTACK.MAGIC, ratio: 240 },
+    poisonDamage: { base: 1274, attack: ATTACK.MAGIC, ratio: 240 },
     cooldown: 9,
     effects: [BUFF.POISONED],
+    poisonDuration: 6,
     description: 'Coats your weapons in poison for #9 sec.#\r' +
-      'Your next Melee or Ranged attack during that time will deal an additional ${damage} Magic Damage over #6 sec#.',
+      'Your next Melee or Ranged attack during that time will deal an additional ${poisonDamage} Magic Damage over #${poisonDuration} sec#.',
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
@@ -78,9 +81,12 @@ const skills = Object.freeze([
     mana: 189,
     range: [0, 4],
     damage: { base: 1382, attack: ATTACK.MELEE, ratio: 150 },
+    bleedDamage: { base: 1135, attack: ATTACK.MELEE, ratio: 157 },
+    poisonDamage: { base: 1135, attack: ATTACK.MELEE, ratio: 160 },
+    bleedDuration: 14,
     cooldown: 21,
     effects: [BUFF.BLEEDING],
-    description: 'Causes a deep wound that deals ${damage} Melee Damage and inflicts #${effects[0]}# for #14sec,# dealing an additional &(1135 + 157% Melee Attack)&#-#&(1135 + 160% Melee Attack)& Melee Damage over the duration.',
+    description: 'Causes a deep wound that deals ${damage} Melee Damage and inflicts #${effects[0]}# for #${bleedDuration}sec,# dealing an additional ${bleedDamage}#-#${poisonDamage} Melee Damage over the duration.',
     combos: [
       {
         buff: BUFF.POISONED,
@@ -281,11 +287,30 @@ export const passives = Object.freeze([
     icon: LethalToxinsIcon,
     name: 'Lethal Toxins',
     description: 'Increases the Duration of #Poison and Bleeding# effects you inflict #+70%.#',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: {
+          poisonDuration: 1.7,
+          bleedDuration: 1.7,
+          bleedDamage: 1.7,
+          poisonDamage: 1.7,
+        },
+        skills: [1, 3],
+      },
+    ],
   },
   {
     icon: ShadowMasteryIcon,
     name: 'Shadow Mastery',
     description: 'Decreases #Shadowplay# Skill Cooldowns #-20%.#',
+    skillMod: [
+      {
+        type: SKILLMOD.PERCENT,
+        vars: { cooldown: 0.8 },
+        skills: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      },
+    ],
   },
 ]);
 

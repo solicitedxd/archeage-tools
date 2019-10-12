@@ -6,8 +6,12 @@ import SKILLSET from 'constants/skillsets';
 import {
   ELEMENT,
   GLOBAL_CD,
+  SKILLMOD,
 } from 'constants/skills';
-import { getPointReq } from 'utils/skills';
+import {
+  deepCopy,
+  getPointReq,
+} from 'utils/skills';
 import EffectIcon from 'components/Skill/EffectIcon';
 import { substitute } from 'utils/string';
 
@@ -19,10 +23,11 @@ const applyTooltipColor = (string) => string
 .replace(/\r/g, () => '<br />');
 
 const renderSkillTooltip = (target) => {
-  let { skillset, skillId, passive, element, disabled } = target.dataset;
+  let { skillset, skillId, passive, element, disabled, spentPoints } = target.dataset;
   skillId = Number(skillId);
   passive = passive === 'true';
   disabled = disabled === 'true';
+  spentPoints = Number(spentPoints);
 
   const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset);
   if (!skillSetKey) return;
@@ -30,7 +35,7 @@ const renderSkillTooltip = (target) => {
   const skillSet = SKILLSET[skillSetKey];
   const skills = passive ? skillSet.passives : skillSet.skills;
 
-  let skill = skills[skillId];
+  let skill = deepCopy(skills[skillId]);
   // validate skill exists
   if (!skill) return;
   element = Object.values(ELEMENT).find(ele => ele === element);
@@ -49,15 +54,61 @@ const renderSkillTooltip = (target) => {
     }
   }
 
-  const { name, icon, rank, mana, range, effectRange, damage, castTime, channeled, cooldown, effects, description: rawDescription, combos } = skill;
+  if (!passive && spentPoints >= 2) {
+    const percentIncreases = {};
+    skillSet.passives.forEach((passive, index) => {
+      if (!passive.skillMod) return;
+      const mods = passive.skillMod.filter(mod => mod.skills.includes(skillId));
+      if (spentPoints > index + 1) {
+        mods.forEach(mod => {
+          if (mod.type === SKILLMOD.SET) {
+            skill = { ...skill, ...mod.vars };
+          }
+          if (mod.type === SKILLMOD.FLAT) {
+            Object.keys(mod.vars).forEach(key => skill[key] += mod.vars[key]);
+          }
+          if (mod.type === SKILLMOD.PERCENT) {
+            Object.keys(mod.vars).forEach(key => {
+              if (!skill[key]) return;
+
+              const diff = -1 * Math.round((1 - mod.vars[key]) * 100) / 100;
+              if (percentIncreases[key]) {
+                percentIncreases[key] += diff;
+              } else {
+                percentIncreases[key] = (1 + diff);
+              }
+            });
+          }
+        });
+      }
+    });
+    Object.keys(percentIncreases).forEach(key => {
+      const precision = key.match(/(castTime|duration)/i) ? 10 : 1;
+      const value = percentIncreases[key];
+      if (key.match(/(damage|healing)/i)) {
+        const { base, attack, ratio } = skill[key];
+        skill[key] = { base: Math.floor(base * value), attack, ratio: Math.floor(ratio * value) };
+      } else {
+        skill[key] = Math.round((skill[key] * value) * precision) / precision;
+      }
+    });
+  }
+
+  const { name, icon, rank, mana, range, effectRange, castTime, channeled, cooldown, effects, description: rawDescription, combos } = skill;
 
   // prepare description
   let description = rawDescription || '';
-  description = substitute(description, {
-    ...skill,
-    damage: damage && `&(${damage.base} + ${damage.ratio}% ${damage.attack})&`,
-    effects: effects && effects.map(effect => effect.name),
+  const desc = { ...skill };
+  Object.keys(desc).forEach(key => {
+    if (key.match(/(damage|healing)/i)) {
+      const { base, ratio, attack } = desc[key];
+      desc[key] = `&(${base} + ${ratio}% ${attack})&`;
+    }
+    if (key === 'effects') {
+      desc.effects = desc.effects.map(effect => effect.name);
+    }
   });
+  description = substitute(description, desc);
 
   const { descriptionNote, globalCooldown, continuousHold, unblockable, movement, cannotMiss, castTimeLevel, noCombat, noWalls, incapacitated } = skill;
   let descriptionNotes = [];
@@ -122,6 +173,8 @@ const renderSkillTooltip = (target) => {
     }
   }
 
+  const damage = skill.damage || skill[Object.keys(skill).find(key => key.match(/(damage|healing)/i))];
+
   return (
     <div className={cn({ 'passive': passive })}>
       <section className="header">
@@ -142,7 +195,7 @@ const renderSkillTooltip = (target) => {
       </section>
       {!passive &&
       <section>
-        <p>Mana {mana || 0}</p>
+        {mana && <p>Mana {mana}</p>}
         <p>Range: {range && range.length > 1 ? `${range.join('-')} m` : 'Caster only'}</p>
         {effectRange && <p>Effect Range: {effectRange} m</p>}
         <p>{damage ? `${damage.attack} +${damage.ratio}%` : <span>&nbsp;</span>}</p>
@@ -168,10 +221,17 @@ const renderSkillTooltip = (target) => {
         <div className="combo-rows">
           {combos.map((combo, index) => {
             let { text } = combo;
-            text = substitute(text, {
+            const textSub = {
               b: combo.buff && combo.buff.name,
               c: combo.causes && combo.causes.name,
+            };
+            Object.keys(skill).forEach(key => {
+              if (key.match(/(damage|healing)/i)) {
+                const { base, ratio, attack } = skill[key];
+                textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
+              }
             });
+            text = substitute(text, textSub);
             text = applyTooltipColor(text);
             return (<div className="combo" key={index}>
               <EffectIcon {...combo.buff} />
