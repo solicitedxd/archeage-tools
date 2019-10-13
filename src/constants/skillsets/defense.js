@@ -193,8 +193,8 @@ const skills = Object.freeze([
     rank: 3,
     mana: 76,
     cooldown: 45,
-    description: 'Heals the caster for #587# Health plus an amount equal to #50%#of stacked #Mettle#, consumng all Mettle in the process.\r' +
-      'Grants #Revitalizing Cheer that Max Health #+35.0%# for #10sec#.',
+    description: 'Heals the caster for #587# Health plus an amount equal to #50%#of stacked #Mettle#, consuming all Mettle in the process.\r' +
+      'Grants #Revitalizing Cheer# that Max Health #+35.0%# for #10sec#.',
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
     combos: [
       {

@@ -137,6 +137,9 @@ const renderSkillTooltip = (target) => {
     case GLOBAL_CD.REDUCED_USEWHILE:
       descriptionNotes.push('This skill has a reduced Global Cooldown.\rCan be used during a Global Cooldown.');
       break;
+    case GLOBAL_CD.INCREASED:
+      descriptionNotes.push('This skill has an increased Global Cooldown.');
+      break;
     case GLOBAL_CD.NORMAL:
     default:
     // do nothing

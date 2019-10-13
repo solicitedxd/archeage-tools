@@ -74,7 +74,11 @@ import GhastlyPackIcon from 'images/skill/malediction/Ghastly_Pack.png';
 import VoidSurgeIcon from 'images/skill/malediction/Void_Surge.png';
 import MaliciousBindingIcon from 'images/skill/malediction/Malicious_Binding.png';
 import InstinctIcon from 'images/buff/Instinct.png';
-// import Icon from 'images/buff/';
+import CursedThornsIcon from 'images/skill/occultism/Cursed_Thorns.png';
+import SteadyShootingIcon from 'images/skill/archery/Steady_Shooting.png';
+import BlazingArrowIcon from 'images/skill/archery/Blazing_Arrow.png';
+import DeadeyeIcon from 'images/skill/archery/Deadeye.png';
+import SnipeImmunityIcon from 'images/buff/Snipe_Immunity.png';
 
 export const MAX_POINTS = 18;
 
@@ -86,6 +90,7 @@ export const ATTACK = Object.freeze({
 });
 
 export const BUFF = Object.freeze({
+  LIGHT_BLINDED: { name: 'Light Blinded', icon: BlazingArrowIcon, negative: true },
   BLEEDING: { name: 'Bleeding', icon: BleedingIcon, negative: true },
   BLESSED: { name: 'Blessed', icon: BlessedIcon },
   BLINDED_BY_CROWS: { name: 'Blinded by Crows', icon: BlindedByCrowsIcon, negative: true },
@@ -95,6 +100,7 @@ export const BUFF = Object.freeze({
   CONFINED: { name: 'Confined', icon: ConfinedIcon, negative: true },
   CONFLAGRATION: { name: 'Conflagration', icon: ConflagrationIcon, negative: true },
   CURSED: { name: 'Cursed', icon: CursedIcon, negative: true },
+  CURSED_SEEDS: { name: 'Cursed Seeds', icon: CursedThornsIcon, negative: true },
   DEATHMARK_AURA: { name: 'Deathmark Aura', icon: DeathmarkAuraIcon, negative: true },
   DEEPFREEZE: { name: 'Deep Freeze', icon: DeepfreezeIcon, negative: true },
   DISCORD: { name: 'Discord', icon: DiscordIcon, negative: true },
@@ -128,6 +134,7 @@ export const BUFF = Object.freeze({
   SLEEPING: { name: 'Sleeping', icon: SleepingIcon, negative: true },
   SLOWED: { name: 'Slowed', icon: SlowedIcon, negative: true },
   SNARED: { name: 'Snared', icon: SnaredIcon, negative: true },
+  SNIPE_IMMUNITY: { name: 'Sniped', icon: SnipeImmunityIcon, negative: true },
   STAGGER: { name: 'Stagger', icon: StaggerIcon, negative: true },
   STUNNED: { name: 'Stunned', icon: StunnedIcon, negative: true },
   TRIPPED: { name: 'Tripped', icon: TrippedIcon, negative: true },
@@ -165,6 +172,8 @@ export const BUFF = Object.freeze({
   FURY: { name: 'Fury', icon: FuryIcon },
   VOID_SURGE: { name: 'Void Surge', icon: VoidSurgeIcon },
   SNOWLIONS: { name: 'Snowlions', icon: GhastlyPackIcon },
+  STEADY_SHOOTING: { name: 'Steady Shooting', icon: SteadyShootingIcon },
+  DEADEYE: { name: 'Deadeye', icon: DeadeyeIcon },
 });
 
 export const GLOBAL_CD = Object.freeze({
@@ -173,7 +182,8 @@ export const GLOBAL_CD = Object.freeze({
   REDUCED: 2,
   NO_TRIGGER_REDUCED: 3,
   REDUCED_USEWHILE: 4,
-  NORMAL: 5,
+  INCREASED: 5,
+  NORMAL: 6,
 });
 
 export const ELEMENT = Object.freeze({

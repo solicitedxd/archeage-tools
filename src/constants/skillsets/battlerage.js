@@ -115,7 +115,7 @@ const skills = Object.freeze([
       {
         buff: BUFF.SLOWED,
         causes: BUFF.TRIPPED,
-        text: 'First attack: Trips #{b} targets for #3sec.#',
+        text: 'First attack: Trips ${b} targets for #3sec.#',
       },
       {
         buff: BUFF.TRIPPED,
@@ -284,7 +284,7 @@ const skills = Object.freeze([
       {
         buff: BUFF.SNARED,
         causes: BUFF.DISTRESSED,
-        text: 'Inflicts ${c} on #{b} targets for #7sec.#',
+        text: 'Inflicts ${c} on ${b} targets for #7sec.#',
       },
       {
         buff: BUFF.SLEEPING,
