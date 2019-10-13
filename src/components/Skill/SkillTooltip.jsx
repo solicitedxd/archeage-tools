@@ -244,6 +244,8 @@ const renderSkillTooltip = (target) => {
               if (key.match(/(damage|healing)/i) && skill[key]) {
                 const { base, ratio, attack } = skill[key];
                 textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
+              } else {
+                textSub[key] = skill[key];
               }
             });
             text = substitute(text, textSub);

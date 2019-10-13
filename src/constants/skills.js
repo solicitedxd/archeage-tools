@@ -79,6 +79,7 @@ import SteadyShootingIcon from 'images/skill/archery/Steady_Shooting.png';
 import BlazingArrowIcon from 'images/skill/archery/Blazing_Arrow.png';
 import DeadeyeIcon from 'images/skill/archery/Deadeye.png';
 import SnipeImmunityIcon from 'images/buff/Snipe_Immunity.png';
+import SummonCrowsIcon from 'images/skill/occultism/Summon_Crows.png';
 
 export const MAX_POINTS = 18;
 
@@ -137,6 +138,7 @@ export const BUFF = Object.freeze({
   SNIPE_IMMUNITY: { name: 'Sniped', icon: SnipeImmunityIcon, negative: true },
   STAGGER: { name: 'Stagger', icon: StaggerIcon, negative: true },
   STUNNED: { name: 'Stunned', icon: StunnedIcon, negative: true },
+  SUMMON_CROWS: { name: 'Summon Crows', icon: SummonCrowsIcon, negative: true },
   TRIPPED: { name: 'Tripped', icon: TrippedIcon, negative: true },
   VULNERABLE: { name: 'Vulnerable', icon: VulnerableIcon, negative: true },
   WEAKNESS: { name: 'Weakness', icon: WeaknessIcon, negative: true },
@@ -152,6 +154,7 @@ export const BUFF = Object.freeze({
   BLOODTHIRST: { name: 'Bloodthirst', icon: BloodthirstIcon },
   MARKED: { name: 'Marked', icon: MarkedIcon, negative: true },
   STEALTHED: { name: 'Stealthed', icon: StealthIcon },
+  STEALTHED_DEBUFF: { name: 'Stealthed', icon: StealthIcon, negative: true },
   CONVERSION_SHIELD: { name: 'Conversion Shield', icon: ConversionShieldIcon },
   CONVERSION_SHIELD_FLAME: { name: 'Conversion Shield', icon: ConversionShieldFlameIcon },
   COURAGEOUS_ACTION: { name: 'Courageous Action', icon: CourageousActionIcon },
