@@ -73,6 +73,7 @@ import FuryIcon from 'images/skill/malediction/Fury.png';
 import GhastlyPackIcon from 'images/skill/malediction/Ghastly_Pack.png';
 import VoidSurgeIcon from 'images/skill/malediction/Void_Surge.png';
 import MaliciousBindingIcon from 'images/skill/malediction/Malicious_Binding.png';
+import InstinctIcon from 'images/buff/Instinct.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -107,6 +108,7 @@ export const BUFF = Object.freeze({
   FREEZING: { name: 'Freezing', icon: FreezingIcon, negative: true },
   FROZEN: { name: 'Frozen', icon: FrozenIcon, negative: true },
   IMPALED: { name: 'Impaled', icon: ImpaledIcon, negative: true },
+  INSTINCT: { name: 'Instinct', icon: InstinctIcon, negative: true },
   LASSITUDE: { name: 'Lassitude', icon: LassitudeIcon, negative: true },
   LAUNCHED: { name: 'Launched', icon: LaunchedIcon, negative: true },
   MALICE_CHARGE: { name: 'Malice Charge', icon: MaliceChargeIcon },
@@ -170,7 +172,8 @@ export const GLOBAL_CD = Object.freeze({
   NO_TRIGGER: 1,
   REDUCED: 2,
   NO_TRIGGER_REDUCED: 3,
-  NORMAL: 4,
+  REDUCED_USEWHILE: 4,
+  NORMAL: 5,
 });
 
 export const ELEMENT = Object.freeze({

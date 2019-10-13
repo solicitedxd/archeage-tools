@@ -70,6 +70,7 @@ const renderSkillTooltip = (target) => {
           if (mod.type === SKILLMOD.PERCENT) {
             Object.keys(mod.vars).forEach(key => {
               if (!skill[key]) return;
+              if (key === 'range' && skill[key].length < 1) return;
 
               const diff = -1 * Math.round((1 - mod.vars[key]) * 100) / 100;
               if (percentIncreases[key]) {
@@ -88,6 +89,8 @@ const renderSkillTooltip = (target) => {
       if (key.match(/(damage|healing)/i)) {
         const { base, attack, ratio } = skill[key];
         skill[key] = { base: Math.floor(base * value), attack, ratio: Math.floor(ratio * value) };
+      } else if (key === 'range') {
+        skill[key][1] = Math.round(skill[key][1] * value);
       } else {
         skill[key] = Math.round((skill[key] * value) * precision) / precision;
       }
@@ -130,6 +133,9 @@ const renderSkillTooltip = (target) => {
       break;
     case GLOBAL_CD.REDUCED:
       descriptionNotes.push('This skill has a reduced Global Cooldown.');
+      break;
+    case GLOBAL_CD.REDUCED_USEWHILE:
+      descriptionNotes.push('This skill has a reduced Global Cooldown.\rCan be used during a Global Cooldown.');
       break;
     case GLOBAL_CD.NORMAL:
     default:

@@ -285,7 +285,7 @@ export const passives = Object.freeze([
   {
     icon: CuttingMaliceIcon,
     name: 'Cutting Malice',
-    description: 'Decreases the Cooldown of #SErpent Glare -10 seconds#, when #Malice Charges# are consumed to enhance the effects of Malediction skills.',
+    description: 'Decreases the Cooldown of #Serpent Glare -10 seconds#, when #Malice Charges# are consumed to enhance the effects of Malediction skills.',
   },
   {
     icon: MurderousIntentIcon,
