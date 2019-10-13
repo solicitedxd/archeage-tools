@@ -69,6 +69,10 @@ import StartlingStrainLife from 'images/skill/songcraft/Startling_Strain_Life.pn
 import EnervateIcon from 'images/skill/witchcraft/Enervate.png';
 import EarthenGripIcon from 'images/skill/witchcraft/Earthen_Grip.png';
 import LassitudeIcon from 'images/skill/witchcraft/Lassitude.png';
+import FuryIcon from 'images/skill/malediction/Fury.png';
+import GhastlyPackIcon from 'images/skill/malediction/Ghastly_Pack.png';
+import VoidSurgeIcon from 'images/skill/malediction/Void_Surge.png';
+import MaliciousBindingIcon from 'images/skill/malediction/Malicious_Binding.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -106,6 +110,7 @@ export const BUFF = Object.freeze({
   LASSITUDE: { name: 'Lassitude', icon: LassitudeIcon, negative: true },
   LAUNCHED: { name: 'Launched', icon: LaunchedIcon, negative: true },
   MALICE_CHARGE: { name: 'Malice Charge', icon: MaliceChargeIcon },
+  MALICIOUS_BINDING: { name: 'Malicious Binding', icon: MaliciousBindingIcon, negative: true },
   OVER_HEALING: { name: 'Over Healing', icon: OverHealingIcon, negative: true },
   OVERPOWERED: { name: 'Overpowered', icon: OverpoweredIcon, negative: true },
   PETRIFIED: { name: 'Petrified', icon: PetrifiedIcon, negative: true },
@@ -155,6 +160,9 @@ export const BUFF = Object.freeze({
   REDOUBT: { name: 'Redoubt', icon: RedoubtIcon },
   REDOUBT_LIFE: { name: 'Redoubt', icon: RedoubtLife },
   STARTLING_STRAIN_LIFE: { name: 'Startling Strain: Life', icon: StartlingStrainLife },
+  FURY: { name: 'Fury', icon: FuryIcon },
+  VOID_SURGE: { name: 'Void Surge', icon: VoidSurgeIcon },
+  SNOWLIONS: { name: 'Snowlions', icon: GhastlyPackIcon },
 });
 
 export const GLOBAL_CD = Object.freeze({
