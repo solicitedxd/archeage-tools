@@ -83,7 +83,7 @@ const renderSkillTooltip = (target) => {
       }
     });
     Object.keys(percentIncreases).forEach(key => {
-      const precision = key.match(/(castTime|duration)/i) ? 10 : 1;
+      const precision = key.match(/(castTime|duration|cooldown)/i) ? 10 : 1;
       const value = percentIncreases[key];
       if (key.match(/(damage|healing)/i)) {
         const { base, attack, ratio } = skill[key];
@@ -147,14 +147,14 @@ const renderSkillTooltip = (target) => {
   if (unblockable) {
     descriptionNotes.push('This skill cannot be evaded, blocked, or parried.');
   }
+  if (noWalls) {
+    descriptionNotes.push('Can\'t pass through obstacles like walls.');
+  }
   if (movement) {
     descriptionNotes.push('Can\'t be used while snared.');
   }
   if (noCombat) {
     descriptionNotes.push('Can\'t be used while in combat.');
-  }
-  if (noWalls) {
-    descriptionNotes.push('Can\'t pass through obstacles like walls.');
   }
   if (incapacitated) {
     descriptionNotes.push('This skill can be used while the caster is incapacitated.');

@@ -66,6 +66,9 @@ import RedoubtIcon from 'images/skill/defense/Redoubt.png';
 import RedoubtLife from 'images/skill/defense/Redoubt_Life.png';
 import DissonanceIcon from 'images/skill/songcraft/Dissonance.png';
 import StartlingStrainLife from 'images/skill/songcraft/Startling_Strain_Life.png';
+import EnervateIcon from 'images/skill/witchcraft/Enervate.png';
+import EarthenGripIcon from 'images/skill/witchcraft/Earthen_Grip.png';
+import LassitudeIcon from 'images/skill/witchcraft/Lassitude.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -94,10 +97,13 @@ export const BUFF = Object.freeze({
   DISTRESSED: { name: 'Distressed', icon: DistressedIcon, negative: true },
   DIVINE_RESPONSE: { name: 'Divine Response', icon: DivineResponseIcon },
   ELECTROCUTED: { name: 'Electrocuted', icon: ElectrocutedIcon, negative: true },
+  ENERVATED: { name: 'Enervated', icon: EnervateIcon, negative: true },
+  EARTHEN_GRIP_DISARM: { name: 'Earthen Grip: Disarm', icon: EarthenGripIcon, negative: true },
   FEARED: { name: 'Feared', icon: FearedIcon, negative: true },
   FREEZING: { name: 'Freezing', icon: FreezingIcon, negative: true },
   FROZEN: { name: 'Frozen', icon: FrozenIcon, negative: true },
   IMPALED: { name: 'Impaled', icon: ImpaledIcon, negative: true },
+  LASSITUDE: { name: 'Lassitude', icon: LassitudeIcon, negative: true },
   LAUNCHED: { name: 'Launched', icon: LaunchedIcon, negative: true },
   MALICE_CHARGE: { name: 'Malice Charge', icon: MaliceChargeIcon },
   OVER_HEALING: { name: 'Over Healing', icon: OverHealingIcon, negative: true },
