@@ -139,21 +139,16 @@ class SkillTree extends Component {
           </div>
           <Typography variant="overline" className="skill-list-title">Ancestral</Typography>
           <div className="ancestral-list">
+            {skillSet.ancestrals.length === 0 &&
+            <Typography variant="overline" style={{ textAlign: 'center' }}>No ancestrals.</Typography>}
             {skillSet.ancestrals.map((ancestral, ancestralId) => {
               const original = skillSet.skills.find((skill, id) => id === ancestral.skillId);
               const selected = ancestrals[ancestralId];
-              const selectedVariant = selected > 0 ? ancestral.variants[selected - 1] : original;
               return (
                 <div className="ancestral-row" key={ancestralId}>
-                  <div className="ancestral-selected">
-                    <Skill
-                      skillset={treeName}
-                      slot={ancestral.skillId}
-                      learned={Boolean(skills[ancestral.skillId])}
-                      spentPoints={spentPoints}
-                      {...original}
-                      {...selectedVariant}
-                    />
+                  <div className="ancestral-level">
+                    <span className="dropdown-icon Ancestral" />
+                    <Typography variant="subtitle1">{(ancestralId * 3) + 1}</Typography>
                   </div>
                   <div className="ancestral-options">
                     <Skill

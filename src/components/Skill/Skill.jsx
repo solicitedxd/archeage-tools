@@ -48,12 +48,13 @@ class Skill extends Component {
       <div
         className={cn('skill', { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
         onClick={disabled ? null : onClick}
-        data-points-req={ancestral && (learned || spentPoints >= pointsRequired) ? 0 : pointsRequired}
+        data-points-req={ancestral || learned || spentPoints >= pointsRequired ? 0 : pointsRequired}
         data-skill={true}
         data-skillset={skillset}
         data-skill-id={slot}
         data-passive={passive}
         data-disabled={disabled && spentPoints < pointsRequired}
+        data-spent-points={spentPoints}
         data-element={element}
       >
         <img src={icon} alt="" />

@@ -19,7 +19,6 @@ import {
   Replay,
   Share,
 } from '@material-ui/icons';
-import SkillTooltip from 'components/Skill/SkillTooltip';
 import { MAX_POINTS } from 'constants/skills';
 import SKILLSET from 'constants/skillsets';
 import {
@@ -268,7 +267,6 @@ class Skills extends Component {
             </Button>
           </DialogContent>
         </Dialog>
-        <SkillTooltip />
       </div>
     );
   }
