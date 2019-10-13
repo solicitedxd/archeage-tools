@@ -18,8 +18,8 @@ import { substitute } from 'utils/string';
 const ReactHint = ReactHintFactory(React);
 
 const applyTooltipColor = (string) => string
-.replace(/(#([\w\s,.'%+():-]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
-.replace(/(&([\w\s,.'%+():-]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
+.replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
+.replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
 .replace(/\r/g, () => '<br />');
 
 const renderSkillTooltip = (target) => {

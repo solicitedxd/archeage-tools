@@ -64,6 +64,8 @@ import BullRushIcon from 'images/skill/defense/Bull_Rush.png';
 import RetributionIcon from 'images/skill/defense/Retribution.png';
 import RedoubtIcon from 'images/skill/defense/Redoubt.png';
 import RedoubtLife from 'images/skill/defense/Redoubt_Life.png';
+import DissonanceIcon from 'images/skill/songcraft/Dissonance.png';
+import StartlingStrainLife from 'images/skill/songcraft/Startling_Strain_Life.png';
 // import Icon from 'images/buff/';
 
 export const MAX_POINTS = 18;
@@ -88,6 +90,7 @@ export const BUFF = Object.freeze({
   DEATHMARK_AURA: { name: 'Deathmark Aura', icon: DeathmarkAuraIcon, negative: true },
   DEEPFREEZE: { name: 'Deep Freeze', icon: DeepfreezeIcon, negative: true },
   DISCORD: { name: 'Discord', icon: DiscordIcon, negative: true },
+  DISSONANCE: { name: 'Dissonance', icon: DissonanceIcon, negative: true },
   DISTRESSED: { name: 'Distressed', icon: DistressedIcon, negative: true },
   DIVINE_RESPONSE: { name: 'Divine Response', icon: DivineResponseIcon },
   ELECTROCUTED: { name: 'Electrocuted', icon: ElectrocutedIcon, negative: true },
@@ -145,6 +148,7 @@ export const BUFF = Object.freeze({
   RETRIBUTION: { name: 'Retribution', icon: RetributionIcon },
   REDOUBT: { name: 'Redoubt', icon: RedoubtIcon },
   REDOUBT_LIFE: { name: 'Redoubt', icon: RedoubtLife },
+  STARTLING_STRAIN_LIFE: { name: 'Startling Strain: Life', icon: StartlingStrainLife },
 });
 
 export const GLOBAL_CD = Object.freeze({
