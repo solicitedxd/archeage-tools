@@ -336,7 +336,7 @@ export const ancestrals = Object.freeze([
         icon: AntithesisLife,
         range: [0, 30],
         description: 'Instantly restores ${selfHealing} for you and ${allyHealing} Health for an ally.\r' +
-          'This skill has a longer range than regular Anthesis, but cannot be used to damage enemies.',
+          'This skill has a longer range than regular Antithesis, but cannot be used to damage enemies.',
       },
       {
         element: ELEMENT.QUAKE,
