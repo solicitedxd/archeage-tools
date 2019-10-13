@@ -20,7 +20,7 @@ import {
   Share,
 } from '@material-ui/icons';
 import { MAX_POINTS } from 'constants/skills';
-import SKILLSET from 'constants/skillsets';
+import SKILLSET from 'data/skillsets';
 import {
   decodeAncestrals,
   decodeSkillHex,

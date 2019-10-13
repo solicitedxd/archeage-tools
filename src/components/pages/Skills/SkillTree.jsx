@@ -19,8 +19,8 @@ import {
   Replay,
   SwapHoriz,
 } from '@material-ui/icons';
-import SKILLSET from 'constants/skillsets';
 import Skill from 'components/Skill';
+import SKILLSET from 'data/skillsets';
 import { getTreePoints } from 'utils/skills';
 
 class SkillTree extends Component {

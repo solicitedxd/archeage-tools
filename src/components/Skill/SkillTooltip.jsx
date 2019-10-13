@@ -2,7 +2,6 @@ import React from 'react';
 import ReactHintFactory from 'react-hint';
 import cn from 'classnames';
 import { Typography } from '@material-ui/core';
-import SKILLSET from 'constants/skillsets';
 import {
   ELEMENT,
   GLOBAL_CD,
@@ -13,6 +12,7 @@ import {
   getPointReq,
 } from 'utils/skills';
 import EffectIcon from 'components/Skill/EffectIcon';
+import SKILLSET from 'data/skillsets';
 import { substitute } from 'utils/string';
 
 const ReactHint = ReactHintFactory(React);
