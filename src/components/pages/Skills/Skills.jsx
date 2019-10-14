@@ -31,6 +31,7 @@ import {
   getTreePoints,
 } from 'utils/skills';
 import SkillTree from './SkillTree';
+import SkillCombos from './SkillCombos';
 
 class Skills extends Component {
   state = {
@@ -267,6 +268,7 @@ class Skills extends Component {
             </Button>
           </DialogContent>
         </Dialog>
+        <SkillCombos skillTrees={skillTrees} />
       </div>
     );
   }
