@@ -1,4 +1,5 @@
 import classes from 'constants/classes';
+import { substitute } from 'utils/string';
 
 export const findClassName = (skillset0, skillset1, skillset2) => {
   const selectedSkillsets = [skillset0, skillset1, skillset2];
@@ -85,5 +86,35 @@ export const decodeAncestrals = (chars) => {
 };
 
 export const deepCopy = (object) => {
+  if (!object) return;
   return JSON.parse(JSON.stringify(object));
+};
+
+export const compareBuff = (buff1, buff2) => {
+  if (!buff1 && !buff2) return true;
+  if (!buff1 || !buff2) return false;
+  return (buff1.name === buff2.name && buff1.icon === buff2.icon && buff1.negative === buff2.negative);
+};
+
+export const applyTooltipColor = (string) => string
+.replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
+.replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
+.replace(/\r/g, () => '<br />');
+
+export const prepareComboText = (combo, skill) => {
+  let { text } = combo;
+  const textSub = {
+    b: combo.buff && combo.buff.name,
+    c: combo.causes && combo.causes.name,
+  };
+  Object.keys(skill).forEach(key => {
+    if (key.match(/(damage|healing)/i) && skill[key]) {
+      const { base, ratio, attack } = skill[key];
+      textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
+    } else {
+      textSub[key] = skill[key];
+    }
+  });
+  text = substitute(text, textSub);
+  return applyTooltipColor(text);
 };

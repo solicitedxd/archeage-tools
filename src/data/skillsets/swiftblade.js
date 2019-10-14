@@ -177,7 +177,7 @@ const skills = Object.freeze([
     damage: { base: 887, attack: ATTACK.MELEE, ratio: 90 },
     cooldown: 24,
     effects: [BUFF.SLOWED],
-    description: 'Throws a dagger, that deals ${damage} Melee Damage, #Slows# the target, and decreases their Move Sped #-40%# for #3sec#.',
+    description: 'Throws a dagger, that deals ${damage} Melee Damage, #Slows# the target, and decreases their Move Speed #-40%# for #3sec#.',
     unblockable: true,
   },
   {
@@ -249,7 +249,7 @@ const skills = Object.freeze([
     range: [0, 5],
     damage: { base: 576, attack: ATTACK.MELEE, ratio: 150 },
     cooldown: 21,
-    description: 'Performs a viscious blade dance, dealing ${damage} Melee Damage.\r' +
+    description: 'Performs a vicious blade dance, dealing ${damage} Melee Damage.\r' +
       'If dual-wield weapons are equipped, the Critical Damage is increased +50%, based on the left-hand weapon\'s damage.\r' +
       'This skill can be used #twice# in a row.',
     movement: true,

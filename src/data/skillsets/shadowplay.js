@@ -260,7 +260,7 @@ export const passives = Object.freeze([
   {
     icon: ShadowTrainingIcon,
     name: 'Shadow Training',
-    description: 'Increaes Attack Speed +#40.#',
+    description: 'Increases Attack Speed +#40.#',
   },
   {
     icon: BecomeVoidIcon,
@@ -270,7 +270,7 @@ export const passives = Object.freeze([
   {
     icon: RuthlessAssaultIcon,
     name: 'Ruthless Assault',
-    description: 'Increaes Attack Speed #+120# for #8 sec# whenever you inflict a Critical Strike or a Critical Heal.\r\r' +
+    description: 'Increases Attack Speed #+120# for #8 sec# whenever you inflict a Critical Strike or a Critical Heal.\r\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {

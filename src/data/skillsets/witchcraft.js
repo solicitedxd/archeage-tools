@@ -90,7 +90,7 @@ const skills = Object.freeze([
     cooldown: 39,
     duration: 18.8,
     effects: [BUFF.CONFINED, BUFF.LAUNCHED],
-    description: 'Confines an enemy inside a bubble for #${duration}sec# and slowly lifts it into the air, preventing all actions except Evade, Block, and Parrty.\r' +
+    description: 'Confines an enemy inside a bubble for #${duration}sec# and slowly lifts it into the air, preventing all actions except Evade, Block, and Parry.\r' +
       'Enemies in bubbles can\'t attack, but take -50% less Magic Damage.\r' +
       'Being damaged by a direct attack will free the target early, but debuffs that deal damage over time will not end this effect.\r' +
       'Bubble duration reduced #-50%# in PvP.',
@@ -199,7 +199,7 @@ const skills = Object.freeze([
     damage: { base: 1658, attack: ATTACK.MAGIC, ratio: 150 },
     cooldown: 21,
     description: 'Sends forth a wave that deals ${damage} Magic Damage and pushes up to #8 enemies 10m# away from you.\r' +
-      'Pushed enemies are Staggered, briefly disabling movment and skill use and canceling all Cast Time and Cahenneled skills.\r' +
+      'Pushed enemies are Staggered, briefly disabling movement and skill use and canceling all Cast Time and Channeled skills.\r' +
       'This skill counts as a push effect.',
     combos: [
       {
@@ -345,7 +345,7 @@ export const ancestrals = Object.freeze([
         icon: EarthenGripLightning,
         range: [0, 12],
         castTime: 0.5,
-        description: 'Calls forth a hand from the ground to hold an enemy. Inflicts Snare on the target, preventing them from moving or turnin for #${duration}sec.#\r' +
+        description: 'Calls forth a hand from the ground to hold an enemy. Inflicts Snare on the target, preventing them from moving or turning for #${duration}sec.#\r' +
           'Deals ${damage} Magic Damage upon expiration.\r' +
           'Being damaged by a direct attack will free the target early, but debuffs that deal direct damage over time will not end this effect.\r' +
           'Snare duration reduced -50% in PvP.' +
@@ -413,7 +413,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.MIST,
         icon: BansheeWailMist,
         range: [0, 20],
-        description: 'Summons a Phantams at the target location for #7 sec.# The Phantasm inflicts Fear on #up to 8# enemies within a #5m# radius every second, causing them to run in random directions for up to #${duration}sec# and preventing all other actions except Evade, Block, and Parry.\r' +
+        description: 'Summons a Phantasm at the target location for #7 sec.# The Phantasm inflicts Fear on #up to 8# enemies within a #5m# radius every second, causing them to run in random directions for up to #${duration}sec# and preventing all other actions except Evade, Block, and Parry.\r' +
           'Being damaged by a direct attack has a chance to free the target early, but debuffs that deal damage over time will not end this effect.\r' +
           'Grants affected enemies temporary #Fear Immunity# when the fear effect expires.',
         descriptionNote: '\rThe duration of the skill\'s Fear effect is not affected by the caster\'s Passive skills.\r' +

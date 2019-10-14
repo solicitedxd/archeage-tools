@@ -2,25 +2,22 @@ import React from 'react';
 import ReactHintFactory from 'react-hint';
 import cn from 'classnames';
 import { Typography } from '@material-ui/core';
-import SKILLSET from 'constants/skillsets';
 import {
   ELEMENT,
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
 import {
+  applyTooltipColor,
   deepCopy,
   getPointReq,
+  prepareComboText,
 } from 'utils/skills';
 import EffectIcon from 'components/Skill/EffectIcon';
+import SKILLSET from 'data/skillsets';
 import { substitute } from 'utils/string';
 
 const ReactHint = ReactHintFactory(React);
-
-const applyTooltipColor = (string) => string
-.replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
-.replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
-.replace(/\r/g, () => '<br />');
 
 const renderSkillTooltip = (target) => {
   let { skillset, skillId, passive, element, disabled, spentPoints } = target.dataset;
@@ -234,31 +231,16 @@ const renderSkillTooltip = (target) => {
       {combos && combos.length > 0 &&
       <section className="combos">
         <div className="combo-rows">
-          {combos.map((combo, index) => {
-            let { text } = combo;
-            const textSub = {
-              b: combo.buff && combo.buff.name,
-              c: combo.causes && combo.causes.name,
-            };
-            Object.keys(skill).forEach(key => {
-              if (key.match(/(damage|healing)/i) && skill[key]) {
-                const { base, ratio, attack } = skill[key];
-                textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
-              } else {
-                textSub[key] = skill[key];
-              }
-            });
-            text = substitute(text, textSub);
-            text = applyTooltipColor(text);
-            return (<div className="combo" key={index}>
+          {combos.map((combo, index) => (
+            <div className="combo" key={index}>
               <EffectIcon {...combo.buff} />
               {combo.causes &&
               <div className="combo-arrow"><img alt="" /></div>}
               {combo.causes &&
               <EffectIcon {...combo.causes} />}
-              <p className="tt-green" dangerouslySetInnerHTML={{ __html: text }} />
-            </div>);
-          })}
+              <p className="tt-green" dangerouslySetInnerHTML={{ __html: prepareComboText(combo, skill) }} />
+            </div>),
+          )}
         </div>
       </section>}
       {disabled &&

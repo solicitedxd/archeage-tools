@@ -147,7 +147,7 @@ const skills = Object.freeze([
     effectRange: 10,
     cooldown: 24,
     effects: [BUFF.PROVOKE, BUFF.SHAKEN],
-    description: 'Inflicts #Taunt# on all enemies within the radius, focing affected monsters to attack you regardless of Aggro for #4sec.# Increases your Threat level by #100%# of your stacked #Mettle,# consuming all stacks of Mettle when cast.\r' +
+    description: 'Inflicts #Taunt# on all enemies within the radius, forcing affected monsters to attack you regardless of Aggro for #4sec.# Increases your Threat level by #100%# of your stacked #Mettle,# consuming all stacks of Mettle when cast.\r' +
       'Also inflicts #${effects[1]}# on all affected enemies for #3sec,# reducing their Move Speed #-27%,# Attack Speed #-75,# and Skill Damage #-8%.#',
     combos: [
       {
@@ -220,7 +220,7 @@ const skills = Object.freeze([
     cooldown: 60,
     description: 'Grants the #Invicibility# buff for up to #6sec,# rendering you immune to all damage and debuffs for the duration.\r' +
       'Effect ends early if you move.',
-    descriptionNote: 'Players cannot become invicible again for 15 sec after benefiting from this skill.',
+    descriptionNote: 'Players cannot become invincible again for 15 sec after benefiting from this skill.',
   },
 ]);
 
