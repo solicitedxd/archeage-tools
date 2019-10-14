@@ -413,7 +413,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.MIST,
         icon: BansheeWailMist,
         range: [0, 20],
-        description: 'Summons a Phantasm at the target location for #7 sec.# The Phantasm inflicts Fear on #up to 8# enemies within a #5m# radius every second, causing them to run in random directions for up to #${duration}sec# and preventing all other actions except Evade, Block, and Parry.\r' +
+        description: 'Summons a Phantasm at the target location for #7 sec.# The Phantasm inflicts Fear on #up to 8# enemies within a #5m# radius every second, causing them to run in random directions for up to #3.8sec# and preventing all other actions except Evade, Block, and Parry.\r' +
           'Being damaged by a direct attack has a chance to free the target early, but debuffs that deal damage over time will not end this effect.\r' +
           'Grants affected enemies temporary #Fear Immunity# when the fear effect expires.',
         descriptionNote: '\rThe duration of the skill\'s Fear effect is not affected by the caster\'s Passive skills.\r' +

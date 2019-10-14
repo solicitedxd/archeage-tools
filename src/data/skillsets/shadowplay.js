@@ -431,7 +431,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.QUAKE,
         icon: FreerunnerQuake,
         effectRange: 5,
-        description: 'Increases the cater\'s and nearby allies\' Move Speed and Attack Speed for #30sec#.\r' +
+        description: 'Increases the caster\'s and nearby allies\' Move Speed and Attack Speed for #30sec#.\r' +
           'Increases Move Speed #+30.0%#\r' +
           'Increases Attack Speed +#42#',
       },

@@ -182,7 +182,7 @@ const skills = Object.freeze([
     range: [0, 25],
     castTime: 7,
     description: 'Revives an ally and restores lost XP in the same amount as a Nui\'s resurrection.\r' +
-      'Recovers &nbsp;#90%# &nbsp;of maximum Health and Mana.',
+      'Recovers &nbsp;#90%# of maximum Health and Mana.',
     noCombat: true,
     combos: [
       {
@@ -396,7 +396,7 @@ export const ancestrals = Object.freeze([
         selfHealing: { base: 244, attack: ATTACK.HEALING, ratio: 77 },
         cooldown: 0,
         description: 'Instantly restores ${selfHealing} Health for the caster and ${allyHealing} Health for an ally.\r' +
-          'This kill has no Cooldown, but the Mana cost increases by 50% of the base Mana cost per cast.\r' +
+          'This skill has no Cooldown, but the Mana cost increases by 50% of the base Mana cost per cast.\r' +
           'Mana cost resets 10 seconds after the most recent cast.',
       },
     ],
@@ -486,7 +486,7 @@ export const ancestrals = Object.freeze([
         allyHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },
         selfHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },
         cooldown: 90,
-        description: 'Creates a Healing Flower that heals ${selfHealing} Health to the caster and ${allyHealing} Health to up to #20# raid members within a #${effectRange}# radius every 3 seconds over 1 minute.',
+        description: 'Creates a Healing Flower that heals ${selfHealing} Health to the caster and ${allyHealing} Health to up to #20# raid members within a #${effectRange}m# radius every 3 seconds over 1 minute.',
         descriptionNote: '\rThe Healing Flower can be destroyed if attacked.',
       },
     ],
