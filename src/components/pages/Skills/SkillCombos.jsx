@@ -41,7 +41,7 @@ class SkillCombos extends Component {
     // starting skill
     if (!sub) {
       nodes.push(
-        <div className="combo-skill">
+        <div className="combo-skill" key={`sk-${Math.random()}`}>
           <Skill
             skillset={skill.treeName}
             slot={skill.skillId}
@@ -57,13 +57,13 @@ class SkillCombos extends Component {
           />
         </div>,
       );
-      nodes.push(<div className="combo-arrow" />);
+      nodes.push(<div className="combo-arrow" key={`ca2-${Math.random()}`} />);
     }
 
     // comboing skill
     const comboText = `<span class="tt-orange">${activator.name}:</span> ${prepareComboText(causes, activator)}`;
     nodes.push(
-      <div className="combo-skill">
+      <div className="combo-skill" key={`skc-${Math.random()}`}>
         <Skill
           skillset={activator.treeName}
           slot={activator.skillId}
@@ -90,9 +90,9 @@ class SkillCombos extends Component {
       </div>,
     );
     if (combos && combos.length > 0) {
-      nodes.push(<div className="combo-arrow" />);
-      nodes = nodes.concat(<div className="combo-col">
-        {combos.map((combo, index) => <div className="combo-row" key={index}>{this.createComboRow(combo, true)}</div>)}
+      nodes.push(<div key={`ca-${Math.random()}`} className="combo-arrow" />);
+      nodes = nodes.concat(<div className="combo-col" key={`cc-${Math.random()}`}>
+        {combos.map((combo, index) => <div className="combo-row" key={`c-${Math.random()}-${index}`}>{this.createComboRow(combo, true)}</div>)}
       </div>);
     }
 
@@ -197,7 +197,7 @@ class SkillCombos extends Component {
           {combos.length === 0 &&
           <Typography>You have no {showAll ? 'available' : 'learned'} combos.</Typography>}
           {combos.map((combo, index) =>
-            <div className="combo-row" key={index}>
+            <div className="combo-row" key={`c-${index}`}>
               {this.createComboRow(combo)}
             </div>,
           )}
