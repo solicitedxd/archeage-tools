@@ -91,9 +91,22 @@ class SkillCombos extends Component {
     );
     if (combos && combos.length > 0) {
       nodes.push(<div key={`ca-${Math.random()}`} className="combo-arrow" />);
-      nodes = nodes.concat(<div className="combo-col" key={`cc-${Math.random()}`}>
-        {combos.map((combo, index) => <div className="combo-row" key={`c-${Math.random()}-${index}`}>{this.createComboRow(combo, true)}</div>)}
-      </div>);
+      if (combos.length > 1) {
+        nodes = nodes.concat(
+          <div className="combo-col" key={`cc-${Math.random()}`}>
+            {combos.map((combo, index) =>
+              <div
+                className="combo-row"
+                key={`c-${Math.random()}-${index}`}
+              >
+                {this.createComboRow(combo, true)}
+              </div>,
+            )}
+          </div>,
+        );
+      } else {
+        nodes = nodes.concat(this.createComboRow(combos[0], true));
+      }
     }
 
     return nodes;
