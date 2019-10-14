@@ -19,6 +19,7 @@
   .skill-tree {
     width: 31.5%;
     min-width: 272px;
+    margin-bottom: 20px;
 
     .skill-tree-list {
       display: flex;
@@ -290,6 +291,8 @@
 }
 
 .skill-combos {
+  margin-top: 0;
+
   .combos-list {
     display: flex;
     flex-wrap: wrap;

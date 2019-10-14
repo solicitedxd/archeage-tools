@@ -181,30 +181,28 @@ class SkillCombos extends Component {
     combos = combos.sort((a, b) => a.skill.name > b.skill.name);
 
     return (
-      <div className="skill-combos">
-        <Paper className="section">
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">{showAll ? 'Available'
-                : 'Learned'} Combos ({combos.length})</Typography>
-              <Tooltip title={`Show ${showAll ? 'Only Learned' : 'All Available'} Combos`}>
-                <IconButton color="inherit" aria-label="Toggle Visibility" onClick={this.toggleVisibility}>
-                  {showAll ? <ToggleOff /> : <ToggleOn />}
-                </IconButton>
-              </Tooltip>
-            </Toolbar>
-          </AppBar>
-          <div className="combos-list">
-            {combos.length === 0 &&
-            <Typography>You have no {showAll ? 'available' : 'learned'} combos.</Typography>}
-            {combos.map((combo, index) =>
-              <div className="combo-row" key={index}>
-                {this.createComboRow(combo)}
-              </div>,
-            )}
-          </div>
-        </Paper>
-      </div>
+      <Paper className="skill-combos section">
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="subtitle1" className="title-text">{showAll ? 'Available'
+              : 'Learned'} Combos ({combos.length})</Typography>
+            <Tooltip title={`Show ${showAll ? 'Only Learned' : 'All Available'} Combos`}>
+              <IconButton color="inherit" aria-label="Toggle Visibility" onClick={this.toggleVisibility}>
+                {showAll ? <ToggleOff /> : <ToggleOn />}
+              </IconButton>
+            </Tooltip>
+          </Toolbar>
+        </AppBar>
+        <div className="combos-list">
+          {combos.length === 0 &&
+          <Typography>You have no {showAll ? 'available' : 'learned'} combos.</Typography>}
+          {combos.map((combo, index) =>
+            <div className="combo-row" key={index}>
+              {this.createComboRow(combo)}
+            </div>,
+          )}
+        </div>
+      </Paper>
     );
   }
 }

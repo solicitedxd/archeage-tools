@@ -156,8 +156,10 @@ class Main extends React.PureComponent {
             </Toolbar>
           </AppBar>
           {children}
-          <div className="section footer">
-            <Typography variant="caption">ArcheAge Tools v{__VERSION__}</Typography>
+          <div className="section">
+            <div className="footer">
+              <Typography variant="caption">ArcheAge Tools v{__VERSION__}</Typography>
+            </div>
           </div>
           <Snackbar
             anchorOrigin={{
