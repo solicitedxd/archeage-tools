@@ -156,7 +156,7 @@ class Main extends React.PureComponent {
             </Toolbar>
           </AppBar>
           {children}
-          <div className="section">
+          <div className="section" style={{ marginTop: 0 }}>
             <div className="footer">
               <Typography variant="caption">ArcheAge Tools v{__VERSION__}</Typography>
             </div>
