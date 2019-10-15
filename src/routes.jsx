@@ -5,12 +5,14 @@ import Main from 'components/pages/Main';
 import Home from 'components/pages/Home';
 import Dailies from 'components/pages/Dailies';
 import Skills from 'components/pages/Skills';
+import Calendar from 'components/pages/Calendar';
 
 export default (
   <Main>
     <Switch>
       <Route path="/dailies" component={Dailies} />
       <Route path="/skills" component={Skills} />
+      <Route path="/calendar" component={Calendar} />
       <Route path="/" component={Home} />
     </Switch>
   </Main>

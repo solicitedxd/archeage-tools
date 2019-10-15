@@ -43,6 +43,8 @@ const skills = Object.freeze([
     range: [0, 25],
     damage: { base: 0, attack: ATTACK.RANGED, ratio: 50 },
     description: 'Unleash a constant stream of arrows at a single enemy, dealing ${damage} Ranged Damage per shot.',
+    globalCooldown: GLOBAL_CD.REDUCED,
+    continuousHold: true,
     combos: [
       {
         buff: BUFF.SLOWED,

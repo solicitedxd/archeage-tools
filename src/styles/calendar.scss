@@ -1,0 +1,142 @@
+.calendar-container {
+  margin: 0 20px;
+
+  .calendar-categories {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 0;
+    align-items: flex-start;
+
+    &.mobile .event-list {
+      width: 100%;
+    }
+
+    .event-list {
+      width: 31.5%;
+      min-width: 300px;
+      margin-bottom: 20px;
+
+      h2 {
+        margin: 0;
+      }
+
+      .event-card {
+        position: relative;
+
+        &.running {
+          background: rgba(224, 190, 17, 0.10);
+
+          .event-icon {
+            background: rgba(168, 136, 17, 0.24);
+          }
+        }
+
+        & + .event-card {
+          border-top: 1px solid darkgray;
+        }
+
+        .event-icon {
+          background: rgba(60, 150, 135, 0.25);
+          width: 56px;
+          height: 56px;
+        }
+      }
+    }
+  }
+
+  .ev-status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    margin: 16px 6px 0 0;
+    height: 44px;
+  }
+
+  /* event statuses */
+  .ev-status-waiting,
+  .ev-status-ended,
+  .ev-status-in-progress,
+  .ev-status-standby {
+    background-image: url(../images/period.png);
+    background-repeat: no-repeat;
+    width: 42px;
+    height: 24px;
+  }
+
+  .ev-status-waiting {
+    background: none;
+  }
+
+  .ev-status-in-progress {
+    background-position: 0 0;
+  }
+
+  .ev-status-standby {
+    background-position: 0 -48px;
+  }
+
+  .ev-status-ended {
+    background-position: 0 -24px;
+  }
+
+  .ev-type {
+    width: 30px;
+    height: 23px;
+    background-image: url(../images/quest_notifier.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    z-index: 1;
+  }
+
+  .ev-daily {
+    background-position: -56px -32px;
+  }
+
+  .ev-repeatable {
+    background-position: -86px -40px;
+  }
+
+  .ev-day {
+    width: 42px;
+    height: 24px;
+    background-image: url(../images/quest_notifier.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    z-index: 1;
+  }
+
+  .ev-day.day-Monday {
+    background-position: -1px -76px;
+  }
+
+  .ev-day.day-Tuesday {
+    background-position: -45px -76px;
+  }
+
+  .ev-day.day-Wednesday {
+    background-position: -89px -76px;
+  }
+
+  .ev-day.day-Thursday {
+    background-position: -1px -102px;
+  }
+
+  .ev-day.day-Friday {
+    background-position: -45px -102px;
+  }
+
+  .ev-day.day-Saturday {
+    background-position: -89px -102px;
+  }
+
+  .ev-day.day-Sunday {
+    background-position: -133px -102px;
+  }
+
+}
