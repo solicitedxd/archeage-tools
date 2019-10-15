@@ -13,15 +13,21 @@ class Banner extends Component {
     path: string.isRequired,
     text: string.isRequired,
     disabled: bool,
+    noBanner: bool,
   };
 
   static defaultProps = {
     disabled: false,
+    noBanner: false,
   };
 
   render() {
-    const { path, disabled, text } = this.props;
+    const { path, disabled, text, noBanner } = this.props;
     const bannerClass = getNavId(path);
+
+    if (noBanner) {
+      return null;
+    }
 
     const banner = (
       <div className={cn('home-banner', bannerClass, { 'disabled': disabled })}>
