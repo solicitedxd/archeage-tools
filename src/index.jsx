@@ -7,6 +7,7 @@ import { createBrowserHistory } from 'history';
 import configureStore from './store';
 import routes from './routes';
 import './images/favicon.ico';
+import './images/ucc-teal.png';
 
 const history = createBrowserHistory();
 const store = configureStore(history);
