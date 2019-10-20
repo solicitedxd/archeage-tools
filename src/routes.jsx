@@ -14,6 +14,7 @@ export default (
       <Route path="/dailies" component={Dailies} />
       <Route path="/skills" component={Skills} />
       <Route path="/calendar" component={Calendar} />
+      <Route path="/schedule" component={Calendar} />
       <Route path="/taxes" component={Taxes} />
       <Route path="/" component={Home} />
     </Switch>

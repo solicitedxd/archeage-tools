@@ -54,7 +54,7 @@ class PropertyBox extends Component {
             <Help fontSize="small" color="primary" className="help-icon" />
           </Tooltip>
         </Typography>
-        <Typography className="property-size">{size}, {base} per week</Typography>
+        <Typography className="property-size" color="textPrimary">{size}, {base} per week</Typography>
         <div className="property-input">
           <TextField
             id={`${id}-friendly`}

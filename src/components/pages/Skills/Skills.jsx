@@ -138,13 +138,20 @@ class Skills extends Component {
       if (!tree.treeName) {
         return '';
       }
-      return `${tree.treeName},${encodeSkillsAsHex(tree.skills)},${encodeAncestrals(tree.ancestrals)}`;
+      return `${tree.treeName}.${encodeSkillsAsHex(tree.skills)}.${encodeAncestrals(tree.ancestrals)}`;
     }).join(':');
   };
 
   decodeSkillTrees = (data) => {
     const decodedTrees = data.split(':').map(rawTree => {
-      let [treeName, skills, ancestrals] = rawTree.split(',');
+      let treeName;
+      let skills;
+      let ancestrals;
+      if (rawTree.indexOf(',') >= 0) {
+        [treeName, skills, ancestrals] = rawTree.split(',');
+      } else {
+        [treeName, skills, ancestrals] = rawTree.split('.');
+      }
       if (!SKILLSET[treeName]) {
         treeName = null;
         skills = [];

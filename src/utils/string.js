@@ -6,4 +6,4 @@ export const substitute = (template, obj) => template.replace(/\${([a-z0-9_]+)(\
   }
 });
 
-export const getNavId = (path) => path.substr(1).replace('/', '_');
+export const getNavId = (path) => path && path.substr(1).replace('/', '_');

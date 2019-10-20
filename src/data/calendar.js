@@ -12,6 +12,7 @@ import GoldenPlainsIcon from 'images/event/goldplain.png';
 import GrimghastRiftIcon from 'images/event/grimghast_rift.png';
 import LeviathanIcon from 'images/event/leviathan.png';
 import LuscaAwakeningIcon from 'images/event/lusca_awakening.png';
+import KadumIcon from 'images/event/kadum.png';
 import {
   DAY,
   EVENT_TYPE,

@@ -151,6 +151,9 @@ class EventCard extends Component {
   handleTick = () => {
     const { nextOccurrence, running } = this.state;
 
+    // prevent state update upon unload
+    if (this.timer === null) return;
+
     const today = moment.utc();
     let time = 0;
 

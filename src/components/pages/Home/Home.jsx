@@ -2,6 +2,7 @@ import React from 'react';
 import Banner from 'components/Banner';
 import {
   AppBar,
+  Link,
   Paper,
   Toolbar,
   Typography,
@@ -13,6 +14,39 @@ const Home = () => (
     <div className="home-banners section">
       {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path} />)}
     </div>
+    <Paper className="section">
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h5" className="title-text">Feedback and Updates</Typography>
+          <Typography variant="overline">Oct 20, 2019</Typography>
+        </Toolbar>
+      </AppBar>
+      <div style={{ padding: '8px 12px' }}>
+        <Typography>
+          Thank you everyone for the feedback you've provided from my reddit post!
+        </Typography>
+        <Typography style={{ margin: '8px 0' }}>
+          - I've implemented a Dark Mode that can be toggled from the navigation menu. <br />
+          - I've fixed a couple site issues. <br />
+          - Auroria guild quests are now marked as Guild Missions. <br />
+          - Kadum raid timer will be added at a later date, some modifications need to be added to support his odd
+          availability times.
+        </Typography>
+        <Typography>
+          As a note for the event schedule, ArcheAge Unchained's NA servers appear to use EU times for their instance
+          availability times. I'll work on adding a method to select Unchained event times.
+        </Typography>
+        <Typography style={{ marginTop: 8 }}>
+          I've also set up a <Link href="https://www.patreon.com/bePatron?u=12806740" target="_blank">Patreon</Link> for
+          those would like to support the site. Thank you all!
+        </Typography>
+        <Typography style={{ marginTop: 8 }}>
+          See an issue? Drop an email to <Link href="mailto:admin@mokulu.io">admin@mokulu.io</Link> or send a PM
+          to <Link href="https://www.reddit.com/u/Mokulu">u/Mokulu</Link>. I know my event schedule is not 100%
+          accurate, and I'm even missing EU times.
+        </Typography>
+      </div>
+    </Paper>
     <Paper className="section">
       <AppBar position="static">
         <Toolbar variant="dense">

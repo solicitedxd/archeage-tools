@@ -248,3 +248,26 @@
     height: 20px;
   }
 }
+
+.dark-mode {
+  .quest-container {
+    .quest-list {
+      .reward-list {
+        .currency {
+          color: #4D9BDC;
+        }
+      }
+    }
+
+    .currency {
+      color: #C27B1A;
+    }
+  }
+  .quest-filters {
+    .filter-field {
+      .label {
+        color: rgba(255, 255, 255, 0.84);
+      }
+    }
+  }
+}
