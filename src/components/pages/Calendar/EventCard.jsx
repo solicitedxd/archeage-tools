@@ -16,6 +16,7 @@ import moment from 'moment';
 import moment_tz from 'moment-timezone';
 import { EVENT_TYPE } from 'constants/calendar';
 import { getDay } from 'utils/calendar';
+import { hhmmssFromDate } from 'utils/thunderstruck';
 
 // to prevent import org from removing the import
 moment_tz;
@@ -78,7 +79,9 @@ class EventCard extends Component {
 
     this.setState({ times, days }, () => {
       this.getNextOccurrence();
-      this.timer = setInterval(this.handleTick, 1000);
+      if (!this.timer) {
+        this.timer = setInterval(this.handleTick, 1000);
+      }
     });
   };
 
@@ -196,13 +199,7 @@ class EventCard extends Component {
       label = 'Next';
     }
 
-    let remaining = "";
-    if (remainingTime > 0) {
-      const timeMatch = new Date(remainingTime).toUTCString().match(/, (\d\d).+(\d\d:\d\d:\d\d)/);
-      const days = parseInt(timeMatch[1]) - 1;
-      const time = timeMatch[2];
-      remaining = `${days > 0 ? `${days}:` : ''}${time}`;
-    }
+    const remaining = (remainingTime > 0) ? hhmmssFromDate(remainingTime) : '';
 
     return (
       <Card>

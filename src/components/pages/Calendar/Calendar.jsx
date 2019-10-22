@@ -41,7 +41,7 @@ class Calendar extends Component {
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Event Calendar [{moment.tz(moment.tz.guess()).format('z')}]</Typography>
+              <Typography variant="subtitle1" className="title-text">Event Schedule [{moment.tz(moment.tz.guess()).format('z')}]</Typography>
               <Typography variant="overline">
                 NA
                 <Tooltip title="Toggle Regional Times">

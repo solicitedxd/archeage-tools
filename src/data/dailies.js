@@ -124,7 +124,7 @@ export default [
   {
     name: 'Supply Demand: Leather',
     idx: 4,
-    zones: [ZONE.ANHIMAR],
+    zones: [ZONE.AHNIMAR],
     rewards: [{ type: REWARD.COIN, count: 25000 }, { type: REWARD.ITEM, item: ITEM.BLUE_SALT_BOND }],
     type: TYPE.SUPPLY_DEMAND,
   },
@@ -1172,8 +1172,10 @@ export default [
   },
   {
     name: 'Cargo Delivery',
-    zones: [ZONE.SOLIS_HEADLANDS, ZONE.VILLANELLE, ZONE.YNYSTERE, ZONE.SOLZREED_PENINSULA, ZONE.TWO_CROWNS, ZONE.CINDERSTONE_MOOR],
-    rewards: [{ type: REWARD.VOCATION, count: 1500 }, { type: REWARD.FAMILY_XP, count: 100 }, { type: REWARD.ITEM, item: ITEM.ONYX_ARCHEUM_ESSENCE, count: 20 }],
+    zones: [ZONE.SOLIS_HEADLANDS, ZONE.VILLANELLE, ZONE.YNYSTERE, ZONE.SOLZREED_PENINSULA, ZONE.TWO_CROWNS,
+      ZONE.CINDERSTONE_MOOR],
+    rewards: [{ type: REWARD.VOCATION, count: 1500 }, { type: REWARD.FAMILY_XP, count: 100 },
+      { type: REWARD.ITEM, item: ITEM.ONYX_ARCHEUM_ESSENCE, count: 20 }],
     type: TYPE.FAMILY,
   },
   {
@@ -1216,5 +1218,10 @@ export default [
       { type: REWARD.GUILD_XP, count: 8 }, { type: REWARD.LEADERSHIP, count: 10 }, { type: REWARD.PRESTIGE, count: 4 }],
     difficulty: DIFFICULTY.LEGENDARY,
     type: TYPE.WORLD_BOSS,
+  },
+  {
+    name: 'Clean the Kiddies',
+    zones: [ZONE.AHNIMAR],
+    rewards: [{ type: REWARD.GILDA, count: 1 }, { type: REWARD.COIN, count: 2210 }],
   },
 ];

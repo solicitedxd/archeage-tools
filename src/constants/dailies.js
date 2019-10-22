@@ -40,7 +40,7 @@ export const ZONE = Object.freeze({
   KARKASSE_RIDGELANDS: 'Karkasse Ridgelands',
 
   ROKHALA_MOUNTAINS: 'Rokhala Mountains',
-  ANHIMAR: 'Anhimar',
+  AHNIMAR: 'Ahnimar',
 
   DIAMOND_SHORES: 'Diamond Shores',
   GOLDEN_RUINS: 'Golden Ruins',
@@ -93,7 +93,7 @@ export const CONTINENT = Object.freeze({
       ZONE.HELLSWAMP,
       ZONE.SANDDEEP,
       ZONE.KARKASSE_RIDGELANDS,
-      ZONE.ANHIMAR,
+      ZONE.AHNIMAR,
     ],
   },
   HARANYA: {

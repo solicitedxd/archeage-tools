@@ -17,6 +17,24 @@ const Home = () => (
     <Paper className="section">
       <AppBar position="static">
         <Toolbar variant="dense">
+          <Typography variant="h5" className="title-text">Thunderstruck Timer</Typography>
+          <Typography variant="overline">Oct 22, 2019</Typography>
+        </Toolbar>
+      </AppBar>
+      <div style={{ padding: '8px 12px' }}>
+        <Typography>
+          The Thunderstruck tool is now available. You can start timing something of yours from scratch or time someone
+          else's public tree farm by entering a remaining time. Timers will count down until each possible thunderstruck
+          growth phase for the tree, based on the region's climate.
+        </Typography>
+        <Typography style={{ margin: '8px 0' }}>
+          I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to the checklist.
+        </Typography>
+      </div>
+    </Paper>
+    <Paper className="section">
+      <AppBar position="static">
+        <Toolbar variant="dense">
           <Typography variant="h5" className="title-text">Feedback and Updates</Typography>
           <Typography variant="overline">Oct 20, 2019</Typography>
         </Toolbar>
