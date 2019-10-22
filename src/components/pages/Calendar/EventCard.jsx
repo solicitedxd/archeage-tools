@@ -86,11 +86,17 @@ class EventCard extends Component {
   };
 
   getNextOccurrence = () => {
-    const { times: timesRaw, days } = this.state;
+    const { times: timesRaw, days: daysRaw } = this.state;
+    let days = daysRaw;
 
     const now = moment.utc();
     let running = null;
     const times = timesRaw.map(time => {
+      if (time.days) {
+        days = time.days;
+      } else {
+        days = daysRaw;
+      }
       const [hh, mm, ss] = time.time.split(':');
       const startTime = moment.utc().hour(hh).minute(mm).second(ss);
       let endTime;

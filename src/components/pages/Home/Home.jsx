@@ -30,6 +30,9 @@ const Home = () => (
         <Typography style={{ margin: '8px 0' }}>
           I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to the checklist.
         </Typography>
+        <Typography style={{ margin: '8px 0' }}>
+          <b>Update:</b> Event Schedule - Kadum has been added, along with Stillwater Gulf.
+        </Typography>
       </div>
     </Paper>
     <Paper className="section">
