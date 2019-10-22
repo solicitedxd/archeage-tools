@@ -7,6 +7,7 @@ import Dailies from 'components/pages/Dailies';
 import Skills from 'components/pages/Skills';
 import Calendar from 'components/pages/Calendar';
 import Taxes from 'components/pages/Taxes';
+import Thunderstruck from 'components/pages/Thunderstruck';
 
 export default (
   <Main>
@@ -16,6 +17,7 @@ export default (
       <Route path="/calendar" component={Calendar} />
       <Route path="/schedule" component={Calendar} />
       <Route path="/taxes" component={Taxes} />
+      <Route path="/thunderstruck" component={Thunderstruck} />
       <Route path="/" component={Home} />
     </Switch>
   </Main>

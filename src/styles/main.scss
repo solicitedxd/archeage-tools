@@ -7,7 +7,7 @@ html {
 }
 
 html.dark-mode {
-  background-color: #424242;
+  background-color: #121212;
 }
 
 body {
@@ -52,8 +52,12 @@ body {
     background-position: -33px -33px;
   }
 
-  &.trade-packs {
+  &.thunderstruck {
     background-position: -33px -99px;
+  }
+
+  &.trade-packs {
+    background-position: -33px -231px;
   }
 
   &.schedule {
