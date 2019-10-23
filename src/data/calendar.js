@@ -123,7 +123,10 @@ export const REAL_TIME_EVENTS = Object.freeze([
     icon: KadumIcon,
     name: 'Kadum (Instance)',
     type: EVENT_TYPE.WORLD_BOSSES,
-    days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
+    days: {
+      NA: [],
+      EU: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
+    },
     times: {
       NA: [
         { time: '01:00:00', duration: '01:00:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },

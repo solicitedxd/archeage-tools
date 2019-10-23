@@ -46,50 +46,35 @@ class EventCard extends Component {
     time: 0,
   };
 
-  timer;
+  timer = null;
 
   componentDidMount() {
-    this.setupTimer(this.props);
-  }
-
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const { regionNA } = this.props;
-    const { regionNA: nRegionNA } = nextProps;
-    if (regionNA !== nRegionNA) {
-      this.setupTimer(nextProps);
-    }
+    const { type } = this.props;
+    if (type === EVENT_TYPE.GAME_TIME_EVENT) return;
+    this.timer = setInterval(this.handleTick, 250);
   }
 
   componentWillUnmount() {
     clearInterval(this.timer);
   }
 
-  setupTimer = (props) => {
-    const { regionNA, times: timesRaw, days: daysRaw, type } = props;
-    // do nothing for game time events
-    if (type === EVENT_TYPE.GAME_TIME_EVENT) return;
-
+  getTimes = () => {
+    const { regionNA, times: timesRaw, days: daysRaw } = this.props;
     const times = timesRaw && timesRaw[regionNA ? 'NA' : 'EU'] || [];
     if (times.length === 0) {
       this.setState({ nextOccurrence: {}, running: null, time: 0 });
-      clearInterval(this.timer);
-      return;
+      return {};
     }
     const days = daysRaw && daysRaw[regionNA ? 'NA' : 'EU'] || [];
-
-    this.setState({ times, days }, () => {
-      this.getNextOccurrence();
-      if (!this.timer) {
-        this.timer = setInterval(this.handleTick, 1000);
-      }
-    });
+    return { times, days };
   };
 
   getNextOccurrence = () => {
-    const { times: timesRaw, days: daysRaw } = this.state;
+    const { times: timesRaw, days: daysRaw } = this.getTimes();
+    if (!timesRaw) return;
     let days = daysRaw;
 
-    const now = moment.utc();
+    const now = moment.utc().milliseconds(0);
     let running = null;
     const times = timesRaw.map(time => {
       if (time.days) {
@@ -154,11 +139,12 @@ class EventCard extends Component {
       nextOccurrence.day = (days.length >= 1);
     }
 
-    this.setState({ nextOccurrence, running }, () => this.handleTick());
+    this.setState({ nextOccurrence, running });
   };
 
   handleTick = () => {
-    const { nextOccurrence, running } = this.state;
+    const { nextOccurrence, running, regionNA: regionPrev } = this.state;
+    const { regionNA } = this.props;
 
     // prevent state update upon unload
     if (this.timer === null) return;
@@ -168,13 +154,12 @@ class EventCard extends Component {
 
     if (running) {
       time = running.ends.diff(today);
-    } else
-    if (nextOccurrence.time) {
+    } else if (nextOccurrence.time) {
       time = nextOccurrence.time.diff(today);
     }
 
-    this.setState({ time: time }, () => {
-      if (time <= 0) {
+    this.setState({ time: time, regionNA }, () => {
+      if (time <= 0 || regionPrev !== regionNA) {
         this.getNextOccurrence();
       }
     });
