@@ -202,10 +202,14 @@ export const REAL_TIME_EVENTS = Object.freeze([
     icon: DragonRedIcon,
     name: 'Red Dragon\'s Keep (Instance)',
     type: EVENT_TYPE.WORLD_BOSSES,
+    days: {
+      NA: [],
+      EU: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY],
+    },
     times: {
       NA: [
-        { time: '01:00:00', duration: '01:00:00' },
-        { time: '15:30:00', duration: '01:00:00' },
+        { time: '01:00:00', duration: '01:00:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '15:30:00', duration: '01:00:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
       ],
       EU: [
         { time: '10:30:00', duration: '01:00:00' },
