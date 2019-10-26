@@ -129,7 +129,7 @@ class EventCard extends Component {
     if (times.length === 1) {
       time = times[0];
     } else if (times.length > 1) {
-      time = times.sort((a, b) => a.time > b.time)[0];
+      time = times.sort((a, b) => a.time > b.time ? 1 : -1)[0];
     }
 
     if (time) {

@@ -191,7 +191,7 @@ class SkillCombos extends Component {
       combos = combos.concat(createCombosForEffects(skill, skill.effects, []));
     });
 
-    combos = combos.sort((a, b) => a.skill.name > b.skill.name);
+    combos = combos.sort((a, b) => a.skill.name > b.skill.name ? 1 : -1);
 
     return (
       <Paper className="skill-combos section">

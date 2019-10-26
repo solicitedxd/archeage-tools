@@ -156,9 +156,11 @@ class Dailies extends Component {
           </AppBar>
           {visibleQuests.sort((a, b) => {
             if (a.name === b.name) {
-              return a.zones[0] > b.zones[0];
+              if (a.zones[0] > b.zones[0]) return 1;
+              if (a.zones[0] < b.zones[0]) return -1;
+              return 0;
             }
-            return a.name > b.name;
+            return (a.name > b.name) ? 1 : -1;
           }).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
         </Paper>
         {!this.showSettingsMenu() &&

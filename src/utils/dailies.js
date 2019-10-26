@@ -6,7 +6,7 @@ import ITEM from 'constants/items';
 
 export const getQuestId = (quest) => `${quest.name}${quest.idx && `-${quest.idx}` || ''}`;
 
-export const sortReward = (a, b) => a.type > b.type;
+export const sortReward = (a, b) => a.type > b.type ? 1 : -1;
 
 export const sortItems = (a, b) => {
   if (a.type === REWARD.GILDA && !a.item) {
@@ -15,7 +15,7 @@ export const sortItems = (a, b) => {
   if (b.type === REWARD.GILDA && !b.item) {
     b.item = ITEM.GILDA_STAR;
   }
-  return a.item.name > b.item.name;
+  return a.item.name > b.item.name ? 1 : -1;
 };
 
 export const splitRewards = (rewards) => {
