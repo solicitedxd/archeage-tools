@@ -4,11 +4,14 @@ import {
   QUEST_FILTER_FACTION,
   QUEST_FILTER_REWARD,
   QUEST_FILTER_TYPE,
+  QUEST_HIDE,
+  QUEST_HIDE_MODE,
+  QUEST_HIDE_RESET,
   QUEST_RESET,
   QUEST_STATUS,
 } from 'constants/dailies';
 import initialState from 'initialStates/dailies';
-import { getItem } from 'utils/localStorage'
+import { getItem } from 'utils/localStorage';
 
 const dailies = (state = getItem('dailies', initialState), action) => {
   switch (action.type) {
@@ -18,7 +21,7 @@ const dailies = (state = getItem('dailies', initialState), action) => {
         quests: {
           ...state.quests,
           [action.questId]: action.status,
-        }
+        },
       };
     case QUEST_RESET:
       return {
@@ -49,6 +52,24 @@ const dailies = (state = getItem('dailies', initialState), action) => {
       return {
         ...state,
         types: action.values,
+      };
+    case QUEST_HIDE:
+      return {
+        ...state,
+        hiddenQuests: {
+          ...state.hiddenQuests,
+          [action.questId]: action.status,
+        },
+      };
+    case QUEST_HIDE_MODE:
+      return {
+        ...state,
+        hideMode: action.value,
+      };
+    case QUEST_HIDE_RESET:
+      return {
+        ...state,
+        hiddenQuests: {},
       };
     default:
       return state;

@@ -22,6 +22,14 @@
           background: rgba(82, 80, 63, 0.3);
         }
       }
+      &.hidden {
+        background: rgba(82, 80, 63, 0.12);
+        opacity: 0.6;
+
+        &:hover {
+          background: rgba(82, 80, 63, 0.3);
+        }
+      }
     }
 
     .quest-name > span {
@@ -116,6 +124,10 @@
     display: block;
     margin: 8px 12px;
 
+    &:last-child {
+      padding-bottom: 8px;
+    }
+
     .label {
       color: rgba(0, 0, 0, 0.54);
     }
@@ -135,6 +147,10 @@
 
       &:not(.rewards) button {
         flex-grow: 1;
+      }
+
+      button.hideSelected {
+        background-color: #C1C1C1;
       }
     }
   }

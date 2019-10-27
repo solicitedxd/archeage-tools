@@ -12,8 +12,29 @@ import navigation from 'constants/navigation';
 const Home = () => (
   <div>
     <div className="home-banners section">
-      {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name}  />)}
+      {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
     </div>
+    <Paper className="section">
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h5" className="title-text">Hide Selective Daily Quests</Typography>
+          <Typography variant="overline">Oct 26, 2019</Typography>
+        </Toolbar>
+      </AppBar>
+      <div style={{ padding: '8px 12px' }}>
+        <Typography>
+          A new "Hide Mode" has been added to the Daily Checklist. Clicking the "Hide Undesired Quests" button in the
+          filters panel will now put you into a "hide mode". All quests are selected by default, and unchecking a quest
+          will hide it entirely from the normal view of the dailies checklist.<br />When you're done hiding or
+          re-showing quests, just click the "Stop Hiding Quests" button to go back to the normal checklist.
+        </Typography>
+        <Typography style={{ margin: '8px 0' }}>
+          Event Schedule - Red Dragon's available days have been added.<br />
+          Sorting issues have been fixed on Chrome for the Dailies Checklist, Event Schedule, and the Combos section of
+          the Skill Builder.
+        </Typography>
+      </div>
+    </Paper>
     <Paper className="section">
       <AppBar position="static">
         <Toolbar variant="dense">
@@ -28,7 +49,8 @@ const Home = () => (
           growth phase for the tree, based on the region's climate.
         </Typography>
         <Typography style={{ margin: '8px 0' }}>
-          I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to the checklist.
+          I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to the
+          checklist.
         </Typography>
         <Typography style={{ margin: '8px 0' }}>
           <b>Update:</b> Event Schedule - Kadum has been added, along with Stillwater Gulf.
