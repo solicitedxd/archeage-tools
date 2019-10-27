@@ -15,7 +15,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import cn from 'classnames';
-import { setQuestStatus } from 'actions/dailies';
+import {
+  setQuestHide,
+  setQuestStatus,
+} from 'actions/dailies';
 import { REWARD } from 'constants/dailies';
 import ITEM from 'constants/items';
 import Item from 'components/Item';
@@ -51,20 +54,28 @@ class Quest extends Component {
   };
 
   handleChange = (e, status) => {
-    this.props.setQuestStatus(this.getQuestId(), status);
+    const { setQuestStatus, setQuestHide, hideMode } = this.props;
+    if (hideMode) {
+      setQuestHide(this.getQuestId(), !status);
+    } else {
+      setQuestStatus(this.getQuestId(), status);
+    }
   };
 
   render() {
-    const { name, zones: zoneObj, difficulty, rewards, quests, faction } = this.props;
+    const { name, zones: zoneObj, difficulty, rewards, quests, faction, hideMode, hiddenQuests } = this.props;
     const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
     const zones = getZones(zoneObj, faction);
 
-    const checked = quests[this.getQuestId()] || false;
+    const completed = quests[this.getQuestId()] || false;
+    const hidden = !(hiddenQuests[this.getQuestId()] || false);
+
+    const checked = hideMode ? hidden : completed;
 
     return (
       <Card onClick={() => this.handleChange(null, !checked)}>
         <CardHeader
-          className={cn('quest-card', { 'checked': checked })}
+          className={cn('quest-card', { 'checked': checked && !hideMode }, { 'hidden': !hidden && hideMode })}
           avatar={<Checkbox
             checked={checked}
             onChange={this.handleChange}
@@ -115,13 +126,16 @@ class Quest extends Component {
   }
 }
 
-const mapStateToProps = ({ dailies: { quests, faction } }) => ({
+const mapStateToProps = ({ dailies: { quests, faction, hideMode, hiddenQuests } }) => ({
   quests,
   faction,
+  hideMode,
+  hiddenQuests,
 });
 
 const mapDispatchToProps = {
   setQuestStatus,
+  setQuestHide,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Quest);

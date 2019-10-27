@@ -270,13 +270,6 @@ export const passives = Object.freeze([
     icon: LingeringImpactIcon,
     name: 'Lingering Impact',
     description: 'Increases the duration of Perform skills #+2 sec#',
-    skillMod: [
-      {
-        type: SKILLMOD.FLAT,
-        vars: { duration: 2 },
-        skills: [2, 5, 8, 10],
-      },
-    ],
   },
   {
     icon: LoudspeakerIcon,

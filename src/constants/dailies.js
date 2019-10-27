@@ -5,6 +5,9 @@ export const QUEST_FILTER_REWARD = 'QUEST_FILTER_REWARD';
 export const QUEST_FILTER_CONTINENT = 'QUEST_FILTER_CONTINENT';
 export const QUEST_FILTER_TYPE = 'QUEST_FILTER_TYPE';
 export const QUEST_FILTER_COMPLETE = 'QUEST_FILTER_COMPLETE';
+export const QUEST_HIDE = 'QUEST_HIDE';
+export const QUEST_HIDE_MODE = 'QUEST_HIDE_MODE';
+export const QUEST_HIDE_RESET = 'QUEST_HIDE_RESET';
 
 export const ZONE = Object.freeze({
   ARCUM_IRIS: 'Arcum Iris',

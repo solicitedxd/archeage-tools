@@ -800,7 +800,7 @@ export default [
   },
   {
     name: 'Defeat the Bonetree!',
-    zones: [ZONE.ARCADIAN_SEA],
+    zones: [ZONE.WHITE_ARDEN],
     rewards: [{ type: REWARD.GILDA, count: 1 }],
     difficulty: DIFFICULTY.LEGENDARY,
     type: TYPE.WORLD_BOSS,

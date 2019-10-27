@@ -10,13 +10,14 @@ import { getNavId } from 'utils/string';
 
 class Banner extends Component {
   static propTypes = {
-    path: string.isRequired,
+    path: string,
     text: string.isRequired,
     disabled: bool,
     noBanner: bool,
   };
 
   static defaultProps = {
+    path: '',
     disabled: false,
     noBanner: false,
   };

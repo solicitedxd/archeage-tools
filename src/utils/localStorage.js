@@ -1,3 +1,9 @@
+import { override as dailiesOverride } from 'initialStates/dailies';
+
+const overrides = {
+  dailies: dailiesOverride,
+};
+
 export const setItem = (key, value) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
@@ -11,6 +17,10 @@ export const getItem = (key, initialState) => {
     if (initialState.version && item.version !== initialState.version) {
       setItem(key, initialState);
       return initialState;
+    }
+
+    if (overrides[key]) {
+      return Object.assign(item, overrides[key]);
     }
 
     return item;

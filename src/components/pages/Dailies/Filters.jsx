@@ -19,6 +19,7 @@ import {
   filterTypes,
   resetQuests,
   setQuestStatus,
+  setHideMode,
 } from 'actions/dailies';
 import {
   CONTINENT,
@@ -72,11 +73,27 @@ class Filters extends Component {
   };
   handleCompleteChange = (event, value) => this.props.filterComplete(value);
 
+  toggleHideMode = () => {
+    const { hideMode, setHideMode } = this.props;
+    setHideMode(!hideMode);
+  };
+
   render() {
-    const { continents, faction, rewards, types, hideComplete, availableRewards, claimedRewards } = this.props;
+    const { continents, faction, rewards, types, hideComplete, availableRewards, claimedRewards, hideMode } = this.props;
 
     return (
       <div>
+        <div className="filter-field">
+          <div className="filter-group">
+            <Button
+              variant={hideMode ? 'contained' : 'outlined'}
+              className={cn({ hideSelected: hideMode })}
+              onClick={this.toggleHideMode}
+            >
+              {hideMode ? 'Stop Hiding Quests' : 'Hide Undesired Quests'}
+            </Button>
+          </div>
+        </div>
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Faction</Typography>
           <ButtonGroup className="filter-group">
@@ -137,6 +154,7 @@ class Filters extends Component {
             ))}
           </div>
         </div>
+        {!hideMode &&
         <FormControl className="filter-field">
           <FormControlLabel
             control={
@@ -147,21 +165,22 @@ class Filters extends Component {
               />
             }
             label="Hide Completed Quests" />
-        </FormControl>
+        </FormControl>}
 
-        <RewardsDisplay title="Earned Rewards" rewards={claimedRewards} expanded />
-        <RewardsDisplay title="Available Rewards" rewards={availableRewards} />
+        {!hideMode && <RewardsDisplay title="Earned Rewards" rewards={claimedRewards} expanded />}
+        {!hideMode && <RewardsDisplay title="Available Rewards" rewards={availableRewards} />}
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete } }) => ({
+const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete, hideMode } }) => ({
   continents,
   faction,
   rewards,
   types,
   hideComplete,
+  hideMode,
 });
 
 const mapDispatchToProps = {
@@ -172,6 +191,7 @@ const mapDispatchToProps = {
   filterTypes,
   resetQuests,
   setQuestStatus,
+  setHideMode,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

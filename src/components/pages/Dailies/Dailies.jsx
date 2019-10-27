@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import cn from 'classnames';
 import {
   AppBar,
   Dialog,
@@ -18,8 +19,12 @@ import {
   ExpandLess,
   Replay,
   Settings,
+  Visibility,
 } from '@material-ui/icons';
-import { resetQuests } from 'actions/dailies';
+import {
+  resetHide,
+  resetQuests,
+} from 'actions/dailies';
 import dailyQuests from 'data/dailies';
 import Quest from './Quest';
 import Filters from './Filters';
@@ -64,8 +69,17 @@ class Dailies extends Component {
     this.setState({ filtersOpen: true });
   };
 
+  handleReset = () => {
+    const { resetQuests, resetHide, hideMode } = this.props;
+    if (hideMode) {
+      resetHide();
+    } else {
+      resetQuests();
+    }
+  };
+
   render() {
-    const { continents, faction, rewards, types, hideComplete, resetQuests, quests } = this.props;
+    const { continents, faction, rewards, types, hideComplete, quests, hideMode, hiddenQuests } = this.props;
     const { filtersOpen, scrollY } = this.state;
     const zonesFromContinents = [].concat.apply([], continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones));
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
@@ -78,7 +92,12 @@ class Dailies extends Component {
 
     const visibleQuests = dailyQuests.filter(quest => {
       const completed = quests[getQuestId(quest)] || false;
+      const hidden = hiddenQuests[getQuestId(quest)];
       let visible = true;
+
+      if (!hideMode && hidden) {
+        return false;
+      }
 
       // quest has faction AND faction doesn't match, hide
       if (quest.faction && quest.faction !== faction) {
@@ -100,13 +119,13 @@ class Dailies extends Component {
         visible = false;
       }
 
-      // do not show completed quests
-      if (visible && hideComplete && completed) {
+      // do not show completed quests, but show them in hideMode
+      if (visible && hideComplete && completed && !hideMode) {
         visible = false;
       }
 
-      // we want to always show rewards for completed quests
-      if (!visible && !completed) {
+      // we want to always show rewards for completed quests, but don't want rewards in hideMode
+      if (!visible && !completed || hideMode) {
         return visible;
       }
 
@@ -142,10 +161,14 @@ class Dailies extends Component {
         <Paper className="section quest-list" style={mainStyle}>
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="h6" className="title-text">Daily Checklist</Typography>
-              <Tooltip title="Reset all quests.">
-                <IconButton color="inherit" aria-label="Reset" onClick={() => resetQuests()}>
-                  <Replay />
+              <Typography variant="h6" className={cn({ 'title-text': !hideMode })}>Daily Checklist</Typography>
+              {hideMode &&
+              <Typography variant="overline" style={{ marginLeft: 12 }} className={cn({ 'title-text': hideMode })}>
+                [Hiding] Unmarked quests will never show
+              </Typography>}
+              <Tooltip title={hideMode ? 'Restore all hidden' : 'Reset all quests.'}>
+                <IconButton color="inherit" aria-label="Reset" onClick={this.handleReset}>
+                  {hideMode ? <Visibility /> : <Replay />}
                 </IconButton>
               </Tooltip>
               {this.showSettingsMenu() &&
@@ -156,9 +179,11 @@ class Dailies extends Component {
           </AppBar>
           {visibleQuests.sort((a, b) => {
             if (a.name === b.name) {
-              return a.zones[0] > b.zones[0];
+              if (a.zones[0] > b.zones[0]) return 1;
+              if (a.zones[0] < b.zones[0]) return -1;
+              return 0;
             }
-            return a.name > b.name;
+            return (a.name > b.name) ? 1 : -1;
           }).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
         </Paper>
         {!this.showSettingsMenu() &&
@@ -203,7 +228,7 @@ class Dailies extends Component {
   }
 }
 
-const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete, quests }, display: { mobile } }) => ({
+const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideComplete, quests, hideMode, hiddenQuests }, display: { mobile } }) => ({
   continents,
   faction,
   rewards,
@@ -211,10 +236,13 @@ const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideC
   hideComplete,
   quests,
   displayMobile: mobile,
+  hideMode,
+  hiddenQuests,
 });
 
 const mapDispatchToProps = {
   resetQuests,
+  resetHide,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dailies);

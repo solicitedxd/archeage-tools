@@ -4,6 +4,9 @@ import {
   QUEST_FILTER_FACTION,
   QUEST_FILTER_REWARD,
   QUEST_FILTER_TYPE,
+  QUEST_HIDE,
+  QUEST_HIDE_MODE,
+  QUEST_HIDE_RESET,
   QUEST_RESET,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -14,6 +17,8 @@ export const triggerLocalStorageUpdate = [
   QUEST_FILTER_FACTION,
   QUEST_FILTER_REWARD,
   QUEST_FILTER_TYPE,
+  QUEST_HIDE,
+  QUEST_HIDE_RESET,
   QUEST_RESET,
   QUEST_STATUS,
 ];
@@ -44,4 +49,16 @@ export const filterRewards = (values) => (dispatch) => {
 
 export const filterTypes = (values) => (dispatch) => {
   dispatch({ type: QUEST_FILTER_TYPE, values });
+};
+
+export const setQuestHide = (questId, status) => (dispatch) => {
+  dispatch({ type: QUEST_HIDE, questId, status });
+};
+
+export const setHideMode = (value) => (dispatch) => {
+  dispatch({ type: QUEST_HIDE_MODE, value });
+};
+
+export const resetHide = () => (dispatch) => {
+  dispatch({ type: QUEST_HIDE_RESET });
 };
