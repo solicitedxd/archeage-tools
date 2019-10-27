@@ -92,7 +92,7 @@ class Dailies extends Component {
 
     const visibleQuests = dailyQuests.filter(quest => {
       const completed = quests[getQuestId(quest)] || false;
-      const hidden = hiddenQuests[getQuestId(quest)];
+      const hidden = hiddenQuests && hiddenQuests[getQuestId(quest)] || false;
       let visible = true;
 
       if (!hideMode && hidden) {

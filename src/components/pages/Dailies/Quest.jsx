@@ -68,7 +68,7 @@ class Quest extends Component {
     const zones = getZones(zoneObj, faction);
 
     const completed = quests[this.getQuestId()] || false;
-    const hidden = !(hiddenQuests[this.getQuestId()] || false);
+    const hidden = !(hiddenQuests && hiddenQuests[this.getQuestId()] || false);
 
     const checked = hideMode ? hidden : completed;
 
