@@ -2,7 +2,7 @@ import React from 'react';
 import ReactHintFactory from 'react-hint';
 import { Typography } from '@material-ui/core';
 import cn from 'classnames';
-import ITEMS from 'constants/items';
+import ITEMS from 'data/items';
 import Currency from 'components/Currency';
 import {
   QUALITY,

@@ -2,7 +2,7 @@ import {
   FACTION,
   REWARD,
 } from 'constants/dailies';
-import ITEM from 'constants/items';
+import ITEM from 'data/items';
 
 export const getQuestId = (quest) => `${quest.name}${quest.idx && `-${quest.idx}` || ''}`;
 

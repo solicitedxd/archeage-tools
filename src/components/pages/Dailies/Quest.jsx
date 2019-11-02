@@ -20,7 +20,7 @@ import {
   setQuestStatus,
 } from 'actions/dailies';
 import { REWARD } from 'constants/dailies';
-import ITEM from 'constants/items';
+import ITEM from 'data/items';
 import Item from 'components/Item';
 import Currency from 'components/Currency';
 import XP from 'components/XP';

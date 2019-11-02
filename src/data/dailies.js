@@ -5,7 +5,7 @@ import {
   TYPE,
   ZONE,
 } from 'constants/dailies';
-import ITEM from 'constants/items';
+import ITEM from 'data/items';
 
 export default [
   {
