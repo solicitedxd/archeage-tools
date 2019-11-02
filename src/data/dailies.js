@@ -1224,4 +1224,9 @@ export default [
     zones: [ZONE.AHNIMAR],
     rewards: [{ type: REWARD.GILDA, count: 1 }, { type: REWARD.COIN, count: 2210 }],
   },
+  {
+    name: 'Thunderwing Titan Competition',
+    zones: [ZONE.REEDWIND],
+    rewards: [{ type: REWARD.GILDA, count: 1 }, { type: REWARD.COIN, count: 3728 }],
+  },
 ];
