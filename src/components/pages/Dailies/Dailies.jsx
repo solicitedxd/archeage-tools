@@ -33,11 +33,12 @@ import {
   REWARD,
   TYPE,
 } from 'constants/dailies';
-import ITEM from 'constants/items';
+import ITEM from 'data/items';
 import {
   getQuestId,
   getZones,
 } from 'utils/dailies';
+import { setTitle } from 'utils/string';
 
 class Dailies extends Component {
   state = {
@@ -155,6 +156,8 @@ class Dailies extends Component {
     });
 
     const footnote = 'Note: This comprehensive list does not include most quests that aren\'t completable every day, such as some world boss quests.';
+
+    setTitle('Daily Checklist');
 
     return (
       <div className="quest-container">

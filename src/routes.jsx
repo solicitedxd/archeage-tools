@@ -8,17 +8,19 @@ import Skills from 'components/pages/Skills';
 import Calendar from 'components/pages/Calendar';
 import Taxes from 'components/pages/Taxes';
 import Thunderstruck from 'components/pages/Thunderstruck';
+import NotFound from 'components/pages/NotFound';
 
 export default (
   <Main>
     <Switch>
-      <Route path="/dailies" component={Dailies} />
-      <Route path="/skills" component={Skills} />
-      <Route path="/calendar" component={Calendar} />
-      <Route path="/schedule" component={Calendar} />
-      <Route path="/taxes" component={Taxes} />
-      <Route path="/thunderstruck" component={Thunderstruck} />
-      <Route path="/" component={Home} />
+      <Route path="/dailies" exact component={Dailies} />
+      <Route path="/skills" exact component={Skills} />
+      <Route path="/calendar" exact component={Calendar} />
+      <Route path="/schedule" exact component={Calendar} />
+      <Route path="/taxes" exact component={Taxes} />
+      <Route path="/thunderstruck" exact component={Thunderstruck} />
+      <Route path="/" exact component={Home} />
+      <Route component={NotFound} />
     </Switch>
   </Main>
 );

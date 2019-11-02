@@ -32,6 +32,7 @@ import {
 } from 'utils/skills';
 import SkillTree from './SkillTree';
 import SkillCombos from './SkillCombos';
+import { setTitle } from 'utils/string';
 
 class Skills extends Component {
   state = {
@@ -202,6 +203,12 @@ class Skills extends Component {
     const spentPoints = this.getSpentPoints();
     const remainingPoints = MAX_POINTS - spentPoints;
 
+    if (className) {
+      setTitle(`${className} Build`)
+    } else {
+      setTitle('Skill Builder');
+    }
+
     return (
       <div className="skills-container">
         <div className="skills-header">
@@ -209,7 +216,7 @@ class Skills extends Component {
             <AppBar position="static">
               <Toolbar variant="dense">
                 <Typography variant="subtitle1" className="title-text">Skill
-                  Calculator{className && `: ${className}`}</Typography>
+                  Builder{className && `: ${className}`}</Typography>
                 <Typography variant="subtitle2">{spentPoints}/{MAX_POINTS}</Typography>
                 <Tooltip title="Reset All Trees">
                   <IconButton color="inherit" aria-label="Reset" onClick={this.resetAllTrees}>

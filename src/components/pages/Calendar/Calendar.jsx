@@ -19,6 +19,7 @@ import moment_tz from 'moment-timezone';
 import { setRegion } from 'actions/calendar';
 import { EVENT_TYPE } from 'constants/calendar';
 import EventList from './EventList';
+import { setTitle } from 'utils/string';
 
 // prevent optimize imports from removing
 moment_tz;
@@ -35,6 +36,8 @@ class Calendar extends Component {
 
   render() {
     const { mobile, regionNA, setRegion } = this.props;
+
+    setTitle('Event Schedule');
 
     return (
       <div className="calendar-container">
