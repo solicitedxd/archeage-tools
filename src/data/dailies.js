@@ -3,8 +3,8 @@ import {
   FACTION,
   REWARD,
   TYPE,
-  ZONE,
 } from 'constants/dailies';
+import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 
 export default [
