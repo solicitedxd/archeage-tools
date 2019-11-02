@@ -20,7 +20,7 @@ const renderItemTooltip = (target) => {
     return;
   }
 
-  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified } = item;
+  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified, remainingTime } = item;
 
   return (
     <div>
@@ -35,8 +35,10 @@ const renderItemTooltip = (target) => {
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
       </section>
-      {bindsOnPickup && <section>
-        <p>Binds on Pickup</p>
+      {(bindsOnPickup || remainingTime) &&
+      <section>
+        {bindsOnPickup && <p>Binds on Pickup</p>}
+        {remainingTime && <p className="tt-orange">Rem. Time: {remainingTime}</p>}
       </section>}
       <section>
         <p>{description}</p>

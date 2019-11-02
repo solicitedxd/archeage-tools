@@ -5,7 +5,6 @@ import {
   number,
   string,
 } from 'react-proptypes';
-import { Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { QUALITY } from 'constants/dailies';
 
@@ -20,6 +19,7 @@ class Item extends Component {
     bindsOnPickup: bool,
     count: number,
     unidentified: bool,
+    className: string,
   };
 
   static defaultProps = {
@@ -30,17 +30,18 @@ class Item extends Component {
     bindsOnPickup: false,
     count: 1,
     unidentified: false,
+    className: '',
   };
 
   render() {
-    const { name, icon, quality, count, unidentified } = this.props;
+    const { name, icon, quality, count, unidentified, className } = this.props;
     return (
-      <div data-quality={quality}>
-        <div className={cn('item-icon', { 'unidentified': unidentified })} data-item={true} data-item-name={name}>
+      <span data-quality={quality} className={className}>
+        <span className={cn('item-icon', { 'unidentified': unidentified })} data-item={true} data-item-name={name}>
           <img src={icon} alt={name} />
-          <Typography className="count">{count}</Typography>
-        </div>
-      </div>
+          <span className="count">{count}</span>
+        </span>
+      </span>
     );
   }
 }
