@@ -76,7 +76,7 @@ class MapEmbed extends Component {
                 <div
                   className="point"
                   style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y - 3.4}% - 12px)` }}
-                  data-point={point.icon}
+                  data-point={point.icon || index + 1}
                 />
               </Tooltip>),
             ))}
@@ -92,7 +92,7 @@ class MapEmbed extends Component {
                 <div
                   key={`point-list-${zone}-${index}`}
                 >
-                  <span className="point inline-point" data-point={point.icon} />
+                  <span className="point inline-point" data-point={point.icon || index + 1} />
                   <Typography className="point-label">{point.label}</Typography>
                 </div>
               ))}
@@ -127,7 +127,7 @@ class MapEmbed extends Component {
                   <div
                     className="point"
                     style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y}% - 24px)` }}
-                    data-point={point.icon}
+                    data-point={point.icon || index + 1}
                   />
                 </Tooltip>),
               ))}
