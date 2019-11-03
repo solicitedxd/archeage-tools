@@ -5,6 +5,10 @@ export default [
   { name: 'Event Schedule', short: 'Events', path: '/schedule' },
   { name: 'Taxes Calculator', short: 'Taxes', path: '/taxes', noBanner: true },
   { name: 'Thunderstrucks', path: '/thunderstruck', noBanner: true },
+  {
+    name: 'Guides', path: '/guides', noBanner: true, children: [
+    ],
+  },
 
   { name: 'Toggle Dark Mode', darkMode: true, noBanner: true },
-]
+];

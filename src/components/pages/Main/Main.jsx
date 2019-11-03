@@ -39,6 +39,7 @@ import {
   setMobile,
 } from 'actions/display';
 import { clearNotification } from 'actions/notification';
+import CascadingMenu from 'components/CascadingMenu';
 import ItemTooltip from 'components/Item/ItemTooltip';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import navigation from 'constants/navigation';
@@ -48,6 +49,7 @@ import 'styles/index';
 class Main extends React.PureComponent {
   state = {
     drawerOpen: false,
+    anchorEl: {},
   };
 
   createPalette = () => {
@@ -127,6 +129,34 @@ class Main extends React.PureComponent {
     setDarkMode(!darkMode);
   };
 
+  handleOpenMenu = (menuId) => (event) => {
+    const { anchorEl } = this.state;
+    this.setState({ anchorEl: { ...anchorEl, [menuId]: event.currentTarget } });
+  };
+
+  handleCloseMenu = (menuId) => {
+    const { anchorEl } = this.state;
+    this.setState({ anchorEl: { ...anchorEl, [menuId]: null } });
+  };
+
+  createMenuItems = (menuItems) => {
+    return menuItems.filter((item) => !item.disabled).map((item, key) => {
+      const menuItem = {
+        key,
+        caption: item.name,
+      };
+      if (item.children) {
+        menuItem.subMenuItems = this.createMenuItems(item.children);
+        menuItem.onClick = () => {}
+      } else {
+        menuItem.onClick = () => {
+          this.props.history.push(item.path);
+        }
+      }
+      return menuItem;
+    });
+  };
+
   render() {
     const {
       children,
@@ -135,7 +165,7 @@ class Main extends React.PureComponent {
       mobile,
       darkMode,
     } = this.props;
-    const { drawerOpen } = this.state;
+    const { drawerOpen, anchorEl } = this.state;
 
     if (darkMode) {
       document.documentElement.classList.add('dark-mode');
@@ -163,6 +193,33 @@ class Main extends React.PureComponent {
                     </IconButton>
                   );
                 }
+
+                if (navLink.children) {
+                  return [
+                    <Typography className="nav-item" key={navLink.path}>
+                      <MuiLink color="inherit" onClick={this.handleOpenMenu(navLink.path)}>
+                        {navLink.short || navLink.name}
+                      </MuiLink>
+                    </Typography>,
+                    <CascadingMenu
+                      key={`menu-${navLink.path}`}
+                      anchorElement={anchorEl[navLink.path]}
+                      anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'right',
+                      }}
+                      menuItems={this.createMenuItems(navLink.children)}
+                      onClose={() => this.handleCloseMenu(navLink.path)}
+                      open={Boolean(anchorEl[navLink.path])}
+                      transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                      }}
+                      getContentAnchorEl={null}
+                    />,
+                  ];
+                }
+
                 return (
                   <Typography className="nav-item" key={navLink.path}>
                     <MuiLink component={Link} to={navLink.path} color="inherit">

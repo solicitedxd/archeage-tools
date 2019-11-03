@@ -1,0 +1,34 @@
+.guide-container {
+  margin: 0 20px;
+
+  .section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .guide-viewer {
+    width: 100%;
+    max-width: 828px;
+    margin-right: 12px;
+
+    .MuiPaper-root + .MuiPaper-root {
+      margin-top: 16px;
+    }
+  }
+
+  .guide-toc {
+    max-width: 240px;
+    width: 100%;
+  }
+}
+
+.guide-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .guide-category {
+    flex-basis: 33.3%;
+  }
+}

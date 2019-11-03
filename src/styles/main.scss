@@ -37,6 +37,7 @@ body {
 
 .nav-item {
   margin: 0 8px !important;
+  cursor: pointer;
 }
 
 .nav-icon {
@@ -66,6 +67,10 @@ body {
 
   &.taxes {
     background-position: -33px -298px;
+  }
+
+  &.guides {
+    background-position: -33px -198px;
   }
 }
 
@@ -144,6 +149,10 @@ body {
 
   &.schedule {
     background-image: url('../images/banners/instance_carcass.png');
+  }
+
+  &.guides {
+    background-image: url('../images/banners/instance_dewplane_boss.png');
   }
 
   .banner-text {
