@@ -38,6 +38,7 @@ module.exports = {
         NODE_ENV: '"production"',
       },
       __VERSION__: JSON.stringify(pkg.version),
+      __DEVELOPMENT__: false,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new HtmlWebpackPlugin({

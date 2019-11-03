@@ -1,0 +1,91 @@
+.map-embed {
+  .map-preview {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .map-left {
+      $width: 580px;
+      width: $width;
+      height: 348px;
+
+      img {
+        width: $width;
+        height: 348px;
+        border-radius: 3px;
+        cursor: zoom-in;
+      }
+    }
+
+    .map-points {
+      width: 210px;
+      padding: 0 0 6px 6px;
+
+      .point-label {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.map-dialog {
+  .map-content {
+    width: 928px;
+    height: 556px;
+  }
+}
+
+.map-content {
+  position: relative;
+}
+
+
+.map-embed .point, .map-dialog .point {
+  width: 24px;
+  height: 24px;
+  background: url(../images/npc_icon.png) -488px -232px;
+  position: absolute;
+
+  &.inline-point {
+    position: initial;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: -5px;
+  }
+
+  &[data-point="1"] {
+    background-position: -288px 0;
+  }
+
+  &[data-point="2"] {
+    background-position: -312px 0;
+  }
+
+  &[data-point="3"] {
+    background-position: -336px 0;
+  }
+
+  &[data-point="4"] {
+    background-position: -360px 0;
+  }
+
+  &[data-point="5"] {
+    background-position: -384px 0;
+  }
+
+  &[data-point="6"] {
+    background-position: -408px 0;
+  }
+
+  &[data-point="7"] {
+    background-position: -432px 0;
+  }
+
+  &[data-point="8"] {
+    background-position: -456px 0;
+  }
+
+  &[data-point="9"] {
+    background-position: -480px 0;
+  }
+}
