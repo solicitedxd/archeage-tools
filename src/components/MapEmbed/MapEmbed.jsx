@@ -3,6 +3,7 @@ import {
   array,
   string,
 } from 'react-proptypes';
+import cn from 'classnames';
 import {
   AppBar,
   Dialog,
@@ -28,6 +29,7 @@ class MapEmbed extends Component {
     open: false,
     mouseX: 0,
     mouseY: 0,
+    point: null,
   };
 
   handleOpen = () => this.setState({ open: true });
@@ -53,9 +55,17 @@ class MapEmbed extends Component {
     this.setState({ mouseX: x, mouseY: y });
   };
 
+  handleMouseOver = (point) => {
+    this.setState({ point });
+  };
+
+  handleMouseOut = () => {
+    this.setState({ point: null });
+  };
+
   render() {
     const { zone, points } = this.props;
-    const { open, mouseX, mouseY } = this.state;
+    const { open, point: hoverPoint, mouseX, mouseY } = this.state;
 
     const map = getMapImage(zone);
 
@@ -74,7 +84,7 @@ class MapEmbed extends Component {
                 }
               >
                 <div
-                  className="point"
+                  className={cn('point', { 'hover-anim': hoverPoint === index })}
                   style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y - 3.4}% - 12px)` }}
                   data-point={point.icon || index + 1}
                 />
@@ -91,6 +101,9 @@ class MapEmbed extends Component {
               {points.map((point, index) => (
                 <div
                   key={`point-list-${zone}-${index}`}
+                  onMouseOver={() => this.handleMouseOver(index)}
+                  onMouseOut={this.handleMouseOut}
+                  className="point-item"
                 >
                   <span className="point inline-point" data-point={point.icon || index + 1} />
                   <Typography className="point-label">{point.label}</Typography>
@@ -125,11 +138,24 @@ class MapEmbed extends Component {
                   }
                 >
                   <div
-                    className="point"
+                    className={cn('point', { 'hover-anim': hoverPoint === index })}
                     style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y}% - 24px)` }}
                     data-point={point.icon || index + 1}
                   />
                 </Tooltip>),
+              ))}
+            </div>
+            <div className="point-list">
+              {points.map((point, index) => (
+                <div
+                  key={`point-list-${zone}-${index}`}
+                  onMouseOver={() => this.handleMouseOver(index)}
+                  onMouseOut={this.handleMouseOut}
+                  className="point-item"
+                >
+                  <span className="point inline-point" data-point={point.icon || index + 1} />
+                  <Typography className="point-label">{point.label}</Typography>
+                </div>
               ))}
             </div>
             {__DEVELOPMENT__ &&
