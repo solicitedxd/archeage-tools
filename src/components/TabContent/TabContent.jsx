@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   array,
+  bool,
   string,
 } from 'react-proptypes';
 import {
@@ -15,6 +17,7 @@ import {
 class TabContent extends Component {
   static propTypes = {
     tabs: array.isRequired,
+    mobile: bool.isRequired,
     title: string,
   };
 
@@ -34,7 +37,7 @@ class TabContent extends Component {
   };
 
   render() {
-    const { tabs, title } = this.props;
+    const { tabs, title, mobile } = this.props;
     const { value } = this.state;
 
     const TabsList = () => (
@@ -42,7 +45,8 @@ class TabContent extends Component {
         value={value}
         indicatorColor="secondary"
         onChange={this.handleChange}
-        centered
+        centered={!mobile}
+        variant={mobile ? 'scrollable' : 'standard'}
       >
         {tabs.map((tab, index) => (
           <Tab label={tab.label} key={index} />
@@ -77,4 +81,8 @@ class TabContent extends Component {
   }
 }
 
-export default TabContent;
+const mapStateToProps = ({ display: { mobile } }) => ({
+  mobile,
+});
+
+export default connect(mapStateToProps, null)(TabContent);
