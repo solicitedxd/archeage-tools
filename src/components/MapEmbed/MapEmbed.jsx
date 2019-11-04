@@ -79,7 +79,9 @@ class MapEmbed extends Component {
                 key={`point-${zone}-${index}-${id}`}
                 title={
                   <React.Fragment>
-                    <Typography variant="caption">{point.label}</Typography>
+                    <Typography variant="caption" dangerouslySetInnerHTML={{
+                      __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                    }} />
                   </React.Fragment>
                 }
               >
@@ -97,18 +99,29 @@ class MapEmbed extends Component {
                 <Typography variant="subtitle1" className="title-text">{zone}</Typography>
               </Toolbar>
             </AppBar>
-            <div className="body-container">
-              {points.map((point, index) => (
-                <div
-                  key={`point-list-${zone}-${index}`}
-                  onMouseOver={() => this.handleMouseOver(index)}
-                  onMouseOut={this.handleMouseOut}
-                  className="point-item"
-                >
-                  <span className="point inline-point" data-point={point.icon || index + 1} />
-                  <Typography className="point-label">{point.label}</Typography>
-                </div>
-              ))}
+            <div style={{ padding: '8px 0' }}>
+              {points.map((point, index) => {
+                let { label: labels } = point;
+                if (!Array.isArray(labels)) {
+                  labels = [labels];
+                }
+                return (
+                  <React.Fragment key={`point-list-${zone}-${index}`}>
+                    {labels.map((label, id) => (
+                      <div
+                        key={`point-list-${zone}-${index}-${id}`}
+                        onMouseOver={() => this.handleMouseOver(index)}
+                        onMouseOut={this.handleMouseOut}
+                        className="point-item"
+                      >
+                        <Typography className="point-label">
+                          <span className="point inline-point" data-point={point.icon || index + 1} />
+                          {label}
+                        </Typography>
+                      </div>))}
+                  </React.Fragment>
+                );
+              })}
             </div>
           </div>
         </div>
@@ -133,7 +146,9 @@ class MapEmbed extends Component {
                   key={`point-${zone}-${index}-${id}`}
                   title={
                     <React.Fragment>
-                      <Typography variant="caption">{point.label}</Typography>
+                      <Typography variant="caption" dangerouslySetInnerHTML={{
+                        __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                      }} />
                     </React.Fragment>
                   }
                 >
@@ -146,17 +161,28 @@ class MapEmbed extends Component {
               ))}
             </div>
             <div className="point-list">
-              {points.map((point, index) => (
-                <div
-                  key={`point-list-${zone}-${index}`}
-                  onMouseOver={() => this.handleMouseOver(index)}
-                  onMouseOut={this.handleMouseOut}
-                  className="point-item"
-                >
-                  <span className="point inline-point" data-point={point.icon || index + 1} />
-                  <Typography className="point-label">{point.label}</Typography>
-                </div>
-              ))}
+              {points.map((point, index) => {
+                let { label: labels } = point;
+                if (!Array.isArray(labels)) {
+                  labels = [labels];
+                }
+                return (
+                  <React.Fragment key={`embed-list-${zone}-${index}`}>
+                    {labels.map((label, id) => (
+                      <div
+                        key={`embed-list-${zone}-${index}-${id}`}
+                        onMouseOver={() => this.handleMouseOver(index)}
+                        onMouseOut={this.handleMouseOut}
+                        className="point-item"
+                      >
+                        <Typography className="point-label">
+                          <span className="point inline-point" data-point={point.icon || index + 1} />
+                          {label}
+                        </Typography>
+                      </div>))}
+                  </React.Fragment>
+                );
+              })}
             </div>
             {__DEVELOPMENT__ &&
             <Typography>Cursor location: {mouseX === -1 || mouseY === -1 ? 'Out of bounds'
