@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import {
   AppBar,
-  Link as MuiLink,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
 import navigation from 'constants/navigation';
 import { setTitle } from 'utils/string';
-import { Link } from 'react-router-dom';
+import Link from 'components/Link';
 
 class Guides extends Component {
   static propTypes = {};
@@ -36,9 +35,9 @@ class Guides extends Component {
                     {section.children.filter(g => !g.disabled).map((guide, id) => (
                       <li key={`gc-${section.name}-${id}`}>
                         <Typography>
-                          <MuiLink component={Link} to={guide.path} color="primary" key={`gc-${section.name}-${id}`}>
+                          <Link to={guide.path} color="primary" key={`gc-${section.name}-${id}`}>
                             {guide.name}
-                          </MuiLink>
+                          </Link>
                         </Typography>
                       </li>
                     ))}

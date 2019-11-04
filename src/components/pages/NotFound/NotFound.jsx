@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import {
   AppBar,
-  Link as MuiLink,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 import { setTitle } from 'utils/string';
+import Link from 'components/Link';
 
 class NotFound extends Component {
   static propTypes = {};
@@ -31,9 +30,9 @@ class NotFound extends Component {
               The page you were looking for could not be found.
             </Typography>
             <Typography variant="subtitle2">
-              <MuiLink component={Link} to="/" color="primary">
+              <Link to="/" color="primary">
                 Return to Home
-              </MuiLink>
+              </Link>
             </Typography>
           </div>
         </Paper>

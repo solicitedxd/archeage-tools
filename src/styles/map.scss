@@ -41,7 +41,6 @@
   .point-list {
     padding: 6px 0;
     display: flex;
-    align-items: stretch;
     flex-wrap: wrap;
     width: 928px;
 
@@ -146,6 +145,10 @@
 
   &[data-point="farm"] {
     background-position: -144px -119px;
+  }
+
+  &[data-point="boss"] {
+    background-position: -270px -149px;
   }
 }
 

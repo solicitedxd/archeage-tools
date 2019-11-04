@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { Link } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
   Drawer,
@@ -42,6 +42,7 @@ import SkillTooltip from 'components/Skill/SkillTooltip';
 import navigation from 'constants/navigation';
 import { getNavId } from 'utils/string';
 import 'styles/index';
+import Link from 'components/Link';
 
 class Main extends React.PureComponent {
   state = {
@@ -179,7 +180,7 @@ class Main extends React.PureComponent {
           <AppBar position="static">
             <Toolbar variant="dense">
               <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper" className="icon-button">
-                <Link id="logo-icon" to="/" />
+                <RouterLink id="logo-icon" to="/" />
               </IconButton>
               <Typography variant="h6" color="inherit" className="title-text">
                 ArcheAge Tools
@@ -222,9 +223,9 @@ class Main extends React.PureComponent {
 
                 return (
                   <Typography className="nav-item" key={navLink.path}>
-                    <MuiLink component={Link} to={navLink.path} color="inherit">
+                    <Link to={navLink.path} color="inherit">
                       {navLink.short || navLink.name}
-                    </MuiLink>
+                    </Link>
                   </Typography>
                 );
               })}
@@ -258,12 +259,12 @@ class Main extends React.PureComponent {
                       );
                     }
                     return (
-                      <Link to={navLink.path} className="no-link" onClick={this.handleClose} key={navLink.path}>
+                      <RouterLink to={navLink.path} className="no-link" onClick={this.handleClose} key={navLink.path}>
                         <ListItem button>
                           <ListItemIcon><span className={cn('nav-icon', getNavId(navLink.path))} /></ListItemIcon>
                           <ListItemText primary={navLink.name} />
                         </ListItem>
-                      </Link>
+                      </RouterLink>
                     );
                   })}
                 </List>

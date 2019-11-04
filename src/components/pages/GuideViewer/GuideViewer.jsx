@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
 import Sticky from 'react-sticky-el';
 import {
   AppBar,
-  Link as MuiLink,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import Link from 'components/Link';
 import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
 import TabContent from 'components/TabContent';
@@ -88,8 +87,7 @@ class GuideViewer extends Component {
                 <Typography variant="subtitle2">Last Updated: {guide.meta.lastUpdated}</Typography>
                 <Typography variant="subtitle1">Table of Contents</Typography>
                 {guide.sections.map((section, sId) => (
-                  <MuiLink
-                    component={Link}
+                  <Link
                     to={`#${slug(section.title)}`}
                     onClick={() => document.getElementById(slug(section.title)).scrollIntoView({
                       behavior: 'smooth',
@@ -99,7 +97,7 @@ class GuideViewer extends Component {
                     key={`toc-${sId}`}
                   >
                     <Typography>{sId + 1}. {section.title}</Typography>
-                  </MuiLink>
+                  </Link>
                 ))}
               </div>
             </Paper>
