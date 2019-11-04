@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Sticky from 'react-sticky-el';
 import {
   AppBar,
   Link as MuiLink,
@@ -75,7 +76,7 @@ class GuideViewer extends Component {
             )}
           </div>
           {!mobile &&
-          <div className="guide-toc">
+          <Sticky holderProps={{ className: 'guide-toc'}}>
             <Paper>
               <AppBar position="static">
                 <Toolbar variant="dense">
@@ -102,7 +103,7 @@ class GuideViewer extends Component {
                 ))}
               </div>
             </Paper>
-          </div>}
+          </Sticky>}
         </div>
         <ScrollToTop />
       </div>

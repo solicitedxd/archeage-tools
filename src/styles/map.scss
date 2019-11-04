@@ -143,6 +143,10 @@
   &[data-point="port"] {
     background-position: -120px -164px;
   }
+
+  &[data-point="farm"] {
+    background-position: -144px -119px;
+  }
 }
 
 @keyframes flickerAnimation {
