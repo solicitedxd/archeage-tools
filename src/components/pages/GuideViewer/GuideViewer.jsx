@@ -10,6 +10,7 @@ import {
 } from '@material-ui/core';
 import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
+import TabContent from 'components/TabContent';
 import { setTitle } from 'utils/string';
 import * as Guides from '../../../data/guides';
 
@@ -33,12 +34,6 @@ class KeyComponent extends Component {
 }
 
 class GuideViewer extends Component {
-  static propTypes = {};
-
-  static defaultProps = {};
-
-  state = {};
-
   render() {
     const { mobile, match: { params: { guide: guideSlug } } } = this.props;
     const guide = Guides[unslug(guideSlug)];
@@ -55,21 +50,26 @@ class GuideViewer extends Component {
             {guide.sections.map((section, sId) =>
               (
                 <Paper key={`${slug(guide.name)}-s${sId}`} id={`${slug(section.title)}`}>
-                  <AppBar position="static">
-                    <Toolbar variant="dense">
-                      <Typography variant="subtitle1" className="title-text">{section.title}</Typography>
-                    </Toolbar>
-                  </AppBar>
-                  <div className="body-container">
-                    {section.paragraphs.map((line, pId) => {
-                      const key = `${slug(guide.name)}-s${sId}-p${pId}`;
-                      if (typeof line === 'string') {
-                        return <Typography key={key}>{line}</Typography>;
-                      } else {
-                        return <KeyComponent key={key}>{line}</KeyComponent>;
-                      }
-                    })}
-                  </div>
+                  {section.tabContent &&
+                  <TabContent title={section.title} tabs={section.tabContent} />}
+                  {!section.tabContent && section.paragraphs &&
+                  <React.Fragment>
+                    <AppBar position="static">
+                      <Toolbar variant="dense">
+                        <Typography variant="subtitle1" className="title-text">{section.title}</Typography>
+                      </Toolbar>
+                    </AppBar>
+                    <div className="body-container">
+                      {section.paragraphs.map((line, pId) => {
+                        const key = `${slug(guide.name)}-s${sId}-p${pId}`;
+                        if (typeof line === 'string') {
+                          return <Typography key={key}>{line}</Typography>;
+                        } else {
+                          return <KeyComponent key={key}>{line}</KeyComponent>;
+                        }
+                      })}
+                    </div>
+                  </React.Fragment>}
                 </Paper>
               ),
             )}
@@ -87,7 +87,16 @@ class GuideViewer extends Component {
                 <Typography variant="subtitle2">Last Updated: {guide.meta.lastUpdated}</Typography>
                 <Typography variant="subtitle1">Table of Contents</Typography>
                 {guide.sections.map((section, sId) => (
-                  <MuiLink component={Link} to={`#${slug(section.title)}`} color="primary" key={`toc-${sId}`}>
+                  <MuiLink
+                    component={Link}
+                    to={`#${slug(section.title)}`}
+                    onClick={() => document.getElementById(slug(section.title)).scrollIntoView({
+                      behavior: 'smooth',
+                      block: 'start',
+                    })}
+                    color="primary"
+                    key={`toc-${sId}`}
+                  >
                     <Typography>{sId + 1}. {section.title}</Typography>
                   </MuiLink>
                 ))}

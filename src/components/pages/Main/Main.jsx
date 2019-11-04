@@ -23,10 +23,7 @@ import {
 import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
 import { ThemeProvider } from '@material-ui/styles';
-import {
-  blueGrey,
-  teal,
-} from '@material-ui/core/colors';
+import { teal } from '@material-ui/core/colors';
 import {
   Brightness4,
   BrightnessHigh,
@@ -58,7 +55,9 @@ class Main extends React.PureComponent {
     const palette = createPalette({
       type: darkMode ? 'dark' : 'light',
       primary: teal,
-      secondary: blueGrey,
+      secondary: {
+        main: darkMode ? teal['50'] : teal['900'],
+      },
     });
 
     const theme = createMuiTheme({
@@ -147,11 +146,12 @@ class Main extends React.PureComponent {
       };
       if (item.children) {
         menuItem.subMenuItems = this.createMenuItems(item.children);
-        menuItem.onClick = () => {}
+        menuItem.onClick = () => {
+        };
       } else {
         menuItem.onClick = () => {
           this.props.history.push(item.path);
-        }
+        };
       }
       return menuItem;
     });
