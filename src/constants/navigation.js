@@ -7,6 +7,11 @@ export default [
   { name: 'Thunderstrucks', path: '/thunderstruck', noBanner: true },
   {
     name: 'Guides', path: '/guides', noBanner: true, children: [
+      {
+        name: 'Daily Quests', children: [
+          { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
+        ],
+      },
     ],
   },
 

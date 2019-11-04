@@ -18,6 +18,19 @@ import RedDragonPouchIcon from 'images/item/red_dragon_pouch.png';
 import GoldCrateIcon from 'images/item/gold_crate.png';
 import OnyxEssenceIcon from 'images/item/onyx_essence.png';
 import RevenantSoulstoneIcon from 'images/item/revenant_soulstone.png';
+import CondensedScentIcon from 'images/item/conensed_scent.png';
+import PotatoIcon from 'images/item/potato.png';
+import WaterIcon from 'images/item/water.png';
+import ChoppedProduceIcon from 'images/item/chopped_produce.png';
+import TrimmedMeatIcon from 'images/item/trimmed_meat.png';
+import DriedFlowersIcon from 'images/item/dried_flowers.png';
+import MedicinalPowderIcon from 'images/item/medicinal_powder.png';
+import GroundSpicesIcon from 'images/item/ground_spices.png';
+import GroundGrainIcon from 'images/item/ground_grain.png';
+import OrchardPureeIcon from 'images/item/orchard_puree.png';
+import SunlightDustIcon from 'images/item/sunlight_dust.png';
+import MoonlightDustIcon from 'images/item/moonlight_dust.png';
+import StarlightDustIcon from 'images/item/starlight_dust.png';
 
 export default Object.freeze({
   GILDA_STAR: {
@@ -280,5 +293,98 @@ export default Object.freeze({
     quality: QUALITY.BASIC,
     price: 50,
     bindsOnPickup: true,
+  },
+  CONDENSED_SCENT: {
+    name: 'Condensed Scent',
+    icon: CondensedScentIcon,
+    type: 'Quest Item',
+    description: <span>A pleasant aroma, condensed into the form of a crystal.</span>,
+    quality: QUALITY.BASIC,
+    bindsOnPickup: true,
+  },
+  VITA_ROOT: {
+    name: 'Vita Root',
+    icon: PotatoIcon,
+    type: 'Grain',
+    description: <span>This enchanted fruit makes mounts and battle pets grow to maturity quickly.</span>,
+    quality: QUALITY.BASIC,
+    price: 1,
+  },
+  WATER: {
+    name: 'Water',
+    icon: WaterIcon,
+    type: 'Contraption',
+    description: <span>Widely useful, especially for extinguishing fires and watering crops.</span>,
+    quality: QUALITY.BASIC,
+  },
+  CHOPPED_PRODUCE: {
+    name: 'Chopped Produce',
+    icon: ChoppedProduceIcon,
+    type: 'Material',
+    description: <span>Vegetables such as <span className="tt-orange">potatoes</span> and <span className="tt-orange">carrots</span> chopped with a <span className="tt-orange">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  TRIMMED_MEAT: {
+    name: 'Trimmed Meat',
+    icon: TrimmedMeatIcon,
+    type: 'Material',
+    description: <span>Meat such as <span className="tt-orange">chicken</span> and <span className="tt-orange">beef</span> trimmed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  DRIED_FLOWERS: {
+    name: 'Dried Flowers',
+    icon: DriedFlowersIcon,
+    type: 'Material',
+    description: <span>Flowers such as <span className="tt-orange">azaleas</span> and <span className="tt-orange">roses</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  MEDICINAL_POWDER: {
+    name: 'Medicinal Powder',
+    icon: MedicinalPowderIcon,
+    type: 'Material',
+    description: <span>Medicinals such as <span className="tt-orange">mushrooms</span> and <span className="tt-orange">cultivated ginseng</span> ground with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  GROUND_GRAIN: {
+    name: 'Ground Grain',
+    icon: GroundGrainIcon,
+    type: 'Material',
+    description: <span>Grain such as <span className="tt-orange">barley</span> and <span className="tt-orange">rice</span> ground with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  GROUND_SPICES: {
+    name: 'Ground Spices',
+    icon: GroundSpicesIcon,
+    type: 'Material',
+    description: <span>Spices such as <span className="tt-orange">iris</span> and <span className="tt-orange">mint</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  ORCHARD_PUREE: {
+    name: 'Orchard Puree',
+    icon: OrchardPureeIcon,
+    type: 'Material',
+    description: <span>Fruits such as <span className="tt-orange">grapes</span> and <span className="tt-orange">apples</span> chopped into bite-size pieces. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br/>Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  SUNLIGHT_ARCHEUM_DUST: {
+    name: 'Sunlight Archeum Dust',
+    icon: SunlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br/><br/>A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
+  },
+  MOONLIGHT_ARCHEUM_DUST: {
+    name: 'Moonlight Archeum Dust',
+    icon: MoonlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br/><br/>A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
+  },
+  STARLIGHT_ARCHEUM_DUST: {
+    name: 'Starlight Archeum Dust',
+    icon: StarlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br/><br/>A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
   },
 });
