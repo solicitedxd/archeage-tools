@@ -25,7 +25,7 @@ class SkillLink extends Component {
   render() {
     const { name, skillset, passive, element } = this.props;
 
-    const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset);
+    const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset.toUpperCase());
     if (!skillSetKey) return;
 
     const skillSet = SKILLSET[skillSetKey];
@@ -40,20 +40,30 @@ class SkillLink extends Component {
       )
     }
     const slot = skills.indexOf(skill);
+    const ancestral = element !== ELEMENT.BASIC && skillSet.ancestrals.find(anc => anc.skillId === slot).variants.find(anc => anc.element === element);
 
     return (
       <Link
         data-points-req={0}
         data-skill={true}
-        data-skillset={skillset}
+        data-skillset={skillset.toUpperCase()}
         data-skill-id={slot}
         data-passive={passive}
         data-disabled={false}
         data-spent-points={5}
         data-element={element}
-        style={{ display: 'inline-block' }}
+        className="inline-link"
       >
-        <Skill {...skill} slot={slot} skillset={skillset} passive={passive} element={element} learned className="inline" />
+        <Skill
+          {...skill}
+          {...ancestral || {}}
+          slot={slot}
+          skillset={skillset}
+          passive={passive}
+          element={element}
+          learned
+          className="inline"
+        />
         {element !== ELEMENT.BASIC ? `[${element}] ` : ''}{skill.name}
       </Link>
     );

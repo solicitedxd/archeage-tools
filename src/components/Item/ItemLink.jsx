@@ -25,7 +25,11 @@ class ItemLink extends Component {
     const { item, plural, count } = this.props;
 
     return (
-      <Link data-item={true} data-item-name={item.name} style={{ display: 'inline-block' }}>
+      <Link
+        data-item={true}
+        data-item-name={item.name}
+        className="inline-link"
+      >
         <Item {...item} className="inline" />
         {count !== 1 ? `${count} ` : ''}{item.name}{count !== 1 || plural !== null ? (plural != null ? plural : 's') : ''}
       </Link>

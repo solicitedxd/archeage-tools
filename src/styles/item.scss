@@ -2,7 +2,7 @@
  Item icon
  */
 .item-icon {
-  display: inline-block;
+  display: block;
   position: relative;
   width: 48px;
   height: 48px;
@@ -19,24 +19,22 @@
   width: 48px;
   height: 48px;
   content: "";
-  z-index: 2;
 }
 
 .item-icon.unidentified:before {
   background-image: url('../images/item/unidentified.png');
-  z-index: 1;
 }
 
 .item-icon img {
   height: 48px;
   width: 48px;
+  display: block;
 }
 
 .item-icon .count {
   position: absolute;
   bottom: 2px;
   right: 4px;
-  z-index: 2;
   color: white;
   text-shadow: -1px -1px 0 #000000,
   1px -1px 0 #000000,
@@ -71,6 +69,11 @@ span.inline[data-quality] {
     width: 18px;
     height: 18px;
   }
+}
+
+.inline-link {
+  display: inline-block;
+  cursor: help;
 }
 
 [data-quality="Poor"] {

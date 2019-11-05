@@ -20,7 +20,7 @@ const renderItemTooltip = (target) => {
     return;
   }
 
-  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified, remainingTime } = item;
+  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified, remainingTime, reqLevel, synthesisGrade, synthesisXP, durability, slot, attackSpeed, weaponType, tempering, maxGrade, salvageable } = item;
 
   return (
     <div>
@@ -35,10 +35,37 @@ const renderItemTooltip = (target) => {
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
       </section>
-      {(bindsOnPickup || remainingTime) &&
+      {(bindsOnPickup || remainingTime || reqLevel) &&
       <section>
+        {reqLevel && <p>Req. Level:{reqLevel} ~ <span className="ancestral-level">55</span></p>}
         {bindsOnPickup && <p>Binds on Pickup</p>}
         {remainingTime && <p className="tt-orange">Rem. Time: {remainingTime}</p>}
+      </section>}
+      {synthesisXP &&
+      <section>
+        <p className="tt-orange">XP 0/{synthesisXP} (0%)</p>
+      </section>}
+      {slot &&
+      <section>
+        <p>{slot}</p>
+        {attackSpeed && <p><span className="tt-gray">Attack Speed</span> {attackSpeed}</p>}
+        {durability && <p><span className="tt-gray">Dura</span> {durability}/{durability}</p>}
+        {weaponType && <p><span className="tt-gray">{weaponType}</span> Weapon Type</p>}
+      </section>}
+      {(maxGrade || synthesisGrade || tempering || salvageable) &&
+      <section>
+        {maxGrade &&
+        <React.Fragment>
+          <p className="tt-orange">Maximum Grade</p>
+          <p className="tt-orange">(~{maxGrade})</p>
+        </React.Fragment>}
+        {synthesisGrade &&
+        <React.Fragment>
+          <p className="tt-orange">Synthesis Available</p>
+          <p className="tt-orange">(~{synthesisGrade})</p>
+        </React.Fragment>}
+        {tempering && <p>Tempering Available</p>}
+        {salvageable && <p>Mag Salvageable</p>}
       </section>}
       <section>
         <p>{description}</p>

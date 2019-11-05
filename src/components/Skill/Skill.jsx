@@ -49,7 +49,7 @@ class Skill extends Component {
       : !learned && !ancestral && (spentPoints < pointsRequired || remainingPoints === 0);
 
     return (
-      <div
+      <span
         className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
         onClick={disabled ? null : onClick}
         data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
@@ -62,7 +62,7 @@ class Skill extends Component {
         data-element={element}
       >
         <img src={icon} alt="" />
-      </div>
+      </span>
     );
   }
 }
