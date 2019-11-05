@@ -23,6 +23,7 @@ class Skill extends Component {
     ancestral: bool,
     element: oneOf(Object.values(ELEMENT)),
     noRequirement: bool,
+    className: string,
   };
 
   static defaultProps = {
@@ -36,19 +37,20 @@ class Skill extends Component {
     ancestral: false,
     element: ELEMENT.BASIC,
     noRequirement: false,
+    className: '',
   };
 
   state = {};
 
   render() {
-    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, ancestral, noRequirement, element } = this.props;
+    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, ancestral, noRequirement, element, className } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
     const disabled = passive ? !learned
       : !learned && !ancestral && (spentPoints < pointsRequired || remainingPoints === 0);
 
     return (
       <div
-        className={cn('skill', { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
+        className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
         onClick={disabled ? null : onClick}
         data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
         data-skill={true}
