@@ -12,6 +12,11 @@ export default [
           { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
         ],
       },
+      {
+        name: 'Instances', children: [
+          { name: 'Noryette Challenge', path: '/guides/noryette-challenge' },
+        ],
+      },
     ],
   },
 

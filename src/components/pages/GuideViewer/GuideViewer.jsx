@@ -16,6 +16,7 @@ import * as Guides from '../../../data/guides';
 
 const slug = (text) => {
   return text.toLowerCase()
+  .replace(/[^\w ]+/g,"")
   .split(' ')
   .join('-');
 };
