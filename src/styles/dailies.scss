@@ -266,6 +266,20 @@
   }
 }
 
+.ancestral-level {
+  color: #FECF3F;
+  &:before {
+    content: "";
+    position: relative;
+    height: 14px;
+    width: 14px;
+    top: 1px;
+    display: inline-block;
+    background: url(../images/money_window.png) no-repeat;
+    background-position: -242px -49px;
+  }
+}
+
 .dark-mode {
   .quest-container {
     .quest-list {
