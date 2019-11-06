@@ -37,7 +37,7 @@ class ScrollToTop extends Component {
     const { scrollY, height } = this.state;
 
     return (
-      <Zoom in={scrollY >= height * 0.85} unmountOnExit>
+      <Zoom in={scrollY >= height * 0.5} unmountOnExit>
         <Fab
           color="primary"
           className="fab"
