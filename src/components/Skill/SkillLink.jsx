@@ -58,7 +58,7 @@ class SkillLink extends Component {
           {...skill}
           {...ancestral || {}}
           slot={slot}
-          skillset={skillset}
+          skillset={skillset.toUpperCase()}
           passive={passive}
           element={element}
           learned
