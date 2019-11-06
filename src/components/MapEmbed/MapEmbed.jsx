@@ -13,7 +13,10 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { getMapImage } from 'constants/map';
+import {
+  getMapImage,
+  ZONE,
+} from 'constants/map';
 
 class MapEmbed extends Component {
   static propTypes = {
@@ -95,7 +98,11 @@ class MapEmbed extends Component {
           </div>
           <div className="map-points">
             <AppBar position="static">
-              <Toolbar variant="dense">
+              <Toolbar
+                variant="dense"
+                style={(zone === ZONE.WESTERN_HIRAM_MOUNTAINS || zone === ZONE.EASTERN_HIRAM_MOUNTAINS)
+                  ? { padding: '0 14px' } : {}}
+              >
                 <Typography variant="subtitle1" className="title-text">{zone}</Typography>
               </Toolbar>
             </AppBar>
