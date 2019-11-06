@@ -4,8 +4,6 @@ import {
 } from 'constants/dailies';
 import ITEM from 'data/items';
 
-export const getQuestId = (quest) => `${quest.name}${quest.idx && `-${quest.idx}` || ''}`;
-
 export const sortReward = (a, b) => a.type > b.type ? 1 : -1;
 
 export const sortItems = (a, b) => {

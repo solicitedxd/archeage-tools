@@ -30,10 +30,7 @@ import {
 } from 'constants/dailies';
 import dailyQuests from 'data/dailies';
 import ITEM from 'data/items';
-import {
-  getQuestId,
-  getZones,
-} from 'utils/dailies';
+import { getZones } from 'utils/dailies';
 import { setTitle } from 'utils/string';
 import Filters from './Filters';
 import Quest from './Quest';
@@ -77,8 +74,8 @@ class Dailies extends Component {
     const claimedRewards = [];
 
     const visibleQuests = dailyQuests.filter(quest => {
-      const completed = quests[getQuestId(quest)] || false;
-      const hidden = hiddenQuests && hiddenQuests[getQuestId(quest)] || false;
+      const completed = quests[quest.name] || false;
+      const hidden = hiddenQuests && hiddenQuests[quest.name] || false;
       let visible = true;
 
       if (!hideMode && hidden) {
@@ -165,14 +162,11 @@ class Dailies extends Component {
               </IconButton>}
             </Toolbar>
           </AppBar>
-          {visibleQuests.sort((a, b) => {
-            if (a.name === b.name) {
-              if (a.zones[0] > b.zones[0]) return 1;
-              if (a.zones[0] < b.zones[0]) return -1;
-              return 0;
-            }
-            return (a.name > b.name) ? 1 : -1;
-          }).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
+          {visibleQuests
+          .sort((a, b) => ((a.sort || a.name) > (b.sort || b.name)) ? 1 : -1)
+          .map((quest) => (
+            <Quest key={quest.name} {...quest} />
+          ))}
         </Paper>
         {!this.showSettingsMenu() &&
         <div className="section quest-filters">
