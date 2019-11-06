@@ -16,7 +16,7 @@
       margin-top: 16px;
     }
 
-    .MuiExpansionPanel-root + .MuiTypography-h6 {
+    .MuiTypography-h6 {
       margin-top: 12px;
     }
 
@@ -31,6 +31,15 @@
 
       li:before {
         content: "- ";
+      }
+    }
+
+    .quest-items {
+      display: flex;
+
+      span[data-quality] {
+        display: inline-block;
+        margin-right: 6px;
       }
     }
 

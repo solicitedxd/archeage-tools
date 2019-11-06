@@ -781,7 +781,7 @@ const sections = [
         ]}
       />,
       <Typography>Thunderwing Titan Competition is available only when Reedwind is in war and requires you to kill 100
-        enemies in Reedwind for 1 Gilda Star.</Typography>,
+        enemies in Reedwind for 1 Gilda Star. It can be acquired from Combat Leader Dylia.</Typography>,
       <hr />,
       <Typography variant="h6">Working on Auroria</Typography>,
       <MapEmbed

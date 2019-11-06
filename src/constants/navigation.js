@@ -10,6 +10,7 @@ export default [
       {
         name: 'Daily Quests', children: [
           { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
+          { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },
         ],
       },
       {
