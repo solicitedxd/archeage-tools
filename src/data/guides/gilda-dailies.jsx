@@ -618,7 +618,7 @@ const sections = [
                     label: 'Hounds of Kyrios',
                     icon: 'boss',
                     coords: [
-                      { x: 60, y: 67.4 },
+                      { x: 60.5, y: 69 },
                       { x: 67.7, y: 51.5 },
                       { x: 55.2, y: 22.4 },
                     ],
@@ -636,13 +636,24 @@ const sections = [
                 ]}
               />,
           },
+          {
+            label: 'Sungold Fields',
+            content:
+              <MapEmbed
+                zone={ZONE.SUNGOLD_FIELDS}
+                points={[
+                  { label: 'Hounds of Kyrios', icon: 'boss', coords: [{ x: 36.5, y: 64.1 }] },
+                ]}
+              />,
+          },
         ]}
       />,
       <Typography>Every time the in-game day hits noon, an event called Crimson Rift starts in Cinderstone Moor
         and Ynystere. There are no quests that give Gilda Stars directly related to the rift, however you will get 3
         Gilda Stars for the first Hound of Kyrios that you kill each day.</Typography>,
+      <Typography>Additionally, at 18:00 in-game, the rift will also appear in Sungold Fields in Auroria.</Typography>,
       <Typography>When the Crimson Rift opens, a red portal will appear in the sky in one of several locations.
-        Cinderstone Moor has three possible locations while Ynystere has two.</Typography>,
+        Cinderstone Moor has three possible locations while Ynystere has two and Sungold Fields has one.</Typography>,
       <Typography>Moments after, waves of the Crimson Army will spawn and must be killed. When all the waves are killed,
         two Hounds of Kyrios will spawn. For more information on this boss, please read <Link
           to={'/guides/hounds-and-nightmares'}>the Hounds and Nightmares</Link> guide.</Typography>,
@@ -658,7 +669,7 @@ const sections = [
                 points={[
                   { label: 'Request Board', icon: 'daily', coords: [{ x: 66.3, y: 65.3 }] },
                   { label: 'Helping the War Effort', icon: 'daily', coords: [{ x: 40.8, y: 72.4 }] },
-                  { label: 'Nightmare Bosses', icon: 'boss', coords: [{ x: 60, y: 67.4 }] },
+                  { label: 'Nightmare Bosses', icon: 'boss', coords: [{ x: 60.5, y: 69 }] },
                 ]}
               />,
           },
@@ -684,7 +695,7 @@ const sections = [
         This quest is available as early as 20:00 in-game time.</Typography>,
       <Typography>Helping the War Effort: Following that material delivery, once the rift begins at 00:00, you'll have
         to turn in two Condensed Archeum packs from your zone's base to the Trebuchet Build Site.</Typography>,
-      <Typography>Shortly after, at around 01:00 in-game time, waves of the Crimson Army will spawn and must be
+      <Typography>Shortly after, at around 01:00 in-game time, waves of the Nightmare Army will spawn and must be
         destroyed. When all the waves are killed, a Nightmare Blade and a Nightmare Bowstring will spawn and can be
         killed for 3 Gilda Stars each. For more information on these two bosses, please read <Link
           to={'/guides/hounds-and-nightmares'}>the Hounds and Nightmares</Link> guide.</Typography>,

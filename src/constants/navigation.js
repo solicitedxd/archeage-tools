@@ -13,6 +13,11 @@ export default [
         ],
       },
       {
+        name: 'World Bosses', children: [
+          { name: 'Hounds and Nightmares', path: '/guides/hounds-and-nightmares' },
+        ],
+      },
+      {
         name: 'Instances', children: [
           { name: 'Noryette Challenge', path: '/guides/noryette-challenge' },
         ],
