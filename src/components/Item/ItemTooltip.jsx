@@ -20,12 +20,33 @@ const renderItemTooltip = (target) => {
     return;
   }
 
-  const { name, icon, type, description, quality, bindsOnPickup, price, unidentified, remainingTime, reqLevel, synthesisGrade, synthesisXP, durability, slot, attackSpeed, weaponType, tempering, maxGrade, salvageable } = item;
+  const {
+    name,
+    icon,
+    type,
+    description,
+    quality,
+    bindsOnPickup,
+    price,
+    unidentified,
+    questStarter,
+    remainingTime,
+    reqLevel,
+    synthesisGrade,
+    synthesisXP,
+    durability,
+    slot,
+    attackSpeed,
+    weaponType,
+    tempering,
+    maxGrade,
+    salvageable,
+  } = item;
 
   return (
     <div>
       <section className="header" data-quality={quality}>
-        <div className={cn('item-icon', 'icon', { 'unidentified': unidentified })}>
+        <div className={cn('item-icon', 'icon', { 'unidentified': unidentified, 'quest': questStarter })}>
           <img src={icon} alt="" />
         </div>
         <div className="name">
