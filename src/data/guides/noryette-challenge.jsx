@@ -262,9 +262,17 @@ const sections = [
           'The bomb can be deactivated early by walking up and interacting with it. This should be done immediately for it to not detonate while attempting to deactivate it.',
         ]}
       />,
+      <Ability
+        name="Unknown healing name"
+        description="Ynga Mk.II puts up a protective barrier, restoring his health by a minimal amount. Whenever he receives damage while the buff is active, his health is restored tremendously."
+        counters={[
+          'Stop attacking Ynga for a few seconds when you see his blue barrier pop up.',
+        ]}
+      />,
       <Typography variant="h6">Strategy</Typography>,
       'After the initial burn, melee should attempt to defuse the bombs as soon as they come up. Be careful as it seems like they still do some damage when defused.',
       'The healer should keep the player who is tanking topped off to prevent a death from his barrage attack.',
+      'Avoid attacking the boss when you see the blue barrier appear, and for a few seconds after it disappears.',
     ],
   },
   {
