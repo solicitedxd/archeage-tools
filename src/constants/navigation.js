@@ -21,6 +21,7 @@ export default [
       },
       {
         name: 'Instances', children: [
+          { name: 'Red Dragon\'s Keep', path: '/guides/red-dragons-keep' },
           { name: 'Noryette Challenge', path: '/guides/noryette-challenge' },
         ],
       },

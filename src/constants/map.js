@@ -147,11 +147,11 @@ export const ZONE = Object.freeze({
   PRODUCE_SEED_BUNDLE: 'Produce Seed Bundle',
   GOOSE_CAGE: 'Small Bamboo Goose Cage',
 
-  THE_FALL_OF_HIRAM_CITY: 'The Fall of Hiram City (Instance)',
-  RED_DRAGONS_KEEP: 'Red Dragon\'s Keep (Instance)',
-  MISTMERROW: 'Mistmerrow (Instance)',
-  MISTMERROW_KADUM: 'Mistmerrow (Kadum Instance)',
-  GOLDEN_PLAINS: 'Golden Plains Battle (Instance)',
+  THE_FALL_OF_HIRAM_CITY: 'The Fall of Hiram City',
+  RED_DRAGONS_KEEP: 'Red Dragon\'s Keep',
+  MISTMERROW: 'Mistmerrow',
+  MISTMERROW_KADUM: 'Mistmerrow (Kadum)',
+  GOLDEN_PLAINS: 'Golden Plains Battle',
 
   MIRAGE_ISLE: 'Mirage Isle',
 });
