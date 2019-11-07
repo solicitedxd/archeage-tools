@@ -38,6 +38,23 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
   },
   {
+    icon: DailyResetIcon,
+    name: 'ArchePass Reset',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    days: {
+      NA: [DAY.MONDAY],
+      EU: [DAY.MONDAY],
+    },
+    times: {
+      NA: [
+        { time: '00:00:00' },
+      ],
+      EU: [
+        { time: '00:00:00' },
+      ],
+    },
+  },
+  {
     icon: AyanadMerchantIcon,
     name: 'Ayanad Merchant',
     type: EVENT_TYPE.REAL_TIME_EVENT,
@@ -186,12 +203,12 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Mirage Isle Fish Fest',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     days: {
-      NA: [DAY.SUNDAY],
-      EU: [DAY.SUNDAY],
+      NA: [DAY.SATURDAY],
+      EU: [DAY.SATURDAY],
     },
     times: {
       NA: [
-        { time: '22:00:00', duration: '12:00:00' },
+        { time: '17:00:00', duration: '12:00:00' },
       ],
       EU: [
         { time: '12:00:00', duration: '12:00:00' },
