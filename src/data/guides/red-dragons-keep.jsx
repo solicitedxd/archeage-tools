@@ -71,8 +71,7 @@ export const sections = Object.freeze([
   {
     title: 'Phase 2',
     paragraphs: [
-      'The Red Dragon will land in the center of the at the start of the phase. You should no longer need to use the harpoon at this point if you execute Phase 2 perfectly.',
-      'Phase 2 ends when the Red Dragon goes below 50% HP.',
+      'The Red Dragon will land in the center of the at the start of the phase. Phase 2 ends when the Red Dragon goes below 50% HP.',
       <Typography variant="h6">Abilities</Typography>,
       <Ability
         name="Summon Fanatics"
@@ -99,17 +98,10 @@ export const sections = Object.freeze([
       />,
       <Typography variant="h6">Tactics</Typography>,
       'All players that aren\'t the one player tanking the Red Dragon should be stacking on the backside of the Red Dragon\'s leg, burning as much as possible.',
-      'As the dragon gets close to 50%, DPS should slow and come to a stop around 51% to wait for an opportune moment:',
-      <ul className="dashed">
-        <li><Typography style={{ display: 'inline' }}>The Red Dragon should not have his regeneration buff.</Typography>
-        </li>
-        <li><Typography style={{ display: 'inline' }}>The Red Dragon's regeneration ability should have been used
-          recently recently.</Typography></li>
-        <li><Typography style={{ display: 'inline' }}>The players should have recently been lifted and dropped onto the
-          ground.</Typography></li>
-      </ul>,
-      'When these conditions line up as close as possible, everyone needs to burn the Red Dragon as fast as possible. You want to wait for him to not have his regeneration buff and to have used it recently so he doesn\'t use it during your burn attempt.',
-      'The goal is to get the Red Dragon as close to 39% health as possible during your burn attempt, as this will let you bypass his second flying phase entirely or reduce the amount of harpoon damage needed to ground him to start phase 4. You don\'t want the Red Dragon lifting off at his 50% health phase change with his regen buff, either.',
+      'Switch targets to focus the adds when they spawn.',
+      'As the dragon gets closer to his phase threshold of health, he will use his regeneration ability, quickly regenerating health. After his regeneration is There will be a semi-short duration where he doesn\'t have his regeneration, and this is when you need to push him below 50% before he uses his regeneration ability again.',
+      'The lower you get his health in this window between the first and second regeneration casts, the less he will need to be damaged by harpoons in Phase 3. If you can get him below 40% during this burn, you will skip phase 3 entirely.',
+      'If his second regeneration ability is cast before you enter phase 3, then he will continue using regeneration during phase 3.'
     ],
   },
   {
