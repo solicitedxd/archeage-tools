@@ -218,6 +218,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
   {
     icon: DragonRedIcon,
     name: 'Red Dragon\'s Keep (Instance)',
+    link: '/guides/red-dragons-keep',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
       NA: [],
@@ -257,6 +258,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: CrimsonRiftIcon,
     name: 'Crimson Rift',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '12:00',
     duration: '00:20',
@@ -264,6 +266,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: CrimsonRiftIcon,
     name: 'Crimson Rift (Auroria)',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '18:00',
     duration: '00:20',
@@ -271,6 +274,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: GrimghastRiftIcon,
     name: 'Grimghast Rift',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '00:00',
     duration: '00:45',
@@ -285,6 +289,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: BossMonsterIcon,
     name: 'Meina & Glenn',
+    link: '/guides/meina-and-glenn',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '06:00',
     duration: '06:00',

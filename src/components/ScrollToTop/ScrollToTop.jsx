@@ -33,6 +33,11 @@ class ScrollToTop extends Component {
     window.removeEventListener('resize', this.handleWindowResize);
   }
 
+  handleClick = () => {
+    document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    history.pushState("", document.title, document.location.pathname);
+  };
+
   render() {
     const { scrollY, height } = this.state;
 
@@ -41,7 +46,7 @@ class ScrollToTop extends Component {
         <Fab
           color="primary"
           className="fab"
-          onClick={() => document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' })}
+          onClick={this.handleClick}
         >
           <ExpandLess />
         </Fab>

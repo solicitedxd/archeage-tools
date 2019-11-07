@@ -16,7 +16,7 @@ import * as Guides from '../../../data/guides';
 
 const slug = (text) => {
   return text.toLowerCase()
-  .replace(/[^\w ]+/g,"")
+  .replace(/[^\w ]+/g, '')
   .split(' ')
   .join('-');
 };
@@ -35,6 +35,21 @@ class KeyComponent extends Component {
 }
 
 class GuideViewer extends Component {
+  componentDidMount() {
+    const { hash } = this.props.location;
+    if (hash && hash.length > 1) {
+      const elementId = hash.substr(1); // cut off the #
+      const element = document.getElementById(elementId);
+      console.log(element);
+      if (element) {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
+    }
+  }
+
   render() {
     const { mobile, match: { params: { guide: guideSlug } } } = this.props;
     const guide = Guides[unslug(guideSlug)];
@@ -76,7 +91,7 @@ class GuideViewer extends Component {
             )}
           </div>
           {!mobile &&
-          <Sticky holderProps={{ className: 'guide-toc'}}>
+          <Sticky holderProps={{ className: 'guide-toc' }}>
             <Paper>
               <AppBar position="static">
                 <Toolbar variant="dense">
