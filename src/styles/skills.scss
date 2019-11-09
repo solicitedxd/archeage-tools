@@ -103,9 +103,27 @@
 }
 
 .skill, .skill-icon {
-  width: 48px;
-  height: 48px;
+  width: 50px;
+  height: 50px;
   position: relative;
+
+  &.inline {
+    display: inline-block;
+    margin-right: 4px;
+    width: 20px;
+    height: 20px;
+    vertical-align: -4px;
+
+    img {
+      width: 18px;
+      height: 18px;
+    }
+
+    &:after {
+      width: 18px;
+      height: 18px;
+    }
+  }
 
   &.ancestral {
     width: 52px;
@@ -192,7 +210,6 @@
     height: 48px;
     border: 1px solid #000000;
     border-radius: 2px;
-    z-index: 1;
   }
 
   &:after {
@@ -208,7 +225,6 @@
     font-size: 24px;
     line-height: 52px;
     text-align: center;
-    z-index: 3;
   }
 
   &.available {
@@ -335,7 +351,6 @@
           position: absolute;
           bottom: -12px;
           right: -12px;
-          z-index: 8;
         }
       }
 

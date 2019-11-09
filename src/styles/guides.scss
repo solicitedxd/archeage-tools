@@ -1,0 +1,103 @@
+.guide-container {
+  margin: 0 20px;
+
+  .section {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+
+  .guide-viewer {
+    width: 100%;
+    max-width: 828px;
+    margin-right: 12px;
+
+    .MuiPaper-root + .MuiPaper-root:not(.MuiExpansionPanel-root) {
+      margin-top: 16px;
+    }
+
+    .MuiTypography-h6 {
+      margin-top: 12px;
+    }
+
+    .MuiTypography-subtitle2 {
+      margin-top: 8px;
+    }
+
+    .tips {
+      margin-top: 8px;
+    }
+
+    ul.dashed {
+      margin: 4px 0;
+      padding-inline-start: 25px;
+      list-style-type: none;
+
+      li:before {
+        content: "- ";
+      }
+    }
+
+    .quest-items {
+      display: flex;
+
+      span[data-quality] {
+        display: inline-block;
+        margin-right: 6px;
+      }
+    }
+
+    .table-wrapper {
+      max-height: 400px;
+      overflow: auto;
+
+      .reward-cell {
+
+        & > * {
+          vertical-align: middle;
+        }
+
+        span[data-quality] {
+          display: inline-block;
+          margin: 0 4px;
+        }
+
+        .one-of {
+          display: inline-flex;
+          flex-direction: column;
+
+          &:before {
+            content: 'One:';
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 11px;
+          }
+        }
+      }
+    }
+  }
+
+  .guide-toc {
+    max-width: 240px;
+    width: 100%;
+  }
+}
+
+.guide-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .guide-category {
+    flex-basis: 33.3%;
+  }
+}
+
+.deadly-icon {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: url(../images/npc_icon.png) -340px -239px;
+  margin: 0 6px 0 0;
+  vertical-align: -2px;
+}

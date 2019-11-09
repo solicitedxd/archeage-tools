@@ -38,6 +38,23 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
   },
   {
+    icon: DailyResetIcon,
+    name: 'ArchePass Reset',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    days: {
+      NA: [DAY.MONDAY],
+      EU: [DAY.MONDAY],
+    },
+    times: {
+      NA: [
+        { time: '00:00:00' },
+      ],
+      EU: [
+        { time: '00:00:00' },
+      ],
+    },
+  },
+  {
     icon: AyanadMerchantIcon,
     name: 'Ayanad Merchant',
     type: EVENT_TYPE.REAL_TIME_EVENT,
@@ -148,7 +165,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '00:00:00', duration: '02:00:00' },
+        { time: '00:05:00', duration: '02:00:00' },
       ],
       EU: [],
     },
@@ -186,21 +203,22 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Mirage Isle Fish Fest',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     days: {
-      NA: [DAY.SUNDAY],
-      EU: [DAY.SUNDAY],
+      NA: [DAY.SATURDAY],
+      EU: [DAY.SATURDAY],
     },
     times: {
       NA: [
-        { time: '22:00:00', duration: '02:00:00' },
+        { time: '17:00:00', duration: '12:00:00' },
       ],
       EU: [
-        { time: '12:00:00', duration: '02:00:00' },
+        { time: '12:00:00', duration: '12:00:00' },
       ],
     },
   },
   {
     icon: DragonRedIcon,
     name: 'Red Dragon\'s Keep (Instance)',
+    link: '/guides/red-dragons-keep',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
       NA: [],
@@ -240,6 +258,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: CrimsonRiftIcon,
     name: 'Crimson Rift',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '12:00',
     duration: '00:20',
@@ -247,6 +266,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: CrimsonRiftIcon,
     name: 'Crimson Rift (Auroria)',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '18:00',
     duration: '00:20',
@@ -254,6 +274,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: GrimghastRiftIcon,
     name: 'Grimghast Rift',
+    link: '/guides/gilda-dailies#miscellaneous-quests',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '00:00',
     duration: '00:45',
@@ -268,6 +289,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: BossMonsterIcon,
     name: 'Meina & Glenn',
+    link: '/guides/meina-and-glenn',
     type: EVENT_TYPE.GAME_TIME_EVENT,
     time: '06:00',
     duration: '06:00',

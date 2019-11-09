@@ -14,6 +14,7 @@ import {
 } from '@material-ui/core';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
+import Link from 'components/Link';
 import { EVENT_TYPE } from 'constants/calendar';
 import { getDay } from 'utils/calendar';
 import { hhmmssFromDate } from 'utils/thunderstruck';
@@ -26,6 +27,7 @@ class EventCard extends Component {
     icon: string.isRequired,
     name: string.isRequired,
     type: string.isRequired,
+    link: string,
     days: object,
     times: object,
     regionNA: bool,
@@ -35,6 +37,7 @@ class EventCard extends Component {
     days: {},
     times: {},
     regionNA: true,
+    link: null,
   };
 
   state = {
@@ -166,7 +169,7 @@ class EventCard extends Component {
   };
 
   render() {
-    const { icon, name, time, type } = this.props;
+    const { icon, name, time, type, link } = this.props;
     let { nextOccurrence, running, time: remainingTime } = this.state;
     const tz = moment.tz.guess();
     let upcoming = 'Unknown';
@@ -204,7 +207,7 @@ class EventCard extends Component {
               <Avatar aria-label={name} src={icon} className="event-icon" />
             </div>
           }
-          title={name}
+          title={link ? <Link to={link}>{name}</Link> : name}
           subheader={`${label}: ${upcoming}`}
           action={
             <div className="ev-status">

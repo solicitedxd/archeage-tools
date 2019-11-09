@@ -2,7 +2,7 @@
  Item icon
  */
 .item-icon {
-  display: inline-block;
+  display: block;
   position: relative;
   width: 48px;
   height: 48px;
@@ -11,7 +11,7 @@
   box-shadow: 0 0 3px #000000;
 }
 
-.item-icon:after, .item-icon.unidentified:before {
+.item-icon:after, .item-icon.unidentified:before, .item-icon.quest:before {
   display: block;
   position: absolute;
   top: 0;
@@ -19,29 +19,64 @@
   width: 48px;
   height: 48px;
   content: "";
-  z-index: 2;
 }
 
 .item-icon.unidentified:before {
   background-image: url('../images/item/unidentified.png');
-  z-index: 1;
+}
+.item-icon.quest:before {
+  background-image: url('../images/item/quest.png');
 }
 
 .item-icon img {
   height: 48px;
   width: 48px;
+  display: block;
 }
 
 .item-icon .count {
   position: absolute;
   bottom: 2px;
   right: 4px;
-  z-index: 2;
   color: white;
   text-shadow: -1px -1px 0 #000000,
   1px -1px 0 #000000,
   -1px 1px 0 #000000,
   1px 1px 0 #000000;
+  font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
+}
+
+span[data-quality] {
+  display: block;
+}
+
+span.inline[data-quality] {
+  display: inline-block;
+  margin: 0 4px 0 0;
+  vertical-align: -2px;
+  height: 20px;
+}
+.inline > .item-icon {
+  width: 18px;
+  height: 18px;
+
+  img {
+    width: 18px;
+    height: 18px;
+  }
+  .count {
+    display: none;
+  }
+  &.unidentified:before, &:after, &.quest:before {
+    background-size: 18px;
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.inline-link {
+  display: inline-block;
+  cursor: help;
 }
 
 [data-quality="Poor"] {

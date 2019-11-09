@@ -369,12 +369,6 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.GALE,
         icon: LassoGale,
-        effects: [],
-        description: 'Pulls a Party of Raid member within 20m to your position, decreasing their Aggro and canceling all targets on them.',
-      },
-      {
-        element: ELEMENT.LIFE,
-        icon: LassoLife,
         range: [0, 12],
         cooldown: 0,
         description: 'Pulls a distant enemy to your position. This ability also #Taunts# the target, forcing affected monsters to attack you #4sec#.\r' +
@@ -382,6 +376,12 @@ export const ancestrals = Object.freeze([
           'Pulled enemies are Staggered, disabling movement and skill use for #0.5 sec# and interrupting all Cast Time and Channeled skills.\r' +
           'This ability can be used #twice# in a row, if the skill is charged for another #20 sec#.\r\r' +
           'This skill is not affected by Ursine Roar.',
+      },
+      {
+        element: ELEMENT.LIFE,
+        icon: LassoLife,
+        effects: [],
+        description: 'Pulls a Party of Raid member within 20m to your position, decreasing their Aggro and canceling all targets on them.',
       },
     ],
   },

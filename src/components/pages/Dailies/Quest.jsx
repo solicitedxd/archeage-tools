@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import {
   array,
   arrayOf,
-  number,
   object,
   oneOfType,
   string,
@@ -20,12 +19,11 @@ import {
   setQuestStatus,
 } from 'actions/dailies';
 import { REWARD } from 'constants/dailies';
-import ITEM from 'constants/items';
+import ITEM from 'data/items';
 import Item from 'components/Item';
 import Currency from 'components/Currency';
 import XP from 'components/XP';
 import {
-  getQuestId,
   getZones,
   sortItems,
   splitRewards,
@@ -38,27 +36,20 @@ class Quest extends Component {
     difficulty: string,
     rewards: arrayOf(object),
     type: string,
-    idx: number,
   };
 
   static defaultProps = {
     zones: [],
     difficulty: '',
     type: '',
-    idx: null,
-  };
-
-  getQuestId = () => {
-    const { name, idx } = this.props;
-    return getQuestId({ name, idx });
   };
 
   handleChange = (e, status) => {
-    const { setQuestStatus, setQuestHide, hideMode } = this.props;
+    const { setQuestStatus, setQuestHide, hideMode, name } = this.props;
     if (hideMode) {
-      setQuestHide(this.getQuestId(), !status);
+      setQuestHide(name, !status);
     } else {
-      setQuestStatus(this.getQuestId(), status);
+      setQuestStatus(name, status);
     }
   };
 
@@ -67,8 +58,8 @@ class Quest extends Component {
     const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
     const zones = getZones(zoneObj, faction);
 
-    const completed = quests[this.getQuestId()] || false;
-    const hidden = !(hiddenQuests && hiddenQuests[this.getQuestId()] || false);
+    const completed = quests[name] || false;
+    const hidden = !(hiddenQuests && hiddenQuests[name] || false);
 
     const checked = hideMode ? hidden : completed;
 

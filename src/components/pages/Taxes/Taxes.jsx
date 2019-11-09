@@ -20,6 +20,7 @@ import {
 } from 'constants/taxes';
 import { deepCopy } from 'utils/skills';
 import PropertyBox from './PropertyBox';
+import { setTitle } from 'utils/string';
 
 class Taxes extends Component {
   constructor() {
@@ -75,6 +76,8 @@ class Taxes extends Component {
     }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100) + hostileIncrease);
 
     const laborCost = Math.ceil(taxesPerWeek / 5) * (300 * proficiency.cost);
+
+    setTitle('Tax Calculator');
 
     return (
       <div className={cn('calendar-container', { mobile })}>

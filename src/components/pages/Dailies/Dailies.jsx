@@ -6,17 +6,14 @@ import {
   Dialog,
   DialogContent,
   DialogTitle,
-  Fab,
   IconButton,
   Paper,
   Toolbar,
   Tooltip,
   Typography,
-  Zoom,
 } from '@material-ui/core';
 import {
   Close,
-  ExpandLess,
   Replay,
   Settings,
   Visibility,
@@ -25,37 +22,23 @@ import {
   resetHide,
   resetQuests,
 } from 'actions/dailies';
-import dailyQuests from 'data/dailies';
-import Quest from './Quest';
-import Filters from './Filters';
+import ScrollToTop from 'components/ScrollToTop';
 import {
   CONTINENT,
   REWARD,
   TYPE,
 } from 'constants/dailies';
-import ITEM from 'constants/items';
-import {
-  getQuestId,
-  getZones,
-} from 'utils/dailies';
+import dailyQuests from 'data/dailies';
+import ITEM from 'data/items';
+import { getZones } from 'utils/dailies';
+import { setTitle } from 'utils/string';
+import Filters from './Filters';
+import Quest from './Quest';
 
 class Dailies extends Component {
   state = {
     filtersOpen: false,
-    scrollY: 0,
   };
-
-  handleWindowScroll = () => {
-    this.setState({ scrollY: document.documentElement.scrollTop });
-  };
-
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleWindowScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleWindowScroll);
-  }
 
   showSettingsMenu = () => {
     return this.props.displayMobile;
@@ -80,7 +63,7 @@ class Dailies extends Component {
 
   render() {
     const { continents, faction, rewards, types, hideComplete, quests, hideMode, hiddenQuests } = this.props;
-    const { filtersOpen, scrollY } = this.state;
+    const { filtersOpen } = this.state;
     const zonesFromContinents = [].concat.apply([], continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones));
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
 
@@ -91,8 +74,8 @@ class Dailies extends Component {
     const claimedRewards = [];
 
     const visibleQuests = dailyQuests.filter(quest => {
-      const completed = quests[getQuestId(quest)] || false;
-      const hidden = hiddenQuests && hiddenQuests[getQuestId(quest)] || false;
+      const completed = quests[quest.name] || false;
+      const hidden = hiddenQuests && hiddenQuests[quest.name] || false;
       let visible = true;
 
       if (!hideMode && hidden) {
@@ -156,6 +139,8 @@ class Dailies extends Component {
 
     const footnote = 'Note: This comprehensive list does not include most quests that aren\'t completable every day, such as some world boss quests.';
 
+    setTitle('Daily Checklist');
+
     return (
       <div className="quest-container">
         <Paper className="section quest-list" style={mainStyle}>
@@ -177,14 +162,11 @@ class Dailies extends Component {
               </IconButton>}
             </Toolbar>
           </AppBar>
-          {visibleQuests.sort((a, b) => {
-            if (a.name === b.name) {
-              if (a.zones[0] > b.zones[0]) return 1;
-              if (a.zones[0] < b.zones[0]) return -1;
-              return 0;
-            }
-            return (a.name > b.name) ? 1 : -1;
-          }).map((quest) => <Quest key={getQuestId(quest)} {...quest} />)}
+          {visibleQuests
+          .sort((a, b) => ((a.sort || a.name) > (b.sort || b.name)) ? 1 : -1)
+          .map((quest) => (
+            <Quest key={quest.name} {...quest} />
+          ))}
         </Paper>
         {!this.showSettingsMenu() &&
         <div className="section quest-filters">
@@ -214,15 +196,7 @@ class Dailies extends Component {
             <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
           </DialogContent>
         </Dialog>
-        <Zoom in={scrollY >= 720} unmountOnExit>
-          <Fab
-            color="primary"
-            className="fab"
-            onClick={() => document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' })}
-          >
-            <ExpandLess />
-          </Fab>
-        </Zoom>
+        <ScrollToTop />
       </div>
     );
   }

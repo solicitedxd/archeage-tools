@@ -83,6 +83,7 @@
       .choose-one {
         position: absolute;
         top: -17px;
+        font-size: 11px;
       }
 
       .reward-items {
@@ -262,6 +263,20 @@
     background-position: -219px -29px;
     width: 20px;
     height: 20px;
+  }
+}
+
+.ancestral-level {
+  color: #FECF3F;
+  &:before {
+    content: "";
+    position: relative;
+    height: 14px;
+    width: 14px;
+    top: 1px;
+    display: inline-block;
+    background: url(../images/money_window.png) no-repeat;
+    background-position: -242px -49px;
   }
 }
 

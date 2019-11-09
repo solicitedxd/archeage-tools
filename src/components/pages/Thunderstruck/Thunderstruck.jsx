@@ -25,6 +25,7 @@ import { CLIMATE } from 'constants/thunderstruck';
 import { toSeconds } from 'utils/thunderstruck';
 import TREE from 'data/trees';
 import TreeCard from './TreeCard';
+import { setTitle } from 'utils/string';
 
 moment_tz;
 
@@ -100,6 +101,8 @@ class Thunderstruck extends Component {
   render() {
     const { mobile, trees, removeTree } = this.props;
     const { timeRemaining, climate, tree, note } = this.state;
+
+    setTitle('Thunderstruck Timer');
 
     return (
       <div className={cn('calendar-container', { mobile })}>

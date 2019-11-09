@@ -18,6 +18,27 @@ import RedDragonPouchIcon from 'images/item/red_dragon_pouch.png';
 import GoldCrateIcon from 'images/item/gold_crate.png';
 import OnyxEssenceIcon from 'images/item/onyx_essence.png';
 import RevenantSoulstoneIcon from 'images/item/revenant_soulstone.png';
+import GlowingPrismIcon from 'images/item/glowing_prism.png';
+import OriginalTitansWingsIcon from 'images/item/original_titans_wings.png';
+import FierceTitansWingsIcon from 'images/item/fierce_titans_wings.png';
+import CondensedScentIcon from 'images/item/conensed_scent.png';
+import PotatoIcon from 'images/item/potato.png';
+import WaterIcon from 'images/item/water.png';
+import ChoppedProduceIcon from 'images/item/chopped_produce.png';
+import TrimmedMeatIcon from 'images/item/trimmed_meat.png';
+import DriedFlowersIcon from 'images/item/dried_flowers.png';
+import MedicinalPowderIcon from 'images/item/medicinal_powder.png';
+import GroundSpicesIcon from 'images/item/ground_spices.png';
+import GroundGrainIcon from 'images/item/ground_grain.png';
+import OrchardPureeIcon from 'images/item/orchard_puree.png';
+import SunlightDustIcon from 'images/item/sunlight_dust.png';
+import MoonlightDustIcon from 'images/item/moonlight_dust.png';
+import StarlightDustIcon from 'images/item/starlight_dust.png';
+import AbyssalEnhancerIcon from 'images/item/abyssal_enhancer.png';
+import NoryetteEarringIcon from 'images/item/noryette_earring.png';
+import NoryetteRingIcon from 'images/item/noryette_ring.png';
+import NoryetteAwakeningScrollIcon from 'images/item/noryette_awakening_scroll.png';
+import GreaterGrindingScrollIcon from 'images/item/greater_grinding_scroll.png';
 
 export default Object.freeze({
   GILDA_STAR: {
@@ -280,5 +301,243 @@ export default Object.freeze({
     quality: QUALITY.BASIC,
     price: 50,
     bindsOnPickup: true,
+  },
+  ORIGINAL_TITANS_WINGS: {
+    name: 'Original Titan\'s Wings',
+    icon: OriginalTitansWingsIcon,
+    type: 'Other',
+    description: <span>A prototype of Titan's Wings.<br />Used in crafting Fierce Titan's Wings at the Thunderwing Call in Reedwind.</span>,
+    quality: QUALITY.BASIC,
+    price: 100,
+    bindsOnPickup: true,
+  },
+  FIERCE_TITANS_WINGS: {
+    name: 'Fierce Titan\'s Wings',
+    icon: FierceTitansWingsIcon,
+    type: 'Magithopter',
+    description: <span>Crafted from the feathers of the legendary Thunderwing Titan; each one still seems to burn with the creature's mad fury.<br /><br />Allows you to select the appropriate status for your role.<br /><br />Note: Most skills are only effective near the Thunderwing Titan.<span
+      className="tt-use">Use:</span><span className="tt-green">Equip wings to use Free Glide. The location of the Thunderwing Titan within 800m is displayed on the map. While using Free Glide, only designated skills can be used. Parry, Evasion, and Shield Block do not trigger.<br />Landing or flying out of the Reedwind automatically ends the Free Glide mode.<br /><br />This skill can only be used in Reedwind.</span></span>,
+    quality: QUALITY.BASIC,
+    bindsOnPickup: true,
+    remainingTime: '1h 0m',
+  },
+  GLOWING_PRISM: {
+    name: 'Glowing Prism',
+    icon: GlowingPrismIcon,
+    type: 'Material',
+    description: <span>Can be acquired from hunting monsters.<br />Mostly used for crafting.</span>,
+    quality: QUALITY.BASIC,
+    price: 500,
+  },
+  CONDENSED_SCENT: {
+    name: 'Condensed Scent',
+    icon: CondensedScentIcon,
+    type: 'Quest Item',
+    description: <span>A pleasant aroma, condensed into the form of a crystal.</span>,
+    quality: QUALITY.BASIC,
+    bindsOnPickup: true,
+  },
+  VITA_ROOT: {
+    name: 'Vita Root',
+    icon: PotatoIcon,
+    type: 'Grain',
+    description: <span>This enchanted fruit makes mounts and battle pets grow to maturity quickly.</span>,
+    quality: QUALITY.BASIC,
+    price: 1,
+  },
+  WATER: {
+    name: 'Water',
+    icon: WaterIcon,
+    type: 'Contraption',
+    description: <span>Widely useful, especially for extinguishing fires and watering crops.</span>,
+    quality: QUALITY.BASIC,
+  },
+  CHOPPED_PRODUCE: {
+    name: 'Chopped Produce',
+    icon: ChoppedProduceIcon,
+    type: 'Material',
+    description: <span>Vegetables such as <span className="tt-orange">potatoes</span> and <span
+      className="tt-orange">carrots</span> chopped with a <span className="tt-orange">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  TRIMMED_MEAT: {
+    name: 'Trimmed Meat',
+    icon: TrimmedMeatIcon,
+    type: 'Material',
+    description: <span>Meat such as <span className="tt-orange">chicken</span> and <span
+      className="tt-orange">beef</span> trimmed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  DRIED_FLOWERS: {
+    name: 'Dried Flowers',
+    icon: DriedFlowersIcon,
+    type: 'Material',
+    description: <span>Flowers such as <span className="tt-orange">azaleas</span> and <span
+      className="tt-orange">roses</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  MEDICINAL_POWDER: {
+    name: 'Medicinal Powder',
+    icon: MedicinalPowderIcon,
+    type: 'Material',
+    description: <span>Medicinals such as <span className="tt-orange">mushrooms</span> and <span className="tt-orange">cultivated ginseng</span> ground with a <span
+      className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  GROUND_GRAIN: {
+    name: 'Ground Grain',
+    icon: GroundGrainIcon,
+    type: 'Material',
+    description: <span>Grain such as <span className="tt-orange">barley</span> and <span
+      className="tt-orange">rice</span> ground with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  GROUND_SPICES: {
+    name: 'Ground Spices',
+    icon: GroundSpicesIcon,
+    type: 'Material',
+    description: <span>Spices such as <span className="tt-orange">iris</span> and <span
+      className="tt-orange">mint</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  ORCHARD_PUREE: {
+    name: 'Orchard Puree',
+    icon: OrchardPureeIcon,
+    type: 'Material',
+    description: <span>Fruits such as <span className="tt-orange">grapes</span> and <span
+      className="tt-orange">apples</span> chopped into bite-size pieces. Blue Salt Knives can be purchased from <span
+      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    price: 20,
+  },
+  SUNLIGHT_ARCHEUM_DUST: {
+    name: 'Sunlight Archeum Dust',
+    icon: SunlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
+      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
+  },
+  MOONLIGHT_ARCHEUM_DUST: {
+    name: 'Moonlight Archeum Dust',
+    icon: MoonlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
+      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
+  },
+  STARLIGHT_ARCHEUM_DUST: {
+    name: 'Starlight Archeum Dust',
+    icon: StarlightDustIcon,
+    type: 'Archeum',
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
+      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    price: 50,
+  },
+  MYSTERIOUS_ABYSSAL_ENHANCER: {
+    name: 'Mysterious Abyssal Enhancer',
+    icon: AbyssalEnhancerIcon,
+    quality: QUALITY.GRAND,
+    unidentified: true,
+    type: 'Synthesis Material',
+    bindsOnPickup: true,
+    description: <span>This enhancer is sealed with abyssal energy. Infuse magic to break the seal.<br /><br /><span
+      className="tt-use">Use:</span><span className="tt-green">Spend up to 25 Labor to unseal the Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    price: 150,
+  },
+  NORYETTE_EARRING: {
+    name: 'Noryette Earring',
+    icon: NoryetteEarringIcon,
+    type: 'Earring',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    reqLevel: 50,
+    synthesisXP: 31840,
+    synthesisGrade: 'Divine',
+    slot: 'Ear',
+    durability: 15,
+    description: <span className="tt-green">
+      <span className="tt-use">Combo Effect</span>
+      Triggers the <span
+      className="tt-orange">Spiritual Focus Rank 1</span> if attacked in the Noryette Challenge.<br /><br />
+      <span className="tt-use">Equip Effect</span>
+      Decreases <span className="tt-blue">PvE Received Damage</span> <span className="tt-orange">-2.0%</span>.
+    </span>,
+  },
+  NORYETTE_RING: {
+    name: 'Noryette Ring',
+    icon: NoryetteRingIcon,
+    type: 'Ring',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    reqLevel: 50,
+    synthesisXP: 31840,
+    synthesisGrade: 'Divine',
+    slot: 'Finger',
+    durability: 15,
+    description: <span className="tt-green">
+      <span className="tt-use">Combo Effect</span>
+      Triggers the <span
+      className="tt-orange">Challenger's Valor Rank 1</span> when using a skill in the Noryette Challenge.<br /><br />
+      <span className="tt-use">Equip Effect</span>
+      Increaes <span className="tt-blue">PvE Skill Damage</span> <span className="tt-orange">+2.0%</span>.
+    </span>,
+  },
+  NORYETTE_AWAKENING_SCROLL: {
+    name: 'Noryette Awakening Scroll',
+    icon: NoryetteAwakeningScrollIcon,
+    type: 'Awakening Materials',
+    quality: QUALITY.RARE,
+    bindsOnPickup: true,
+    description: <span>
+      An awakening scroll, made by the <span className="tt-blue">Noryette</span> family.<br /><br />
+      Can only be used on <span className="tt-yellow">Noryette Accessories</span> of <span
+      className="tt-yellow">Divine</span> grade or higher.<br /><br />
+      Can be obtained by clearing Round 20 or higher in the <span
+      className="tt-blue">Noryette Challenge</span>.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend <span className="tt-orange">1</span> Noryette Awakening Scroll and <span
+        className="tt-orange">300</span> Labor to awaken the equipment.</span>
+    </span>,
+    price: 20,
+  },
+  LUMINOUS_NORYETTE_AWAKENING_SCROLL: {
+    name: 'Luminous Noryette Awakening Scroll',
+    icon: NoryetteAwakeningScrollIcon,
+    type: 'Awakening Materials',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      An awakening scroll, made by the <span className="tt-blue">Noryette</span> family.<br /><br />
+      Can only be used on <span className="tt-yellow">Luminous Noryette Accessories</span> of <span
+      className="tt-yellow">Legendary</span> grade or higher.<br /><br />
+      Can be obtained by clearing Round 20 or higher in the <span
+      className="tt-blue">Noryette Challenge</span>.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend <span className="tt-orange">1</span> Luminous Noryette Awakening Scroll and <span
+        className="tt-orange">300</span> Labor to awaken the equipment.</span>
+    </span>,
+    price: 30,
+  },
+  MISTSONG_GRINDING_GUARDIAN_SCROLL: {
+    name: 'Mistsong Grinding Guardian Scroll',
+    icon: GreaterGrindingScrollIcon,
+    type: 'Other',
+    quality: QUALITY.RARE,
+    description: <span>
+      Grants continued dungeon access after you pass your daily entrance limit.<br /><br />
+      <span className="tt-yellow">Caution:</span><br />
+      Entering the same dungeon after the daily entrance limit was met will consume this scroll.<br />
+      Only for dungeons with a level limit of <span className="tt-orange">55 or higher</span>.<br /><br />
+      <span className="tt-blue">Valid Dungeons</span><br />
+      Mistsong Summit<br />
+      Abyssal Library<br />
+      Noryette Challenge
+    </span>,
+    price: 10000,
   },
 });

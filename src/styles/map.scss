@@ -1,0 +1,249 @@
+.map-embed {
+  .map-preview {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .map-left {
+      $width: 580px;
+      max-width: $width;
+      max-height: 348px;
+      width: 100%;
+
+      img {
+        width: 100%;
+        border-radius: 3px;
+        cursor: zoom-in;
+        display: block;
+      }
+    }
+
+    .map-points {
+      width: 210px;
+
+      .point-item {
+        cursor: help;
+      }
+
+      .point-label {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+.map-dialog {
+  .map-content {
+    width: 928px;
+    height: 556px;
+  }
+
+  .point-list {
+    padding: 6px 0;
+    display: flex;
+    flex-wrap: wrap;
+    width: 928px;
+
+    .point-item {
+      flex-grow: 1;
+      cursor: help;
+    }
+
+    .point-label {
+      display: inline-block;
+    }
+  }
+}
+
+.map-content {
+  position: relative;
+}
+
+
+.map-embed .point, .map-dialog .point {
+  width: 24px;
+  height: 24px;
+  background: url(../images/npc_icon.png) -488px -232px;
+  position: absolute;
+
+  &.inline-point {
+    position: initial;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: -5px;
+  }
+
+  /* Use a bounce animation for pointers */
+  &.hover-anim[data-point="1"], &.hover-anim[data-point="2"], &.hover-anim[data-point="3"],
+  &.hover-anim[data-point="4"], &.hover-anim[data-point="5"], &.hover-anim[data-point="6"],
+  &.hover-anim[data-point="7"], &.hover-anim[data-point="8"], &.hover-anim[data-point="9"] {
+    -webkit-animation: bounceAnimation 0.75s infinite;
+    -moz-animation: bounceAnimation 0.75s infinite;
+    -o-animation: bounceAnimation 0.75s infinite;
+    animation: bounceAnimation 0.75s infinite;
+  }
+
+  /* Use a flicker animation for non-pointers */
+  &.hover-anim {
+    -webkit-animation: flickerAnimation 1s infinite;
+    -moz-animation: flickerAnimation 1s infinite;
+    -o-animation: flickerAnimation 1s infinite;
+    animation: flickerAnimation 1s infinite;
+  }
+
+  &[data-point="1"] {
+    background-position: -288px 0;
+  }
+
+  &[data-point="2"] {
+    background-position: -312px 0;
+  }
+
+  &[data-point="3"] {
+    background-position: -336px 0;
+  }
+
+  &[data-point="4"] {
+    background-position: -360px 0;
+  }
+
+  &[data-point="5"] {
+    background-position: -384px 0;
+  }
+
+  &[data-point="6"] {
+    background-position: -408px 0;
+  }
+
+  &[data-point="7"] {
+    background-position: -432px 0;
+  }
+
+  &[data-point="8"] {
+    background-position: -456px 0;
+  }
+
+  &[data-point="9"] {
+    background-position: -480px 0;
+  }
+
+  &[data-point="quest"] {
+    background-position: -217px -46px;
+  }
+
+  &[data-point="daily"] {
+    background-position: -302px -232px;
+  }
+
+  &[data-point="com-center"] {
+    background-position: -272px -213px;
+  }
+
+  &[data-point="port"] {
+    background-position: -120px -164px;
+  }
+
+  &[data-point="farm"] {
+    background-position: -144px -119px;
+  }
+
+  &[data-point="boss"] {
+    background-position: -270px -149px;
+  }
+}
+
+@keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-o-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-moz-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes flickerAnimation {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes bounceAnimation {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -5px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+@-o-keyframes bounceAnimation {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -5px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+@-moz-keyframes bounceAnimation {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -5px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}
+
+@-webkit-keyframes bounceAnimation {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    margin-top: -5px;
+  }
+  100% {
+    margin-top: 0;
+  }
+}

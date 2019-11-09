@@ -1,3 +1,5 @@
+import { ZONE } from 'constants/map';
+
 export const QUEST_STATUS = 'QUEST_STATUS';
 export const QUEST_RESET = 'QUEST_RESET';
 export const QUEST_FILTER_FACTION = 'QUEST_FILTER_FACTION';
@@ -8,75 +10,6 @@ export const QUEST_FILTER_COMPLETE = 'QUEST_FILTER_COMPLETE';
 export const QUEST_HIDE = 'QUEST_HIDE';
 export const QUEST_HIDE_MODE = 'QUEST_HIDE_MODE';
 export const QUEST_HIDE_RESET = 'QUEST_HIDE_RESET';
-
-export const ZONE = Object.freeze({
-  ARCUM_IRIS: 'Arcum Iris',
-  FALCORTH_PLAINS: 'Falcorth Plains',
-  SUNBITE_WILDS: 'Sunbite Wilds',
-  TIGERSPINE_MOUNTAINS: 'Tigerspine Mountains',
-  MAHADEVI: 'Mahadevi',
-  SOLIS_HEADLANDS: 'Solis Headlands',
-  VILLANELLE: 'Villanelle',
-  SILENT_FOREST: 'Silent Forest',
-  YNYSTERE: 'Ynystere',
-
-  SOLZREED_PENINSULA: 'Solzreed Peninsula',
-  GWEONID_FOREST: 'Gweonid Forest',
-  AIRAIN_ROCK: 'Airain Rock',
-  LILYUT_HILLS: 'Lilyut Hills',
-  AUBRE_CRADLE: 'Aubre Cradle',
-  DEWSTONE_PLAINS: 'Dewstone Plains',
-  WHITE_ARDEN: 'White Arden',
-  MARIANOPLE: 'Marianople',
-  TWO_CROWNS: 'Two Crowns',
-  CINDERSTONE_MOOR: 'Cinderstone Moor',
-
-  HALCYONA: 'Halcyona',
-  HELLSWAMP: 'Hellswamp',
-  SANDDEEP: 'Sanddeep',
-
-  ROOKBORNE_BASIN: 'Rookborne Basin',
-  WINDSCOUR_SAVANNAH: 'Windscour Savannah',
-  PERINOOR_RUINS: 'Perinoor Ruins',
-  HASLA: 'Hasla',
-
-  KARKASSE_RIDGELANDS: 'Karkasse Ridgelands',
-
-  ROKHALA_MOUNTAINS: 'Rokhala Mountains',
-  AHNIMAR: 'Ahnimar',
-
-  DIAMOND_SHORES: 'Diamond Shores',
-  GOLDEN_RUINS: 'Golden Ruins',
-  WHALESONG_HARBOR: 'Whalesong Harbor',
-  REEDWIND: 'Reedwind',
-  WESTERN_HIRAM_MOUNTAINS: 'Western Hiram Mountains',
-  EASTERN_HIRAM_MOUNTAINS: 'Eastern Hiram Mountains',
-
-  SUNGOLD_FIELDS: 'Sungold Fields',
-  CALMLANDS: 'Calmlands',
-  MARCALA: 'Marcala',
-  HEEDMAR: 'Heedmar',
-  NUIMARI: 'Nuimari',
-  EXELOCH: 'Exeloch',
-
-  FREEDICH_ISLAND: 'Freedich Island',
-  GROWLGATE_ISLE: 'Growlgate Isle',
-  AEGIS_ISLAND: 'Aegis Island',
-  SEA_OF_DROWNED_LOVE: 'Sea of Drowned Love',
-  ARCADIAN_SEA: 'Arcadian Sea',
-
-  FARMERS_WORKSTATION: 'Farmer\'s Workstation',
-  FARMHOUSE: 'Farmhouse',
-  SPICE_SEED_BUNDLE: 'Spice Seed Bundle',
-  IRON_VEIN: 'Iron Vein',
-  PRODUCE_SEED_BUNDLE: 'Produce Seed Bundle',
-  GOOSE_CAGE: 'Small Bamboo Goose Cage',
-
-  THE_FALL_OF_HIRAM_CITY: 'The Fall of Hiram City (Instance)',
-  RED_DRAGONS_KEEP: 'Red Dragon\'s Keep (Instance)',
-  MISTMERROW: 'Mistmerrow (Instance)',
-  GOLDEN_PLAINS: 'Golden Plains Battle (Instance)',
-});
 
 export const CONTINENT = Object.freeze({
   NUIA: {

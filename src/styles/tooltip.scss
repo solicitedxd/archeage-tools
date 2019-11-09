@@ -132,6 +132,7 @@
 
     p {
       margin: 0;
+      line-height: 1.5;
     }
   }
 
@@ -239,8 +240,11 @@
   color: #02FE46;
 }
 
-.tt-use {
+.tt-use, .tt-gray {
   color: #919191;
+}
+
+.tt-use {
   display: block;
 }
 
