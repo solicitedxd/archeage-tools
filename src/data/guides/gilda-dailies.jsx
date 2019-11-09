@@ -787,12 +787,12 @@ const sections = [
       <MapEmbed
         zone={ZONE.DIAMOND_SHORES}
         points={[
-          { label: 'Nuia Quests', coords: [{ x: 24.7, y: 47.6 }] },
-          { label: 'Nuia Bridge', coords: [{ x: 34.6, y: 55.2 }] },
-          { label: 'Nuia Base', coords: [{ x: 41.9, y: 45.9 }] },
-          { label: 'Haranya Quests', coords: [{ x: 67.3, y: 35 }] },
-          { label: 'Haranya Bridge', coords: [{ x: 58.5, y: 50.5 }] },
-          { label: 'Haranya Base', coords: [{ x: 54, y: 61 }] },
+          { label: 'Nuia Quests', icon: 'daily', coords: [{ x: 24.7, y: 47.6 }] },
+          { label: 'Nuia Bridge', icon: 1, coords: [{ x: 34.6, y: 55.2 }] },
+          { label: 'Nuia Base', icon: 2, coords: [{ x: 41.9, y: 45.9 }] },
+          { label: 'Haranya Quests', icon: 'daily', coords: [{ x: 67.3, y: 35 }] },
+          { label: 'Haranya Bridge', icon: 1, coords: [{ x: 58.5, y: 50.5 }] },
+          { label: 'Haranya Base', icon: 2, coords: [{ x: 54, y: 61 }] },
         ]}
       />,
       <Typography>There are quests related to working on your faction's Auroria base. Each quest requires you to craft

@@ -20,6 +20,29 @@ const Home = () => {
       <Paper className="section">
         <AppBar position="static">
           <Toolbar variant="dense">
+            <Typography variant="h5" className="title-text">Guides</Typography>
+            <Typography variant="overline">Nov 9, 2019</Typography>
+          </Toolbar>
+        </AppBar>
+        <div className="body-container">
+          <Typography>
+            It's been a while since the last update, but that's because I've been making a bunch of guides for ArcheAge
+            and there's a lot of content. This preliminary release contains guides for Hiram and Gilda dailies, world
+            bosses for CR and GR as well as Meina and Glenn, and for the instances Noryette Challenge and Red Dragon's
+            Keep.
+          </Typography>
+          <Typography>
+            The Red Dragon's Keep guide may be wrong at some parts and the Noryette Challenge isn't anywhere near
+            complete. It's been a while since I've done Red Dragon's Keep and I've never done the Noryette Challenge
+            before playing on Unchained.
+          </Typography>
+          <Typography>The Event Schedule was also updated to include links to the newly created guides, as well as a few event time fixes.</Typography>
+          <Typography>Supply Demand dailies on the checklist were reworked to better suit how they work in-game.</Typography>
+        </div>
+      </Paper>
+      <Paper className="section">
+        <AppBar position="static">
+          <Toolbar variant="dense">
             <Typography variant="h5" className="title-text">Hide Selective Daily Quests</Typography>
             <Typography variant="overline">Oct 26, 2019</Typography>
           </Toolbar>
@@ -27,13 +50,15 @@ const Home = () => {
         <div className="body-container">
           <Typography>
             A new "Hide Mode" has been added to the Daily Checklist. Clicking the "Hide Undesired Quests" button in the
-            filters panel will now put you into a "hide mode". All quests are selected by default, and unchecking a quest
+            filters panel will now put you into a "hide mode". All quests are selected by default, and unchecking a
+            quest
             will hide it entirely from the normal view of the dailies checklist.<br />When you're done hiding or
             re-showing quests, just click the "Stop Hiding Quests" button to go back to the normal checklist.
           </Typography>
           <Typography>
             Event Schedule - Red Dragon's available days have been added.<br />
-            Sorting issues have been fixed on Chrome for the Dailies Checklist, Event Schedule, and the Combos section of
+            Sorting issues have been fixed on Chrome for the Dailies Checklist, Event Schedule, and the Combos section
+            of
             the Skill Builder.
           </Typography>
         </div>
@@ -47,12 +72,15 @@ const Home = () => {
         </AppBar>
         <div className="body-container">
           <Typography>
-            The Thunderstruck tool is now available. You can start timing something of yours from scratch or time someone
-            else's public tree farm by entering a remaining time. Timers will count down until each possible thunderstruck
+            The Thunderstruck tool is now available. You can start timing something of yours from scratch or time
+            someone
+            else's public tree farm by entering a remaining time. Timers will count down until each possible
+            thunderstruck
             growth phase for the tree, based on the region's climate.
           </Typography>
           <Typography>
-            I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to the
+            I also made a few fixes for the event schedule page and added the "Clean the Kiddies" daily in Ahnimar to
+            the
             checklist.
           </Typography>
           <Typography>
@@ -83,7 +111,8 @@ const Home = () => {
             availability times. I'll work on adding a method to select Unchained event times.
           </Typography>
           <Typography>
-            I've also set up a <Link href="https://www.patreon.com/bePatron?u=12806740" target="_blank">Patreon</Link> for
+            I've also set up a <Link href="https://www.patreon.com/bePatron?u=12806740"
+                                     target="_blank">Patreon</Link> for
             those would like to support the site. Thank you all!
           </Typography>
           <Typography>
@@ -110,6 +139,6 @@ const Home = () => {
       </Paper>
     </div>
   );
-}
+};
 
 export default Home;
