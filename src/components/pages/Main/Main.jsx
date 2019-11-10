@@ -274,7 +274,12 @@ class Main extends React.PureComponent {
           {children}
           <div className="section" style={{ marginTop: 0 }}>
             <div className="footer">
-              <Typography variant="caption">ArcheAge Tools v{__VERSION__}</Typography>
+              <Typography variant="caption" className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
+              <iframe
+                src="https://www.patreon.com/platform/iframe?widget=become-patron-button&amp;redirectURI=https%3A%2F%2Farcheage.mokulu.io%2F&amp;creatorID=12806740&amp;openInNewTab=true"
+                scrolling="no" allowtransparency="true" frameBorder="0" className="patreon-widget"
+                title="Patreon Widget"
+                style={{ position: 'static', visibility: 'visible', width: 176, height: 33 }} />
             </div>
           </div>
           <Snackbar
