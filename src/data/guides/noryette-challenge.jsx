@@ -17,7 +17,7 @@ const name = 'Noryette Challenge';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Nov 4, 2019',
+  lastUpdated: 'Nov 10, 2019',
 };
 
 const rewards = [
@@ -201,6 +201,15 @@ const sections = [
         name="Tiger Strike"
         description="Marian dashes through all enemies, dealing minimal damage."
       />,
+      <Ability
+        name="Infinite Passion"
+        description="Marian receives stacks of Infinite Passion based on the damage she takes. At
+        around one million stacks, Marian consumes all stacks to heal herself."
+        counters={[
+          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> to steal high stacks of
+            Infinite Passion.</React.Fragment>,
+        ]}
+      />,
       <Typography variant="h6">Strategy</Typography>,
       'Group the adds into the boss with a Vicious Implosion during the cast of a Wave Meteor Strike. This boss should be easy enough that it can just be burned down after the adds are dead.',
     ],
@@ -273,7 +282,7 @@ const sections = [
       <Ability
         name="Infinite Passion"
         description="Mahra receives stacks of Infinite Passion based on the damage she takes. At
-        one million stacks, Mahra consumes all stacks to heal herself."
+        around one million stacks, Mahra consumes all stacks to heal herself."
         counters={[
           <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> to steal high stacks of
             Infinite Passion.</React.Fragment>,
