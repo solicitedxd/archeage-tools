@@ -39,6 +39,14 @@ import NoryetteEarringIcon from 'images/item/noryette_earring.png';
 import NoryetteRingIcon from 'images/item/noryette_ring.png';
 import NoryetteAwakeningScrollIcon from 'images/item/noryette_awakening_scroll.png';
 import GreaterGrindingScrollIcon from 'images/item/greater_grinding_scroll.png';
+import ExplorersBowIcon from 'images/item/explorers_bow.png';
+import ExplorersCrateIcon from 'images/item/explorer_crate.png';
+import ExplorersClothCrateIcon from 'images/item/explorer_cloth_crate.png';
+import ExplorersLeatherCrateIcon from 'images/item/explorer_leather_crate.png';
+import ExplorersPlateCrateIcon from 'images/item/explorer_plate_crate.png';
+import StoryInfusionIcon from 'images/item/story_infusion.png';
+import StoryAwakeningScrollIcon from 'images/item/story_awakening_scroll.png';
+import TimeStoneIcon from 'images/item/time_stone.png';
 
 export default Object.freeze({
   GILDA_STAR: {
@@ -457,7 +465,7 @@ export default Object.freeze({
     bindsOnPickup: true,
     reqLevel: 50,
     synthesisXP: 31840,
-    synthesisGrade: 'Divine',
+    synthesisGrade: QUALITY.DIVINE,
     slot: 'Ear',
     durability: 15,
     description: <span className="tt-green">
@@ -476,7 +484,7 @@ export default Object.freeze({
     bindsOnPickup: true,
     reqLevel: 50,
     synthesisXP: 31840,
-    synthesisGrade: 'Divine',
+    synthesisGrade: QUALITY.DIVINE,
     slot: 'Finger',
     durability: 15,
     description: <span className="tt-green">
@@ -539,5 +547,251 @@ export default Object.freeze({
       Noryette Challenge
     </span>,
     price: 10000,
+  },
+  EXPLORERS_BOW: {
+    name: 'Explorer\'s Bow',
+    icon: ExplorersBowIcon,
+    type: 'Bow',
+    synthesisGrade: QUALITY.ARCANE,
+    reqLevel: 1,
+    bindsOnPickup: true,
+    slot: 'Ranged Weapon',
+    attackSpeed: 1.0,
+    weaponType: 'Piercing',
+    dps: '77.3(77 - 78)',
+    description: <span>
+      Designed to be equipped by Lv1+ adventurers.<br />
+      Can be awakened to the next tier, once it reaches its max grade.<br /><br />
+      <span className="tt-use">Synthesis Effect</span>
+      Use <span className="tt-yellow">Story Quest Infusions</span> as Synthesis Material to improve equipment.
+    </span>,
+  },
+  EXPLORERS_1H_WEAPON_CRATE: {
+    name: 'Explorer\'s 1H Weapon Crate',
+    icon: ExplorersCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>Allows you to obtain a 1H-Weapon.<br /><br />
+      <span className="tt-orange">[1H-Weapon]</span><br />
+      - Can be equipped to both left and right hand.<br /><br />
+      <span className="tt-orange">[Right-Hand Weapon]</span><br />
+      - Can only be equipped to the right hand.<br /><br />
+      <span className="tt-orange">[Left-Hand Weapon]</span><br />
+      - Can only be equipped to the left hand.<br /><br />
+      <span className="tt-orange">[Ranged Weapon]</span><br />
+      - Can be equipped as bow.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open the Explorer's 1H-Weapon Crate.</span>
+    </span>,
+  },
+  EXPLORERS_2H_WEAPON_CRATE: {
+    name: 'Explorer\'s 2H Weapon Crate',
+    icon: ExplorersCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>Allows you to choose a 2H Weapon.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open the Explorer's 2H-Weapon Crate.</span>
+    </span>,
+  },
+  EXPLORERS_CLOTH_CRATE: {
+    name: 'Explorer\'s Cloth Crate',
+    icon: ExplorersClothCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Cloth Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Hood<br />
+      - Shirt<br />
+      - Pants<br />
+      - Shoes<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  EXPLORERS_LEATHER_CRATE: {
+    name: 'Explorer\'s Leather Crate',
+    icon: ExplorersLeatherCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Leather Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Cap<br />
+      - Jerkin<br />
+      - Breeches<br />
+      - Boots<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  EXPLORERS_PLATE_CRATE: {
+    name: 'Explorer\'s Plate Crate',
+    icon: ExplorersPlateCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Plate Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Helm<br />
+      - Cuirass<br />
+      - Greaves<br />
+      - Sabatons<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  EXPLORERS_CLOTH_COMPONENT_CRATE: {
+    name: 'Explorer\'s Cloth Component Crate',
+    icon: ExplorersClothCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Cloth Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Gloves<br />
+      - Sleeves<br />
+      - Sash<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  EXPLORERS_LEATHER_COMPONENT_CRATE: {
+    name: 'Explorer\'s Leather Component Crate',
+    icon: ExplorersLeatherCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Leather Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Fists<br />
+      - Guards<br />
+      - Belt<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  EXPLORERS_PLATE_COMPONENT_CRATE: {
+    name: 'Explorer\'s Plate Component Crate',
+    icon: ExplorersPlateCrateIcon,
+    type: 'Crate',
+    bindsOnPickup: true,
+    description: <span>
+      This crate contains a selection of Plate Armor.<br /><br />
+      <span className="tt-yellow">Available Items:</span><br />
+      - Gauntlets<br />
+      - Vambraces<br />
+      - Tassets<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Open to see what's inside.</span>
+    </span>,
+  },
+  STORY_QUEST_INFUSION_RANK_1: {
+    name: 'Unidentified Story Quest Infusion: Rank 1',
+    icon: StoryInfusionIcon,
+    type: 'Synthesis Materials',
+    quality: QUALITY.GRAND,
+    unidentified: true,
+    bindsOnPickup: true,
+    description: <span>
+      Used as synthesis material to enhance equipment.<br />
+      Infuse the energy to identify the hidden infusion.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Unseal the infusion.<br />
+        Auto-use: shift+right-click</span>
+    </span>,
+  },
+  STORY_QUEST_INFUSION_RANK_2: {
+    name: 'Unidentified Story Quest Infusion: Rank 2',
+    icon: StoryInfusionIcon,
+    type: 'Synthesis Materials',
+    quality: QUALITY.RARE,
+    unidentified: true,
+    bindsOnPickup: true,
+    description: <span>
+      Used as synthesis material to enhance equipment.<br />
+      Infuse the energy to identify the hidden infusion.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Unseal the infusion.<br />
+        Auto-use: shift+right-click</span>
+    </span>,
+  },
+  STORY_QUEST_INFUSION_RANK_3: {
+    name: 'Unidentified Story Quest Infusion: Rank 3',
+    icon: StoryInfusionIcon,
+    type: 'Synthesis Materials',
+    quality: QUALITY.ARCANE,
+    unidentified: true,
+    bindsOnPickup: true,
+    description: <span>
+      Used as synthesis material to enhance equipment.<br />
+      Infuse the energy to identify the hidden infusion.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Unseal the infusion.<br />
+        Auto-use: shift+right-click</span>
+    </span>,
+  },
+  STORY_AWAKENING_SCROLL_RANK_1: {
+    name: 'Equipment Awakening Scroll Rank 1',
+    icon: StoryAwakeningScrollIcon,
+    type: 'Awakening Materials',
+    bindsOnPickup: true,
+    quality: QUALITY.GRAND,
+    description: <span>
+      Used to awaken <span className="tt-yellow">Ancient</span> Faction Mission Equipment, unlocking higher item grades.<br /><br />
+      <span className="tt-use">Use</span>
+      <span className="tt-green">Use <span
+        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+    </span>,
+  },
+  STORY_AWAKENING_SCROLL_RANK_2: {
+    name: 'Equipment Awakening Scroll Rank 2',
+    icon: StoryAwakeningScrollIcon,
+    type: 'Awakening Materials',
+    bindsOnPickup: true,
+    quality: QUALITY.RARE,
+    description: <span>
+      Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
+      Can only be used on <span className="tt-yellow">Explorer's Equipment</span> or <span
+      className="tt-yellow">Heroic</span> grade or higher.<br /><br />
+      <span className="tt-use">Use</span>
+      <span className="tt-green">Use <span
+        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+    </span>,
+  },
+  STORY_AWAKENING_SCROLL_RANK_3: {
+    name: 'Equipment Awakening Scroll Rank 3',
+    icon: StoryAwakeningScrollIcon,
+    type: 'Awakening Materials',
+    bindsOnPickup: true,
+    quality: QUALITY.ARCANE,
+    description: <span>
+      Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
+      Can only be used on <span className="tt-yellow">Radiant Explorer's Equipment</span> or <span
+      className="tt-yellow">Unique</span> grade or higher.<br /><br />
+      <span className="tt-use">Use</span>
+      <span className="tt-green">Use <span
+        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+    </span>,
+  },
+  ADVENTURERS_EVENSTONE: {
+    name: 'Adventurer\'s Evenstone',
+    icon: TimeStoneIcon,
+    type: 'Talisman',
+    bindsOnPickup: true,
+    description: <span>
+      Used to revert equipment to its original state and recover the enhancement materials.<br />
+      Can be purchased from <span className="tt-blue">General Merchants</span> and <span
+      className="tt-blue">Blacksmiths</span>.<br /><br />
+      ;Extractable Item<br />
+      <span className="tt-blue">- Mission Equipment</span><br />
+      <span className="tt-blue">- Radiant Explorer's Equipment</span><br />
+      <span className="tt-blue">- Brilliant Explorer's Equipment</span><br />
+      Can not be used on Instruments.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Masonry: Spend up to 10 Labor to extract magic ingredients from the item.</span>
+    </span>,
+    price: 50,
   },
 });

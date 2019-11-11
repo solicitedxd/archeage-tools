@@ -8,6 +8,11 @@ export default [
   {
     name: 'Guides', path: '/guides', noBanner: true, children: [
       {
+        name: 'Gameplay', children: [
+          { name: 'Leveling to 55', path: '/guides/leveling-to-55' },
+        ],
+      },
+      {
         name: 'Daily Quests', children: [
           { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
           { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },

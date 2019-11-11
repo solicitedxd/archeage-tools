@@ -41,6 +41,9 @@ const renderItemTooltip = (target) => {
     tempering,
     maxGrade,
     salvageable,
+    dps,
+    magicAttack,
+    healingPower,
   } = item;
 
   return (
@@ -51,7 +54,7 @@ const renderItemTooltip = (target) => {
         </div>
         <div className="name">
           <Typography variant="h5" component="h5">{type}</Typography>
-          {quality !== QUALITY.BASIC &&
+          {(quality !== QUALITY.BASIC || weaponType) &&
           <Typography variant="h5" component="h5" className="quality-color">{quality}</Typography>}
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
@@ -69,9 +72,15 @@ const renderItemTooltip = (target) => {
       {slot &&
       <section>
         <p>{slot}</p>
-        {attackSpeed && <p><span className="tt-gray">Attack Speed</span> {attackSpeed}</p>}
+        {attackSpeed && <p><span className="tt-gray">Attack Speed</span> {attackSpeed.toFixed(1)}</p>}
         {durability && <p><span className="tt-gray">Dura</span> {durability}/{durability}</p>}
         {weaponType && <p><span className="tt-gray">{weaponType}</span> Weapon Type</p>}
+      </section>}
+      {(dps || magicAttack || healingPower) &&
+      <section>
+        {dps && <p><span className="tt-gray">DPS</span> {dps}</p>}
+        {magicAttack && <p><span className="tt-gray">Magic Attack</span> +{magicAttack}</p>}
+        {healingPower && <p><span className="tt-gray">Healing Power</span> +{healingPower}</p>}
       </section>}
       {(maxGrade || synthesisGrade || tempering || salvageable) &&
       <section>
