@@ -1,12 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
 import Sticky from 'react-sticky-el';
 import {
   AppBar,
+  Drawer,
+  Fab,
+  List,
+  ListItem,
+  ListItemText,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import { Menu } from '@material-ui/icons';
 import Link from 'components/Link';
 import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
@@ -35,12 +42,15 @@ class KeyComponent extends Component {
 }
 
 class GuideViewer extends Component {
+  state = {
+    toc: false,
+  };
+
   componentDidMount() {
     const { hash } = this.props.location;
     if (hash && hash.length > 1) {
       const elementId = hash.substr(1); // cut off the #
       const element = document.getElementById(elementId);
-      console.log(element);
       if (element) {
         element.scrollIntoView({
           behavior: 'smooth',
@@ -50,8 +60,25 @@ class GuideViewer extends Component {
     }
   }
 
+  handleToCClick = () => {
+    this.setState({ toc: true });
+  };
+
+  closeToC = () => {
+    this.setState({ toc: false });
+  };
+
+  goSection = (section, behavior = 'smooth') => {
+    this.closeToC();
+    document.getElementById(section).scrollIntoView({
+      behavior: behavior,
+      block: 'start',
+    });
+  };
+
   render() {
     const { mobile, match: { params: { guide: guideSlug } } } = this.props;
+    const { toc } = this.state;
     const guide = Guides[unslug(guideSlug)];
     if (!guide) {
       return <NotFound />;
@@ -105,10 +132,7 @@ class GuideViewer extends Component {
                 {guide.sections.map((section, sId) => (
                   <Link
                     to={`#${slug(section.title)}`}
-                    onClick={() => document.getElementById(slug(section.title)).scrollIntoView({
-                      behavior: 'smooth',
-                      block: 'start',
-                    })}
+                    onClick={() => this.goSection(slug(section.title))}
                     color="primary"
                     key={`toc-${sId}`}
                   >
@@ -120,6 +144,39 @@ class GuideViewer extends Component {
           </Sticky>}
         </div>
         <ScrollToTop />
+        {mobile &&
+        <Fab
+          color="primary"
+          className="fab-left"
+          onClick={this.handleToCClick}
+        >
+          <Menu />
+        </Fab>}
+        <Drawer anchor="left" open={mobile && toc} onClose={this.closeToC}>
+          <List style={{ width: 250 }}>
+            <ListItem><Typography variant="h6">{guide.name}</Typography></ListItem>
+            <ListItem>
+              <Typography variant="subtitle2">
+                Author: {guide.meta.author}<br />
+                Last Updated: {guide.meta.lastUpdated}
+              </Typography>
+            </ListItem>
+            <hr />
+            {guide.sections.map((section, sId) => (
+              <RouterLink
+                to={`#${slug(section.title)}`}
+                onClick={() => this.goSection(slug(section.title), 'auto')}
+                color="primary"
+                className="no-link"
+                key={`toc-drawer-${sId}`}
+              >
+                <ListItem button>
+                  <ListItemText primary={`${sId + 1}. ${section.title}`} />
+                </ListItem>
+              </RouterLink>
+            ))}
+          </List>
+        </Drawer>
       </div>
     );
   }

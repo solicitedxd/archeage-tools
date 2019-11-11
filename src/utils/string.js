@@ -15,3 +15,7 @@ export const setTitle = (title) => {
     document.title = 'ArcheAge Tools';
   }
 };
+
+export const scrollToTop = () => {
+  document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+};

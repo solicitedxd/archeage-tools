@@ -4,6 +4,7 @@ import {
   Zoom,
 } from '@material-ui/core';
 import { ExpandLess } from '@material-ui/icons';
+import { scrollToTop } from 'utils/string';
 
 class ScrollToTop extends Component {
   static propTypes = {};
@@ -34,7 +35,7 @@ class ScrollToTop extends Component {
   }
 
   handleClick = () => {
-    document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    scrollToTop();
     history.pushState("", document.title, document.location.pathname);
   };
 
