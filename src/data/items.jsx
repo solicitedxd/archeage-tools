@@ -552,6 +552,7 @@ export default Object.freeze({
     name: 'Explorer\'s Bow',
     icon: ExplorersBowIcon,
     type: 'Bow',
+    quality: QUALITY.BASIC,
     synthesisGrade: QUALITY.ARCANE,
     reqLevel: 1,
     bindsOnPickup: true,
