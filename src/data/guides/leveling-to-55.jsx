@@ -139,9 +139,10 @@ const sections = [
       'Should you not get lucky and get your main stat and one of your desired secondary stats on a piece of gear, you can salvage the piece, get all the infusions and scrolls back, and try again.',
       <Typography><ItemLink item={ITEM.ADVENTURERS_EVENSTONE} plural="s" /> can be purchased from any Blacksmith or
         General Merchant and are the only item that can salvage and return your infusions. Armor merchants sell full set
-        bundles of all armor pieces. Any set will worth. The tier 1 variants have different appearances but they all
-        turn into the same at tier 2. Weapon merchants sell the the 1 and 2H crates. The above map lists location of
-        blacksmiths, armor, and weapon merchants in the main capitol cities.</Typography>,
+        bundles of all armor pieces. Any set will work. The tier 1 variants have different appearances but they all
+        turn into the same at tier 2. Weapon merchants sell the the 1 and 2H crates. You can use this time to switch
+        your armor type or weapons. The above map lists location of blacksmiths, armor, and weapon merchants in the main
+        capitol cities.</Typography>,
       'I recommend salvaging one piece at a time and make sure you use your Rank 1 Infusions ONLY on your tier 1 "Explorer" gear, your Rank 2 only on "Radiant Explorer" gear, and your Rank 3 only on "Brilliant Explorer". You are only given exactly enough infusions to get your gear to unique. If you use the wrong infusions, there\'s no way to fix it. You do have a couple extra Rank 2 and 3 if you use a 2H weapon.',
       'Since upgrading your gear can be gold and labor intensive, the best course of action for rolling your stats is:',
       '- Infuse and awaken item to Radiant.',
