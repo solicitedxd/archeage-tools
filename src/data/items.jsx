@@ -47,6 +47,21 @@ import ExplorersPlateCrateIcon from 'images/item/explorer_plate_crate.png';
 import StoryInfusionIcon from 'images/item/story_infusion.png';
 import StoryAwakeningScrollIcon from 'images/item/story_awakening_scroll.png';
 import TimeStoneIcon from 'images/item/time_stone.png';
+import HoneyIcon from 'images/item/honey.png';
+import HayBaleIcon from 'images/item/hay_bale.png';
+import EggIcon from 'images/item/egg.png';
+import LemonIcon from 'images/item/lemon.png';
+import AppleIcon from 'images/item/apple.png';
+import CarrotIcon from 'images/item/carrot.png';
+import GooseDownIcon from 'images/item/goose_down.png';
+import SunflowerIcon from 'images/item/sunflower.png';
+import MilkIcon from 'images/item/milk.png';
+import OliveIcon from 'images/item/olive.png';
+import TurmericIcon from 'images/item/turmeric.png';
+import GinsengIcon from 'images/item/ginseng.png';
+import SmallSeedOilIcon from 'images/item/small_seed_oil.png';
+import SmallRootPigmentIcon from 'images/item/small_root_pigment.png';
+import OpaquePolishIcon from 'images/item/opaque_polish.png';
 
 export default Object.freeze({
   GILDA_STAR: {
@@ -421,6 +436,185 @@ export default Object.freeze({
       className="tt-orange">apples</span> chopped into bite-size pieces. Blue Salt Knives can be purchased from <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
+  },
+  HONEY: {
+    name: 'Honey',
+    icon: HoneyIcon,
+    type: 'Herb',
+    description: <span>
+      Can be harvested from <span className="tt-orange">Acorn Beehives</span>. It's chiefly used in husbandry and raising pets.
+    </span>,
+    price: 200,
+  },
+  HAY_BALE: {
+    name: 'Hay Bale',
+    icon: HayBaleIcon,
+    type: 'Contraption',
+    description: <span>
+      A material often found when harvesting grains. It can be used as food for livestock.
+    </span>,
+    price: 15,
+  },
+  EGG: {
+    name: 'Egg',
+    icon: EggIcon,
+    type: 'Material',
+    description: <span>
+      A material found by collecting from <span className="tt-orange">thriving hens</span> that have been fed <span
+      className="tt-orange">ground grain</span>. It's chiefly used in cooking.
+    </span>,
+    price: 20,
+  },
+  LEMON: {
+    name: 'Lemon',
+    icon: LemonIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by gathering from <span className="tt-orange">fruited lemon trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 10 Orchard Puree.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 80,
+  },
+  APPLE: {
+    name: 'Apple',
+    icon: AppleIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by gathering from <span className="tt-orange">fruited apple trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 10 Orchard Puree.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 80,
+  },
+  CARROT: {
+    name: 'Carrot',
+    icon: CarrotIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <span className="tt-orange">carrots</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 10 Chopped Produce.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 20,
+  },
+  GOOSE_DOWN: {
+    name: 'Goose Down',
+    icon: GooseDownIcon,
+    type: 'Textile',
+    description: <span>
+      A material found by harvesting from <span className="tt-orange">thriving geese</span> that have been fed <span
+      className="tt-orange">ground grain</span>. It's chiefly used in carpentry and local specialties.
+    </span>,
+    price: 10,
+  },
+  SUNFLOWER: {
+    name: 'Sunflower',
+    icon: SunflowerIcon,
+    type: 'Spice',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <span className="tt-orange">sunflowers</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 20 Ground Spices.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 105,
+  },
+  MILK: {
+    name: 'Milk',
+    icon: MilkIcon,
+    type: 'Material',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by milking <span className="tt-orange">Thriving Dairy Cows</span> that have been fed <span
+      className="tt-orange">Combined Feed</span>. It's chiefly used in cooking and husbandry.
+    </span>,
+    price: 30,
+  },
+  OLIVE: {
+    name: 'Olive',
+    icon: OliveIcon,
+    type: 'Fruit',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <span className="tt-orange">fruited olive trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 20 Orchard Puree.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 600,
+  },
+  TURMERIC: {
+    name: 'Turmeric',
+    icon: TurmericIcon,
+    type: 'Spice',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering <span className="tt-orange">turmeric</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 45 Ground Spices.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 300,
+  },
+  CULTIVATED_GINSENG: {
+    name: 'Cultivated Ginseng',
+    icon: GinsengIcon,
+    type: 'Herb',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering from <span className="tt-orange">cultivated ginseng</span>. It's chiefly used in cooking and alchemy.<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 5 Labor to process 45 Medicinal Powder.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - 10 items of the same type<br />
+      - 1 Blue Salt Knife</span>
+    </span>,
+    price: 300,
+  },
+  SMALL_SEED_OIL: {
+    name: 'Small Seed Oil',
+    icon: SmallSeedOilIcon,
+    type: 'Material',
+    description: <span>It's chiefly used for making Leather Armor and other crafts.</span>,
+    price: 1000,
+  },
+  SMALL_ROOT_PIGMENT: {
+    name: 'Small Root Pigment',
+    icon: SmallRootPigmentIcon,
+    type: 'Material',
+    description: <span>It's chiefly used for making Cloth Armor and other crafts.</span>,
+    price: 1000,
+  },
+  OPAQUE_POLISH: {
+    name: 'Opaque Polish',
+    icon: OpaquePolishIcon,
+    type: 'Material',
+    description: <span>It's chiefly used for making plate armor and other crafts.</span>,
+    price: 1000,
   },
   SUNLIGHT_ARCHEUM_DUST: {
     name: 'Sunlight Archeum Dust',

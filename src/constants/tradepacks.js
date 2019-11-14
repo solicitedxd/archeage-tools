@@ -3,11 +3,12 @@ import { ZONE } from 'constants/dailies';
 export const PACK_TYPE = Object.freeze({
   NORMAL: 'Specialty',
   GILDA: 'Gilda Speciality',
-  PLAZA: 'Local Speciality',
+  LOCAL: 'Local Speciality',
   FERTILIZER: 'Fertilizer Specialty',
   HONEY: 'Aged Honey',
   SALVE: 'Aged Salve',
   CHEESE: 'Aged Cheese',
+  BLUE_SALT: 'Blue Salt',
 });
 
 export const FRESHNESS = Object.freeze({
