@@ -47,6 +47,14 @@
       }
     }
 
+    .reward-list {
+      margin-top: 0;
+
+      & > * {
+        margin-right: 6px;
+      }
+    }
+
     .table-wrapper {
       max-height: 400px;
       overflow: auto;

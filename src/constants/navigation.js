@@ -10,12 +10,14 @@ export default [
       {
         name: 'Gameplay', children: [
           { name: 'Leveling to 55', path: '/guides/leveling-to-55' },
+          { name: 'Honor Points', path: '/guides/honor-points' },
         ],
       },
       {
         name: 'Daily Quests', children: [
           { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
           { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },
+          { name: 'Honor Dailies', path: '/guides/honor-dailies' },
         ],
       },
       {

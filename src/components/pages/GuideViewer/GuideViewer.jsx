@@ -14,6 +14,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
+import KeyComponent from 'components/KeyComponent';
 import Link from 'components/Link';
 import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
@@ -34,12 +35,6 @@ const unslug = (slug) => {
   .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
   .join('');
 };
-
-class KeyComponent extends Component {
-  render() {
-    return React.Children.only(this.props.children);
-  }
-}
 
 class GuideViewer extends Component {
   state = {

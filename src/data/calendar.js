@@ -186,6 +186,22 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
   },
   {
+    icon: BossMonsterIcon,
+    name: 'Library Bosses',
+    type: EVENT_TYPE.WORLD_BOSSES,
+    times: {
+      NA: [
+        { time: '01:00:00', duration: '00:20:00' },
+        { time: '05:00:00', duration: '00:20:00' },
+        { time: '09:00:00', duration: '00:20:00' },
+        { time: '13:00:00', duration: '00:20:00' },
+        { time: '17:00:00', duration: '00:20:00' },
+        { time: '21:00:00', duration: '00:20:00' },
+      ],
+      EU: [],
+    },
+  },
+  {
     icon: LuscaAwakeningIcon,
     name: 'Lusca Awakening',
     type: EVENT_TYPE.REAL_TIME_EVENT,
