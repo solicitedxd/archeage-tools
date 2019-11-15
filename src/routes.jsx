@@ -10,6 +10,7 @@ import Taxes from 'components/pages/Taxes';
 import Thunderstruck from 'components/pages/Thunderstruck';
 import Guides from 'components/pages/Guides';
 import GuideViewer from 'components/pages/GuideViewer';
+import TradePacks from 'components/pages/TradePacks';
 import NotFound from 'components/pages/NotFound';
 
 export default (
@@ -17,12 +18,12 @@ export default (
     <Switch>
       <Route path="/dailies" exact component={Dailies} />
       <Route path="/skills" exact component={Skills} />
-      <Route path="/calendar" exact component={Calendar} />
       <Route path="/schedule" exact component={Calendar} />
       <Route path="/taxes" exact component={Taxes} />
       <Route path="/thunderstruck" exact component={Thunderstruck} />
       <Route path="/guides" exact component={Guides} />
       <Route path="/guides/:guide?" component={GuideViewer} />
+      <Route path="/trade-packs" component={TradePacks} />
       <Route path="/" exact component={Home} />
       <Route component={NotFound} />
     </Switch>

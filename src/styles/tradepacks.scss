@@ -1,0 +1,121 @@
+.tradepack-settings {
+  display: flex;
+  padding: 12px 6px;
+  align-items: stretch;
+
+  .MuiFormControl-root, .pack-percentage {
+    margin: 0 12px;
+    flex: 1 0;
+  }
+}
+
+$Commercial: #3887FF;
+$Luxury: #D275FF;
+$Fine: #2DBD72;
+$Preserved: #FF7846;
+
+.trade-table {
+  thead {
+
+  }
+
+  tbody {
+    tr {
+      &.Commercial td:first-child {
+        background-color: $Commercial;
+        color: #FFFFFF;
+      }
+
+      &.Luxury td:first-child {
+        background-color: $Luxury;
+        color: #FFFFFF;
+      }
+
+      &.Fine td:first-child {
+        background-color: $Fine;
+        color: #FFFFFF;
+      }
+
+      &.Preserved td:first-child {
+        background-color: $Preserved;
+        color: #FFFFFF;
+      }
+
+      td:not(:first-child):hover {
+        box-shadow: inset 0 0 0 3px #009688;
+        cursor: pointer;
+      }
+
+      td.no-pack {
+        opacity: 0.4;
+
+        &:not(:first-child):hover {
+          box-shadow: none;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.trade-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .freshness-tip {
+    cursor: help;
+  }
+
+  .blip {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+  }
+}
+
+.freshness.Commercial {
+  background-color: $Commercial;
+}
+
+.freshness.Luxury {
+  background-color: $Luxury;
+}
+
+.freshness.Fine {
+  background-color: $Fine;
+}
+
+.freshness.Preserved {
+  background-color: $Preserved;
+}
+
+.freshness-tip-container {
+  padding: 0 !important;
+}
+
+.freshness-table {
+  thead .MuiTableCell-root {
+    border-radius: 4px 4px 0 0;
+    color: #FFFFFF;
+  }
+
+  .MuiTableCell-root {
+    border-color: transparent;
+  }
+
+  .MuiTableCell-body {
+    color: #FFFFFF;
+  }
+}
+
+.mobile {
+  .tradepack-settings {
+    flex-direction: column;
+
+    .MuiFormControl-root, .pack-percentage {
+      flex: initial;
+      margin: 8px 0 0 0;
+    }
+  }
+}

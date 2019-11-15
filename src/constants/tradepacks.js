@@ -1,30 +1,38 @@
-import { ZONE } from 'constants/dailies';
+import { ZONE } from './map';
+
+export const SET_PERCENTAGE = 'SET_PERCENTAGE';
+export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
+export const SET_PRICE = 'SET_PRICE';
+export const SET_PROFICIENCY = 'SET_PROFICIENCY';
+export const SET_WAR = 'SET_WAR';
+export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
 
 export const PACK_TYPE = Object.freeze({
-  NORMAL: 'Specialty',
-  GILDA: 'Gilda Speciality',
-  LOCAL: 'Local Speciality',
-  FERTILIZER: 'Fertilizer Specialty',
-  HONEY: 'Aged Honey',
-  SALVE: 'Aged Salve',
-  CHEESE: 'Aged Cheese',
+  NORMAL: 'Normal',
+  GILDA: 'Gilda',
+  LOCAL: 'Local',
+  FERTILIZER: 'Fertilizer',
+  SALVE: 'Salve',
+  CHEESE: 'Cheese',
+  HONEY: 'Honey',
   BLUE_SALT: 'Blue Salt',
+  SPECIAL: 'Special',
 });
 
 export const FRESHNESS = Object.freeze({
   LUXURY: {
+    name: 'Luxury',
     HIGH: {
-      name: 'High Profit',
       modifier: 1.3,
-      time: 'under 15min',
+      time: 'within 15min',
     },
     REGULAR: {
       modifier: 1.1,
-      time: 'under 30min',
+      time: 'within 30min',
     },
     REDUCED: {
       modifier: 0.9,
-      time: 'under 60min',
+      time: 'within 60min',
     },
     LOW: {
       modifier: 0.85,
@@ -32,17 +40,18 @@ export const FRESHNESS = Object.freeze({
     },
   },
   FINE: {
+    name: 'Fine',
     HIGH: {
       modifier: 1.15,
-      time: 'under 15min',
+      time: 'within 15min',
     },
     REGULAR: {
       modifier: 1.05,
-      time: 'under 30min',
+      time: 'within 30min',
     },
     REDUCED: {
       modifier: 0.93,
-      time: 'under 3hr',
+      time: 'within 3hr',
     },
     LOW: {
       modifier: 0.88,
@@ -50,17 +59,18 @@ export const FRESHNESS = Object.freeze({
     },
   },
   COMMERCIAL: {
+    name: 'Commercial',
     HIGH: {
       modifier: 1.05,
-      time: 'under 30min',
+      time: 'within 30min',
     },
     REGULAR: {
       modifier: 1.02,
-      time: 'under 3hr',
+      time: 'within 3hr',
     },
     REDUCED: {
       modifier: 0.95,
-      time: 'under 12hr',
+      time: 'within 12hr',
     },
     LOW: {
       modifier: 0.90,
@@ -68,17 +78,18 @@ export const FRESHNESS = Object.freeze({
     },
   },
   PRESERVED: {
+    name: 'Preserved',
     HIGH: {
       modifier: 1.03,
-      time: 'under 6hr',
+      time: 'within 6hr',
     },
     REGULAR: {
       modifier: 1.01,
-      time: 'under 12hr',
+      time: 'within 12hr',
     },
     REDUCED: {
       modifier: 0.96,
-      time: 'under 24hr',
+      time: 'within 24hr',
     },
     LOW: {
       modifier: 0.92,
@@ -87,7 +98,9 @@ export const FRESHNESS = Object.freeze({
   },
 });
 
-export const TURN_IN_ZONE = Object.freeze([
+export const CARGO = 'Cargo';
+
+export const OUTLET_ZONE = Object.freeze([
   ZONE.SOLIS_HEADLANDS,
   ZONE.VILLANELLE,
   ZONE.YNYSTERE,

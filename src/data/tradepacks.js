@@ -2,6 +2,7 @@ import {
   FRESHNESS,
   PACK_TYPE,
 } from 'constants/tradepacks';
+import { ZONE } from 'constants/map';
 import ITEM from './items';
 
 export const PACK_COSTS = {
@@ -137,7 +138,7 @@ export default Object.freeze({
       [PACK_TYPE.NORMAL]: {
         materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.APPLE, count: 5 }],
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 13.1731,
+          [ZONE.SOLIS_HEADLANDS]: 14.7768,
           [ZONE.VILLANELLE]: 14.7768,
           [ZONE.YNYSTERE]: 16.0753,
         },
@@ -200,5 +201,53 @@ export default Object.freeze({
         },
       },
     },
+  },
+  [ZONE.SUNBITE_WILDS]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.TIGERSPINE_MOUNTAINS]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.MAHADEVI]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.SOLIS_HEADLANDS]: {
+    freshness: FRESHNESS.LUXURY,
+    packs: {},
+  },
+  [ZONE.VILLANELLE]: {
+    freshness: FRESHNESS.LUXURY,
+    packs: {},
+  },
+  [ZONE.SILENT_FOREST]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.YNYSTERE]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.ROOKBORNE_BASIN]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.WINDSCOUR_SAVANNAH]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.PERINOOR_RUINS]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.HASLA]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.ROKHALA_MOUNTAINS]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
   },
 });
