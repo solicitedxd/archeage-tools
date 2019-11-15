@@ -70,7 +70,7 @@ class Taxes extends Component {
     const taxesPerWeek = Math.round(Object.keys(properties).map(key => {
       const [friendly, hostile] = properties[key];
       const friendlyCost = (friendly || 0) * HOUSING_TYPES[key].base;
-      const hostileCost = (hostile || 0) * HOUSING_TYPES[key].base * (showHostile ? 3 : 0);
+      const hostileCost = (hostile || 0) * HOUSING_TYPES[key].base * (showHostile ? 2 : 0);
       hostileIncrease += hostileCost;
       return (friendlyCost + hostileCost);
     }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100) + hostileIncrease);
