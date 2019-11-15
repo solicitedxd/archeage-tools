@@ -15,6 +15,7 @@ import ArmorScrapIcon from 'images/item/armor_scrap.png';
 import HiramInfusionIcon from 'images/item/hiram_infusion.png';
 import HiramScrollIcon from 'images/item/hiram_awakening_scroll.png';
 import RedDragonPouchIcon from 'images/item/red_dragon_pouch.png';
+import KadumsCrateIcon from 'images/item/kadums_crate.png';
 import GoldCrateIcon from 'images/item/gold_crate.png';
 import OnyxEssenceIcon from 'images/item/onyx_essence.png';
 import RevenantSoulstoneIcon from 'images/item/revenant_soulstone.png';
@@ -167,7 +168,7 @@ export default Object.freeze({
     icon: AcidGobbetIcon,
     type: 'Material',
     description: <span>Can be obtained on <span className="tt-blue">Aegis Island</span>. Used to make <span
-      className="tt-orange">Acid Pouches</span>, which are required to craft an Ipnysh Blessing.<br /><span
+      className="tt-orange">Acid Pouches</span>, which are required to craft an Ipnysh Blessing.<br /><br /><span
       className="tt-use">Use:</span><span className="tt-green">Spend 500 Labor to combine 50 Acid Bubbles into an Acid Poison Pouch.<br />Auto-use: shift + right-click</span></span>,
     quality: QUALITY.BASIC,
     price: 100,
@@ -178,7 +179,7 @@ export default Object.freeze({
     icon: ArmorScrapIcon,
     type: 'Material',
     description: <span>Can be obtained on <span className="tt-blue">Whalesong Harbor</span>.<br />Used to make <span
-      className="tt-orange">Cursed Armor</span>, which is required to craft an Ipnysh Blessing.<br /><span
+      className="tt-orange">Cursed Armor</span>, which is required to craft an Ipnysh Blessing.<br /><br /><span
       className="tt-use">Use:</span><span className="tt-green">Spend 500 Labor to combine 50 Cursed Armor Scraps into a Complete Cursed Armor.<br />Auto-use: shift + right-click</span></span>,
     quality: QUALITY.BASIC,
     price: 100,
@@ -277,6 +278,26 @@ export default Object.freeze({
       className="tt-use">Use:</span><span className="tt-green">Spend 10 Labor to see what's inside.<br />Auto-use: shift+right-click</span></span>,
     quality: QUALITY.UNIQUE,
     bindsOnPickup: true,
+  },
+  KADUMS_CRATE: {
+    name: 'Kadum\'s Crate',
+    icon: KadumsCrateIcon,
+    type: 'Unidentified',
+    quality: QUALITY.UNIQUE,
+    bindsOnPickup: true,
+    description: <span>
+      A wooden crate dropped by Kadum.<br /><br />
+      <span className="tt-orange">[Guaranteed Drops]</span><br />
+      - Honorable Victory Rank 5 x2<br />
+      - Gilda Star x4<br />
+      - Superior Glow Lunarite x1-3<br />
+      - Evenglow Lunarite x3-4<br /><br />
+      <span className="tt-orange">[Possible Bonus Drops]</span><br />
+      - Kadum's Infusion x1<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Spend 10 Labor to see what's inside.<br />
+      Auto-use: shift+right-click</span>
+    </span>,
   },
   GOLD_CRATE: {
     name: 'Locked Gold Crate',

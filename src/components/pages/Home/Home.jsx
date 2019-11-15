@@ -117,7 +117,7 @@ const Home = () => {
           </Typography>
           <Typography>
             See an issue? Drop an email to <Link href="mailto:admin@mokulu.io">admin@mokulu.io</Link> or send a PM
-            to <Link href="https://www.reddit.com/u/Mokulu">u/Mokulu</Link>. I know my event schedule is not 100%
+            to <Link href="https://www.reddit.com/message/compose/?to=mokulu">u/Mokulu</Link>. I know my event schedule is not 100%
             accurate, and I'm even missing EU times.
           </Typography>
         </div>

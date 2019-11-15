@@ -22,6 +22,7 @@
           background: rgba(82, 80, 63, 0.3);
         }
       }
+
       &.hidden {
         background: rgba(82, 80, 63, 0.12);
         opacity: 0.6;
@@ -142,7 +143,7 @@
         border-radius: 0;
 
         &.selected {
-          background-color: #b2dfdb;
+          background-color: #B2DFDB;
         }
       }
 
@@ -216,7 +217,7 @@
     width: 12px;
     height: 19px;
     background-position: -49px -32px;
-    top: 3px;
+    top: 5px;
   }
 
   &.Leadership:after {
@@ -266,8 +267,9 @@
   }
 }
 
-.ancestral-level {
+.ances-level {
   color: #FECF3F;
+
   &:before {
     content: "";
     position: relative;
@@ -294,6 +296,11 @@
       color: #C27B1A;
     }
   }
+
+  .currency {
+    color: #4D9BDC;
+  }
+
   .quest-filters {
     .filter-field {
       .label {

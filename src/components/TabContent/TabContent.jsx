@@ -13,6 +13,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import KeyComponent from 'components/KeyComponent';
 
 class TabContent extends Component {
   static propTypes = {
@@ -54,6 +55,18 @@ class TabContent extends Component {
       </Tabs>
     );
 
+    let content;
+    if (tabs[value]) {
+      content = !Array.isArray(tabs[value].content) ?
+        tabs[value].content :
+        tabs[value].content.map((node, i) => {
+          if (typeof node === 'object') {
+            return <KeyComponent key={`${title}-${tabs[value].label}-${i}`}>{node}</KeyComponent>;
+          }
+          return <Typography key={`${title}-${tabs[value].label}-${i}`}>{node}</Typography>;
+        });
+    }
+
     if (title) {
       return (
         <React.Fragment>
@@ -64,7 +77,7 @@ class TabContent extends Component {
             </Toolbar>
           </AppBar>
           <div className="body-container">
-            {tabs[value] && tabs[value].content}
+            {content}
           </div>
         </React.Fragment>
       );
@@ -75,7 +88,7 @@ class TabContent extends Component {
         <Paper style={{ marginBottom: 8 }}>
           <TabsList />
         </Paper>
-        {tabs[value] && tabs[value].content}
+        {content}
       </React.Fragment>
     );
   }

@@ -61,7 +61,7 @@ const renderItemTooltip = (target) => {
       </section>
       {(bindsOnPickup || remainingTime || reqLevel) &&
       <section>
-        {reqLevel && <p>Req. Level:{reqLevel} ~ <span className="ancestral-level">55</span></p>}
+        {reqLevel && <p>Req. Level:{reqLevel} ~ <span className="ances-level">55</span></p>}
         {bindsOnPickup && <p>Binds on Pickup</p>}
         {remainingTime && <p className="tt-orange">Rem. Time: {remainingTime}</p>}
       </section>}

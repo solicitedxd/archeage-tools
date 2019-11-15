@@ -85,6 +85,7 @@ export const CONTINENT = Object.freeze({
       ZONE.RED_DRAGONS_KEEP,
       ZONE.MISTMERROW,
       ZONE.GOLDEN_PLAINS,
+      ZONE.MISTMERROW_KADUM,
     ],
   },
   CRAFTED: {

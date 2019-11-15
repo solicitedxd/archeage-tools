@@ -37,7 +37,6 @@ export const HOUSING_TYPES = Object.freeze({
     properties: [
       'Gazebo Farm',
       'Thatched Farmhouse',
-      'Breezy Bungalow',
     ],
   },
   FARMHOUSE_UPGRADED: {
@@ -74,6 +73,7 @@ export const HOUSING_TYPES = Object.freeze({
     size: '24x24',
     base: 15,
     properties: [
+      'Breezy Bungalow',
       'Manors',
       'Townhouses',
       'Swept-Roof Chalet',
@@ -98,6 +98,7 @@ export const HOUSING_TYPES = Object.freeze({
       // 'Deserted Cottage',
       // 'Solariums',
       'Swept-Roof Manor',
+      'Tidal Bungalow',
       'Treehouses',
       'Villas',
     ],
