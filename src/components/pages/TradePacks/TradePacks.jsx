@@ -37,15 +37,18 @@ import {
   setWar,
 } from 'actions/tradepacks';
 import { CONTINENT } from 'constants/dailies';
+import { ZONE } from 'constants/map';
 import { PROFICIENCY } from 'constants/taxes';
 import {
   CARGO,
+  NO_FRESHNESS,
   OUTLET_ZONE,
   PACK_TYPE,
 } from 'constants/tradepacks';
 import TRADE_PACKS from 'data/tradepacks';
 import { setTitle } from 'utils/string';
-import FreshnessBlip from 'components/pages/TradePacks/FreshnessBlip';
+import FreshnessBlip from './FreshnessBlip';
+import PackViewer from './PackViewer';
 
 class TradePacks extends Component {
   static propTypes = {};
@@ -56,6 +59,9 @@ class TradePacks extends Component {
     reset: false,
     continent: 'Haranya',
     zone: 0,
+    open: false,
+    packType: null,
+    originZone: null,
   };
 
   setContinent = (e, { props: { children: continent } }) => {
@@ -79,17 +85,31 @@ class TradePacks extends Component {
     this.cancelReset();
   };
 
+  onOpenCalculator = (originZone, packType) => {
+    this.setState({ open: true, originZone, packType });
+  };
+
+  onCloseCalculator = () => {
+    this.setState({ open: false });
+  };
+
   render() {
     const { mobile, percentage, proficiencies, war } = this.props;
     const { setPercentage, setProficiency, setWar } = this.props;
-    const { reset, continent, zone } = this.state;
+    const { reset, continent, zone, open, packType, originZone } = this.state;
 
     const commerceProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.commerce);
     const husbandryProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.husbandry);
 
-    let continentZones = [];
+    let continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
     if (continent !== CARGO) {
       continentZones = Object.values(CONTINENT).find((cont) => cont.name === continent).zones;
+    }
+
+    const outletZones = continent === CARGO ? [...continentZones]
+      : OUTLET_ZONE.filter(zone => continentZones.includes(zone));
+    if (continent === CARGO) {
+      outletZones.push(ZONE.DIAMOND_SHORES);
     }
 
     const sellZone = OUTLET_ZONE.filter(zone => continentZones.includes(zone))[zone];
@@ -127,7 +147,7 @@ class TradePacks extends Component {
               </Select>
             </FormControl>
             <div className="pack-percentage">
-              <InputLabel shrink style={{ marginBottom: 6 }}>Pack Percentages: {percentage}%</InputLabel>
+              <InputLabel shrink style={{ marginBottom: 6 }}>Pack Demands: {percentage}%</InputLabel>
               <Slider
                 onChange={setPercentage(null, null)}
                 value={percentage}
@@ -206,19 +226,16 @@ class TradePacks extends Component {
         <Paper className="section">
           <AppBar position="static" color="primary">
             <Toolbar variant="dense">
-              {continent !== CARGO &&
               <Tabs
                 value={zone}
                 onChange={this.setZone}
                 className="title-text"
               >
-                {OUTLET_ZONE.filter(zone => continentZones.includes(zone)).map(zone => (
+                {outletZones.map(zone => (
                   <Tab key={`${continent}-${zone}`} label={zone} />
                 ))}
-              </Tabs>}
-              {continent === CARGO &&
-              <Typography variant="subtitle1">Cargo</Typography>}
-              {zone === 2 &&
+              </Tabs>
+              {continent !== CARGO && zone === 2 &&
               <FormControlLabel
                 control={
                   <Checkbox
@@ -262,20 +279,29 @@ class TradePacks extends Component {
                       {Object.values(PACK_TYPE).map(packType => {
                         const pack = zonePacks.packs[packType] || { sell: {} };
                         let packValue = pack.sell[sellZone];
-                        packValue = packValue * (percentage / 130);
-                        if (freshness.HIGH && packType !== PACK_TYPE.BLUE_SALT && packType !== PACK_TYPE.SPECIAL) {
-                          packValue *= freshness.HIGH.modifier;
+                        // modify the pack's value
+                        if (packValue) {
+                          // modify the percentage
+                          packValue = packValue * (percentage / 130);
+                          // modify the freshness
+                          if (freshness.HIGH && !NO_FRESHNESS.includes(packType)) {
+                            packValue *= freshness.HIGH.modifier;
+                          }
+                          // modify war bonus
+                          if (war[sellZone]) {
+                            packValue *= 1.15;
+                          }
+                          // round to fixed 4 decimal
+                          packValue = (Math.round(packValue * 10000) / 10000).toFixed(4);
                         }
-                        if (war[sellZone]) {
-                          packValue *= 1.15;
-                        }
-                        packValue = packValue.toFixed(4);
-                        const displayValue = zone !== sellZone && pack.sell[sellZone] ? `${packValue}g` : '--';
+                        const isPack = (zone !== sellZone && packValue);
+                        const displayValue = isPack ? `${packValue}g` : '--';
                         const cell = (
                           <TableCell
                             key={`pack-${zone}-${packType}`}
                             align="right"
-                            className={cn({ 'no-pack': (zone === sellZone || !pack.sell[sellZone]) })}
+                            className={cn({ 'no-pack': !isPack })}
+                            onClick={isPack ? () => this.onOpenCalculator(zone, packType) : null}
                           >
                             {displayValue}
                           </TableCell>
@@ -312,6 +338,13 @@ class TradePacks extends Component {
             </Typography>
           </div>
         </Paper>
+        <PackViewer
+          originZone={originZone}
+          packType={packType}
+          sellZone={sellZone}
+          open={open}
+          onClose={this.onCloseCalculator}
+        />
       </div>
     );
   }

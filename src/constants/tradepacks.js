@@ -1,5 +1,8 @@
 import { ZONE } from './map';
 
+export const SET_CRAFT_LARDER = 'SET_CRAFT_LARDER';
+export const SET_FRESHNESS = 'SET_FRESHNESS';
+export const SET_INTEREST = 'SET_INTEREST';
 export const SET_PERCENTAGE = 'SET_PERCENTAGE';
 export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
 export const SET_PRICE = 'SET_PRICE';
@@ -16,8 +19,15 @@ export const PACK_TYPE = Object.freeze({
   CHEESE: 'Cheese',
   HONEY: 'Honey',
   BLUE_SALT: 'Blue Salt',
+  ANTIQUITIES: 'Antiquities',
   SPECIAL: 'Special',
 });
+
+export const NO_FRESHNESS = Object.freeze([
+  PACK_TYPE.BLUE_SALT,
+  PACK_TYPE.ANTIQUITIES,
+  PACK_TYPE.SPECIAL,
+]);
 
 export const FRESHNESS = Object.freeze({
   LUXURY: {

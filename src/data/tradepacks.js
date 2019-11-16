@@ -7,19 +7,19 @@ import ITEM from './items';
 
 export const PACK_COSTS = {
   [PACK_TYPE.NORMAL]: {
-    gold: 0.5,
+    gold: 5000,
     labor: 50,
   },
   [PACK_TYPE.GILDA]: {
-    gold: 0.5,
+    gold: 5000,
     labor: 180,
   },
   [PACK_TYPE.LOCAL]: {
-    gold: 0.75,
+    gold: 7500,
     labor: 60,
   },
   [PACK_TYPE.FERTILIZER]: {
-    gold: 0.75,
+    gold: 7500,
     labor: 60,
   },
   [PACK_TYPE.HONEY]: {
@@ -46,15 +46,18 @@ const FERTILIZER_PACK = {
 };
 
 const SALVE_PACK = {
-  materials: [{ item: ITEM.CULTIVATED_GINSENG, count: 20 }, { item: ITEM.OLIVE, count: 30 }],
+  materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.CULTIVATED_GINSENG, count: 20 },
+    { item: ITEM.OLIVE, count: 30 }],
 };
 
 const CHEESE_PACK = {
-  materials: [{ item: ITEM.MILK, count: 50 }, { item: ITEM.LEMON, count: 30 }],
+  materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.MILK, count: 50 },
+    { item: ITEM.LEMON, count: 30 }],
 };
 
 const HONEY_PACK = {
-  materials: [{ item: ITEM.HONEY, count: 4 }, { item: ITEM.HAY_BALE, count: 20 }],
+  materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.HONEY, count: 4 },
+    { item: ITEM.HAY_BALE, count: 20 }],
 };
 
 const BLUE_SALT_PACK = {
@@ -63,9 +66,9 @@ const BLUE_SALT_PACK = {
 };
 
 export const MULTIPURPOSE_AGING_LARDER = {
-  materials: [{ item: 'Lumber', count: 5 }, { item: 'Stone Brick', count: 10 }, { item: 'Iron Ingot', count: 10 },
-    { item: 'Royal Seed', count: 1 }],
-  cost: 0.9,
+  materials: [{ item: ITEM.LUMBER, count: 5 }, { item: ITEM.STONE_BRICK, count: 10 },
+    { item: ITEM.IRON_INGOT, count: 10 }, { item: ITEM.ROYAL_SEED, count: 1 }],
+  gold: 9000,
   labor: 65,
 };
 
@@ -147,7 +150,7 @@ export default Object.freeze({
         materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 },
           { item: ITEM.GILDA_STAR, count: 2 }],
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 36.3462,
+          [ZONE.SOLIS_HEADLANDS]: 36.3463,
           [ZONE.VILLANELLE]: 36.3001,
           [ZONE.YNYSTERE]: 41.4976,
         },
@@ -228,7 +231,14 @@ export default Object.freeze({
   },
   [ZONE.YNYSTERE]: {
     freshness: FRESHNESS.COMMERCIAL,
-    packs: {},
+    packs: {
+      [PACK_TYPE.BLUE_SALT]: {
+        ...BLUE_SALT_PACK,
+        sell: {
+          [ZONE.VILLANELLE]: 91.7807,
+        },
+      },
+    },
   },
   [ZONE.ROOKBORNE_BASIN]: {
     freshness: FRESHNESS.PRESERVED,

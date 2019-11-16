@@ -1,4 +1,5 @@
 export default {
+  craftLarder: false,
   percentage: 130,
   percentages: {},
   prices: {},
@@ -6,5 +7,6 @@ export default {
     commerce: 'Basic',
     husbandry: 'Basic',
   },
+  showInterest: true,
   war: {},
 };

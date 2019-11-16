@@ -13,10 +13,12 @@ export default ({ type, count, style, component = 'p' }) => {
       <Typography
         style={style}
         component={component}
+        className={cn({ 'negative': count < 0 })}
       >
-        {gold > 0 && <span className="currency gold">{gold}</span>}
-        {silver > 0 && <span className="currency silver">{silver}</span>}
-        {copper > 0 && <span className="currency copper">{copper}</span>}
+        {count < 0 && '-'}
+        {Math.abs(gold) > 0 && <span className="currency gold">{Math.abs(gold)}</span>}
+        {Math.abs(silver) > 0 && <span className="currency silver">{Math.abs(silver)}</span>}
+        {(Math.abs(copper > 0) || count === 0) && <span className="currency copper">{Math.abs(copper)}</span>}
       </Typography>
     );
   } else {

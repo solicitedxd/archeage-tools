@@ -48,6 +48,7 @@ import ExplorersPlateCrateIcon from 'images/item/explorer_plate_crate.png';
 import StoryInfusionIcon from 'images/item/story_infusion.png';
 import StoryAwakeningScrollIcon from 'images/item/story_awakening_scroll.png';
 import TimeStoneIcon from 'images/item/time_stone.png';
+import AgingLarderIcon from 'images/item/multi-purpose_aging_larder.png';
 import HoneyIcon from 'images/item/honey.png';
 import HayBaleIcon from 'images/item/hay_bale.png';
 import EggIcon from 'images/item/egg.png';
@@ -63,6 +64,10 @@ import GinsengIcon from 'images/item/ginseng.png';
 import SmallSeedOilIcon from 'images/item/small_seed_oil.png';
 import SmallRootPigmentIcon from 'images/item/small_root_pigment.png';
 import OpaquePolishIcon from 'images/item/opaque_polish.png';
+import LumberIcon from 'images/item/lumber.png';
+import StoneBrickIcon from 'images/item/stone_brick.png';
+import IronIngotIcon from 'images/item/iron_ingot.png';
+import RoyalSeedIcon from 'images/item/royal_seed.png';
 
 export default Object.freeze({
   GILDA_STAR: {
@@ -396,6 +401,33 @@ export default Object.freeze({
     description: <span>Widely useful, especially for extinguishing fires and watering crops.</span>,
     quality: QUALITY.BASIC,
   },
+  MULTI_PURPOSE_AGING_LARDER: {
+    name: 'Multi-Purpose Aging Larder',
+    icon: AgingLarderIcon,
+    reqLevel: 30,
+    type: 'Contraption',
+    description: <span>
+      Used for aging specialty trade packs.<br />
+      Can only be installed in specialty crafting areas.<br />
+      Disappears in <span className="tt-orange">10 minutes</span> if no ingredients are added.<br /><br />
+      Vocation: Husbandry<br />
+      Acquire from a Farmer's Workstation<br />
+      Aging Time: 3 days<br /><br />
+      <span className="tt-orange">Ingredients</span><br />
+      For Aged Salve: 20 Cultivated Ginseng and 30 Olives<br />
+      For Aged Cheese: 50 Milk and 30 Lemons<br />
+      For Aged Honey: 4 Honey and 20 Hay Bales<br /><br />
+      <span className="tt-orange">Required Proficiency:</span><br />
+      For Aged Salve: none<br />
+      For Aged Cheese: Commerce 10,000+<br />
+      For Aged Honey: Commerce 20,000+<br /><br />
+      <span className="tt-use">Use:</span>
+      <span className="tt-green">Use with right-click.<br />
+      Can be positioned on the ground with left-click.<br /><br />
+      Costs 5 Labor if not placed on personal land.</span>
+    </span>,
+    price: 300,
+  },
   CHOPPED_PRODUCE: {
     name: 'Chopped Produce',
     icon: ChoppedProduceIcon,
@@ -620,21 +652,33 @@ export default Object.freeze({
     name: 'Small Seed Oil',
     icon: SmallSeedOilIcon,
     type: 'Material',
-    description: <span>It's chiefly used for making Leather Armor and other crafts.</span>,
+    description: <span>
+      It's chiefly used for making Leather Armor and other crafts.<br /><br />
+      Vocation: Alchemy<br />
+      Workbench: Alchemy Table
+    </span>,
     price: 1000,
   },
   SMALL_ROOT_PIGMENT: {
     name: 'Small Root Pigment',
     icon: SmallRootPigmentIcon,
     type: 'Material',
-    description: <span>It's chiefly used for making Cloth Armor and other crafts.</span>,
+    description: <span>
+      It's chiefly used for making Cloth Armor and other crafts.<br /><br />
+      Vocation: Alchemy<br />
+      Workbench: Alchemy Table
+    </span>,
     price: 1000,
   },
   OPAQUE_POLISH: {
     name: 'Opaque Polish',
     icon: OpaquePolishIcon,
     type: 'Material',
-    description: <span>It's chiefly used for making plate armor and other crafts.</span>,
+    description: <span>
+      It's chiefly used for making plate armor and other crafts.<br /><br />
+      Vocation: Alchemy<br />
+      Workbench: Alchemy Table
+    </span>,
     price: 1000,
   },
   SUNLIGHT_ARCHEUM_DUST: {
@@ -1010,4 +1054,49 @@ export default Object.freeze({
     </span>,
     price: 50,
   },
+  LUMBER: {
+    name: 'Lumber',
+    icon: LumberIcon,
+    type: 'Lumber',
+    description: <span>
+      Processed from <span className="tt-orange">Logs</span>. It's chiefly used in carpentry.<br/><br/>
+      Vocation: Carpentry<br/>
+      Workbench: Sawmill Station
+    </span>,
+    price: 10,
+  },
+  STONE_BRICK: {
+    name: 'Stone Brick',
+    icon: StoneBrickIcon,
+    type: 'Stone Brick',
+    description: <span>
+      A processed <span className="tt-orange">Stone</span>.<br/>
+      It's chiefly used for Masonry purposes.<br/><br/>
+      Vocation: Masonry<br/>
+      Workbench: Stonemason Workbench
+    </span>,
+    price: 10,
+  },
+  IRON_INGOT: {
+    name: 'Iron Ingot',
+    icon: IronIngotIcon,
+    type: 'Metal',
+    description: <span>
+      Processed from <span className="tt-orange">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br/><br/>
+      Vocation: Metalwork<br/>
+      Workbench: Smelter
+    </span>,
+    price: 10,
+  },
+  ROYAL_SEED: {
+    name: 'Royal Seed',
+    icon: RoyalSeedIcon,
+    type: 'Seed',
+    quality: QUALITY.ARCANE,
+    description: <span>
+      A rare material sometimes found by harvesting, or can be purchased from Vocation Shop. Chances for a rare drop increase with higher Farming proficiency.<br/>
+      It's chiefly used in improving plants or crafting decor items.
+    </span>,
+    price: 100,
+  }
 });
