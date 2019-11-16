@@ -1,42 +1,71 @@
 import {
+  CARGO,
   FRESHNESS,
   PACK_TYPE,
 } from 'constants/tradepacks';
 import { ZONE } from 'constants/map';
 import ITEM from './items';
+import { CONTINENT } from 'constants/dailies';
+
+const sellLabor = 70;
+
+const cargoPack = {
+  labor: 70,
+  sellLabor,
+};
 
 export const PACK_COSTS = {
   [PACK_TYPE.NORMAL]: {
     gold: 5000,
     labor: 50,
+    sellLabor,
   },
   [PACK_TYPE.GILDA]: {
     gold: 5000,
     labor: 180,
+    sellLabor,
   },
   [PACK_TYPE.LOCAL]: {
     gold: 7500,
     labor: 60,
+    sellLabor,
   },
   [PACK_TYPE.FERTILIZER]: {
     gold: 7500,
     labor: 60,
+    sellLabor,
   },
   [PACK_TYPE.HONEY]: {
     gold: 0,
     labor: 65,
+    sellLabor,
   },
   [PACK_TYPE.CHEESE]: {
     gold: 0,
     labor: 65,
+    sellLabor,
   },
   [PACK_TYPE.SALVE]: {
     gold: 0,
     labor: 65,
+    sellLabor,
   },
   [PACK_TYPE.BLUE_SALT]: {
     gold: 0,
     labor: 600,
+    sellLabor,
+  },
+  [ZONE.SOLIS_HEADLANDS]: {
+    ...cargoPack,
+  },
+  [ZONE.TWO_CROWNS]: {
+    ...cargoPack,
+  },
+  [ZONE.DIAMOND_SHORES]: {
+    ...cargoPack,
+  },
+  [ZONE.FREEDICH_ISLAND]: {
+    ...cargoPack,
   },
 };
 
@@ -73,6 +102,7 @@ export const MULTIPURPOSE_AGING_LARDER = {
 };
 
 export default Object.freeze({
+  // Haranya
   [ZONE.ARCUM_IRIS]: {
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
@@ -259,5 +289,54 @@ export default Object.freeze({
   [ZONE.ROKHALA_MOUNTAINS]: {
     freshness: FRESHNESS.PRESERVED,
     packs: {},
+  },
+  // Nuia
+
+  // Cargo
+  [CONTINENT.HARANYA.name]: {
+    freshness: FRESHNESS.CARGO,
+    packs: {
+      [ZONE.TWO_CROWNS]: {
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [CARGO]: 13,
+        },
+      },
+      [ZONE.DIAMOND_SHORES]: {
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [CARGO]: 26,
+        },
+      },
+      [ZONE.FREEDICH_ISLAND]: {
+        item: ITEM.DRAGON_ESSENCE_STABILIZER,
+        sell: {
+          [CARGO]: 3.4,
+        },
+      },
+    },
+  },
+  [CONTINENT.NUIA.name]: {
+    freshness: FRESHNESS.CARGO,
+    packs: {
+      [ZONE.SOLIS_HEADLANDS]: {
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [CARGO]: 13,
+        },
+      },
+      [ZONE.DIAMOND_SHORES]: {
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [CARGO]: 26,
+        },
+      },
+      [ZONE.FREEDICH_ISLAND]: {
+        item: ITEM.DRAGON_ESSENCE_STABILIZER,
+        sell: {
+          [CARGO]: 3.4,
+        },
+      },
+    },
   },
 });

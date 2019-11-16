@@ -9,10 +9,11 @@
   }
 }
 
-$Commercial: #3887FF;
+$Commercial: #FF9255;
 $Luxury: #D275FF;
-$Fine: #2DBD72;
-$Preserved: #FF7846;
+$Fine: #3887FF;
+$Preserved: #36BD4B;
+$Cargo: #FF4053;
 
 .trade-table {
   thead {
@@ -38,6 +39,11 @@ $Preserved: #FF7846;
 
       &.Preserved td:first-child {
         background-color: $Preserved;
+        color: #FFFFFF;
+      }
+
+      &.Cargo td:first-child {
+        background-color: $Cargo;
         color: #FFFFFF;
       }
 
@@ -93,6 +99,10 @@ $Preserved: #FF7846;
 
 .freshness.Preserved {
   background-color: $Preserved;
+}
+
+.freshness.Cargo {
+  background-color: $Cargo;
 }
 
 .freshness-tip-container {

@@ -13,7 +13,7 @@ import { FRESHNESS } from 'constants/tradepacks';
 
 class FreshnessBlip extends Component {
   static propTypes = {
-    freshness: oneOf(['Commercial', 'Luxury', 'Fine', 'Preserved']).isRequired,
+    freshness: oneOf(Object.values(FRESHNESS).map(f => f.name)).isRequired,
   };
 
   render() {

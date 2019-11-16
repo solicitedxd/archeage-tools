@@ -7,6 +7,7 @@ export const SET_PERCENTAGE = 'SET_PERCENTAGE';
 export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
 export const SET_PRICE = 'SET_PRICE';
 export const SET_PROFICIENCY = 'SET_PROFICIENCY';
+export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_WAR = 'SET_WAR';
 export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
 
@@ -106,9 +107,47 @@ export const FRESHNESS = Object.freeze({
       time: 'after 24hr',
     },
   },
+  CARGO: {
+    name: 'Cargo',
+    HIGH: {
+      modifier: 1.15,
+      time: 'within 30min',
+    },
+    REGULAR: {
+      modifier: 1,
+      time: 'within 2hr',
+    },
+    REDUCED: {
+      modifier: 0.80,
+      time: 'within 6hr',
+    },
+    LOW: {
+      modifier: 0.60,
+      time: 'after 6hr',
+    },
+  },
 });
 
 export const CARGO = 'Cargo';
+
+export const CARGO_SUPPLY = Object.freeze({
+  LIMITED: {
+    percent: 130,
+    price: 260000,
+  },
+  INSUFFICIENT: {
+    percent: 110,
+    price: 220000,
+  },
+  NORMAL: {
+    percent: 90,
+    price: 180000,
+  },
+  ABUNDANT: {
+    percent: 70,
+    price: 140000,
+  },
+});
 
 export const OUTLET_ZONE = Object.freeze([
   ZONE.SOLIS_HEADLANDS,
@@ -117,4 +156,11 @@ export const OUTLET_ZONE = Object.freeze([
   ZONE.TWO_CROWNS,
   ZONE.SOLZREED_PENINSULA,
   ZONE.CINDERSTONE_MOOR,
+]);
+
+export const CARGO_OUTLET = Object.freeze([
+  ZONE.SOLIS_HEADLANDS,
+  ZONE.TWO_CROWNS,
+  ZONE.DIAMOND_SHORES,
+  ZONE.FREEDICH_ISLAND,
 ]);

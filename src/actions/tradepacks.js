@@ -6,6 +6,7 @@ import {
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
 } from 'constants/tradepacks';
@@ -18,6 +19,7 @@ export const triggerLocalStorageUpdate = [
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
 ];
@@ -53,6 +55,10 @@ export const setWar = (zone) => (dispatch) => (e, war) => {
 export const setPrice = (item) => (dispatch) => (e) => {
   const { target: { value } } = e;
   dispatch({ type: SET_PRICE, item, price: value });
+};
+
+export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {
+  dispatch({ type: SET_SUPPLY, originZone, supply });
 };
 
 export const resetSettings = () => (dispatch) => {

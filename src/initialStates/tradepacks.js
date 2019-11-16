@@ -8,5 +8,6 @@ export default {
     husbandry: 'Basic',
   },
   showInterest: true,
+  supply: {},
   war: {},
 };

@@ -37,10 +37,10 @@ import {
   setWar,
 } from 'actions/tradepacks';
 import { CONTINENT } from 'constants/dailies';
-import { ZONE } from 'constants/map';
 import { PROFICIENCY } from 'constants/taxes';
 import {
   CARGO,
+  CARGO_OUTLET,
   NO_FRESHNESS,
   OUTLET_ZONE,
   PACK_TYPE,
@@ -49,6 +49,7 @@ import TRADE_PACKS from 'data/tradepacks';
 import { setTitle } from 'utils/string';
 import FreshnessBlip from './FreshnessBlip';
 import PackViewer from './PackViewer';
+import Item from 'components/Item';
 
 class TradePacks extends Component {
   static propTypes = {};
@@ -57,7 +58,7 @@ class TradePacks extends Component {
 
   state = {
     reset: false,
-    continent: 'Haranya',
+    continent: CONTINENT.HARANYA.name,
     zone: 0,
     open: false,
     packType: null,
@@ -106,13 +107,11 @@ class TradePacks extends Component {
       continentZones = Object.values(CONTINENT).find((cont) => cont.name === continent).zones;
     }
 
-    const outletZones = continent === CARGO ? [...continentZones]
-      : OUTLET_ZONE.filter(zone => continentZones.includes(zone));
+    const outletZones = OUTLET_ZONE.filter(zone => continentZones.includes(zone));
+    let sellZone = outletZones[zone];
     if (continent === CARGO) {
-      outletZones.push(ZONE.DIAMOND_SHORES);
+      sellZone = CARGO;
     }
-
-    const sellZone = OUTLET_ZONE.filter(zone => continentZones.includes(zone))[zone];
 
     setTitle('Trade Pack Calculator');
 
@@ -226,6 +225,7 @@ class TradePacks extends Component {
         <Paper className="section">
           <AppBar position="static" color="primary">
             <Toolbar variant="dense">
+              {continent !== CARGO &&
               <Tabs
                 value={zone}
                 onChange={this.setZone}
@@ -234,7 +234,9 @@ class TradePacks extends Component {
                 {outletZones.map(zone => (
                   <Tab key={`${continent}-${zone}`} label={zone} />
                 ))}
-              </Tabs>
+              </Tabs>}
+              {continent === CARGO &&
+              <Typography variant="subtitle1" className="title-text">Cargo</Typography>}
               {continent !== CARGO && zone === 2 &&
               <FormControlLabel
                 control={
@@ -251,8 +253,10 @@ class TradePacks extends Component {
             <Table size="small" className="trade-table">
               <TableHead>
                 <TableRow>
-                  <TableCell>Pack Origin</TableCell>
-                  {Object.values(PACK_TYPE).map(packType => (
+                  <TableCell>
+                    {continent !== CARGO && 'Pack Origin'}
+                  </TableCell>
+                  {(continent === CARGO ? CARGO_OUTLET : Object.values(PACK_TYPE)).map(packType => (
                     <TableCell
                       key={`type-head-${packType}`}
                       align="center"
@@ -274,9 +278,9 @@ class TradePacks extends Component {
                       <TableCell
                         className={cn({ 'no-pack': zone === sellZone })}
                       >
-                        {zone}
+                        {zone}{continent === CARGO && 'n Cargo'}
                       </TableCell>
-                      {Object.values(PACK_TYPE).map(packType => {
+                      {(continent === CARGO ? CARGO_OUTLET : Object.values(PACK_TYPE)).map(packType => {
                         const pack = zonePacks.packs[packType] || { sell: {} };
                         let packValue = pack.sell[sellZone];
                         // modify the pack's value
@@ -295,7 +299,13 @@ class TradePacks extends Component {
                           packValue = (Math.round(packValue * 10000) / 10000).toFixed(4);
                         }
                         const isPack = (zone !== sellZone && packValue);
-                        const displayValue = isPack ? `${packValue}g` : '--';
+                        let displayValue = isPack ? `${packValue}g` : '--';
+                        if (isPack && continent === CARGO) {
+                          displayValue = <React.Fragment>
+                            {Math.round(packValue)}&nbsp;
+                            <Item {...pack.item} className="inline" />
+                          </React.Fragment>;
+                        }
                         const cell = (
                           <TableCell
                             key={`pack-${zone}-${packType}`}
@@ -331,10 +341,11 @@ class TradePacks extends Component {
               <FreshnessBlip freshness="Fine" />
               <FreshnessBlip freshness="Commercial" />
               <FreshnessBlip freshness="Preserved" />
-            </React.Fragment> || <div />}
+            </React.Fragment> ||
+            <FreshnessBlip freshness="Cargo" />}
             <Typography variant="overline">
-              Prices shown at {percentage}% demand with high freshness
-              {war[sellZone] ? ' and +15% war bonus' : ''}. 2% interest is not shown.
+              Prices shown at {percentage}% demand with high profit {war[sellZone] ? ' and +15% war bonus' : ''}. 2%
+              interest is not shown.
             </Typography>
           </div>
         </Paper>

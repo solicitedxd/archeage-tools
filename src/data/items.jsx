@@ -18,6 +18,7 @@ import RedDragonPouchIcon from 'images/item/red_dragon_pouch.png';
 import KadumsCrateIcon from 'images/item/kadums_crate.png';
 import GoldCrateIcon from 'images/item/gold_crate.png';
 import OnyxEssenceIcon from 'images/item/onyx_essence.png';
+import DragonEssenceIcon from 'images/item/dragon_essence_stabilizer.png';
 import RevenantSoulstoneIcon from 'images/item/revenant_soulstone.png';
 import GlowingPrismIcon from 'images/item/glowing_prism.png';
 import OriginalTitansWingsIcon from 'images/item/original_titans_wings.png';
@@ -340,6 +341,16 @@ export default Object.freeze({
       className="tt-yellow">Shadow Merchant</span> on Freedich Island.</span>,
     quality: QUALITY.BASIC,
     price: 9500,
+  },
+  DRAGON_ESSENCE_STABILIZER: {
+    name: 'Dragon Essence Stabilizer',
+    icon: DragonEssenceIcon,
+    type: 'Material',
+    description: <span>
+      Used in processing and to stop unwanted chemical reactions.<br /><br />
+      - Acquire at the Freedich Island <span className="tt-orange">Cargo Exchanger</span> in trade for Cargo Packs.
+    </span>,
+    price: 10,
   },
   REVENANT_SOULSTONE: {
     name: 'Revenant Soulstone',
@@ -1059,8 +1070,8 @@ export default Object.freeze({
     icon: LumberIcon,
     type: 'Lumber',
     description: <span>
-      Processed from <span className="tt-orange">Logs</span>. It's chiefly used in carpentry.<br/><br/>
-      Vocation: Carpentry<br/>
+      Processed from <span className="tt-orange">Logs</span>. It's chiefly used in carpentry.<br /><br />
+      Vocation: Carpentry<br />
       Workbench: Sawmill Station
     </span>,
     price: 10,
@@ -1070,9 +1081,9 @@ export default Object.freeze({
     icon: StoneBrickIcon,
     type: 'Stone Brick',
     description: <span>
-      A processed <span className="tt-orange">Stone</span>.<br/>
-      It's chiefly used for Masonry purposes.<br/><br/>
-      Vocation: Masonry<br/>
+      A processed <span className="tt-orange">Stone</span>.<br />
+      It's chiefly used for Masonry purposes.<br /><br />
+      Vocation: Masonry<br />
       Workbench: Stonemason Workbench
     </span>,
     price: 10,
@@ -1082,8 +1093,9 @@ export default Object.freeze({
     icon: IronIngotIcon,
     type: 'Metal',
     description: <span>
-      Processed from <span className="tt-orange">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br/><br/>
-      Vocation: Metalwork<br/>
+      Processed from <span
+      className="tt-orange">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br /><br />
+      Vocation: Metalwork<br />
       Workbench: Smelter
     </span>,
     price: 10,
@@ -1094,9 +1106,9 @@ export default Object.freeze({
     type: 'Seed',
     quality: QUALITY.ARCANE,
     description: <span>
-      A rare material sometimes found by harvesting, or can be purchased from Vocation Shop. Chances for a rare drop increase with higher Farming proficiency.<br/>
+      A rare material sometimes found by harvesting, or can be purchased from Vocation Shop. Chances for a rare drop increase with higher Farming proficiency.<br />
       It's chiefly used in improving plants or crafting decor items.
     </span>,
     price: 100,
-  }
+  },
 });

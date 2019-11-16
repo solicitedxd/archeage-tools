@@ -35,6 +35,7 @@ import {
   setInterest,
   setPercentage,
   setPrice,
+  setSupply,
   setWar,
 } from 'actions/tradepacks';
 import {
@@ -43,6 +44,9 @@ import {
 } from 'constants/dailies';
 import { ZONE } from 'constants/map';
 import {
+  CARGO,
+  CARGO_OUTLET,
+  CARGO_SUPPLY,
   NO_FRESHNESS,
   OUTLET_ZONE,
   PACK_TYPE,
@@ -55,8 +59,12 @@ import TRADE_PACKS, {
   PACK_COSTS,
 } from 'data/tradepacks';
 import { PROFICIENCY } from 'constants/taxes';
+import Item from 'components/Item';
 
 const getZonePrefix = (zone) => {
+  if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
+    return `${zone}n`;
+  }
   if ([ZONE.ARCUM_IRIS, ZONE.SILENT_FOREST, ZONE.WHITE_ARDEN, ZONE.TWO_CROWNS].includes(zone)) {
     return zone;
   }
@@ -68,9 +76,10 @@ class PackViewer extends Component {
     open: bool.isRequired,
     onClose: func.isRequired,
     // TODO handle cargo origin
-    originZone: oneOf([...CONTINENT.HARANYA.zones, ...CONTINENT.NUIA.zones]),
-    packType: oneOf(Object.values(PACK_TYPE)),
-    sellZone: oneOf(OUTLET_ZONE),
+    originZone: oneOf([...CONTINENT.HARANYA.zones, ...CONTINENT.NUIA.zones, CONTINENT.HARANYA.name,
+      CONTINENT.NUIA.name]),
+    packType: oneOf([...Object.values(PACK_TYPE), ...CARGO_OUTLET]),
+    sellZone: oneOf([...OUTLET_ZONE, CARGO]),
   };
 
   static defaultProps = {
@@ -91,8 +100,8 @@ class PackViewer extends Component {
 
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
-    const { craftLarder, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, war } = this.props;
-    const { setCraftLarder, setFreshness, setInterest, setPercentage, setPrice, setWar } = this.props;
+    const { craftLarder, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, supply, war } = this.props;
+    const { setCraftLarder, setFreshness, setInterest, setPercentage, setPrice, setSupply, setWar } = this.props;
 
     // do nothing if value is missing
     // FIXME cargo
@@ -104,13 +113,16 @@ class PackViewer extends Component {
     const pack = { ...packCosts, ...pathOr({}, [originZone, 'packs', packType])(TRADE_PACKS) };
     const freshness = pathOr({}, [originZone, 'freshness'])(TRADE_PACKS);
     const profitLevel = pathOr('HIGH', [originZone, packType, sellZone])(profitLevels);
+    const supplyLevel = sellZone === CARGO && (supply[originZone] || Object.keys(CARGO_SUPPLY)[0]);
 
     const percentage = pathOr(percentageDefault, [originZone, packType, sellZone])(percentages);
 
     // construct a pack name, if no special name is given
     let packName = pack.name;
     if (!packName) {
-      if (packType === PACK_TYPE.BLUE_SALT) {
+      if (sellZone === CARGO) {
+        packName = `${getZonePrefix(originZone)} Cargo`;
+      } else if (packType === PACK_TYPE.BLUE_SALT) {
         packName = `${getZonePrefix(originZone)} Pack`;
       } else {
         packName = `${getZonePrefix(originZone)} ${freshness.name}`;
@@ -146,17 +158,17 @@ class PackViewer extends Component {
       packValue = Math.round(packValue * 10000);
     }
 
-    const larderItem = pack.materials.find(mat => mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER);
+    const larderItem = pack.materials && pack.materials.find(mat => mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER);
     const isAgedPack = Boolean(larderItem);
 
-    let { labor, gold } = pack;
+    let { labor, gold, sellLabor } = pack;
 
     // sell labor
-    let totalLabor = this.getLaborCost(70, 'commerce');
+    let totalLabor = this.getLaborCost(sellLabor, 'commerce');
     // craft labor
     totalLabor += this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce');
 
-    const materials = [...pack.materials];
+    const materials = pack.materials ? [...pack.materials] : [];
     if (isAgedPack && craftLarder) {
       const larderIndex = pack.materials.indexOf(larderItem);
       MULTIPURPOSE_AGING_LARDER.materials.forEach((mat, i) =>
@@ -172,6 +184,9 @@ class PackViewer extends Component {
       }
       totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
     });
+    if (sellZone === CARGO) {
+      totalGold = CARGO_SUPPLY[supplyLevel].price;
+    }
 
     const itemShowCost = (material) => (!material.item.bindsOnPickup && ((material.item === ITEM.MULTI_PURPOSE_AGING_LARDER && !craftLarder) || (material.item !== ITEM.MULTI_PURPOSE_AGING_LARDER)));
 
@@ -190,7 +205,8 @@ class PackViewer extends Component {
           </Toolbar>
         </AppBar>
         <div className="body-container">
-          <Typography variant="h6">Crafting Requirements</Typography>
+          <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
+          {sellZone !== CARGO &&
           <Table size="small">
             <TableHead>
               <TableRow>
@@ -280,8 +296,54 @@ class PackViewer extends Component {
                 </TableCell>
               </TableRow>}
             </TableBody>
-          </Table>
-          <Typography variant="h6" style={{ margin: '8px 0 4px' }}>Selling at {sellZone}</Typography>
+          </Table>}
+          {sellZone === CARGO &&
+          <div className="sell-config">
+            <FormControl>
+              <InputLabel>Supply</InputLabel>
+              <Select
+                id="select-profit"
+                value={supplyLevel}
+                onChange={setSupply(originZone)}
+                renderValue={() =>
+                  <Typography>
+                    {supplyLevel.substr(0, 1)}{supplyLevel.toLowerCase().substr(1)} Supply:&nbsp;
+                    {CARGO_SUPPLY[supplyLevel].percent}%
+                  </Typography>}
+              >
+                {Object.keys(CARGO_SUPPLY).filter(k => k !== 'name').map(supplyLevel => (
+                  <MenuItem key={supplyLevel}>
+                    {supplyLevel.substr(0, 1)}{supplyLevel.toLowerCase().substr(1)} Supply:&nbsp;
+                    {CARGO_SUPPLY[supplyLevel].percent}%
+                    &nbsp;<Currency type={REWARD.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+            <Table size="small" style={{ width: 185 }}>
+              <TableBody>
+                <TableRow>
+                  <TableCell>
+                    Pack Cost
+                  </TableCell>
+                  <TableCell align="right">
+                    <Currency type={REWARD.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
+                  </TableCell>
+                </TableRow>
+                <TableRow>
+                  <TableCell>
+                    Labor Cost
+                  </TableCell>
+                  <TableCell align="right">
+                    {this.getLaborCost(labor, 'commerce')}
+                  </TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+          </div>
+          }
+          <Typography variant="h6" style={{ margin: '8px 0 4px' }}>Selling at {sellZone === CARGO ? packType
+            : sellZone}</Typography>
           <div className="sell-config">
             <div>
               <InputLabel shrink>Demand: {percentage}%</InputLabel>
@@ -327,7 +389,18 @@ class PackViewer extends Component {
                 }
                 label="Zone in War (+15%)"
               />}
-              <Tooltip title={<Currency type={REWARD.COIN} count={interest} />}>
+              {sellZone !== CARGO ?
+                <Tooltip title={<Currency type={REWARD.COIN} count={interest} />}>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={showInterest}
+                        onChange={setInterest}
+                      />
+                    }
+                    label="Interest (+2%)"
+                  />
+                </Tooltip> :
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -336,19 +409,23 @@ class PackViewer extends Component {
                     />
                   }
                   label="Interest (+2%)"
-                />
-              </Tooltip>
+                />}
             </div>
             <Table size="small" className="totals-table">
               <TableBody>
                 <TableRow>
                   <TableCell>Sell Labor</TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(70, 'commerce')}
+                    {this.getLaborCost(sellLabor, 'commerce')}
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
-                    <Currency type={REWARD.COIN} count={packValue} />
+                    {sellZone === CARGO ?
+                      <React.Fragment>
+                        {Math.round(packValue / 10000)}&nbsp;
+                        <Item {...pack.item} className="inline" />
+                      </React.Fragment> :
+                      <Currency type={REWARD.COIN} count={packValue} />}
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -363,20 +440,22 @@ class PackViewer extends Component {
                 </TableRow>
                 <TableRow>
                 </TableRow>
+                {sellZone !== CARGO &&
                 <TableRow>
                   <TableCell colSpan={2} />
                   <TableCell>Profit</TableCell>
                   <TableCell align="right">
                     <Currency type={REWARD.COIN} count={packValue - totalGold} />
                   </TableCell>
-                </TableRow>
+                </TableRow>}
+                {sellZone !== CARGO &&
                 <TableRow>
                   <TableCell colSpan={2} />
                   <TableCell>Silver per Labor</TableCell>
                   <TableCell align="right">
                     <Currency type={REWARD.COIN} count={Math.round((packValue - totalGold) / totalLabor)} />
                   </TableCell>
-                </TableRow>
+                </TableRow>}
               </TableBody>
             </Table>
           </div>
@@ -396,6 +475,7 @@ const mapDispatchToProps = {
   setInterest,
   setPercentage,
   setPrice,
+  setSupply,
   setWar,
 };
 

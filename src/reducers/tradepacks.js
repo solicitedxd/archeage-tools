@@ -8,6 +8,7 @@ import {
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
 } from 'constants/tradepacks';
@@ -80,6 +81,14 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         war: {
           ...state.war,
           [action.zone]: action.war,
+        },
+      };
+    case SET_SUPPLY:
+      return {
+        ...state,
+        supply: {
+          ...state.supply,
+          [action.originZone]: action.supply,
         },
       };
     case TRADE_PACK_RESET:
