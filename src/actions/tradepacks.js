@@ -1,4 +1,5 @@
 import {
+  SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_FRESHNESS,
   SET_INTEREST,
@@ -12,6 +13,7 @@ import {
 } from 'constants/tradepacks';
 
 export const triggerLocalStorageUpdate = [
+  SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_FRESHNESS,
   SET_INTEREST,
@@ -23,6 +25,10 @@ export const triggerLocalStorageUpdate = [
   SET_WAR,
   TRADE_PACK_RESET,
 ];
+
+export const setContinent = (e, { props: { children: continent } }) => (dispatch) => {
+  dispatch({ type: SET_CONTINENT, continent });
+};
 
 export const setCraftLarder = (e, craftLarder) => (dispatch) => {
   dispatch({ type: SET_CRAFT_LARDER, craftLarder });

@@ -291,7 +291,66 @@ export default Object.freeze({
     packs: {},
   },
   // Nuia
-
+  [ZONE.SOLZREED_PENINSULA]: {
+    freshness: FRESHNESS.LUXURY,
+    packs: {},
+  },
+  [ZONE.GWEONID_FOREST]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.LILYUT_HILLS]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.AIRAIN_ROCK]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.AUBRE_CRADLE]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.DEWSTONE_PLAINS]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.WHITE_ARDEN]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.MARIANOPLE]: {
+    freshness: FRESHNESS.FINE,
+    packs: {},
+  },
+  [ZONE.TWO_CROWNS]: {
+    freshness: FRESHNESS.LUXURY,
+    packs: {},
+  },
+  [ZONE.CINDERSTONE_MOOR]: {
+    freshness: FRESHNESS.LUXURY,
+    packs: {},
+  },
+  [ZONE.HALCYONA]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.HELLSWAMP]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.SANDDEEP]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
+  [ZONE.KARKASSE_RIDGELANDS]: {
+    freshness: FRESHNESS.COMMERCIAL,
+    packs: {},
+  },
+  [ZONE.AHNIMAR]: {
+    freshness: FRESHNESS.PRESERVED,
+    packs: {},
+  },
   // Cargo
   [CONTINENT.HARANYA.name]: {
     freshness: FRESHNESS.CARGO,

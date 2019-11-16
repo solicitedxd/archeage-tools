@@ -1,6 +1,7 @@
 import { pathOr } from 'ramda';
 import initialState from 'initialStates/tradepacks';
 import {
+  SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_FRESHNESS,
   SET_INTEREST,
@@ -16,6 +17,11 @@ import { getItem } from 'utils/localStorage';
 
 const tradepacks = (state = getItem('tradepacks', initialState), action) => {
   switch (action.type) {
+    case SET_CONTINENT:
+      return {
+        ...state,
+        continent: action.continent,
+      };
     case SET_CRAFT_LARDER:
       return {
         ...state,
@@ -94,6 +100,7 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
     case TRADE_PACK_RESET:
       return {
         ...initialState,
+        continent: state.continent,
         proficiencies: state.proficiencies,
       };
     default:

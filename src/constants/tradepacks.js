@@ -1,5 +1,6 @@
 import { ZONE } from './map';
 
+export const SET_CONTINENT = 'SET_CONTINENT';
 export const SET_CRAFT_LARDER = 'SET_CRAFT_LARDER';
 export const SET_FRESHNESS = 'SET_FRESHNESS';
 export const SET_INTEREST = 'SET_INTEREST';

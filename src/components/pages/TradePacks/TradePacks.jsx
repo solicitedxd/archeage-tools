@@ -32,10 +32,12 @@ import {
 import { Replay } from '@material-ui/icons';
 import {
   resetSettings,
+  setContinent,
   setPercentage,
   setProficiency,
   setWar,
 } from 'actions/tradepacks';
+import Item from 'components/Item';
 import { CONTINENT } from 'constants/dailies';
 import { PROFICIENCY } from 'constants/taxes';
 import {
@@ -49,7 +51,6 @@ import TRADE_PACKS from 'data/tradepacks';
 import { setTitle } from 'utils/string';
 import FreshnessBlip from './FreshnessBlip';
 import PackViewer from './PackViewer';
-import Item from 'components/Item';
 
 class TradePacks extends Component {
   static propTypes = {};
@@ -58,15 +59,15 @@ class TradePacks extends Component {
 
   state = {
     reset: false,
-    continent: CONTINENT.HARANYA.name,
     zone: 0,
     open: false,
     packType: null,
     originZone: null,
   };
 
-  setContinent = (e, { props: { children: continent } }) => {
-    this.setState({ continent, zone: 0 });
+  setContinent = (e, value) => {
+    this.props.setContinent(e, value);
+    this.setState({ zone: 0 });
   };
 
   setZone = (e, zone) => {
@@ -95,9 +96,9 @@ class TradePacks extends Component {
   };
 
   render() {
-    const { mobile, percentage, proficiencies, war } = this.props;
+    const { mobile, continent, percentage, proficiencies, war } = this.props;
     const { setPercentage, setProficiency, setWar } = this.props;
-    const { reset, continent, zone, open, packType, originZone } = this.state;
+    const { reset, zone, open, packType, originZone } = this.state;
 
     const commerceProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.commerce);
     const husbandryProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.husbandry);
@@ -344,7 +345,7 @@ class TradePacks extends Component {
             </React.Fragment> ||
             <FreshnessBlip freshness="Cargo" />}
             <Typography variant="overline">
-              Prices shown at {percentage}% demand with high profit {war[sellZone] ? ' and +15% war bonus' : ''}. 2%
+              Prices shown at {percentage}% demand with high profit{war[sellZone] ? ' and +15% war bonus' : ''}. 2%
               interest is not shown.
             </Typography>
           </div>
@@ -361,14 +362,16 @@ class TradePacks extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, tradepacks: { percentage, proficiencies, war } }) => ({
+const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, proficiencies, war } }) => ({
   mobile,
+  continent,
   percentage,
   proficiencies,
   war,
 });
 
 const mapDispatchToProps = {
+  setContinent,
   setProficiency,
   setPercentage,
   setWar,
