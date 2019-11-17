@@ -105,12 +105,13 @@ import RevenantSoulIcon from 'images/item/revenant_soul.png';
 import GhostBladeShardIcon from 'images/item/ghost_blade_weapon_shard.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
+const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
 const Blue = ({ children }) => <span className="tt-blue">{children}</span>;
 const Yellow = ({ children }) => <span className="tt-yellow">{children}</span>;
 const Orange = ({ children }) => <span className="tt-orange">{children}</span>;
-const Use = ({ children }) => (
+const Use = ({ children, title = 'Use' }) => (
   <React.Fragment>
-    <span className="tt-use">Use:</span>
+    <span className="tt-use">{title}:</span>
     {children && <Green>{children}</Green>}
   </React.Fragment>
 );
@@ -145,8 +146,15 @@ export default Object.freeze({
     name: 'Shatigon\'s Sand',
     icon: ShatigonsSandIcon,
     type: 'Talisman',
-    description: <span> Sand extracted from Shatigon's Sandglass.<br /><br />Turns back time and restores broken machines in the Hereafter (ships, vehicles, and equipment).<br /><br />Takes 5 minutes to repair ships and vehicles, and immediately repairs equipment.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Time-Turning Sand:<br />The flow of time around the sand is strange.</span></span>,
+    description: <span>
+      Sand extracted from Shatigon's Sandglass.<br /><br />
+      Turns back time and restores broken machines in the Hereafter (ships, vehicles, and equipment).<br /><br />
+      Takes 5 minutes to repair ships and vehicles, and immediately repairs equipment.<br /><br />
+      <Use>
+        Time-Turning Sand:<br />
+        The flow of time around the sand is strange.
+      </Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
   },
@@ -154,8 +162,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 14',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><Use /><span
-      className="tt-green">Gain 100 Honor Points.</span></span>,
+    description: <Use>Gain 100 Honor Points.</Use>,
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
   },
@@ -163,8 +170,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 5',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><Use /><span
-      className="tt-green">Gain 1,000 Honor Points.</span></span>,
+    description: <Use>Gain 1,000 Honor Points.</Use>,
     quality: QUALITY.CELESTIAL,
     bindsOnPickup: true,
   },
@@ -172,8 +178,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 4',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><Use /><span
-      className="tt-green">Gain 1,500 Honor Points.</span></span>,
+    description: <Use>Gain 1,500 Honor Points.</Use>,
     quality: QUALITY.DIVINE,
     bindsOnPickup: true,
   },
@@ -181,8 +186,7 @@ export default Object.freeze({
     name: 'Honorable Vocation Potion Rank 4',
     icon: HonorableVocationIcon,
     type: 'Potion',
-    description: <span><Use /><span
-      className="tt-green">Gain 1,500 Vocation Badges.</span></span>,
+    description: <Use>Gain 1,500 Vocation Badges.</Use>,
     quality: QUALITY.DIVINE,
     bindsOnPickup: true,
   },
@@ -190,9 +194,12 @@ export default Object.freeze({
     name: 'Bound Labor Recharge',
     icon: LaborRechargeIcon,
     type: 'Other',
-    description: <span>Restores <span className="tt-bgreen">Server Labor</span> over multiple uses, but the amount gradually decreases.<br />Hover over the Labor bar on the bottom-left of the screen to see details.<br /><br /><span
-      className="tt-use">Use:</span><span
-      className="tt-bgreen">Restores <span className="tt-orange">+1000</span> Server Labor.</span></span>,
+    description: <span>
+      Restores <BGreen>Server Labor</BGreen> over multiple uses, but the amount gradually decreases.<br />
+      Hover over the Labor bar on the bottom-left of the screen to see details.<br /><br />
+      <Use />
+      <BGreen>Restores <Orange>+1000</Orange> Server Labor.</BGreen>
+    </span>,
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
   },
@@ -200,9 +207,14 @@ export default Object.freeze({
     name: 'Improved Infusion Supply Kit',
     icon: SupplyKitIcon,
     type: 'Crate',
-    description: <span>An improved supply kit that can be opened to receive one of the following items:<br /><span
-      className="tt-blue">- Mysterious Hiram Infusion x1<br />- Mysterious Abyssal Enhancer x3</span><br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Open the Improved Infusion Supply Kit.</span></span>,
+    description: <span>
+      An improved supply kit that can be opened to receive one of the following items:<br />
+      <Blue>
+        - Mysterious Hiram Infusion x1<br />
+        - Mysterious Abyssal Enhancer x3
+      </Blue><br /><br />
+      <Use>Open the Improved Infusion Supply Kit.</Use>
+    </span>,
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
     price: 15,
@@ -219,8 +231,15 @@ export default Object.freeze({
     name: 'Rainbow Sprinkler',
     icon: SprinklerIcon,
     type: 'Contraption',
-    description: <span>Places a <span className="tt-orange">Rainbow Sprinkler</span> that allows you to water seeds and seed bundles in a large area in a single action.<br />It takes 10 minutes to refill the water after each use. Can be used up to 5 times.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Use with right-click.<br />Can be positioned on the ground with left-click.<br /><br />Costs 5 Labor if not placed on personal land.</span></span>,
+    description: <span>
+      Places a <Yellow>Rainbow Sprinkler</Yellow> that allows you to water seeds and seed bundles in a large area in a single action.<br />
+      It takes 10 minutes to refill the water after each use. Can be used up to 5 times.<br /><br />
+      <Use>
+        Use with right-click.<br />
+        Can be positioned on the ground with left-click.<br /><br />
+        Costs 5 Labor if not placed on personal land.
+      </Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
   },
@@ -228,9 +247,18 @@ export default Object.freeze({
     name: 'Sharpwind Mining Drill',
     icon: MiningDrillIcon,
     type: 'Contraption',
-    description: <span>Installs a <span className="tt-orange">Sharpwind Mining Drill</span>.<br />If placed outside protected land, it will eventually become public property.<br /><br />Vocation: Mining<br />Mines for 12 h before disappearing<br /><br />Can mine for <span
-      className="tt-orange">stone, ore, and gems</span>.<br /><br /><Use /><span
-      className="tt-green">Use with right-click.<br />Can be positioned on the ground with left-click.<br /><br />Costs 5 Labor if not placed on personal land.</span></span>,
+    description: <span>
+      Installs a <Yellow>Sharpwind Mining Drill</Yellow>.<br />
+      If placed outside protected land, it will eventually become public property.<br /><br />
+      Vocation: Mining<br />
+      Mines for 12 h before disappearing<br /><br />
+      Can mine for <Yellow>stone, ore, and gems</Yellow>.<br /><br />
+      <Use>
+        Use with right-click.<br />
+        Can be positioned on the ground with left-click.<br /><br />
+        Costs 5 Labor if not placed on personal land.
+      </Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
   },
@@ -238,9 +266,14 @@ export default Object.freeze({
     name: 'Star Wings',
     icon: FeatherGreenIcon,
     type: 'Contraption',
-    description:
-      <span>Enhances certain glider effects.<br /><br />Can't use if you are in a Lv6+ guild.<br /><br /><span
-        className="tt-use">Use:</span><span className="tt-green">Use the Glider Nitro or Somersault skills to briefly increase gliding speed.<br />Creates a protection ward when closing that reduces fall damage for 6 seconds.</span></span>,
+    description: <span>
+      Enhances certain glider effects.<br /><br />
+      Can't use if you are in a Lv6+ guild.<br /><br />
+      <Use>
+        Use the Glider Nitro or Somersault skills to briefly increase gliding speed.<br />
+        Creates a protection ward when closing that reduces fall damage for 6 seconds.
+      </Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
   },
@@ -248,9 +281,11 @@ export default Object.freeze({
     name: 'Acid Gobbet',
     icon: AcidGobbetIcon,
     type: 'Material',
-    description: <span>Can be obtained on <span className="tt-blue">Aegis Island</span>. Used to make <span
-      className="tt-orange">Acid Pouches</span>, which are required to craft an Ipnysh Blessing.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend 500 Labor to combine 50 Acid Bubbles into an Acid Poison Pouch.<br />Auto-use: shift + right-click</span></span>,
+    description: <span>
+      Can be obtained on <Blue>Aegis Island</Blue>.<br />
+      Used to make <Orange>Acid Pouches</Orange>, which are required to craft an Ipnysh Blessing.<br /><br />
+      <Use>Spend 500 Labor to combine 50 Acid Bubbles into an Acid Poison Pouch.<br />Auto-use: shift + right-click</Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
     bindsOnPickup: true,
@@ -259,9 +294,11 @@ export default Object.freeze({
     name: 'Cursed Armor Scrap',
     icon: ArmorScrapIcon,
     type: 'Material',
-    description: <span>Can be obtained on <span className="tt-blue">Whalesong Harbor</span>.<br />Used to make <span
-      className="tt-orange">Cursed Armor</span>, which is required to craft an Ipnysh Blessing.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend 500 Labor to combine 50 Cursed Armor Scraps into a Complete Cursed Armor.<br />Auto-use: shift + right-click</span></span>,
+    description: <span>
+      Can be obtained in <Blue>Whalesong Harbor</Blue>.<br />
+      Used to make <Orange>Cursed Armor</Orange>, which is required to craft an Ipnysh Blessing.<br /><br />
+      <Use>Spend 500 Labor to combine 50 Cursed Armor Scraps into a Complete Cursed Armor.<br />Auto-use: shift + right-click</Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
     bindsOnPickup: true,
@@ -271,12 +308,11 @@ export default Object.freeze({
     icon: HiramInfusionIcon,
     unidentified: true,
     type: 'Synthesis Materials',
-    description: <span>Used as a synthesis material to enhance <span
-      className="tt-yellow">Hiram Guardian Equipment</span>.<br /><br />Found by killing the <span
-      className="tt-yellow">Abyssal Legion</span> in <span
-      className="tt-yellow">Reedwind, Sungold Fields, and Exeloch.</span><br /><br /><span
-      className="tt-use">Use:</span><span
-      className="tt-green">Spend up to 20 Labor to identify the Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    description: <span>
+      Used as a synthesis material to enhance <Yellow>Hiram Guardian Equipment</Yellow>.<br /><br />
+      Found by killing the <Yellow>Abyssal Legion</Yellow> in <Yellow>Reedwind, Sungold Fields, and Exeloch.</Yellow><br /><br />
+      <Use>Spend up to 20 Labor to identify the Hiram Infusion.<br />Auto-use: shift+right-click</Use>
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
     bindsOnPickup: true,
@@ -286,8 +322,12 @@ export default Object.freeze({
     icon: HiramInfusionIcon,
     unidentified: true,
     type: 'Synthesis Materials',
-    description: <span>An mysteriously powerful infusion.<br /><br />Open to reveal the content.<br />This item grants better infusions than Unidentified Infusion.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend up to 25 Labor to identify the Mysterious Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    description: <span>
+      An mysteriously powerful infusion.<br /><br />
+      Open to reveal the content.<br />
+      This item grants better infusions than Unidentified Infusion.<br /><br />
+      <Use>Spend up to 25 Labor to identify the Mysterious Hiram Infusion.<br />Auto-use: shift+right-click</Use>
+    </span>,
     quality: QUALITY.GRAND,
     price: 150,
     bindsOnPickup: true,
@@ -297,8 +337,12 @@ export default Object.freeze({
     icon: HiramInfusionIcon,
     unidentified: true,
     type: 'Synthesis Materials',
-    description: <span>An mysteriously powerful infusion.<br />The infusions granted are of a higher rarity, than the infusionen granted by Mysterious Hiram Infusions.<br />Open to reveal the content.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend up to 40 Labor to identify the Luminous Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    description: <span>
+      A mysteriously powerful infusion.<br />
+      The infusions granted are of higher rarity, than the infusionen granted by Mysterious Hiram Infusions.<br />
+      Open to reveal the content.<br /><br />
+      <Use>Spend up to 40 Labor to identify the Luminous Hiram Infusion.<br />Auto-use: shift+right-click</Use>
+    </span>,
     quality: QUALITY.RARE,
     price: 200,
     bindsOnPickup: true,
@@ -307,14 +351,13 @@ export default Object.freeze({
     name: 'Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
-    description:
-      <span>Used to awaken Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />Can only be used on <span
-        className="tt-yellow">Hiram Guardian Equipment</span> of <span className="tt-yellow">Celestial</span> grade or higher.<br />Successful awakening can cause equipment with tempering points above <span
-        className="tt-yellow">+20</span> to loose up to <span className="tt-yellow">-2</span> points, but won't drop the item below +20.<br /><br />Found by killing the <span
-        className="tt-yellow">Abyssal Legion</span> in <span
-        className="tt-yellow">Reedwind, Sungold Fields, and Exeloch.</span><br /><br /><span
-        className="tt-use">Use:</span><span className="tt-green">Use <span className="tt-orange">10</span> Hiram Awakening Scrolls and <span
-        className="tt-orange">300</span> Labor to awaken a piece of Hiram Guardian Equipment.</span></span>,
+    description: <span>
+      Used to awaken Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />
+      Can only be used on <Yellow>Hiram Guardian Equipment</Yellow> of <Yellow>Celestial</Yellow> grade or higher.<br />
+      Successful awakening can cause equipment with tempering points above <Yellow>+20</Yellow> to loose up to <Yellow>-2</Yellow> points, but won't drop the item below +20.<br /><br />
+      Found by killing the <Yellow>Abyssal Legion</Yellow> in <Yellow>Reedwind, Sungold Fields, and Exeloch.</Yellow><br /><br />
+      <Use>Use <Orange>10</Orange> Hiram Awakening Scrolls and <Orange>300</Orange> Labor to awaken a piece of Hiram Guardian Equipment.</Use>
+    </span>,
     quality: QUALITY.RARE,
     price: 20,
     bindsOnPickup: true,
@@ -323,14 +366,13 @@ export default Object.freeze({
     name: 'Radiant Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
-    description:
-      <span>Used to awaken Radiant Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />Can only be used on <span
-        className="tt-yellow">Radiant Hiram Equipment</span> of <span className="tt-yellow">Divine</span> grade or higher.<br />Successful awakening can cause equipment with tempering points above<span
-        className="tt-orange">+20</span> to lose up to<span className="tt-orange">-2</span> points, but won't drop the item below +20.<br /><br />Found by killing the <span
-        className="tt-yellow">Abyssal Legion</span> in the <span
-        className="tt-yellow">Western Hiram Mountains.</span><br /><br /><span
-        className="tt-use">Use:</span><span className="tt-green">Use <span className="tt-orange">25</span> Hiram Awakening Scroll and <span
-        className="tt-orange">300</span> Labor to awaken a piece of Radiant Hiram Guardian Equipment.</span></span>,
+    description: <span>
+      Used to awaken Radiant Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />
+      Can only be used on <Yellow>Radiant Hiram Equipment</Yellow> of <Yellow>Divine</Yellow> grade or higher.<br />
+      Successful awakening can cause equipment with tempering points above<Orange>+20</Orange> to lose up to<Orange>-2</Orange> points, but won't drop the item below +20.<br /><br />
+      Found by killing the <Yellow>Abyssal Legion</Yellow> in the <Yellow>Western Hiram Mountains.</Yellow><br /><br />
+      <Use>Use <Orange>25</Orange> Hiram Awakening Scroll and <Orange>300</Orange> Labor to awaken a piece of Radiant Hiram Guardian Equipment.</Use>
+    </span>,
     quality: QUALITY.HEROIC,
     price: 30,
     bindsOnPickup: true,
@@ -339,13 +381,13 @@ export default Object.freeze({
     name: 'Brilliant Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
-    description:
-      <span>Used to awaken Brilliant Hiram Guardian Equipment, unlocking higher item grades and synthesis effects.<br /><br />Can only be used on <span
-        className="tt-yellow">Brilliant Hiram Guardian Equipment</span> of <span className="tt-yellow">Epic</span> grade or higher.<br />Successful awakening can cause equipment with tempering points above <span
-        className="tt-orange">+20</span> to lose up to <span className="tt-orange">-2</span> points, but won't drop the item below +20.<br /><br />Can be obtained from dailies quests available in <span
-        className="tt-yellow">Eastern Hiram Mountains</span>.<br /><br /><span
-        className="tt-use">Use:</span><span className="tt-green">Use <span className="tt-orange">50</span> Brilliant Hiram Awakening Scrolls and <span
-        className="tt-orange">300</span> Labor to awaken a piece of Brilliant Hiram Guardian Equipment.</span></span>,
+    description: <span>
+      Used to awaken Brilliant Hiram Guardian Equipment, unlocking higher item grades and synthesis effects.<br /><br />
+      Can only be used on <Yellow>Brilliant Hiram Guardian Equipment</Yellow> of <Yellow>Epic</Yellow> grade or higher.<br />
+      Successful awakening can cause equipment with tempering points above <Orange>+20</Orange> to lose up to <Orange>-2</Orange> points, but won't drop the item below +20.<br /><br />
+      Can be obtained from dailies quests available in <Yellow>Eastern Hiram Mountains</Yellow>.<br /><br />
+      <Use>Use <Orange>50</Orange> Brilliant Hiram Awakening Scrolls and <Orange>300</Orange> Labor to awaken a piece of Brilliant Hiram Guardian Equipment.</Use>
+    </span>,
     quality: QUALITY.CELESTIAL,
     price: 40,
     bindsOnPickup: true,
@@ -354,9 +396,18 @@ export default Object.freeze({
     name: 'Red Dragon Pouch',
     icon: RedDragonPouchIcon,
     type: 'Unidentified',
-    description: <span>A pouch found in the Red Dragon's stomach.<br /><br /><span className="tt-orange">[Guaranteed Drops]</span><br />- 2000 Honor Points<br />- Locked Gold Crate x2<br />- Red Dragon Spinal Ridge Shard x1-4<br /><br /><span
-      className="tt-orange">[Possible Bonus Drops]</span><br />- Red Dragon Spinal Ridge x1<br />- Evenglow Lunagem: Impact x1<br />- Enraged Red Dragon Weapon<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend 10 Labor to see what's inside.<br />Auto-use: shift+right-click</span></span>,
+    description: <span>
+      A pouch found in the Red Dragon's stomach.<br /><br />
+      <Orange>[Guaranteed Drops]</Orange><br />
+      - 2000 Honor Points<br />
+      - Locked Gold Crate x2<br />
+      - Red Dragon Spinal Ridge Shard x1-4<br /><br />
+      <Orange>[Possible Bonus Drops]</Orange><br />
+      - Red Dragon Spinal Ridge x1<br />
+      - Evenglow Lunagem: Impact x1<br />
+      - Enraged Red Dragon Weapon<br /><br />
+      <Use>Spend 10 Labor to see what's inside.<br />Auto-use: shift+right-click</Use>
+    </span>,
     quality: QUALITY.UNIQUE,
     bindsOnPickup: true,
   },
@@ -368,26 +419,25 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       A wooden crate dropped by Kadum.<br /><br />
-      <span className="tt-orange">[Guaranteed Drops]</span><br />
+      <Orange>[Guaranteed Drops]</Orange><br />
       - Honorable Victory Rank 5 x2<br />
       - Gilda Star x4<br />
       - Superior Glow Lunarite x1-3<br />
       - Evenglow Lunarite x3-4<br /><br />
-      <span className="tt-orange">[Possible Bonus Drops]</span><br />
+      <Orange>[Possible Bonus Drops]</Orange><br />
       - Kadum's Infusion x1<br /><br />
-      <Use />
-      <span className="tt-green">Spend 10 Labor to see what's inside.<br />
-      Auto-use: shift+right-click</span>
+      <Use>Spend 10 Labor to see what's inside.<br />Auto-use: shift+right-click</Use>
     </span>,
   },
   GOLD_CRATE: {
     name: 'Locked Gold Crate',
     icon: GoldCrateIcon,
     type: 'Unidentified',
-    description: <span>Valuable crates of treasure dropped by certain World Bosses, as well as Shadow Invasion bosses and sub-bosses.<br /><br />Requires a <span
-      className="tt-gold">Gold Key</span> to open. Higher tiers of rewards are unlocked as additional <span
-      className="tt-gold">Gold Crates</span> are opened, until the maximum tier is reached.<br /><br /><span
-      className="tt-use"> Use:</span><span className="tt-green">Open the box to check its contents.</span></span>,
+    description: <span>
+      Valuable crates of treasure dropped by certain World Bosses, as well as Shadow Invasion bosses and sub-bosses.<br /><br />
+      Requires a <Yellow>Gold Key</Yellow> to open. Higher tiers of rewards are unlocked as additional <Yellow>Gold Crates</Yellow> are opened, until the maximum tier is reached.<br /><br />
+      <Use>Open the box to check its contents.</Use>
+    </span>,
     quality: QUALITY.RARE,
     price: 400,
     bindsOnPickup: true,
@@ -396,9 +446,10 @@ export default Object.freeze({
     name: 'Onyx Archeum Essence',
     icon: OnyxEssenceIcon,
     type: 'Archeum',
-    description: <span>Imbued with mysterious garden lights, as a core source of magic, it is used in crafting consumables and machines.<br /><br />Can be acquired by delivering Cargo to <span
-      className="tt-yellow">Cargo Exchangers</span>, or Delphinad Ghost Ship Stone Slabs to the <span
-      className="tt-yellow">Shadow Merchant</span> on Freedich Island.</span>,
+    description: <span>
+      Imbued with mysterious garden lights, as a core source of magic, it is used in crafting consumables and machines.<br /><br />
+      Can be acquired by delivering Cargo to <Yellow>Cargo Exchangers</Yellow>, or Delphinad Ghost Ship Stone Slabs to the <Yellow>Shadow Merchant</Yellow> on Freedich Island.
+    </span>,
     quality: QUALITY.BASIC,
     price: 9500,
   },
@@ -408,7 +459,7 @@ export default Object.freeze({
     type: 'Material',
     description: <span>
       Used in processing and to stop unwanted chemical reactions.<br /><br />
-      - Acquire at the Freedich Island <span className="tt-orange">Cargo Exchanger</span> in trade for Cargo Packs.
+      - Acquire at the Freedich Island <Yellow>Cargo Exchanger</Yellow> in trade for Cargo Packs.
     </span>,
     price: 10,
   },
@@ -416,8 +467,10 @@ export default Object.freeze({
     name: 'Revenant Soulstone',
     icon: RevenantSoulstoneIcon,
     type: 'Other',
-    description: <span>A soulstone that contains the residual energy of a vanquished revenant.<br /><br />Acquire from defeating Aust Followers; can be used to create weapons and armor at the <span
-      className="tt-yellow">Soulforged Anvil</span> in <span className="tt-blue">Diamond Shores</span>.</span>,
+    description: <span>
+      A soulstone that contains the residual energy of a vanquished revenant.<br /><br />
+      Acquire from defeating Aust Followers; can be used to create weapons and armor at the <Yellow>Soulforged Anvil</Yellow> in <Blue>Diamond Shores</Blue>.
+    </span>,
     quality: QUALITY.BASIC,
     price: 50,
     bindsOnPickup: true,
@@ -426,7 +479,10 @@ export default Object.freeze({
     name: 'Original Titan\'s Wings',
     icon: OriginalTitansWingsIcon,
     type: 'Other',
-    description: <span>A prototype of Titan's Wings.<br />Used in crafting Fierce Titan's Wings at the Thunderwing Call in Reedwind.</span>,
+    description: <span>
+      A prototype of Titan's Wings.<br />
+      Used in crafting Fierce Titan's Wings at the Thunderwing Call in Reedwind.
+    </span>,
     quality: QUALITY.BASIC,
     price: 100,
     bindsOnPickup: true,
@@ -435,8 +491,12 @@ export default Object.freeze({
     name: 'Fierce Titan\'s Wings',
     icon: FierceTitansWingsIcon,
     type: 'Magithopter',
-    description: <span>Crafted from the feathers of the legendary Thunderwing Titan; each one still seems to burn with the creature's mad fury.<br /><br />Allows you to select the appropriate status for your role.<br /><br />Note: Most skills are only effective near the Thunderwing Titan.<span
-      className="tt-use">Use:</span><span className="tt-green">Equip wings to use Free Glide. The location of the Thunderwing Titan within 800m is displayed on the map. While using Free Glide, only designated skills can be used. Parry, Evasion, and Shield Block do not trigger.<br />Landing or flying out of the Reedwind automatically ends the Free Glide mode.<br /><br />This skill can only be used in Reedwind.</span></span>,
+    description: <span>
+      Crafted from the feathers of the legendary Thunderwing Titan; each one still seems to burn with the creature's mad fury.<br /><br />
+      Allows you to select the appropriate status for your role.<br /><br />
+      Note: Most skills are only effective near the Thunderwing Titan.
+      <Use>Equip wings to use Free Glide. The location of the Thunderwing Titan within 800m is displayed on the map. While using Free Glide, only designated skills can be used. Parry, Evasion, and Shield Block do not trigger.<br />Landing or flying out of the Reedwind automatically ends the Free Glide mode.<br /><br />This skill can only be used in Reedwind.</Use>
+    </span>,
     quality: QUALITY.BASIC,
     bindsOnPickup: true,
     remainingTime: '1h 0m',
@@ -445,7 +505,10 @@ export default Object.freeze({
     name: 'Glowing Prism',
     icon: GlowingPrismIcon,
     type: 'Material',
-    description: <span>Can be acquired from hunting monsters.<br />Mostly used for crafting.</span>,
+    description: <span>
+      Can be acquired from hunting monsters.<br />
+      Mostly used for crafting.
+    </span>,
     quality: QUALITY.BASIC,
     price: 500,
   },
@@ -480,22 +543,23 @@ export default Object.freeze({
     description: <span>
       Used for aging specialty trade packs.<br />
       Can only be installed in specialty crafting areas.<br />
-      Disappears in <span className="tt-orange">10 minutes</span> if no ingredients are added.<br /><br />
+      Disappears in <Orange>10 minutes</Orange> if no ingredients are added.<br /><br />
       Vocation: Husbandry<br />
       Acquire from a Farmer's Workstation<br />
       Aging Time: 3 days<br /><br />
-      <span className="tt-orange">Ingredients</span><br />
+      <Orange>Ingredients</Orange><br />
       For Aged Salve: 20 Cultivated Ginseng and 30 Olives<br />
       For Aged Cheese: 50 Milk and 30 Lemons<br />
       For Aged Honey: 4 Honey and 20 Hay Bales<br /><br />
-      <span className="tt-orange">Required Proficiency:</span><br />
+      <Orange>Required Proficiency:</Orange><br />
       For Aged Salve: none<br />
       For Aged Cheese: Commerce 10,000+<br />
       For Aged Honey: Commerce 20,000+<br /><br />
-      <Use />
-      <span className="tt-green">Use with right-click.<br />
-      Can be positioned on the ground with left-click.<br /><br />
-      Costs 5 Labor if not placed on personal land.</span>
+      <Use>
+        Use with right-click.<br />
+        Can be positioned on the ground with left-click.<br /><br />
+        Costs 5 Labor if not placed on personal land.
+      </Use>
     </span>,
     price: 300,
   },
@@ -503,62 +567,77 @@ export default Object.freeze({
     name: 'Chopped Produce',
     icon: ChoppedProduceIcon,
     type: 'Material',
-    description: <span>Vegetables such as <span className="tt-yellow">potatoes</span> and <span
-      className="tt-yellow">carrots</span> chopped with a <span className="tt-yellow">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives can be purchased from <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Vegetables such as <Yellow>potatoes</Yellow> and <Yellow>carrots</Yellow> chopped with a <Yellow>Blue Salt Knife</Yellow> into bite-size pieces.
+      Blue Salt Knives can be purchased from <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   TRIMMED_MEAT: {
     name: 'Trimmed Meat',
     icon: TrimmedMeatIcon,
     type: 'Material',
-    description: <span>Meat such as <span className="tt-yellow">chicken</span> and <span
-      className="tt-yellow">beef</span> trimmed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Meat such as <Yellow>chicken</Yellow> and <Yellow>beef</Yellow> trimmed with a <Yellow>Blue Salt Knife</Yellow>.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   DRIED_FLOWERS: {
     name: 'Dried Flowers',
     icon: DriedFlowersIcon,
     type: 'Material',
-    description: <span>Flowers such as <span className="tt-yellow">azaleas</span> and <span
-      className="tt-yellow">roses</span> processed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Flowers such as <Yellow>azaleas</Yellow> and <Yellow>roses</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   MEDICINAL_POWDER: {
     name: 'Medicinal Powder',
     icon: MedicinalPowderIcon,
     type: 'Material',
-    description: <span>Medicinals such as <span className="tt-yellow">mushrooms</span> and <span className="tt-yellow">cultivated ginseng</span> ground with a <span
-      className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Medicinals such as <Yellow>mushrooms</Yellow> and <Yellow>cultivated ginseng</Yellow> ground with a <Yellow>Blue Salt Knife</Yellow>.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   GROUND_GRAIN: {
     name: 'Ground Grain',
     icon: GroundGrainIcon,
     type: 'Material',
-    description: <span>Grain such as <span className="tt-yellow">barley</span> and <span
-      className="tt-yellow">rice</span> ground with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Grain such as <Yellow>barley</Yellow> and <Yellow>rice</Yellow> ground with a <Yellow>Blue Salt Knife</Yellow>.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   GROUND_SPICES: {
     name: 'Ground Spices',
     icon: GroundSpicesIcon,
     type: 'Material',
-    description: <span>Spices such as <span className="tt-yellow">iris</span> and <span
-      className="tt-yellow">mint</span> processed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Spices such as <Yellow>iris</Yellow> and <Yellow>mint</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   ORCHARD_PUREE: {
     name: 'Orchard Puree',
     icon: OrchardPureeIcon,
     type: 'Material',
-    description: <span>Fruits such as <span className="tt-yellow">grapes</span> and <span
-      className="tt-yellow">apples</span> chopped with a <span className="tt-yellow">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives are sold by <span
-      className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>
+      Fruits such as <Yellow>grapes</Yellow> and <Yellow>apples</Yellow> chopped with a <Yellow>Blue Salt Knife</Yellow> into bite-size pieces.
+      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
+      Used in cooking, local specialties, and various crafts.
+    </span>,
     price: 20,
   },
   HONEY: {
@@ -566,7 +645,7 @@ export default Object.freeze({
     icon: HoneyIcon,
     type: 'Herb',
     description: <span>
-      Can be harvested from <span className="tt-yellow">Acorn Beehives</span>. It's chiefly used in husbandry and raising pets.
+      Can be harvested from <Yellow>Acorn Beehives</Yellow>. It's chiefly used in husbandry and raising pets.
     </span>,
     price: 200,
   },
@@ -584,8 +663,7 @@ export default Object.freeze({
     icon: EggIcon,
     type: 'Material',
     description: <span>
-      A material found by collecting from <span className="tt-yellow">thriving hens</span> that have been fed <span
-      className="tt-yellow">ground grain</span>. It's chiefly used in cooking.
+      A material found by collecting from <Yellow>thriving hens</Yellow> that have been fed <Yellow>ground grain</Yellow>. It's chiefly used in cooking.
     </span>,
     price: 20,
   },
@@ -594,7 +672,7 @@ export default Object.freeze({
     icon: LemonIcon,
     type: 'Fruit',
     description: <span>
-      A material found by gathering from <span className="tt-yellow">fruited lemon trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      A material found by gathering from <Yellow>fruited lemon trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
       <Process into="10 Orchard Puree" />
     </span>,
     price: 80,
@@ -754,8 +832,8 @@ export default Object.freeze({
     icon: GooseDownIcon,
     type: 'Textile',
     description: <span>
-      A material found by harvesting from <Yellow>thriving geese</Yellow> that have been fed <span
-      className="tt-orange">ground grain</span>. It's chiefly used in carpentry and local specialties.
+      A material found by harvesting from <Yellow>thriving geese</Yellow> that have been fed <Yellow>ground grain</Yellow>.
+      It's chiefly used in carpentry and local specialties.
     </span>,
     price: 10,
   },
@@ -764,8 +842,8 @@ export default Object.freeze({
     icon: DuckDownIcon,
     type: 'Textile',
     description: <span>
-      A material found by harvesting from <Yellow>thriving ducks</Yellow> that have been fed <span
-      className="tt-orange">ground grain</span>. It's chiefly used in making furniture and local specialties.
+      A material found by harvesting from <Yellow>thriving ducks</Yellow> that have been fed <Yellow>ground grain</Yellow>.
+      It's chiefly used in making furniture and local specialties.
     </span>,
     price: 10,
   },
@@ -1014,24 +1092,36 @@ export default Object.freeze({
     name: 'Sunlight Archeum Dust',
     icon: SunlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
-      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>
+      Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />
+      A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions.
+      Using Archeum releases healing magic back into nature.
+      <Use>Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</Use>
+    </span>,
     price: 50,
   },
   MOONLIGHT_ARCHEUM_DUST: {
     name: 'Moonlight Archeum Dust',
     icon: MoonlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
-      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>
+      Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />
+      A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions.
+      Using Archeum releases healing magic back into nature.
+      <Use>Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</Use>
+    </span>,
     price: 50,
   },
   STARLIGHT_ARCHEUM_DUST: {
     name: 'Starlight Archeum Dust',
     icon: StarlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
-      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>
+      Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />
+      A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions.
+      Using Archeum releases healing magic back into nature.
+      <Use>Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</Use>
+    </span>,
     price: 50,
   },
   MYSTERIOUS_ABYSSAL_ENHANCER: {
@@ -1041,9 +1131,10 @@ export default Object.freeze({
     unidentified: true,
     type: 'Synthesis Material',
     bindsOnPickup: true,
-    description:
-      <span>This enhancer is sealed with abyssal energy. Infuse magic to break the seal.<br /><br /><Use /><span
-        className="tt-green">Spend up to 25 Labor to unseal the Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    description: <span>
+      This enhancer is sealed with abyssal energy. Infuse magic to break the seal.<br /><br />
+      <Use>Spend up to 25 Labor to unseal the Hiram Infusion.<br />Auto-use: shift+right-click</Use>
+    </span>,
     price: 150,
   },
   NORYETTE_EARRING: {
@@ -1057,12 +1148,9 @@ export default Object.freeze({
     synthesisGrade: QUALITY.DIVINE,
     slot: 'Ear',
     durability: 15,
-    description: <span className="tt-green">
-      <span className="tt-use">Combo Effect</span>
-      Triggers the <span
-      className="tt-orange">Spiritual Focus Rank 1</span> if attacked in the Noryette Challenge.<br /><br />
-      <span className="tt-use">Equip Effect</span>
-      Decreases <span className="tt-blue">PvE Received Damage</span> <span className="tt-orange">-2.0%</span>.
+    description: <span>
+      <Use title="Combo Effect">Triggers the <Orange>Spiritual Focus Rank 1</Orange> if attacked in the Noryette Challenge.</Use><br /><br />
+      <Use title="Equip Effect">Decreases <Blue>PvE Received Damage</Blue> <Orange>-2.0%</Orange>.</Use>
     </span>,
   },
   NORYETTE_RING: {
@@ -1076,12 +1164,9 @@ export default Object.freeze({
     synthesisGrade: QUALITY.DIVINE,
     slot: 'Finger',
     durability: 15,
-    description: <span className="tt-green">
-      <span className="tt-use">Combo Effect</span>
-      Triggers the <span
-      className="tt-orange">Challenger's Valor Rank 1</span> when using a skill in the Noryette Challenge.<br /><br />
-      <span className="tt-use">Equip Effect</span>
-      Increaes <span className="tt-blue">PvE Skill Damage</span> <span className="tt-orange">+2.0%</span>.
+    description: <span>
+      <Use title="Combo Effect">Triggers the <Orange>Challenger's Valor Rank 1</Orange> when using a skill in the Noryette Challenge.</Use><br /><br />
+      <Use title="Equip Effect">Increaes <Blue>PvE Skill Damage</Blue> <Orange>+2.0%</Orange>.</Use>
     </span>,
   },
   NORYETTE_AWAKENING_SCROLL: {
@@ -1091,14 +1176,10 @@ export default Object.freeze({
     quality: QUALITY.RARE,
     bindsOnPickup: true,
     description: <span>
-      An awakening scroll, made by the <span className="tt-blue">Noryette</span> family.<br /><br />
-      Can only be used on <span className="tt-yellow">Noryette Accessories</span> of <span
-      className="tt-yellow">Divine</span> grade or higher.<br /><br />
-      Can be obtained by clearing Round 20 or higher in the <span
-      className="tt-blue">Noryette Challenge</span>.<br /><br />
-      <Use />
-      <span className="tt-green">Spend <span className="tt-orange">1</span> Noryette Awakening Scroll and <span
-        className="tt-orange">300</span> Labor to awaken the equipment.</span>
+      An awakening scroll, made by the <Blue>Noryette</Blue> family.<br /><br />
+      Can only be used on <Yellow>Noryette Accessories</Yellow> of <Yellow>Divine</Yellow> grade or higher.<br /><br />
+      Can be obtained by clearing Round 20 or higher in the <Blue>Noryette Challenge</Blue>.<br /><br />
+      <Use>Spend <Orange>1</Orange> Noryette Awakening Scroll and <Orange>300</Orange> Labor to awaken the equipment.</Use>
     </span>,
     price: 20,
   },
@@ -1109,14 +1190,10 @@ export default Object.freeze({
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
     description: <span>
-      An awakening scroll, made by the <span className="tt-blue">Noryette</span> family.<br /><br />
-      Can only be used on <span className="tt-yellow">Luminous Noryette Accessories</span> of <span
-      className="tt-yellow">Legendary</span> grade or higher.<br /><br />
-      Can be obtained by clearing Round 20 or higher in the <span
-      className="tt-blue">Noryette Challenge</span>.<br /><br />
-      <Use />
-      <span className="tt-green">Spend <span className="tt-orange">1</span> Luminous Noryette Awakening Scroll and <span
-        className="tt-orange">300</span> Labor to awaken the equipment.</span>
+      An awakening scroll, made by the <Blue>Noryette</Blue> family.<br /><br />
+      Can only be used on <Yellow>Luminous Noryette Accessories</Yellow> of <Yellow>Legendary</Yellow> grade or higher.<br /><br />
+      Can be obtained by clearing Round 20 or higher in the <Blue>Noryette Challenge</Blue>.<br /><br />
+      <Use>Spend <Orange>1</Orange> Luminous Noryette Awakening Scroll and <Orange>300</Orange> Labor to awaken the equipment.</Use>
     </span>,
     price: 30,
   },
@@ -1127,10 +1204,10 @@ export default Object.freeze({
     quality: QUALITY.RARE,
     description: <span>
       Grants continued dungeon access after you pass your daily entrance limit.<br /><br />
-      <span className="tt-yellow">Caution:</span><br />
+      <Yellow>Caution:</Yellow><br />
       Entering the same dungeon after the daily entrance limit was met will consume this scroll.<br />
-      Only for dungeons with a level limit of <span className="tt-orange">55 or higher</span>.<br /><br />
-      <span className="tt-blue">Valid Dungeons</span><br />
+      Only for dungeons with a level limit of <Orange>55 or higher</Orange>.<br /><br />
+      <Blue>Valid Dungeons</Blue><br />
       Mistsong Summit<br />
       Abyssal Library<br />
       Noryette Challenge
@@ -1152,8 +1229,8 @@ export default Object.freeze({
     description: <span>
       Designed to be equipped by Lv1+ adventurers.<br />
       Can be awakened to the next tier, once it reaches its max grade.<br /><br />
-      <span className="tt-use">Synthesis Effect</span>
-      Use <span className="tt-yellow">Story Quest Infusions</span> as Synthesis Material to improve equipment.
+      <Use title="Synthesis Effect" />
+      Use <Yellow>Story Quest Infusions</Yellow> as Synthesis Material to improve equipment.
     </span>,
   },
   EXPLORERS_1H_WEAPON_CRATE: {
@@ -1161,17 +1238,17 @@ export default Object.freeze({
     icon: ExplorersCrateIcon,
     type: 'Crate',
     bindsOnPickup: true,
-    description: <span>Allows you to obtain a 1H-Weapon.<br /><br />
-      <span className="tt-orange">[1H-Weapon]</span><br />
+    description: <span>
+      Allows you to obtain a 1H-Weapon.<br /><br />
+      <Orange>[1H-Weapon]</Orange><br />
       - Can be equipped to both left and right hand.<br /><br />
-      <span className="tt-orange">[Right-Hand Weapon]</span><br />
+      <Orange>[Right-Hand Weapon]</Orange><br />
       - Can only be equipped to the right hand.<br /><br />
-      <span className="tt-orange">[Left-Hand Weapon]</span><br />
+      <Orange>[Left-Hand Weapon]</Orange><br />
       - Can only be equipped to the left hand.<br /><br />
-      <span className="tt-orange">[Ranged Weapon]</span><br />
+      <Orange>[Ranged Weapon]</Orange><br />
       - Can be equipped as bow.<br /><br />
-      <Use />
-      <span className="tt-green">Open the Explorer's 1H-Weapon Crate.</span>
+      <Use>Open the Explorer's 1H-Weapon Crate.</Use>
     </span>,
   },
   EXPLORERS_2H_WEAPON_CRATE: {
@@ -1180,8 +1257,7 @@ export default Object.freeze({
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>Allows you to choose a 2H Weapon.<br /><br />
-      <Use />
-      <span className="tt-green">Open the Explorer's 2H-Weapon Crate.</span>
+      <Use>Open the Explorer's 2H-Weapon Crate.</Use>
     </span>,
   },
   EXPLORERS_CLOTH_CRATE: {
@@ -1191,13 +1267,12 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Cloth Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Hood<br />
       - Shirt<br />
       - Pants<br />
       - Shoes<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   EXPLORERS_LEATHER_CRATE: {
@@ -1207,13 +1282,12 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Leather Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Cap<br />
       - Jerkin<br />
       - Breeches<br />
       - Boots<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   EXPLORERS_PLATE_CRATE: {
@@ -1223,13 +1297,12 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Plate Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Helm<br />
       - Cuirass<br />
       - Greaves<br />
       - Sabatons<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   EXPLORERS_CLOTH_COMPONENT_CRATE: {
@@ -1239,12 +1312,11 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Cloth Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Gloves<br />
       - Sleeves<br />
       - Sash<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   EXPLORERS_LEATHER_COMPONENT_CRATE: {
@@ -1254,12 +1326,11 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Leather Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Fists<br />
       - Guards<br />
       - Belt<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   EXPLORERS_PLATE_COMPONENT_CRATE: {
@@ -1269,12 +1340,11 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       This crate contains a selection of Plate Armor.<br /><br />
-      <span className="tt-yellow">Available Items:</span><br />
+      <Yellow>Available Items:</Yellow><br />
       - Gauntlets<br />
       - Vambraces<br />
       - Tassets<br /><br />
-      <Use />
-      <span className="tt-green">Open to see what's inside.</span>
+      <Use>Open to see what's inside.</Use>
     </span>,
   },
   STORY_QUEST_INFUSION_RANK_1: {
@@ -1287,9 +1357,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <Use />
-      <span className="tt-green">Unseal the infusion.<br />
-        Auto-use: shift+right-click</span>
+      <Use>Unseal the infusion.<br />Auto-use: shift+right-click</Use>
     </span>,
   },
   STORY_QUEST_INFUSION_RANK_2: {
@@ -1302,9 +1370,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <Use />
-      <span className="tt-green">Unseal the infusion.<br />
-        Auto-use: shift+right-click</span>
+      <Use>Unseal the infusion.<br />Auto-use: shift+right-click</Use>
     </span>,
   },
   STORY_QUEST_INFUSION_RANK_3: {
@@ -1317,9 +1383,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <Use />
-      <span className="tt-green">Unseal the infusion.<br />
-        Auto-use: shift+right-click</span>
+      <Use>Unseal the infusion.<br />Auto-use: shift+right-click</Use>
     </span>,
   },
   STORY_AWAKENING_SCROLL_RANK_1: {
@@ -1329,10 +1393,8 @@ export default Object.freeze({
     bindsOnPickup: true,
     quality: QUALITY.GRAND,
     description: <span>
-      Used to awaken <span className="tt-yellow">Ancient</span> Faction Mission Equipment, unlocking higher item grades.<br /><br />
-      <span className="tt-use">Use</span>
-      <span className="tt-green">Use <span
-        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+      Used to awaken <Yellow>Ancient</Yellow> Faction Mission Equipment, unlocking higher item grades.<br /><br />
+      <Use>Use <Orange>1</Orange> Awakening Scroll to awaken the equipment.</Use>
     </span>,
   },
   STORY_AWAKENING_SCROLL_RANK_2: {
@@ -1343,11 +1405,8 @@ export default Object.freeze({
     quality: QUALITY.RARE,
     description: <span>
       Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
-      Can only be used on <span className="tt-yellow">Explorer's Equipment</span> or <span
-      className="tt-yellow">Heroic</span> grade or higher.<br /><br />
-      <span className="tt-use">Use</span>
-      <span className="tt-green">Use <span
-        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+      Can only be used on <Yellow>Explorer's Equipment</Yellow> or <Yellow>Heroic</Yellow> grade or higher.<br /><br />
+      <Use>Use <Orange>1</Orange> Awakening Scroll to awaken the equipment.</Use>
     </span>,
   },
   STORY_AWAKENING_SCROLL_RANK_3: {
@@ -1358,11 +1417,8 @@ export default Object.freeze({
     quality: QUALITY.ARCANE,
     description: <span>
       Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
-      Can only be used on <span className="tt-yellow">Radiant Explorer's Equipment</span> or <span
-      className="tt-yellow">Unique</span> grade or higher.<br /><br />
-      <span className="tt-use">Use</span>
-      <span className="tt-green">Use <span
-        className="tt-orange">1</span> Awakening Scroll to awaken the equipment.</span>
+      Can only be used on <Yellow>Radiant Explorer's Equipment</Yellow> or <Yellow>Unique</Yellow> grade or higher.<br /><br />
+      <Use>Use <Orange>1</Orange> Awakening Scroll to awaken the equipment.</Use>
     </span>,
   },
   ADVENTURERS_EVENSTONE: {
@@ -1372,15 +1428,13 @@ export default Object.freeze({
     bindsOnPickup: true,
     description: <span>
       Used to revert equipment to its original state and recover the enhancement materials.<br />
-      Can be purchased from <span className="tt-blue">General Merchants</span> and <span
-      className="tt-blue">Blacksmiths</span>.<br /><br />
+      Can be purchased from <Blue>General Merchants</Blue> and <Blue>Blacksmiths</Blue>.<br /><br />
       ;Extractable Item<br />
-      <span className="tt-blue">- Mission Equipment</span><br />
-      <span className="tt-blue">- Radiant Explorer's Equipment</span><br />
-      <span className="tt-blue">- Brilliant Explorer's Equipment</span><br />
+      <Blue>- Mission Equipment</Blue><br />
+      <Blue>- Radiant Explorer's Equipment</Blue><br />
+      <Blue>- Brilliant Explorer's Equipment</Blue><br />
       Can not be used on Instruments.<br /><br />
-      <Use />
-      <span className="tt-green">Masonry: Spend up to 10 Labor to extract magic ingredients from the item.</span>
+      <Use>Masonry: Spend up to 10 Labor to extract magic ingredients from the item.</Use>
     </span>,
     price: 50,
   },
@@ -1389,7 +1443,7 @@ export default Object.freeze({
     icon: LumberIcon,
     type: 'Lumber',
     description: <span>
-      Processed from <span className="tt-yellow">Logs</span>. It's chiefly used in carpentry.<br /><br />
+      Processed from <Yellow>Logs</Yellow>. It's chiefly used in carpentry.<br /><br />
       Vocation: Carpentry<br />
       Workbench: Sawmill Station
     </span>,
@@ -1400,7 +1454,7 @@ export default Object.freeze({
     icon: StoneBrickIcon,
     type: 'Stone Brick',
     description: <span>
-      A processed <span className="tt-yellow">Stone</span>.<br />
+      A processed <Yellow>Stone</Yellow>.<br />
       It's chiefly used for Masonry purposes.<br /><br />
       Vocation: Masonry<br />
       Workbench: Stonemason Workbench
@@ -1412,8 +1466,7 @@ export default Object.freeze({
     icon: IronIngotIcon,
     type: 'Metal',
     description: <span>
-      Processed from <span
-      className="tt-yellow">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br /><br />
+      Processed from <Yellow>Iron Ore</Yellow>. It's chiefly used in making weapons and plate armor.<br /><br />
       Vocation: Metalwork<br />
       Workbench: Smelter
     </span>,
@@ -1424,7 +1477,7 @@ export default Object.freeze({
     icon: LeatherIcon,
     type: 'Hide',
     description: <span>
-      Processed from <span className="tt-yellow">pelts</span>. It's chiefly used in leather armor and other leather goods.<br /><br />
+      Processed from <Yellow>pelts</Yellow>. It's chiefly used in leather armor and other leather goods.<br /><br />
       Vocation: Leatherwork<br />
       Workbench: Leather Workbench
     </span>,
@@ -1435,7 +1488,7 @@ export default Object.freeze({
     icon: FabricIcon,
     type: 'Fabric',
     description: <span>
-      Processed from <span className="tt-yellow">Wool</span> or <span className="tt-yellow">Cotton</span>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
+      Processed from <Yellow>Wool</Yellow> or <Yellow>Cotton</Yellow>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
       Vocation: Tailoring<br />
       Workbench: Weaving Loom
     </span>,
