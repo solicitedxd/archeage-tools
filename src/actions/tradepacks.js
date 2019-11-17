@@ -60,7 +60,7 @@ export const setWar = (zone) => (dispatch) => (e, war) => {
 
 export const setPrice = (item) => (dispatch) => (e) => {
   const { target: { value } } = e;
-  dispatch({ type: SET_PRICE, item, price: value });
+  dispatch({ type: SET_PRICE, item, price: Math.abs(value) });
 };
 
 export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {

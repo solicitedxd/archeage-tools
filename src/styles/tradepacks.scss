@@ -62,7 +62,7 @@ $Cargo: #FF4053;
 
         &:not(:first-child):hover {
           box-shadow: none;
-          cursor: not-allowed;
+          cursor: default;
         }
       }
     }

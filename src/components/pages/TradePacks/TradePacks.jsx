@@ -301,7 +301,7 @@ class TradePacks extends Component {
                         }
                         const isPack = (zone !== sellZone && packValue);
                         let displayValue = isPack ? `${packValue}g` : '--';
-                        if (isPack && continent === CARGO) {
+                        if (isPack && continent === CARGO && pack.item) {
                           displayValue = <React.Fragment>
                             {Math.round(packValue)}&nbsp;
                             <Item {...pack.item} className="inline" />

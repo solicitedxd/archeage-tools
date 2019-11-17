@@ -75,7 +75,6 @@ class PackViewer extends Component {
   static propTypes = {
     open: bool.isRequired,
     onClose: func.isRequired,
-    // TODO handle cargo origin
     originZone: oneOf([...CONTINENT.HARANYA.zones, ...CONTINENT.NUIA.zones, CONTINENT.HARANYA.name,
       CONTINENT.NUIA.name]),
     packType: oneOf([...Object.values(PACK_TYPE), ...CARGO_OUTLET]),
@@ -104,7 +103,6 @@ class PackViewer extends Component {
     const { setCraftLarder, setFreshness, setInterest, setPercentage, setPrice, setSupply, setWar } = this.props;
 
     // do nothing if value is missing
-    // FIXME cargo
     if (originZone === null || packType === null || sellZone === null) return null;
 
     const packCosts = PACK_COSTS[packType] || {};
@@ -124,6 +122,8 @@ class PackViewer extends Component {
         packName = `${getZonePrefix(originZone)} Cargo`;
       } else if (packType === PACK_TYPE.BLUE_SALT) {
         packName = `${getZonePrefix(originZone)} Pack`;
+      } else if (packType === PACK_TYPE.ANTIQUITIES) {
+        packName = `${getZonePrefix(originZone)} ${packType}`;
       } else {
         packName = `${getZonePrefix(originZone)} ${freshness.name}`;
         if (packType === PACK_TYPE.SALVE || packType === PACK_TYPE.CHEESE || packType === PACK_TYPE.HONEY) {
@@ -187,6 +187,7 @@ class PackViewer extends Component {
     if (sellZone === CARGO) {
       totalGold = CARGO_SUPPLY[supplyLevel].price;
     }
+    totalGold = Math.round(totalGold);
 
     const itemShowCost = (material) => (!material.item.bindsOnPickup && ((material.item === ITEM.MULTI_PURPOSE_AGING_LARDER && !craftLarder) || (material.item !== ITEM.MULTI_PURPOSE_AGING_LARDER)));
 
@@ -420,7 +421,7 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
-                    {sellZone === CARGO ?
+                    {sellZone === CARGO && pack.item ?
                       <React.Fragment>
                         {Math.round(packValue / 10000)}&nbsp;
                         <Item {...pack.item} className="inline" />

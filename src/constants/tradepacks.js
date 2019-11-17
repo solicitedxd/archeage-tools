@@ -21,8 +21,8 @@ export const PACK_TYPE = Object.freeze({
   CHEESE: 'Cheese',
   HONEY: 'Honey',
   BLUE_SALT: 'Blue Salt',
-  ANTIQUITIES: 'Antiquities',
   SPECIAL: 'Special',
+  ANTIQUITIES: 'Antiquities',
 });
 
 export const NO_FRESHNESS = Object.freeze([

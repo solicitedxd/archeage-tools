@@ -56,28 +56,88 @@ import EggIcon from 'images/item/egg.png';
 import LemonIcon from 'images/item/lemon.png';
 import AppleIcon from 'images/item/apple.png';
 import CarrotIcon from 'images/item/carrot.png';
+import LavenderIcon from 'images/item/lavender.png';
+import GrapeIcon from 'images/item/grape.png';
+import AvocadoIcon from 'images/item/avocado.png';
+import TomatoIcon from 'images/item/tomato.png';
+import GarlicIcon from 'images/item/garlic.png';
+import FigIcon from 'images/item/fig.png';
+import BananaIcon from 'images/item/banana.png';
+import CucumberIcon from 'images/item/cucumber.png';
+import WoolIcon from 'images/item/wool.png';
+import RiceIcon from 'images/item/rice.png';
+import RoseIcon from 'images/item/rose.png';
+import AzaleaIcon from 'images/item/azalea.png';
 import GooseDownIcon from 'images/item/goose_down.png';
+import DuckDownIcon from 'images/item/duck_down.png';
 import SunflowerIcon from 'images/item/sunflower.png';
+import LilyIcon from 'images/item/lily.png';
+import CornflowerIcon from 'images/item/cornflower.png';
 import MilkIcon from 'images/item/milk.png';
 import OliveIcon from 'images/item/olive.png';
+import MintIcon from 'images/item/mint.png';
+import PomegranateIcon from 'images/item/pomegranate.png';
+import OrangeIcon from 'images/item/orange.png';
+import AloeIcon from 'images/item/aloe.png';
+import PeanutIcon from 'images/item/peanut.png';
+import YamIcon from 'images/item/yam.png';
 import TurmericIcon from 'images/item/turmeric.png';
 import GinsengIcon from 'images/item/ginseng.png';
+import JujubeIcon from 'images/item/jujube.png';
+import CherryIcon from 'images/item/cherry.png';
+import YataFurIcon from 'images/item/yata_fur.png';
+import SaffronIcon from 'images/item/saffron.png';
+import QuinoaIcon from 'images/item/quinoa.png';
 import SmallSeedOilIcon from 'images/item/small_seed_oil.png';
 import SmallRootPigmentIcon from 'images/item/small_root_pigment.png';
 import OpaquePolishIcon from 'images/item/opaque_polish.png';
 import LumberIcon from 'images/item/lumber.png';
 import StoneBrickIcon from 'images/item/stone_brick.png';
 import IronIngotIcon from 'images/item/iron_ingot.png';
+import LeatherIcon from 'images/item/leather.png';
+import FabricIcon from 'images/item/fabric.png';
 import RoyalSeedIcon from 'images/item/royal_seed.png';
+import BlueSaltHammerIcon from 'images/item/blue_salt_hammer.png';
+import TimeSpaceShardIcon from 'images/item/time_space_rift_shard.png';
+import YetisPeltIcon from 'images/item/yetis_pelt.png';
+import TwinViperFangIcon from 'images/item/twinhead_viper_fang.png';
+import RevenantSoulIcon from 'images/item/revenant_soul.png';
+import GhostBladeShardIcon from 'images/item/ghost_blade_weapon_shard.png';
+
+const Green = ({ children }) => <span className="tt-green">{children}</span>;
+const Blue = ({ children }) => <span className="tt-blue">{children}</span>;
+const Yellow = ({ children }) => <span className="tt-yellow">{children}</span>;
+const Orange = ({ children }) => <span className="tt-orange">{children}</span>;
+const Use = ({ children }) => (
+  <React.Fragment>
+    <span className="tt-use">Use:</span>
+    {children && <Green>{children}</Green>}
+  </React.Fragment>
+);
+const Process = ({ into, labor = 5, count = 10, knives = 1 }) => (
+  <React.Fragment>
+    <Use>
+      Spend {labor} Labor to process {into}.<br />
+      Auto-use with shift + right-click.<br /><br />
+      Requirements<br />
+      - {count} items of the same type<br />
+      - {knives} Blue Salt Knife
+    </Use>
+  </React.Fragment>
+);
 
 export default Object.freeze({
   GILDA_STAR: {
     name: 'Gilda Star',
     icon: GildaStarIcon,
     type: 'Coin',
-    description: <span>An ancient coin made of pure gold and minted in Auroria centuries ago. They are the rarest and most valuable coins still in circulation, and can purchase the most important quality goods, such as the <span
-      className="tt-orange">houses</span> and <span className="tt-orange">workbench designs</span> sold on <span
-      className="tt-orange">Mirage Isle</span>.<br /><br />Can be obtained from <span className="tt-yellow">Daily Contracts</span>, other quests, and special events.</span>,
+    description: <span>
+      An ancient coin made of pure gold and minted in Auroria centuries ago.
+      They are the rarest and most valuable coins still in circulation, and can purchase the most important quality
+      goods, such as the <Orange>houses</Orange> and <Orange>workbench designs</Orange> sold
+      on <Orange>Mirage Isle</Orange>.<br /><br />
+      Can be obtained from <Yellow>Daily Contracts</Yellow>, other quests, and special events.
+    </span>,
     quality: QUALITY.BASIC,
     bindsOnPickup: true,
   },
@@ -94,7 +154,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 14',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><span className="tt-use">Use:</span><span
+    description: <span><Use /><span
       className="tt-green">Gain 100 Honor Points.</span></span>,
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
@@ -103,7 +163,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 5',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><span className="tt-use">Use:</span><span
+    description: <span><Use /><span
       className="tt-green">Gain 1,000 Honor Points.</span></span>,
     quality: QUALITY.CELESTIAL,
     bindsOnPickup: true,
@@ -112,7 +172,7 @@ export default Object.freeze({
     name: 'Honorable Victory Rank 4',
     icon: HonorableVictoryIcon,
     type: 'Potion',
-    description: <span><span className="tt-use">Use:</span><span
+    description: <span><Use /><span
       className="tt-green">Gain 1,500 Honor Points.</span></span>,
     quality: QUALITY.DIVINE,
     bindsOnPickup: true,
@@ -121,7 +181,7 @@ export default Object.freeze({
     name: 'Honorable Vocation Potion Rank 4',
     icon: HonorableVocationIcon,
     type: 'Potion',
-    description: <span><span className="tt-use">Use:</span><span
+    description: <span><Use /><span
       className="tt-green">Gain 1,500 Vocation Badges.</span></span>,
     quality: QUALITY.DIVINE,
     bindsOnPickup: true,
@@ -169,7 +229,7 @@ export default Object.freeze({
     icon: MiningDrillIcon,
     type: 'Contraption',
     description: <span>Installs a <span className="tt-orange">Sharpwind Mining Drill</span>.<br />If placed outside protected land, it will eventually become public property.<br /><br />Vocation: Mining<br />Mines for 12 h before disappearing<br /><br />Can mine for <span
-      className="tt-orange">stone, ore, and gems</span>.<br /><br /><span className="tt-use">Use:</span><span
+      className="tt-orange">stone, ore, and gems</span>.<br /><br /><Use /><span
       className="tt-green">Use with right-click.<br />Can be positioned on the ground with left-click.<br /><br />Costs 5 Labor if not placed on personal land.</span></span>,
     quality: QUALITY.BASIC,
     price: 100,
@@ -315,7 +375,7 @@ export default Object.freeze({
       - Evenglow Lunarite x3-4<br /><br />
       <span className="tt-orange">[Possible Bonus Drops]</span><br />
       - Kadum's Infusion x1<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Spend 10 Labor to see what's inside.<br />
       Auto-use: shift+right-click</span>
     </span>,
@@ -432,7 +492,7 @@ export default Object.freeze({
       For Aged Salve: none<br />
       For Aged Cheese: Commerce 10,000+<br />
       For Aged Honey: Commerce 20,000+<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Use with right-click.<br />
       Can be positioned on the ground with left-click.<br /><br />
       Costs 5 Labor if not placed on personal land.</span>
@@ -443,8 +503,8 @@ export default Object.freeze({
     name: 'Chopped Produce',
     icon: ChoppedProduceIcon,
     type: 'Material',
-    description: <span>Vegetables such as <span className="tt-orange">potatoes</span> and <span
-      className="tt-orange">carrots</span> chopped with a <span className="tt-orange">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives can be purchased from <span
+    description: <span>Vegetables such as <span className="tt-yellow">potatoes</span> and <span
+      className="tt-yellow">carrots</span> chopped with a <span className="tt-yellow">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives can be purchased from <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -452,8 +512,8 @@ export default Object.freeze({
     name: 'Trimmed Meat',
     icon: TrimmedMeatIcon,
     type: 'Material',
-    description: <span>Meat such as <span className="tt-orange">chicken</span> and <span
-      className="tt-orange">beef</span> trimmed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+    description: <span>Meat such as <span className="tt-yellow">chicken</span> and <span
+      className="tt-yellow">beef</span> trimmed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -461,8 +521,8 @@ export default Object.freeze({
     name: 'Dried Flowers',
     icon: DriedFlowersIcon,
     type: 'Material',
-    description: <span>Flowers such as <span className="tt-orange">azaleas</span> and <span
-      className="tt-orange">roses</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+    description: <span>Flowers such as <span className="tt-yellow">azaleas</span> and <span
+      className="tt-yellow">roses</span> processed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -470,16 +530,16 @@ export default Object.freeze({
     name: 'Medicinal Powder',
     icon: MedicinalPowderIcon,
     type: 'Material',
-    description: <span>Medicinals such as <span className="tt-orange">mushrooms</span> and <span className="tt-orange">cultivated ginseng</span> ground with a <span
-      className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
+    description: <span>Medicinals such as <span className="tt-yellow">mushrooms</span> and <span className="tt-yellow">cultivated ginseng</span> ground with a <span
+      className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
   GROUND_GRAIN: {
     name: 'Ground Grain',
     icon: GroundGrainIcon,
     type: 'Material',
-    description: <span>Grain such as <span className="tt-orange">barley</span> and <span
-      className="tt-orange">rice</span> ground with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+    description: <span>Grain such as <span className="tt-yellow">barley</span> and <span
+      className="tt-yellow">rice</span> ground with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -487,8 +547,8 @@ export default Object.freeze({
     name: 'Ground Spices',
     icon: GroundSpicesIcon,
     type: 'Material',
-    description: <span>Spices such as <span className="tt-orange">iris</span> and <span
-      className="tt-orange">mint</span> processed with a <span className="tt-orange">Blue Salt Knife</span>. Blue Salt Knives can be purchased from <span
+    description: <span>Spices such as <span className="tt-yellow">iris</span> and <span
+      className="tt-yellow">mint</span> processed with a <span className="tt-yellow">Blue Salt Knife</span>. Blue Salt Knives are sold by <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -496,8 +556,8 @@ export default Object.freeze({
     name: 'Orchard Puree',
     icon: OrchardPureeIcon,
     type: 'Material',
-    description: <span>Fruits such as <span className="tt-orange">grapes</span> and <span
-      className="tt-orange">apples</span> chopped into bite-size pieces. Blue Salt Knives can be purchased from <span
+    description: <span>Fruits such as <span className="tt-yellow">grapes</span> and <span
+      className="tt-yellow">apples</span> chopped with a <span className="tt-yellow">Blue Salt Knife</span> into bite-size pieces. Blue Salt Knives are sold by <span
       className="tt-blue">general merchants</span>.<br />Used in cooking, local specialties, and various crafts.</span>,
     price: 20,
   },
@@ -506,7 +566,7 @@ export default Object.freeze({
     icon: HoneyIcon,
     type: 'Herb',
     description: <span>
-      Can be harvested from <span className="tt-orange">Acorn Beehives</span>. It's chiefly used in husbandry and raising pets.
+      Can be harvested from <span className="tt-yellow">Acorn Beehives</span>. It's chiefly used in husbandry and raising pets.
     </span>,
     price: 200,
   },
@@ -524,8 +584,8 @@ export default Object.freeze({
     icon: EggIcon,
     type: 'Material',
     description: <span>
-      A material found by collecting from <span className="tt-orange">thriving hens</span> that have been fed <span
-      className="tt-orange">ground grain</span>. It's chiefly used in cooking.
+      A material found by collecting from <span className="tt-yellow">thriving hens</span> that have been fed <span
+      className="tt-yellow">ground grain</span>. It's chiefly used in cooking.
     </span>,
     price: 20,
   },
@@ -534,13 +594,8 @@ export default Object.freeze({
     icon: LemonIcon,
     type: 'Fruit',
     description: <span>
-      A material found by gathering from <span className="tt-orange">fruited lemon trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 10 Orchard Puree.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering from <span className="tt-yellow">fruited lemon trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
     </span>,
     price: 80,
   },
@@ -549,13 +604,8 @@ export default Object.freeze({
     icon: AppleIcon,
     type: 'Fruit',
     description: <span>
-      A material found by gathering from <span className="tt-orange">fruited apple trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 10 Orchard Puree.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering from <Yellow>fruited apple trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
     </span>,
     price: 80,
   },
@@ -564,13 +614,138 @@ export default Object.freeze({
     icon: CarrotIcon,
     type: 'Vegetable',
     description: <span>
-      A material found by harvesting <span className="tt-orange">carrots</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 10 Chopped Produce.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by harvesting <Yellow>carrots</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
+  LAVENDER: {
+    name: 'Lavender',
+    icon: LavenderIcon,
+    type: 'Spice',
+    description: <span>
+      A material found by harvesting <Yellow>lavender</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Spices" />
+    </span>,
+    price: 20,
+  },
+  GRAPE: {
+    name: 'Grape',
+    icon: GrapeIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by harvesting <Yellow>fruited grapevines</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
+    </span>,
+    price: 80,
+  },
+  AVOCADO: {
+    name: 'Avocado',
+    icon: AvocadoIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by harvesting <Yellow>fruited avocado trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
+    </span>,
+    price: 80,
+  },
+  TOMATO: {
+    name: 'Tomato',
+    icon: TomatoIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <Yellow>tomatoes</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
+  GARLIC: {
+    name: 'Garlic',
+    icon: GarlicIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <Yellow>garlic</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
+  CUCUMBER: {
+    name: 'Cucumber',
+    icon: CucumberIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <Yellow>cucumber</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
+  POTATO: {
+    name: 'Potato',
+    icon: PotatoIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <Yellow>potatoes</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
+  FIG: {
+    name: 'Fig',
+    icon: FigIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by harvesting <Yellow>fruited fig trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
+    </span>,
+    price: 80,
+  },
+  BANANA: {
+    name: 'Banana',
+    icon: BananaIcon,
+    type: 'Fruit',
+    description: <span>
+      A material found by harvesting <Yellow>fruited banana trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Orchard Puree" />
+    </span>,
+    price: 80,
+  },
+  RICE: {
+    name: 'Rice',
+    icon: RiceIcon,
+    type: 'Grain',
+    description: <span>
+      A material found by harvesting <Yellow>rice</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Grain" />
+    </span>,
+    price: 20,
+  },
+  MILLET: {
+    name: 'Millet',
+    icon: QuinoaIcon,
+    type: 'Grain',
+    description: <span>
+      A material found by harvesting <Yellow>millet</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Grain" />
+    </span>,
+    price: 20,
+  },
+  ROSE: {
+    name: 'Rose',
+    icon: RoseIcon,
+    type: 'Flower',
+    description: <span>
+      A material found by harvesting <Yellow>roses</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="10 Dried Flowers" />
+    </span>,
+    price: 20,
+  },
+  AZALEA: {
+    name: 'Azalea',
+    icon: AzaleaIcon,
+    type: 'Flower',
+    description: <span>
+      A material found by harvesting <Yellow>azaleas</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="10 Dried Flowers" />
     </span>,
     price: 20,
   },
@@ -579,8 +754,28 @@ export default Object.freeze({
     icon: GooseDownIcon,
     type: 'Textile',
     description: <span>
-      A material found by harvesting from <span className="tt-orange">thriving geese</span> that have been fed <span
+      A material found by harvesting from <Yellow>thriving geese</Yellow> that have been fed <span
       className="tt-orange">ground grain</span>. It's chiefly used in carpentry and local specialties.
+    </span>,
+    price: 10,
+  },
+  DUCK_DOWN: {
+    name: 'Duck Down',
+    icon: DuckDownIcon,
+    type: 'Textile',
+    description: <span>
+      A material found by harvesting from <Yellow>thriving ducks</Yellow> that have been fed <span
+      className="tt-orange">ground grain</span>. It's chiefly used in making furniture and local specialties.
+    </span>,
+    price: 10,
+  },
+  WOOL: {
+    name: 'Wool',
+    icon: WoolIcon,
+    type: 'Textile',
+    description: <span>
+      A material found by shearing <Yellow>Thriving Sheep</Yellow> that have been fed <Yellow>Combined Feed</Yellow>.
+      It can be processed into <Yellow>Fabric</Yellow> at <Blue>Weaving Looms</Blue> and used for various crafting purposes.
     </span>,
     price: 10,
   },
@@ -590,13 +785,30 @@ export default Object.freeze({
     type: 'Spice',
     quality: QUALITY.GRAND,
     description: <span>
-      A material found by gathering from <span className="tt-orange">sunflowers</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 20 Ground Spices.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering from <Yellow>sunflowers</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Spices" />
+    </span>,
+    price: 105,
+  },
+  LILY: {
+    name: 'Lily',
+    icon: LilyIcon,
+    type: 'Flower',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>lilies</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="20 Dried Flowers" />
+    </span>,
+    price: 105,
+  },
+  CORNFLOWER: {
+    name: 'Cornflower',
+    icon: CornflowerIcon,
+    type: 'Flower',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>cornflowers</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="20 Dried Flowers" />
     </span>,
     price: 105,
   },
@@ -606,8 +818,8 @@ export default Object.freeze({
     type: 'Material',
     quality: QUALITY.GRAND,
     description: <span>
-      A material found by milking <span className="tt-orange">Thriving Dairy Cows</span> that have been fed <span
-      className="tt-orange">Combined Feed</span>. It's chiefly used in cooking and husbandry.
+      A material found by milking <Yellow>Thriving Dairy Cows</Yellow> that have been fed <Yellow>Combined Feed</Yellow>.
+      It's chiefly used in cooking and husbandry.
     </span>,
     price: 30,
   },
@@ -617,15 +829,76 @@ export default Object.freeze({
     type: 'Fruit',
     quality: QUALITY.GRAND,
     description: <span>
-      A material found by gathering from <span className="tt-orange">fruited olive trees</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 20 Orchard Puree.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering from <Yellow>fruited olive trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Orchard Puree" />
     </span>,
     price: 600,
+  },
+  MINT: {
+    name: 'Mint',
+    icon: MintIcon,
+    type: 'Spice',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by harvesting <Yellow>mint</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Spices" />
+    </span>,
+    price: 105,
+  },
+  POMEGRANATE: {
+    name: 'Pomegranate',
+    icon: PomegranateIcon,
+    type: 'Fruit',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>fruited pomegranate trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Orchard Puree" />
+    </span>,
+    price: 600,
+  },
+  ORANGE: {
+    name: 'Orange',
+    icon: OrangeIcon,
+    type: 'Fruit',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>fruited orange trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Orchard Puree" />
+    </span>,
+    price: 600,
+  },
+  ALOE: {
+    name: 'Aloe',
+    icon: AloeIcon,
+    type: 'Herb',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>aloe</Yellow>. It's chiefly used in cooking, alchemy, and local specialties.<br /><br />
+      <Process into="20 Medicinal Powder" />
+    </span>,
+    price: 105,
+  },
+  PEANUT: {
+    name: 'Peanut',
+    icon: PeanutIcon,
+    type: 'Grain',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>peanuts</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Grain" />
+    </span>,
+    price: 105,
+  },
+  YAM: {
+    name: 'Yam',
+    icon: YamIcon,
+    type: 'Vegetable',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>yams</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Chopped Produce" />
+    </span>,
+    price: 105,
   },
   TURMERIC: {
     name: 'Turmeric',
@@ -633,13 +906,8 @@ export default Object.freeze({
     type: 'Spice',
     quality: QUALITY.RARE,
     description: <span>
-      A material found by gathering <span className="tt-orange">turmeric</span>. It's chiefly used in cooking and local specialties.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 45 Ground Spices.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering <Yellow>turmeric</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="45 Ground Spices" />
     </span>,
     price: 300,
   },
@@ -649,15 +917,65 @@ export default Object.freeze({
     type: 'Herb',
     quality: QUALITY.RARE,
     description: <span>
-      A material found by gathering from <span className="tt-orange">cultivated ginseng</span>. It's chiefly used in cooking and alchemy.<br /><br />
-      <span className="tt-use">Use:</span>
-      <span className="tt-green">Spend 5 Labor to process 45 Medicinal Powder.<br />
-      Auto-use with shift + right-click.<br /><br />
-      Requirements<br />
-      - 10 items of the same type<br />
-      - 1 Blue Salt Knife</span>
+      A material found by gathering from <Yellow>cultivated ginseng</Yellow>. It's chiefly used in cooking and alchemy.<br /><br />
+      <Process into="45 Medicinal Powder" />
     </span>,
     price: 300,
+  },
+  JUJUBE: {
+    name: 'Jujube',
+    icon: JujubeIcon,
+    type: 'Fruit',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering from <Yellow>fruited jujube trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="45 Orchard Puree" />
+    </span>,
+    price: 1000,
+  },
+  CHERRY: {
+    name: 'Cherry',
+    icon: CherryIcon,
+    type: 'Fruit',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering from <Yellow>fruited cherry trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="45 Orchard Puree" />
+    </span>,
+    price: 1000,
+  },
+  MORINGA_FRUIT: {
+    name: 'Moringa Fruit',
+    icon: OliveIcon,
+    type: 'Fruit',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering from <Yellow>fruited moringa trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="45 Orchard Puree" />
+    </span>,
+    price: 1000,
+  },
+  SAFFRON: {
+    name: 'Saffron',
+    icon: SaffronIcon,
+    type: 'Spice',
+    quality: QUALITY.RARE,
+    description: <span>
+      A material found by gathering from <Yellow>saffron</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="45 Ground Spices" />
+    </span>,
+    price: 300,
+  },
+  YATA_FUR: {
+    name: 'Yata Fur',
+    icon: YataFurIcon,
+    type: 'Textile',
+    quality: QUALITY.RARE,
+    description: <span>
+      Obtained from shearing <Yellow>Thriving Cashmere Yatas</Yellow> fed with <Yellow>Combined Feed</Yellow>.
+      It's chiefly used in tailoring.
+    </span>,
+    price: 50,
   },
   SMALL_SEED_OIL: {
     name: 'Small Seed Oil',
@@ -696,24 +1014,24 @@ export default Object.freeze({
     name: 'Sunlight Archeum Dust',
     icon: SunlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
-      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
+      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Sunlight Archeum Dusts into 1 Sunlight Archeum Shard. Auto-use: shift+right-click</span></span>,
     price: 50,
   },
   MOONLIGHT_ARCHEUM_DUST: {
     name: 'Moonlight Archeum Dust',
     icon: MoonlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
-      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
+      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Moonlight Archeum Dusts into 1 Moonlight Archeum Shard. Auto-use: shift+right-click</span></span>,
     price: 50,
   },
   STARLIGHT_ARCHEUM_DUST: {
     name: 'Starlight Archeum Dust',
     icon: StarlightDustIcon,
     type: 'Archeum',
-    description: <span>Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<span
-      className="tt-use">Use:</span><span className="tt-green">Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</span></span>,
+    description: <span>Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions. Using Archeum releases healing magic back into nature.<Use /><span
+      className="tt-green">Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</span></span>,
     price: 50,
   },
   MYSTERIOUS_ABYSSAL_ENHANCER: {
@@ -723,8 +1041,9 @@ export default Object.freeze({
     unidentified: true,
     type: 'Synthesis Material',
     bindsOnPickup: true,
-    description: <span>This enhancer is sealed with abyssal energy. Infuse magic to break the seal.<br /><br /><span
-      className="tt-use">Use:</span><span className="tt-green">Spend up to 25 Labor to unseal the Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
+    description:
+      <span>This enhancer is sealed with abyssal energy. Infuse magic to break the seal.<br /><br /><Use /><span
+        className="tt-green">Spend up to 25 Labor to unseal the Hiram Infusion.<br />Auto-use: shift+right-click</span></span>,
     price: 150,
   },
   NORYETTE_EARRING: {
@@ -777,7 +1096,7 @@ export default Object.freeze({
       className="tt-yellow">Divine</span> grade or higher.<br /><br />
       Can be obtained by clearing Round 20 or higher in the <span
       className="tt-blue">Noryette Challenge</span>.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Spend <span className="tt-orange">1</span> Noryette Awakening Scroll and <span
         className="tt-orange">300</span> Labor to awaken the equipment.</span>
     </span>,
@@ -795,7 +1114,7 @@ export default Object.freeze({
       className="tt-yellow">Legendary</span> grade or higher.<br /><br />
       Can be obtained by clearing Round 20 or higher in the <span
       className="tt-blue">Noryette Challenge</span>.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Spend <span className="tt-orange">1</span> Luminous Noryette Awakening Scroll and <span
         className="tt-orange">300</span> Labor to awaken the equipment.</span>
     </span>,
@@ -851,7 +1170,7 @@ export default Object.freeze({
       - Can only be equipped to the left hand.<br /><br />
       <span className="tt-orange">[Ranged Weapon]</span><br />
       - Can be equipped as bow.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open the Explorer's 1H-Weapon Crate.</span>
     </span>,
   },
@@ -861,7 +1180,7 @@ export default Object.freeze({
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>Allows you to choose a 2H Weapon.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open the Explorer's 2H-Weapon Crate.</span>
     </span>,
   },
@@ -877,7 +1196,7 @@ export default Object.freeze({
       - Shirt<br />
       - Pants<br />
       - Shoes<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -893,7 +1212,7 @@ export default Object.freeze({
       - Jerkin<br />
       - Breeches<br />
       - Boots<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -909,7 +1228,7 @@ export default Object.freeze({
       - Cuirass<br />
       - Greaves<br />
       - Sabatons<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -924,7 +1243,7 @@ export default Object.freeze({
       - Gloves<br />
       - Sleeves<br />
       - Sash<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -939,7 +1258,7 @@ export default Object.freeze({
       - Fists<br />
       - Guards<br />
       - Belt<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -954,7 +1273,7 @@ export default Object.freeze({
       - Gauntlets<br />
       - Vambraces<br />
       - Tassets<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Open to see what's inside.</span>
     </span>,
   },
@@ -968,7 +1287,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Unseal the infusion.<br />
         Auto-use: shift+right-click</span>
     </span>,
@@ -983,7 +1302,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Unseal the infusion.<br />
         Auto-use: shift+right-click</span>
     </span>,
@@ -998,7 +1317,7 @@ export default Object.freeze({
     description: <span>
       Used as synthesis material to enhance equipment.<br />
       Infuse the energy to identify the hidden infusion.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Unseal the infusion.<br />
         Auto-use: shift+right-click</span>
     </span>,
@@ -1060,7 +1379,7 @@ export default Object.freeze({
       <span className="tt-blue">- Radiant Explorer's Equipment</span><br />
       <span className="tt-blue">- Brilliant Explorer's Equipment</span><br />
       Can not be used on Instruments.<br /><br />
-      <span className="tt-use">Use:</span>
+      <Use />
       <span className="tt-green">Masonry: Spend up to 10 Labor to extract magic ingredients from the item.</span>
     </span>,
     price: 50,
@@ -1070,7 +1389,7 @@ export default Object.freeze({
     icon: LumberIcon,
     type: 'Lumber',
     description: <span>
-      Processed from <span className="tt-orange">Logs</span>. It's chiefly used in carpentry.<br /><br />
+      Processed from <span className="tt-yellow">Logs</span>. It's chiefly used in carpentry.<br /><br />
       Vocation: Carpentry<br />
       Workbench: Sawmill Station
     </span>,
@@ -1081,7 +1400,7 @@ export default Object.freeze({
     icon: StoneBrickIcon,
     type: 'Stone Brick',
     description: <span>
-      A processed <span className="tt-orange">Stone</span>.<br />
+      A processed <span className="tt-yellow">Stone</span>.<br />
       It's chiefly used for Masonry purposes.<br /><br />
       Vocation: Masonry<br />
       Workbench: Stonemason Workbench
@@ -1094,9 +1413,31 @@ export default Object.freeze({
     type: 'Metal',
     description: <span>
       Processed from <span
-      className="tt-orange">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br /><br />
+      className="tt-yellow">Iron Ore</span>. It's chiefly used in making weapons and plate armor.<br /><br />
       Vocation: Metalwork<br />
       Workbench: Smelter
+    </span>,
+    price: 10,
+  },
+  LEATHER: {
+    name: 'Leather',
+    icon: LeatherIcon,
+    type: 'Hide',
+    description: <span>
+      Processed from <span className="tt-yellow">pelts</span>. It's chiefly used in leather armor and other leather goods.<br /><br />
+      Vocation: Leatherwork<br />
+      Workbench: Leather Workbench
+    </span>,
+    price: 10,
+  },
+  FABRIC: {
+    name: 'Fabric',
+    icon: FabricIcon,
+    type: 'Fabric',
+    description: <span>
+      Processed from <span className="tt-yellow">Wool</span> or <span className="tt-yellow">Cotton</span>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
+      Vocation: Tailoring<br />
+      Workbench: Weaving Loom
     </span>,
     price: 10,
   },
@@ -1110,5 +1451,81 @@ export default Object.freeze({
       It's chiefly used in improving plants or crafting decor items.
     </span>,
     price: 100,
+  },
+  BLUE_SALT_HAMMER: {
+    name: 'Blue Salt Hammer',
+    icon: BlueSaltHammerIcon,
+    type: 'Contraption',
+    description: <span>
+      A blessed hammer.<br />
+      Used for various crafting purposes and builders' rites.<br />
+      Can be purchased from a <Blue>General Merchant</Blue>.
+    </span>,
+    price: 1000,
+  },
+  TIME_SPACE_RIFT_SHARD: {
+    name: 'Time-Space Rift Shard',
+    icon: TimeSpaceShardIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      A shard from the time-space rift.<br />
+      Can be obtained from Boss Creatures from the Past.<br /><br />
+      Used for crafting specialties.
+    </span>,
+    price: 500,
+  },
+  YETIS_PELT: {
+    name: 'Yeti\'s Pelt',
+    icon: YetisPeltIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Mhondra the Brute</Yellow> in <Blue>Rookborne Basin</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 500,
+  },
+  TWINHEAD_VIPER_FANG: {
+    name: 'Twinhead Viper Fang',
+    icon: TwinViperFangIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>The Dunemaker</Yellow> in <Blue>Windscour Savannah</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 500,
+  },
+  REVENANT_SOUL: {
+    name: 'Revenant Soul',
+    icon: RevenantSoulIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Biskilon the Shade</Yellow> in <Blue>Perinoor Ruins</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 500,
+  },
+  GHOST_BLADES_WEAPON_SHARD: {
+    name: 'Ghost Blade\'s Weapon Shard',
+    icon: GhostBladeShardIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Grul, the Dragon's Flame</Yellow> in <Blue>Hasla</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 500,
   },
 });

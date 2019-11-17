@@ -5,7 +5,9 @@ export default {
   craftLarder: false,
   percentage: 130,
   percentages: {},
-  prices: {},
+  prices: {
+    'Blue Salt Hammer': 1,
+  },
   proficiencies: {
     commerce: 'Basic',
     husbandry: 'Basic',
