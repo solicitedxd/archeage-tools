@@ -54,7 +54,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.AWAKENING_SCROLL} count={5} />
+        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -78,7 +78,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.AWAKENING_SCROLL} count={5} />
+        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -103,7 +103,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={5} />
-        <Item {...ITEM.AWAKENING_SCROLL} count={10} />
+        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={10} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -129,7 +129,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_AWAKENING_SCROLL} count={7} />
+        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">Mutated Animals</Typography>,
       'Mutated Animals requires you to kill 50 mutated animals in the Western Hiram Mountains.',
@@ -137,7 +137,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_AWAKENING_SCROLL} count={7} />
+        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">The Abyssal Legion</Typography>,
       'The Abyssal Legion requires you to kill 50 abyssal legion affiliated enemies in the Western Hiram Mountains.',
@@ -145,7 +145,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_AWAKENING_SCROLL} count={7} />
+        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">Recommendations</Typography>,
       'The easiest way to do these three quests is to teleport to the Hiram Cave in Western Hiram Mountains, get the ' +
@@ -189,7 +189,7 @@ const sections = [
       'The Mammoth will can freeze its target for several seconds, rendering them unable to attack or move. It also ' +
       'performs an attack where it barrels forward dealing massive damage to all players in its path.',
       <Typography variant="subtitle1">Rewards</Typography>,
-      <Item {...ITEM.BRILLIANT_AWAKENING_SCROLL} count={5} />,
+      <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />,
       <Typography variant="h6">Haradium Abominations</Typography>,
       'Animal Control requires you to kill 50 haradium abominations in the Eastern Hiram Mountains.',
       'The base of the waterfall is the largest area that the abominations can spawn. You can glide down the waterfall ' +
@@ -198,7 +198,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={10} />
-        <Item {...ITEM.BRILLIANT_AWAKENING_SCROLL} count={2} />
+        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={2} />
       </div>,
       <Typography variant="body2">I recommend taking the Radiant Hiram Infusions unless you've got most of your
         Brilliant tier Hiram gear at Epic and need the additional Awakening scrolls for awakening.</Typography>,
@@ -210,7 +210,7 @@ const sections = [
       'cloud that deals incredible damage to players inside of it. Its attacks also splash to nearby enemies, so ' +
       'spreading out will help prevent taking large amounts of damage.',
       <Typography variant="subtitle1">Rewards</Typography>,
-      <Item {...ITEM.BRILLIANT_AWAKENING_SCROLL} count={5} />,
+      <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />,
       <Typography variant="h6">Stop the Abyssal Legion</Typography>,
       'Stop the Abyssal Legion is an elite-difficulty quest that requires you to kill 50 abyssal legion enemies in the ' +
       'Eastern Hiram Mountains. You will need a group to complete it as these enemies have high health pools and deal ' +
@@ -219,7 +219,7 @@ const sections = [
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
         <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={20} />
-        <Item {...ITEM.BRILLIANT_AWAKENING_SCROLL} count={4} />
+        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={4} />
       </div>,
       <Typography variant="body2">I recommend taking the Radiant Hiram Infusions unless you've got most of your
         Brilliant tier Hiram gear at Epic and need the additional Awakening scrolls for awakening.</Typography>,

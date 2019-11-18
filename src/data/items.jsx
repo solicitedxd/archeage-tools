@@ -218,7 +218,7 @@ export default Object.freeze({
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
   },
-  IMPROVED_INFUSION_KIT: {
+  IMPROVED_INFUSION_SUPPLY_KIT: {
     name: 'Improved Infusion Supply Kit',
     icon: SupplyKitIcon,
     type: 'Crate',
@@ -362,7 +362,7 @@ export default Object.freeze({
     price: 200,
     bindsOnPickup: true,
   },
-  AWAKENING_SCROLL: {
+  HIRAM_AWAKENING_SCROLL: {
     name: 'Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
@@ -377,7 +377,7 @@ export default Object.freeze({
     price: 20,
     bindsOnPickup: true,
   },
-  RADIANT_AWAKENING_SCROLL: {
+  RADIANT_HIRAM_AWAKENING_SCROLL: {
     name: 'Radiant Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
@@ -392,7 +392,7 @@ export default Object.freeze({
     price: 30,
     bindsOnPickup: true,
   },
-  BRILLIANT_AWAKENING_SCROLL: {
+  BRILLIANT_HIRAM_AWAKENING_SCROLL: {
     name: 'Brilliant Hiram Awakening Scroll',
     icon: HiramScrollIcon,
     type: 'Awakening Scroll',
