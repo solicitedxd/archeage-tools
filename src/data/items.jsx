@@ -64,10 +64,16 @@ import GarlicIcon from 'images/item/garlic.png';
 import FigIcon from 'images/item/fig.png';
 import BananaIcon from 'images/item/banana.png';
 import CucumberIcon from 'images/item/cucumber.png';
+import OnionIcon from 'images/item/onion.png';
 import WoolIcon from 'images/item/wool.png';
 import RiceIcon from 'images/item/rice.png';
+import BarleyIcon from 'images/item/barley.png';
+import CornIcon from 'images/item/corn.png';
 import RoseIcon from 'images/item/rose.png';
 import AzaleaIcon from 'images/item/azalea.png';
+import NarcissusIcon from 'images/item/narcissus.png';
+import IrisIcon from 'images/item/iris.png';
+import MushroomIcon from 'images/item/mushroom.png';
 import GooseDownIcon from 'images/item/goose_down.png';
 import DuckDownIcon from 'images/item/duck_down.png';
 import SunflowerIcon from 'images/item/sunflower.png';
@@ -76,10 +82,15 @@ import CornflowerIcon from 'images/item/cornflower.png';
 import MilkIcon from 'images/item/milk.png';
 import OliveIcon from 'images/item/olive.png';
 import MintIcon from 'images/item/mint.png';
+import RosemaryIcon from 'images/item/rosemary.png';
 import PomegranateIcon from 'images/item/pomegranate.png';
 import OrangeIcon from 'images/item/orange.png';
+import StrawberryIcon from 'images/item/strawberry.png';
 import AloeIcon from 'images/item/aloe.png';
+import BayLeafIcon from 'images/item/bay_leaf.png';
+import GinkgoLeafIcon from 'images/item/ginkgo_leaf.png';
 import PeanutIcon from 'images/item/peanut.png';
+import WheatIcon from 'images/item/wheat.png';
 import YamIcon from 'images/item/yam.png';
 import TurmericIcon from 'images/item/turmeric.png';
 import GinsengIcon from 'images/item/ginseng.png';
@@ -103,6 +114,10 @@ import YetisPeltIcon from 'images/item/yetis_pelt.png';
 import TwinViperFangIcon from 'images/item/twinhead_viper_fang.png';
 import RevenantSoulIcon from 'images/item/revenant_soul.png';
 import GhostBladeShardIcon from 'images/item/ghost_blade_weapon_shard.png';
+import CentaursTailIcon from 'images/item/centaur_tail.png';
+import SharkFinIcon from 'images/item/shark_fin.png';
+import CorpseFluidIcon from 'images/item/drowned_corpse_fluid.png';
+import MinotaurHornIcon from 'images/item/minotaur_horn.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -757,6 +772,16 @@ export default Object.freeze({
     </span>,
     price: 20,
   },
+  ONION: {
+    name: 'Onion',
+    icon: OnionIcon,
+    type: 'Vegetable',
+    description: <span>
+      A material found by harvesting <Yellow>onions</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Chopped Produce" />
+    </span>,
+    price: 20,
+  },
   POTATO: {
     name: 'Potato',
     icon: PotatoIcon,
@@ -807,6 +832,26 @@ export default Object.freeze({
     </span>,
     price: 20,
   },
+  BARLEY: {
+    name: 'Barley',
+    icon: BarleyIcon,
+    type: 'Grain',
+    description: <span>
+      A material found by harvesting <Yellow>barley</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Grain" />
+    </span>,
+    price: 20,
+  },
+  CORN: {
+    name: 'Corn',
+    icon: CornIcon,
+    type: 'Grain',
+    description: <span>
+      A material found by harvesting <Yellow>corn</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Grain" />
+    </span>,
+    price: 20,
+  },
   ROSE: {
     name: 'Rose',
     icon: RoseIcon,
@@ -826,6 +871,36 @@ export default Object.freeze({
       <Process into="10 Dried Flowers" />
     </span>,
     price: 20,
+  },
+  NARCISSUS: {
+    name: 'Narcissus',
+    icon: NarcissusIcon,
+    type: 'Flower',
+    description: <span>
+      A material found by harvesting <Yellow>narcissus</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
+      <Process into="10 Dried Flowers" />
+    </span>,
+    price: 20,
+  },
+  IRIS: {
+    name: 'Iris',
+    icon: IrisIcon,
+    type: 'Spice',
+    description: <span>
+      A material found by harvesting <Yellow>irises</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Ground Spices" />
+    </span>,
+    price: 20,
+  },
+  MUSHROOM: {
+    name: 'Mushroom',
+    icon: MushroomIcon,
+    type: 'Herb',
+    description: <span>
+      A material found by harvesting <Yellow>mushrooms</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="10 Medicinal Powder" />
+    </span>,
+    price: 50,
   },
   GOOSE_DOWN: {
     name: 'Goose Down',
@@ -923,6 +998,17 @@ export default Object.freeze({
     </span>,
     price: 105,
   },
+  ROSEMARY: {
+    name: 'Rosemary',
+    icon: RosemaryIcon,
+    type: 'Spice',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by harvesting <Yellow>rosemary</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Spices" />
+    </span>,
+    price: 105,
+  },
   POMEGRANATE: {
     name: 'Pomegranate',
     icon: PomegranateIcon,
@@ -945,6 +1031,17 @@ export default Object.freeze({
     </span>,
     price: 600,
   },
+  STRAWBERRY: {
+    name: 'Strawberry',
+    icon: StrawberryIcon,
+    type: 'Fruit',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>strawberries</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Orchard Puree" />
+    </span>,
+    price: 600,
+  },
   ALOE: {
     name: 'Aloe',
     icon: AloeIcon,
@@ -956,6 +1053,28 @@ export default Object.freeze({
     </span>,
     price: 105,
   },
+  BAY_LEAF: {
+    name: 'Bay Leaf',
+    icon: BayLeafIcon,
+    type: 'Herb',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>leafy bay trees</Yellow>. It's chiefly used in cooking and alchemy.<br /><br />
+      <Process into="20 Medicinal Powder" />
+    </span>,
+    price: 105,
+  },
+  GINKGO_LEAF: {
+    name: 'Ginkgo Leaf',
+    icon: GinkgoLeafIcon,
+    type: 'Herb',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>bushy ginkgo trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Medicinal Powder" />
+    </span>,
+    price: 105,
+  },
   PEANUT: {
     name: 'Peanut',
     icon: PeanutIcon,
@@ -963,6 +1082,28 @@ export default Object.freeze({
     quality: QUALITY.GRAND,
     description: <span>
       A material found by gathering from <Yellow>peanuts</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Grain" />
+    </span>,
+    price: 105,
+  },
+  OATS: {
+    name: 'Oats',
+    icon: BarleyIcon,
+    type: 'Grain',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>oats</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
+      <Process into="20 Ground Grain" />
+    </span>,
+    price: 105,
+  },
+  RYE: {
+    name: 'Rye',
+    icon: WheatIcon,
+    type: 'Grain',
+    quality: QUALITY.GRAND,
+    description: <span>
+      A material found by gathering from <Yellow>rye</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
       <Process into="20 Ground Grain" />
     </span>,
     price: 105,
@@ -1527,7 +1668,7 @@ export default Object.freeze({
       Can be obtained from Boss Creatures from the Past.<br /><br />
       Used for crafting specialties.
     </span>,
-    price: 500,
+    price: 1500,
   },
   YETIS_PELT: {
     name: 'Yeti\'s Pelt',
@@ -1540,7 +1681,7 @@ export default Object.freeze({
       Can be obtained from <Yellow>Mhondra the Brute</Yellow> in <Blue>Rookborne Basin</Blue>.<br />
       Used for crafting specialties.
     </span>,
-    price: 500,
+    price: 1500,
   },
   TWINHEAD_VIPER_FANG: {
     name: 'Twinhead Viper Fang',
@@ -1553,7 +1694,7 @@ export default Object.freeze({
       Can be obtained from <Yellow>The Dunemaker</Yellow> in <Blue>Windscour Savannah</Blue>.<br />
       Used for crafting specialties.
     </span>,
-    price: 500,
+    price: 1500,
   },
   REVENANT_SOUL: {
     name: 'Revenant Soul',
@@ -1566,7 +1707,7 @@ export default Object.freeze({
       Can be obtained from <Yellow>Biskilon the Shade</Yellow> in <Blue>Perinoor Ruins</Blue>.<br />
       Used for crafting specialties.
     </span>,
-    price: 500,
+    price: 1500,
   },
   GHOST_BLADES_WEAPON_SHARD: {
     name: 'Ghost Blade\'s Weapon Shard',
@@ -1579,6 +1720,58 @@ export default Object.freeze({
       Can be obtained from <Yellow>Grul, the Dragon's Flame</Yellow> in <Blue>Hasla</Blue>.<br />
       Used for crafting specialties.
     </span>,
-    price: 500,
+    price: 1500,
+  },
+  CENTAURS_TAIL: {
+    name: 'Centaur\'s Tail',
+    icon: CentaursTailIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Hargath the War Leader</Yellow> in <Blue>Halcyona</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 1500,
+  },
+  SHARK_FIN: {
+    name: 'Shark Fin',
+    icon: SharkFinIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Vikon Shipsbane</Yellow> in <Blue>Sanddeep</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 1500,
+  },
+  DROWNED_CORPSE_FLUID: {
+    name: 'Drowned Corpse Fluid',
+    icon: CorpseFluidIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Magella the Corpse Queen</Yellow> in <Blue>Hellswamp</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 1500,
+  },
+  MINOTAUR_HORN: {
+    name: 'Minotaur Horn',
+    icon: MinotaurHornIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      Proof that you have defeated a shadow invasion.<br />
+      Can be obtained from <Yellow>Myrnock the Elder</Yellow> in <Blue>Karkasse Ridgelands</Blue>.<br />
+      Used for crafting specialties.
+    </span>,
+    price: 1500,
   },
 });
