@@ -3,12 +3,14 @@ import initialState from 'initialStates/tradepacks';
 import {
   SET_CONTINENT,
   SET_CRAFT_LARDER,
+  SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_QUANTITY,
   SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
@@ -26,6 +28,11 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
       return {
         ...state,
         craftLarder: action.craftLarder,
+      };
+    case SET_DEGRADATION:
+      return {
+        ...state,
+        degradeDemand: action.degradeDemand,
       };
     case SET_FRESHNESS:
       return {
@@ -79,6 +86,17 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         prices: {
           ...state.prices,
           [action.item]: action.price,
+        },
+      };
+    case SET_QUANTITY:
+      return {
+        ...state,
+        quantities: {
+          ...state.quantities,
+          [action.originZone]: {
+            ...pathOr({}, ['quantities', action.originZone])(state),
+            [action.packType]: action.quantity,
+          },
         },
       };
     case SET_WAR:

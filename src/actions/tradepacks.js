@@ -1,12 +1,14 @@
 import {
   SET_CONTINENT,
   SET_CRAFT_LARDER,
+  SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_QUANTITY,
   SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
@@ -15,12 +17,14 @@ import {
 export const triggerLocalStorageUpdate = [
   SET_CONTINENT,
   SET_CRAFT_LARDER,
+  SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
   SET_PROFICIENCY,
+  SET_QUANTITY,
   SET_SUPPLY,
   SET_WAR,
   TRADE_PACK_RESET,
@@ -32,6 +36,10 @@ export const setContinent = (e, { props: { children: continent } }) => (dispatch
 
 export const setCraftLarder = (e, craftLarder) => (dispatch) => {
   dispatch({ type: SET_CRAFT_LARDER, craftLarder });
+};
+
+export const setDegradation = (e, degradeDemand) => (dispatch) => {
+  dispatch({ type: SET_DEGRADATION, degradeDemand });
 };
 
 export const setFreshness = (originZone, packType, sellZone) => (dispatch) => (e, { key: profit }) => {
@@ -52,6 +60,13 @@ export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (
   } else {
     dispatch({ type: SET_PERCENTAGE_DEFAULT, percentage });
   }
+};
+
+export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
+  let { target: { value } } = e;
+  if (value === '0') value = 1;
+  if (!value) return;
+  dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
 };
 
 export const setWar = (zone) => (dispatch) => (e, war) => {

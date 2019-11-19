@@ -3,6 +3,7 @@ import { CONTINENT } from 'constants/dailies';
 export default {
   continent: CONTINENT.HARANYA.name,
   craftLarder: false,
+  degradeDemand: false,
   percentage: 130,
   percentages: {},
   prices: {
@@ -12,6 +13,7 @@ export default {
     commerce: 'Basic',
     husbandry: 'Basic',
   },
+  quantities: {},
   showInterest: true,
   supply: {},
   war: {},

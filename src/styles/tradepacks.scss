@@ -115,19 +115,46 @@ $Cargo: #FF4053;
   margin-left: 18px;
 }
 
+.pack-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  h6 {
+    flex: 1;
+  }
+
+  .pack-quantity {
+    display: flex;
+    align-items: center;
+
+    .MuiTextField-root {
+      width: 50px;
+      margin-left: 6px;
+
+      input {
+        text-align: right;
+      }
+    }
+  }
+
+  .MuiCheckbox-root {
+    padding: 4px;
+  }
+}
+
 .sell-config {
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   & > :first-child {
-    min-width: 170px;
-    max-width: 250px;
+    width: 205px;
     margin-right: 16px;
   }
 
   .totals-table {
-    max-width: 500px;
+    width: 475px;
   }
 }
 

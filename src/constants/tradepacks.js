@@ -2,12 +2,14 @@ import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
 export const SET_CRAFT_LARDER = 'SET_CRAFT_LARDER';
+export const SET_DEGRADATION = 'SET_DEGRADATION';
 export const SET_FRESHNESS = 'SET_FRESHNESS';
 export const SET_INTEREST = 'SET_INTEREST';
 export const SET_PERCENTAGE = 'SET_PERCENTAGE';
 export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
 export const SET_PRICE = 'SET_PRICE';
 export const SET_PROFICIENCY = 'SET_PROFICIENCY';
+export const SET_QUANTITY = 'SET_QUANTITY';
 export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_WAR = 'SET_WAR';
 export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
