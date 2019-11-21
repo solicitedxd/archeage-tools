@@ -119,6 +119,10 @@ class PackViewer extends Component {
 
     const percentage = pathOr(percentageDefault, [originZone, packType, sellZone])(percentages);
 
+    if (packCosts.materials !== pack.materials) {
+      pack.materials = [].concat(pack.materials, packCosts.materials);
+    }
+
     // construct a pack name, if no special name is given
     let packName = pack.name;
     if (!packName) {
@@ -291,21 +295,22 @@ class PackViewer extends Component {
                     <span className="material-indent" />}
                     <ItemLink item={material.item} />
                   </TableCell>
-                  <TableCell>
-                    {itemShowCost(material) &&
-                    <Input
-                      id={`mat-cost-${material.item.name}`}
-                      value={prices[material.item.name] || 0}
-                      onChange={setPrice(material.item.name)}
-                      type="number"
-                      inputProps={{
-                        style: { textAlign: 'right', width: 120 },
-                        min: 0,
-                        max: 10000,
-                        step: 0.0001,
-                      }}
-                      endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                    />}
+                  <TableCell align="right">
+                    {itemShowCost(material) ?
+                      <Input
+                        id={`mat-cost-${material.item.name}`}
+                        value={prices[material.item.name] || 0}
+                        onChange={setPrice(material.item.name)}
+                        type="number"
+                        inputProps={{
+                          style: { textAlign: 'right', width: 120 },
+                          min: 0,
+                          max: 10000,
+                          step: 0.0001,
+                        }}
+                        endAdornment={<InputAdornment position="end">g</InputAdornment>}
+                      /> :
+                      '--'}
                   </TableCell>
                   {isAgedPack &&
                   <TableCell>
@@ -324,11 +329,12 @@ class PackViewer extends Component {
                     }
                   </TableCell>
                   <TableCell align="right">
-                    {itemShowCost(material) &&
-                    <Currency
-                      type={REWARD.COIN}
-                      count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
-                    />}
+                    {itemShowCost(material) ?
+                      <Currency
+                        type={REWARD.COIN}
+                        count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
+                      /> :
+                      '--'}
                   </TableCell>
                 </TableRow>
               ))}

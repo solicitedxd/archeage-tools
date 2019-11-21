@@ -21,6 +21,7 @@ export const PACK_COSTS = {
     sellLabor,
   },
   [PACK_TYPE.GILDA]: {
+    materials: [{ item: ITEM.GILDA_STAR, count: 2 }],
     gold: 5000,
     labor: 180,
     sellLabor,
@@ -111,8 +112,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.EGG, count: 10 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.EGG, count: 10 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 35.4716,
           [ZONE.VILLANELLE]: 35.4258,
@@ -169,8 +169,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 36.3463,
           [ZONE.VILLANELLE]: 36.3001,
@@ -234,8 +233,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.LEMON, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.LEMON, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 37.1424,
           [ZONE.VILLANELLE]: 37.0964,
@@ -292,8 +290,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.MILK, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.MILK, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 34.2737,
           [ZONE.VILLANELLE]: 34.2277,
@@ -350,8 +347,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.BANANA, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.BANANA, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 32.3630,
           [ZONE.VILLANELLE]: 32.3171,
@@ -414,8 +410,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.YATA_FUR, count: 10 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.YATA_FUR, count: 10 }],
         sell: {
           [ZONE.VILLANELLE]: 34.6798,
           [ZONE.YNYSTERE]: 35.7619,
@@ -465,8 +460,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.WOOL, count: 10 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.WOOL, count: 10 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 34.6798,
           [ZONE.YNYSTERE]: 35.1977,
@@ -517,8 +511,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 37.3823,
           [ZONE.VILLANELLE]: 32.7020,
@@ -581,8 +574,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.ORANGE, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.ORANGE, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 35.7619,
           [ZONE.VILLANELLE]: 35.1977,
@@ -647,8 +639,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 40.8900,
           [ZONE.VILLANELLE]: 36.0698,
@@ -721,8 +712,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.MORINGA_FRUIT, count: 3 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.MORINGA_FRUIT, count: 3 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 38.2522,
           [ZONE.VILLANELLE]: 38.2062,
@@ -788,8 +778,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.AVOCADO, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.AVOCADO, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 39.7172,
           [ZONE.VILLANELLE]: 39.6716,
@@ -862,8 +851,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 42.3719,
           [ZONE.VILLANELLE]: 42.2717,
@@ -936,8 +924,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.APPLE, count: 5 },
-          { item: ITEM.GILDA_STAR, count: 2 }],
+        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.APPLE, count: 5 }],
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 40.3343,
           [ZONE.VILLANELLE]: 37.3360,
