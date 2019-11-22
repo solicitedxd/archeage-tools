@@ -972,63 +972,928 @@ export default Object.freeze({
   // Nuia
   [ZONE.SOLZREED_PENINSULA]: {
     freshness: FRESHNESS.LUXURY,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 12.0228,
+          [ZONE.CINDERSTONE_MOOR]: 10.6411,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.EGG, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 33.7826,
+          [ZONE.CINDERSTONE_MOOR]: 32.5661,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 150 }, { item: ITEM.STRAWBERRY, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 13.2248,
+          [ZONE.CINDERSTONE_MOOR]: 12.7837,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 13.8262,
+          [ZONE.CINDERSTONE_MOOR]: 13.3647,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.4313,
+          [ZONE.CINDERSTONE_MOOR]: 23.1792,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.5296,
+          [ZONE.CINDERSTONE_MOOR]: 23.1093,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.4901,
+          [ZONE.CINDERSTONE_MOOR]: 23.2027,
+        },
+      },
+    },
   },
   [ZONE.GWEONID_FOREST]: {
     freshness: FRESHNESS.COMMERCIAL,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 180 }, { item: ITEM.APPLE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.7315,
+          [ZONE.SOLZREED_PENINSULA]: 14.3808,
+          [ZONE.CINDERSTONE_MOOR]: 15.8434,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 38.8415,
+          [ZONE.SOLZREED_PENINSULA]: 35.3302,
+          [ZONE.CINDERSTONE_MOOR]: 40.3069,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 150 }, { item: ITEM.ONION, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 15.3417,
+          [ZONE.SOLZREED_PENINSULA]: 15.819,
+          [ZONE.CINDERSTONE_MOOR]: 17.4278,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 16.0388,
+          [ZONE.SOLZREED_PENINSULA]: 16.538,
+          [ZONE.CINDERSTONE_MOOR]: 18.2198,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 23.1793,
+          [ZONE.SOLZREED_PENINSULA]: 22.2523,
+          [ZONE.CINDERSTONE_MOOR]: 23.2258,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 23.2027,
+          [ZONE.SOLZREED_PENINSULA]: 22.2746,
+          [ZONE.CINDERSTONE_MOOR]: 23.1561,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 23.1793,
+          [ZONE.SOLZREED_PENINSULA]: 22.2072,
+          [ZONE.CINDERSTONE_MOOR]: 23.1327,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 96.5346,
+          [ZONE.SOLZREED_PENINSULA]: 91.9539,
+          [ZONE.CINDERSTONE_MOOR]: 98.4466,
+        },
+      },
+    },
   },
   [ZONE.LILYUT_HILLS]: {
     freshness: FRESHNESS.FINE,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 180 }, { item: ITEM.OLIVE, count: 3 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 13.8642,
+          [ZONE.SOLZREED_PENINSULA]: 10.2765,
+          [ZONE.CINDERSTONE_MOOR]: 15.3026,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 36.4784,
+          [ZONE.SOLZREED_PENINSULA]: 32.9671,
+          [ZONE.CINDERSTONE_MOOR]: 37.9443,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.RICE, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.1722,
+          [ZONE.SOLZREED_PENINSULA]: 11.3045,
+          [ZONE.CINDERSTONE_MOOR]: 16.8329,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.8164,
+          [ZONE.SOLZREED_PENINSULA]: 11.8182,
+          [ZONE.CINDERSTONE_MOOR]: 17.5983,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.3771,
+          [ZONE.SOLZREED_PENINSULA]: 18.506,
+          [ZONE.CINDERSTONE_MOOR]: 22.3195,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.3771,
+          [ZONE.SOLZREED_PENINSULA]: 18.6181,
+          [ZONE.CINDERSTONE_MOOR]: 22.3416,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.4182,
+          [ZONE.SOLZREED_PENINSULA]: 18.6181,
+          [ZONE.CINDERSTONE_MOOR]: 22.2073,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 90.4356,
+          [ZONE.SOLZREED_PENINSULA]: 93.8565,
+          [ZONE.CINDERSTONE_MOOR]: 92.3472,
+        },
+      },
+    },
   },
   [ZONE.AIRAIN_ROCK]: {
     freshness: FRESHNESS.COMMERCIAL,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.BARLEY, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.3225,
+          [ZONE.SOLZREED_PENINSULA]: 15.2511,
+          [ZONE.CINDERSTONE_MOOR]: 15.6658,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 37.9876,
+          [ZONE.SOLZREED_PENINSULA]: 38.5125,
+          [ZONE.CINDERSTONE_MOOR]: 39.4533,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 150 }, { item: ITEM.RYE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.6764,
+          [ZONE.SOLZREED_PENINSULA]: 16.5609,
+          [ZONE.CINDERSTONE_MOOR]: 17.2322,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 15.3435,
+          [ZONE.SOLZREED_PENINSULA]: 17.3137,
+          [ZONE.CINDERSTONE_MOOR]: 18.0156,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 23.3193,
+          [ZONE.SOLZREED_PENINSULA]: 25.1091,
+          [ZONE.CINDERSTONE_MOOR]: 26.9962,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.6118,
+          [ZONE.SOLZREED_PENINSULA]: 25.0586,
+          [ZONE.CINDERSTONE_MOOR]: 27.6542,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 23.2724,
+          [ZONE.SOLZREED_PENINSULA]: 24.9577,
+          [ZONE.CINDERSTONE_MOOR]: 26.834,
+        },
+      },
+    },
   },
   [ZONE.AUBRE_CRADLE]: {
     freshness: FRESHNESS.COMMERCIAL,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 180 }, { item: ITEM.CORN, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 13.9217,
+          [ZONE.SOLZREED_PENINSULA]: 14.8771,
+          [ZONE.CINDERSTONE_MOOR]: 15.1724,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.RICE, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 36.0773,
+          [ZONE.SOLZREED_PENINSULA]: 36.6019,
+          [ZONE.CINDERSTONE_MOOR]: 37.5424,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 150 }, { item: ITEM.EGG, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.4509,
+          [ZONE.SOLZREED_PENINSULA]: 16.3651,
+          [ZONE.CINDERSTONE_MOOR]: 16.6898,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 15.1077,
+          [ZONE.SOLZREED_PENINSULA]: 17.1091,
+          [ZONE.CINDERSTONE_MOOR]: 17.4487,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 21.3893,
+          [ZONE.SOLZREED_PENINSULA]: 21.3247,
+          [ZONE.CINDERSTONE_MOOR]: 25.1095,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 15.9917,
+          [ZONE.SOLZREED_PENINSULA]: 21.2818,
+          [ZONE.CINDERSTONE_MOOR]: 22.1347,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 21.2606,
+          [ZONE.SOLZREED_PENINSULA]: 21.4325,
+          [ZONE.CINDERSTONE_MOOR]: 25.0841,
+        },
+      },
+    },
   },
   [ZONE.DEWSTONE_PLAINS]: {
     freshness: FRESHNESS.FINE,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 180 }, { item: ITEM.NARCISSUS, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 13.9177,
+          [ZONE.SOLZREED_PENINSULA]: 10.3146,
+          [ZONE.CINDERSTONE_MOOR]: 14.6692,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.WOOL, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 34.5679,
+          [ZONE.SOLZREED_PENINSULA]: 32.9102,
+          [ZONE.CINDERSTONE_MOOR]: 36.0335,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.GINKGO_LEAF, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 15.3094,
+          [ZONE.SOLZREED_PENINSULA]: 11.346,
+          [ZONE.CINDERSTONE_MOOR]: 16.1361,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 16.0056,
+          [ZONE.SOLZREED_PENINSULA]: 11.8616,
+          [ZONE.CINDERSTONE_MOOR]: 16.8694,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.0346,
+          [ZONE.SOLZREED_PENINSULA]: 19.4705,
+          [ZONE.CINDERSTONE_MOOR]: 21.3464,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.8941,
+          [ZONE.SOLZREED_PENINSULA]: 19.4117,
+          [ZONE.CINDERSTONE_MOOR]: 21.3681,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.8738,
+          [ZONE.SOLZREED_PENINSULA]: 19.5491,
+          [ZONE.CINDERSTONE_MOOR]: 21.4539,
+        },
+      },
+    },
   },
   [ZONE.WHITE_ARDEN]: {
     freshness: FRESHNESS.FINE,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 12.9337,
+          [ZONE.SOLZREED_PENINSULA]: 14.9409,
+          [ZONE.CINDERSTONE_MOOR]: 14.5119,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 34.1666,
+          [ZONE.SOLZREED_PENINSULA]: 36.7888,
+          [ZONE.CINDERSTONE_MOOR]: 35.6319,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 150 }, { item: ITEM.YAM, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.2272,
+          [ZONE.SOLZREED_PENINSULA]: 16.4348,
+          [ZONE.CINDERSTONE_MOOR]: 15.9629,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.8736,
+          [ZONE.SOLZREED_PENINSULA]: 17.1818,
+          [ZONE.CINDERSTONE_MOOR]: 16.6887,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 21.3465,
+          [ZONE.SOLZREED_PENINSULA]: 20.3362,
+          [ZONE.CINDERSTONE_MOOR]: 22.185,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 21.4539,
+          [ZONE.SOLZREED_PENINSULA]: 20.3566,
+          [ZONE.CINDERSTONE_MOOR]: 22.2744,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 21.3678,
+          [ZONE.SOLZREED_PENINSULA]: 20.4183,
+          [ZONE.CINDERSTONE_MOOR]: 22.2073,
+        },
+      },
+      [PACK_TYPE.ANTIQUITIES]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 10.9919,
+          [ZONE.SOLZREED_PENINSULA]: 13.1996,
+          [ZONE.CINDERSTONE_MOOR]: 12.7275,
+        },
+      },
+    },
   },
   [ZONE.MARIANOPLE]: {
     freshness: FRESHNESS.FINE,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.CHERRY, count: 2 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 9.5251,
+          [ZONE.SOLZREED_PENINSULA]: 12.9336,
+          [ZONE.CINDERSTONE_MOOR]: 13.449,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 32.4957,
+          [ZONE.SOLZREED_PENINSULA]: 34.1449,
+          [ZONE.CINDERSTONE_MOOR]: 33.9608,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 150 }, { item: ITEM.IRIS, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 10.4776,
+          [ZONE.SOLZREED_PENINSULA]: 14.227,
+          [ZONE.CINDERSTONE_MOOR]: 15.8723,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 10.9538,
+          [ZONE.SOLZREED_PENINSULA]: 14.8739,
+          [ZONE.CINDERSTONE_MOOR]: 16.5938,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.6556,
+          [ZONE.SOLZREED_PENINSULA]: 19.4315,
+          [ZONE.CINDERSTONE_MOOR]: 20.4389,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.5996,
+          [ZONE.SOLZREED_PENINSULA]: 19.4119,
+          [ZONE.CINDERSTONE_MOOR]: 20.4593,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.6556,
+          [ZONE.SOLZREED_PENINSULA]: 19.4903,
+          [ZONE.CINDERSTONE_MOOR]: 20.4389,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 88.2557,
+          [ZONE.SOLZREED_PENINSULA]: 90.4075,
+          [ZONE.CINDERSTONE_MOOR]: 90.1674,
+        },
+      },
+    },
   },
   [ZONE.TWO_CROWNS]: {
     freshness: FRESHNESS.LUXURY,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.POMEGRANATE, count: 3 }],
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 12.4686,
+          [ZONE.CINDERSTONE_MOOR]: 9.835,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 33.9673,
+          [ZONE.CINDERSTONE_MOOR]: 31.4654,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.IRIS, count: 15 }],
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 13.7156,
+          [ZONE.CINDERSTONE_MOOR]: 11.8969,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 14.3388,
+          [ZONE.CINDERSTONE_MOOR]: 12.4377,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 19.5881,
+          [ZONE.CINDERSTONE_MOOR]: 21.3463,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 19.4512,
+          [ZONE.CINDERSTONE_MOOR]: 21.325,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 19.5686,
+          [ZONE.CINDERSTONE_MOOR]: 21.325,
+        },
+      },
+      [PACK_TYPE.ANTIQUITIES]: {
+        sell: {
+          [ZONE.SOLZREED_PENINSULA]: 10.4802,
+          [ZONE.CINDERSTONE_MOOR]: 9.74,
+        },
+      },
+    },
   },
   [ZONE.CINDERSTONE_MOOR]: {
     freshness: FRESHNESS.LUXURY,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.BAY_LEAF, count: 3 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 9.835,
+          [ZONE.SOLZREED_PENINSULA]: 10.641,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.APPLE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 31.4654,
+          [ZONE.SOLZREED_PENINSULA]: 32.5662,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 150 }, { item: ITEM.AZALEA, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 11.8968,
+          [ZONE.SOLZREED_PENINSULA]: 12.7835,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 12.4377,
+          [ZONE.SOLZREED_PENINSULA]: 13.3647,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.3567,
+          [ZONE.SOLZREED_PENINSULA]: 20.5004,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.521,
+          [ZONE.SOLZREED_PENINSULA]: 20.4184,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.5006,
+          [ZONE.SOLZREED_PENINSULA]: 20.3774,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 86.9118,
+          [ZONE.SOLZREED_PENINSULA]: 88.3478,
+        },
+      },
+      [PACK_TYPE.SPECIAL]: {
+        name: 'Cinderstone Space-Time Fragment',
+        materials: [{ item: ITEM.TIME_SPACE_RIFT_SHARD, count: 2 }, { item: ITEM.IRON_INGOT, count: 100 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.2604,
+          [ZONE.SOLZREED_PENINSULA]: 30.3862,
+        },
+      },
+    },
   },
   [ZONE.HALCYONA]: {
     freshness: FRESHNESS.PRESERVED,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 200 }, { item: ITEM.YAM, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 14.4044,
+          [ZONE.SOLZREED_PENINSULA]: 16.2431,
+          [ZONE.CINDERSTONE_MOOR]: 15.8731,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.EGG, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 34.1963,
+          [ZONE.SOLZREED_PENINSULA]: 36.4618,
+          [ZONE.CINDERSTONE_MOOR]: 35.6619,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 160 }, { item: ITEM.OATS, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 17.4624,
+          [ZONE.SOLZREED_PENINSULA]: 17.8671,
+          [ZONE.CINDERSTONE_MOOR]: 17.9994,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.2561,
+          [ZONE.SOLZREED_PENINSULA]: 18.6795,
+          [ZONE.CINDERSTONE_MOOR]: 18.8177,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.1791,
+          [ZONE.SOLZREED_PENINSULA]: 28.7421,
+          [ZONE.CINDERSTONE_MOOR]: 24.1549,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.2278,
+          [ZONE.SOLZREED_PENINSULA]: 28.8291,
+          [ZONE.CINDERSTONE_MOOR]: 24.1307,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.2523,
+          [ZONE.SOLZREED_PENINSULA]: 28.8004,
+          [ZONE.CINDERSTONE_MOOR]: 24.2038,
+        },
+      },
+      [PACK_TYPE.SPECIAL]: {
+        name: 'Halcyona Braided Tail Blanket',
+        materials: [{ item: ITEM.CENTAURS_TAIL, count: 1 }, { item: ITEM.FABRIC, count: 100 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 27.7888,
+          [ZONE.SOLZREED_PENINSULA]: 42.0862,
+          [ZONE.CINDERSTONE_MOOR]: 29.0960,
+        },
+      },
+    },
   },
   [ZONE.HELLSWAMP]: {
     freshness: FRESHNESS.PRESERVED,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 200 }, { item: ITEM.MUSHROOM, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 16.5845,
+          [ZONE.SOLZREED_PENINSULA]: 19.5429,
+          [ZONE.CINDERSTONE_MOOR]: 17.7167,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.BANANA, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 36.818,
+          [ZONE.SOLZREED_PENINSULA]: 41.889,
+          [ZONE.CINDERSTONE_MOOR]: 38.2832,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.GROUND_SPICES, count: 160 }, { item: ITEM.PEANUT, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.243,
+          [ZONE.SOLZREED_PENINSULA]: 20.9581,
+          [ZONE.CINDERSTONE_MOOR]: 19.4883,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.0722,
+          [ZONE.SOLZREED_PENINSULA]: 21.9107,
+          [ZONE.CINDERSTONE_MOOR]: 20.3743,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.0393,
+          [ZONE.SOLZREED_PENINSULA]: 29.729,
+          [ZONE.CINDERSTONE_MOOR]: 27.871,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 25.8822,
+          [ZONE.SOLZREED_PENINSULA]: 29.6697,
+          [ZONE.CINDERSTONE_MOOR]: 27.9832,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.0393,
+          [ZONE.SOLZREED_PENINSULA]: 29.6697,
+          [ZONE.CINDERSTONE_MOOR]: 27.9832,
+        },
+      },
+      [PACK_TYPE.SPECIAL]: {
+        name: 'Hellswamp Adhesive',
+        materials: [{ item: ITEM.DROWNED_CORPSE_FLUID, count: 1 }, { item: ITEM.FABRIC, count: 100 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 34.7698,
+          [ZONE.SOLZREED_PENINSULA]: 59.6674,
+          [ZONE.CINDERSTONE_MOOR]: 41.9634,
+        },
+      },
+    },
   },
   [ZONE.SANDDEEP]: {
     freshness: FRESHNESS.PRESERVED,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 200 }, { item: ITEM.ROSEMARY, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 16.1491,
+          [ZONE.SOLZREED_PENINSULA]: 17.213,
+          [ZONE.CINDERSTONE_MOOR]: 18.1374,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.AVOCADO, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 35.5071,
+          [ZONE.SOLZREED_PENINSULA]: 37.5569,
+          [ZONE.CINDERSTONE_MOOR]: 36.9727,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 1 }, { item: ITEM.CUCUMBER, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.8427,
+          [ZONE.SOLZREED_PENINSULA]: 18.9346,
+          [ZONE.CINDERSTONE_MOOR]: 21.5688,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.699,
+          [ZONE.SOLZREED_PENINSULA]: 19.7952,
+          [ZONE.CINDERSTONE_MOOR]: 22.549,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.0821,
+          [ZONE.SOLZREED_PENINSULA]: 27.9831,
+          [ZONE.CINDERSTONE_MOOR]: 24.1792,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.0338,
+          [ZONE.SOLZREED_PENINSULA]: 27.8432,
+          [ZONE.CINDERSTONE_MOOR]: 24.2278,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.0821,
+          [ZONE.SOLZREED_PENINSULA]: 27.8991,
+          [ZONE.CINDERSTONE_MOOR]: 24.1066,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 90.4353,
+          [ZONE.SOLZREED_PENINSULA]: 93.8563,
+          [ZONE.CINDERSTONE_MOOR]: 92.3471,
+        },
+      },
+      [PACK_TYPE.SPECIAL]: {
+        name: 'Sanddeep Preserved Fin',
+        materials: [{ item: ITEM.SHARK_FIN, count: 1 }, { item: ITEM.LUMBER, count: 100 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 28.3361,
+          [ZONE.SOLZREED_PENINSULA]: 38.4007,
+          [ZONE.CINDERSTONE_MOOR]: 35.5297,
+        },
+      },
+    },
   },
   [ZONE.KARKASSE_RIDGELANDS]: {
     freshness: FRESHNESS.COMMERCIAL,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.CORN, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 17.2129,
+          [ZONE.SOLZREED_PENINSULA]: 18.8689,
+          [ZONE.CINDERSTONE_MOOR]: 20.1463,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 37.593,
+          [ZONE.SOLZREED_PENINSULA]: 39.9505,
+          [ZONE.CINDERSTONE_MOOR]: 39.0587,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        sell: {
+          materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.ROSEMARY, count: 5 }],
+          [ZONE.TWO_CROWNS]: 18.9345,
+          [ZONE.SOLZREED_PENINSULA]: 20.7557,
+          [ZONE.CINDERSTONE_MOOR]: 21.0619,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 19.7953,
+          [ZONE.SOLZREED_PENINSULA]: 21.6992,
+          [ZONE.CINDERSTONE_MOOR]: 26.834,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.9094,
+          [ZONE.SOLZREED_PENINSULA]: 30.5039,
+          [ZONE.CINDERSTONE_MOOR]: 27.1626,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.9094,
+          [ZONE.SOLZREED_PENINSULA]: 30.7201,
+          [ZONE.CINDERSTONE_MOOR]: 27.1626,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.9151,
+          [ZONE.SOLZREED_PENINSULA]: 30.6891,
+          [ZONE.CINDERSTONE_MOOR]: 30.689,
+        },
+      },
+      [PACK_TYPE.SPECIAL]: {
+        name: 'Karkasse Bulge',
+        materials: [{ item: ITEM.MINOTAUR_HORN, count: 1 }, { item: ITEM.LUMBER, count: 100 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 38.5782,
+          [ZONE.SOLZREED_PENINSULA]: 50.1488,
+          [ZONE.CINDERSTONE_MOOR]: 45.7717,
+        },
+      },
+    },
   },
   [ZONE.AHNIMAR]: {
     freshness: FRESHNESS.PRESERVED,
-    packs: {},
+    packs: {
+      [PACK_TYPE.NORMAL]: {
+        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 200 }, { item: ITEM.MUSHROOM, count: 15 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 18.1862,
+          [ZONE.SOLZREED_PENINSULA]: 20.0331,
+          [ZONE.CINDERSTONE_MOOR]: 19.1607,
+        },
+      },
+      [PACK_TYPE.GILDA]: {
+        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.GRAPE, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 38.8901,
+          [ZONE.SOLZREED_PENINSULA]: 41.864,
+          [ZONE.CINDERSTONE_MOOR]: 40.3555,
+        },
+      },
+      [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 160 }, { item: ITEM.CORNFLOWER, count: 5 }],
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.0048,
+          [ZONE.SOLZREED_PENINSULA]: 22.0368,
+          [ZONE.CINDERSTONE_MOOR]: 21.0767,
+        },
+      },
+      [PACK_TYPE.FERTILIZER]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 20.9139,
+          [ZONE.SOLZREED_PENINSULA]: 23.0383,
+          [ZONE.CINDERSTONE_MOOR]: 22.0351,
+        },
+      },
+      [PACK_TYPE.SALVE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.9151,
+          [ZONE.SOLZREED_PENINSULA]: 34.2015,
+          [ZONE.CINDERSTONE_MOOR]: 31.6827,
+        },
+      },
+      [PACK_TYPE.CHEESE]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 24.1932,
+          [ZONE.SOLZREED_PENINSULA]: 34.3055,
+          [ZONE.CINDERSTONE_MOOR]: 30.4018,
+        },
+      },
+      [PACK_TYPE.HONEY]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 26.9692,
+          [ZONE.SOLZREED_PENINSULA]: 34.4779,
+          [ZONE.CINDERSTONE_MOOR]: 31.5238,
+        },
+      },
+    },
   },
   // Cargo
   [CONTINENT.HARANYA.name]: {
