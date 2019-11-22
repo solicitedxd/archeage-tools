@@ -119,7 +119,7 @@ class PackViewer extends Component {
 
     const percentage = pathOr(percentageDefault, [originZone, packType, sellZone])(percentages);
 
-    if (packCosts.materials !== pack.materials) {
+    if (packCosts.materials && packCosts.materials !== pack.materials) {
       pack.materials = [].concat(pack.materials, packCosts.materials);
     }
 
