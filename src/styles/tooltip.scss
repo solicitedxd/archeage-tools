@@ -205,6 +205,10 @@
   }
 }
 
+.negative, .negative .currency {
+  color: #BE3D36;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

@@ -8,7 +8,6 @@ import {
   AppBar,
   Dialog,
   DialogContent,
-  DialogTitle,
   Toolbar,
   Tooltip,
   Typography,
@@ -138,13 +137,11 @@ class MapEmbed extends Component {
           className="map-dialog"
           maxWidth="xl"
         >
-          <DialogTitle>
-            <AppBar position="static">
-              <Toolbar variant="dense">
-                <Typography variant="subtitle1" className="title-text">{zone}</Typography>
-              </Toolbar>
-            </AppBar>
-          </DialogTitle>
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Typography variant="subtitle1" className="title-text">{zone}</Typography>
+            </Toolbar>
+          </AppBar>
           <DialogContent>
             <div className="map-content" id="map-dialog-container">
               <img src={map} alt={zone} />

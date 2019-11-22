@@ -1,0 +1,185 @@
+.tradepack-settings {
+  display: flex;
+  padding: 12px 6px;
+  align-items: stretch;
+
+  .MuiFormControl-root, .pack-percentage {
+    margin: 0 12px;
+    flex: 1 0;
+  }
+}
+
+$Commercial: #FF9255;
+$Luxury: #D275FF;
+$Fine: #3887FF;
+$Preserved: #36BD4B;
+$Cargo: #FF4053;
+
+.trade-table {
+  thead {
+
+  }
+
+  tbody {
+    tr {
+      &.Commercial td:first-child {
+        background-color: $Commercial;
+        color: #FFFFFF;
+      }
+
+      &.Luxury td:first-child {
+        background-color: $Luxury;
+        color: #FFFFFF;
+      }
+
+      &.Fine td:first-child {
+        background-color: $Fine;
+        color: #FFFFFF;
+      }
+
+      &.Preserved td:first-child {
+        background-color: $Preserved;
+        color: #FFFFFF;
+      }
+
+      &.Cargo td:first-child {
+        background-color: $Cargo;
+        color: #FFFFFF;
+      }
+
+      td:not(:first-child) {
+        font-size: 13px;
+        padding: 6px 12px 6px 8px;
+
+        &:hover {
+          box-shadow: inset 0 0 0 3px #009688;
+          cursor: pointer;
+        }
+      }
+
+      td.no-pack {
+        opacity: 0.4;
+
+        &:not(:first-child):hover {
+          box-shadow: none;
+          cursor: default;
+        }
+      }
+    }
+  }
+}
+
+.trade-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  .freshness-tip {
+    cursor: help;
+  }
+
+  .blip {
+    width: 12px;
+    height: 12px;
+    display: inline-block;
+  }
+}
+
+.freshness.Commercial {
+  background-color: $Commercial;
+}
+
+.freshness.Luxury {
+  background-color: $Luxury;
+}
+
+.freshness.Fine {
+  background-color: $Fine;
+}
+
+.freshness.Preserved {
+  background-color: $Preserved;
+}
+
+.freshness.Cargo {
+  background-color: $Cargo;
+}
+
+.freshness-tip-container {
+  padding: 0 !important;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.material-indent {
+  display: inline-block;
+  margin-left: 18px;
+}
+
+.pack-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+
+  h6 {
+    flex: 1;
+  }
+
+  .pack-quantity {
+    display: flex;
+    align-items: center;
+
+    .MuiTextField-root {
+      width: 50px;
+      margin-left: 6px;
+
+      input {
+        text-align: right;
+      }
+    }
+  }
+
+  .MuiCheckbox-root {
+    padding: 4px;
+  }
+}
+
+.sell-config {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  & > :first-child {
+    width: 205px;
+    margin-right: 16px;
+  }
+
+  .totals-table {
+    width: 504px;
+  }
+}
+
+.freshness-table {
+  thead .MuiTableCell-root {
+    border-radius: 4px 4px 0 0;
+    color: #FFFFFF;
+  }
+
+  .MuiTableCell-root {
+    border-color: transparent;
+  }
+
+  .MuiTableCell-body {
+    color: #FFFFFF;
+  }
+}
+
+.mobile {
+  .tradepack-settings {
+    flex-direction: column;
+
+    .MuiFormControl-root, .pack-percentage {
+      flex: initial;
+      margin: 8px 0 0 0;
+    }
+  }
+}

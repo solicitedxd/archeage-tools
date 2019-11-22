@@ -114,7 +114,7 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={900} component="span" />
-        <ItemLink item={ITEM.IMPROVED_INFUSION_KIT} count={9} />
+        <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
       </Typography>,
     ],
   },
@@ -157,7 +157,7 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={900} component="span" />
-        <ItemLink item={ITEM.IMPROVED_INFUSION_KIT} count={9} />
+        <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
         <ItemLink item={ITEM.GILDA_STAR} count={2} />
       </Typography>,
     ],

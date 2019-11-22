@@ -87,11 +87,6 @@ class Main extends React.PureComponent {
             padding: '4px 12px 12px',
           },
         },
-        MuiDialogTitle: {
-          root: {
-            padding: 0,
-          },
-        },
       },
     });
 
