@@ -14,6 +14,7 @@ import LeviathanIcon from 'images/event/leviathan.png';
 import LuscaAwakeningIcon from 'images/event/lusca_awakening.png';
 import KadumIcon from 'images/event/kadum.png';
 import SeaOfChaosIcon from 'images/event/sea_of_chaos.png';
+import CastleSiegeIcon from 'images/event/castle_siege.png';
 import {
   DAY,
   EVENT_TYPE,
@@ -80,6 +81,19 @@ export const REAL_TIME_EVENTS = Object.freeze([
       EU: [
         { time: '21:30:00', duration: '02:00:00' },
       ],
+    },
+  },
+  {
+    icon: CastleSiegeIcon,
+    name: 'Castle Siege',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    days: {
+      NA: [DAY.THURSDAY],
+      EU: [],
+    },
+    times: {
+      NA: [{ time: '01:00:00' }],
+      EU: [],
     },
   },
   {

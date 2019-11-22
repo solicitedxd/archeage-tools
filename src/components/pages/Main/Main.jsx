@@ -267,7 +267,7 @@ class Main extends React.PureComponent {
             </Toolbar>
           </AppBar>
           {children}
-          <div className="section" style={{ marginTop: 0 }}>
+          <div className="section footer-wrapper">
             <div className="footer">
               <Typography variant="caption" className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
               <iframe
