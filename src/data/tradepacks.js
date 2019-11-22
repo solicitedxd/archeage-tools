@@ -286,7 +286,7 @@ export default Object.freeze({
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 13.1731,
           [ZONE.VILLANELLE]: 13.1731,
-          [ZONE.YNYSTERE]: 18.0156,
+          [ZONE.YNYSTERE]: 15.6657,
         },
       },
       [PACK_TYPE.GILDA]: {
