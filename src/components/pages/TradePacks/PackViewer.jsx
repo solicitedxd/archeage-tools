@@ -150,8 +150,8 @@ class PackViewer extends Component {
     // modify the pack's value
     if (packValue) {
       // modify the percentage
+      let demand = 0;
       if (degradeDemand) {
-        let demand = 0;
         let degrade = 0;
         for (let i = 1; i <= quantity; i++) {
           demand += ((percentage - degrade) / 130);
@@ -159,10 +159,8 @@ class PackViewer extends Component {
             degrade++;
           }
         }
-        console.log(demand);
-        packValue = packValue * demand;
       } else {
-        packValue = packValue * (percentage / 130);
+        demand = (percentage / 130);
         packValue *= quantity;
       }
       // modify the freshness
@@ -177,7 +175,12 @@ class PackViewer extends Component {
       if (showInterest) {
         packValue *= 1.02;
       }
-      packValue = Math.round(packValue * 10000);
+      if (pack.item) {
+        packValue = Math.round(packValue);
+      } else {
+        packValue = Math.round(packValue * 10000);
+      }
+      packValue = Math.round(packValue * demand);
     } else {
       packValue = 0;
     }
@@ -489,7 +492,7 @@ class PackViewer extends Component {
                   <TableCell align="right">
                     {sellZone === CARGO && pack.item ?
                       <React.Fragment>
-                        {Math.round(packValue / 10000)}&nbsp;
+                        {packValue}&nbsp;
                         <Item {...pack.item} className="inline" />
                       </React.Fragment> :
                       <Currency type={REWARD.COIN} count={packValue} />}

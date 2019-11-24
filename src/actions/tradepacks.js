@@ -66,6 +66,7 @@ export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
   let { target: { value } } = e;
   if (value === '0') value = 1;
   if (!value) return;
+  if (value > 999) value = 999;
   dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
 };
 

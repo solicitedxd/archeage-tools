@@ -1719,7 +1719,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 1 }, { item: ITEM.CUCUMBER, count: 15 }],
+        materials: [{ item: ITEM.GROUND_GRAIN, count: 160 }, { item: ITEM.CUCUMBER, count: 15 }],
         sell: {
           [ZONE.TWO_CROWNS]: 18.8427,
           [ZONE.SOLZREED_PENINSULA]: 18.9346,
