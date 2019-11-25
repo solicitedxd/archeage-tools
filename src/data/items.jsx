@@ -49,6 +49,8 @@ import ExplorersPlateCrateIcon from 'images/item/explorer_plate_crate.png';
 import StoryInfusionIcon from 'images/item/story_infusion.png';
 import StoryAwakeningScrollIcon from 'images/item/story_awakening_scroll.png';
 import TimeStoneIcon from 'images/item/time_stone.png';
+import EcoFriendlyFuelIcon from 'images/item/eco-friendly_fuel.png';
+import AxleGreaseIcon from 'images/item/axle_grease.png';
 import AgingLarderIcon from 'images/item/multi-purpose_aging_larder.png';
 import HoneyIcon from 'images/item/honey.png';
 import HayBaleIcon from 'images/item/hay_bale.png';
@@ -156,6 +158,7 @@ export default Object.freeze({
     </span>,
     quality: QUALITY.BASIC,
     bindsOnPickup: true,
+    allowPricing: true,
   },
   SHATIGONS_SAND: {
     name: 'Shatigon\'s Sand',
@@ -241,6 +244,7 @@ export default Object.freeze({
     description: <span>A token issued by the Blue Salt Brotherhood. Can be used to help rank up your Community Center, or to support your faction activities.</span>,
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
+    allowPricing: true,
   },
   RAINBOW_SPRINKLER: {
     name: 'Rainbow Sprinkler',
@@ -549,6 +553,24 @@ export default Object.freeze({
     type: 'Contraption',
     description: <span>Widely useful, especially for extinguishing fires and watering crops.</span>,
     quality: QUALITY.BASIC,
+  },
+  ECO_FRIENDLY_FUEL: {
+    name: 'Eco-Friendly Fuel',
+    icon: EcoFriendlyFuelIcon,
+    type: 'Contraption',
+    description: <span>
+      This natural fuel makes <Orange>ships</Orange> and <Orange>cars</Orange> instantly accelerate.<br /><br />
+      Vocation: Farming<br />
+      Workbench: Farmer's Workstation
+    </span>,
+    price: 15,
+  },
+  AXLE_GREASE: {
+    name: 'Axle Grease',
+    icon: AxleGreaseIcon,
+    type: 'Contraption',
+    description: <span>This mysterious oil was invented by wagon drivers who weren't satisfied with Eco-Friendly Fuel. It helps old wagons move smoothly again.</span>,
+    price: 500,
   },
   MULTI_PURPOSE_AGING_LARDER: {
     name: 'Multi-Purpose Aging Larder',

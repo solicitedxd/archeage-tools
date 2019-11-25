@@ -10,9 +10,11 @@ import {
   SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
+  SET_TRANSPORTATION_QUANTITY,
   SET_WAR,
   TRADE_PACK_RESET,
 } from 'constants/tradepacks';
+import { validateQuantity } from 'utils/string';
 
 export const triggerLocalStorageUpdate = [
   SET_CONTINENT,
@@ -26,6 +28,7 @@ export const triggerLocalStorageUpdate = [
   SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
+  SET_TRANSPORTATION_QUANTITY,
   SET_WAR,
   TRADE_PACK_RESET,
 ];
@@ -64,9 +67,7 @@ export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (
 
 export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
   let { target: { value } } = e;
-  if (value === '0') value = 1;
-  if (!value) return;
-  if (value > 999) value = 999;
+  value = validateQuantity(1, 999)(value);
   dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
 };
 
@@ -81,6 +82,12 @@ export const setPrice = (item) => (dispatch) => (e) => {
 
 export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {
   dispatch({ type: SET_SUPPLY, originZone, supply });
+};
+
+export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (e) => {
+  let { target: { value } } = e;
+  value = validateQuantity(0, 99)(value);
+  dispatch({ type: SET_TRANSPORTATION_QUANTITY, originZone, sellZone, item, value });
 };
 
 export const resetSettings = () => (dispatch) => {

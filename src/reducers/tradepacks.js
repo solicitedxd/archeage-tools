@@ -12,6 +12,7 @@ import {
   SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
+  SET_TRANSPORTATION_QUANTITY,
   SET_WAR,
   TRADE_PACK_RESET,
 } from 'constants/tradepacks';
@@ -113,6 +114,20 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         supply: {
           ...state.supply,
           [action.originZone]: action.supply,
+        },
+      };
+    case SET_TRANSPORTATION_QUANTITY:
+      return {
+        ...state,
+        transportationQty: {
+          ...state.transportationQty,
+          [action.originZone]: {
+            ...pathOr({}, ['transportationQty', action.originZone])(state),
+            [action.sellZone]: {
+              ...pathOr({}, ['transportationQty', action.originZone, action.sellZone])(state),
+              [action.item]: action.value,
+            },
+          },
         },
       };
     case TRADE_PACK_RESET:

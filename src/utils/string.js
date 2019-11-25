@@ -19,3 +19,11 @@ export const setTitle = (title) => {
 export const scrollToTop = () => {
   document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
 };
+
+export const validateQuantity = (min, max) => (value) => {
+  if (!value) return;
+  if (value.indexOf('.') >= 0) return Math.floor(value);
+  if (value <= min) value = min;
+  if (value > max) value = max;
+  return value;
+};

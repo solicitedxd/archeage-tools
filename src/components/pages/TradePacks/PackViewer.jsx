@@ -39,6 +39,7 @@ import {
   setPrice,
   setQuantity,
   setSupply,
+  setTransportationQuantity,
   setWar,
 } from 'actions/tradepacks';
 import {
@@ -53,6 +54,7 @@ import {
   NO_FRESHNESS,
   OUTLET_ZONE,
   PACK_TYPE,
+  TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
@@ -102,8 +104,8 @@ class PackViewer extends Component {
 
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
-    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, war } = this.props;
-    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setWar } = this.props;
+    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
+    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
 
     // do nothing if value is missing
     if (originZone === null || packType === null || sellZone === null) return null;
@@ -220,9 +222,19 @@ class PackViewer extends Component {
     totalLabor *= quantity;
     totalGold *= quantity;
 
-    const profit = packValue - totalGold;
+    const transportCosts = {};
+    TRANSPORTATION_FUEL.forEach((item) => {
+      transportCosts[item.name] = Math.round((prices[item.name] || 0) * pathOr(0, [originZone, sellZone,
+        item.name])(transportationQty) * 10000);
+    });
 
-    const itemShowCost = (material) => (!material.item.bindsOnPickup && ((material.item === ITEM.MULTI_PURPOSE_AGING_LARDER && !craftLarder) || (material.item !== ITEM.MULTI_PURPOSE_AGING_LARDER)));
+    const transportTotal = Object.values(transportCosts).reduce((a, b) => a + b);
+
+    const profit = packValue - totalGold - transportTotal;
+
+    const itemShowCost = (material) => (
+      (!material.item.bindsOnPickup || material.item.allowPricing) &&
+      ((material.item === ITEM.MULTI_PURPOSE_AGING_LARDER && !craftLarder) || (material.item !== ITEM.MULTI_PURPOSE_AGING_LARDER)));
 
     return (
       <Dialog
@@ -367,6 +379,82 @@ class PackViewer extends Component {
               </TableRow>}
             </TableBody>
           </Table>}
+          {sellZone !== CARGO &&
+          <React.Fragment>
+            <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
+              Transporting to {sellZone}
+            </Typography>
+            <div className="transport">
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      Fuel Item
+                    </TableCell>
+                    <TableCell>
+                      Gold per unit
+                    </TableCell>
+                    <TableCell>
+                      Quantity
+                    </TableCell>
+                    <TableCell>
+                      Total Cost
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {TRANSPORTATION_FUEL.map((item, i) => (
+                    <TableRow key={`transportation-${item.name}-${i}`}>
+                      <TableCell>
+                        <ItemLink item={item} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Input
+                          id={`transp-mat-cost-${item.name}`}
+                          value={prices[item.name] || 0}
+                          onChange={setPrice(item.name)}
+                          type="number"
+                          inputProps={{
+                            style: { textAlign: 'right', width: 120 },
+                            min: 0,
+                            max: 10000,
+                            step: 0.0001,
+                          }}
+                          endAdornment={<InputAdornment position="end">g</InputAdornment>}
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <TextField
+                          id={`transp-mat-qty-${item.name}`}
+                          hiddenLabel
+                          type="number"
+                          margin="none"
+                          InputProps={{
+                            min: 0,
+                            max: 99,
+                          }}
+                          className="quantity"
+                          value={pathOr(0, [originZone, sellZone, item.name])(transportationQty)}
+                          onChange={setTransportationQuantity(originZone, sellZone, item.name)}
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Currency type={REWARD.COIN} count={transportCosts[item.name]} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  <TableRow>
+                    <TableCell colSpan={2} />
+                    <TableCell>Total Cost</TableCell>
+                    <TableCell align="right">
+                      <Currency type={REWARD.COIN} count={transportTotal} />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </React.Fragment>
+          }
           {sellZone === CARGO &&
           <div className="sell-config">
             <FormControl>
@@ -548,6 +636,7 @@ const mapDispatchToProps = {
   setPrice,
   setQuantity,
   setSupply,
+  setTransportationQuantity,
   setWar,
 };
 

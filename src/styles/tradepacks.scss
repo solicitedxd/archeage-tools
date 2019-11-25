@@ -143,6 +143,16 @@ $Cargo: #FF4053;
   }
 }
 
+.transport {
+  .quantity {
+    width: 50px;
+
+    input {
+      text-align: right;
+    }
+  }
+}
+
 .sell-config {
   display: flex;
   justify-content: space-between;

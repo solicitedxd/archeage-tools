@@ -16,5 +16,6 @@ export default {
   quantities: {},
   showInterest: true,
   supply: {},
+  transportationQty: {},
   war: {},
 };
