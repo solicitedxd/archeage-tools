@@ -8,6 +8,7 @@ import { connect } from 'react-redux';
 import {
   AppBar,
   Checkbox,
+  Collapse,
   Dialog,
   FormControl,
   FormControlLabel,
@@ -28,7 +29,10 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import {
+  Close,
+  ExpandMore,
+} from '@material-ui/icons';
 import { pathOr } from 'ramda';
 import {
   setCraftLarder,
@@ -93,7 +97,11 @@ class PackViewer extends Component {
   };
 
   state = {
-    craftLarder: false,
+    transportExpand: false,
+  };
+
+  setTransportExpand = (transportExpand) => {
+    this.setState({ transportExpand });
   };
 
   getLaborCost = (cost, proficiency) => {
@@ -104,6 +112,7 @@ class PackViewer extends Component {
 
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
+    const { transportExpand } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
     const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
 
@@ -277,6 +286,7 @@ class PackViewer extends Component {
               <Checkbox
                 checked={degradeDemand}
                 onChange={setDegradation}
+                color="primary"
               />
             </Tooltip>
           </div>
@@ -333,6 +343,7 @@ class PackViewer extends Component {
                     <Checkbox
                       checked={craftLarder}
                       onChange={setCraftLarder}
+                      color="primary"
                     />}
                   </TableCell>}
                   <TableCell align="right">
@@ -381,78 +392,87 @@ class PackViewer extends Component {
           </Table>}
           {sellZone !== CARGO &&
           <React.Fragment>
-            <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
-              Transporting to {sellZone}
-            </Typography>
-            <div className="transport">
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      Fuel Item
-                    </TableCell>
-                    <TableCell>
-                      Gold per unit
-                    </TableCell>
-                    <TableCell>
-                      Quantity
-                    </TableCell>
-                    <TableCell>
-                      Total Cost
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {TRANSPORTATION_FUEL.map((item, i) => (
-                    <TableRow key={`transportation-${item.name}-${i}`}>
+            <div className="pack-header">
+              <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
+                Transporting to {sellZone}
+              </Typography>
+              <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
+                <ExpandMore
+                  className={transportExpand ? 'collapsed' : 'expanded'}
+                />
+              </IconButton>
+            </div>
+            <Collapse in={transportExpand}>
+              <div className="transport">
+                <Table size="small">
+                  <TableHead>
+                    <TableRow>
                       <TableCell>
-                        <ItemLink item={item} />
+                        Fuel Item
                       </TableCell>
-                      <TableCell align="right">
-                        <Input
-                          id={`transp-mat-cost-${item.name}`}
-                          value={prices[item.name] || 0}
-                          onChange={setPrice(item.name)}
-                          type="number"
-                          inputProps={{
-                            style: { textAlign: 'right', width: 120 },
-                            min: 0,
-                            max: 10000,
-                            step: 0.0001,
-                          }}
-                          endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                        />
+                      <TableCell>
+                        Gold per unit
                       </TableCell>
-                      <TableCell align="right">
-                        <TextField
-                          id={`transp-mat-qty-${item.name}`}
-                          hiddenLabel
-                          type="number"
-                          margin="none"
-                          InputProps={{
-                            min: 0,
-                            max: 99,
-                          }}
-                          className="quantity"
-                          value={pathOr(0, [originZone, sellZone, item.name])(transportationQty)}
-                          onChange={setTransportationQuantity(originZone, sellZone, item.name)}
-                        />
+                      <TableCell>
+                        Quantity
                       </TableCell>
-                      <TableCell align="right">
-                        <Currency type={REWARD.COIN} count={transportCosts[item.name]} />
+                      <TableCell>
+                        Total Cost
                       </TableCell>
                     </TableRow>
-                  ))}
-                  <TableRow>
-                    <TableCell colSpan={2} />
-                    <TableCell>Total Cost</TableCell>
-                    <TableCell align="right">
-                      <Currency type={REWARD.COIN} count={transportTotal} />
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </div>
+                  </TableHead>
+                  <TableBody>
+                    {TRANSPORTATION_FUEL.map((item, i) => (
+                      <TableRow key={`transportation-${item.name}-${i}`}>
+                        <TableCell>
+                          <ItemLink item={item} />
+                        </TableCell>
+                        <TableCell align="right">
+                          <Input
+                            id={`transp-mat-cost-${item.name}`}
+                            value={prices[item.name] || 0}
+                            onChange={setPrice(item.name)}
+                            type="number"
+                            inputProps={{
+                              style: { textAlign: 'right', width: 120 },
+                              min: 0,
+                              max: 10000,
+                              step: 0.0001,
+                            }}
+                            endAdornment={<InputAdornment position="end">g</InputAdornment>}
+                          />
+                        </TableCell>
+                        <TableCell align="right">
+                          <TextField
+                            id={`transp-mat-qty-${item.name}`}
+                            hiddenLabel
+                            type="number"
+                            margin="none"
+                            InputProps={{
+                              min: 0,
+                              max: 99,
+                            }}
+                            className="quantity"
+                            value={pathOr(0, [originZone, sellZone, item.name])(transportationQty)}
+                            onChange={setTransportationQuantity(originZone, sellZone, item.name)}
+                          />
+                        </TableCell>
+                        <TableCell align="right">
+                          <Currency type={REWARD.COIN} count={transportCosts[item.name]} />
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                    <TableRow>
+                      <TableCell colSpan={2} />
+                      <TableCell>Total Cost</TableCell>
+                      <TableCell align="right">
+                        <Currency type={REWARD.COIN} count={transportTotal} />
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </div>
+            </Collapse>
           </React.Fragment>
           }
           {sellZone === CARGO &&
@@ -543,6 +563,7 @@ class PackViewer extends Component {
                   <Checkbox
                     checked={war[sellZone] || false}
                     onChange={setWar(sellZone)}
+                    color="primary"
                   />
                 }
                 label="Zone in War (+15%)"
@@ -554,6 +575,7 @@ class PackViewer extends Component {
                       <Checkbox
                         checked={showInterest}
                         onChange={setInterest}
+                        color="primary"
                       />
                     }
                     label="Interest (+2%)"
@@ -564,6 +586,7 @@ class PackViewer extends Component {
                     <Checkbox
                       checked={showInterest}
                       onChange={setInterest}
+                      color="primary"
                     />
                   }
                   label="Interest (+2%)"

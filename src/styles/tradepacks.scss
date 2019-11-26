@@ -138,6 +138,20 @@ $Cargo: #FF4053;
     }
   }
 
+  .collapse-btn {
+    .collapsed, .expanded {
+      -webkit-transition: -webkit-transform .3s ease-in-out;
+      -ms-transition: -ms-transform .3s ease-in-out;
+      transition: transform .3s ease-in-out;
+    }
+
+    .collapsed {
+      transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+      -webkit-transform: rotate(180deg);
+    }
+  }
+
   .MuiCheckbox-root {
     padding: 4px;
   }
