@@ -206,8 +206,8 @@ const sections = [
         description="Marian receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Marian consumes all stacks to heal herself."
         counters={[
-          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> to steal high stacks of
-            Infinite Passion.</React.Fragment>,
+          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
+            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</React.Fragment>,
         ]}
       />,
       <Typography variant="h6">Strategy</Typography>,
@@ -284,8 +284,8 @@ const sections = [
         description="Mahra receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Mahra consumes all stacks to heal herself."
         counters={[
-          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> to steal high stacks of
-            Infinite Passion.</React.Fragment>,
+          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
+            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</React.Fragment>,
         ]}
       />,
       <Ability
