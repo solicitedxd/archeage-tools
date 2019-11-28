@@ -682,13 +682,6 @@ export default Object.freeze({
           [ZONE.YNYSTERE]: 22.0972,
         },
       },
-      [PACK_TYPE.BLUE_SALT]: {
-        sell: {
-          [ZONE.SOLIS_HEADLANDS]: 97.6775,
-          [ZONE.VILLANELLE]: 97.6174,
-          [ZONE.YNYSTERE]: 97.2148,
-        },
-      },
       [PACK_TYPE.SPECIAL]: {
         name: 'Rookborne Hide Rug',
         materials: [{ item: ITEM.YETIS_PELT, count: 1 }, { item: ITEM.LEATHER, count: 100 }],
@@ -819,6 +812,13 @@ export default Object.freeze({
           [ZONE.SOLIS_HEADLANDS]: 28.7134,
           [ZONE.VILLANELLE]: 26.8066,
           [ZONE.YNYSTERE]: 29.3822,
+        },
+      },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.SOLIS_HEADLANDS]: 97.6775,
+          [ZONE.VILLANELLE]: 97.6174,
+          [ZONE.YNYSTERE]: 97.2148,
         },
       },
       [PACK_TYPE.ANTIQUITIES]: {

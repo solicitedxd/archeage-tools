@@ -317,17 +317,20 @@ class TradePacks extends Component {
                             {displayValue}
                           </TableCell>
                         );
-                        if (pack.name) {
-                          return (
-                            <Tooltip
-                              title={<Typography variant="caption">{pack.name}</Typography>}
-                              key={`pack-${zone}-${packType}`}
-                            >
-                              {cell}
-                            </Tooltip>
-                          );
-                        }
-                        return cell;
+                        return (
+                          <Tooltip
+                            title={(
+                              <Typography variant="caption">
+                                Customize {continent !== CARGO ? `${pack.name || `${zone} ${packType}`} -> ${sellZone}`
+                                : `${zone}n Cargo -> ${packType}`}
+                              </Typography>
+                            )}
+                            key={`pack-${zone}-${packType}`}
+                            classes={{ tooltip: "MuiTooltip-tooltip nowrap" }}
+                          >
+                            {cell}
+                          </Tooltip>
+                        );
                       })}
                     </TableRow>
                   );

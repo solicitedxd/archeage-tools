@@ -9,6 +9,10 @@
   }
 }
 
+.MuiTooltip-tooltip.nowrap {
+  max-width: none;
+}
+
 $Commercial: #FF9255;
 $Luxury: #D275FF;
 $Fine: #3887FF;
