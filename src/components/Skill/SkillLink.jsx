@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import {
   bool,
-  string,
   oneOf,
+  string,
 } from 'react-proptypes';
 import { Link } from '@material-ui/core';
+import SkillTooltip from 'components/Skill/SkillTooltip';
 import { ELEMENT } from 'constants/skills';
 import SKILLSET from 'data/skillsets';
 import Skill from './Skill';
@@ -37,35 +38,34 @@ class SkillLink extends Component {
         <Link>
           Invalid Ability
         </Link>
-      )
+      );
     }
     const slot = skills.indexOf(skill);
     const ancestral = element !== ELEMENT.BASIC && skillSet.ancestrals.find(anc => anc.skillId === slot).variants.find(anc => anc.element === element);
 
     return (
-      <Link
-        data-points-req={0}
-        data-skill={true}
-        data-skillset={skillset.toUpperCase()}
-        data-skill-id={slot}
-        data-passive={passive}
-        data-disabled={false}
-        data-spent-points={5}
-        data-element={element}
-        className="inline-link"
+      <SkillTooltip
+        skillset={skillset.toUpperCase()}
+        skillId={slot}
+        passive={passive}
+        element={element}
+        spentPoints={5}
       >
-        <Skill
-          {...skill}
-          {...ancestral || {}}
-          slot={slot}
-          skillset={skillset.toUpperCase()}
-          passive={passive}
-          element={element}
-          learned
-          className="inline"
-        />
-        {element !== ELEMENT.BASIC ? `[${element}] ` : ''}{skill.name}
-      </Link>
+        <Link className="inline-link">
+          <Skill
+            {...skill}
+            {...ancestral || {}}
+            slot={slot}
+            skillset={skillset.toUpperCase()}
+            passive={passive}
+            element={element}
+            learned
+            disableTooltip
+            className="inline"
+          />
+          {element !== ELEMENT.BASIC ? `[${element}] ` : ''}{skill.name}
+        </Link>
+      </SkillTooltip>
     );
   }
 }

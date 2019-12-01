@@ -1,6 +1,12 @@
 import React from 'react';
-import ReactHintFactory from 'react-hint';
-import { Typography } from '@material-ui/core';
+import {
+  bool,
+  string,
+} from 'react-proptypes';
+import {
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
 import cn from 'classnames';
 import ITEMS from 'data/items';
 import Currency from 'components/Currency';
@@ -9,11 +15,7 @@ import {
   REWARD,
 } from 'constants/dailies';
 
-const ReactHint = ReactHintFactory(React);
-
-const renderItemTooltip = (target) => {
-  const { itemName } = target.dataset;
-
+const TooltipContent = ({ itemName }) => {
   const item = Object.values(ITEMS).find((item) => item.name === itemName);
   // validate item exists
   if (!item) {
@@ -47,7 +49,7 @@ const renderItemTooltip = (target) => {
   } = item;
 
   return (
-    <div>
+    <React.Fragment>
       <section className="header" data-quality={quality}>
         <div className={cn('item-icon', 'icon', { 'unidentified': unidentified, 'quest': questStarter })}>
           <img src={icon} alt="" />
@@ -105,18 +107,43 @@ const renderItemTooltip = (target) => {
           <div className="shop-price"><p>Shop Price:</p> <Currency type={REWARD.COIN} count={price} /></div> :
           <p className="no-sell">Cannot Sell</p>}
       </section>
-    </div>
+    </React.Fragment>
   );
 };
 
-const ItemTooltip = () => (
-  <ReactHint
-    attribute="data-item"
-    className="archeage-tooltip"
-    events
-    onRenderContent={renderItemTooltip}
-    autoPosition
-  />
-);
+const ItemTooltip = ({ children, itemName, disabled }) => {
+  if (disabled) {
+    return children;
+  }
+  return (
+    <Tooltip
+      title={<TooltipContent itemName={itemName} />}
+      classes={{ tooltip: 'archeage-tooltip' }}
+      PopperProps={{
+        placement: 'right-start',
+        modifiers: {
+          flip: {
+            boundariesElement: 'viewport',
+          },
+          preventOverflow: {
+            boundariesElement: 'viewport',
+          },
+        },
+      }}
+      id={itemName}
+    >
+      {children}
+    </Tooltip>
+  );
+};
+
+ItemTooltip.propTypes = {
+  itemName: string.isRequired,
+  disabled: bool,
+};
+
+ItemTooltip.defaultProps = {
+  disabled: false,
+};
 
 export default ItemTooltip;

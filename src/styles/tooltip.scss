@@ -1,9 +1,7 @@
 /**
  Tooltips
  */
-.archeage-tooltip {
-  position: absolute;
-  z-index: 9999;
+.MuiTooltip-tooltip.archeage-tooltip {
   font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
   width: 216px;
   background: rgba(82, 80, 63, 0.95);
@@ -12,7 +10,6 @@
   border-radius: 3px;
   line-height: 1.2;
   font-size: 14px;
-  margin: 3px 5px;
 
   &.spell-tooltip {
     width: 262px;

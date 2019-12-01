@@ -6,6 +6,7 @@ import {
   string,
 } from 'react-proptypes';
 import cn from 'classnames';
+import ItemTooltip from 'components/Item/ItemTooltip';
 import { QUALITY } from 'constants/dailies';
 
 class Item extends Component {
@@ -20,6 +21,7 @@ class Item extends Component {
     count: number,
     unidentified: bool,
     className: string,
+    tooltipDisabled: bool,
   };
 
   static defaultProps = {
@@ -31,17 +33,20 @@ class Item extends Component {
     count: 1,
     unidentified: false,
     className: '',
+    tooltipDisabled: false,
   };
 
   render() {
-    const { name, icon, quality, count, unidentified, className } = this.props;
+    const { name, icon, quality, count, unidentified, className, tooltipDisabled } = this.props;
     return (
-      <span data-quality={quality} className={className}>
-        <span className={cn('item-icon', { 'unidentified': unidentified })} data-item={true} data-item-name={name}>
-          <img src={icon} alt={name} />
-          <span className="count">{count}</span>
+      <ItemTooltip itemName={name} disabled={tooltipDisabled}>
+        <span data-quality={quality} className={className}>
+          <span className={cn('item-icon', { 'unidentified': unidentified })}>
+            <img src={icon} alt={name} />
+            <span className="count">{count}</span>
+          </span>
         </span>
-      </span>
+      </ItemTooltip>
     );
   }
 }

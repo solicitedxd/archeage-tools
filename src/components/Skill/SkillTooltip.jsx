@@ -1,31 +1,30 @@
 import React from 'react';
-import ReactHintFactory from 'react-hint';
+import {
+  bool,
+  number,
+  oneOf,
+} from 'react-proptypes';
 import cn from 'classnames';
-import { Typography } from '@material-ui/core';
+import {
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
 import {
   ELEMENT,
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import EffectIcon from 'components/Skill/EffectIcon';
+import SKILLSET from 'data/skillsets';
 import {
   applyTooltipColor,
   deepCopy,
   getPointReq,
   prepareComboText,
 } from 'utils/skills';
-import EffectIcon from 'components/Skill/EffectIcon';
-import SKILLSET from 'data/skillsets';
 import { substitute } from 'utils/string';
 
-const ReactHint = ReactHintFactory(React);
-
-const renderSkillTooltip = (target) => {
-  let { skillset, skillId, passive, element, disabled, spentPoints } = target.dataset;
-  skillId = Number(skillId);
-  passive = passive === 'true';
-  disabled = disabled === 'true';
-  spentPoints = Number(spentPoints);
-
+const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPoints }) => {
   const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset);
   if (!skillSetKey) return;
 
@@ -253,14 +252,48 @@ const renderSkillTooltip = (target) => {
   );
 };
 
-const SkillTooltip = () => (
-  <ReactHint
-    attribute="data-skill"
-    className="archeage-tooltip spell-tooltip"
-    events
-    onRenderContent={renderSkillTooltip}
-    autoPosition
-  />
-);
+const SkillTooltip = ({ children, disableTooltip, ...tooltipProps }) => {
+  if (disableTooltip) {
+    return children;
+  }
+  return (
+    <Tooltip
+      title={<TooltipContent {...tooltipProps} />}
+      classes={{ tooltip: 'archeage-tooltip spell-tooltip' }}
+      PopperProps={{
+        placement: 'right-start',
+        modifiers: {
+          flip: {
+            boundariesElement: 'viewport',
+          },
+          preventOverflow: {
+            boundariesElement: 'viewport',
+          },
+        },
+      }}
+      id={`${tooltipProps.skillset}-${tooltipProps.skillId}`}
+    >
+      {children}
+    </Tooltip>
+  );
+};
+
+SkillTooltip.propTypes = {
+  skillset: oneOf(Object.keys(SKILLSET)).isRequired,
+  skillId: number.isRequired,
+  passive: bool,
+  element: oneOf(Object.values(ELEMENT)),
+  disabled: bool,
+  spentPoints: number,
+  disableTooltip: bool,
+};
+
+SkillTooltip.defaultProps = {
+  passive: false,
+  element: ELEMENT.BASIC,
+  disabled: false,
+  spentPoints: 0,
+  disableTooltip: false,
+};
 
 export default SkillTooltip;

@@ -7,8 +7,9 @@ import {
   string,
 } from 'react-proptypes';
 import cn from 'classnames';
-import { getPointReq } from 'utils/skills';
+import SkillTooltip from 'components/Skill/SkillTooltip';
 import { ELEMENT } from 'constants/skills';
+import { getPointReq } from 'utils/skills';
 
 class Skill extends Component {
   static propTypes = {
@@ -24,6 +25,7 @@ class Skill extends Component {
     element: oneOf(Object.values(ELEMENT)),
     noRequirement: bool,
     className: string,
+    disableTooltip: bool,
   };
 
   static defaultProps = {
@@ -38,31 +40,35 @@ class Skill extends Component {
     element: ELEMENT.BASIC,
     noRequirement: false,
     className: '',
+    disableTooltip: false,
   };
 
   state = {};
 
   render() {
-    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, ancestral, noRequirement, element, className } = this.props;
+    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, ancestral, noRequirement, element, className, disableTooltip } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
     const disabled = passive ? !learned
       : !learned && !ancestral && (spentPoints < pointsRequired || remainingPoints === 0);
 
     return (
-      <span
-        className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
-        onClick={disabled ? null : onClick}
-        data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
-        data-skill={true}
-        data-skillset={skillset}
-        data-skill-id={slot}
-        data-passive={passive}
-        data-disabled={disabled && spentPoints < pointsRequired}
-        data-spent-points={spentPoints}
-        data-element={element}
+      <SkillTooltip
+        skillset={skillset}
+        skillId={slot}
+        passive={passive}
+        disabled={disabled && spentPoints < pointsRequired}
+        spentPoints={spentPoints}
+        element={element}
+        disableTooltip={disableTooltip}
       >
-        <img src={icon} alt="" />
-      </span>
+        <span
+          className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
+          onClick={disabled ? null : onClick}
+          data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
+        >
+          <img src={icon} alt="" />
+        </span>
+      </SkillTooltip>
     );
   }
 }

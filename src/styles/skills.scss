@@ -11,6 +11,9 @@
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 
   &.mobile .skill-tree {
     width: 100%;
@@ -309,6 +312,9 @@
 
 .skill-combos {
   margin-top: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 
   .combos-list {
     display: flex;

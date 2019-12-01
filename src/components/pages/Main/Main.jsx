@@ -37,8 +37,6 @@ import {
 } from 'actions/display';
 import { clearNotification } from 'actions/notification';
 import CascadingMenu from 'components/CascadingMenu';
-import ItemTooltip from 'components/Item/ItemTooltip';
-import SkillTooltip from 'components/Skill/SkillTooltip';
 import navigation from 'constants/navigation';
 import { getNavId } from 'utils/string';
 import 'styles/index';
@@ -301,8 +299,6 @@ class Main extends React.PureComponent {
               </IconButton>,
             ]}
           />
-          <ItemTooltip />
-          <SkillTooltip />
         </div>
       </ThemeProvider>
     );

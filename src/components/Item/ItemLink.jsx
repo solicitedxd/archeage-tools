@@ -6,6 +6,7 @@ import {
 } from 'react-proptypes';
 import { Link } from '@material-ui/core';
 import Item from 'components/Item/Item';
+import ItemTooltip from 'components/Item/ItemTooltip';
 
 class ItemLink extends Component {
   static propTypes = {
@@ -27,15 +28,13 @@ class ItemLink extends Component {
     const { item, plural, count, style } = this.props;
 
     return (
-      <Link
-        data-item={true}
-        data-item-name={item.name}
-        className="inline-link"
-        style={style}
-      >
-        <Item {...item} className="inline" />
-        {count !== 1 ? `${count} ` : ''}{item.name}{count !== 1 || plural !== null ? (plural != null ? plural : 's') : ''}
-      </Link>
+      <ItemTooltip itemName={item.name}>
+        <Link className="inline-link" style={style}>
+          <Item {...item} className="inline" tooltipDisabled />
+          {count !== 1 ? `${count} ` : ''}{item.name}{count !== 1 || plural !== null ? (plural != null ? plural : 's')
+          : ''}
+        </Link>
+      </ItemTooltip>
     );
   }
 }

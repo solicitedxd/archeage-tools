@@ -333,7 +333,7 @@ export const ancestrals = Object.freeze([
         icon: RedoubtLife,
         range: [0, 10],
         effects: [BUFF.REDOUBT_LIFE],
-        description: 'Raises a shield around the caster and a chosen ally for #5sec%. Decreases Move Speed #-10%#.\r' +
+        description: 'Raises a shield around the caster and a chosen ally for #5sec#. Decreases Move Speed #-10%#.\r' +
           'Grants Immunity to Stun, Impale, Trip, Snare, Slow, Shackle, and Dive Trap.\r' +
           'Stacks a Mettle per damage received.\r' +
           'Must equip a shield.\r' +

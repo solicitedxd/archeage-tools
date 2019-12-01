@@ -326,7 +326,7 @@ class TradePacks extends Component {
                               </Typography>
                             )}
                             key={`pack-${zone}-${packType}`}
-                            classes={{ tooltip: "MuiTooltip-tooltip nowrap" }}
+                            classes={{ tooltip: 'nowrap' }}
                           >
                             {cell}
                           </Tooltip>
