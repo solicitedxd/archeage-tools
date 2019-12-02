@@ -66,6 +66,7 @@ import MistmerrowMap from 'images/maps/instance/Mistmerrow.png';
 import MistmerrowKadumMap from 'images/maps/instance/Mistmerrow_Kadum.png';
 import GoldenPlainsBattleMap from 'images/maps/instance/Golden Plains Battle.png';
 import MirageIsleMap from 'images/maps/Mirage Isle.png';
+import MistsongSummitMap from 'images/maps/instance/Mistsong Summit.png';
 
 export const ZONE = Object.freeze({
   ARCUM_IRIS: 'Arcum Iris',
@@ -152,6 +153,7 @@ export const ZONE = Object.freeze({
   MISTMERROW: 'Mistmerrow',
   MISTMERROW_KADUM: 'Mistmerrow (Kadum)',
   GOLDEN_PLAINS: 'Golden Plains Battle',
+  MISTSONG_SUMMIT: 'Mistsong Summit',
 
   MIRAGE_ISLE: 'Mirage Isle',
 });
@@ -225,4 +227,5 @@ export const getMapImage = (zone) => ({
   [ZONE.MISTMERROW_KADUM]: MistmerrowKadumMap,
   [ZONE.GOLDEN_PLAINS]: GoldenPlainsBattleMap,
   [ZONE.MIRAGE_ISLE]: MirageIsleMap,
+  [ZONE.MISTSONG_SUMMIT]: MistsongSummitMap,
 })[zone];

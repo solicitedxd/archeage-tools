@@ -120,15 +120,23 @@ import CentaursTailIcon from 'images/item/centaur_tail.png';
 import SharkFinIcon from 'images/item/shark_fin.png';
 import CorpseFluidIcon from 'images/item/drowned_corpse_fluid.png';
 import MinotaurHornIcon from 'images/item/minotaur_horn.png';
+import RedtalonHelmIcon from 'images/item/redtalon_helm.png';
+import RedtalonArmorIcon from 'images/item/redtalon_armor.png';
+import RedtalonSaddleIcon from 'images/item/redtalon_saddle.png';
+import RedtalonLegguardsIcon from 'images/item/redtalon_legguards.png';
+import LabyrinthValuablesChestIcon from 'images/item/labyrinth_valuables_chest.png';
+import CarmilasMemoryIcon from 'images/item/carmilas_memory.png';
+import SunsetPortalstoneIcon from 'images/item/sunset_portalstone.png';
+import SupDoomshadowNodachiIcon from 'images/item/superior_doomshadow_nodachi.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
 const Blue = ({ children }) => <span className="tt-blue">{children}</span>;
 const Yellow = ({ children }) => <span className="tt-yellow">{children}</span>;
 const Orange = ({ children }) => <span className="tt-orange">{children}</span>;
-const Use = ({ children, title = 'Use' }) => (
+const Use = ({ children, title = 'Use:' }) => (
   <React.Fragment>
-    <span className="tt-use">{title}:</span>
+    <span className="tt-use">{title}</span>
     {children && <Green>{children}</Green>}
   </React.Fragment>
 );
@@ -1313,7 +1321,7 @@ export default Object.freeze({
     durability: 15,
     description: <span>
       <Use title="Combo Effect">Triggers the <Orange>Spiritual Focus Rank 1</Orange> if attacked in the Noryette Challenge.</Use><br /><br />
-      <Use title="Equip Effect">Decreases <Blue>PvE Received Damage</Blue> <Orange>-2.0%</Orange>.</Use>
+      <Use title="Equip effect">Decreases <Blue>PvE Received Damage</Blue> <Orange>-2.0%</Orange>.</Use>
     </span>,
   },
   NORYETTE_RING: {
@@ -1795,5 +1803,168 @@ export default Object.freeze({
       Used for crafting specialties.
     </span>,
     price: 1500,
+  },
+  REDTALON_HELM: {
+    name: 'Redtalon Helm',
+    icon: RedtalonHelmIcon,
+    type: 'Pet Gear',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    petLevel: 50,
+    durability: 85,
+    slot: 'Head',
+    stats: {
+      'Physical Defense': 550,
+      'Magic Defense': 550,
+    },
+    tempering: true,
+    sockets: 5,
+    description: <span>A protective helm for mounts and battle pets.</span>,
+    additionalEffect: <span>
+      Physical Defense +418<br />
+      Continuous Health Regen +17<br />
+      Post-Cast Mana Regen +14
+    </span>,
+    price: 2888,
+  },
+  REDTALON_ARMOR: {
+    name: 'Redtalon Armor',
+    icon: RedtalonArmorIcon,
+    type: 'Pet Gear',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    petLevel: 50,
+    durability: 140,
+    slot: 'Chest',
+    stats: {
+      'Physical Defense': 917,
+      'Magic Defense': 917,
+    },
+    tempering: true,
+    sockets: 6,
+    description: <span>Protects a <Orange>battle pet's</Orange> body and increases its critical attacks.</span>,
+    additionalEffect: <span>
+      Max Health +2100<br />
+      Max Mana +1380<br />
+      Melee Critical Rate +8.8%<br />
+      Ranged Critical Rate +8.8%<br />
+      Magic Critical Rate +8.8%
+    </span>,
+    price: 4125,
+  },
+  REDTALON_SADDLE: {
+    name: 'Redtalon Saddle',
+    icon: RedtalonSaddleIcon,
+    type: 'Pet Gear',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    petLevel: 50,
+    durability: 25,
+    slot: 'Chest',
+    stats: {
+      'Physical Defense': 183,
+      'Magic Defense': 183,
+    },
+    tempering: true,
+    sockets: 3,
+    description: <span>A special saddle for increased riding stability. It can only be equipped on mounts.</span>,
+    additionalEffect: <span>
+      Max Health +1750<br />
+      Max Mana +1150<br />
+      Move Speed +3.0%
+    </span>,
+    price: 825,
+  },
+  REDTALON_LEGGUARDS: {
+    name: 'Redtalon Legguards',
+    icon: RedtalonLegguardsIcon,
+    type: 'Pet Gear',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    petLevel: 50,
+    durability: 55,
+    slot: 'Feet',
+    stats: {
+      'Physical Defense': 367,
+      'Magic Defense': 367,
+    },
+    tempering: true,
+    sockets: 4,
+    description: <span>Protection for the legs of mounts and battle pets.</span>,
+    additionalEffect: <span>
+      Move Speed +11.0%<br />
+      Evasion +8.8%
+    </span>,
+    price: 2063,
+  },
+  LABYRINTH_VALUABLES_CHEST: {
+    name: 'Labyrinth Valuables Chest',
+    icon: LabyrinthValuablesChestIcon,
+    type: 'Other',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    description: <span>
+      This chest is rife with the dark energy of Serpentis. Though foreboding, it is extremely powerful.<br /><br />
+      <Use>Open the box.</Use>
+    </span>,
+    price: 250,
+  },
+  CARMILAS_MEMORY: {
+    name: 'Carmila\'s Memory',
+    icon: CarmilasMemoryIcon,
+    type: 'Earring',
+    quality: QUALITY.ARCANE,
+    reqLevel: 50,
+    bindsOnPickup: true,
+    stats: {
+      Spirit: 17,
+    },
+    salvageable: true,
+    description: <Use title="Equip effect">Increases the effectiveness of healing skills +<Orange>2%</Orange>.</Use>,
+    price: 618,
+  },
+  SUNSET_PORTALSTONE: {
+    name: 'Sunset Portalstone',
+    icon: SunsetPortalstoneIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    bindsOnPickup: true,
+    description: <span>
+      A rare, sunset-colored stone occasionally discovered in dungeons. Its unique properties can create or strengthen
+      various gear.<br />
+      Obtained in <Blue>Mistsong Summit.</Blue>
+    </span>,
+    price: 1485,
+  },
+  SUPERIOR_DOOMSHADOW_NODACHI: {
+    name: 'Superior Doomshadow Nodachi',
+    icon: SupDoomshadowNodachiIcon,
+    type: 'Nodachi',
+    quality: QUALITY.RARE,
+    reqLevel: 53,
+    bindsOnPickup: true,
+    synthesisXP: 7580,
+    slot: '2H Weapon',
+    attackSpeed: 2.0,
+    durability: 163,
+    weaponType: 'Slashing',
+    dps: '401.2 (722 - 883)',
+    stats: {
+      Strength: 56,
+      Agility: 42,
+    },
+    sockets: 6,
+    description: <span>
+      <Use>
+        Increase Melee Attack <Orange>+5%</Orange> and Attack Speed <Orange>+111</Orange> for <Orange>12 sec</Orange>,
+        but decreases Physical Defense <Orange>-5%</Orange>.<br />
+        Cooldown: <Orange>45 sec.</Orange><br />
+        <Yellow>Shares a cooldown with other Dungeon items.</Yellow>
+      </Use><br /><br />
+      <Use title="Equip effect">
+        Activates <Orange>Dimensional Destroyer</Orange> in <Orange>Lv50+</Orange> dungeons.
+      </Use>
+    </span>,
+    price: 9055,
   },
 });

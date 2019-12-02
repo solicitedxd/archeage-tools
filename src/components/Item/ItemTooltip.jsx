@@ -34,6 +34,7 @@ const TooltipContent = ({ itemName }) => {
     questStarter,
     remainingTime,
     reqLevel,
+    petLevel,
     synthesisGrade,
     synthesisXP,
     durability,
@@ -46,6 +47,8 @@ const TooltipContent = ({ itemName }) => {
     dps,
     magicAttack,
     healingPower,
+    stats,
+    additionalEffect,
   } = item;
 
   return (
@@ -61,9 +64,10 @@ const TooltipContent = ({ itemName }) => {
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
       </section>
-      {(bindsOnPickup || remainingTime || reqLevel) &&
+      {(bindsOnPickup || remainingTime || reqLevel || petLevel) &&
       <section>
         {reqLevel && <p>Req. Level:{reqLevel} ~ <span className="ances-level">55</span></p>}
+        {petLevel && <p>Pet Level:{petLevel} ~ 55</p>}
         {bindsOnPickup && <p>Binds on Pickup</p>}
         {remainingTime && <p className="tt-orange">Rem. Time: {remainingTime}</p>}
       </section>}
@@ -78,11 +82,14 @@ const TooltipContent = ({ itemName }) => {
         {durability && <p><span className="tt-gray">Dura</span> {durability}/{durability}</p>}
         {weaponType && <p><span className="tt-gray">{weaponType}</span> Weapon Type</p>}
       </section>}
-      {(dps || magicAttack || healingPower) &&
+      {(dps || magicAttack || healingPower || stats) &&
       <section>
         {dps && <p><span className="tt-gray">DPS</span> {dps}</p>}
         {magicAttack && <p><span className="tt-gray">Magic Attack</span> +{magicAttack}</p>}
         {healingPower && <p><span className="tt-gray">Healing Power</span> +{healingPower}</p>}
+        {Object.entries(stats).map(([name, value]) => (
+          <p key={name}><span className="tt-gray">{name}</span> {value}</p>
+        ))}
       </section>}
       {(maxGrade || synthesisGrade || tempering || salvageable) &&
       <section>
@@ -98,6 +105,11 @@ const TooltipContent = ({ itemName }) => {
         </React.Fragment>}
         {tempering && <p>Tempering Available</p>}
         {salvageable && <p>Mag Salvageable</p>}
+      </section>}
+      {additionalEffect &&
+      <section>
+        <p>Additional Effect</p>
+        <p className="tt-dgreen">{additionalEffect}</p>
       </section>}
       <section>
         <p>{description}</p>

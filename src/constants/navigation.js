@@ -21,6 +21,12 @@ export default [
         ],
       },
       {
+        name: 'Dungeons', children: [
+          { name: 'Serpentis', path: '/guides/serpentis' },
+          { name: 'Mistsong Summit', path: '/guides/mistsong-summit' },
+        ],
+      },
+      {
         name: 'World Bosses', children: [
           { name: 'Hounds and Nightmares', path: '/guides/hounds-and-nightmares' },
           { name: 'Meina & Glenn', path: '/guides/meina-and-glenn' },

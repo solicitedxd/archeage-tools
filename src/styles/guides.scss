@@ -16,8 +16,12 @@
       margin-top: 16px;
     }
 
-    .MuiTypography-h6 {
+    .MuiTypography-h5:not(:first-child), h6:not(:first-child) {
       margin-top: 12px;
+    }
+
+    h6 + h6:not(:first-child) {
+      margin-top: 0;
     }
 
     .MuiTypography-subtitle2 {
