@@ -93,7 +93,7 @@ class TreeCard extends Component {
           <Typography variant="subtitle2">{completeTimer}</Typography>
         </div>
         <div className="tree-delete">
-          <Tooltip title={'Delete this timer.'}>
+          <Tooltip title="Delete this timer.">
             <IconButton onClick={onDelete}>
               <Delete />
             </IconButton>

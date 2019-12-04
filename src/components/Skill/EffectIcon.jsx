@@ -4,10 +4,7 @@ import {
   string,
 } from 'react-proptypes';
 import cn from 'classnames';
-import {
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
+import { Tooltip } from '@material-ui/core';
 
 class EffectIcon extends Component {
   static propTypes = {
@@ -29,13 +26,7 @@ class EffectIcon extends Component {
     const { icon, name, negative, className, tooltip } = this.props;
     return (
       <div className={cn('effect-icon', { 'debuff': negative }, className)}>
-        <Tooltip
-          title={
-            <React.Fragment>
-              <Typography variant="caption" dangerouslySetInnerHTML={{ __html: tooltip || name }} />
-            </React.Fragment>
-          }
-        >
+        <Tooltip title={<div dangerouslySetInnerHTML={{ __html: tooltip || name }} />}>
           <img src={icon} alt="" />
         </Tooltip>
       </div>

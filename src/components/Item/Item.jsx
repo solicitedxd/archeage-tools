@@ -20,6 +20,7 @@ class Item extends Component {
     bindsOnPickup: bool,
     count: number,
     unidentified: bool,
+    questStarter: bool,
     className: string,
     tooltipDisabled: bool,
   };
@@ -32,16 +33,17 @@ class Item extends Component {
     bindsOnPickup: false,
     count: 1,
     unidentified: false,
+    questStarter: false,
     className: '',
     tooltipDisabled: false,
   };
 
   render() {
-    const { name, icon, quality, count, unidentified, className, tooltipDisabled } = this.props;
+    const { name, icon, quality, count, unidentified, questStarter, className, tooltipDisabled } = this.props;
     return (
       <ItemTooltip itemName={name} disabled={tooltipDisabled}>
         <span data-quality={quality} className={className}>
-          <span className={cn('item-icon', { 'unidentified': unidentified })}>
+          <span className={cn('item-icon', { 'unidentified': unidentified, 'quest': questStarter })}>
             <img src={icon} alt={name} />
             <span className="count">{count}</span>
           </span>

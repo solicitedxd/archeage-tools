@@ -198,6 +198,7 @@ const sections = [
         description=""
       />,
       <Typography variant="h6">Tactics</Typography>,
+      'Work in progress',
       <Typography variant="h6">Difficulty Differences</Typography>,
     ],
   },

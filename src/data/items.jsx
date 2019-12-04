@@ -128,6 +128,12 @@ import LabyrinthValuablesChestIcon from 'images/item/labyrinth_valuables_chest.p
 import CarmilasMemoryIcon from 'images/item/carmilas_memory.png';
 import SunsetPortalstoneIcon from 'images/item/sunset_portalstone.png';
 import SupDoomshadowNodachiIcon from 'images/item/superior_doomshadow_nodachi.png';
+import SunpointIcon from 'images/item/sunpoint.png';
+import MoonpointIcon from 'images/item/moonpoint.png';
+import StarpointIcon from 'images/item/starpoint.png';
+import SunglowLunagemIcon from 'images/item/sunglow_lunagem.png';
+import DerangedSpiritIcon from 'images/item/deranged_spirit.png';
+import MysteriousGemIcon from 'images/item/mysterious_gem.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -1966,5 +1972,75 @@ export default Object.freeze({
       </Use>
     </span>,
     price: 9055,
+  },
+  SUNPOINT: {
+    name: 'Sunpoint',
+    icon: SunpointIcon,
+    type: 'Gem',
+    quality: QUALITY.RARE,
+    description: <span>Drawing on the power of sunlight, this jewel is required to create Regrade Scrolls.</span>,
+    price: 2000,
+  },
+  MOONPOINT: {
+    name: 'Moonpoint',
+    icon: MoonpointIcon,
+    type: 'Gem',
+    quality: QUALITY.RARE,
+    description: <span>Drawing on the power of moonlight, this jewel is required to create Regrade Scrolls.</span>,
+    price: 2000,
+  },
+  STARPOINT: {
+    name: 'Starpoint',
+    icon: StarpointIcon,
+    type: 'Gem',
+    quality: QUALITY.RARE,
+    description: <span>Drawing on the power of starlight, this jewel is required to create Regrade Scrolls.</span>,
+    price: 2000,
+  },
+  SUNGLOW_LUNAGEM: {
+    name: 'Sunglow Lunagem',
+    icon: SunglowLunagemIcon,
+    type: 'Lunagem',
+    quality: QUALITY.RARE,
+    description: <span>
+      <Yellow>Sunglow Lunagems</Yellow> provide different bonuses depending on how they are refined. Right-click to
+      refine this Lunagem into its final form, which will decide which bonuses it gives.<br /><br />
+      Waist:<br />
+      - Triple Slash (Battlerage)<br />
+      - Pain Harvest (Occultism)<br />
+      - Revitalizing Cheer (Defense)<br />
+      - Warding Light (Auramancy)<br />
+      - Stillness (Witchcraft)<br />
+      - Blazing Arrow (Archery)<br />
+      - Frigid Tracks (Sorcery)<br />
+      - Rapid Strike (Shadowplay)<br />
+      - Startling Strain (Songcraft)<br />
+      - Fervent Healing (Vitalism)<br />
+      - Serpent Glare (Malediction)<br /><br />
+      Can be acquired from Greater or higher dungeon bosses.<br /><br />
+      <Use>Choose an effect of the Lunagem.</Use>
+    </span>,
+    price: 132,
+  },
+  DERANGED_SPIRIT: {
+    name: 'Deranged Spirit',
+    icon: DerangedSpiritIcon,
+    type: 'Material',
+    quality: QUALITY.HEROIC,
+    description: <span>
+      A haze of madness clouds the energy of this troubled spirit.<br/>
+      Can be obtained in <Orange>Serpentis</Orange>.
+    </span>,
+    price: 54000,
+  },
+  MYSTERIOUS_GEM: {
+    name: 'Mysterious Gem',
+    icon: MysteriousGemIcon,
+    type: 'Quest Item',
+    quality: QUALITY.ARCANE,
+    questStarter: true,
+    bindsOnPickup: true,
+    reqLevel: 50,
+    description: 'Begins the quest "Gentle Whispers."',
   },
 });

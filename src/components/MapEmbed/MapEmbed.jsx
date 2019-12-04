@@ -79,13 +79,9 @@ class MapEmbed extends Component {
             {points.map((point, index) => point.coords.map((coord, id) => (
               <Tooltip
                 key={`point-${zone}-${index}-${id}`}
-                title={
-                  <React.Fragment>
-                    <Typography variant="caption" dangerouslySetInnerHTML={{
-                      __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
-                    }} />
-                  </React.Fragment>
-                }
+                title={<div dangerouslySetInnerHTML={{
+                  __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                }} />}
               >
                 <div
                   className={cn('point', { 'hover-anim': hoverPoint === index })}
@@ -149,11 +145,9 @@ class MapEmbed extends Component {
                 <Tooltip
                   key={`point-${zone}-${index}-${id}`}
                   title={
-                    <React.Fragment>
-                      <Typography variant="caption" dangerouslySetInnerHTML={{
-                        __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
-                      }} />
-                    </React.Fragment>
+                    <div dangerouslySetInnerHTML={{
+                      __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                    }} />
                   }
                 >
                   <div

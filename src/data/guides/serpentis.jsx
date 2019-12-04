@@ -102,13 +102,17 @@ const sections = [
         description="Cellus is immune to damage."
       />,
       <Ability
-        name="Unknown frost object"
-        description="Spawns at the feet of a certain enemy when they die. Can be used to remove Cellus' Fire Armor"
+        name="Fireball"
+        description="Cellus calls down meteors all around him, dealing medium-high magic damage."
+      />,
+      <Ability
+        name="Ice Shard"
+        description="Drops on the ground when one of Cellus' minions is slain. Step on top of it to remove Cellus' Fire Armor for a short duration"
       />,
       <Typography variant="h6">Tactics</Typography>,
       'Stack on Cellus to make healing and cleaving easier.',
-      'Use the frost object that spawns after killing the adds Cellus summons to remove his Fire Armor.',
-      'Use Protective Wings when damage gets too rough.',
+      'Step on the ice shards (blue orb) that spawn after killing the adds Cellus summons to remove his Fire Armor temporarily.',
+      'Use Protective Wings when Cellus casts Fireball if the damage is too rough.',
     ],
   },
   {
@@ -158,19 +162,83 @@ const sections = [
   {
     title: 'Room 4',
     paragraphs: [
+      <Typography variant="h5">Laboratory of Terrors</Typography>,
+      'During this fight, you will face a single boss at a time along with many adds. The adds have a lot of crowd control, so focus them first.',
+      <Typography variant="h6">Freman</Typography>,
+      'Freman awakens first.',
+      <Typography variant="h6">Frostcaster Bashu</Typography>,
+      'Bashu will awaken after Freman is slain.',
+      <Typography variant="h6">Kaizo the Gambler</Typography>,
+      'Kaizo awakens last, once you\'ve defeated Bashu.',
+      <Typography variant="h5">Womb of the Crimson Dream</Typography>,
+      <Typography variant="h5">Duskfallen Hall</Typography>,
       'Work in progress...',
     ],
   },
   {
     title: 'Room 5',
     paragraphs: [
+      <Typography variant="subtitle1">Notable Loot</Typography>,
+      <Typography variant="caption">You will get one piece of magic cloth, healing cloth, leather, and plate
+        armor.</Typography>,
+      <br />,
+      <Typography variant="caption" color="primary">You can get up to 2 of one of these:</Typography>,
+      <div className="quest-items">
+        <Item {...ITEM.SUNPOINT} />
+        <Item {...ITEM.MOONPOINT} />
+        <Item {...ITEM.STARPOINT} />
+      </div>,
+      <Typography variant="h5">Lerman</Typography>,
+      'Work in progress...',
+      <Typography variant="h5">Carmilla</Typography>,
+      'Work in progress...',
+      <Typography variant="h5">Fangbow</Typography>,
       'Work in progress...',
     ],
   },
   {
     title: 'Room 6',
     paragraphs: [
-      'Work in progress...',
+      <Typography variant="subtitle1">Notable Loot</Typography>,
+      <div className="quest-items">
+        <Item {...ITEM.SUNGLOW_LUNAGEM} />
+        <Item {...ITEM.MYSTERIOUS_GEM} />
+      </div>,
+      <Typography variant="h5">Sirothe the Infernal</Typography>,
+      <Typography variant="h6">Abilities</Typography>,
+      <Ability
+        name="Melee, Magic, and Ranged Shield"
+        description="Sirothe becomes immune to a single damage type for 20 seconds."
+      />,
+      <Ability
+        name="Hazing Flamebolt"
+        description="Sirothe hurls a deadly flamebolt at his ranged target."
+      />,
+      <Ability
+        name="Unknown three-flame strike name"
+        description="Occasionally, when attacking, Sirothe will hurl three balls of flame. One in front and one at each 45 degree angle in front of him."
+      />,
+      <Ability
+        name="Madness"
+        description="Sirothe becomes stronger. Stacks."
+        counters={[
+          'One stack can be removed by moving Sirothe over the pools left behind by Sirothe\'s Fireballs when killed.',
+        ]}
+      />,
+      <Ability
+        name="Apocalypse Inferno"
+        description="Sirothe calls down an apocalyptic inferno, putting a deadly curse on random players. When the debuff expires, the target takes lethal damage."
+        counters={[
+          'Briefly walk into a  to cleanse the debuff. Don\'t stay too long; when the box disappears it will kill you instead.',
+          'Spread from other players, as the landing area of the effect can hit multiple players',
+          <Typography component="span">Use <SkillLink skillset="Shadowplay" name="Stealth" /> during the cast to prevent it from targeting you.</Typography>,
+        ]}
+        deadly
+      />,
+      <Typography variant="h6">Tactics</Typography>,
+      'Starting from full health to around 80%, Sirothe will only attack his target, used his pronged flame attack, and rotate his shielding. It\'d be wise to let the tank or tankiest player get some aggro before everyone starts dealing damage.',
+      'From 80% onwards, Sirothe will start gaining stacks of Madness frequently along with spawning Sirothe\'s Fireballs. When the Fireballs are killed, they will leave a pool of magma behind that will remove one stack of Madness when Sirothe steps in it.',
+      'At around 40%, Sirothe will start using Apocalypse Inferno every 45 seconds. Should you be hit by it, you\'ll need to run to one of the boxes in one of the corners of the room (they rotate) and step on it when the light appears in the air over it. Get off it quickly, because it will kill you when it moves again.',
     ],
   },
 ];

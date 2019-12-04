@@ -77,13 +77,7 @@ class SkillCombos extends Component {
             {...causes.causes}
             tooltip={comboText}
           /> :
-          <Tooltip
-            title={
-              <React.Fragment>
-                <Typography variant="caption" dangerouslySetInnerHTML={{ __html: comboText }} />
-              </React.Fragment>
-            }
-          >
+          <Tooltip title={<div dangerouslySetInnerHTML={{ __html: comboText }} />}>
             <div className="combo-icon" />
           </Tooltip>
         }

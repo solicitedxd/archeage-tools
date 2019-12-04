@@ -41,16 +41,7 @@ class PropertyBox extends Component {
       <div className="property-box">
         <Typography variant="subtitle1" className="property-name">
           {name}
-          <Tooltip
-            title={
-              <React.Fragment>
-                <Typography
-                  variant="caption"
-                  dangerouslySetInnerHTML={{ __html: properties.join('<br />') }}
-                />
-              </React.Fragment>
-            }
-          >
+          <Tooltip title={<div dangerouslySetInnerHTML={{ __html: properties.join('<br />') }} />}>
             <Help fontSize="small" color="primary" className="help-icon" />
           </Tooltip>
         </Typography>

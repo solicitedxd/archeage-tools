@@ -87,7 +87,7 @@ const TooltipContent = ({ itemName }) => {
         {dps && <p><span className="tt-gray">DPS</span> {dps}</p>}
         {magicAttack && <p><span className="tt-gray">Magic Attack</span> +{magicAttack}</p>}
         {healingPower && <p><span className="tt-gray">Healing Power</span> +{healingPower}</p>}
-        {Object.entries(stats).map(([name, value]) => (
+        {stats && Object.entries(stats).map(([name, value]) => (
           <p key={name}><span className="tt-gray">{name}</span> {value}</p>
         ))}
       </section>}

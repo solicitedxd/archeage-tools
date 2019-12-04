@@ -319,12 +319,9 @@ class TradePacks extends Component {
                         );
                         return (
                           <Tooltip
-                            title={(
-                              <Typography variant="caption">
-                                Customize {continent !== CARGO ? `${pack.name || `${zone} ${packType}`} -> ${sellZone}`
-                                : `${zone}n Cargo -> ${packType}`}
-                              </Typography>
-                            )}
+                            title={`Customize ${continent !== CARGO
+                              ? `${pack.name || `${zone} ${packType}`} -> ${sellZone}`
+                              : `${zone}n Cargo -> ${packType}`}`}
                             key={`pack-${zone}-${packType}`}
                             classes={{ tooltip: 'nowrap' }}
                           >

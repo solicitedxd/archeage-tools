@@ -64,8 +64,8 @@ export const HOUSING_TYPES = Object.freeze({
     base: 15,
     properties: [
       'Raised:',
-      'Cottages',
-      'Swept-Roof Villa',
+      '- Cottages',
+      '- Swept-Roof Villa',
     ],
   },
   MEDIUM_HOUSE: {
@@ -85,8 +85,8 @@ export const HOUSING_TYPES = Object.freeze({
     base: 25,
     properties: [
       'Apothecary\'s, Armorer\'s, Tradesman\'s:',
-      'Manors',
-      'Townhouses',
+      '- Manors',
+      '- Townhouses',
     ],
   },
   LARGE_HOUSE: {
@@ -109,8 +109,8 @@ export const HOUSING_TYPES = Object.freeze({
     base: 40,
     properties: [
       'Apothecary\'s, Armorer\'s, Tradesman\'s:',
-      'Chalets',
-      'Villas',
+      '- Chalets',
+      '- Villas',
     ],
   },
   PUBLIC_BUILDING: {

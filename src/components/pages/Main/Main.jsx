@@ -85,6 +85,11 @@ class Main extends React.PureComponent {
             padding: '4px 12px 12px',
           },
         },
+        MuiTooltip: {
+          tooltip: {
+            fontSize: '0.8rem',
+          },
+        },
       },
     });
 

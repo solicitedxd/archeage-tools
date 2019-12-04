@@ -17,7 +17,7 @@ const Ability = ({ name, description, counters, deadly }) => (
     >
       <Typography>
         {deadly === true &&
-        <Tooltip title={'Caution! Deadly Ability'}>
+        <Tooltip title="Caution! Deadly Ability">
           <span className="deadly-icon" />
         </Tooltip>
         }
