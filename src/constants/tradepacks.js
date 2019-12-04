@@ -69,7 +69,7 @@ export const FRESHNESS = Object.freeze({
     },
     REGULAR: {
       modifier: 1.05,
-      time: 'within 30min',
+      time: 'within 1hr',
     },
     REDUCED: {
       modifier: 0.93,
