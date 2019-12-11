@@ -81,8 +81,10 @@ class SkillTree extends Component {
         </AppBar>
         {(!treeName || selectingSkillset) &&
         <div className="skill-tree-list">
-          {Object.keys(SKILLSET).filter(skillTreeId => !selectedClasses.includes(skillTreeId)).map(skillTreeId => {
-            const { name } = SKILLSET[skillTreeId];
+          {Object.entries(SKILLSET)
+          .filter(([skillTreeId, skillTree]) => !selectedClasses.includes(skillTreeId) && skillTree.visible !== false)
+          .map(([skillTreeId, skillTree]) => {
+            const { name } = skillTree;
             return (
               <Button
                 onClick={() => {

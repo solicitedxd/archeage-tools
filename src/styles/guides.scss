@@ -45,7 +45,7 @@
     .quest-items {
       display: flex;
 
-      span[data-quality] {
+      span {
         display: inline-block;
         margin-right: 6px;
       }
@@ -86,6 +86,12 @@
           }
         }
       }
+    }
+
+    .lightbox-group {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-evenly;
     }
   }
 

@@ -118,7 +118,7 @@ class MapEmbed extends Component {
                       >
                         <Typography className="point-label">
                           <span className="point inline-point" data-point={point.icon || index + 1} />
-                          {label}
+                          <span className="label-text">{label}</span>
                         </Typography>
                       </div>))}
                   </React.Fragment>

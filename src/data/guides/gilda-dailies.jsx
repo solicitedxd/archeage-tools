@@ -11,7 +11,7 @@ const name = 'Gilda Star Dailies';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Nov 4, 2019',
+  lastUpdated: 'Dec 10, 2019',
 };
 
 const ARarePerfume = ({ faction }) => (
@@ -227,9 +227,10 @@ const sections = [
               locations listed, or walk there.</Typography>
             <Typography variant="body2">Please note: While it is possible to perform Raising a Wild Snowlion and Raising
               a Malfunctioning Leomorph, it can prove to tedious the first time (to acquire the port) and difficult due
-              to guards and hostile players. The easiest way to reach Falcorth or Arcum might be to teleport to the
-              Palace Cellar dungeon location in Mahadevi (which is every character has by default), and then run from
-              there.</Typography>
+              to guards and hostile players. The easiest way to reach Arcum might be to teleport to the Palace Cellar
+              dungeon location in Mahadevi (which is every character has by default), and then run from there. For
+              Falcorth, head to the Rookborne Community Center and then head west over the mountains towards the
+              community center, then towards Cloudgrain.</Typography>
             <hr />
             <Typography variant="h6">Signs of the Salphira Cult</Typography>
             <MapEmbed

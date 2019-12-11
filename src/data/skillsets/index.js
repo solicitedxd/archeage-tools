@@ -6,6 +6,7 @@ import AuramancySkills, {
   ancestrals as AuramancyAncestrals,
   passives as AuramancyPassives,
 } from './auramancy';
+import BasicSkills from './basic';
 import BattlerageSkills, {
   ancestrals as BattlerageAncestrals,
   passives as BattleragePassives,
@@ -119,5 +120,10 @@ export default Object.freeze({
     skills: WitchcraftSkills,
     passives: WitchcraftPassives,
     ancestrals: WitchcraftAncestrals,
+  },
+  BASIC: {
+    name: 'Basic',
+    skills: BasicSkills,
+    visible: false,
   },
 });

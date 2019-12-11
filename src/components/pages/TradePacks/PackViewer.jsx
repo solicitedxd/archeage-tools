@@ -10,6 +10,7 @@ import {
   Checkbox,
   Collapse,
   Dialog,
+  DialogContent,
   FormControl,
   FormControlLabel,
   IconButton,
@@ -259,7 +260,7 @@ class PackViewer extends Component {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <div className="body-container">
+        <DialogContent className="body-container">
           <div className="pack-header">
             <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
             <div className="pack-quantity">
@@ -640,7 +641,7 @@ class PackViewer extends Component {
               </TableBody>
             </Table>
           </div>
-        </div>
+        </DialogContent>
       </Dialog>
     );
   }

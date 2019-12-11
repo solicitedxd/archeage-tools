@@ -153,7 +153,7 @@ class Skills extends Component {
       } else {
         [treeName, skills, ancestrals] = rawTree.split('.');
       }
-      if (!SKILLSET[treeName]) {
+      if (!SKILLSET[treeName] || SKILLSET[treeName].visible === false) {
         treeName = null;
         skills = [];
         ancestrals = [];
