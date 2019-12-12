@@ -134,6 +134,13 @@ import StarpointIcon from 'images/item/starpoint.png';
 import SunglowLunagemIcon from 'images/item/sunglow_lunagem.png';
 import DerangedSpiritIcon from 'images/item/deranged_spirit.png';
 import MysteriousGemIcon from 'images/item/mysterious_gem.png';
+import SmallBreathOfLifeIcon from 'images/item/small_breath_of_life.png';
+import BlankRegradeScrollIcon from 'images/item/blank_regrade_scroll.png';
+import BeautifullyColoredFabricIcon from 'images/item/beautifully_colored_fabric.png';
+import SturdyIngotIcon from 'images/item/sturdy_ingot.png';
+import FineLeatherIcon from 'images/item/fine_leather.png';
+import PrismaticDiamondIcon from 'images/item/prismatic_diamond.png';
+import PrismaticPearlIcon from 'images/item/prismatic_pearl.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -2028,7 +2035,7 @@ export default Object.freeze({
     type: 'Material',
     quality: QUALITY.HEROIC,
     description: <span>
-      A haze of madness clouds the energy of this troubled spirit.<br/>
+      A haze of madness clouds the energy of this troubled spirit.<br />
       Can be obtained in <Orange>Serpentis</Orange>.
     </span>,
     price: 54000,
@@ -2042,5 +2049,83 @@ export default Object.freeze({
     bindsOnPickup: true,
     reqLevel: 50,
     description: 'Begins the quest "Gentle Whispers."',
+  },
+  SMALL_BREATH_OF_LIFE: {
+    name: 'Small Breath of Life',
+    icon: SmallBreathOfLifeIcon,
+    type: 'Furniture',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      Places a <Yellow>Small Breath of Life</Yellow> apparatus in a completed house, that allows you to sooth a pet's soul and grow it to maturity.<br /><br />
+      Placement: house floor or yard
+    </span>,
+    price: 2250,
+  },
+  BLANK_REGRADE_SCROLL: {
+    name: 'Blank Regrade Scroll',
+    icon: BlankRegradeScrollIcon,
+    type: 'Talisman',
+    description: <span>
+      This paper has been specifically processed to absorb the energy of specialized crafting materials, such as Sunpoints and Moonpoints.<br /><br />
+      Vocation: Printing<br />
+      Workbench: Paper Press
+    </span>,
+    price: 10,
+  },
+  BEAUTIFULLY_COLORED_FABRIC: {
+    name: 'Beautifully Colored Fabric',
+    icon: BeautifullyColoredFabricIcon,
+    type: 'Fabric',
+    description: <span>
+      Processed from <Orange>Fabric</Orange>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
+      Vocation: Tailoring<br />
+      Workbench: Weaving Loom
+    </span>,
+    price: 2500,
+  },
+  STURDY_INGOT: {
+    name: 'Sturdy Ingot',
+    icon: SturdyIngotIcon,
+    type: 'Metal',
+    description: <span>
+      Processed from <Orange>Iron Ingots</Orange>. It's chiefly used in making weapons and plate armor.<br /><br />
+      Vocation: Metalwork<br />
+      Workbench: Smelter
+    </span>,
+    price: 2500,
+  },
+  FINE_LEATHER: {
+    name: 'Fine Leather',
+    icon: FineLeatherIcon,
+    type: 'Hide',
+    description: <span>
+      Processed from <Orange>Leather</Orange>. It's chiefly used in leather armor and other leather goods.<br /><br />
+      Vocation: Leatherwork<br />
+      Workbench: Leather Workbench
+    </span>,
+    price: 2500,
+  },
+  PRISMATIC_DIAMOND: {
+    name: 'Prismatic Diamond',
+    icon: PrismaticDiamondIcon,
+    type: 'Material',
+    description: <span>
+      Made of marine resources and jewels; can be used for advanced crafts.<br /><br />
+      Vocation: Handicraft<br />
+      Workstation: Handicraft Kiln
+    </span>,
+    price: 100,
+  },
+  PRISMATIC_PEARL: {
+    name: 'Prismatic Pearl',
+    icon: PrismaticPearlIcon,
+    type: 'Material',
+    description: <span>
+      Made of marine resources and jewels; can be used for advanced crafts.<br /><br />
+      Vocation: Handicraft<br />
+      Workstation: Handicraft Kiln
+    </span>,
+    price: 100,
   },
 });

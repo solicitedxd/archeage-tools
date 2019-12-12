@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = [
   {
     test: /\.jsx?$/,
@@ -32,7 +34,10 @@ module.exports = [
     test: /\.(jpe?g|gif|png|wav|mp3)$/,
     loader: 'file-loader',
     options: {
-      name: 'images/[name].[ext]',
+      outputPath: (url) => {
+        return url.replace(/^src\//, '');
+      },
+      name: '[path][name].[ext]',
     },
   },
   {

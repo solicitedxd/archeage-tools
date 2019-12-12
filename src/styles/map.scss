@@ -75,7 +75,7 @@
 .map-embed .point, .map-dialog .point {
   width: 24px;
   height: 24px;
-  background: url(../images/npc_icon.png) -488px -232px;
+  background: url(../images/npc_icon.png) no-repeat -488px -232px;
   position: absolute;
 
   &.inline-point {
@@ -165,6 +165,10 @@
 
   &[data-point="stable"] {
     background-position: -24px -93px;
+  }
+
+  &[data-point="gilda"] {
+    background-position: -48px -20px;
   }
 }
 

@@ -3,9 +3,16 @@ import BackKickIcon from 'images/skill/basic/Back_Kick.png';
 import BiteIcon from 'images/skill/basic/Bite.png';
 import BoarsBoreIcon from 'images/skill/basic/Boars_Bore.png';
 import BreakthroughIcon from 'images/skill/basic/Breakthough.png';
+import CarrotCareIcon from 'images/skill/basic/Carrot_Care.png';
+import CarryAndRunIcon from 'images/skill/basic/Carry_and_Run.png';
 import DashIcon from 'images/skill/basic/Dash.png';
-import DropBackIcon from 'images/skill/basic/Drop_Back_pet.png';
+import DropBackIcon from 'images/skill/basic/Drop_Back.png';
+import ElectricDashIcon from 'images/skill/basic/Electric_Dash.png';
 import ElegantLeapIcon from 'images/skill/basic/Elegant_Leap.png';
+import FleeingYataIcon from 'images/skill/basic/Fleeing_Yata.png';
+import GlideIcon from 'images/skill/basic/Glide.png';
+import HealthRegenIcon from 'images/skill/basic/Health_Regen.png';
+import JoustingLanceChargeIcon from 'images/skill/basic/Jousting_Lance_Charge.png';
 import MountedArrowshotIcon from 'images/skill/basic/Mounted_Arrowshot.png';
 import MountedAttackIcon from 'images/skill/basic/Mounted_Attack.png';
 import MountedDefenseIcon from 'images/skill/basic/Mounted_Defense.png';
@@ -14,13 +21,17 @@ import PangochargeIcon from 'images/skill/basic/Pangocharge.png';
 import PatienceIcon from 'images/skill/basic/Patience.png';
 import OverrunIcon from 'images/skill/basic/Overrun.png';
 import OwnersEscapeIcon from 'images/skill/auramancy/Teleportation.png';
+import RollIcon from 'images/skill/basic/Roll.png';
 import RunIcon from 'images/skill/basic/Run.png';
 import SlamIcon from 'images/skill/basic/Slam.png';
+import SkydashIcon from 'images/skill/basic/Skydash.png';
 import SnipeIcon from 'images/skill/shadowplay/Ruthless_Assault.png';
+import StandStrongIcon from 'images/skill/basic/Stand_Strong.png';
 import StealthMoveIcon from 'images/skill/basic/Stealth_Move.png';
 import StubbornDashIcon from 'images/skill/basic/Stubborn_Dash.png';
 import UnstoppableRaceIcon from 'images/skill/basic/Unstoppable_Race.png';
 import WarCryIcon from 'images/skill/basic/War_Cry.png';
+import WindStrikeIcon from 'images/skill/basic/Wind_Strike.png';
 import { BUFF } from 'constants/skills';
 
 export default Object.freeze([
@@ -184,6 +195,30 @@ export default Object.freeze([
     description: 'Sharpens caster\'s bite, dealing Physical Damage and additional damage over #14sec#.',
   },
   {
+    icon: BiteIcon,
+    name: 'Gnaw',
+    id: 'GnawBleed',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Sharpens caster\'s bite, dealing Physical Damage and additional damage over #14sec#.',
+    combos: [
+      {
+        buff: BUFF.BLEEDING,
+        causes: BUFF.BLEEDING,
+        text: 'Increases severity of Bleed effects on targets.',
+      },
+    ],
+  },
+  {
+    icon: BiteIcon,
+    name: 'Vicious Bite',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Sharpens caster\'s bite, dealing Physical Damage and additional damage over #14sec#.',
+  },
+  {
     icon: BoarsBoreIcon,
     name: 'Boar\'s Bore',
     range: [0, 15],
@@ -205,5 +240,135 @@ export default Object.freeze([
     effectRange: 32,
     cooldown: 30,
     description: 'Grants offensive buffs to allies within 16m for 5 seconds. Effect ends early if you dismount.',
-  }
+  },
+  {
+    icon: HealthRegenIcon,
+    name: 'Health Regen',
+    cooldown: 15,
+    description: 'Healths pet\'s health.',
+  },
+  {
+    icon: JoustingLanceChargeIcon,
+    name: 'Jousting Lance Charge',
+    cooldown: 30,
+    description: 'Triggers a charge with a Jousting Lance toward a target for #3sec#, dealing damage.\r' +
+      'Removes Imprison and grants immunity to Fear while Charging.\r' +
+      'Consumes one #Jousting Lance#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: RunIcon,
+    name: 'Ghostly Steps',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: BreakthroughIcon,
+    name: 'Hereafter Dash',
+    cooldown: 60,
+    description: 'Dashes into the otherworld for #3sec#, then reappears.\r' +
+      'Slightly increases Move Speed. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: StealthMoveIcon,
+    name: 'Nui\'s Veil',
+    cooldown: 30,
+    description: 'Stealths both mount and rider for #30sec#.\r' +
+      'Stealth ends if you move, attack, or are attacked.\r' +
+      'Can\'t be used in combat.',
+  },
+  {
+    icon: RunIcon,
+    name: 'Keep Running!',
+    cooldown: 30,
+    description: 'Increases Pet Move Speed #+20%# for #15sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: RunIcon,
+    name: 'Cloudstrike Dash',
+    cooldown: 30,
+    description: 'Increases Move Speed #+70%#, then gradually decreases it over #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: ElectricDashIcon,
+    name: 'Electric Dash',
+    cooldown: 30,
+    description: 'Darts forward #12 meters#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: StandStrongIcon,
+    name: 'Stand Strong',
+    cooldown: 60,
+    description: 'Grants Stun Immunity to a mount and rider for #5sec# and reduces received damage #-50%#.',
+  },
+  {
+    icon: WindStrikeIcon,
+    name: 'Wind Strike',
+    cooldown: 24,
+    description: 'Leaps into the sky and sends gusts of wind towards the land. Slows enemies in the target area and deals Magic Damage.',
+  },
+  {
+    icon: GlideIcon,
+    name: 'Glide',
+    cooldown: 60,
+    description: 'Glide through the skies with your mount for #5min#. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: SkydashIcon,
+    name: 'Skydash',
+    cooldown: 60,
+    description: 'Increases glide speed +#50%# for #5sec#. Can only be used while gliding.',
+  },
+  {
+    icon: FleeingYataIcon,
+    name: 'Hippity Hop',
+    cooldown: 2,
+    description: 'Triggers a jump. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: DropBackIcon,
+    name: 'Hop Back',
+    cooldown: 18,
+    description: 'Triggers a #12 m# backwards leap to escape danger. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: CarrotCareIcon,
+    name: 'Carrot Care',
+    cooldown: 60,
+    channeled: true,
+    description: 'Allows the rabbit to munch on a carrot for 10 seconds, restoring health and mana.\r' +
+      'Movement cancels the skill.',
+  },
+  {
+    icon: RunIcon,
+    name: 'Warmfuzzy Dash',
+    cooldown: 30,
+    description: 'Instructs the bear to pick up its master and run for #5sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: MountedDefenseIcon,
+    name: 'I Am the Bear!',
+    cooldown: 60,
+    description: 'Absorbs mount\'s and rider\'s received Magic Damage and grants immunity to Trip, Snare, and Impale for #5sec#.',
+  },
+  {
+    icon: RollIcon,
+    name: 'Roll',
+    cooldown: 30,
+    description: 'Roll forward for #3sec#, pushing targets out of your path and decreasing their Move Speeds -10% for 3 seconds.\r' +
+      'This skill counts as a Push effect.\r' +
+      'You cannot use this skill while carrying trade packs.',
+  },
+  {
+    icon: CarryAndRunIcon,
+    name: 'Carry and Run',
+    cooldown: 60,
+    description: 'Instructs the bear to pick up its master and run for #4sec#. Its master becomes invincible, but the bear receives 2x damage.\r' +
+      'Can\'t be triggered if the master is wearing a trade pack.',
+  },
 ]);

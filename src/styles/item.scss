@@ -55,8 +55,9 @@ span[data-quality] {
 
 span.inline[data-quality] {
   display: inline-block;
+  cursor: help;
   margin: 0 4px 0 0;
-  vertical-align: -2px;
+  vertical-align: -4px;
   height: 20px;
 }
 .inline > .item-icon {

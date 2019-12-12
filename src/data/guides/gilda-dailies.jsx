@@ -741,7 +741,7 @@ const sections = [
       <TabContent
         tabs={[
           {
-            label: 'Ezna',
+            label: 'Marianople',
             content:
               <MapEmbed zone={ZONE.MARIANOPLE_CITY}
                         points={[{ label: '[Nuia] Seamist Researcher', coords: [{ x: 48.4, y: 41.1 }] }]} />,

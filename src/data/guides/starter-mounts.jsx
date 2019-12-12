@@ -6,24 +6,24 @@ import Currency from 'components/Currency';
 import Lightbox from 'components/Lightbox';
 import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
-import CoalmaneSnowlion from 'images/guides/Coalmane_Snowlion.png';
-import SandmaneSnowlion from 'images/guides/Sandmane_Snowlion.png';
-import SnowmaneSnowlion from 'images/guides/Snowmane_Snowlion.png';
-import BrowntailLeomorph from 'images/guides/Browntail_Leomorph.png';
-import WhitetailLeomorph from 'images/guides/Whitetail_Leomorph.png';
-import BlacktailLeomorph from 'images/guides/Blacktail_Leomorph.png';
-import BlackscalePangolin from 'images/guides/Blackscale_Pangolin.png';
-import SilverscalePangolin from 'images/guides/Silverscale_Pangolin.png';
-import RedscalePangolin from 'images/guides/Redscale_Pangolin.png';
-import GrayHorse from 'images/guides/Gray_Lilyut_Horse.png';
-import BrownHorse from 'images/guides/Brown_Lilyut_Horse.png';
-import BuckskinHorse from 'images/guides/Buckskin_Lilyut_Horse.png';
-import GreenElk from 'images/guides/Green_Elk.png';
-import WhiteElk from 'images/guides/White_Elk.png';
-import VioletElk from 'images/guides/Violet_Elk.png';
-import NightslaverBoar from 'images/guides/Nightslaver_Boar.png';
-import SnowrendBoar from 'images/guides/Snowrend_Boar.png';
-import HooftigerBoar from 'images/guides/Hooftiger_Boar.png';
+import CoalmaneSnowlion from 'images/guides/mounts/Coalmane_Snowlion.png';
+import SandmaneSnowlion from 'images/guides/mounts/Sandmane_Snowlion.png';
+import SnowmaneSnowlion from 'images/guides/mounts/Snowmane_Snowlion.png';
+import BrowntailLeomorph from 'images/guides/mounts/Browntail_Leomorph.png';
+import WhitetailLeomorph from 'images/guides/mounts/Whitetail_Leomorph.png';
+import BlacktailLeomorph from 'images/guides/mounts/Blacktail_Leomorph.png';
+import BlackscalePangolin from 'images/guides/mounts/Blackscale_Pangolin.png';
+import SilverscalePangolin from 'images/guides/mounts/Silverscale_Pangolin.png';
+import RedscalePangolin from 'images/guides/mounts/Redscale_Pangolin.png';
+import GrayHorse from 'images/guides/mounts/Gray_Lilyut_Horse.png';
+import BrownHorse from 'images/guides/mounts/Brown_Lilyut_Horse.png';
+import BuckskinHorse from 'images/guides/mounts/Buckskin_Lilyut_Horse.png';
+import GreenElk from 'images/guides/mounts/Green_Elk.png';
+import WhiteElk from 'images/guides/mounts/White_Elk.png';
+import VioletElk from 'images/guides/mounts/Violet_Elk.png';
+import NightslaverBoar from 'images/guides/mounts/Nightslaver_Boar.png';
+import SnowrendBoar from 'images/guides/mounts/Snowrend_Boar.png';
+import HooftigerBoar from 'images/guides/mounts/Hooftiger_Boar.png';
 
 const name = 'Starter Mounts';
 
@@ -34,7 +34,7 @@ const meta = {
 
 const sections = [
   {
-    title: 'About Starter Mounts',
+    title: 'About',
     paragraphs: [
       'Players are able to acquire their first starter mount for free during questing at around levels 5 to 8.',
       <Typography>
