@@ -1,3 +1,4 @@
+import AcrobaticsIcon from 'images/skill/basic/Acrobatics.png';
 import AnabolicaIcon from 'images/skill/basic/Anabolica.png';
 import BackKickIcon from 'images/skill/basic/Back_Kick.png';
 import BeastsenseIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
@@ -7,6 +8,7 @@ import BreakthroughIcon from 'images/skill/basic/Breakthough.png';
 import CarrotCareIcon from 'images/skill/basic/Carrot_Care.png';
 import CarryAndRunIcon from 'images/skill/basic/Carry_and_Run.png';
 import DashIcon from 'images/skill/basic/Dash.png';
+import DolphinDashIcon from 'images/skill/basic/Dolphin_Dash.png';
 import DropBackIcon from 'images/skill/basic/Drop_Back.png';
 import ElectricDashIcon from 'images/skill/basic/Electric_Dash.png';
 import ElegantLeapIcon from 'images/skill/basic/Elegant_Leap.png';
@@ -20,10 +22,12 @@ import MountedDefenseIcon from 'images/skill/basic/Mounted_Defense.png';
 import MountedFireArrowIcon from 'images/skill/basic/Mounted_Fire_Arrow.png';
 import PangochargeIcon from 'images/skill/basic/Pangocharge.png';
 import PatienceIcon from 'images/skill/basic/Patience.png';
+import ProduceUltrasonicWavesIcon from 'images/skill/basic/Produce_Ultrasonic_Waves.png';
 import OverrunIcon from 'images/skill/basic/Overrun.png';
 import OwnersEscapeIcon from 'images/skill/auramancy/Teleportation.png';
 import RollIcon from 'images/skill/basic/Roll.png';
 import RunIcon from 'images/skill/basic/Run.png';
+import ScanShipsIcon from 'images/skill/basic/Scan_Ships.png';
 import SlamIcon from 'images/skill/basic/Slam.png';
 import SkydashIcon from 'images/skill/basic/Skydash.png';
 import SnipeIcon from 'images/skill/shadowplay/Ruthless_Assault.png';
@@ -471,6 +475,39 @@ export default Object.freeze([
     channeled: true,
     cooldown: 60,
     description: 'Lets out a great roar, inflicting Fear on charging enemy mounts for 8 seconds.\r' +
-      'Canceled by movement.'
-  }
+      'Canceled by movement.',
+  },
+  {
+    icon: FleeingYataIcon,
+    name: 'Fleeing Yata',
+    cooldown: 2,
+    description: 'Triggers a jump. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: ScanShipsIcon,
+    name: 'Scan Ships',
+    cooldown: 60,
+    description: 'Displays all ships and drydocks within #100m# for #10sec#.',
+  },
+  {
+    icon: DolphinDashIcon,
+    name: 'Dolphin Dash',
+    cooldown: 25,
+    description: 'Triggers a forward dash with powerful tailfin strokes.\r' +
+      'Increases Move Speed +#50%# for #10# seconds.\r' +
+      'Can\'t be used while doing tricks.',
+  },
+  {
+    icon: ProduceUltrasonicWavesIcon,
+    name: 'Produce ultrasonic waves',
+    cooldown: 3,
+    description: 'Send ultrasonic waves forward.',
+  },
+  {
+    icon: AcrobaticsIcon,
+    name: 'Acrobatics',
+    cooldown: 10,
+    description: 'Utilizes the fins to launch a powerful leap. May trigger different tricks depending on the dolphin\'s mood.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
 ]);

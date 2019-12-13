@@ -156,6 +156,7 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         10.5 m/s
       </Typography>,
+      <Typography>This mount can be upgraded into <Link to="/guides/upgraded-mounts#thunder-dash">Thunder Dash</Link>.</Typography>,
       <Lightbox
         title="Stormdarter"
         image={Stormdarter}
@@ -183,7 +184,6 @@ const sections = [
           <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural={''} noLink /></li>
         </ul>
       </Typography>,
-      <Typography>This mount can be upgraded into <Link to="/guides/upgraded-mounts#thunder-dash">Thunder Dash</Link>.</Typography>,
     ],
   },
   {

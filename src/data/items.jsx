@@ -2209,7 +2209,7 @@ export default Object.freeze({
     icon: BeautifullyColoredFabricIcon,
     type: 'Fabric',
     description: <span>
-      Processed from <Orange>Fabric</Orange>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
+      Processed from <Yellow>Fabric</Yellow>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
       Vocation: Tailoring<br />
       Workbench: Weaving Loom
     </span>,
@@ -2220,7 +2220,7 @@ export default Object.freeze({
     icon: SturdyIngotIcon,
     type: 'Metal',
     description: <span>
-      Processed from <Orange>Iron Ingots</Orange>. It's chiefly used in making weapons and plate armor.<br /><br />
+      Processed from <Yellow>Iron Ingots</Yellow>. It's chiefly used in making weapons and plate armor.<br /><br />
       Vocation: Metalwork<br />
       Workbench: Smelter
     </span>,
@@ -2231,7 +2231,7 @@ export default Object.freeze({
     icon: FineLeatherIcon,
     type: 'Hide',
     description: <span>
-      Processed from <Orange>Leather</Orange>. It's chiefly used in leather armor and other leather goods.<br /><br />
+      Processed from <Yellow>Leather</Yellow>. It's chiefly used in leather armor and other leather goods.<br /><br />
       Vocation: Leatherwork<br />
       Workbench: Leather Workbench
     </span>,
