@@ -155,6 +155,7 @@ import PrismaticDiamondIcon from 'images/item/prismatic_diamond.png';
 import PrismaticPearlIcon from 'images/item/prismatic_pearl.png';
 import HonorforgedMedalIcon from 'images/item/honorforged_medal.png';
 import CertificateIcon from 'images/item/certificate.png';
+import DiligenceCoinIcon from 'images/item/diligence_coin.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -2274,5 +2275,14 @@ export default Object.freeze({
     quality: QUALITY.RARE,
     description: 'Certifies that a bear is purebred and healthy. Deliver to the rancher on Mirage Isle.',
     price: 20,
+  },
+  DILIGENCE_COIN: {
+    name: 'Diligence Coin',
+    icon: DiligenceCoinIcon,
+    type: 'Coin',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    description: 'A coin gifted to diligent, hard workers, for a job well done.',
+    price: 250,
   },
 });

@@ -136,7 +136,12 @@ export const REWARD = Object.freeze({
   GUILD_XP: 'Guild XP',
   FAMILY_XP: 'Family XP',
   ITEM: 'Items',
+  CREDIT: 'Credit',
 });
+
+export const REWARD_HIDE = Object.freeze([
+  REWARD.CREDIT,
+]);
 
 export const QUALITY = Object.freeze({
   POOR: 'Poor',

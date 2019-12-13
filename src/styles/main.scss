@@ -271,8 +271,17 @@ blockquote cite:before {
   content: "\2014 \2009";
 }
 
+.alert-red {
+  color: #CC0000;
+  font-weight: bold;
+}
+
 .dark-mode {
   .lightbox-thumb {
     background-color: #525252;
+  }
+
+  .alert-red {
+    color: #FF0000;
   }
 }

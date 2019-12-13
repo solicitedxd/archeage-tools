@@ -4,16 +4,16 @@ import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
 import Link from 'components/Link';
+import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
 import SkillLink from 'components/Skill/SkillLink';
+import { REWARD } from 'constants/dailies';
+import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 import GallantGreenElk from 'images/guides/mounts/Gallant_Green_Elk.png';
 import GallantSnowmaneSnowlion from 'images/guides/mounts/Gallant_Snowmane_Snowlion.png';
 import GallantCoalmaneSnowlion from 'images/guides/mounts/Gallant_Coalmane_Snowlion.png';
 import ThunderDash from 'images/guides/mounts/Thunder_Dash.png';
-import { REWARD } from 'constants/dailies';
-import MapEmbed from 'components/MapEmbed';
-import { ZONE } from 'constants/map';
 
 const name = 'Upgraded Mounts';
 

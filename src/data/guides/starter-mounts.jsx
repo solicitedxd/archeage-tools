@@ -4,6 +4,7 @@ import { REWARD } from 'constants/dailies';
 import { ZONE } from 'constants/map';
 import Currency from 'components/Currency';
 import Lightbox from 'components/Lightbox';
+import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
 import CoalmaneSnowlion from 'images/guides/mounts/Coalmane_Snowlion.png';
@@ -24,7 +25,6 @@ import VioletElk from 'images/guides/mounts/Violet_Elk.png';
 import NightslaverBoar from 'images/guides/mounts/Nightslaver_Boar.png';
 import SnowrendBoar from 'images/guides/mounts/Snowrend_Boar.png';
 import HooftigerBoar from 'images/guides/mounts/Hooftiger_Boar.png';
-import Link from 'components/Link';
 
 const name = 'Starter Mounts';
 

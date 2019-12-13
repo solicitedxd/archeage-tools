@@ -18,13 +18,14 @@ import {
   filterRewards,
   filterTypes,
   resetQuests,
-  setQuestStatus,
   setHideMode,
+  setQuestStatus,
 } from 'actions/dailies';
 import {
   CONTINENT,
   FACTION,
   REWARD,
+  REWARD_HIDE,
   TYPE,
 } from 'constants/dailies';
 import RewardsDisplay from './RewardsDisplay';
@@ -126,7 +127,7 @@ class Filters extends Component {
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Rewards</Typography>
           <div className="filter-group rewards">
-            {Object.values(REWARD).sort().map(reward => (
+            {Object.values(REWARD).filter(r => !REWARD_HIDE.includes(r)).sort().map(reward => (
               <Tooltip title={reward} key={reward}>
                 <Button
                   variant={rewards.includes(reward) ? 'contained' : 'outlined'}

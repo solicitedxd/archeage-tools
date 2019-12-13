@@ -37,24 +37,23 @@ export const REAL_TIME_EVENTS = Object.freeze([
       ],
     },
   },
-  // Temporarily hide ArchePass reset
-  // {
-  //   icon: DailyResetIcon,
-  //   name: 'ArchePass Reset',
-  //   type: EVENT_TYPE.REAL_TIME_EVENT,
-  //   days: {
-  //     NA: [DAY.MONDAY],
-  //     EU: [DAY.MONDAY],
-  //   },
-  //   times: {
-  //     NA: [
-  //       { time: '00:00:00' },
-  //     ],
-  //     EU: [
-  //       { time: '00:00:00' },
-  //     ],
-  //   },
-  // },
+  {
+    icon: DailyResetIcon,
+    name: 'ArchePass Reset',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    days: {
+      NA: [DAY.MONDAY],
+      EU: [DAY.MONDAY],
+    },
+    times: {
+      NA: [
+        { time: '00:00:00' },
+      ],
+      EU: [
+        { time: '00:00:00' },
+      ],
+    },
+  },
   // Hiding Ayanad Merchant for now
   // {
   //   icon: AyanadMerchantIcon,

@@ -25,9 +25,10 @@ const Ability = ({ name, description, counters, deadly }) => (
       </Typography>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails>
+      {description &&
       <Typography>
         {description}
-      </Typography>
+      </Typography>}
       {counters !== undefined && counters.length > 0 &&
       <React.Fragment>
         <Typography variant="subtitle2" color="primary" component="div" className="tips">Tips:</Typography>

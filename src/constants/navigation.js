@@ -11,6 +11,7 @@ export default [
         name: 'Gameplay', children: [
           { name: 'Leveling to 55', path: '/guides/leveling-to-55' },
           { name: 'Honor Points', path: '/guides/honor-points' },
+          { name: 'ArchePass', path: '/guides/archepass' },
         ],
       },
       {
@@ -18,6 +19,13 @@ export default [
           { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
           { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },
           { name: 'Honor Dailies', path: '/guides/honor-dailies' },
+        ],
+      },
+      {
+        name: 'Mounts', children: [
+          { name: 'Starter', path: '/guides/starter-mounts' },
+          { name: 'Gilda', path: '/guides/gilda-mounts' },
+          { name: 'Upgraded', path: '/guides/upgraded-mounts' },
         ],
       },
       {

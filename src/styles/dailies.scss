@@ -196,7 +196,7 @@
     height: 16px;
     width: 16px;
     margin-left: 2px;
-    top: 1px;
+    top: 2px;
     display: inline-block;
     background: url(../images/money_window.png) no-repeat;
   }
@@ -249,6 +249,13 @@
     width: 14px;
     height: 18px;
     background-position: -239px -28px;
+    top: 3px;
+  }
+
+  &.Credit:after {
+    width: 14px;
+    height: 18px;
+    background-position: -1px -44px;
     top: 3px;
   }
 

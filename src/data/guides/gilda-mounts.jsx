@@ -2,6 +2,7 @@ import React from 'react';
 import { Typography } from '@material-ui/core';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
+import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
 import TabContent from 'components/TabContent';
@@ -16,7 +17,6 @@ import RoyalGriffin from 'images/guides/mounts/Royal_Griffin.png';
 import Coral from 'images/guides/mounts/Coral.png';
 import MirageBjorne from 'images/guides/mounts/Mirage_Bjorne.png';
 import MirageElk from 'images/guides/mounts/Mirage_Elk.png';
-import Link from 'components/Link';
 // Mirage Leomorph
 
 const name = 'Gilda Mounts';
