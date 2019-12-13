@@ -24,6 +24,7 @@ import VioletElk from 'images/guides/mounts/Violet_Elk.png';
 import NightslaverBoar from 'images/guides/mounts/Nightslaver_Boar.png';
 import SnowrendBoar from 'images/guides/mounts/Snowrend_Boar.png';
 import HooftigerBoar from 'images/guides/mounts/Hooftiger_Boar.png';
+import Link from 'components/Link';
 
 const name = 'Starter Mounts';
 
@@ -65,6 +66,7 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-lilyut-horse">Gallant Lilyut Horses</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -99,6 +101,7 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-elk">Gallant Elks</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -174,6 +177,7 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-snowlion">Gallant Snowlions</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -211,6 +215,7 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-leomorph">Gallant Leomorphs</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />

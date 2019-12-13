@@ -134,6 +134,18 @@ import StarpointIcon from 'images/item/starpoint.png';
 import SunglowLunagemIcon from 'images/item/sunglow_lunagem.png';
 import DerangedSpiritIcon from 'images/item/deranged_spirit.png';
 import MysteriousGemIcon from 'images/item/mysterious_gem.png';
+import AbyssalShardIcon from 'images/item/abyssal_shard.png';
+import AbyssalCrystalIcon from 'images/item/abyssal_crystal.png';
+import EternalWinterChillIcon from 'images/item/eternal_winter_chill.png';
+import HeatOfEternalSummerIcon from 'images/item/heat_of_eternal_summer.png';
+import PrimeLunariteIcon from 'images/item/prime_lunarite.png';
+import BlackPearlIcon from 'images/item/black_pearl.png';
+import AmethystIcon from 'images/item/amethyst.png';
+import DiamondIcon from 'images/item/diamond.png';
+import EmeraldIcon from 'images/item/emerald.png';
+import RubyIcon from 'images/item/ruby.png';
+import SapphireIcon from 'images/item/sapphire.png';
+import TopazIcon from 'images/item/topaz.png';
 import SmallBreathOfLifeIcon from 'images/item/small_breath_of_life.png';
 import BlankRegradeScrollIcon from 'images/item/blank_regrade_scroll.png';
 import BeautifullyColoredFabricIcon from 'images/item/beautifully_colored_fabric.png';
@@ -141,6 +153,8 @@ import SturdyIngotIcon from 'images/item/sturdy_ingot.png';
 import FineLeatherIcon from 'images/item/fine_leather.png';
 import PrismaticDiamondIcon from 'images/item/prismatic_diamond.png';
 import PrismaticPearlIcon from 'images/item/prismatic_pearl.png';
+import HonorforgedMedalIcon from 'images/item/honorforged_medal.png';
+import CertificateIcon from 'images/item/certificate.png';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -2050,6 +2064,122 @@ export default Object.freeze({
     reqLevel: 50,
     description: 'Begins the quest "Gentle Whispers."',
   },
+  ABYSSAL_SHARD: {
+    name: 'Abyssal Shard',
+    icon: AbyssalShardIcon,
+    type: 'Material',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      It warms your hand with demonic, abyssal magic. It can be obtained in <Yellow>dungeons</Yellow>.<br />
+      Used for equipment crafting.
+    </span>,
+    price: 1200,
+  },
+  ABYSSAL_CRYSTAL: {
+    name: 'Abyssal Crystal',
+    icon: AbyssalCrystalIcon,
+    type: 'Material',
+    quality: QUALITY.RARE,
+    bindsOnPickup: true,
+    description: <span>
+      It burns your your hand with demonic, abyssal magic. It can be obtained in <Yellow>dungeons</Yellow>.<br />
+      Used for equipment crafting.
+    </span>,
+    price: 360,
+  },
+  ETERNAL_WINTER_CHILL: {
+    name: 'Eternal Winter Chill',
+    icon: EternalWinterChillIcon,
+    type: 'Material',
+    description: 'This crafting material radiates the chill of rocky cavern.',
+    price: 1000,
+  },
+  HEAT_OF_ETERNAL_SUMMER: {
+    name: 'Heat of Eternal Summer',
+    icon: HeatOfEternalSummerIcon,
+    type: 'Material',
+    description: 'The crafting material radiates the warmth of a summer garden.',
+    price: 500,
+  },
+  PRIME_LUNARITE: {
+    name: 'Prime Lunarite',
+    icon: PrimeLunariteIcon,
+    type: 'Alchemy',
+    description: 'Used to craft lunastones, this essence shines softly with the arcane glow of the moon.',
+    price: 4500,
+  },
+  BLACK_PEARL: {
+    name: 'Black Pearl',
+    icon: BlackPearlIcon,
+    type: 'Gem',
+    quality: QUALITY.RARE,
+    description: <span>
+      A rare material found by gaterhing from <Blue>Black Pearl Shells</Blue> on the beach. It's chiefly used in alchemy, local specialties, and components.<br /><br />
+      <Use>
+        Spend 5 Labor to process 100 Sparkling Shell Dust.<br />
+        Auto-use with shift+right-click.<br /><br />
+        Requirements<br />
+        - 1 Black Pearl<br />
+        - 1 Blue Salt Knife
+      </Use>
+    </span>,
+    price: 10000,
+  },
+  AMETHYST: {
+    name: 'Amethyst',
+    icon: AmethystIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  DIAMOND: {
+    name: 'Diamond',
+    icon: DiamondIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  EMERALD: {
+    name: 'Emerald',
+    icon: EmeraldIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  RUBY: {
+    name: 'Ruby',
+    icon: RubyIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  SAPPHIRE: {
+    name: 'Sapphire',
+    icon: SapphireIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  TOPAZ: {
+    name: 'Topaz',
+    icon: TopazIcon,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
   SMALL_BREATH_OF_LIFE: {
     name: 'Small Breath of Life',
     icon: SmallBreathOfLifeIcon,
@@ -2127,5 +2257,22 @@ export default Object.freeze({
       Workstation: Handicraft Kiln
     </span>,
     price: 100,
+  },
+  HONORFORGED_MEDAL: {
+    name: 'Honorforged Medal',
+    icon: HonorforgedMedalIcon,
+    type: 'Material',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: 'Proof of an honorable performance. Can be used in crafting.',
+    price: 30,
+  },
+  PUREBRED_BEAR_CERTIFICATE: {
+    name: 'Purebred Bear Certificate',
+    icon: CertificateIcon,
+    type: 'Material',
+    quality: QUALITY.RARE,
+    description: 'Certifies that a bear is purebred and healthy. Deliver to the rancher on Mirage Isle.',
+    price: 20,
   },
 });

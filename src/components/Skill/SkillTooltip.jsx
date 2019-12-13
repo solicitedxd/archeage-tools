@@ -51,7 +51,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
     }
   }
 
-  if (!passive && spentPoints >= 2) {
+  if (!passive && spentPoints >= 2 && skillSet.passives) {
     const percentIncreases = {};
     skillSet.passives.forEach((passive, index) => {
       if (!passive.skillMod) return;

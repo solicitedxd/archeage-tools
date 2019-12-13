@@ -42,18 +42,22 @@ class GuideViewer extends Component {
   };
 
   componentDidMount() {
+    this.detectSectionHash();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.location.hash !== this.props.location.hash) {
+      this.detectSectionHash();
+    }
+  }
+
+  detectSectionHash = () => {
     const { hash } = this.props.location;
     if (hash && hash.length > 1) {
       const elementId = hash.substr(1); // cut off the #
-      const element = document.getElementById(elementId);
-      if (element) {
-        element.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start',
-        });
-      }
+      this.goSection(elementId);
     }
-  }
+  };
 
   handleToCClick = () => {
     this.setState({ toc: true });
@@ -65,10 +69,13 @@ class GuideViewer extends Component {
 
   goSection = (section, behavior = 'smooth') => {
     this.closeToC();
-    document.getElementById(section).scrollIntoView({
-      behavior: behavior,
-      block: 'start',
-    });
+    const element = document.getElementById(section);
+    if (element) {
+      element.scrollIntoView({
+        behavior,
+        block: 'start',
+      });
+    }
   };
 
   render() {

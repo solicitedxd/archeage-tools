@@ -209,7 +209,9 @@ body {
 }
 
 .lightbox-thumb {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   padding: 12px;
   max-width: 120px;
 

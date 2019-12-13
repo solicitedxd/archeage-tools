@@ -16,6 +16,7 @@ import RoyalGriffin from 'images/guides/mounts/Royal_Griffin.png';
 import Coral from 'images/guides/mounts/Coral.png';
 import MirageBjorne from 'images/guides/mounts/Mirage_Bjorne.png';
 import MirageElk from 'images/guides/mounts/Mirage_Elk.png';
+import Link from 'components/Link';
 // Mirage Leomorph
 
 const name = 'Gilda Mounts';
@@ -182,6 +183,7 @@ const sections = [
           <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural={''} noLink /></li>
         </ul>
       </Typography>,
+      <Typography>This mount can be upgraded into <Link to="/guides/upgraded-mounts#thunder-dash">Thunder Dash</Link>.</Typography>,
     ],
   },
   {

@@ -19,6 +19,7 @@ class ItemLink extends Component {
     count: number,
     style: object,
     noLink: bool,
+    name: string,
   };
 
   static defaultProps = {
@@ -31,15 +32,19 @@ class ItemLink extends Component {
   state = {};
 
   render() {
-    const { item, plural, count, style, noLink } = this.props;
+    const { item, plural, count, style, noLink, name } = this.props;
 
     let text = '';
     if (count > 1) {
       text += `${count} `;
     }
-    text += item.name;
-    if (count !== 1 || plural !== null) {
-      text += (plural !== null ? plural : 's');
+    if (name) {
+      text += name;
+    } else {
+      text += item.name;
+      if (count !== 1 || plural !== null) {
+        text += (plural !== null ? plural : 's');
+      }
     }
 
     if (noLink) {

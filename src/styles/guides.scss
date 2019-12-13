@@ -12,7 +12,7 @@
     max-width: 828px;
     margin-right: 12px;
 
-    .MuiPaper-root + .MuiPaper-root:not(.MuiExpansionPanel-root) {
+    .MuiPaper-root + .MuiPaper-root:not(.MuiExpansionPanel-root):not(.lightbox-thumb) {
       margin-top: 16px;
     }
 
@@ -90,8 +90,9 @@
 
     .lightbox-group {
       display: flex;
-      align-items: baseline;
+      align-items: stretch;
       justify-content: space-evenly;
+      flex-wrap: wrap;
     }
   }
 

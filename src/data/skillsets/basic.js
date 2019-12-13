@@ -1,5 +1,6 @@
-import AnabolicaIcon from 'images/skill/auramancy/Banishment.png';
+import AnabolicaIcon from 'images/skill/basic/Anabolica.png';
 import BackKickIcon from 'images/skill/basic/Back_Kick.png';
+import BeastsenseIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import BiteIcon from 'images/skill/basic/Bite.png';
 import BoarsBoreIcon from 'images/skill/basic/Boars_Bore.png';
 import BreakthroughIcon from 'images/skill/basic/Breakthough.png';
@@ -29,6 +30,7 @@ import SnipeIcon from 'images/skill/shadowplay/Ruthless_Assault.png';
 import StandStrongIcon from 'images/skill/basic/Stand_Strong.png';
 import StealthMoveIcon from 'images/skill/basic/Stealth_Move.png';
 import StubbornDashIcon from 'images/skill/basic/Stubborn_Dash.png';
+import TerrifyingRoarIcon from 'images/skill/basic/Terrifying_Roar.png';
 import UnstoppableRaceIcon from 'images/skill/basic/Unstoppable_Race.png';
 import WarCryIcon from 'images/skill/basic/War_Cry.png';
 import WindStrikeIcon from 'images/skill/basic/Wind_Strike.png';
@@ -84,6 +86,15 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
+    id: 'Drop Back Gallant',
+    icon: DropBackIcon,
+    name: 'Drop Back',
+    cooldown: 20,
+    description: 'A clever Leomorph can jump farther than other Leomorphs.\r' +
+      'Triggers a #15 m# backwards leap to escape danger.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
     icon: OwnersEscapeIcon,
     name: 'Owner\'s Escape',
     cooldown: 30,
@@ -91,11 +102,27 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
+    icon: OwnersEscapeIcon,
+    name: 'Enhanced Owner\'s Escape',
+    cooldown: 30,
+    description: 'Teleports the rider forward #18m# and increases rider\'s Move Speed.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
     icon: StealthMoveIcon,
     name: 'Stealth Move',
     cooldown: 180,
-    description: 'Stealths both mount and rider for #30 sec#.\r' +
+    description: 'Stealths both mount and rider for #30sec#.\r' +
       'Decreases Move Speed #-30%#.\r' +
+      'Stealth ends if you attack or are attacked.\r' +
+      'Can\'t be used in combat.',
+  },
+  {
+    icon: StealthMoveIcon,
+    name: 'Improved Stealth Move',
+    cooldown: 90,
+    description: 'Stealths both mount and rider for #30sec#.\r' +
+      'Decreases Move Speed #-15%#.\r' +
       'Stealth ends if you attack or are attacked.\r' +
       'Can\'t be used in combat.',
   },
@@ -168,6 +195,15 @@ export default Object.freeze([
     description: 'Fires a burning arrow to deal +#500%# of Ranged Attack as Physical Damage; also deals +#200%# of Ranged Attack as damage over #5 seconds#.',
   },
   {
+    id: 'Mounted Fire Arrow Gallant',
+    icon: MountedFireArrowIcon,
+    name: 'Mounted Fire Arrow',
+    range: [0, 30],
+    cooldown: 8,
+    effects: [BUFF.BURNING],
+    description: 'Fires a burning arrow to deal +#300%# of Ranged Attack as Physical Damage; also deals +#200%# of Ranged Attack as damage over #5 seconds#.',
+  },
+  {
     icon: SnipeIcon,
     name: 'Snipe',
     range: [0, 35],
@@ -179,6 +215,14 @@ export default Object.freeze([
         text: 'Inflicts additional +50% damage on ${b} targets.',
       },
     ],
+  },
+  {
+    icon: SnipeIcon,
+    name: 'Precise Shot',
+    range: [0, 35],
+    cooldown: 24,
+    description: 'Fires arrows that deal damage equal to #700%# Ranged Attack.\r' +
+      'Places a Ranged Attack tag on the target.',
   },
   {
     icon: ElegantLeapIcon,
@@ -371,4 +415,62 @@ export default Object.freeze([
     description: 'Instructs the bear to pick up its master and run for #4sec#. Its master becomes invincible, but the bear receives 2x damage.\r' +
       'Can\'t be triggered if the master is wearing a trade pack.',
   },
+  {
+    icon: JoustingLanceChargeIcon,
+    name: 'Reckless Charge',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Triggers a ferocious charge into a target. Deals damage and knocks the target back. Can inflict more damage with #Dash# active.\r' +
+      'This skill counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: BeastsenseIcon,
+    name: 'Beastsense',
+    cooldown: 60,
+    description: 'Widens rider\'s Stealth detection range #+50%#.',
+  },
+  {
+    id: 'Dash Gallant',
+    icon: DashIcon,
+    name: 'Dash',
+    cooldown: 30,
+    description: 'Triggers an invincible forward run for #3sec#.\r' +
+      'Shares a cooldown with Leader of the Pack.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: AnabolicaIcon,
+    name: 'Leader of the Pack',
+    effectRange: 15,
+    cooldown: 30,
+    description: 'Triggers a roar to gather all raid members\' mounts within 15m into a pack for 10 seconds.\r' +
+      'Increases pack\'s Move Speed #+20%#.\r' +
+      'Increases the pack leader\'s speed as more mounts join the pack.\r' +
+      'Shares a cooldown with Dash.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: RunIcon,
+    name: 'Thunder Dash',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: BreakthroughIcon,
+    name: 'Ram',
+    cooldown: 30,
+    description: 'Charges forward, breaking through enemy lines for #3sec#. Rammed enemies receive damage and are knocked back.\r' +
+      'This skill counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: TerrifyingRoarIcon,
+    name: 'Terrifying Roar',
+    channeled: true,
+    cooldown: 60,
+    description: 'Lets out a great roar, inflicting Fear on charging enemy mounts for 8 seconds.\r' +
+      'Canceled by movement.'
+  }
 ]);

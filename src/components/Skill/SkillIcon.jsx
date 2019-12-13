@@ -66,6 +66,7 @@ class SkillIcon extends Component {
         passive={passive}
         element={element}
         requiredLevel={requiredLevel}
+        className="cursor-help"
         learned
       />
     );
