@@ -1,32 +1,3 @@
-import HolyBoltIcon from 'images/skill/vitalism/Holy_Bolt.png';
-import MirrorLightIcon from 'images/skill/vitalism/Mirror_Light.png';
-import AntithesisIcon from 'images/skill/vitalism/Antithesis.png';
-import ResurgenceIcon from 'images/skill/vitalism/Resurgence.png';
-import SkewerIcon from 'images/skill/vitalism/Skewer.png';
-import MendIcon from 'images/skill/vitalism/Mend.png';
-import ReviveIcon from 'images/skill/vitalism/Revive.png';
-import FerventHealingIcon from 'images/skill/vitalism/Fervent_Healing.png';
-import RenewalIcon from 'images/skill/vitalism/Renewal.png';
-import AranzebsBoonIcon from 'images/skill/vitalism/Aranzebs_Boon.png';
-import ManaBarrierIcon from 'images/skill/vitalism/Mana_Barrier.png';
-import HealingCircleIcon from 'images/skill/vitalism/Healing_Circle.png';
-import ProphetsVoiceIcon from 'images/skill/vitalism/Prophets_Voice.png';
-import QuickRecoveryIcon from 'images/skill/vitalism/Quick_Recovery.png';
-import VibrantCastingIcon from 'images/skill/vitalism/Vibrant_Casting.png';
-import MartyrsWayIcon from 'images/skill/vitalism/Martyrs_Way.png';
-import InvigoratedHealingIcon from 'images/skill/vitalism/Invigorated_Healing.png';
-import JoyousSpiritIcon from 'images/skill/vitalism/Joyous_Spirit.png';
-import AntithesisLife from 'images/skill/vitalism/Antithesis_Life.png';
-import AntithesisQuake from 'images/skill/vitalism/Antithesis_Quake.png';
-import SkewerFlame from 'images/skill/vitalism/Skewer_Flame.png';
-import SkewerLife from 'images/skill/vitalism/Skewer_Life.png';
-import FerventHealingFlame from 'images/skill/vitalism/Fervent_Healing_Flame.png';
-import FerventHealingLightning from 'images/skill/vitalism/Fervent_Healing_Lightning.png';
-import HolyBoltFlame from 'images/skill/vitalism/Holy_Bolt_Flame.png';
-import HolyBoltMist from 'images/skill/vitalism/Holy_Bolt_Mist.png';
-import HealingCircleLife from 'images/skill/vitalism/Healing_Circle_Life.png';
-import HealingCircleWave from 'images/skill/vitalism/Healing_Circle_Wave.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/vitalism/';
 
 const skills = Object.freeze([
   {
-    icon: HolyBoltIcon,
+    icon: Icon.HolyBolt,
     name: 'Holy Bolt',
     rank: 14,
     mana: 202,
@@ -70,7 +43,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: MirrorLightIcon,
+    icon: Icon.MirrorLight,
     name: 'Mirror Light',
     mana: 15,
     range: [0, 25],
@@ -80,7 +53,7 @@ const skills = Object.freeze([
       'When used on enemies: inflicts #Curse,# increasing Received Damage #+12%# for #20sec.# Also inflicts Snare on affected enemies, preventing movement or turning for #3sec.# Snare duration reduced #-50%# in PvP.',
   },
   {
-    icon: AntithesisIcon,
+    icon: Icon.Antithesis,
     name: 'Antithesis',
     rank: 8,
     mana: 149,
@@ -103,7 +76,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ResurgenceIcon,
+    icon: Icon.Resurgence,
     name: 'Resurgence',
     rank: 14,
     mana: 147,
@@ -115,7 +88,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: SkewerIcon,
+    icon: Icon.Skewer,
     name: 'Skewer',
     rank: 8,
     mana: 639,
@@ -146,7 +119,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: MendIcon,
+    icon: Icon.Mend,
     name: 'Mend',
     rank: 6,
     mana: 197,
@@ -175,7 +148,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ReviveIcon,
+    icon: Icon.Revive,
     name: 'Revive',
     rank: 4,
     mana: 86,
@@ -192,7 +165,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FerventHealingIcon,
+    icon: Icon.FerventHealing,
     name: 'Fervent Healing',
     rank: 7,
     mana: 30,
@@ -214,7 +187,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: RenewalIcon,
+    icon: Icon.Renewal,
     name: 'Renewal',
     rank: 2,
     mana: 347,
@@ -229,7 +202,7 @@ const skills = Object.freeze([
     descriptionNote: '\rMultiple casters can grant Renewal to the same target.',
   },
   {
-    icon: AranzebsBoonIcon,
+    icon: Icon.AranzebsBoon,
     name: 'Aranzeb\'s Boon',
     rank: 3,
     mana: 137,
@@ -240,7 +213,7 @@ const skills = Object.freeze([
       'Lasts #30min#.',
   },
   {
-    icon: ManaBarrierIcon,
+    icon: Icon.ManaBarrier,
     name: 'Mana Barrier',
     mana: 1316,
     range: [0, 30],
@@ -262,7 +235,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: HealingCircleIcon,
+    icon: Icon.HealingCircle,
     name: 'Healing Circle',
     mana: 867,
     allyHealing: { base: 1584, attack: ATTACK.HEALING, ratio: 800 },
@@ -277,19 +250,19 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: ProphetsVoiceIcon,
+    icon: Icon.ProphetsVoice,
     name: 'Prophet\'s Voice',
     description: 'Converts #3%# of Received Damage to Mana for #9 sec.#\r' +
       'This ability has a #20 sec.# Cooldown once triggered.',
   },
   {
-    icon: QuickRecoveryIcon,
+    icon: Icon.QuickRecovery,
     name: 'Quick Recovery',
     description: 'Resets active Cooldowns on all Vitalism healing skills after receiving critical damage.\r\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {
-    icon: VibrantCastingIcon,
+    icon: Icon.VibrantCasting,
     name: 'Vibrant Casting',
     description: 'Increases Skill Damage and Healing for Vitalism skills #+10%.#',
     skillMod: [
@@ -301,7 +274,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: MartyrsWayIcon,
+    icon: Icon.MartyrsWay,
     name: 'Martyr\'s Way',
     description: 'Grants the #Prayer# buff whenever you cast #Antithesis, Mend, or Fervent Healing.#\r\r' +
       '#Prayer:#\r' +
@@ -315,12 +288,12 @@ export const passives = Object.freeze([
       '- Gaining a stack of #Prayer# resets the duration of #Divine Response.#',
   },
   {
-    icon: InvigoratedHealingIcon,
+    icon: Icon.InvigoratedHealing,
     name: 'Invigorated Healing',
     description: 'Increases Critical Heal Bonus #+20%.#',
   },
   {
-    icon: JoyousSpiritIcon,
+    icon: Icon.JoyousSpirit,
     name: 'Joyous Spirit',
     description: 'Increases Post-Cast Mana Regen #+5.0,# with an additional #+0.0# based on #Spirit.#\r' +
       'Does not affect Mana Regen when caster is not casting.',
@@ -333,14 +306,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIFE,
-        icon: AntithesisLife,
+        icon: Icon.AntithesisLife,
         range: [0, 30],
         description: 'Instantly restores ${selfHealing} for you and ${allyHealing} Health for an ally.\r' +
           'This skill has a longer range than regular Antithesis, but cannot be used to damage enemies.',
       },
       {
         element: ELEMENT.QUAKE,
-        icon: AntithesisQuake,
+        icon: Icon.AntithesisQuake,
         effectRange: 6,
         allyHealing: { base: 390, attack: ATTACK.HEALING, ratio: 220 },
         selfHealing: { base: 274, attack: ATTACK.HEALING, ratio: 153 },
@@ -354,7 +327,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: SkewerFlame,
+        icon: Icon.SkewerFlame,
         damage: { base: 1203, attack: ATTACK.HEALING, ratio: 330 },
         castTime: 1.5,
         description: 'Summons skewers in a #5m# radius at the target location.\r' +
@@ -363,7 +336,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIFE,
-        icon: SkewerLife,
+        icon: Icon.SkewerLife,
         damage: { base: 569, attack: ATTACK.HEALING, ratio: 110 },
         healing: { base: 398, attack: ATTACK.HEALING, ratio: 77 },
         castTime: 0,
@@ -379,7 +352,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: FerventHealingFlame,
+        icon: Icon.FerventHealingFlame,
         mana: 976,
         allyHealing: { base: 91, attack: ATTACK.HEALING, ratio: 44 },
         selfHealing: { base: 63, attack: ATTACK.HEALING, ratio: 31 },
@@ -390,7 +363,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: FerventHealingLightning,
+        icon: Icon.FerventHealingLightning,
         mana: 266,
         allyHealing: { base: 244, attack: ATTACK.HEALING, ratio: 77 },
         selfHealing: { base: 244, attack: ATTACK.HEALING, ratio: 77 },
@@ -406,7 +379,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: HolyBoltFlame,
+        icon: Icon.HolyBoltFlame,
         mana: 99,
         range: [0, 30],
         damage: { base: 275, attack: ATTACK.HEALING, ratio: 55 },
@@ -439,7 +412,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: HolyBoltMist,
+        icon: Icon.HolyBoltMist,
         description: 'Fires a bolt of holy light that deals ${damage} Magic Damage to a single target.\r' +
           'If used on an ally, the bolt is fired at an enemy #Cursed# by the caster, dealing ${damage} Magic Damage.',
         combos: [
@@ -470,7 +443,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIFE,
-        icon: HealingCircleLife,
+        icon: Icon.HealingCircleLife,
         allyHealing: { base: 760, attack: ATTACK.HEALING, ratio: 385 },
         selfHealing: { base: 531, attack: ATTACK.HEALING, ratio: 270 },
         castTime: 0,
@@ -480,7 +453,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: HealingCircleWave,
+        icon: Icon.HealingCircleWave,
         range: [0, 20],
         effectRange: 10,
         allyHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },

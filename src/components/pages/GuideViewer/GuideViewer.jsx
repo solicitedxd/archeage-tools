@@ -20,7 +20,7 @@ import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
 import TabContent from 'components/TabContent';
 import { setTitle } from 'utils/string';
-import * as Guides from '../../../data/guides';
+import * as Guides from '../../../data/guides/';
 
 const slug = (text) => {
   return text.toLowerCase()

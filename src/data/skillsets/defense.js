@@ -1,42 +1,15 @@
-import ShieldSlamIcon from 'images/skill/defense/Shield_Slam.png';
-import ToughenIcon from 'images/skill/defense/Toughen.png';
-import BullRushIcon from 'images/skill/defense/Bull_Rush.png';
-import BoastfulRoarIcon from 'images/skill/defense/Boastful_Roar.png';
-import LassoIcon from 'images/skill/defense/Lasso.png';
-import RedoubtIcon from 'images/skill/defense/Redoubt.png';
-import MockingHowlIcon from 'images/skill/defense/Mocking_Howl.png';
-import RefreshmentIcon from 'images/skill/defense/Refreshment.png';
-import RetributionIcon from 'images/skill/defense/Retribution.png';
-import RevitalizingCheerIcon from 'images/skill/defense/Revitalizing_Cheer.png';
-import ImprisonIcon from 'images/skill/defense/Imprison.png';
-import InvincibilityIcon from 'images/skill/defense/Invincibility.png';
-import SupplementalBlockIcon from 'images/skill/defense/Supplemental_Block.png';
-import SpryFortressIcon from 'images/skill/defense/Spry_Fortress.png';
-import ShieldofSteelIcon from 'images/skill/defense/Shield_of_Steel.png';
-import BearsVigorIcon from 'images/skill/defense/Bears_Vigor.png';
-import UrsineRoarIcon from 'images/skill/defense/Ursine_Roar.png';
-import ShieldMasteryIcon from 'images/skill/defense/Shield_Mastery.png';
-import ShieldSlamGale from 'images/skill/defense/Shield_Slam_Gale.png';
-import ShieldSlamQuake from 'images/skill/defense/Shield_Slam_Quake.png';
-import RedoubtGale from 'images/skill/defense/Redoubt_Gale.png';
-import RedoubtLife from 'images/skill/defense/Redoubt_Life.png';
-import ImprisonMist from 'images/skill/defense/Imprison_Mist.png';
-import ImprisonWave from 'images/skill/defense/Imprison_Wave.png';
-import LassoGale from 'images/skill/defense/Lasso_Gale.png';
-import LassoLife from 'images/skill/defense/Lasso_Life.png';
-import RetributionFlame from 'images/skill/defense/Retribution_Flame.png';
-import RetributionMist from 'images/skill/defense/Retribution_Mist.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/defense/';
 
 const skills = Object.freeze([
   {
-    icon: ShieldSlamIcon,
+    icon: Icon.ShieldSlam,
     name: 'Shield Slam',
     rank: 14,
     mana: 114,
@@ -66,7 +39,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ToughenIcon,
+    icon: Icon.Toughen,
     name: 'Toughen',
     rank: 4,
     mana: 73,
@@ -78,7 +51,7 @@ const skills = Object.freeze([
     descriptionNote: '\rThis skill does not produce a Global Cooldown.',
   },
   {
-    icon: BullRushIcon,
+    icon: Icon.BullRush,
     name: 'Bull Rush',
     rank: 12,
     mana: 100,
@@ -98,7 +71,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BoastfulRoarIcon,
+    icon: Icon.BoastfulRoar,
     name: 'Boastful Roar',
     mana: 28,
     range: [0, 10],
@@ -115,7 +88,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: LassoIcon,
+    icon: Icon.Lasso,
     name: 'Lasso',
     mana: 29,
     range: [0, 20],
@@ -126,7 +99,7 @@ const skills = Object.freeze([
       'Pulled enemies are Staggered, disabling movement skill use for #0.5 sec# and interrupting all Cast Time and Channeled skills.',
   },
   {
-    icon: RedoubtIcon,
+    icon: Icon.Redoubt,
     name: 'Redoubt',
     rank: 3,
     mana: 71,
@@ -141,7 +114,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: MockingHowlIcon,
+    icon: Icon.MockingHowl,
     name: 'Mocking Howl',
     mana: 55,
     effectRange: 10,
@@ -167,7 +140,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: RefreshmentIcon,
+    icon: Icon.Refreshment,
     name: 'Emitting Health',
     mana: 73,
     cooldown: 120,
@@ -176,7 +149,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: RetributionIcon,
+    icon: Icon.Retribution,
     name: 'Retribution',
     rank: 3,
     mana: 97,
@@ -188,7 +161,7 @@ const skills = Object.freeze([
     descriptionNote: 'This skill doesn\'t trigger a Global Cooldown.',
   },
   {
-    icon: RevitalizingCheerIcon,
+    icon: Icon.RevitalizingCheer,
     name: 'Revitalizing Cheer',
     rank: 3,
     mana: 76,
@@ -204,7 +177,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ImprisonIcon,
+    icon: Icon.Imprison,
     name: 'Imprison',
     mana: 159,
     effectRange: 7,
@@ -213,7 +186,7 @@ const skills = Object.freeze([
       'Enemies can break out if they use enough force.',
   },
   {
-    icon: InvincibilityIcon,
+    icon: Icon.Invincibility,
     name: 'Invincibility',
     mana: 71,
     channeled: true,
@@ -226,34 +199,34 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: SupplementalBlockIcon,
+    icon: Icon.SupplementalBlock,
     name: 'Supplemental Block',
     description: 'Increases Block Rate #+15%# for #5 seconds# after a successful Block.',
   },
   {
-    icon: SpryFortressIcon,
+    icon: Icon.SpryFortress,
     name: 'Spry Fortress',
     description: 'Decreases Stun and Impale Effect Durations #- 20%.#',
   },
   {
-    icon: ShieldofSteelIcon,
+    icon: Icon.ShieldOfSteel,
     name: 'Shield of Steel',
     description: 'Increases Physical Defense #+6%.#\r' +
       'Whenever you receive Physical Damage you gain a stack of Shield of Steel, increasing your Physical Defense #+300# for 5 sec.\r' +
       'Stacks up to #5 times.#',
   },
   {
-    icon: BearsVigorIcon,
+    icon: Icon.BearsVigor,
     name: 'Bear\'s Vigor',
     description: 'Grants 10% of received damage as stacks of #Mettle.#',
   },
   {
-    icon: UrsineRoarIcon,
+    icon: Icon.UrsineRoar,
     name: 'Ursine Roar',
     description: 'Decreases the cooldown of Defense skills #-20%# while under the effects of #Mettle.#',
   },
   {
-    icon: ShieldMasteryIcon,
+    icon: Icon.ShieldMastery,
     name: 'Shield Mastery',
     description: 'Whenever you block an attack, decrease received Physical Damage #-30%# for #3 sec.#\r' +
       'Increases Accuracy #+5%#.\r' +
@@ -267,7 +240,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: ShieldSlamGale,
+        icon: Icon.ShieldSlamGale,
         mana: 91,
         damage: { base: 557, attack: ATTACK.MELEE, ratio: 60 },
         cooldown: 4,
@@ -289,7 +262,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.QUAKE,
-        icon: ShieldSlamQuake,
+        icon: Icon.ShieldSlamQuake,
         mana: 228,
         effectRange: 6,
         effects: [BUFF.STAGGER],
@@ -316,7 +289,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: RedoubtGale,
+        icon: Icon.RedoubtGale,
         cooldown: 15,
         effects: [BUFF.REDOUBT],
         description: 'Raises a shield around the caster for #2sec#.\r' +
@@ -330,7 +303,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIFE,
-        icon: RedoubtLife,
+        icon: Icon.RedoubtLife,
         range: [0, 10],
         effects: [BUFF.REDOUBT_LIFE],
         description: 'Raises a shield around the caster and a chosen ally for #5sec#. Decreases Move Speed #-10%#.\r' +
@@ -349,14 +322,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: ImprisonMist,
+        icon: Icon.ImprisonMist,
         effectRange: null,
         description: 'Summons a #20m# wide wall of mist directly in front of you. The wall remains in place for #12 sec.#\r' +
           'Enemies can break through if they use enough force.',
       },
       {
         element: ELEMENT.WAVE,
-        icon: ImprisonWave,
+        icon: Icon.ImprisonWave,
         description: 'Summons a magical circle for #8 sec# that allows anyone to enter but prevents them from escaping.\r' +
           'Enemies can break out if they use enough force.\r' +
           'Only applies in PvP.',
@@ -368,7 +341,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: LassoGale,
+        icon: Icon.LassoGale,
         range: [0, 12],
         cooldown: 0,
         description: 'Pulls a distant enemy to your position. This ability also #Taunts# the target, forcing affected monsters to attack you #4sec#.\r' +
@@ -379,7 +352,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIFE,
-        icon: LassoLife,
+        icon: Icon.LassoLife,
         effects: [],
         description: 'Pulls a Party of Raid member within 20m to your position, decreasing their Aggro and canceling all targets on them.',
       },
@@ -390,7 +363,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: RetributionFlame,
+        icon: Icon.RetributionFlame,
         cooldown: 45,
         description: 'For #8sec,# whenever you receive damage from a direct attack, you deal ${damage} Melee Damage and dealing additional Damage equal to #1%-2%# of your Max Health to up to#20 enemies# within an #8m# radius.\r' +
           'At the 10th damage received, deals #200%# Melee Damage within #8m#.' +
@@ -399,7 +372,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: RetributionMist,
+        icon: Icon.RetributionMist,
         damage: null,
         description: 'Surrounds the caster with magical armor that #triples# their Aggro for #1min#.',
         descriptionNote: null,

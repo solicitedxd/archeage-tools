@@ -1,32 +1,3 @@
-import RapidStrikeIcon from 'images/skill/shadowplay/Rapid_Strike.png';
-import PoisonedWeaponsIcon from 'images/skill/shadowplay/Poisoned_Weapons.png';
-import DropBackIcon from 'images/skill/shadowplay/Drop_Back.png';
-import PinDownIcon from 'images/skill/shadowplay/Pin_Down.png';
-import OverwhelmIcon from 'images/skill/shadowplay/Overwhelm.png';
-import StalkersMarkIcon from 'images/skill/shadowplay/Stalkers_Mark.png';
-import WallopIcon from 'images/skill/shadowplay/Wallop.png';
-import StealthIcon from 'images/skill/shadowplay/Stealth.png';
-import FreerunnerIcon from 'images/skill/shadowplay/Freerunner.png';
-import ShadowsmiteIcon from 'images/skill/shadowplay/Shadowsmite.png';
-import LeechIcon from 'images/skill/shadowplay/Leech.png';
-import ThrowDaggerIcon from 'images/skill/shadowplay/Throw_Dagger.png';
-import ShadowTrainingIcon from 'images/skill/shadowplay/Shadow_Training.png';
-import BecomeVoidIcon from 'images/skill/shadowplay/Become_Void.png';
-import RuthlessAssaultIcon from 'images/skill/shadowplay/Ruthless_Assault.png';
-import BloodthirstIntensifiedIcon from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
-import LethalToxinsIcon from 'images/skill/shadowplay/Lethal_Toxins.png';
-import ShadowMasteryIcon from 'images/skill/shadowplay/Shadow_Mastery.png';
-import OverwhelmFlame from 'images/skill/shadowplay/Overwhelm_Flame.png';
-import OverwhelmLightning from 'images/skill/shadowplay/Overwhelm_Lightning.png';
-import DropBackMist from 'images/skill/shadowplay/Drop_Back_Mist.png';
-import DropBackWave from 'images/skill/shadowplay/Drop_Back_Wave.png';
-import ShadowsmiteLightning from 'images/skill/shadowplay/Shadowsmite_Lightning.png';
-import ShadowsmiteMist from 'images/skill/shadowplay/Shadowsmite_Mist.png';
-import FreerunnerFlame from 'images/skill/shadowplay/Freerunner_Flame.png';
-import FreerunnerQuake from 'images/skill/shadowplay/Freerunner_Quake.png';
-import PoisonedWeaponsFlame from 'images/skill/shadowplay/Poisoned_Weapons_Flame.png';
-import PoisonedWeaponsWave from 'images/skill/shadowplay/Poisoned_Weapons_Wave.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/shadowplay/';
 
 const skills = Object.freeze([
   {
-    icon: RapidStrikeIcon,
+    icon: Icon.RapidStrike,
     name: 'Rapid Strike',
     rank: 1,
     mana: 8,
@@ -50,7 +23,7 @@ const skills = Object.freeze([
     continuousHold: true,
   },
   {
-    icon: PoisonedWeaponsIcon,
+    icon: Icon.PoisonedWeapons,
     name: 'Poisoned Weapons',
     rank: 18,
     mana: 93,
@@ -64,7 +37,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: DropBackIcon,
+    icon: Icon.DropBack,
     name: 'Drop Back',
     rank: 1,
     mana: 25,
@@ -75,7 +48,7 @@ const skills = Object.freeze([
     movement: true,
   },
   {
-    icon: PinDownIcon,
+    icon: Icon.PinDown,
     name: 'Pin Down',
     rank: 11,
     mana: 189,
@@ -106,7 +79,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: OverwhelmIcon,
+    icon: Icon.Overwhelm,
     name: 'Overwhelm',
     rank: 9,
     mana: 157,
@@ -128,7 +101,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: StalkersMarkIcon,
+    icon: Icon.StalkersMark,
     name: 'Stalker\'s Mark',
     rank: 4,
     mana: 63,
@@ -139,7 +112,7 @@ const skills = Object.freeze([
       'Increases Received Range and Magic Damage #+16.0%.#',
   },
   {
-    icon: WallopIcon,
+    icon: Icon.Wallop,
     name: 'Wallop',
     rank: 7,
     mana: 287,
@@ -161,7 +134,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: StealthIcon,
+    icon: Icon.Stealth,
     name: 'Stealth',
     rank: 4,
     mana: 83,
@@ -173,7 +146,7 @@ const skills = Object.freeze([
       'Cooldown doesn\'t start until after #Stealth# ends.',
   },
   {
-    icon: FreerunnerIcon,
+    icon: Icon.Freerunner,
     name: 'Freerunner',
     rank: 2,
     mana: 79,
@@ -182,7 +155,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: ShadowsmiteIcon,
+    icon: Icon.Shadowsmite,
     name: 'Shadowsmite',
     rank: 3,
     mana: 106,
@@ -213,7 +186,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: LeechIcon,
+    icon: Icon.Leech,
     name: 'Leech',
     mana: 79,
     range: [0, 12],
@@ -231,7 +204,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ThrowDaggerIcon,
+    icon: Icon.ThrowDagger,
     name: 'Throw Dagger',
     mana: 402,
     range: [0, 10],
@@ -258,23 +231,23 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: ShadowTrainingIcon,
+    icon: Icon.ShadowTraining,
     name: 'Shadow Training',
     description: 'Increases Attack Speed +#40.#',
   },
   {
-    icon: BecomeVoidIcon,
+    icon: Icon.BecomeVoid,
     name: 'Become Void',
     description: 'Increases Evasion Rate #+5%.#',
   },
   {
-    icon: RuthlessAssaultIcon,
+    icon: Icon.RuthlessAssault,
     name: 'Ruthless Assault',
     description: 'Increases Attack Speed #+120# for #8 sec# whenever you inflict a Critical Strike or a Critical Heal.\r\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {
-    icon: BloodthirstIntensifiedIcon,
+    icon: Icon.BloodthirstIntensified,
     name: 'Bloodthirst Intensified',
     description: 'When gaining Bloodthirst, accumulate #2 stacks# at a time.\r\r' +
       '#Bloodthirst:#\r' +
@@ -284,7 +257,7 @@ export const passives = Object.freeze([
       '- Lasts #25 sec.#',
   },
   {
-    icon: LethalToxinsIcon,
+    icon: Icon.LethalToxins,
     name: 'Lethal Toxins',
     description: 'Increases the Duration of #Poison and Bleeding# effects you inflict #+70%.#',
     skillMod: [
@@ -301,7 +274,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: ShadowMasteryIcon,
+    icon: Icon.ShadowMastery,
     name: 'Shadow Mastery',
     description: 'Decreases #Shadowplay# Skill Cooldowns #-20%.#',
     skillMod: [
@@ -320,7 +293,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: OverwhelmFlame,
+        icon: Icon.OverwhelmFlame,
         damage: { base: 547, attack: ATTACK.MELEE, ratio: 200 },
         cooldown: 26,
         description: 'Leap toward an enemy and deal ${damage} Melee Damage.\r' +
@@ -328,7 +301,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: OverwhelmLightning,
+        icon: Icon.OverwhelmLightning,
         range: [0, 6],
         damage: { base: 547, attack: ATTACK.MELEE, ratio: 200 },
         description: 'Leap directly over an enemy\'s head, dealing ${damage} Melee Damage as you pass and then continuing on to land #18m# past them.\r' +
@@ -348,13 +321,13 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: DropBackMist,
+        icon: Icon.DropBackMist,
         description: 'Leap forward #10m# to escape a dangerous area or close the distance between you and an enemy.\r' +
           'Grants the Drop Back buff, eliminating the Cast Time for Flamebolt, Antithesis, and Sunder Earth for #2.5sec#.',
       },
       {
         element: ELEMENT.WAVE,
-        icon: DropBackWave,
+        icon: Icon.DropBackWave,
         description: 'Leap backwards #10m# to escape a dangerous area or back away from an enemy.\r' +
           'Grants the Wave Drop Back buff, eliminating the Cast Time for Concussive Arrow, Mend, and Insulating Lens for #2.5sec#.',
       },
@@ -365,7 +338,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: ShadowsmiteLightning,
+        icon: Icon.ShadowsmiteLightning,
         range: [0, 6],
         description: 'Teleports behind an enemy within #${range[1]}m# and attempts to backstab them, dealing ${damage} Melee Damage to the target.\r' +
           'Backstabbing adds damage equal to #400%# of Melee Attack.\r' +
@@ -389,7 +362,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: ShadowsmiteMist,
+        icon: Icon.ShadowsmiteMist,
         description: 'Launches a surprise attack, dealing ${damage} Melee Damage to the target.\r' +
           'Backstabbing adds damage equal to #400%# of Melee Attack.\r' +
           'This skill Trips targets that are under the effects of Provoke, but does not have a combo with Stun.',
@@ -422,14 +395,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: FreerunnerFlame,
+        icon: Icon.FreerunnerFlame,
         description: 'Increases the caster\'s Movement Speed and Attack Speed for #20sec#, but causes them to be Slowed after the effect ends. Killing an enemy resets the buff duration.\r' +
           'Increases Move Speed &nbsp;#+30.0%#.\r' +
           'Increases Attack Speed +#42#.',
       },
       {
         element: ELEMENT.QUAKE,
-        icon: FreerunnerQuake,
+        icon: Icon.FreerunnerQuake,
         effectRange: 5,
         description: 'Increases the caster\'s and nearby allies\' Move Speed and Attack Speed for #30sec#.\r' +
           'Increases Move Speed #+30.0%#\r' +
@@ -442,13 +415,13 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: PoisonedWeaponsFlame,
+        icon: Icon.PoisonedWeaponsFlame,
         description: 'Coats your weapons in poison for #3sec.#\r' +
           'Your next Melee or Ranged attack during that time will deal an additional ${damage} Magic Damage over #6 sec#. The poison can be transferred continuously.',
       },
       {
         element: ELEMENT.WAVE,
-        icon: PoisonedWeaponsWave,
+        icon: Icon.PoisonedWeaponsWave,
         damage: null,
         description: 'Coats your weapons in poison for #6sec.#\r' +
           'Your next Melee or Ranged attack during that time will decrease the Evasion of the target #-10%# over #6 sec#.',

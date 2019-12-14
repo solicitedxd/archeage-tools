@@ -1,32 +1,3 @@
-import ThwartIcon from 'images/skill/auramancy/Thwart.png';
-import CometsBoonIcon from 'images/skill/auramancy/Comets_Boon.png';
-import ConversionShieldIcon from 'images/skill/auramancy/Conversion_Shield.png';
-import ViciousImplosionIcon from 'images/skill/auramancy/Vicious_Implosion.png';
-import TeleportationIcon from 'images/skill/auramancy/Teleportation.png';
-import CourageousActionIcon from 'images/skill/auramancy/Courageous_Action.png';
-import MeditateIcon from 'images/skill/auramancy/Meditate.png';
-import ShrugItOffIcon from 'images/skill/auramancy/Shrug_It_Off.png';
-import HealthLiftIcon from 'images/skill/auramancy/Health_Lift.png';
-import BanishmentIcon from 'images/skill/auramancy/Banishment.png';
-import ProtectiveWingsIcon from 'images/skill/auramancy/Protective_Wings.png';
-import BracingBlastIcon from 'images/skill/auramancy/Bracing_Blast.png';
-import AbsorbDamageIcon from 'images/skill/auramancy/Absorb_Damage.png';
-import InnerPeaceIcon from 'images/skill/auramancy/Inner_Peace.png';
-import UnassailableIcon from 'images/skill/auramancy/Unassailable.png';
-import WardMasteryIcon from 'images/skill/auramancy/Ward_Mastery.png';
-import AcceleratedCastingIcon from 'images/skill/auramancy/Accelerated_Casting.png';
-import UnwaveringWillIcon from 'images/skill/auramancy/Unwavering_Will.png';
-import ThwartMist from 'images/skill/auramancy/Thwart_Mist.png';
-import ThwartStone from 'images/skill/auramancy/Thwart_Stone.png';
-import ConversionShieldFlame from 'images/skill/auramancy/Conversion_Shield_Flame.png';
-import ConversionShieldMist from 'images/skill/auramancy/Conversion_Shield_Mist.png';
-import ProtectiveWingsFlame from 'images/skill/auramancy/Protective_Wings_Flame.png';
-import ProtectiveWingsMist from 'images/skill/auramancy/Protective_Wings_Mist.png';
-import TeleportationLightning from 'images/skill/auramancy/Teleportation_Lightning.png';
-import TeleportationMist from 'images/skill/auramancy/Teleportation_Mist.png';
-import ViciousImplosionFlame from 'images/skill/auramancy/Vicious_Implosion_Flame.png';
-import ViciousImplosionStone from 'images/skill/auramancy/Vicious_Implosion_Stone.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/auramancy/';
 
 const skills = Object.freeze([
   {
-    icon: ThwartIcon,
+    icon: Icon.Thwart,
     name: 'Thwart',
     rank: 6,
     mana: 88,
@@ -58,7 +31,7 @@ const skills = Object.freeze([
     incapacitated: true,
   },
   {
-    icon: CometsBoonIcon,
+    icon: Icon.CometsBoon,
     name: 'Comet\'s Boon',
     rank: 11,
     mana: 327,
@@ -69,7 +42,7 @@ const skills = Object.freeze([
       'Increases the Move Speed of the caster and any allies that walk on the path.',
   },
   {
-    icon: ConversionShieldIcon,
+    icon: Icon.ConversionShield,
     name: 'Conversion Shield',
     rank: 5,
     mana: 69,
@@ -87,7 +60,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ViciousImplosionIcon,
+    icon: Icon.ViciousImplosion,
     name: 'Vicious Implosion',
     rank: 9,
     mana: 497,
@@ -105,7 +78,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: TeleportationIcon,
+    icon: Icon.Teleportation,
     name: 'Teleportation',
     mana: 29,
     cooldown: 35,
@@ -114,7 +87,7 @@ const skills = Object.freeze([
     movement: true,
   },
   {
-    icon: CourageousActionIcon,
+    icon: Icon.CourageousAction,
     name: 'Courageous Action',
     mana: 55,
     range: [0, 20],
@@ -123,7 +96,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: MeditateIcon,
+    icon: Icon.Meditate,
     name: 'Meditate',
     channeled: true,
     cooldown: 45,
@@ -131,7 +104,7 @@ const skills = Object.freeze([
       'This skill ends early if the caster moves or stops channel.',
   },
   {
-    icon: ShrugItOffIcon,
+    icon: Icon.ShrugItOff,
     name: 'Shrug It Off',
     mana: 78,
     cooldown: 120,
@@ -140,7 +113,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NONE,
   },
   {
-    icon: HealthLiftIcon,
+    icon: Icon.HealthLift,
     name: 'Health Lift',
     rank: 4,
     mana: 110,
@@ -150,7 +123,7 @@ const skills = Object.freeze([
       'Increases Max Health +#4172#.',
   },
   {
-    icon: BanishmentIcon,
+    icon: Icon.Banishment,
     name: 'Banishment',
     mana: 85,
     range: [0, 15],
@@ -173,7 +146,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ProtectiveWingsIcon,
+    icon: Icon.ProtectiveWings,
     name: 'Protective Wings',
     mana: 238,
     effectRange: 5,
@@ -184,7 +157,7 @@ const skills = Object.freeze([
       'This skill ends early if the caster moves or stops channeling.',
   },
   {
-    icon: BracingBlastIcon,
+    icon: Icon.BracingBlast,
     name: 'Bracing Blast',
     mana: 142,
     effectRange: 10,
@@ -196,24 +169,24 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: AbsorbDamageIcon,
+    icon: Icon.AbsorbDamage,
     name: 'Absorb Damage',
     description: 'Converts #13%# of Received Damage to Health for #9 seconds#.\r\r' +
       'This ability has a #20 sec# Cooldown once triggered.',
   },
   {
-    icon: InnerPeaceIcon,
+    icon: Icon.InnerPeace,
     name: 'Inner Peace',
     description: 'Decreases Fear and Sleep Effect Durations #-20%.#',
   },
   {
-    icon: UnassailableIcon,
+    icon: Icon.Unassailable,
     name: 'Unassailable',
     description: 'Grants a #1%# chance to gain invincibility for #2 sec# after receiving any damage.\r\r' +
       'This ability has a #20 sec# Cooldown once triggered.',
   },
   {
-    icon: WardMasteryIcon,
+    icon: Icon.WardMastery,
     name: 'Ward Mastery',
     description: '#Warding Light# stacks twice.',
     skillMod: [
@@ -225,12 +198,12 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: AcceleratedCastingIcon,
+    icon: Icon.AcceleratedCasting,
     name: 'Accelerated Casting',
     description: 'Each time you cast #Thwart,# active Auramancy Cooldowns are decreased by #-10%.#',
   },
   {
-    icon: UnwaveringWillIcon,
+    icon: Icon.UnwaveringWill,
     name: 'Unwavering Will',
     description: 'Grants #+30%# Magic Damage Reduction for #3 sec# each time you receive a Magic Critical Strike.\r' +
       'Increases Accuracy #+5%#.\r' +
@@ -244,7 +217,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: ThwartMist,
+        icon: Icon.ThwartMist,
         effects: [BUFF.WARDING_LIGHT],
         description: 'Grants #Warding Mist# to the caster and all allies within #6m.#\r\r' +
           '#Warding Mist:#\r' +
@@ -255,7 +228,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: ThwartStone,
+        icon: Icon.ThwartStone,
         effects: [BUFF.WARDING_LIGHT],
         description: 'Grants the caster ${stacks} stack of #Warding Light# for #20sec.#\r\r' +
           '#Warding Light:#\r' +
@@ -271,7 +244,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ConversionShieldFlame,
+        icon: Icon.ConversionShieldFlame,
         effects: [BUFF.CONVERSION_SHIELD_FLAME],
         description: 'Reflects 25% of incoming Magic Damage, and converts it into Health.\r' +
           'The caster receives #75%# of Magic Damage.\r' +
@@ -279,7 +252,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: ConversionShieldMist,
+        icon: Icon.ConversionShieldMist,
         range: [0, 20],
         cooldown: 40,
         effects: [BUFF.CONVERSION_SHIELD],
@@ -294,7 +267,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ProtectiveWingsFlame,
+        icon: Icon.ProtectiveWingsFlame,
         effectRange: 15,
         description: 'Prevents #20%# of received Magic Damage from affecting the caster and allies within #${effectRange}m# for up to #12 sec.# Affects up to #20 allies# at a time.\r' +
           'Affected allies also reflect #20%# of received Magic Damage to attackers for the duration, but the caster takes #80%# of received Damage.\r' +
@@ -303,7 +276,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: ProtectiveWingsMist,
+        icon: Icon.ProtectiveWingsMist,
         range: [0, 20],
         description: 'Grants #+50%# Magic Damage Reduction to the caster and up to #20 allies# within 5m for #12sec#.\r' +
           'Caster and all affected allies are immune to Silence.',
@@ -316,12 +289,12 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: TeleportationLightning,
+        icon: Icon.TeleportationLightning,
         description: 'Teleports the caster #10m# forward and has a #42%# chance to trigger an additional teleport.',
       },
       {
         element: ELEMENT.MIST,
-        icon: TeleportationMist,
+        icon: Icon.TeleportationMist,
         range: [0, 12],
         description: 'Teleports the caster to a location within a #${range[1]}m# radius.',
       },
@@ -332,7 +305,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ViciousImplosionFlame,
+        icon: Icon.ViciousImplosionFlame,
         effects: [BUFF.PROVOKE],
         description: 'Triggers a sudden, powerful implosion, pulling enemies within #${effectRange} meters# towards you and dealing ${damage} Magic Damage.\r' +
           'Interrupts affected enemies\' Cast Time and Channeled skills, and inflicts #${effects[0]}# to affected enemies for #3sec#.\r\r' +
@@ -340,7 +313,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: ViciousImplosionStone,
+        icon: Icon.ViciousImplosionStone,
         effectRange: 7,
         combos: [
           {

@@ -33,7 +33,9 @@ const sections = [
       'Diamond Shores Guard is acquired from the Crimson Watch member Drillmaster Raysen near the Mistsong Summit teleport location.',
       'This quest has a level requirement of 50 and requires you to kill 50 enemies in Diamond Shores.',
       <Typography variant="subtitle1">Rewards</Typography>,
-      <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />,
+      <div className="quest-items">
+        <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
+      </div>,
     ],
   },
   {
@@ -189,7 +191,9 @@ const sections = [
       'The Mammoth will can freeze its target for several seconds, rendering them unable to attack or move. It also ' +
       'performs an attack where it barrels forward dealing massive damage to all players in its path.',
       <Typography variant="subtitle1">Rewards</Typography>,
-      <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />,
+      <div className="quest-items">
+        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
+      </div>,
       <Typography variant="h6">Haradium Abominations</Typography>,
       'Animal Control requires you to kill 50 haradium abominations in the Eastern Hiram Mountains.',
       'The base of the waterfall is the largest area that the abominations can spawn. You can glide down the waterfall ' +
@@ -210,7 +214,9 @@ const sections = [
       'cloud that deals incredible damage to players inside of it. Its attacks also splash to nearby enemies, so ' +
       'spreading out will help prevent taking large amounts of damage.',
       <Typography variant="subtitle1">Rewards</Typography>,
-      <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />,
+      <div className="quest-items">
+        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
+      </div>,
       <Typography variant="h6">Stop the Abyssal Legion</Typography>,
       'Stop the Abyssal Legion is an elite-difficulty quest that requires you to kill 50 abyssal legion enemies in the ' +
       'Eastern Hiram Mountains. You will need a group to complete it as these enemies have high health pools and deal ' +
