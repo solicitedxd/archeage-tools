@@ -1,7 +1,3 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Link as RouterLink } from 'react-router-dom';
 import {
   AppBar,
   Drawer,
@@ -16,31 +12,35 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import { teal } from '@material-ui/core/colors';
 import {
   createMuiTheme,
   responsiveFontSizes,
 } from '@material-ui/core/styles';
 import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
-import { ThemeProvider } from '@material-ui/styles';
-import { teal } from '@material-ui/core/colors';
 import {
   Brightness4,
   BrightnessHigh,
   Close,
   Menu,
 } from '@material-ui/icons';
-import cn from 'classnames';
+import { ThemeProvider } from '@material-ui/styles';
 import {
   setDarkMode,
   setMobile,
 } from 'actions/display';
 import { clearNotification } from 'actions/notification';
+import cn from 'classnames';
 import CascadingMenu from 'components/CascadingMenu';
-import navigation from 'constants/navigation';
-import { getNavId } from 'utils/string';
-import 'styles/index';
 import Link from 'components/Link';
+import navigation from 'constants/navigation';
+import React from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+import { Link as RouterLink } from 'react-router-dom';
+import 'styles/index';
+import { getNavId } from 'utils/string';
 
 class Main extends React.PureComponent {
   state = {

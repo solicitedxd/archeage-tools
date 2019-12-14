@@ -1,9 +1,9 @@
-import React from 'react';
+import { Typography } from '@material-ui/core';
+import Item from 'components/Item';
 import MapEmbed from 'components/MapEmbed';
 import { ZONE } from 'constants/map';
-import { Typography } from '@material-ui/core';
 import ITEM from 'data/items';
-import Item from 'components/Item';
+import React from 'react';
 
 const name = 'Hiram Dailies';
 

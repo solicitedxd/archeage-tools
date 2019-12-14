@@ -1,10 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {
-  array,
-  bool,
-  string,
-} from 'react-proptypes';
 import {
   AppBar,
   Paper,
@@ -14,6 +7,13 @@ import {
   Typography,
 } from '@material-ui/core';
 import KeyComponent from 'components/KeyComponent';
+import React, { Component } from 'react';
+import {
+  array,
+  bool,
+  string,
+} from 'react-proptypes';
+import { connect } from 'react-redux';
 
 class TabContent extends Component {
   static propTypes = {

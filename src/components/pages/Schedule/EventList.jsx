@@ -1,8 +1,3 @@
-import React, { Component } from 'react';
-import {
-  bool,
-  string,
-} from 'react-proptypes';
 import {
   AppBar,
   Paper,
@@ -11,11 +6,16 @@ import {
   Typography,
 } from '@material-ui/core';
 import { HelpOutlineRounded } from '@material-ui/icons';
-import { EVENT_TYPE } from 'constants/calendar';
+import { EVENT_TYPE } from 'constants/schedule';
 import {
   GAME_TIME_EVENTS,
   REAL_TIME_EVENTS,
-} from 'data/calendar';
+} from 'data/schedule';
+import React, { Component } from 'react';
+import {
+  bool,
+  string,
+} from 'react-proptypes';
 import EventCard from './EventCard';
 
 class EventList extends Component {
@@ -96,7 +96,7 @@ class EventList extends Component {
                 <Typography variant="caption" component="p">Each in-game hour spans 10 minutes of real-life time, with a
                   full in-game day occurring in 4 hours of real-life time.</Typography>
                 <Typography variant="caption" component="p">Events and bosses spawn at the specified time, but may be
-                completed or killed by other players before the timer's in-progress duration is over.</Typography>
+                  completed or killed by other players before the timer's in-progress duration is over.</Typography>
               </React.Fragment>
             }>
               <HelpOutlineRounded

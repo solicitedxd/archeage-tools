@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
 import {
   AppBar,
   Button,
@@ -37,9 +34,10 @@ import {
   setProficiency,
   setWar,
 } from 'actions/tradepacks';
+import cn from 'classnames';
 import Item from 'components/Item';
-import { CONTINENT } from 'constants/dailies';
-import { PROFICIENCY } from 'constants/taxes';
+import { CONTINENT } from 'constants/map';
+import { PROFICIENCY } from 'constants/proficiencies';
 import {
   CARGO,
   CARGO_OUTLET,
@@ -48,6 +46,8 @@ import {
   PACK_TYPE,
 } from 'constants/tradepacks';
 import TRADE_PACKS from 'data/tradepacks';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { setTitle } from 'utils/string';
 import FreshnessBlip from './FreshnessBlip';
 import PackViewer from './PackViewer';
@@ -117,7 +117,7 @@ class TradePacks extends Component {
     setTitle('Trade Pack Calculator');
 
     return (
-      <div className={cn('calendar-container', { mobile })}>
+      <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">

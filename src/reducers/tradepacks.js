@@ -1,5 +1,3 @@
-import { pathOr } from 'ramda';
-import initialState from 'initialStates/tradepacks';
 import {
   SET_CONTINENT,
   SET_CRAFT_LARDER,
@@ -16,6 +14,8 @@ import {
   SET_WAR,
   TRADE_PACK_RESET,
 } from 'constants/tradepacks';
+import initialState from 'initialStates/tradepacks';
+import { pathOr } from 'ramda';
 import { getItem } from 'utils/localStorage';
 
 const tradepacks = (state = getItem('tradepacks', initialState), action) => {

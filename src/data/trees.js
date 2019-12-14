@@ -1,5 +1,5 @@
-import { CLIMATE } from 'constants/thunderstruck';
-import { QUALITY } from 'constants/dailies';
+import { QUALITY } from 'constants/items';
+import { CLIMATE } from 'constants/map';
 
 export default Object.freeze([
   { name: 'Apple Tree', climate: CLIMATE.TEMPERATE, matures: '14h17m11s', quality: QUALITY.BASIC },

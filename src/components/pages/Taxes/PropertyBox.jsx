@@ -1,3 +1,9 @@
+import {
+  TextField,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import { Help } from '@material-ui/icons';
 import React, { Component } from 'react';
 import {
   array,
@@ -6,12 +12,6 @@ import {
   number,
   string,
 } from 'react-proptypes';
-import {
-  TextField,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
-import { Help } from '@material-ui/icons';
 
 class PropertyBox extends Component {
   static propTypes = {

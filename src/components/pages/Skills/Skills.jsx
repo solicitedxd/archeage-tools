@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
 import {
   AppBar,
   Button,
@@ -19,8 +16,11 @@ import {
   Replay,
   Share,
 } from '@material-ui/icons';
+import cn from 'classnames';
 import { MAX_POINTS } from 'constants/skills';
 import SKILLSET from 'data/skillsets';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
   decodeAncestrals,
   decodeSkillHex,
@@ -30,9 +30,9 @@ import {
   getPointReq,
   getTreePoints,
 } from 'utils/skills';
-import SkillTree from './SkillTree';
-import SkillCombos from './SkillCombos';
 import { setTitle } from 'utils/string';
+import SkillCombos from './SkillCombos';
+import SkillTree from './SkillTree';
 
 class Skills extends Component {
   state = {
@@ -204,7 +204,7 @@ class Skills extends Component {
     const remainingPoints = MAX_POINTS - spentPoints;
 
     if (className) {
-      setTitle(`${className} Build`)
+      setTitle(`${className} Build`);
     } else {
       setTitle('Skill Builder');
     }

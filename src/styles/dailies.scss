@@ -272,6 +272,38 @@
     width: 20px;
     height: 20px;
   }
+
+  &.Diligence:after {
+    background-position: -79px -45px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.Loyalty:after {
+    background-position: -207px -13px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.Manastorm:after {
+    background-position: -96px -45px;
+    width: 17px;
+    height: 15px;
+  }
+
+  &.Crafted:after {
+    background-image: url(../images/npc_icon.png);
+    background-position: -52px -77px;
+    width: 15px;
+    height: 15px;
+  }
+
+  &.Husbandry:after {
+    background-image: url(../images/npc_icon.png);
+    background-position: -27px -100px;
+    width: 17px;
+    height: 17px;
+  }
 }
 
 .ances-level {

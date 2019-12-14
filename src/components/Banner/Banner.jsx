@@ -1,10 +1,10 @@
+import { Typography } from '@material-ui/core';
+import cn from 'classnames';
 import React, { Component } from 'react';
 import {
   bool,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import { Typography } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { getNavId } from 'utils/string';
 

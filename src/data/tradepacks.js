@@ -1,11 +1,13 @@
 import {
+  CONTINENT,
+  ZONE,
+} from 'constants/map';
+import {
   CARGO,
   FRESHNESS,
   PACK_TYPE,
 } from 'constants/tradepacks';
-import { ZONE } from 'constants/map';
 import ITEM from './items';
-import { CONTINENT } from 'constants/dailies';
 
 const sellLabor = 70;
 

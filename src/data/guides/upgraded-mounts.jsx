@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
@@ -7,13 +6,14 @@ import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
 import SkillLink from 'components/Skill/SkillLink';
-import { REWARD } from 'constants/dailies';
+import { CURRENCY } from 'constants/items';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
-import GallantGreenElk from 'images/guides/mounts/Gallant_Green_Elk.png';
-import GallantSnowmaneSnowlion from 'images/guides/mounts/Gallant_Snowmane_Snowlion.png';
-import GallantCoalmaneSnowlion from 'images/guides/mounts/Gallant_Coalmane_Snowlion.png';
-import ThunderDash from 'images/guides/mounts/Thunder_Dash.png';
+import GallantCoalmaneSnowlion from 'images/mount/Gallant_Coalmane_Snowlion.png';
+import GallantGreenElk from 'images/mount/Gallant_Green_Elk.png';
+import GallantSnowmaneSnowlion from 'images/mount/Gallant_Snowmane_Snowlion.png';
+import ThunderDash from 'images/mount/Thunder_Dash.png';
+import React from 'react';
 
 const name = 'Upgraded Mounts';
 
@@ -198,7 +198,7 @@ const sections = [
         available from any Honor Point Collector.</Typography>,
       <Typography>To complete this quest, you must summon a level 50 Stormdarter and have <ItemLink
         item={ITEM.HONORFORGED_MEDAL} count={15} /> (costs&nbsp;
-        <Currency type={REWARD.HONOR} count="30,000" component="span" /> from the Honor Shop).</Typography>,
+        <Currency type={CURRENCY.HONOR} count="30,000" component="span" /> from the Honor Shop).</Typography>,
       'As a reward, you will receive an Essence-fed Stormdarter which can be consumed to grant you a level 30 Thunder Dash.',
     ],
   },
@@ -236,7 +236,7 @@ const sections = [
       <Typography>
         To complete this quest, you must summon a level 50 Polaris Bjorne and have a <ItemLink
         item={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
-        type={REWARD.COIN} count={1000000} component="span" /> from any Stablehand) and <ItemLink
+        type={CURRENCY.COIN} count={1000000} component="span" /> from any Stablehand) and <ItemLink
         item={ITEM.HONEY} count={500} plural="" />.
       </Typography>,
       'As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an Ebonfur Bjorne.',
@@ -246,7 +246,7 @@ const sections = [
       <Typography>
         To complete this quest, you must summon a level 50 Fleetpaw Bjorne and have a <ItemLink
         item={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
-        type={REWARD.COIN} count={1000000} component="span" /> from any Stablehand) and <ItemLink
+        type={CURRENCY.COIN} count={1000000} component="span" /> from any Stablehand) and <ItemLink
         item={ITEM.HONEY} count={500} plural="" />.
       </Typography>,
       'As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an Ebonfur Bjorne.',

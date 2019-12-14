@@ -1,21 +1,21 @@
+import {
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import cn from 'classnames';
+import EffectIcon from 'components/Skill/EffectIcon';
+import {
+  ELEMENT,
+  GLOBAL_CD,
+  SKILLMOD,
+} from 'constants/skills';
+import SKILLSET from 'data/skillsets';
 import React from 'react';
 import {
   bool,
   number,
   oneOf,
 } from 'react-proptypes';
-import cn from 'classnames';
-import {
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
-import {
-  ELEMENT,
-  GLOBAL_CD,
-  SKILLMOD,
-} from 'constants/skills';
-import EffectIcon from 'components/Skill/EffectIcon';
-import SKILLSET from 'data/skillsets';
 import {
   applyTooltipColor,
   deepCopy,
@@ -249,7 +249,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
       <section className="skill-requirements">
         {disabled &&
         <p>Learning Req.: [{skillsetName}] {passive ? skillId + 2 : getPointReq(skillId)} or higher</p>}
-        {requiredLevel && <p>Pet must be  Lv{requiredLevel}+ to use.</p>}
+        {requiredLevel && <p>Pet must be Lv{requiredLevel}+ to use.</p>}
       </section>
       }
     </div>

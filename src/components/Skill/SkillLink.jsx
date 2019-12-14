@@ -1,13 +1,13 @@
+import { Link } from '@material-ui/core';
+import SkillTooltip from 'components/Skill/SkillTooltip';
+import { ELEMENT } from 'constants/skills';
+import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
 import {
   bool,
   oneOf,
   string,
 } from 'react-proptypes';
-import { Link } from '@material-ui/core';
-import SkillTooltip from 'components/Skill/SkillTooltip';
-import { ELEMENT } from 'constants/skills';
-import SKILLSET from 'data/skillsets';
 import Skill from './Skill';
 
 class SkillLink extends Component {

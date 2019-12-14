@@ -1,3 +1,6 @@
+import cn from 'classnames';
+import ItemTooltip from 'components/Item/ItemTooltip';
+import { QUALITY } from 'constants/items';
 import React, { Component } from 'react';
 import {
   bool,
@@ -5,9 +8,6 @@ import {
   number,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import ItemTooltip from 'components/Item/ItemTooltip';
-import { QUALITY } from 'constants/dailies';
 
 class Item extends Component {
   static propTypes = {

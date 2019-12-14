@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { string } from 'react-proptypes'
 import {
   AppBar,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import React, { Component } from 'react';
+import { string } from 'react-proptypes';
 
 class NewsPost extends Component {
   static propTypes = {

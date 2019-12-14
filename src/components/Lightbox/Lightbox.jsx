@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import {
-  number,
-  oneOf,
-  string,
-} from 'react-proptypes';
 import {
   AppBar,
   Dialog,
@@ -17,6 +11,12 @@ import {
 import { Close } from '@material-ui/icons';
 import cn from 'classnames';
 import NoImage from 'images/guides/NoImage.png';
+import React, { Component } from 'react';
+import {
+  number,
+  oneOf,
+  string,
+} from 'react-proptypes';
 
 class Lightbox extends Component {
   static propTypes = {

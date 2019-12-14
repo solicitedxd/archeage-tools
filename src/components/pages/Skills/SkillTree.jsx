@@ -1,10 +1,3 @@
-import React, { Component } from 'react';
-import {
-  array,
-  func,
-  number,
-  object,
-} from 'react-proptypes';
 import {
   AppBar,
   Button,
@@ -21,6 +14,13 @@ import {
 } from '@material-ui/icons';
 import Skill from 'components/Skill';
 import SKILLSET from 'data/skillsets';
+import React, { Component } from 'react';
+import {
+  array,
+  func,
+  number,
+  object,
+} from 'react-proptypes';
 import { getTreePoints } from 'utils/skills';
 
 class SkillTree extends Component {

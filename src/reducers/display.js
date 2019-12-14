@@ -1,8 +1,8 @@
-import initialState from 'initialStates/display';
 import {
   DARK_MODE,
   DISPLAY_MOBILE,
 } from 'constants/display';
+import initialState from 'initialStates/display';
 import { getItem } from 'utils/localStorage';
 
 const display = (state = getItem('display', initialState), action) => {

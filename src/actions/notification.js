@@ -4,10 +4,10 @@ import {
 } from 'constants/notification';
 
 export const setNotification = (message, duration = 10000) => (dispatch) => {
-  dispatch({ type: NOTIFICATION, message, duration })
+  dispatch({ type: NOTIFICATION, message, duration });
 };
 
 export const clearNotification = () => (dispatch) => {
-  dispatch({ type: NOTIFICATION_CLEAR })
+  dispatch({ type: NOTIFICATION_CLEAR });
 };
 

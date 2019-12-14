@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { array } from 'react-proptypes';
 import {
   AppBar,
   IconButton,
@@ -12,14 +10,16 @@ import {
   ToggleOff,
   ToggleOn,
 } from '@material-ui/icons';
+import Skill from 'components/Skill';
+import EffectIcon from 'components/Skill/EffectIcon';
 import SKILLSET from 'data/skillsets';
+import React, { Component } from 'react';
+import { array } from 'react-proptypes';
 import {
   compareBuff,
   deepCopy,
   prepareComboText,
 } from 'utils/skills';
-import Skill from 'components/Skill';
-import EffectIcon from 'components/Skill/EffectIcon';
 
 class SkillCombos extends Component {
   static propTypes = {

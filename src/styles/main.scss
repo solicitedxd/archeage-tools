@@ -218,12 +218,6 @@ body {
   &.MuiPaper-root {
     background-color: #E2E2E2;
   }
-  &.left {
-    float: left;
-  }
-  &.right {
-    float: right;
-  }
 
   img {
     max-width: 120px;
@@ -235,6 +229,18 @@ body {
     text-align: center;
     display: block;
     opacity: 0.8;
+  }
+}
+
+.tool-container {
+  margin: 0 20px;
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
   }
 }
 

@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link as RouterLink } from 'react-router-dom';
-import Sticky from 'react-sticky-el';
 import {
   AppBar,
   Drawer,
@@ -19,6 +15,10 @@ import Link from 'components/Link';
 import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
 import TabContent from 'components/TabContent';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link as RouterLink } from 'react-router-dom';
+import Sticky from 'react-sticky-el';
 import { setTitle } from 'utils/string';
 import * as Guides from '../../../data/guides/';
 

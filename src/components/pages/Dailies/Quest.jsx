@@ -1,5 +1,20 @@
+import {
+  Card,
+  CardHeader,
+  Checkbox,
+  Typography,
+} from '@material-ui/core';
+import {
+  setQuestHide,
+  setQuestStatus,
+} from 'actions/dailies';
+import cn from 'classnames';
+import Currency from 'components/Currency';
+import Item from 'components/Item';
+import XP from 'components/XP';
+import { CURRENCY } from 'constants/items';
+import ITEM from 'data/items';
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import {
   array,
   arrayOf,
@@ -7,22 +22,7 @@ import {
   oneOfType,
   string,
 } from 'react-proptypes';
-import {
-  Card,
-  CardHeader,
-  Checkbox,
-  Typography,
-} from '@material-ui/core';
-import cn from 'classnames';
-import {
-  setQuestHide,
-  setQuestStatus,
-} from 'actions/dailies';
-import { REWARD } from 'constants/dailies';
-import ITEM from 'data/items';
-import Item from 'components/Item';
-import Currency from 'components/Currency';
-import XP from 'components/XP';
+import { connect } from 'react-redux';
 import {
   getZones,
   sortItems,
@@ -92,7 +92,7 @@ class Quest extends Component {
             {rewardItems.length > 0 &&
             <div className="reward-items">
               {rewardItems.sort(sortItems).map(reward => {
-                if (reward.type === REWARD.GILDA) {
+                if (reward.type === CURRENCY.GILDA) {
                   reward.item = ITEM.GILDA_STAR;
                 }
                 return <Item key={reward.item.name} count={reward.count} {...reward.item} />;

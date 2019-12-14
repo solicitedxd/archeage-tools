@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import {
-  array,
-  bool,
-  string,
-} from 'react-proptypes';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -12,8 +6,14 @@ import {
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
 import Currency from 'components/Currency';
-import XP from 'components/XP';
 import Item from 'components/Item';
+import XP from 'components/XP';
+import React, { Component } from 'react';
+import {
+  array,
+  bool,
+  string,
+} from 'react-proptypes';
 import {
   sortItems,
   splitRewards,

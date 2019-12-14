@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import {
-  array,
-  string,
-} from 'react-proptypes';
-import cn from 'classnames';
 import {
   AppBar,
   Dialog,
@@ -12,10 +6,16 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import cn from 'classnames';
 import {
   getMapImage,
   ZONE,
 } from 'constants/map';
+import React, { Component } from 'react';
+import {
+  array,
+  string,
+} from 'react-proptypes';
 
 class MapEmbed extends Component {
   static propTypes = {

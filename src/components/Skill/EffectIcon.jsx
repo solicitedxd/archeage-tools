@@ -1,10 +1,10 @@
+import { Tooltip } from '@material-ui/core';
+import cn from 'classnames';
 import React, { Component } from 'react';
 import {
   bool,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import { Tooltip } from '@material-ui/core';
 
 class EffectIcon extends Component {
   static propTypes = {

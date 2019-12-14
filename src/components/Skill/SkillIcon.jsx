@@ -1,14 +1,14 @@
+import { Link } from '@material-ui/core';
+import Skill from 'components/Skill/Skill';
+import { ELEMENT } from 'constants/skills';
+import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
 import {
   bool,
+  number,
   oneOf,
   string,
-  number,
 } from 'react-proptypes';
-import { ELEMENT } from 'constants/skills';
-import SKILLSET from 'data/skillsets';
-import { Link } from '@material-ui/core';
-import Skill from 'components/Skill/Skill';
 
 class SkillIcon extends Component {
   static propTypes = {

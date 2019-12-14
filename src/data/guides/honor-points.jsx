@@ -1,8 +1,8 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
 import { ZONE } from 'constants/map';
+import React from 'react';
 
 const name = 'Honor Points';
 

@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
 import {
   AppBar,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import navigation from 'constants/navigation';
-import { setTitle } from 'utils/string';
 import Link from 'components/Link';
+import navigation from 'constants/navigation';
+import React, { Component } from 'react';
+import { setTitle } from 'utils/string';
 
 class Guides extends Component {
   static propTypes = {};
@@ -19,7 +19,7 @@ class Guides extends Component {
   render() {
     setTitle('Guides');
     return (
-      <div className="calendar-container">
+      <div className="tool-container">
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">

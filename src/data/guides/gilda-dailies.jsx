@@ -1,11 +1,11 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import ItemLink from 'components/Item/ItemLink';
+import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
-import Link from 'components/Link';
+import React from 'react';
 
 const name = 'Gilda Star Dailies';
 

@@ -1,12 +1,12 @@
-import thunk from 'redux-thunk';
-import { routerMiddleware } from 'connected-react-router';
-import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { triggerLocalStorageUpdate as calendar } from 'actions/calendar';
+import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { triggerLocalStorageUpdate as display } from 'actions/display';
 import { triggerLocalStorageUpdate as thunderstruck } from 'actions/thunderstruck';
 import { triggerLocalStorageUpdate as tradepacks } from 'actions/tradepacks';
-import { setItem } from 'utils/localStorage';
+import { routerMiddleware } from 'connected-react-router';
 import { getLocalData } from 'reducers';
+import thunk from 'redux-thunk';
+import { setItem } from 'utils/localStorage';
 
 const keysAndActionTypes = {
   dailies,

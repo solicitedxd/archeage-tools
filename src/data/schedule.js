@@ -1,5 +1,10 @@
+import {
+  DAY,
+  EVENT_TYPE,
+} from 'constants/schedule';
 import AbyssalAttackIcon from 'images/event/abyssal_attack.png';
 import BossMonsterIcon from 'images/event/boss_monster.png';
+import CastleSiegeIcon from 'images/event/castle_siege.png';
 import CrimsonRiftIcon from 'images/event/crimson_rift.png';
 import DailyResetIcon from 'images/event/daily_reset.png';
 import DGSIcon from 'images/event/delphinad_ghost_ships.png';
@@ -9,15 +14,10 @@ import FallOfHiramIcon from 'images/event/fall_of_hiram.png';
 import FishFestIcon from 'images/event/fish_fest.png';
 import GoldenPlainsIcon from 'images/event/goldplain.png';
 import GrimghastRiftIcon from 'images/event/grimghast_rift.png';
+import KadumIcon from 'images/event/kadum.png';
 import LeviathanIcon from 'images/event/leviathan.png';
 import LuscaAwakeningIcon from 'images/event/lusca_awakening.png';
-import KadumIcon from 'images/event/kadum.png';
 import SeaOfChaosIcon from 'images/event/sea_of_chaos.png';
-import CastleSiegeIcon from 'images/event/castle_siege.png';
-import {
-  DAY,
-  EVENT_TYPE,
-} from 'constants/calendar';
 
 export const REAL_TIME_EVENTS = Object.freeze([
   {

@@ -1,3 +1,9 @@
+import {
+  Link,
+  Typography,
+} from '@material-ui/core';
+import Item from 'components/Item/Item';
+import ItemTooltip from 'components/Item/ItemTooltip';
 import React, { Component } from 'react';
 import {
   bool,
@@ -5,12 +11,6 @@ import {
   object,
   string,
 } from 'react-proptypes';
-import {
-  Link,
-  Typography,
-} from '@material-ui/core';
-import Item from 'components/Item/Item';
-import ItemTooltip from 'components/Item/ItemTooltip';
 
 class ItemLink extends Component {
   static propTypes = {

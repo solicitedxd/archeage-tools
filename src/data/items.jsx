@@ -1,5 +1,5 @@
+import { QUALITY } from 'constants/items';
 import React from 'react';
-import { QUALITY } from 'constants/dailies';
 import * as Icon from '../images/item/';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
@@ -1961,7 +1961,7 @@ const ITEM = Object.freeze({
     type: 'Gem',
     quality: QUALITY.RARE,
     description: <span>
-      A rare material found by gaterhing from <Blue>Black Pearl Shells</Blue> on the beach. It's chiefly used in alchemy, local specialties, and components.<br /><br />
+      A rare material found by gathering from <Blue>Black Pearl Shells</Blue> on the beach. It's chiefly used in alchemy, local specialties, and components.<br /><br />
       <Use>
         Spend 5 Labor to process 100 Sparkling Shell Dust.<br />
         Auto-use with shift+right-click.<br /><br />
@@ -2129,6 +2129,18 @@ const ITEM = Object.freeze({
     bindsOnPickup: true,
     description: 'A coin gifted to diligent, hard workers, for a job well done.',
     price: 250,
+  },
+  MANASTORM_CRYSTAL: {
+    name: 'Manastorm Crystal',
+    icon: Icon.ManastormCrystal,
+    type: 'Other',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      The crystal swirls with powerful magic. It can be found by opening <Orange>Locked Gold Crates.</Orange><br/><br/>
+      Used in crafting <Orange>gliders, pets, mounts and their armor.</Orange>
+    </span>,
+    price: 750,
   },
 });
 

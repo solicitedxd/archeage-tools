@@ -1,30 +1,30 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
-import { REWARD } from 'constants/dailies';
-import { ZONE } from 'constants/map';
 import Currency from 'components/Currency';
 import Lightbox from 'components/Lightbox';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillIcon from 'components/Skill/SkillIcon';
-import CoalmaneSnowlion from 'images/guides/mounts/Coalmane_Snowlion.png';
-import SandmaneSnowlion from 'images/guides/mounts/Sandmane_Snowlion.png';
-import SnowmaneSnowlion from 'images/guides/mounts/Snowmane_Snowlion.png';
-import BrowntailLeomorph from 'images/guides/mounts/Browntail_Leomorph.png';
-import WhitetailLeomorph from 'images/guides/mounts/Whitetail_Leomorph.png';
-import BlacktailLeomorph from 'images/guides/mounts/Blacktail_Leomorph.png';
-import BlackscalePangolin from 'images/guides/mounts/Blackscale_Pangolin.png';
-import SilverscalePangolin from 'images/guides/mounts/Silverscale_Pangolin.png';
-import RedscalePangolin from 'images/guides/mounts/Redscale_Pangolin.png';
-import GrayHorse from 'images/guides/mounts/Gray_Lilyut_Horse.png';
-import BrownHorse from 'images/guides/mounts/Brown_Lilyut_Horse.png';
-import BuckskinHorse from 'images/guides/mounts/Buckskin_Lilyut_Horse.png';
-import GreenElk from 'images/guides/mounts/Green_Elk.png';
-import WhiteElk from 'images/guides/mounts/White_Elk.png';
-import VioletElk from 'images/guides/mounts/Violet_Elk.png';
-import NightslaverBoar from 'images/guides/mounts/Nightslaver_Boar.png';
-import SnowrendBoar from 'images/guides/mounts/Snowrend_Boar.png';
-import HooftigerBoar from 'images/guides/mounts/Hooftiger_Boar.png';
+import { CURRENCY } from 'constants/items';
+import { ZONE } from 'constants/map';
+import BlackscalePangolin from 'images/mount/Blackscale_Pangolin.png';
+import BlacktailLeomorph from 'images/mount/Blacktail_Leomorph.png';
+import BrownHorse from 'images/mount/Brown_Lilyut_Horse.png';
+import BrowntailLeomorph from 'images/mount/Browntail_Leomorph.png';
+import BuckskinHorse from 'images/mount/Buckskin_Lilyut_Horse.png';
+import CoalmaneSnowlion from 'images/mount/Coalmane_Snowlion.png';
+import GrayHorse from 'images/mount/Gray_Lilyut_Horse.png';
+import GreenElk from 'images/mount/Green_Elk.png';
+import HooftigerBoar from 'images/mount/Hooftiger_Boar.png';
+import NightslaverBoar from 'images/mount/Nightslaver_Boar.png';
+import RedscalePangolin from 'images/mount/Redscale_Pangolin.png';
+import SandmaneSnowlion from 'images/mount/Sandmane_Snowlion.png';
+import SilverscalePangolin from 'images/mount/Silverscale_Pangolin.png';
+import SnowmaneSnowlion from 'images/mount/Snowmane_Snowlion.png';
+import SnowrendBoar from 'images/mount/Snowrend_Boar.png';
+import VioletElk from 'images/mount/Violet_Elk.png';
+import WhiteElk from 'images/mount/White_Elk.png';
+import WhitetailLeomorph from 'images/mount/Whitetail_Leomorph.png';
+import React from 'react';
 
 const name = 'Starter Mounts';
 
@@ -41,7 +41,7 @@ const sections = [
       <Typography>
         Each race has their own three colorations of a mount and if you want to collect another race's mount(s), you
         will have to travel to their starting zone and purchase the youngling yourself for&nbsp;
-        <Currency type={REWARD.COIN} count={1000} component="span" /> and then raise it.
+        <Currency type={CURRENCY.COIN} count={1000} component="span" /> and then raise it.
       </Typography>,
     ],
   },
@@ -66,7 +66,8 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
-      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-lilyut-horse">Gallant Lilyut Horses</Link>.</Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-lilyut-horse">Gallant
+        Lilyut Horses</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -122,7 +123,8 @@ const sections = [
     title: 'Boars',
     paragraphs: [
       <blockquote>
-        Airain boars may look fierce, but once trained, they are extremely faithful to their owners and gentle among trusted friends.
+        Airain boars may look fierce, but once trained, they are extremely faithful to their owners and gentle among
+        trusted friends.
       </blockquote>,
       <MapEmbed
         zone={ZONE.AUBRE_CRADLE}
@@ -177,7 +179,8 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
-      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-snowlion">Gallant Snowlions</Link>.</Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-snowlion">Gallant
+        Snowlions</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -215,7 +218,8 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         9 m/s
       </Typography>,
-      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-leomorph">Gallant Leomorphs</Link>.</Typography>,
+      <Typography>These mounts can be upgraded into <Link to="/guides/upgraded-mounts#gallant-leomorph">Gallant
+        Leomorphs</Link>.</Typography>,
       <Typography variant="h6">Skills</Typography>,
       <div className="quest-items">
         <SkillIcon skillset="Basic" id="Run" requiredLevel={5} />
@@ -243,9 +247,9 @@ const sections = [
         zone={ZONE.SUNBITE_WILDS}
         points={[
           { label: 'Pangolin Pups', icon: 'stable', coords: [{ x: 19.2, y: 24 }, { x: 83.6, y: 33.2 }] },
-          { label: 'Harani Construction Site', icon: 'port', coords: [{ x: 15.7, y: 17.4 }]},
+          { label: 'Harani Construction Site', icon: 'port', coords: [{ x: 15.7, y: 17.4 }] },
           { label: 'Sunbite Community Center', icon: 'port', coords: [{ x: 53.4, y: 40.7 }] },
-          { label: 'Communal Ranch', icon: 'port', coords: [{ x: 84.5, y: 31 }]}
+          { label: 'Communal Ranch', icon: 'port', coords: [{ x: 84.5, y: 31 }] },
         ]}
       />,
       'Pangolin pups can be acquired from the stables south-east of Harani Construction Site or from the stable at Communal Ranch.',

@@ -1,13 +1,13 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import Ability from 'components/Ability';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
-import { REWARD } from 'constants/dailies';
+import { CURRENCY } from 'constants/items';
 import ITEM from 'data/items';
 import ArchePass from 'images/guides/ArchePass.png';
 import ArchePassChange from 'images/guides/ArchePass_Change.png';
+import React from 'react';
 
 const name = 'ArchePass';
 
@@ -45,8 +45,8 @@ const sections = [
     paragraphs: [
       <Typography variant="h6">Basic Pass</Typography>,
       <Typography>
-        This pass costs <Currency type={REWARD.COIN} count={1} component="span" /> to unlock, and can be upgraded to
-        premium for only <Currency type={REWARD.COIN} count={100000} component="span" />.
+        This pass costs <Currency type={CURRENCY.COIN} count={1} component="span" /> to unlock, and can be upgraded to
+        premium for only <Currency type={CURRENCY.COIN} count={100000} component="span" />.
       </Typography>,
       'Each tier requires a whopping 3000 ArchePass points to progress and has 98 tiers to progress through. When compared to the quarterly passes, this pass will take you a lot more time per tier and has twice the number of tiers.',
       'The free track has sparing rewards of Honor Potions, Vocation Potions, and Hiram Infusions.',
@@ -55,8 +55,8 @@ const sections = [
       'You can acquire 6 tiers per week. It requires 196 ArchePass missions to complete the entire pass, which would take you 12 full weeks of missions and then 4 missions on the 13th week.',
       <Typography variant="h6">Quarterly Passes</Typography>,
       <Typography>
-        These passes costs <Currency type={REWARD.COIN} count={50000} component="span" /> each to unlock, and can be
-        upgraded to premium for <Currency type={REWARD.CREDIT} count={1500} component="span" />.
+        These passes costs <Currency type={CURRENCY.COIN} count={50000} component="span" /> each to unlock, and can be
+        upgraded to premium for <Currency type={CURRENCY.CREDIT} count={1500} component="span" />.
       </Typography>,
       'Each tier requires 1268 ArchePass points to progress and each have 44 tiers to progress through.',
       'All free tracks have Diligence Coins every 5th tier and Bound Labor Rechargers spread throughout.',

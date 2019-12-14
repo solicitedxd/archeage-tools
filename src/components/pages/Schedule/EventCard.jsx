@@ -1,3 +1,15 @@
+import {
+  Avatar,
+  Card,
+  CardHeader,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import cn from 'classnames';
+import Link from 'components/Link';
+import { EVENT_TYPE } from 'constants/schedule';
+import moment from 'moment';
+import moment_tz from 'moment-timezone';
 import React, { Component } from 'react';
 import {
   array,
@@ -7,18 +19,6 @@ import {
   oneOfType,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import {
-  Avatar,
-  Card,
-  CardHeader,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
-import moment from 'moment';
-import moment_tz from 'moment-timezone';
-import Link from 'components/Link';
-import { EVENT_TYPE } from 'constants/calendar';
 import { getDay } from 'utils/calendar';
 import { hhmmssFromDate } from 'utils/thunderstruck';
 

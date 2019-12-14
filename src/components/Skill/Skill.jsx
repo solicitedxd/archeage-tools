@@ -1,3 +1,6 @@
+import cn from 'classnames';
+import SkillTooltip from 'components/Skill/SkillTooltip';
+import { ELEMENT } from 'constants/skills';
 import React, { Component } from 'react';
 import {
   bool,
@@ -6,9 +9,6 @@ import {
   oneOf,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import SkillTooltip from 'components/Skill/SkillTooltip';
-import { ELEMENT } from 'constants/skills';
 import { getPointReq } from 'utils/skills';
 
 class Skill extends Component {

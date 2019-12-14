@@ -27,6 +27,7 @@
 .item-icon.unidentified:before {
   background-image: url('../images/item/unidentified.png');
 }
+
 .item-icon.quest:before {
   background-image: url('../images/item/quest.png');
 }
@@ -60,6 +61,7 @@ span.inline[data-quality] {
   vertical-align: -4px;
   height: 20px;
 }
+
 .inline > .item-icon {
   width: 18px;
   height: 18px;
@@ -68,9 +70,11 @@ span.inline[data-quality] {
     width: 18px;
     height: 18px;
   }
+
   .count {
     display: none;
   }
+
   &.unidentified:before, &:after, &.quest:before {
     background-size: 18px;
     width: 18px;

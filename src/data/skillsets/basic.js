@@ -1,5 +1,7 @@
 import { BUFF } from 'constants/skills';
 import Beastsense from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
+import Snipe from 'images/skill/shadowplay/Ruthless_Assault.png';
+import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
 import * as Icon from '../../images/skill/basic/';
 
 export default Object.freeze([
@@ -61,14 +63,14 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: Icon.OwnersEscape,
+    icon: OwnersEscape,
     name: 'Owner\'s Escape',
     cooldown: 30,
     description: 'Teleports the rider #18 meters# forward, out of the saddle.\r' +
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: Icon.OwnersEscape,
+    icon: OwnersEscape,
     name: 'Enhanced Owner\'s Escape',
     cooldown: 30,
     description: 'Teleports the rider forward #18m# and increases rider\'s Move Speed.\r' +
@@ -170,7 +172,7 @@ export default Object.freeze([
     description: 'Fires a burning arrow to deal +#300%# of Ranged Attack as Physical Damage; also deals +#200%# of Ranged Attack as damage over #5 seconds#.',
   },
   {
-    icon: Icon.Snipe,
+    icon: Snipe,
     name: 'Snipe',
     range: [0, 35],
     cooldown: 24,
@@ -183,7 +185,7 @@ export default Object.freeze([
     ],
   },
   {
-    icon: Icon.Snipe,
+    icon: Snipe,
     name: 'Precise Shot',
     range: [0, 35],
     cooldown: 24,

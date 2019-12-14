@@ -1,72 +1,77 @@
+import AegisIslandMap from 'images/maps/auroria/Aegis Island.png';
+import CalmlandsMap from 'images/maps/auroria/Calmlands.png';
+import DiamondShoresMap from 'images/maps/auroria/Diamond Shores.png';
+import EasternHiramMountainsMap from 'images/maps/auroria/Eastern Hiram Mountains.png';
+import HallOfWarriorsMap from 'images/maps/auroria/Eastern Hiram Mountains_Hall of Warriors.png';
+import ExelochMap from 'images/maps/auroria/Exeloch.png';
+import GoldenRuinsMap from 'images/maps/auroria/Golden Ruins.png';
+import HeedmarMap from 'images/maps/auroria/Heedmar.png';
+import MarcalaMap from 'images/maps/auroria/Marcala.png';
+import NuimariMap from 'images/maps/auroria/Nuimari.png';
+import ReedwindMap from 'images/maps/auroria/Reedwind.png';
+import SungoldFieldsMap from 'images/maps/auroria/Sungold Fields.png';
+import WesternHiramMountainsMap from 'images/maps/auroria/Western Hiram Mountains.png';
+import HiramCaveMap from 'images/maps/auroria/Western Hiram Mountains_Hiram Cave.png';
+import WhalesongHarborMap from 'images/maps/auroria/Whalesong Harbor.png';
 import ArcumIrisMap from 'images/maps/haranya/Arcum Iris.png';
 import FalcorthPlainsMap from 'images/maps/haranya/Falcorth Plains.png';
+import HaslaMap from 'images/maps/haranya/Hasla.png';
+import MahadeviMap from 'images/maps/haranya/Mahadevi.png';
+import CityOfTowersMap from 'images/maps/haranya/Mahadevi_City of Towers.png';
+import PerinoorRuinsMap from 'images/maps/haranya/Perinoor Ruins.png';
+import RokhalaMountainsMap from 'images/maps/haranya/Rokhala Mountains.png';
+import RookborneBasinMap from 'images/maps/haranya/Rookborne Basin.png';
+import SilentForestMap from 'images/maps/haranya/Silent Forest.png';
+import SolisHeadlandsMap from 'images/maps/haranya/Solis Headlands.png';
+import AusteraMap from 'images/maps/haranya/Solis Headlands_Austera.png';
 import SunbiteWildsMap from 'images/maps/haranya/Sunbite Wilds.png';
 import RedemptionMap from 'images/maps/haranya/Sunbite Wilds_Redemption.png';
 import TigerspineMountainsMap from 'images/maps/haranya/Tigerspine Mountains.png';
-import MahadeviMap from 'images/maps/haranya/Mahadevi.png';
-import CityOfTowersMap from 'images/maps/haranya/Mahadevi_City of Towers.png';
-import SolisHeadlandsMap from 'images/maps/haranya/Solis Headlands.png';
-import AusteraMap from 'images/maps/haranya/Solis Headlands_Austera.png';
 import VillanelleMap from 'images/maps/haranya/Villanelle.png';
 import LutesongHarborMap from 'images/maps/haranya/Villanelle_Lutesong Harbor.png';
-import SilentForestMap from 'images/maps/haranya/Silent Forest.png';
+import WindscourSavannahMap from 'images/maps/haranya/Windscour Savannah.png';
 import YnystereMap from 'images/maps/haranya/Ynystere.png';
 import CaernordMap from 'images/maps/haranya/Ynystere_Caernord.png';
-import RookborneBasinMap from 'images/maps/haranya/Rookborne Basin.png';
-import WindscourSavannahMap from 'images/maps/haranya/Windscour Savannah.png';
-import PerinoorRuinsMap from 'images/maps/haranya/Perinoor Ruins.png';
-import HaslaMap from 'images/maps/haranya/Hasla.png';
-import RokhalaMountainsMap from 'images/maps/haranya/Rokhala Mountains.png';
-import SolzreedPeninsulaMap from 'images/maps/nuia/Solzreed Peninsula.png';
-import CrescentThroneMap from 'images/maps/nuia/Solzreed Peninsula_Crescent Throne.png';
-import GweonidForestMap from 'images/maps/nuia/Gweonid Forest.png';
-import MemoriaMap from 'images/maps/nuia/Gweonid Forest_Memoria.png';
-import AirainRockMap from 'images/maps/nuia/Airain Rock.png';
-import AndelphMap from 'images/maps/nuia/Airain Rock_Andelph.png';
-import LilyutHillsMap from 'images/maps/nuia/Lilyut Hills.png';
-import AubreCradleMap from 'images/maps/nuia/Aubre Cradle.png';
-import DewstonePlainsMap from 'images/maps/nuia/Dewstone Plains.png';
-import WhiteArdenMap from 'images/maps/nuia/White Arden.png';
-import MarianopleMap from 'images/maps/nuia/Marianople.png';
-import MarianopleCityMap from 'images/maps/nuia/Marianople_Marianople.png';
-import TwoCrownsMap from 'images/maps/nuia/Two Crowns.png';
-import EznaMap from 'images/maps/nuia/Two Crowns_Ezna.png';
-import CinderstoneMoorMap from 'images/maps/nuia/Cinderstone Moor.png';
-import HalcyonaMap from 'images/maps/nuia/Halcyona.png';
-import HellswampMap from 'images/maps/nuia/Hellswamp.png';
-import SanddeepMap from 'images/maps/nuia/Sanddeep.png';
-import KarkasseRidgelandsMap from 'images/maps/nuia/Karkasse Ridgelands.png';
-import AhnimarMap from 'images/maps/nuia/Ahnimar.png';
-import DiamondShoresMap from 'images/maps/auroria/Diamond Shores.png';
-import GoldenRuinsMap from 'images/maps/auroria/Golden Ruins.png';
-import WhalesongHarborMap from 'images/maps/auroria/Whalesong Harbor.png';
-import ReedwindMap from 'images/maps/auroria/Reedwind.png';
-import WesternHiramMountainsMap from 'images/maps/auroria/Western Hiram Mountains.png';
-import HiramCaveMap from 'images/maps/auroria/Western Hiram Mountains_Hiram Cave.png';
-import EasternHiramMountainsMap from 'images/maps/auroria/Eastern Hiram Mountains.png';
-import HallOfWarriorsMap from 'images/maps/auroria/Eastern Hiram Mountains_Hall of Warriors.png';
-import AegisIslandMap from 'images/maps/auroria/Aegis Island.png';
-import SungoldFieldsMap from 'images/maps/auroria/Sungold Fields.png';
-import CalmlandsMap from 'images/maps/auroria/Calmlands.png';
-import MarcalaMap from 'images/maps/auroria/Marcala.png';
-import HeedmarMap from 'images/maps/auroria/Heedmar.png';
-import NuimariMap from 'images/maps/auroria/Nuimari.png';
-import ExelochMap from 'images/maps/auroria/Exeloch.png';
-import FreedichIslandMap from 'images/maps/sea/Freedich_Island.png';
-import SunspeckSeaMap from 'images/maps/sea/Sunspeck Sea.png';
-import StormrawSoundMap from 'images/maps/sea/Stormraw Sound.png';
-import SeaOfGravesMap from 'images/maps/sea/Sea of Graves.png';
-import ArcadianSeaMap from 'images/maps/sea/Arcadian Sea.png';
-import HalcyonaGulfMap from 'images/maps/sea/Halcyona Gulf.png';
-import CastawayStraitMap from 'images/maps/sea/Castaway Strait.png';
-import ShatteredSeaMap from 'images/maps/sea/Shattered Sea.png';
-import BoilingSeaMap from 'images/maps/sea/Boiling Sea.png';
-import RedDragonsKeepMap from 'images/maps/instance/Red Dragon\'s Keep.png';
+import GoldenPlainsBattleMap from 'images/maps/instance/Golden Plains Battle.png';
 import MistmerrowMap from 'images/maps/instance/Mistmerrow.png';
 import MistmerrowKadumMap from 'images/maps/instance/Mistmerrow_Kadum.png';
-import GoldenPlainsBattleMap from 'images/maps/instance/Golden Plains Battle.png';
-import MirageIsleMap from 'images/maps/Mirage Isle.png';
 import MistsongSummitMap from 'images/maps/instance/Mistsong Summit.png';
+import RedDragonsKeepMap from 'images/maps/instance/Red Dragon\'s Keep.png';
+import MirageIsleMap from 'images/maps/Mirage Isle.png';
+import AhnimarMap from 'images/maps/nuia/Ahnimar.png';
+import AirainRockMap from 'images/maps/nuia/Airain Rock.png';
+import AndelphMap from 'images/maps/nuia/Airain Rock_Andelph.png';
+import AubreCradleMap from 'images/maps/nuia/Aubre Cradle.png';
+import CinderstoneMoorMap from 'images/maps/nuia/Cinderstone Moor.png';
+import DewstonePlainsMap from 'images/maps/nuia/Dewstone Plains.png';
+import GweonidForestMap from 'images/maps/nuia/Gweonid Forest.png';
+import MemoriaMap from 'images/maps/nuia/Gweonid Forest_Memoria.png';
+import HalcyonaMap from 'images/maps/nuia/Halcyona.png';
+import HellswampMap from 'images/maps/nuia/Hellswamp.png';
+import KarkasseRidgelandsMap from 'images/maps/nuia/Karkasse Ridgelands.png';
+import LilyutHillsMap from 'images/maps/nuia/Lilyut Hills.png';
+import MarianopleMap from 'images/maps/nuia/Marianople.png';
+import MarianopleCityMap from 'images/maps/nuia/Marianople_Marianople.png';
+import SanddeepMap from 'images/maps/nuia/Sanddeep.png';
+import SolzreedPeninsulaMap from 'images/maps/nuia/Solzreed Peninsula.png';
+import CrescentThroneMap from 'images/maps/nuia/Solzreed Peninsula_Crescent Throne.png';
+import TwoCrownsMap from 'images/maps/nuia/Two Crowns.png';
+import EznaMap from 'images/maps/nuia/Two Crowns_Ezna.png';
+import WhiteArdenMap from 'images/maps/nuia/White Arden.png';
+import ArcadianSeaMap from 'images/maps/sea/Arcadian Sea.png';
+import BoilingSeaMap from 'images/maps/sea/Boiling Sea.png';
+import CastawayStraitMap from 'images/maps/sea/Castaway Strait.png';
+import FreedichIslandMap from 'images/maps/sea/Freedich_Island.png';
+import HalcyonaGulfMap from 'images/maps/sea/Halcyona Gulf.png';
+import SeaOfGravesMap from 'images/maps/sea/Sea of Graves.png';
+import ShatteredSeaMap from 'images/maps/sea/Shattered Sea.png';
+import StormrawSoundMap from 'images/maps/sea/Stormraw Sound.png';
+import SunspeckSeaMap from 'images/maps/sea/Sunspeck Sea.png';
+
+export const FACTION = Object.freeze({
+  NUIA: 'Nuia',
+  HARANYA: 'Haranya',
+});
 
 export const ZONE = Object.freeze({
   ARCUM_IRIS: 'Arcum Iris',
@@ -229,3 +234,154 @@ export const getMapImage = (zone) => ({
   [ZONE.MIRAGE_ISLE]: MirageIsleMap,
   [ZONE.MISTSONG_SUMMIT]: MistsongSummitMap,
 })[zone];
+
+export const CONTINENT = Object.freeze({
+  NUIA: {
+    name: 'Nuia',
+    zones: [
+      ZONE.SOLZREED_PENINSULA,
+      ZONE.GWEONID_FOREST,
+      ZONE.LILYUT_HILLS,
+      ZONE.AIRAIN_ROCK,
+      ZONE.AUBRE_CRADLE,
+      ZONE.DEWSTONE_PLAINS,
+      ZONE.WHITE_ARDEN,
+      ZONE.MARIANOPLE,
+      ZONE.TWO_CROWNS,
+      ZONE.CINDERSTONE_MOOR,
+      ZONE.HALCYONA,
+      ZONE.HELLSWAMP,
+      ZONE.SANDDEEP,
+      ZONE.KARKASSE_RIDGELANDS,
+      ZONE.AHNIMAR,
+    ],
+  },
+  HARANYA: {
+    name: 'Haranya',
+    zones: [
+      ZONE.ARCUM_IRIS,
+      ZONE.FALCORTH_PLAINS,
+      ZONE.SUNBITE_WILDS,
+      ZONE.TIGERSPINE_MOUNTAINS,
+      ZONE.MAHADEVI,
+      ZONE.SOLIS_HEADLANDS,
+      ZONE.VILLANELLE,
+      ZONE.SILENT_FOREST,
+      ZONE.YNYSTERE,
+      ZONE.ROOKBORNE_BASIN,
+      ZONE.WINDSCOUR_SAVANNAH,
+      ZONE.PERINOOR_RUINS,
+      ZONE.HASLA,
+      ZONE.ROKHALA_MOUNTAINS,
+    ],
+  },
+  ARCADIAN_SEA: {
+    name: 'Arcadian Sea',
+    zones: [
+      ZONE.FREEDICH_ISLAND,
+      ZONE.GROWLGATE_ISLE,
+      ZONE.ARCADIAN_SEA,
+      ZONE.SEA_OF_DROWNED_LOVE,
+    ],
+  },
+  AURORIA: {
+    name: 'Auroria',
+    zones: [
+      ZONE.DIAMOND_SHORES,
+      ZONE.GOLDEN_RUINS,
+      ZONE.WHALESONG_HARBOR,
+      ZONE.REEDWIND,
+      ZONE.WESTERN_HIRAM_MOUNTAINS,
+      ZONE.EASTERN_HIRAM_MOUNTAINS,
+      ZONE.SUNGOLD_FIELDS,
+      ZONE.CALMLANDS,
+      ZONE.MARCALA,
+      ZONE.HEEDMAR,
+      ZONE.NUIMARI,
+      ZONE.EXELOCH,
+      ZONE.AEGIS_ISLAND,
+    ],
+  },
+  INSTANCE: {
+    name: 'Instance',
+    zones: [
+      ZONE.THE_FALL_OF_HIRAM_CITY,
+      ZONE.RED_DRAGONS_KEEP,
+      ZONE.MISTMERROW,
+      ZONE.GOLDEN_PLAINS,
+      ZONE.MISTMERROW_KADUM,
+    ],
+  },
+  CRAFTED: {
+    name: 'Your Farm',
+    zones: [
+      ZONE.FARMERS_WORKSTATION,
+      ZONE.FARMHOUSE,
+      ZONE.SPICE_SEED_BUNDLE,
+      ZONE.IRON_VEIN,
+      ZONE.PRODUCE_SEED_BUNDLE,
+      ZONE.GOOSE_CAGE,
+    ],
+  },
+});
+
+export const CLIMATE = Object.freeze({
+  ARID: 'Arid',
+  SUBARCTIC: 'Subarctic',
+  TEMPERATE: 'Temperate',
+  TROPICAL: 'Tropical',
+});
+
+export const ZONE_CLIMATES = Object.freeze([
+  { zone: 'Haranya', category: true },
+  { zone: ZONE.ARCUM_IRIS, climate: [CLIMATE.ARID] },
+  { zone: ZONE.FALCORTH_PLAINS, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.SUNBITE_WILDS, climate: [CLIMATE.ARID] },
+  { zone: ZONE.TIGERSPINE_MOUNTAINS, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.MAHADEVI, climate: [CLIMATE.TROPICAL] },
+  { zone: ZONE.SOLIS_HEADLANDS, climate: [CLIMATE.ARID] },
+  { zone: ZONE.VILLANELLE, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.SILENT_FOREST, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.YNYSTERE, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.ROOKBORNE_BASIN, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.WINDSCOUR_SAVANNAH, climate: [CLIMATE.ARID] },
+  { zone: ZONE.PERINOOR_RUINS, climate: [CLIMATE.TROPICAL] },
+  { zone: ZONE.HASLA, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.ROKHALA_MOUNTAINS, climate: [CLIMATE.TEMPERATE] },
+
+  { zone: 'Nuia', category: true },
+  { zone: ZONE.SOLZREED_PENINSULA, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.GWEONID_FOREST, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.AIRAIN_ROCK, climate: [CLIMATE.SUBARCTIC] },
+  { zone: ZONE.LILYUT_HILLS, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.AUBRE_CRADLE, climate: [CLIMATE.SUBARCTIC] },
+  { zone: ZONE.DEWSTONE_PLAINS, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.WHITE_ARDEN, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.MARIANOPLE, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.TWO_CROWNS, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.CINDERSTONE_MOOR, climate: [CLIMATE.CINDERSTONE_MOOR] },
+  { zone: ZONE.HALCYONA, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.HELLSWAMP, climate: [CLIMATE.TROPICAL] },
+  { zone: ZONE.SANDDEEP, climate: [CLIMATE.TROPICAL] },
+  { zone: ZONE.KARKASSE_RIDGELANDS, climate: [CLIMATE.SUBARCTIC] },
+  { zone: ZONE.AHNIMAR, climate: [CLIMATE.TEMPERATE] },
+
+  { zone: 'Auroria', category: true },
+  { zone: ZONE.DIAMOND_SHORES, climate: [CLIMATE.ARID, CLIMATE.TROPICAL, CLIMATE.SUBARCTIC] },
+  { zone: ZONE.GOLDEN_RUINS, climate: [CLIMATE.TEMPERATE, CLIMATE.ARID] },
+  { zone: ZONE.WHALESONG_HARBOR, climate: [CLIMATE.TEMPERATE, CLIMATE.SUBARCTIC] },
+  { zone: ZONE.REEDWIND, climate: [CLIMATE.TEMPERATE, CLIMATE.TROPICAL] },
+  { zone: ZONE.WESTERN_HIRAM_MOUNTAINS, climate: [CLIMATE.TROPICAL, CLIMATE.SUBARCTIC, CLIMATE.ARID] },
+  { zone: ZONE.EASTERN_HIRAM_MOUNTAINS, climate: [CLIMATE.TEMPERATE, CLIMATE.SUBARCTIC] },
+  { zone: ZONE.SUNGOLD_FIELDS, climate: [CLIMATE.TEMPERATE, CLIMATE.TROPICAL] },
+  { zone: ZONE.CALMLANDS, climate: [CLIMATE.TEMPERATE, CLIMATE.ARID] },
+  { zone: ZONE.MARCALA, climate: [CLIMATE.TEMPERATE, CLIMATE.ARID] },
+  { zone: ZONE.HEEDMAR, climate: [CLIMATE.TEMPERATE, CLIMATE.SUBARCTIC] },
+  { zone: ZONE.NUIMARI, climate: [CLIMATE.TEMPERATE, CLIMATE.SUBARCTIC] },
+  { zone: ZONE.EXELOCH, climate: [CLIMATE.TEMPERATE, CLIMATE.TROPICAL] },
+  { zone: ZONE.AEGIS_ISLAND, climate: [CLIMATE.TEMPERATE, CLIMATE.SUBARCTIC] },
+
+  { zone: 'Arcadian Sea', category: true },
+  { zone: ZONE.FREEDICH_ISLAND, climate: [CLIMATE.TEMPERATE] },
+  { zone: ZONE.GROWLGATE_ISLE, climate: [CLIMATE.TEMPERATE] },
+]);

@@ -1,3 +1,4 @@
+import { Link as MuiLink } from '@material-ui/core';
 import React, { Component } from 'react';
 import {
   func,
@@ -6,7 +7,6 @@ import {
   string,
 } from 'react-proptypes';
 import { Link as RouterLink } from 'react-router-dom';
-import { Link as MuiLink } from '@material-ui/core';
 import { scrollToTop } from 'utils/string';
 
 class Link extends Component {

@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import { bool } from 'react-proptypes';
-import { connect } from 'react-redux';
-import cn from 'classnames';
 import {
   AppBar,
   IconButton,
@@ -14,17 +10,21 @@ import {
   ToggleOff,
   ToggleOn,
 } from '@material-ui/icons';
+import { setRegion } from 'actions/calendar';
+import cn from 'classnames';
+import { EVENT_TYPE } from 'constants/schedule';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
-import { setRegion } from 'actions/calendar';
-import { EVENT_TYPE } from 'constants/calendar';
-import EventList from './EventList';
+import React, { Component } from 'react';
+import { bool } from 'react-proptypes';
+import { connect } from 'react-redux';
 import { setTitle } from 'utils/string';
+import EventList from './EventList';
 
 // prevent optimize imports from removing
 moment_tz;
 
-class Calendar extends Component {
+class Schedule extends Component {
   static propTypes = {
     mobile: bool,
     regionNA: bool,
@@ -40,11 +40,12 @@ class Calendar extends Component {
     setTitle('Event Schedule');
 
     return (
-      <div className="calendar-container">
+      <div className="calendar-container tool-container">
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Event Schedule [{moment.tz(moment.tz.guess()).format('z')}]</Typography>
+              <Typography variant="subtitle1" className="title-text">Event Schedule
+                [{moment.tz(moment.tz.guess()).format('z')}]</Typography>
               <Typography variant="overline">
                 NA
                 <Tooltip title="Toggle Regional Times">
@@ -76,4 +77,4 @@ const mapDispatchToProps = {
   setRegion,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Calendar);
+export default connect(mapStateToProps, mapDispatchToProps)(Schedule);

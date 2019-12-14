@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux';
 import { connectRouter } from 'connected-react-router';
+import { combineReducers } from 'redux';
+import calendar from './calendar';
 import dailies from './dailies';
 import display from './display';
-import calendar from './calendar';
 import notification from './notification';
 import thunderstruck from './thunderstruck';
 import tradepacks from './tradepacks';

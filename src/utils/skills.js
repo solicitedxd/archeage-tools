@@ -1,4 +1,4 @@
-import classes from 'constants/classes';
+import classes from 'data/classes';
 import { substitute } from 'utils/string';
 
 export const findClassName = (skillset0, skillset1, skillset2) => {

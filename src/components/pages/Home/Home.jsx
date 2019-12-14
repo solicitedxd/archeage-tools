@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Link,
   Typography,
@@ -6,6 +5,7 @@ import {
 import Banner from 'components/Banner';
 import NewsPost from 'components/NewsPost';
 import navigation from 'constants/navigation';
+import React from 'react';
 import { setTitle } from 'utils/string';
 
 const Home = () => {

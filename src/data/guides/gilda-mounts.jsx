@@ -1,4 +1,3 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
@@ -8,15 +7,16 @@ import SkillIcon from 'components/Skill/SkillIcon';
 import TabContent from 'components/TabContent';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
-import GildaStarSoulMerchant from 'images/guides/mounts/Gilda_Star_Soul_Merchant.png';
-import BlackArrow from 'images/guides/mounts/Black_Arrow.png';
-import Soulmare from 'images/guides/mounts/Soulmare.png';
-import Stormdarter from 'images/guides/mounts/Stormdarter.png';
-import CloudstrikePanther from 'images/guides/mounts/Cloudstrike_Panther.png';
-import RoyalGriffin from 'images/guides/mounts/Royal_Griffin.png';
-import Coral from 'images/guides/mounts/Coral.png';
-import MirageBjorne from 'images/guides/mounts/Mirage_Bjorne.png';
-import MirageElk from 'images/guides/mounts/Mirage_Elk.png';
+import BlackArrow from 'images/mount/Black_Arrow.png';
+import CloudstrikePanther from 'images/mount/Cloudstrike_Panther.png';
+import Coral from 'images/mount/Coral.png';
+import GildaStarSoulMerchant from 'images/mount/Gilda_Star_Soul_Merchant.png';
+import MirageBjorne from 'images/mount/Mirage_Bjorne.png';
+import MirageElk from 'images/mount/Mirage_Elk.png';
+import RoyalGriffin from 'images/mount/Royal_Griffin.png';
+import Soulmare from 'images/mount/Soulmare.png';
+import Stormdarter from 'images/mount/Stormdarter.png';
+import React from 'react';
 // Mirage Leomorph
 
 const name = 'Gilda Mounts';
@@ -156,7 +156,8 @@ const sections = [
         <Typography color="primary" component="span">Base Move Speed: </Typography>
         10.5 m/s
       </Typography>,
-      <Typography>This mount can be upgraded into <Link to="/guides/upgraded-mounts#thunder-dash">Thunder Dash</Link>.</Typography>,
+      <Typography>This mount can be upgraded into <Link to="/guides/upgraded-mounts#thunder-dash">Thunder
+        Dash</Link>.</Typography>,
       <Lightbox
         title="Stormdarter"
         image={Stormdarter}
@@ -269,7 +270,9 @@ const sections = [
     title: 'Coral',
     paragraphs: [
       <blockquote>
-        Captured at a young age, Coral spent years as the unwilling pet of a spoiled Harani noble. Though she eventually escaped, the experience left the enormous rabbit with a terrible fear of cages—and a rather unusual sense of fashion.
+        Captured at a young age, Coral spent years as the unwilling pet of a spoiled Harani noble. Though she eventually
+        escaped, the experience left the enormous rabbit with a terrible fear of cages—and a rather unusual sense of
+        fashion.
       </blockquote>,
       <Typography>
         <Typography color="primary" component="span">Base Move Speed: </Typography>

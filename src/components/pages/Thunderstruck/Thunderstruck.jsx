@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
-import MaskedInput from 'react-text-mask';
-import moment from 'moment';
-import moment_tz from 'moment-timezone';
 import {
   AppBar,
   Button,
@@ -21,11 +15,17 @@ import {
   addTree,
   removeTree,
 } from 'actions/thunderstruck';
-import { CLIMATE } from 'constants/thunderstruck';
-import { toSeconds } from 'utils/thunderstruck';
+import cn from 'classnames';
+import { CLIMATE } from 'constants/map';
 import TREE from 'data/trees';
-import TreeCard from './TreeCard';
+import moment from 'moment';
+import moment_tz from 'moment-timezone';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import MaskedInput from 'react-text-mask';
 import { setTitle } from 'utils/string';
+import { toSeconds } from 'utils/thunderstruck';
+import TreeCard from './TreeCard';
 
 moment_tz;
 
@@ -105,7 +105,7 @@ class Thunderstruck extends Component {
     setTitle('Thunderstruck Timer');
 
     return (
-      <div className={cn('calendar-container', { mobile })}>
+      <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -183,7 +183,8 @@ class Thunderstruck extends Component {
               <Typography variant="subtitle1" className="title-text">Growth Timers</Typography>
             </Toolbar>
           </AppBar>
-          {trees.map((tree, index) => (<TreeCard {...tree} key={`tree-${index}`} onDelete={() => removeTree(index)} />))}
+          {trees.map((tree, index) => (
+            <TreeCard {...tree} key={`tree-${index}`} onDelete={() => removeTree(index)} />))}
         </Paper>
       </div>
     );

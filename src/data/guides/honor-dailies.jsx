@@ -1,12 +1,12 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
+import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
-import Currency from 'components/Currency';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
+import React from 'react';
 
 const name = 'Honor Dailies';
 
@@ -23,7 +23,7 @@ const sections = [
       <Typography>To read about the static ways to gain honor and what to do with them, read the <Link
         to="/guides/honor-points">Honor Points</Link> guide.</Typography>,
       'From dailies activities, there is currently a total of up to 15,800 Honor Points attainable per day.',
-      'Not documented in this guide are the Militia quests, which appear after killing the main world boss in contested zones in Nuia or Haranya. These quests give 300 Honor Points each, but the bosses have 12 hour respawn timers.'
+      'Not documented in this guide are the Militia quests, which appear after killing the main world boss in contested zones in Nuia or Haranya. These quests give 300 Honor Points each, but the bosses have 12 hour respawn timers.',
     ],
   },
   {
