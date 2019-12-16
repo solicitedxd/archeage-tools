@@ -1,6 +1,7 @@
 import { triggerLocalStorageUpdate as calendar } from 'actions/calendar';
 import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { triggerLocalStorageUpdate as display } from 'actions/display';
+import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
 import { triggerLocalStorageUpdate as thunderstruck } from 'actions/thunderstruck';
 import { triggerLocalStorageUpdate as tradepacks } from 'actions/tradepacks';
 import { routerMiddleware } from 'connected-react-router';
@@ -12,6 +13,7 @@ const keysAndActionTypes = {
   dailies,
   calendar,
   display,
+  mounts,
   thunderstruck,
   tradepacks,
 };

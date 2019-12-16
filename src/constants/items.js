@@ -8,10 +8,11 @@ export const CURRENCY = Object.freeze({
   GUILD_XP: 'Guild XP',
   FAMILY_XP: 'Family XP',
   ITEM: 'Items',
-  CREDIT: 'Credit',
-  DILIGENCE: 'Diligence',
-  LOYALTY: 'Loyalty',
-  MANASTORM: 'Manastorm Crystal',
+  CREDIT: 'Credits',
+  DILIGENCE: 'Diligence Coins',
+  LOYALTY: 'Loyalty Tokens',
+  MANASTORM: 'Manastorm Crystals',
+  KYRIOS: 'Kyrios Badge',
 });
 
 export const QUALITY = Object.freeze({

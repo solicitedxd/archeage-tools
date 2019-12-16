@@ -113,7 +113,7 @@ const sections = [
       'Each wave consists of mobs with increasing health and damage. You don\'t need a large number of players to do these dailies, but there\'s usually raids available every time it happens.',
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={900} component="span" />
+        <Currency type="Honor" count={900} inline />
         <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
       </Typography>,
     ],
@@ -156,7 +156,7 @@ const sections = [
       'There are also special harpoons that can be acquired once per day next to the Trebuchet Build Site. They allow you to stun the target Nightmare enemy and kill them after a short channel, quickly speeding up the wave clear.',
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={900} component="span" />
+        <Currency type="Honor" count={900} inline />
         <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
         <ItemLink item={ITEM.GILDA_STAR} count={2} />
       </Typography>,
@@ -191,7 +191,7 @@ const sections = [
       'This event ends when all waves and Jakar are killed, or the containment tower is destroyed.',
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={1800} component="span" />
+        <Currency type="Honor" count={1800} inline />
         <ItemLink item={ITEM.CURSED_ARMOR_SCRAP} count={13} />
       </Typography>,
     ],
@@ -226,7 +226,7 @@ const sections = [
       'This event ends after 30 minutes (or when there\'s 55 minutes left of War) or when the Final Sealbreaker is killed.',
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={1800} component="span" />
+        <Currency type="Honor" count={1800} inline />
         <ItemLink item={ITEM.ACID_GOBBET} count={12} />
       </Typography>,
     ],
@@ -315,15 +315,15 @@ const sections = [
       'Destroying the enemy faction\'s base will immediately end the instance and the other faction will be awarded with first place. After that consideration, or if there was no based destroyed in the 20 minutes, then placement is based on total score (or number of player kills).',
       <Typography>
         <Typography component="span" color="primary">First Place:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={2000} />
+        <Currency inline type="Honor" count={2000} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Second Place:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={1500} />
+        <Currency inline type="Honor" count={1500} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Third Place:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={1200} />
+        <Currency inline type="Honor" count={1200} />
       </Typography>,
     ],
   },
@@ -335,17 +335,17 @@ const sections = [
         next.</Typography>,
       <Typography>
         <Typography component="span" color="primary">Best Reward:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={1500} />
+        <Currency inline type="Honor" count={1500} />
         <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={20} style={{ marginLeft: 6 }} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Median Reward:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={1000} />
+        <Currency inline type="Honor" count={1000} />
         <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={12} style={{ marginLeft: 6 }} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Minimum Reward:&nbsp;</Typography>
-        <Currency component="span" type="Honor" count={800} />
+        <Currency inline type="Honor" count={800} />
         <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={8} style={{ marginLeft: 6 }} />
       </Typography>,
     ],
@@ -361,7 +361,7 @@ const sections = [
       <Typography>Check out the <Link to="/guides/red-dragon-keep">guide</Link> to learn about the fight.</Typography>,
       <Typography variant="subtitle1" color="primary">Killing the Red Dragon awards:</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={2000} component="span" />
+        <Currency type="Honor" count={2000} inline />
         <span>and various other goodies.</span>
       </Typography>,
     ],
@@ -376,7 +376,7 @@ const sections = [
         next.</Typography>,
       <Typography variant="subtitle1" color="primary">Killing Kadum awards:</Typography>,
       <Typography className="reward-list">
-        <Currency type="Honor" count={2000} component="span" />
+        <Currency type="Honor" count={2000} inline />
         <span>and various other goodies.</span>
       </Typography>,
     ],

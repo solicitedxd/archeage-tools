@@ -19,22 +19,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import Sticky from 'react-sticky-el';
-import { setTitle } from 'utils/string';
+import {
+  setTitle,
+  slug,
+  unslug,
+} from 'utils/string';
 import * as Guides from '../../../data/guides/';
-
-const slug = (text) => {
-  return text.toLowerCase()
-  .replace(/[^\w ]+/g, '')
-  .split(' ')
-  .join('-');
-};
-
-const unslug = (slug) => {
-  return slug.toLowerCase()
-  .split('-')
-  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-  .join('');
-};
 
 class GuideViewer extends Component {
   state = {

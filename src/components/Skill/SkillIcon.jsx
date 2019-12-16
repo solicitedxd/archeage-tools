@@ -1,4 +1,5 @@
 import { Link } from '@material-ui/core';
+import cn from 'classnames';
 import Skill from 'components/Skill/Skill';
 import { ELEMENT } from 'constants/skills';
 import SKILLSET from 'data/skillsets';
@@ -18,6 +19,7 @@ class SkillIcon extends Component {
     passive: bool,
     element: oneOf(Object.values(ELEMENT)),
     requiredLevel: number,
+    className: string,
   };
 
   static defaultProps = {
@@ -26,12 +28,13 @@ class SkillIcon extends Component {
     passive: false,
     element: ELEMENT.BASIC,
     requiredLevel: null,
+    className: null,
   };
 
   state = {};
 
   render() {
-    const { id, name, skillset, passive, element, requiredLevel } = this.props;
+    const { id, name, skillset, passive, element, requiredLevel, className } = this.props;
 
     const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset.toUpperCase());
     if (!skillSetKey) return;
@@ -66,7 +69,7 @@ class SkillIcon extends Component {
         passive={passive}
         element={element}
         requiredLevel={requiredLevel}
-        className="cursor-help"
+        className={cn('cursor-help', className)}
         learned
       />
     );

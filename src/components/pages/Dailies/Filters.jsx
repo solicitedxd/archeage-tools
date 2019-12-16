@@ -128,7 +128,7 @@ class Filters extends Component {
         </div>
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Rewards</Typography>
-          <div className="filter-group rewards">
+          <div className="filter-group rewards grid">
             {Object.values(CURRENCY).filter(r => !CURRENCY_HIDE.includes(r)).sort().map(reward => (
               <Tooltip title={reward} key={reward}>
                 <Button

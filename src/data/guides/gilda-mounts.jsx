@@ -111,8 +111,7 @@ const sections = [
     title: 'Soulmare',
     paragraphs: [
       <blockquote>
-        These ghostly steeds are said to come from the Hereafter itself. Legends claim that they will serve their chosen
-        riders even after death.
+        These ghostly steeds are said to come from the Hereafter itself. Legends claim that they will serve their chosen riders even after death.
       </blockquote>,
       <Typography>
         <Typography color="primary" component="span">Base Move Speed: </Typography>
@@ -191,9 +190,7 @@ const sections = [
     title: 'Cloudstrike Panther',
     paragraphs: [
       <blockquote>
-        These shy creatures are rarely seen in the wild, except during the most vicious lightning storms. At the first
-        growl of thunder, they are known to take off running for no reason other than the joy of the wind and rain in
-        their fur.
+        These shy creatures are rarely seen in the wild, except during the most vicious lightning storms. At the first growl of thunder, they are known to take off running for no reason other than the joy of the wind and rain in their fur.
       </blockquote>,
       <Typography>
         <Typography color="primary" component="span">Base Move Speed: </Typography>
@@ -270,9 +267,7 @@ const sections = [
     title: 'Coral',
     paragraphs: [
       <blockquote>
-        Captured at a young age, Coral spent years as the unwilling pet of a spoiled Harani noble. Though she eventually
-        escaped, the experience left the enormous rabbit with a terrible fear of cages—and a rather unusual sense of
-        fashion.
+        Captured at a young age, Coral spent years as the unwilling pet of a spoiled Harani noble. Though she eventually escaped, the experience left the enormous rabbit with a terrible fear of cages—and a rather unusual sense of fashion.
       </blockquote>,
       <Typography>
         <Typography color="primary" component="span">Base Move Speed: </Typography>

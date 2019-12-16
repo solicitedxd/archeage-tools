@@ -1,7 +1,7 @@
 import { BUFF } from 'constants/skills';
+import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
 import Beastsense from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import Snipe from 'images/skill/shadowplay/Ruthless_Assault.png';
-import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
 import * as Icon from '../../images/skill/basic/';
 
 export default Object.freeze([
@@ -11,6 +11,15 @@ export default Object.freeze([
     name: 'Run!',
     cooldown: 30,
     description: 'Increases Pet Move Speed #+50%# for #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Run Glide',
+    icon: Icon.Run,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Pet Move Speed #+50%# for #10sec#.\r' +
+      'Increases Glide Speed +#30%#\r' +
       'Can\'t be used while carrying a trade pack.',
   },
   {
@@ -473,5 +482,153 @@ export default Object.freeze([
     cooldown: 10,
     description: 'Utilizes the fins to launch a powerful leap. May trigger different tricks depending on the dolphin\'s mood.\r' +
       'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.DreamingDonkey,
+    name: 'Dreaming Donkey',
+    cooldown: 60,
+    description: 'Increases donkey\'s Move Speed by #+50# for #1min#.\r' +
+      'Can only be used while wearing a trade pack and consumes #1 Carrot#.\r' +
+      'Combat cancels the effect.',
+  },
+  {
+    icon: Icon.Breakthrough,
+    name: 'La Mancha\'s Call',
+    cooldown: 60,
+    description: 'Raise your spear high and charge forward for #7sec#.\r' +
+      'You cannot turn left or right once the charge begins.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Nui\'s Veil Donkey',
+    icon: Icon.NuiSVeil,
+    name: 'Nui\'s Veil',
+    cooldown: 90,
+    description: 'Grants Stealth to both mount and rider for #45sec#.\r' +
+      'Stealth ends if you attack or are attacked.\r' +
+      'Can\'t be used in combat.',
+  },
+  {
+    icon: Icon.ElegantLeap,
+    name: 'Powerful Wingbeats',
+    cooldown: 10,
+    description: 'Encourage Carrot Wings to fly.',
+  },
+  {
+    icon: Icon.QuickMovement,
+    name: 'Quick Movement',
+    cooldown: 30,
+    description: 'Increases rider\'s Evasion +#50%# and grants immunity to Stun for #10sec#.',
+  },
+  {
+    icon: Icon.RunOwlina,
+    id: 'Run Owlina',
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases the pet\'s Move Speed #+50%# for #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.RippingClaws,
+    name: 'Ripping Claws',
+    cooldown: 2,
+    description: 'Attacks the enemies in front of them with its strong claws.',
+  },
+  {
+    icon: Icon.ProtectiveRoll,
+    name: 'Protective Roll',
+    cooldown: 60,
+    description: 'Owlina rolls forward and absorbs #2,000# Damage for 3 seconds, for the owner and itself.\r' +
+      'For the same duration, both are immune to #Fear#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Floofy,
+    name: 'Floofy',
+    cooldown: 30,
+    effectRange: 32,
+    description: 'Owlina increases its body temperature for #5 minutes#, granting immunity to the Millennium Blizzard for itself and the owner within 18m.\r' +
+      'When three or more Owlinas have the Floofy buff active, their Move Speed is increased.',
+  },
+  {
+    icon: Icon.WildGaze,
+    name: 'Wild Gaze',
+    cooldown: 40,
+    effectRange: 15,
+    description: 'Inflicts #Fear# on up to 5 hostile pets that are facing the Owlina within a #15m# radius, for 3 seconds.',
+  },
+  {
+    icon: Icon.Run,
+    name: 'A Dashardly Plan',
+    cooldown: 30,
+    description: 'Increases mount\'s Move Speed #+50%# for #10sec#.\r' +
+      'Increases gliding speed #+30%# while airborne.',
+  },
+  {
+    icon: Icon.Bite,
+    name: 'Overwhelm',
+    cooldown: 18,
+    range: [0, 18],
+    effects: [
+      BUFF.BLEEDING,
+    ],
+    description: 'Charges a distant enemy, then bites it to deal Physical Damage. Decreases enemy\'s Move Speed #-30%# for 3 seconds and inflicts damage over time.\r' +
+      'Can\'t be used during Conductive Charge or Fly.',
+  },
+  {
+    icon: Icon.LightningGlide,
+    name: 'Lightning Glide',
+    cooldown: 60,
+    description: 'Powers the mount into the air for #5min#. Can\'t be used during Conductive Charge or Thunderbreath.',
+  },
+  {
+    icon: Icon.ConductiveCharge,
+    name: 'Conductive Charge',
+    cooldown: 60,
+    description: 'Triggers a forward charge for #3sec#. Deals damage to rammed enemies, tripping them and knocking them back.\r' +
+      'This skill counts as a Push effect.\r' +
+      'Grants immunity and lets the drake dart forward if used during Fly.',
+  },
+  {
+    icon: Icon.Thunderbreath,
+    name: 'Thunderbreath',
+    cooldown: 60,
+    description: 'Allows the drake to spew electricity, dealing Magic Damage and inflicting Shock on a target within 15m.\r' +
+      'Can\'t be used during Conductive Charge or Fly.',
+  },
+  {
+    id: 'Glide Dragon',
+    icon: Icon.LightningGlide,
+    name: 'Glide',
+    cooldown: 60,
+    description: 'Glide through the skies with your mount for #5min#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.ChillingFootsteps,
+    name: 'Chilling Footsteps',
+    cooldown: 45,
+    description: 'For #3 seconds#, the Dragon leaves frozen footsteps along its path which lasts for #3 seconds#, inflicting Slow for #3 seconds# on enemies that walk on it.\r' +
+      'Can\'t be used while gliding.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.IceShield,
+    name: 'Ice Shield',
+    cooldown: 60,
+    description: 'Creates an ice shield that is immune to all damage for the owner and the Dragon for #3 sec#.\r' +
+      'You are unable to move or attack while using the skill.\r' +
+      'The ice shield is cancelled if the owner dismounts.\r' +
+      'Can\'t use while carrying a trade pack.\r' +
+      'Can\'t be used while airborne.',
+  },
+  {
+    icon: Icon.FrostBreath,
+    name: 'Frost Breath',
+    cooldown: 60,
+    description: 'Unleashes an arc of freezing breath reaching up to 15m, Freezing affected enemies for 5 seconds.\r' +
+      'Duration of Freeze is decreased -50% in PvP.\r' +
+      'While airborn, the Dragon breathes in a straight line, Freezing affected enemies for 2.5 seconds.\r\r' +
+      'Can\'t use while carrying a trade pack.',
   },
 ]);

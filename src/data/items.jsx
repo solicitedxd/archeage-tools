@@ -2142,6 +2142,17 @@ const ITEM = Object.freeze({
     </span>,
     price: 750,
   },
+  CHILLED_SEAFOAM: {
+    name: 'Chilled Seafoam',
+    icon: Icon.ChilledSeafoam,
+    type: 'Material',
+    quality: QUALITY.UNIQUE,
+    description: <span>
+      Once spent, the sea's energy condenses into the whipped froth that tops waves and whitecaps.<br />
+      Can be obtained in the <Blue>Sea of Drowned Love</Blue>. Used in equipment crafting.
+    </span>,
+    price: 350000,
+  },
 });
 
 export default ITEM;

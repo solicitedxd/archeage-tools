@@ -12,7 +12,8 @@ import Skill from './Skill';
 
 class SkillLink extends Component {
   static propTypes = {
-    name: string.isRequired,
+    name: string,
+    id: string,
     skillset: string.isRequired,
     passive: bool,
     element: oneOf(Object.values(ELEMENT)),
@@ -24,7 +25,7 @@ class SkillLink extends Component {
   };
 
   render() {
-    const { name, skillset, passive, element } = this.props;
+    const { id, name, skillset, passive, element } = this.props;
 
     const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset.toUpperCase());
     if (!skillSetKey) return;
@@ -32,7 +33,12 @@ class SkillLink extends Component {
     const skillSet = SKILLSET[skillSetKey];
     const skills = passive ? skillSet.passives : skillSet.skills;
 
-    const skill = skills.find(s => s.name === name);
+    let skill;
+    if (id) {
+      skill = skills.find(s => s.id === id);
+    } else {
+      skill = skills.find(s => s.name === name);
+    }
     if (!skill) {
       return (
         <Link>

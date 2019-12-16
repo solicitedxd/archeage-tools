@@ -3,7 +3,7 @@ import cn from 'classnames';
 import { CURRENCY } from 'constants/items';
 import React from 'react';
 
-const Currency = ({ type, count, style, component = 'p' }) => {
+const Currency = ({ type, count, style, inline = false }) => {
   if (type === CURRENCY.COIN) {
     const copper = count % 100;
     const silver = Math.floor(count / 100) % 100;
@@ -12,7 +12,7 @@ const Currency = ({ type, count, style, component = 'p' }) => {
     return (
       <Typography
         style={style}
-        component={component}
+        component={inline ? 'span' : 'p'}
         className={cn({ 'negative': count < 0 })}
       >
         {count < 0 && '-'}
@@ -25,7 +25,7 @@ const Currency = ({ type, count, style, component = 'p' }) => {
     return (
       <Typography
         className={cn('currency', type)}
-        component={component}
+        component={inline ? 'span' : 'p'}
         style={style}
       >
         {count}
