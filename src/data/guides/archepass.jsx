@@ -37,7 +37,7 @@ const sections = [
       />,
       'Each pass has its own progress and you can only have one pass active at a time. Swapping to another pass will force you to unlock its missions again and will resume its progress.',
       'There are three different types of missions available, each when completed will grant you progress towards your active pass.',
-      'When your pass increases in tier, rewards become available. There is also a premium category that must be unlocked for 1500 Credits on a per-pass basis for the quarterly passes.',
+      'When your pass increases in tier, rewards become available in the free track. Rewards must be claimed in order. There is also a premium track of rewards that must be unlocked for 1500 Credits on a per-pass basis for the quarterly passes.',
     ],
   },
   {

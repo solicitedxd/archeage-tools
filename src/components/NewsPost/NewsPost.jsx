@@ -24,9 +24,9 @@ class NewsPost extends Component {
             <Typography variant="overline">{date}</Typography>
           </Toolbar>
         </AppBar>
-        <div className="body-container">
+        <Typography component="div" className="body-container">
           {children}
-        </div>
+        </Typography>
       </Paper>
     );
   }

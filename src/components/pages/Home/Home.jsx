@@ -1,8 +1,9 @@
 import {
-  Link,
+  Link as MuiLink,
   Typography,
 } from '@material-ui/core';
 import Banner from 'components/Banner';
+import Link from 'components/Link';
 import NewsPost from 'components/NewsPost';
 import navigation from 'constants/navigation';
 import React from 'react';
@@ -15,6 +16,19 @@ const Home = () => {
       <div className="home-banners section">
         {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
       </div>
+      <NewsPost
+        title="Mount Gallery"
+        date="Dec 17, 2019"
+      >
+        <Typography>The <Link to="/mounts">Mount Gallery</Link> is now available!</Typography>
+        <p>The Mount Gallery still incomplete, as this game has many mounts, but it has a majority of the available
+          mounts in ArcheAge Unchained. Pictures of mounts are available for a large selection of the mounts, but
+          unfortunately it's difficult to get them all, and there are guides for obtaining all the available mounts in
+          the gallery.</p>
+        <p>Mounts will be trickling in from here on.</p>
+        <Typography>The ArchePass reset timer is back, along with a new guide on <Link to="/guides/archepass">the
+          ArchePass</Link>.</Typography>
+      </NewsPost>
       <NewsPost
         title="Event Schedule Update"
         date="Nov 27, 2019"
@@ -62,7 +76,7 @@ const Home = () => {
         </Typography>
         <Typography>
           Library bosses and Siege timers have been added to the Event Schedule for NA. Know when the EU time is?&nbsp;
-          <Link href="https://www.reddit.com/message/compose/?to=mokulu">Send me a reddit PM.</Link>
+          <MuiLink href="https://www.reddit.com/message/compose/?to=mokulu">Send me a reddit PM.</MuiLink>
         </Typography>
       </NewsPost>
       <NewsPost
@@ -138,12 +152,14 @@ const Home = () => {
           availability times. I'll work on adding a method to select Unchained event times.
         </Typography>
         <Typography>
-          I've also set up a <Link href="https://www.patreon.com/bePatron?u=12806740" target="_blank">Patreon</Link> for
+          I've also set up a <MuiLink href="https://www.patreon.com/bePatron?u=12806740"
+                                      target="_blank">Patreon</MuiLink> for
           those would like to support the site. Thank you all!
         </Typography>
         <Typography>
-          See an issue? Drop an email to <Link href="mailto:admin@mokulu.io">admin@mokulu.io</Link> or send a PM
-          to <Link href="https://www.reddit.com/message/compose/?to=mokulu">u/Mokulu</Link>. I know my event schedule
+          See an issue? Drop an email to <MuiLink href="mailto:admin@mokulu.io">admin@mokulu.io</MuiLink> or send a PM
+          to <MuiLink href="https://www.reddit.com/message/compose/?to=mokulu">u/Mokulu</MuiLink>. I know my event
+          schedule
           is not 100%
           accurate, and I'm even missing EU times.
         </Typography>

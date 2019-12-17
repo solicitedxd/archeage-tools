@@ -26,11 +26,8 @@ class Link extends Component {
   // scroll to top for guide links
   handleClick = (e) => {
     const { to } = this.props;
-    const { pathname } = document.location;
-    const exp = /^\/guides/;
 
-    if ((to && to.match(exp) && !pathname.match(exp))
-      || (to && to.match(exp) && pathname.match(exp) && !to.match(/#[\w -]+/))) {
+    if (to && !to.match(/#[\w -]+/)) {
       scrollToTop();
     }
     if (this.props.onClick) {
