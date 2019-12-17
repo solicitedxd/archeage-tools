@@ -68,7 +68,10 @@
         margin: auto;
         display: block;
         width: 170px;
+        height: 264px;
         border-radius: 3px;
+        object-fit: cover;
+        object-position: 75% 0;
       }
 
       .obtainables {
@@ -132,7 +135,7 @@
         cursor: pointer;
 
         &:hover {
-          opacity: 0.8;
+          background: rgba(0, 0, 0, 0.1);
         }
 
         .mount-skills {
@@ -149,11 +152,14 @@
 
 .mount-viewer {
   display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 
   .info {
     .portrait {
       height: 438px;
       margin: auto;
+      border-radius: 3px;
     }
 
     .skills {
@@ -166,7 +172,32 @@
   }
 
   .obtain {
-    width: 620px;
+    min-width: 282px;
+    max-width: 620px;
     margin-left: 16px;
+    flex: 1;
+
+    .list-cols {
+      max-width: 620px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-evenly;
+      margin: 10px;
+      padding: 0;
+      list-style-type: none;
+
+      & > li {
+        flex: 1 30%;
+      }
+    }
   }
+}
+
+.portrait-tooltip {
+  max-height: 250px;
+  max-width: 300px;
+  object-fit: contain;
+  display: block;
+  margin: 3px 0;
+  border-radius: 3px;
 }

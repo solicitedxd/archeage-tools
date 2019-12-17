@@ -113,7 +113,9 @@ class Mounts extends Component {
     const { search, mountType, obtainTypes, speed, order, orderBy } = this.state;
     const { match: { params: { mount } }, displayGrid, setDisplayGrid, onlyObtainable, setOnlyObtainable } = this.props;
 
-    setTitle('Mounts');
+    if (!mount) {
+      setTitle('Mounts');
+    }
 
     const mounts = MOUNT.filter(mount => {
       if (search.length > 2 && mount.name.toLowerCase().indexOf(search.toLowerCase()) === -1) {
@@ -250,7 +252,7 @@ class Mounts extends Component {
                     <Link to={`/mounts/${slug(mount.name)}`}>
                       <div className="portrait">
                         <img
-                          src={Portrait[`${pascalCase(mount.name)}Cropped`] || Portrait[pascalCase(mount.name)] || NoPortrait}
+                          src={Portrait[pascalCase(mount.name)] || NoPortrait}
                           alt={mount.name}
                         />
                         {mount.obtainable && mount.obtainable.length > 0 &&
@@ -307,7 +309,16 @@ class Mounts extends Component {
                   <TableRow key={mount.name} onClick={() => this.props.history.push(`/mounts/${slug(mount.name)}`)}>
                     <TableCell className="mount-icon">
                       {Icon[pascalCase(mount.name)] &&
-                      <img src={Icon[pascalCase(mount.name)]} alt={mount.name} />}
+                      <Tooltip
+                        title={<img
+                          src={Portrait[pascalCase(mount.name)] || NoPortrait}
+                          alt={mount.name}
+                          className="portrait-tooltip"
+                        />}
+                        placement="right"
+                      >
+                        <img src={Icon[pascalCase(mount.name)]} alt={mount.name} />
+                      </Tooltip>}
                     </TableCell>
                     <TableCell>
                       {mount.name}

@@ -339,6 +339,13 @@ export default Object.freeze([
     description: 'Glide through the skies with your mount for #5min#. Can\'t be used while carrying a trade pack.',
   },
   {
+    icon: Icon.Glide,
+    name: 'Pega-Glide',
+    cooldown: 60,
+    description: 'Triggers your pegasus to glide through the sky for #5min#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
     icon: Icon.Skydash,
     name: 'Skydash',
     cooldown: 60,
@@ -487,7 +494,7 @@ export default Object.freeze([
     icon: Icon.DreamingDonkey,
     name: 'Dreaming Donkey',
     cooldown: 60,
-    description: 'Increases donkey\'s Move Speed by #+50# for #1min#.\r' +
+    description: 'Increases donkey\'s Move Speed by #+50%# for #1min#.\r' +
       'Can only be used while wearing a trade pack and consumes #1 Carrot#.\r' +
       'Combat cancels the effect.',
   },
@@ -630,5 +637,262 @@ export default Object.freeze([
       'Duration of Freeze is decreased -50% in PvP.\r' +
       'While airborn, the Dragon breathes in a straight line, Freezing affected enemies for 2.5 seconds.\r\r' +
       'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.PumpkinCandyPower,
+    name: 'Pumpkin Candy Power',
+    cooldown: 5,
+    description: 'Triggers an instant dash forward.',
+  },
+  {
+    icon: Icon.BuckUpFriends,
+    name: 'Buck Up, Friends',
+    cooldown: 10,
+    description: 'Propels all ally snails within 5m forward.',
+  },
+  {
+    icon: OwnersEscape,
+    name: 'Launch Owner',
+    cooldown: 20,
+    description: 'Launches the rider forward. Can\'t be used if the rider is carrying a trade pack.',
+  },
+  {
+    icon: Icon.Bite,
+    id: 'Gnaw Predator',
+    name: 'Gnaw',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [
+      BUFF.BLEEDING,
+    ],
+    description: 'Sharpens mount\'s bite, dealing Physical Damage and additional damage. Triggers *Vicious Bite* if *Invisible Predator* is active.\r' +
+      '*Vicious Bite* deals Physical Damage and reduces a target\'s Move Speed.',
+  },
+  {
+    icon: Icon.Run,
+    name: '4-Leg Lope',
+    cooldown: 30,
+    description: 'Increases Move Speed +50% for its duration. Triggers *Careen* if *Invisible Predator* is active.\r' +
+      '*Careen* drastically increases Move Speed, which then decreases gradually.\r' +
+      'Can\'t be used while carrying a trade packs.',
+  },
+  {
+    icon: Icon.Overrun,
+    id: 'Overrun Predator',
+    name: 'Overwhelm',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Charges into a distant target and inflicts Stun for its duration. Triggers *Ambush* if *Invisible Predator* is active.\r' +
+      '*Ambush* damages the charged enemy.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Dash,
+    id: 'Dash Predator',
+    name: 'Dash',
+    cooldown: 60,
+    description: 'Lets the mount dash invincibly forward. Triggers *Rip-Roaring* if *Invisible Predator* is active.\r' +
+      '*Rip-Roaring* triggers a fast run and grants invincibility. Damages and pushes nearby enemies.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.InvisiblePredator,
+    name: 'Invisible Predator',
+    cooldown: 60,
+    description: 'Stealths the mount and rider for #5sec#.\r' +
+      'Enhances certain other skills while active.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.StealthMove,
+    name: 'Lightning Stealth',
+    cooldown: 180,
+    description: 'Stealths both mount and rider for #1min#.\r' +
+      'Stealth ends if you attack or are attacked.\r' +
+      'During stealth and for some time afterwards, the following skills are temporarily disabled:\r' +
+      'Overwhelm, Steady Shooting, Charge, Drop Back, Tiger Strike, Behind Enemy Lines, Blink, Bladeblast or Twin Shadow Slash.\r' +
+      'Can\'t be used in combat.',
+  },
+  {
+    icon: Icon.Run,
+    name: 'Power Dash',
+    cooldown: 30,
+    description: 'Increases Move Speed #+70%# for #10sec# then gradually decreases.\r' +
+      'Can\'t be used while carrying a tradepack.',
+  },
+  {
+    icon: Icon.StrongClaws,
+    name: 'Scratch',
+    cooldown: 18,
+    range: [0, 5],
+    effects: [
+      BUFF.BLEEDING,
+    ],
+    description: 'Rakes your enemy with sharp claws, dealing Physical Damage and an additional damage of #14sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.BewitchingTails,
+    name: 'Bewitching Tails',
+    range: [0, 20],
+    cooldown: 30,
+    description: 'Inflicts Fear for 1 second, causing the enemy to run in random directions and preventing all other actions except Evade, Block, and Parry. Inflicts Charm for 9 seconds after the fear expires, making the target more susceptible to Songcraft skill effects.',
+  },
+  {
+    icon: Icon.Dash,
+    id: 'Dash 1m',
+    name: 'Dash',
+    cooldown: 60,
+    description: 'Triggers a forward charge for #3sec# that makes you invincible and increases Move Speed +#50%#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Dash,
+    name: 'Protective Dash',
+    cooldown: 60,
+    description: 'Triggers a forward charge for #3sec# that makes you invincible. Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Run,
+    name: 'Iron Dash',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10sec#.\r' +
+      'Can\'t be used during Rampage or while carrying a trade pack.',
+  },
+  {
+    icon: Icon.RocketLunge,
+    name: 'Rocket Lunge',
+    cooldown: 18,
+    range: [0, 15],
+    description: 'Launches the Taurus towards a target, dealing physical damage and stunning the target for #2sec#.\r' +
+      'Can\'t be used during Juggernaut Charge, Rampage, or while carrying a trade pack.',
+  },
+  {
+    icon: Icon.KineticShield,
+    name: 'Kinetic Shield',
+    cooldown: 60,
+    description: 'Decreases the mount and rider\'s received damage #-50%# for #6sec#, and grants one stack of #Overcharged#. Overcharge stacks up to three times, and disappears if the Siegeram Taurus is desummoned.\r' +
+      'Can\'t be used during Juggernaut Charge, Rampage, or while carrying a trade pack.',
+  },
+  {
+    icon: Icon.JuggernautCharge,
+    name: 'Juggernaut Charge',
+    cooldown: 60,
+    description: 'Charges forward for #3sec#, knocking enemies aside and dealing damage.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used during Rampage or while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Rampage,
+    name: 'Rampage',
+    cooldown: 60,
+    description: 'Grants invincibility for #3 seconds#, charging in random directions to deal Damage, knockback, and stun nearby enemies. Each stack of Overcharge increases Rampage duration +1 second. Stun lats #2 seconds@.\r' +
+      'This skill counts as a Push effect.\r\r' +
+      'Can\'t be used during Iron Dash, Juggernaut Charge, or while carrying a trade pack. Can\'t use other mount skills until Rampage ends.',
+  },
+  {
+    icon: Icon.RunKirin,
+    id: 'Run Kirin',
+    name: 'Run',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Bite,
+    name: 'Shred',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Sharpens caster\'s bite, dealing Physical Damage and additional damage over #14sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Overrun,
+    id: 'Overrun Kirin',
+    name: 'Overwhelm',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Pounce at and stun a faraway target.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Beastsense,
+    name: 'Guardian\'s Eyes',
+    cooldown: 60,
+    description: 'Increases Stealth Detection #+200%#.',
+  },
+  {
+    icon: Icon.EvasiveLeap,
+    name: 'Evasive Leap',
+    cooldown: 35,
+    description: 'Stealtsh mount and rider and leaps forward #25m#.\r' +
+      'Increases mount\'s Move Speed #+50%# for 3 seconds.\r' +
+      'Leaps #35m# if this skill is used while Run! is active.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.BoulderToss,
+    name: 'Boulder Toss',
+    cooldown: 6,
+    range: [0, 20],
+    description: 'Throw a huge rock toward an enemy in a long distance to inflict Ranged Damage.',
+  },
+  {
+    icon: Icon.RunVineGiant,
+    id: 'Run Vine Giant',
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Pet Move Speed #+50%# for #10sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.StranglingVines,
+    name: 'Strangling Vines',
+    cooldown: 45,
+    description: 'Shoots vines 20m forward to drag up to three enemies towards the Vine Giant. Pulled enemies are Staggered, briefly stopping movement and canceling all Cast Time and Channeled skills.\r' +
+      'Does not affect enemies under the Vine Obstruction debuff.',
+  },
+  {
+    icon: Icon.WildCharge,
+    name: 'Wild Charge',
+    cooldown: 60,
+    description: 'Charges forward foe #3sec#, breaking through enemy lines. Inflicts Knockback and Trip on affected enemies.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.ForceOfNature,
+    name: 'Force of Nature',
+    range: [0, 15],
+    effectRange: 5,
+    cooldown: 60,
+    description: 'Leaps to the target location, creating shockwaves on impact that bounce enemies in a 5m area.\r' +
+      'This effect is not applied on enemies under the Force of Nature debuff.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.RunDrakora,
+    id: 'Run Drakora',
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases mount\'s Move Speed #+50%# for #15sec#.\r' +
+      'Increases Glide Speed #+30%# while airborne for #15sec#.',
+  },
+  {
+    icon: Icon.GlideDrakora,
+    id: 'Glide Drakora',
+    name: 'Glide',
+    cooldown: 60,
+    description: 'Glide through the skies with your mount for #5min#\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.BreakthroughDrakora,
+    id: 'Breakthrough Drakora',
+    name: 'Breakthrough',
+    cooldown: 30,
+    description: 'Charges forward for #3sec#, breaking through enemy lines. Inflicts Knockback and Trip on affected enemies. This skill counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
   },
 ]);

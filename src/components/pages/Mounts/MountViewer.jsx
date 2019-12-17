@@ -21,6 +21,7 @@ import {
 import { connect } from 'react-redux';
 import {
   pascalCase,
+  setTitle,
   slug,
 } from 'utils/string';
 import * as Portrait from '../../../images/mount/';
@@ -60,6 +61,7 @@ class MountViewer extends Component {
     if (!mount) {
       this.onClose();
     } else {
+      setTitle(mount.name);
       this.setState({ id, open: true });
     }
   }
@@ -128,7 +130,7 @@ class MountViewer extends Component {
           <div className="obtain">
             {mount.quote &&
             <blockquote>{mount.quote}</blockquote>}
-            <Typography variant="h6">Getting a {mount.name}</Typography>
+            <Typography variant="h6">Getting {mount.name}</Typography>
             {(!mount.obtainable || mount.obtainable.length === 0) &&
             <Typography className="alert-red">This mount is currently unavailable.</Typography>}
             {mount.obtainText &&

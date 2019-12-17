@@ -290,6 +290,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -315,6 +316,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -336,6 +338,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -360,6 +363,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -384,6 +388,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -404,6 +409,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -428,6 +434,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -448,6 +455,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -468,6 +476,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -489,6 +498,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -510,6 +520,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -535,6 +546,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -560,6 +572,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -585,6 +598,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -606,6 +620,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -630,6 +645,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -650,6 +666,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -670,6 +687,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.STARTER,
+      MOUNT_TYPE.STANDARD,
     ],
     obtainable: [
       CURRENCY.COIN,
@@ -807,6 +825,28 @@ const MOUNT = [
       </ul>
       <p>This mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
     </GILDA_HOW_TO>,
+  },
+  {
+    name: 'Moonfeather Griffin',
+    quote: 'Famous for their luminous plumage, these ghostly predators are said to hunt exclusively by moonlight.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Wind Strike',
+      'Glide',
+      'Skydash',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+      CURRENCY.CREDIT,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</Typography>
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</p>
+    </React.Fragment>,
   },
   {
     name: 'Coral',
@@ -1365,11 +1405,13 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.COIN,
+      CURRENCY.CREDIT,
     ],
-    obtainText: <Typography>
-      The Yata mount can be purchased as a calf from any Stablehand for&nbsp;
-      <Currency type={CURRENCY.COIN} count={50000} inline /> and raised.
-    </Typography>,
+    obtainText: <React.Fragment>
+      <Typography>The Yata mount can be purchased as a calf from any Stablehand for&nbsp;
+        <Currency type={CURRENCY.COIN} count={50000} inline /> and raised.</Typography>
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={500} inline />.</p>
+    </React.Fragment>,
   },
   {
     name: 'Striped Yata',
@@ -1549,12 +1591,17 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.DONKEY,
+      MOUNT_TYPE.STARTER,
     ],
     obtainable: [
       CURRENCY.VOCATION,
+      CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: DONKEY_HOW_TO,
+    obtainText: <React.Fragment>
+      {DONKEY_HOW_TO}
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
+    </React.Fragment>,
   },
   {
     name: 'Brown Donkey',
@@ -1566,12 +1613,17 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.DONKEY,
+      MOUNT_TYPE.STARTER,
     ],
     obtainable: [
       CURRENCY.VOCATION,
+      CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: DONKEY_HOW_TO,
+    obtainText: <React.Fragment>
+      {DONKEY_HOW_TO}
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
+    </React.Fragment>,
   },
   {
     name: 'Gray Donkey',
@@ -1583,12 +1635,17 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.DONKEY,
+      MOUNT_TYPE.STARTER,
     ],
     obtainable: [
       CURRENCY.VOCATION,
+      CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: DONKEY_HOW_TO,
+    obtainText: <React.Fragment>
+      {DONKEY_HOW_TO}
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
+    </React.Fragment>,
   },
   {
     name: 'Black Donkey',
@@ -1600,6 +1657,7 @@ const MOUNT = [
     ],
     types: [
       MOUNT_TYPE.DONKEY,
+      MOUNT_TYPE.STARTER,
     ],
     obtainable: [
       CURRENCY.VOCATION,
@@ -1800,6 +1858,629 @@ const MOUNT = [
     obtainText: <Typography>
       This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
     </Typography>,
+  },
+  {
+    name: 'Candy-fueled Bestcargot',
+    quote: 'Empowered by the Purple Pumpkin Candies, Bestcargot can now climb hills faster than any other snail.',
+    speed: 5,
+    skills: [
+      'Pumpkin Candy Power',
+      'Buck Up, Friends',
+      'Launch Owner',
+    ],
+    types: [
+      MOUNT_TYPE.CLIMBING,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+    </Typography>,
+  },
+  {
+    name: 'Candy-fueled Fastropod',
+    quote: 'Empowered by the Azure Pumpkin Candies, Fastropod can now climb hills faster than any other snail.',
+    speed: 5,
+    skills: [
+      'Buck Up, Friends',
+      'Launch Owner',
+    ],
+    types: [
+      MOUNT_TYPE.CLIMBING,
+    ],
+    obtainText: <p>
+      On Legacy, this mount was previously available as a reward from Hallowtide festivities.
+    </p>,
+  },
+  {
+    name: 'Candy-fueled Shellraiser',
+    quote: 'Empowered by the Yellow Pumpkin Candies, Shellraiser can now climb hills faster than any other snail.',
+    speed: 5,
+    skills: [
+      'Pumpkin Candy Power',
+      'Buck Up, Friends',
+    ],
+    types: [
+      MOUNT_TYPE.CLIMBING,
+    ],
+    obtainText: <p>
+      On Legacy, this mount was previously available as a reward from Hallowtide festivities.
+    </p>,
+  },
+  {
+    name: 'Flaming Soulscar',
+    quote: 'This elemental tiger embodies the rage and destruction that dwells within its kind. It appears only to those who match its fury, carrying them into battle in a burst of fire and glory.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Freezing Soulscar',
+    quote: 'This elemental tiger embodies the beauty and cunning for which all tigers are known. It chooses only the wisest and most clever riders, guiding them in battle and protecting them from danger.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Vanhi',
+    quote: 'Once thought to be an old soldier\'s tale, this legendary tiger is an omen of war throughout Haranya.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Kamari',
+    quote: 'Empress Pavitra\'s cavalrymen were feared across the continent for riding ferocious golden war tigers into battle. The most bloodthirsty tiger, Kamari, belonged to one of her generals. Now, all golden tigers are known by that name.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.CREDIT,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>
+        On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.
+      </Typography>
+      <p>On Unchained, it currently cannot be obtainable.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Hellwing Pegasus',
+    quote: 'Born in the fires of Esya Dena, the Hellwing Pegasus is nearly impossible to catch. Many a hunter has lost their life in pursuit of this noble creature, realizing far too late that no mortal net can contain its burning fury.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Pega-Glide',
+      'Skydash',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+    </Typography>,
+  },
+  {
+    name: 'Stormwing Pegasus',
+    quote: 'The embodiment of thunder and lightning, this mythical creature is as wild as the storms that birthed it. Only the very brave or very foolish dare to ride it.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Pega-Glide',
+      'Skydash',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Celestial Pegasus',
+    quote: 'Said to make its home amongst the clouds, the Celestial Pegasus will only carry a rider it deems worthy.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Pega-Glide',
+      'Skydash',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={250} />.
+    </Typography>,
+  },
+  {
+    name: 'Earthen Roar',
+    quote: 'Sturdy and very fast.',
+    upgrade: 'Crimson Lightning',
+    speed: 10.2,
+    skills: [
+      ['Run'],
+      'Gnaw',
+      'Overrun',
+      'Health Regen',
+      'Dash',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={550} />.
+      </Typography>
+      <p>On Legacy, this mount is no longer obtainable.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Steel Lightning',
+    quote: 'This fearless snowlion is rumored to have been born during a midnight lightning storm, as the moon dyed each strike a steely blue.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Vicious Bite',
+      'Overrun',
+      'Ram',
+      'Lightning Stealth',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Crimson Lightning',
+    quote: 'This fearless snowlion is rumored to have been born during a sunset lightning storm, as the sun dyed each strike a bloody red.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Vicious Bite',
+      'Overrun',
+      'Ram',
+      'Lightning Stealth',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <React.Fragment>
+      <MapEmbed
+        zone={ZONE.HASLA}
+        points={[
+          { label: 'Hasaru', coords: [{ x: 58.2, y: 81.3 }] },
+        ]}
+        button="View on Map"
+        buttonFloat="right"
+      />
+      <Typography>If you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into this mount
+        by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
+        Essence.</Typography>
+      <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
+        Drill Camp in Hasla, to complete the quest <span className="dropdown-icon Quest" />&nbsp;
+        <Typography color="primary" component="span">A Bolt of Crimson Lightning</Typography> in exchange for a Crimson
+        Lightning.</p>
+      <p>
+        Alternatively, this mount can be obtained outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Moonlight Kitsu',
+    quote: 'The Moonlight Kitsu is a creature of beauty and enchantment. It can mesmerize its prey with a wave of its glowing tails, rendering them helpless to its attacks. Those lucky enough to tame such a creature often learn to use its powers in battle, charming enemies to increase the effectiveness of their own spells.',
+    speed: 11.5,
+    skills: [
+      'Power Dash',
+      'Overrun',
+      'Scratch',
+      ['Dash 1m'],
+      'Bewitching Tails',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Celestial Kitsu',
+    quote: 'A supreme form of the elegant kitsu pet, this shy mount was long thought to exist in legends only. It has revealed itself only as more of Auroria has been reclaimed. Its skills focus on preventing damage and recovering health.',
+    speed: 11.5,
+    skills: [
+      'Overrun',
+      'Health Regen',
+      'Power Dash',
+      'Quick Movement',
+      'Protective Dash',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+    </Typography>,
+  },
+  {
+    name: 'Siegeram Taurus',
+    quote: 'Built by Andelph machinists as a gift to the people of Marianople, the Taurus spent years as nothing more than a mechanical novelty. It wasn\'t until the Demon War that the construct\'s military applications were fully realized; historians still credit its terrifying strength as one of the city\'s most valuable assets in their defense against the Warborn.',
+    speed: 11.5,
+    skills: [
+      'Iron Dash',
+      'Rocket Lunge',
+      'Kinetic Shield',
+      'Juggernaut Charge',
+      'Rampage',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+    </Typography>,
+  },
+  {
+    name: 'Stormrose',
+    quote: 'Related to the Soulmare, these ghostly steeds are said to come from the Hereafter itself. Legends claim that they will serve their chosen riders even after death.',
+    speed: 11.5,
+    skills: [
+      'Back Kick',
+      'Hereafter Dash',
+      'Nui\'s Veil',
+      'Ghostly Steps',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+    </Typography>,
+  },
+  {
+    name: 'Brown Reindeer',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Mounted Arrowshot',
+      'Mounted Fire Arrow',
+      'Snipe',
+      'Elegant Leap',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+      CURRENCY.CREDIT,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.</Typography>
+      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'White Reindeer',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Mounted Arrowshot',
+      'Mounted Fire Arrow',
+      'Snipe',
+      'Elegant Leap',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainText: <p>
+      On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
+    </p>,
+  },
+  {
+    name: 'Black Reindeer',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Mounted Arrowshot',
+      'Mounted Fire Arrow',
+      'Snipe',
+      'Elegant Leap',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainText: <p>
+      On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
+    </p>,
+  },
+  {
+    name: 'Stormwraith Kirin',
+    quote: 'These ancient creatures are said to have been created by a Nuon god. Combining the elegant spirit of an elk with the ferocious nature of a wolf, Kirin act as magical guardians of the remote wilds of Erenor.',
+    speed: 11.5,
+    skills: [
+      ['Run Kirin'],
+      'Shred',
+      ['Overrun Kirin'],
+      'Guardian\'s Eyes',
+      'Evasive Leap',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+    </Typography>,
+  },
+  {
+    name: 'Gweonid Vine Giant',
+    quote: 'An Elven mage of Gweonid, Hyrion, created this mount using the vines and branches of the massive Green Lord itself.',
+    speed: 11.5,
+    skills: [
+      'Boulder Toss',
+      ['Run Vine Giant'],
+      'Strangling Vines',
+      'Wild Charge',
+      'Force of Nature',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.MANASTORM,
+    ],
+    obtainText: <Typography>
+      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+    </Typography>,
+  },
+  {
+    name: 'Lady Fluffsworth',
+    quote: 'The mysterious heir to the Fluffsworth estate, this gentle doe enjoys poetry, painting, and long hops on the beach.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Hippity Hop',
+      'Hop Back',
+      'Owner\'s Escape',
+      'Carrot Care',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Lord Cottontail',
+    quote: 'The only rabbit rumored to possess his own pack of hunting dogs, Lord Cottontail is the iron-pawed patriarch of the legendary Cottontail family. All of his dates are very important, and he is never late. Ever.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Hippity Hop',
+      'Hop Back',
+      'Owner\'s Escape',
+      'Carrot Care',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Sir Hoppington',
+    quote: 'A notorious rogue, Sir Hoppington fills his days with practical jokes, carrot-eating competitions, and daring midnight raids on the local farmers\' vegetable gardens.',
+    speed: 11.5,
+    skills: [
+      ['Run'],
+      'Hippity Hop',
+      'Hop Back',
+      'Owner\'s Escape',
+      'Carrot Care',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+    </React.Fragment>,
+  },
+  {
+    name: 'Andelph Drakora',
+    quote: 'During the wars between the dwarves and the Astras, it was the Astras\' wings and their dominance over the air that kept the dwarves at bay. Desperate for the tides of battle to turn, a dwarven inventor constructed a mechanical creature that would take to the skies. In the presence of the Andelph Drakora, no Astra dared take flight.',
+    speed: 16,
+    skills: [
+      ['Run Drakora'],
+      ['Glide Drakora'],
+      ['Breakthrough Drakora'],
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      QUEST,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>
+        This mount is acquired by completing the <Typography color="primary" component="span">Skywarden
+        Collection</Typography>, an achievement for collecting 38 prestigious mounts.
+      </Typography>
+
+      <ul className="list-cols">
+        <li>
+          Celestial Creature
+          <ul>
+            <li><Link to="/mounts/celestial-pegasus">Celestial Pegasus</Link></li>
+            <li><Link to="/mounts/typhoon-drake">Typhoon Drake</Link></li>
+            <li><Link to="/mounts/frost-dragon">Frost Dragon</Link></li>
+          </ul>
+        </li>
+        <li>
+          Hereafter Herald
+          <ul>
+            <li><Link to="/mounts/flaming-soulscar">Flaming Soulscar</Link></li>
+            <li><Link to="/mounts/soulmule">Soulmule</Link></li>
+            <li><Link to="/mounts/stormrose">Stormrose</Link></li>
+          </ul>
+        </li>
+        <li>
+          Stormy Soul
+          <ul>
+            <li><Link to="/mounts/thunder-dash">Thunder Dash</Link></li>
+            <li><Link to="/mounts/steel-lightning">Steel Lightning</Link></li>
+            <li><Link to="/mounts/cloudstrike-panther">Cloudstrike Panther</Link></li>
+          </ul>
+        </li>
+        <li>
+          Winter Wildlife
+          <ul>
+            <li><Link to="/mounts/freezing-soulscar">Freezing Soulscar</Link></li>
+            <li><Link to="/mounts/brown-reindeer">Brown Reindeer</Link></li>
+            <li><Link to="/mounts/moonfeather-griffin">Moonfeather Griffin</Link></li>
+          </ul>
+        </li>
+        <li>
+          Fiery Familiar
+          <ul>
+            <li><Link to="/mounts/vanhi">Vanhi</Link></li>
+            <li><Link to="/mounts/hellwing-pegasus">Hellwing Pegasus</Link></li>
+            <li><Link to="/mounts/crimson-lightning">Crimson Lightning</Link></li>
+          </ul>
+        </li>
+        <li>
+          Shadowy Sidekick
+          <ul>
+            <li><Link to="/mounts/moonlight-kitsu">Moonlight Kitsu</Link></li>
+            <li><Link to="/mounts/stormwraith-kirin">Stormwraith Kirin</Link></li>
+            <li><Link to="/mounts/stormwing-pegasus">Stormwing Pegasus</Link></li>
+          </ul>
+        </li>
+        <li>
+          Best Buddy
+          <ul>
+            <li><Link to="/mounts/gweonid-vine-giant">Gweonid Vine Giant</Link></li>
+            <li><Link to="/mounts/carrot-dash">Carrot Dash</Link></li>
+            <li><Link to="/mounts/mirage-bjorne">Mirage Bjorne</Link></li>
+            <li><Link to="/mounts/siegeram-tarus">Siegeram Taurus</Link></li>
+          </ul>
+        </li>
+        <li>
+          Cute Companion
+          <ul>
+            <li><Link to="/mounts/candyfueled-bestcargot">Candy-fueled Bestcargot</Link></li>
+            <li><Link to="/mounts/coral">Coral</Link></li>
+            <li><Link to="/mounts/celstial-kitsu">Celestial Kitsu</Link></li>
+          </ul>
+        </li>
+        <li>
+          Pale Pal
+          <ul>
+            <li><Link to="/mounts/whitetail-leomorph">Whitetail Leomorph</Link></li>
+            <li><Link to="/mounts/white-elk">White Elk</Link></li>
+            <li><Link to="/mounts/snowrend-boar">Snowrend Boar</Link></li>
+            <li><Link to="/mounts/snowmane-snowlion">Snowmane Snowlion</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </React.Fragment>,
   },
 ];
 
