@@ -1,15 +1,9 @@
-import React, { Component } from 'react';
-import {
-  bool,
-  func,
-  oneOf,
-} from 'react-proptypes';
-import { connect } from 'react-redux';
 import {
   AppBar,
   Checkbox,
   Collapse,
   Dialog,
+  DialogContent,
   FormControl,
   FormControlLabel,
   IconButton,
@@ -33,7 +27,6 @@ import {
   Close,
   ExpandMore,
 } from '@material-ui/icons';
-import { pathOr } from 'ramda';
 import {
   setCraftLarder,
   setDegradation,
@@ -46,11 +39,15 @@ import {
   setTransportationQuantity,
   setWar,
 } from 'actions/tradepacks';
+import Currency from 'components/Currency';
+import Item from 'components/Item';
+import ItemLink from 'components/Item/ItemLink';
+import { CURRENCY } from 'constants/items';
 import {
   CONTINENT,
-  REWARD,
-} from 'constants/dailies';
-import { ZONE } from 'constants/map';
+  ZONE,
+} from 'constants/map';
+import { PROFICIENCY } from 'constants/proficiencies';
 import {
   CARGO,
   CARGO_OUTLET,
@@ -60,15 +57,19 @@ import {
   PACK_TYPE,
   TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
-import Currency from 'components/Currency';
-import ItemLink from 'components/Item/ItemLink';
 import ITEM from 'data/items';
 import TRADE_PACKS, {
   MULTIPURPOSE_AGING_LARDER,
   PACK_COSTS,
 } from 'data/tradepacks';
-import { PROFICIENCY } from 'constants/taxes';
-import Item from 'components/Item';
+import { pathOr } from 'ramda';
+import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  oneOf,
+} from 'react-proptypes';
+import { connect } from 'react-redux';
 
 const getZonePrefix = (zone) => {
   if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
@@ -259,7 +260,7 @@ class PackViewer extends Component {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <div className="body-container">
+        <DialogContent className="body-container">
           <div className="pack-header">
             <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
             <div className="pack-quantity">
@@ -357,7 +358,7 @@ class PackViewer extends Component {
                   <TableCell align="right">
                     {itemShowCost(material) ?
                       <Currency
-                        type={REWARD.COIN}
+                        type={CURRENCY.COIN}
                         count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
                       /> :
                       '--'}
@@ -368,7 +369,7 @@ class PackViewer extends Component {
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Cost</TableCell>
-                <TableCell align="right"><Currency type={REWARD.COIN} count={gold * quantity} /></TableCell>
+                <TableCell align="right"><Currency type={CURRENCY.COIN} count={gold * quantity} /></TableCell>
               </TableRow>}
               {isAgedPack && craftLarder &&
               <TableRow>
@@ -458,7 +459,7 @@ class PackViewer extends Component {
                           />
                         </TableCell>
                         <TableCell align="right">
-                          <Currency type={REWARD.COIN} count={transportCosts[item.name]} />
+                          <Currency type={CURRENCY.COIN} count={transportCosts[item.name]} />
                         </TableCell>
                       </TableRow>
                     ))}
@@ -466,7 +467,7 @@ class PackViewer extends Component {
                       <TableCell colSpan={2} />
                       <TableCell>Total Cost</TableCell>
                       <TableCell align="right">
-                        <Currency type={REWARD.COIN} count={transportTotal} />
+                        <Currency type={CURRENCY.COIN} count={transportTotal} />
                       </TableCell>
                     </TableRow>
                   </TableBody>
@@ -493,7 +494,7 @@ class PackViewer extends Component {
                   <MenuItem key={supplyLevel}>
                     {supplyLevel.substr(0, 1)}{supplyLevel.toLowerCase().substr(1)} Supply:&nbsp;
                     {CARGO_SUPPLY[supplyLevel].percent}%
-                    &nbsp;<Currency type={REWARD.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
+                    &nbsp;<Currency type={CURRENCY.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
                   </MenuItem>
                 ))}
               </Select>
@@ -505,7 +506,7 @@ class PackViewer extends Component {
                     Pack Cost
                   </TableCell>
                   <TableCell align="right">
-                    <Currency type={REWARD.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
+                    <Currency type={CURRENCY.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -569,7 +570,7 @@ class PackViewer extends Component {
                 label="Zone in War (+15%)"
               />}
               {sellZone !== CARGO ?
-                <Tooltip title={<Currency type={REWARD.COIN} count={interest} />}>
+                <Tooltip title={<Currency type={CURRENCY.COIN} count={interest} />}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -606,7 +607,7 @@ class PackViewer extends Component {
                         {packValue}&nbsp;
                         <Item {...pack.item} className="inline" />
                       </React.Fragment> :
-                      <Currency type={REWARD.COIN} count={packValue} />}
+                      <Currency type={CURRENCY.COIN} count={packValue} />}
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -616,7 +617,7 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Total Cost</TableCell>
                   <TableCell align="right">
-                    <Currency type={REWARD.COIN} count={totalGold} />
+                    <Currency type={CURRENCY.COIN} count={totalGold} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -626,7 +627,7 @@ class PackViewer extends Component {
                   <TableCell colSpan={2} />
                   <TableCell>Profit</TableCell>
                   <TableCell align="right">
-                    <Currency type={REWARD.COIN} count={profit} />
+                    <Currency type={CURRENCY.COIN} count={profit} />
                   </TableCell>
                 </TableRow>}
                 {sellZone !== CARGO &&
@@ -634,13 +635,13 @@ class PackViewer extends Component {
                   <TableCell colSpan={2} />
                   <TableCell>Silver per Labor</TableCell>
                   <TableCell align="right">
-                    <Currency type={REWARD.COIN} count={Math.round((profit) / totalLabor)} />
+                    <Currency type={CURRENCY.COIN} count={Math.round((profit) / totalLabor)} />
                   </TableCell>
                 </TableRow>}
               </TableBody>
             </Table>
           </div>
-        </div>
+        </DialogContent>
       </Dialog>
     );
   }

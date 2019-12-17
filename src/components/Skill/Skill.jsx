@@ -1,3 +1,6 @@
+import cn from 'classnames';
+import SkillTooltip from 'components/Skill/SkillTooltip';
+import { ELEMENT } from 'constants/skills';
 import React, { Component } from 'react';
 import {
   bool,
@@ -6,9 +9,6 @@ import {
   oneOf,
   string,
 } from 'react-proptypes';
-import cn from 'classnames';
-import SkillTooltip from 'components/Skill/SkillTooltip';
-import { ELEMENT } from 'constants/skills';
 import { getPointReq } from 'utils/skills';
 
 class Skill extends Component {
@@ -26,6 +26,7 @@ class Skill extends Component {
     noRequirement: bool,
     className: string,
     disableTooltip: bool,
+    requiredLevel: number,
   };
 
   static defaultProps = {
@@ -41,12 +42,13 @@ class Skill extends Component {
     noRequirement: false,
     className: '',
     disableTooltip: false,
+    requiredLevel: null,
   };
 
   state = {};
 
   render() {
-    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, ancestral, noRequirement, element, className, disableTooltip } = this.props;
+    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, requiredLevel, ancestral, noRequirement, element, className, disableTooltip } = this.props;
     const pointsRequired = passive ? slot + 2 : getPointReq(slot);
     const disabled = passive ? !learned
       : !learned && !ancestral && (spentPoints < pointsRequired || remainingPoints === 0);
@@ -60,6 +62,7 @@ class Skill extends Component {
         spentPoints={spentPoints}
         element={element}
         disableTooltip={disableTooltip}
+        requiredLevel={requiredLevel}
       >
         <span
           className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}

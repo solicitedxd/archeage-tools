@@ -1,30 +1,38 @@
-import React, { Component } from 'react';
-import {
-  array,
-  string,
-} from 'react-proptypes';
-import cn from 'classnames';
 import {
   AppBar,
+  Button,
   Dialog,
   DialogContent,
+  IconButton,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import { Close } from '@material-ui/icons';
+import cn from 'classnames';
 import {
   getMapImage,
   ZONE,
 } from 'constants/map';
+import React, { Component } from 'react';
+import {
+  array,
+  oneOf,
+  string,
+} from 'react-proptypes';
 
 class MapEmbed extends Component {
   static propTypes = {
     zone: string.isRequired,
     points: array,
+    button: string,
+    buttonFloat: oneOf(['left', 'right']),
   };
 
   static defaultProps = {
     points: [],
+    button: null,
+    buttonFloat: null,
   };
 
   state = {
@@ -66,67 +74,86 @@ class MapEmbed extends Component {
   };
 
   render() {
-    const { zone, points } = this.props;
+    const { zone, points, button, buttonFloat } = this.props;
     const { open, point: hoverPoint, mouseX, mouseY } = this.state;
 
     const map = getMapImage(zone);
-
-    return (
-      <div className="map-embed">
-        <div className="map-preview">
-          <div className="map-left map-content">
-            <img src={map} alt={zone} onClick={this.handleOpen} />
-            {points.map((point, index) => point.coords.map((coord, id) => (
-              <Tooltip
-                key={`point-${zone}-${index}-${id}`}
-                title={<div dangerouslySetInnerHTML={{
-                  __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
-                }} />}
-              >
-                <div
-                  className={cn('point', { 'hover-anim': hoverPoint === index })}
-                  style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y - 3.4}% - 12px)` }}
-                  data-point={point.icon || index + 1}
-                />
-              </Tooltip>),
-            ))}
-          </div>
-          <div className="map-points">
-            <AppBar position="static">
-              <Toolbar
-                variant="dense"
-                style={(zone === ZONE.WESTERN_HIRAM_MOUNTAINS || zone === ZONE.EASTERN_HIRAM_MOUNTAINS)
-                  ? { padding: '0 14px' } : {}}
-              >
-                <Typography variant="subtitle1" className="title-text">{zone}</Typography>
-              </Toolbar>
-            </AppBar>
-            <div style={{ padding: '8px 0' }}>
-              {points.map((point, index) => {
-                let { label: labels } = point;
-                if (!Array.isArray(labels)) {
-                  labels = [labels];
-                }
-                return (
-                  <React.Fragment key={`point-list-${zone}-${index}`}>
-                    {labels.map((label, id) => (
-                      <div
-                        key={`point-list-${zone}-${index}-${id}`}
-                        onMouseOver={() => this.handleMouseOver(index)}
-                        onMouseOut={this.handleMouseOut}
-                        className="point-item"
-                      >
-                        <Typography className="point-label">
-                          <span className="point inline-point" data-point={point.icon || index + 1} />
-                          {label}
-                        </Typography>
-                      </div>))}
-                  </React.Fragment>
-                );
-              })}
+    let embed;
+    if (Boolean(button)) {
+      embed = (
+        <Button
+          onClick={this.handleOpen}
+          className={cn({ [buttonFloat]: Boolean(buttonFloat) })}
+          color="primary"
+          variant="contained"
+        >
+          {button}
+        </Button>
+      );
+    } else {
+      embed = (
+        <div className="map-embed">
+          <div className="map-preview">
+            <div className="map-left map-content">
+              <img src={map} alt={zone} onClick={this.handleOpen} />
+              {points.map((point, index) => point.coords.map((coord, id) => (
+                <Tooltip
+                  key={`point-${zone}-${index}-${id}`}
+                  title={<div dangerouslySetInnerHTML={{
+                    __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                  }} />}
+                >
+                  <div
+                    className={cn('point', { 'hover-anim': hoverPoint === index })}
+                    style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y - 3.4}% - 12px)` }}
+                    data-point={point.icon || index + 1}
+                  />
+                </Tooltip>),
+              ))}
+            </div>
+            <div className="map-points">
+              <AppBar position="static">
+                <Toolbar
+                  variant="dense"
+                  style={(zone === ZONE.WESTERN_HIRAM_MOUNTAINS || zone === ZONE.EASTERN_HIRAM_MOUNTAINS)
+                    ? { padding: '0 14px' } : {}}
+                >
+                  <Typography variant="subtitle1" className="title-text">{zone}</Typography>
+                </Toolbar>
+              </AppBar>
+              <div style={{ padding: '8px 0' }}>
+                {points.map((point, index) => {
+                  let { label: labels } = point;
+                  if (!Array.isArray(labels)) {
+                    labels = [labels];
+                  }
+                  return (
+                    <React.Fragment key={`point-list-${zone}-${index}`}>
+                      {labels.map((label, id) => (
+                        <div
+                          key={`point-list-${zone}-${index}-${id}`}
+                          onMouseOver={() => this.handleMouseOver(index)}
+                          onMouseOut={this.handleMouseOut}
+                          className="point-item"
+                        >
+                          <Typography className="point-label">
+                            <span className="point inline-point" data-point={point.icon || index + 1} />
+                            <span className="label-text">{label}</span>
+                          </Typography>
+                        </div>))}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </div>
+      );
+    }
+
+    return (
+      <React.Fragment>
+        {embed}
         <Dialog
           open={open}
           onClose={this.handleClose}
@@ -136,6 +163,11 @@ class MapEmbed extends Component {
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography variant="subtitle1" className="title-text">{zone}</Typography>
+              <Tooltip title="Close">
+                <IconButton onClick={this.handleClose}>
+                  <Close />
+                </IconButton>
+              </Tooltip>
             </Toolbar>
           </AppBar>
           <DialogContent>
@@ -187,7 +219,7 @@ class MapEmbed extends Component {
               : `${(Math.round(mouseX / 928 * 1000) / 10)}%, ${(Math.round(mouseY / 556 * 1000) / 10)}%`}</Typography>}
           </DialogContent>
         </Dialog>
-      </div>
+      </React.Fragment>
     );
   }
 }

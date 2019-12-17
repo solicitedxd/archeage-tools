@@ -1,10 +1,3 @@
-import React, { Component } from 'react';
-import {
-  array,
-  func,
-  number,
-  object,
-} from 'react-proptypes';
 import {
   AppBar,
   Button,
@@ -21,6 +14,13 @@ import {
 } from '@material-ui/icons';
 import Skill from 'components/Skill';
 import SKILLSET from 'data/skillsets';
+import React, { Component } from 'react';
+import {
+  array,
+  func,
+  number,
+  object,
+} from 'react-proptypes';
 import { getTreePoints } from 'utils/skills';
 
 class SkillTree extends Component {
@@ -81,8 +81,10 @@ class SkillTree extends Component {
         </AppBar>
         {(!treeName || selectingSkillset) &&
         <div className="skill-tree-list">
-          {Object.keys(SKILLSET).filter(skillTreeId => !selectedClasses.includes(skillTreeId)).map(skillTreeId => {
-            const { name } = SKILLSET[skillTreeId];
+          {Object.entries(SKILLSET)
+          .filter(([skillTreeId, skillTree]) => !selectedClasses.includes(skillTreeId) && skillTree.visible !== false)
+          .map(([skillTreeId, skillTree]) => {
+            const { name } = skillTree;
             return (
               <Button
                 onClick={() => {

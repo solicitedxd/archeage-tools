@@ -1,4 +1,4 @@
-import { SET_REGION } from 'constants/calendar';
+import { SET_REGION } from 'constants/schedule';
 import initialState from 'initialStates/calendar';
 import { getItem } from 'utils/localStorage';
 

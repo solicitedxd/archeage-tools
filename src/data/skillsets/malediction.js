@@ -1,30 +1,3 @@
-import ManaBoltsIcon from 'images/skill/malediction/Mana_Bolts.png';
-import SerpentGlareIcon from 'images/skill/malediction/Serpent_Glare.png';
-import SerpentBiteIcon from 'images/skill/malediction/Serpent_Bite.png';
-import MaliciousBindingIcon from 'images/skill/malediction/Malicious_Binding.png';
-import FuryIcon from 'images/skill/malediction/Fury.png';
-import SoulboundEdgeIcon from 'images/skill/malediction/Soulbound_Edge.png';
-import GhastlyPackIcon from 'images/skill/malediction/Ghastly_Pack.png';
-import GraspingVoidIcon from 'images/skill/malediction/Grasping_Void.png';
-import VoidSurgeIcon from 'images/skill/malediction/Void_Surge.png';
-import RingThrowIcon from 'images/skill/malediction/Ring_Throw.png';
-import ShadowCloakIcon from 'images/skill/malediction/Shadow_Cloak.png';
-import BladefallIcon from 'images/skill/malediction/Bladefall.png';
-import SpitefulCursesIcon from 'images/skill/malediction/Spiteful_Curses.png';
-import EmpoweredMaliceIcon from 'images/skill/malediction/Empowered_Malice.png';
-import GleefulDestructionIcon from 'images/skill/malediction/Gleeful_Destruction.png';
-import WrathfulCastingIcon from 'images/skill/malediction/Wrathful_Casting.png';
-import CuttingMaliceIcon from 'images/skill/malediction/Cutting_Malice.png';
-import MurderousIntentIcon from 'images/skill/malediction/Murderous_Intent.png';
-import ManaBoltsQuake from 'images/skill/malediction/Mana_Bolts_Quake.png';
-import ManaBoltsWave from 'images/skill/malediction/Mana_Bolts_Wave.png';
-import BladeFallFlame from 'images/skill/malediction/Bladefall_Flame.png';
-import BladeFallLightning from 'images/skill/malediction/Bladefall_Lightning.png';
-import SerpentBiteFlame from 'images/skill/malediction/Serpent_Bite_Flame.png';
-import SerpentBiteStone from 'images/skill/malediction/Serpent_Bite_Stone.png';
-import GraspingVoidFlame from 'images/skill/malediction/Grasping_Void_Flame.png';
-import GraspingVoidMist from 'images/skill/malediction/Grasping_Void_Mist.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -32,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/malediction/';
 
 const skills = Object.freeze([
   {
-    icon: ManaBoltsIcon,
+    icon: Icon.ManaBolts,
     name: 'Mana Bolts',
     mana: 24,
     range: [0, 24],
@@ -61,7 +36,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SerpentGlareIcon,
+    icon: Icon.SerpentGlare,
     name: 'Serpent Glare',
     rank: 6,
     mana: 274,
@@ -71,7 +46,7 @@ const skills = Object.freeze([
       'Serpent Glare temporarily transforms the caster\'s #Mana Bolts# into #Crashing Waves#, that deal powerful Magic Damage to all enemies they touch.',
   },
   {
-    icon: SerpentBiteIcon,
+    icon: Icon.SerpentBite,
     name: 'Serpent Bite',
     rank: 6,
     mana: 102,
@@ -97,7 +72,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: MaliciousBindingIcon,
+    icon: Icon.MaliciousBinding,
     name: 'Malicious Binding',
     mana: 28,
     range: [0, 10],
@@ -107,7 +82,7 @@ const skills = Object.freeze([
       'The target can\'t move further than #5m#.',
   },
   {
-    icon: FuryIcon,
+    icon: Icon.Fury,
     name: 'Fury',
     mana: 29,
     cooldown: 30,
@@ -117,7 +92,7 @@ const skills = Object.freeze([
     descriptionNote: 'This skill does not trigger a Global Cooldown.',
   },
   {
-    icon: SoulboundEdgeIcon,
+    icon: Icon.SoulboundEdge,
     name: 'Soulbound Edge',
     rank: 3,
     mana: 246,
@@ -136,7 +111,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: GhastlyPackIcon,
+    icon: Icon.GhastlyPack,
     name: 'Ghastly Pack',
     rank: 9,
     mana: 124,
@@ -159,7 +134,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: GraspingVoidIcon,
+    icon: Icon.GraspingVoid,
     name: 'Grasping Void',
     mana: 110,
     range: [0, 35],
@@ -171,7 +146,7 @@ const skills = Object.freeze([
     noWalls: true,
   },
   {
-    icon: VoidSurgeIcon,
+    icon: Icon.VoidSurge,
     name: 'Void Surge',
     mana: 47,
     cooldown: 21,
@@ -181,7 +156,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: RingThrowIcon,
+    icon: Icon.RingThrow,
     name: 'Ring Throw',
     rank: 3,
     mana: 142,
@@ -204,7 +179,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ShadowCloakIcon,
+    icon: Icon.ShadowCloak,
     name: 'Shadow Cloak',
     mana: 72,
     cooldown: 70,
@@ -225,7 +200,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BladefallIcon,
+    icon: Icon.Bladefall,
     name: 'Bladefall',
     mana: 323,
     range: [0, 15],
@@ -251,12 +226,12 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: SpitefulCursesIcon,
+    icon: Icon.SpitefulCurses,
     name: 'Spiteful Curses',
     description: 'Stacks 1 #Malice Charge# every time Critical Damage is received.',
   },
   {
-    icon: EmpoweredMaliceIcon,
+    icon: Icon.EmpoweredMalice,
     name: 'Empowered Malice',
     description: 'Increases Magic Skill Damage of Malediction Skills #+7%.#',
     skillMod: [
@@ -268,7 +243,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: GleefulDestructionIcon,
+    icon: Icon.GleefulDestruction,
     name: 'Gleeful Destruction',
     description: 'Triggers #Gleeful Destruction#, when a #Malediction# Skill Attack lands a Critical Hit.\r' +
       '#Gleeful Destruction:#\r' +
@@ -277,18 +252,18 @@ export const passives = Object.freeze([
       '- Duration: 5 seconds',
   },
   {
-    icon: WrathfulCastingIcon,
+    icon: Icon.WrathfulCasting,
     name: 'Wrathful Casting',
     description: 'Consuming a #Malice Charge# decreases the Global Cooldown of Malediction Skills #-12%#, and increases the damage of #Crashing Waves +10%#.\r' +
       'Stacks up to #3 times#.',
   },
   {
-    icon: CuttingMaliceIcon,
+    icon: Icon.CuttingMalice,
     name: 'Cutting Malice',
     description: 'Decreases the Cooldown of #Serpent Glare -10 seconds#, when #Malice Charges# are consumed to enhance the effects of Malediction skills.',
   },
   {
-    icon: MurderousIntentIcon,
+    icon: Icon.MurderousIntent,
     name: 'Murderous Intent',
     description: 'Increases Magic Critical Damage #+12%#\r' +
       'Increases Skill Damage #+5%# for skills that consume Malice Charges.',
@@ -308,7 +283,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.QUAKE,
-        icon: ManaBoltsQuake,
+        icon: Icon.ManaBoltsQuake,
         mana: 12,
         range: [0, 12],
         effectRange: 6,
@@ -317,7 +292,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: ManaBoltsWave,
+        icon: Icon.ManaBoltsWave,
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 70 },
         description: 'Launches your mana as three razor-sharp bolts, dealing ${damage} Magic Damage and increasing your Move Speed #+1%# per successful hit, up to #10%.#',
       },
@@ -328,7 +303,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: BladeFallFlame,
+        icon: Icon.BladefallFlame,
         cooldown: 33,
         description: 'Calls down blades at the target location, dealing ${damage} Magic Damage to all enemies #once# within an #${effectRange}m# radius.',
         ancestralNote: '\r\rThis skill consumes less Malice Charges.',
@@ -348,7 +323,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: BladeFallLightning,
+        icon: Icon.BladefallLightning,
         damage: { base: 806, attack: ATTACK.MAGIC, ratio: 220 },
         description: 'Calls down blades quickly at the target location, dealing ${damage} Magic Damage to all enemies #once# within an #${effectRange}m# radius.',
       },
@@ -359,7 +334,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: SerpentBiteFlame,
+        icon: Icon.SerpentBiteFlame,
         cooldown: 31,
         ancestralNote: '\rThis skill consumes less Malice Charges.',
         combos: [
@@ -380,7 +355,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: SerpentBiteStone,
+        icon: Icon.SerpentBiteStone,
         description: 'Summons a magical serpent that burrows underground and erupts beneath the target to inflict up to ${damage} Magic Damage.\r' +
           '#Petrifies# enemies facing the target within #15m# for #2.5sec#.\r\r' +
           'Cancels if the casting is interrupted before the magical serpent hits the target.',
@@ -407,7 +382,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: GraspingVoidFlame,
+        icon: Icon.GraspingVoidFlame,
         range: [0, 20],
         damage: { base: 518, attack: ATTACK.MAGIC, ratio: 150 },
         description: 'Teleports the caster and up to #10# allies to a selected location within #10m#.\r' +
@@ -415,7 +390,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: GraspingVoidMist,
+        icon: Icon.GraspingVoidMist,
         effectRange: 5,
         castTime: 3,
         description: 'Teleports up to #5 enemies# in a selected #5m# radius to your location.',

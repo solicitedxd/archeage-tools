@@ -1,11 +1,13 @@
 import {
+  CONTINENT,
+  ZONE,
+} from 'constants/map';
+import {
   CARGO,
   FRESHNESS,
   PACK_TYPE,
 } from 'constants/tradepacks';
-import { ZONE } from 'constants/map';
 import ITEM from './items';
-import { CONTINENT } from 'constants/dailies';
 
 const sellLabor = 70;
 
@@ -1381,6 +1383,13 @@ export default Object.freeze({
           [ZONE.CINDERSTONE_MOOR]: 12.7275,
         },
       },
+      [PACK_TYPE.BLUE_SALT]: {
+        sell: {
+          [ZONE.TWO_CROWNS]: 90.4353,
+          [ZONE.SOLZREED_PENINSULA]: 93.8563,
+          [ZONE.CINDERSTONE_MOOR]: 92.3471,
+        },
+      },
     },
   },
   [ZONE.MARIANOPLE]: {
@@ -1752,13 +1761,6 @@ export default Object.freeze({
           [ZONE.TWO_CROWNS]: 24.0821,
           [ZONE.SOLZREED_PENINSULA]: 27.8991,
           [ZONE.CINDERSTONE_MOOR]: 24.1066,
-        },
-      },
-      [PACK_TYPE.BLUE_SALT]: {
-        sell: {
-          [ZONE.TWO_CROWNS]: 90.4353,
-          [ZONE.SOLZREED_PENINSULA]: 93.8563,
-          [ZONE.CINDERSTONE_MOOR]: 92.3471,
         },
       },
       [PACK_TYPE.SPECIAL]: {

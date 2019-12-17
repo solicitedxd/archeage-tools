@@ -1,19 +1,19 @@
-import React from 'react';
-import {
-  bool,
-  string,
-} from 'react-proptypes';
 import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
 import cn from 'classnames';
-import ITEMS from 'data/items';
 import Currency from 'components/Currency';
 import {
+  CURRENCY,
   QUALITY,
-  REWARD,
-} from 'constants/dailies';
+} from 'constants/items';
+import ITEMS from 'data/items';
+import React from 'react';
+import {
+  bool,
+  string,
+} from 'react-proptypes';
 
 const TooltipContent = ({ itemName }) => {
   const item = Object.values(ITEMS).find((item) => item.name === itemName);
@@ -116,7 +116,7 @@ const TooltipContent = ({ itemName }) => {
       </section>
       <section>
         {price > 0 ?
-          <div className="shop-price"><p>Shop Price:</p> <Currency type={REWARD.COIN} count={price} /></div> :
+          <div className="shop-price"><p>Shop Price:</p> <Currency type={CURRENCY.COIN} count={price} /></div> :
           <p className="no-sell">Cannot Sell</p>}
       </section>
     </React.Fragment>

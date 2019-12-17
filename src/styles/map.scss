@@ -27,7 +27,18 @@
 
       .point-label {
         display: flex;
-        align-items: center;
+        align-items: flex-start;
+
+        .inline-point {
+          vertical-align: initial;
+          margin-top: -4px;
+        }
+
+        .label-text {
+          display: block;
+          padding-left: 16px;
+          text-indent: -16px;
+        }
       }
     }
   }
@@ -64,14 +75,14 @@
 .map-embed .point, .map-dialog .point {
   width: 24px;
   height: 24px;
-  background: url(../images/npc_icon.png) -488px -232px;
+  background: url(../images/npc_icon.png) no-repeat -488px -232px;
   position: absolute;
 
   &.inline-point {
     position: initial;
     display: inline-block;
     margin-right: 6px;
-    vertical-align: -5px;
+    vertical-align: -3px;
   }
 
   /* Use a bounce animation for pointers */
@@ -150,6 +161,14 @@
 
   &[data-point="boss"] {
     background-position: -270px -149px;
+  }
+
+  &[data-point="stable"] {
+    background-position: -24px -93px;
+  }
+
+  &[data-point="gilda"] {
+    background-position: -48px -20px;
   }
 }
 

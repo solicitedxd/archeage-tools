@@ -1,139 +1,6 @@
+import { QUALITY } from 'constants/items';
 import React from 'react';
-import { QUALITY } from 'constants/dailies';
-import GildaStarIcon from 'images/item/gilda_star.png';
-import ShatigonsSandIcon from 'images/item/shatigons_sand.png';
-import HonorableVictoryIcon from 'images/item/honorable_victory.png';
-import HonorableVocationIcon from 'images/item/honorable_vocation.png';
-import LaborRechargeIcon from 'images/item/labor_recharge.png';
-import SupplyKitIcon from 'images/item/supply_box.png';
-import BlueSaltBondIcon from 'images/item/blue_salt_bond.png';
-import SprinklerIcon from 'images/item/sprinkler.png';
-import MiningDrillIcon from 'images/item/mining_drill.png';
-import FeatherGreenIcon from 'images/item/feather_green.png';
-import AcidGobbetIcon from 'images/item/acid_gobbet.png';
-import ArmorScrapIcon from 'images/item/armor_scrap.png';
-import HiramInfusionIcon from 'images/item/hiram_infusion.png';
-import HiramScrollIcon from 'images/item/hiram_awakening_scroll.png';
-import RedDragonPouchIcon from 'images/item/red_dragon_pouch.png';
-import KadumsCrateIcon from 'images/item/kadums_crate.png';
-import GoldCrateIcon from 'images/item/gold_crate.png';
-import OnyxEssenceIcon from 'images/item/onyx_essence.png';
-import DragonEssenceIcon from 'images/item/dragon_essence_stabilizer.png';
-import RevenantSoulstoneIcon from 'images/item/revenant_soulstone.png';
-import GlowingPrismIcon from 'images/item/glowing_prism.png';
-import OriginalTitansWingsIcon from 'images/item/original_titans_wings.png';
-import FierceTitansWingsIcon from 'images/item/fierce_titans_wings.png';
-import CondensedScentIcon from 'images/item/conensed_scent.png';
-import PotatoIcon from 'images/item/potato.png';
-import WaterIcon from 'images/item/water.png';
-import ChoppedProduceIcon from 'images/item/chopped_produce.png';
-import TrimmedMeatIcon from 'images/item/trimmed_meat.png';
-import DriedFlowersIcon from 'images/item/dried_flowers.png';
-import MedicinalPowderIcon from 'images/item/medicinal_powder.png';
-import GroundSpicesIcon from 'images/item/ground_spices.png';
-import GroundGrainIcon from 'images/item/ground_grain.png';
-import OrchardPureeIcon from 'images/item/orchard_puree.png';
-import SunlightDustIcon from 'images/item/sunlight_dust.png';
-import MoonlightDustIcon from 'images/item/moonlight_dust.png';
-import StarlightDustIcon from 'images/item/starlight_dust.png';
-import AbyssalEnhancerIcon from 'images/item/abyssal_enhancer.png';
-import NoryetteEarringIcon from 'images/item/noryette_earring.png';
-import NoryetteRingIcon from 'images/item/noryette_ring.png';
-import NoryetteAwakeningScrollIcon from 'images/item/noryette_awakening_scroll.png';
-import GreaterGrindingScrollIcon from 'images/item/greater_grinding_scroll.png';
-import ExplorersBowIcon from 'images/item/explorers_bow.png';
-import ExplorersCrateIcon from 'images/item/explorer_crate.png';
-import ExplorersClothCrateIcon from 'images/item/explorer_cloth_crate.png';
-import ExplorersLeatherCrateIcon from 'images/item/explorer_leather_crate.png';
-import ExplorersPlateCrateIcon from 'images/item/explorer_plate_crate.png';
-import StoryInfusionIcon from 'images/item/story_infusion.png';
-import StoryAwakeningScrollIcon from 'images/item/story_awakening_scroll.png';
-import TimeStoneIcon from 'images/item/time_stone.png';
-import EcoFriendlyFuelIcon from 'images/item/eco-friendly_fuel.png';
-import AxleGreaseIcon from 'images/item/axle_grease.png';
-import AgingLarderIcon from 'images/item/multi-purpose_aging_larder.png';
-import HoneyIcon from 'images/item/honey.png';
-import HayBaleIcon from 'images/item/hay_bale.png';
-import EggIcon from 'images/item/egg.png';
-import LemonIcon from 'images/item/lemon.png';
-import AppleIcon from 'images/item/apple.png';
-import CarrotIcon from 'images/item/carrot.png';
-import LavenderIcon from 'images/item/lavender.png';
-import GrapeIcon from 'images/item/grape.png';
-import AvocadoIcon from 'images/item/avocado.png';
-import TomatoIcon from 'images/item/tomato.png';
-import GarlicIcon from 'images/item/garlic.png';
-import FigIcon from 'images/item/fig.png';
-import BananaIcon from 'images/item/banana.png';
-import CucumberIcon from 'images/item/cucumber.png';
-import OnionIcon from 'images/item/onion.png';
-import WoolIcon from 'images/item/wool.png';
-import RiceIcon from 'images/item/rice.png';
-import BarleyIcon from 'images/item/barley.png';
-import CornIcon from 'images/item/corn.png';
-import RoseIcon from 'images/item/rose.png';
-import AzaleaIcon from 'images/item/azalea.png';
-import NarcissusIcon from 'images/item/narcissus.png';
-import IrisIcon from 'images/item/iris.png';
-import MushroomIcon from 'images/item/mushroom.png';
-import GooseDownIcon from 'images/item/goose_down.png';
-import DuckDownIcon from 'images/item/duck_down.png';
-import SunflowerIcon from 'images/item/sunflower.png';
-import LilyIcon from 'images/item/lily.png';
-import CornflowerIcon from 'images/item/cornflower.png';
-import MilkIcon from 'images/item/milk.png';
-import OliveIcon from 'images/item/olive.png';
-import MintIcon from 'images/item/mint.png';
-import RosemaryIcon from 'images/item/rosemary.png';
-import PomegranateIcon from 'images/item/pomegranate.png';
-import OrangeIcon from 'images/item/orange.png';
-import StrawberryIcon from 'images/item/strawberry.png';
-import AloeIcon from 'images/item/aloe.png';
-import BayLeafIcon from 'images/item/bay_leaf.png';
-import GinkgoLeafIcon from 'images/item/ginkgo_leaf.png';
-import PeanutIcon from 'images/item/peanut.png';
-import WheatIcon from 'images/item/wheat.png';
-import YamIcon from 'images/item/yam.png';
-import TurmericIcon from 'images/item/turmeric.png';
-import GinsengIcon from 'images/item/ginseng.png';
-import JujubeIcon from 'images/item/jujube.png';
-import CherryIcon from 'images/item/cherry.png';
-import YataFurIcon from 'images/item/yata_fur.png';
-import SaffronIcon from 'images/item/saffron.png';
-import QuinoaIcon from 'images/item/quinoa.png';
-import SmallSeedOilIcon from 'images/item/small_seed_oil.png';
-import SmallRootPigmentIcon from 'images/item/small_root_pigment.png';
-import OpaquePolishIcon from 'images/item/opaque_polish.png';
-import LumberIcon from 'images/item/lumber.png';
-import StoneBrickIcon from 'images/item/stone_brick.png';
-import IronIngotIcon from 'images/item/iron_ingot.png';
-import LeatherIcon from 'images/item/leather.png';
-import FabricIcon from 'images/item/fabric.png';
-import RoyalSeedIcon from 'images/item/royal_seed.png';
-import BlueSaltHammerIcon from 'images/item/blue_salt_hammer.png';
-import TimeSpaceShardIcon from 'images/item/time_space_rift_shard.png';
-import YetisPeltIcon from 'images/item/yetis_pelt.png';
-import TwinViperFangIcon from 'images/item/twinhead_viper_fang.png';
-import RevenantSoulIcon from 'images/item/revenant_soul.png';
-import GhostBladeShardIcon from 'images/item/ghost_blade_weapon_shard.png';
-import CentaursTailIcon from 'images/item/centaur_tail.png';
-import SharkFinIcon from 'images/item/shark_fin.png';
-import CorpseFluidIcon from 'images/item/drowned_corpse_fluid.png';
-import MinotaurHornIcon from 'images/item/minotaur_horn.png';
-import RedtalonHelmIcon from 'images/item/redtalon_helm.png';
-import RedtalonArmorIcon from 'images/item/redtalon_armor.png';
-import RedtalonSaddleIcon from 'images/item/redtalon_saddle.png';
-import RedtalonLegguardsIcon from 'images/item/redtalon_legguards.png';
-import LabyrinthValuablesChestIcon from 'images/item/labyrinth_valuables_chest.png';
-import CarmilasMemoryIcon from 'images/item/carmilas_memory.png';
-import SunsetPortalstoneIcon from 'images/item/sunset_portalstone.png';
-import SupDoomshadowNodachiIcon from 'images/item/superior_doomshadow_nodachi.png';
-import SunpointIcon from 'images/item/sunpoint.png';
-import MoonpointIcon from 'images/item/moonpoint.png';
-import StarpointIcon from 'images/item/starpoint.png';
-import SunglowLunagemIcon from 'images/item/sunglow_lunagem.png';
-import DerangedSpiritIcon from 'images/item/deranged_spirit.png';
-import MysteriousGemIcon from 'images/item/mysterious_gem.png';
+import * as Icon from '../images/item/';
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -158,10 +25,10 @@ const Process = ({ into, labor = 5, count = 10, knives = 1 }) => (
   </React.Fragment>
 );
 
-export default Object.freeze({
+const ITEM = Object.freeze({
   GILDA_STAR: {
     name: 'Gilda Star',
-    icon: GildaStarIcon,
+    icon: Icon.GildaStar,
     type: 'Coin',
     description: <span>
       An ancient coin made of pure gold and minted in Auroria centuries ago.
@@ -176,7 +43,7 @@ export default Object.freeze({
   },
   SHATIGONS_SAND: {
     name: 'Shatigon\'s Sand',
-    icon: ShatigonsSandIcon,
+    icon: Icon.ShatigonsSand,
     type: 'Talisman',
     description: <span>
       Sand extracted from Shatigon's Sandglass.<br /><br />
@@ -192,7 +59,7 @@ export default Object.freeze({
   },
   HONORABLE_VICTORY_14: {
     name: 'Honorable Victory Rank 14',
-    icon: HonorableVictoryIcon,
+    icon: Icon.HonorableVictory,
     type: 'Potion',
     description: <Use>Gain 100 Honor Points.</Use>,
     quality: QUALITY.GRAND,
@@ -200,7 +67,7 @@ export default Object.freeze({
   },
   HONORABLE_VICTORY_5: {
     name: 'Honorable Victory Rank 5',
-    icon: HonorableVictoryIcon,
+    icon: Icon.HonorableVictory,
     type: 'Potion',
     description: <Use>Gain 1,000 Honor Points.</Use>,
     quality: QUALITY.CELESTIAL,
@@ -208,7 +75,7 @@ export default Object.freeze({
   },
   HONORABLE_VICTORY_4: {
     name: 'Honorable Victory Rank 4',
-    icon: HonorableVictoryIcon,
+    icon: Icon.HonorableVictory,
     type: 'Potion',
     description: <Use>Gain 1,500 Honor Points.</Use>,
     quality: QUALITY.DIVINE,
@@ -216,7 +83,7 @@ export default Object.freeze({
   },
   HONORABLE_VOCATION_4: {
     name: 'Honorable Vocation Potion Rank 4',
-    icon: HonorableVocationIcon,
+    icon: Icon.HonorableVocation,
     type: 'Potion',
     description: <Use>Gain 1,500 Vocation Badges.</Use>,
     quality: QUALITY.DIVINE,
@@ -224,7 +91,7 @@ export default Object.freeze({
   },
   LABOR_RECHARGE: {
     name: 'Bound Labor Recharge',
-    icon: LaborRechargeIcon,
+    icon: Icon.LaborRecharge,
     type: 'Other',
     description: <span>
       Restores <BGreen>Server Labor</BGreen> over multiple uses, but the amount gradually decreases.<br />
@@ -237,7 +104,7 @@ export default Object.freeze({
   },
   IMPROVED_INFUSION_SUPPLY_KIT: {
     name: 'Improved Infusion Supply Kit',
-    icon: SupplyKitIcon,
+    icon: Icon.SupplyBox,
     type: 'Crate',
     description: <span>
       An improved supply kit that can be opened to receive one of the following items:<br />
@@ -253,7 +120,7 @@ export default Object.freeze({
   },
   BLUE_SALT_BOND: {
     name: 'Blue Salt Bond',
-    icon: BlueSaltBondIcon,
+    icon: Icon.BlueSaltBond,
     type: 'Quest Item',
     description: <span>A token issued by the Blue Salt Brotherhood. Can be used to help rank up your Community Center, or to support your faction activities.</span>,
     quality: QUALITY.GRAND,
@@ -262,7 +129,7 @@ export default Object.freeze({
   },
   RAINBOW_SPRINKLER: {
     name: 'Rainbow Sprinkler',
-    icon: SprinklerIcon,
+    icon: Icon.Sprinkler,
     type: 'Contraption',
     description: <span>
       Places a <Yellow>Rainbow Sprinkler</Yellow> that allows you to water seeds and seed bundles in a large area in a single action.<br />
@@ -278,7 +145,7 @@ export default Object.freeze({
   },
   SHARPWIND_MINING_DRILL: {
     name: 'Sharpwind Mining Drill',
-    icon: MiningDrillIcon,
+    icon: Icon.MiningDrill,
     type: 'Contraption',
     description: <span>
       Installs a <Yellow>Sharpwind Mining Drill</Yellow>.<br />
@@ -297,7 +164,7 @@ export default Object.freeze({
   },
   STAR_WINGS: {
     name: 'Star Wings',
-    icon: FeatherGreenIcon,
+    icon: Icon.FeatherGreen,
     type: 'Contraption',
     description: <span>
       Enhances certain glider effects.<br /><br />
@@ -312,7 +179,7 @@ export default Object.freeze({
   },
   ACID_GOBBET: {
     name: 'Acid Gobbet',
-    icon: AcidGobbetIcon,
+    icon: Icon.AcidGobbet,
     type: 'Material',
     description: <span>
       Can be obtained on <Blue>Aegis Island</Blue>.<br />
@@ -325,7 +192,7 @@ export default Object.freeze({
   },
   CURSED_ARMOR_SCRAP: {
     name: 'Cursed Armor Scrap',
-    icon: ArmorScrapIcon,
+    icon: Icon.ArmorScrap,
     type: 'Material',
     description: <span>
       Can be obtained in <Blue>Whalesong Harbor</Blue>.<br />
@@ -338,7 +205,7 @@ export default Object.freeze({
   },
   UNIDENTIFIED_HIRAM_INFUSION: {
     name: 'Unidentified Hiram Infusion',
-    icon: HiramInfusionIcon,
+    icon: Icon.HiramInfusion,
     unidentified: true,
     type: 'Synthesis Materials',
     description: <span>
@@ -352,7 +219,7 @@ export default Object.freeze({
   },
   MYSTERIOUS_HIRAM_INFUSION: {
     name: 'Mysterious Hiram Infusion',
-    icon: HiramInfusionIcon,
+    icon: Icon.HiramInfusion,
     unidentified: true,
     type: 'Synthesis Materials',
     description: <span>
@@ -367,7 +234,7 @@ export default Object.freeze({
   },
   RADIANT_HIRAM_INFUSION: {
     name: 'Radiant Hiram Infusion',
-    icon: HiramInfusionIcon,
+    icon: Icon.HiramInfusion,
     unidentified: true,
     type: 'Synthesis Materials',
     description: <span>
@@ -382,7 +249,7 @@ export default Object.freeze({
   },
   HIRAM_AWAKENING_SCROLL: {
     name: 'Hiram Awakening Scroll',
-    icon: HiramScrollIcon,
+    icon: Icon.HiramAwakeningScroll,
     type: 'Awakening Scroll',
     description: <span>
       Used to awaken Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />
@@ -397,7 +264,7 @@ export default Object.freeze({
   },
   RADIANT_HIRAM_AWAKENING_SCROLL: {
     name: 'Radiant Hiram Awakening Scroll',
-    icon: HiramScrollIcon,
+    icon: Icon.HiramAwakeningScroll,
     type: 'Awakening Scroll',
     description: <span>
       Used to awaken Radiant Hiram Guardian equipment, unlocking higher item grades and synthesis effects.<br /><br />
@@ -412,7 +279,7 @@ export default Object.freeze({
   },
   BRILLIANT_HIRAM_AWAKENING_SCROLL: {
     name: 'Brilliant Hiram Awakening Scroll',
-    icon: HiramScrollIcon,
+    icon: Icon.HiramAwakeningScroll,
     type: 'Awakening Scroll',
     description: <span>
       Used to awaken Brilliant Hiram Guardian Equipment, unlocking higher item grades and synthesis effects.<br /><br />
@@ -427,7 +294,7 @@ export default Object.freeze({
   },
   RED_DRAGON_POUCH: {
     name: 'Red Dragon Pouch',
-    icon: RedDragonPouchIcon,
+    icon: Icon.RedDragonPouch,
     type: 'Unidentified',
     description: <span>
       A pouch found in the Red Dragon's stomach.<br /><br />
@@ -446,7 +313,7 @@ export default Object.freeze({
   },
   KADUMS_CRATE: {
     name: 'Kadum\'s Crate',
-    icon: KadumsCrateIcon,
+    icon: Icon.KadumsCrate,
     type: 'Unidentified',
     quality: QUALITY.UNIQUE,
     bindsOnPickup: true,
@@ -464,7 +331,7 @@ export default Object.freeze({
   },
   GOLD_CRATE: {
     name: 'Locked Gold Crate',
-    icon: GoldCrateIcon,
+    icon: Icon.GoldCrate,
     type: 'Unidentified',
     description: <span>
       Valuable crates of treasure dropped by certain World Bosses, as well as Shadow Invasion bosses and sub-bosses.<br /><br />
@@ -477,7 +344,7 @@ export default Object.freeze({
   },
   ONYX_ARCHEUM_ESSENCE: {
     name: 'Onyx Archeum Essence',
-    icon: OnyxEssenceIcon,
+    icon: Icon.OnyxEssence,
     type: 'Archeum',
     description: <span>
       Imbued with mysterious garden lights, as a core source of magic, it is used in crafting consumables and machines.<br /><br />
@@ -488,7 +355,7 @@ export default Object.freeze({
   },
   DRAGON_ESSENCE_STABILIZER: {
     name: 'Dragon Essence Stabilizer',
-    icon: DragonEssenceIcon,
+    icon: Icon.DragonEssenceStabilizer,
     type: 'Material',
     description: <span>
       Used in processing and to stop unwanted chemical reactions.<br /><br />
@@ -498,7 +365,7 @@ export default Object.freeze({
   },
   REVENANT_SOULSTONE: {
     name: 'Revenant Soulstone',
-    icon: RevenantSoulstoneIcon,
+    icon: Icon.RevenantSoulstone,
     type: 'Other',
     description: <span>
       A soulstone that contains the residual energy of a vanquished revenant.<br /><br />
@@ -510,7 +377,7 @@ export default Object.freeze({
   },
   ORIGINAL_TITANS_WINGS: {
     name: 'Original Titan\'s Wings',
-    icon: OriginalTitansWingsIcon,
+    icon: Icon.OriginalTitansWings,
     type: 'Other',
     description: <span>
       A prototype of Titan's Wings.<br />
@@ -522,7 +389,7 @@ export default Object.freeze({
   },
   FIERCE_TITANS_WINGS: {
     name: 'Fierce Titan\'s Wings',
-    icon: FierceTitansWingsIcon,
+    icon: Icon.FierceTitansWings,
     type: 'Magithopter',
     description: <span>
       Crafted from the feathers of the legendary Thunderwing Titan; each one still seems to burn with the creature's mad fury.<br /><br />
@@ -536,7 +403,7 @@ export default Object.freeze({
   },
   GLOWING_PRISM: {
     name: 'Glowing Prism',
-    icon: GlowingPrismIcon,
+    icon: Icon.GlowingPrism,
     type: 'Material',
     description: <span>
       Can be acquired from hunting monsters.<br />
@@ -547,7 +414,7 @@ export default Object.freeze({
   },
   CONDENSED_SCENT: {
     name: 'Condensed Scent',
-    icon: CondensedScentIcon,
+    icon: Icon.CondensedScent,
     type: 'Quest Item',
     description: <span>A pleasant aroma, condensed into the form of a crystal.</span>,
     quality: QUALITY.BASIC,
@@ -555,7 +422,7 @@ export default Object.freeze({
   },
   VITA_ROOT: {
     name: 'Vita Root',
-    icon: PotatoIcon,
+    icon: Icon.Potato,
     type: 'Grain',
     description: <span>This enchanted fruit makes mounts and battle pets grow to maturity quickly.</span>,
     quality: QUALITY.BASIC,
@@ -563,14 +430,14 @@ export default Object.freeze({
   },
   WATER: {
     name: 'Water',
-    icon: WaterIcon,
+    icon: Icon.Water,
     type: 'Contraption',
     description: <span>Widely useful, especially for extinguishing fires and watering crops.</span>,
     quality: QUALITY.BASIC,
   },
   ECO_FRIENDLY_FUEL: {
     name: 'Eco-Friendly Fuel',
-    icon: EcoFriendlyFuelIcon,
+    icon: Icon.EcoFriendlyFuel,
     type: 'Contraption',
     description: <span>
       This natural fuel makes <Orange>ships</Orange> and <Orange>cars</Orange> instantly accelerate.<br /><br />
@@ -581,14 +448,14 @@ export default Object.freeze({
   },
   AXLE_GREASE: {
     name: 'Axle Grease',
-    icon: AxleGreaseIcon,
+    icon: Icon.AxleGrease,
     type: 'Contraption',
     description: <span>This mysterious oil was invented by wagon drivers who weren't satisfied with Eco-Friendly Fuel. It helps old wagons move smoothly again.</span>,
     price: 500,
   },
   MULTI_PURPOSE_AGING_LARDER: {
     name: 'Multi-Purpose Aging Larder',
-    icon: AgingLarderIcon,
+    icon: Icon.MultiPurposeAgingLarder,
     reqLevel: 30,
     type: 'Contraption',
     description: <span>
@@ -616,7 +483,7 @@ export default Object.freeze({
   },
   CHOPPED_PRODUCE: {
     name: 'Chopped Produce',
-    icon: ChoppedProduceIcon,
+    icon: Icon.ChoppedProduce,
     type: 'Material',
     description: <span>
       Vegetables such as <Yellow>potatoes</Yellow> and <Yellow>carrots</Yellow> chopped with a <Yellow>Blue Salt Knife</Yellow> into bite-size pieces.
@@ -627,7 +494,7 @@ export default Object.freeze({
   },
   TRIMMED_MEAT: {
     name: 'Trimmed Meat',
-    icon: TrimmedMeatIcon,
+    icon: Icon.TrimmedMeat,
     type: 'Material',
     description: <span>
       Meat such as <Yellow>chicken</Yellow> and <Yellow>beef</Yellow> trimmed with a <Yellow>Blue Salt Knife</Yellow>.
@@ -638,7 +505,7 @@ export default Object.freeze({
   },
   DRIED_FLOWERS: {
     name: 'Dried Flowers',
-    icon: DriedFlowersIcon,
+    icon: Icon.DriedFlowers,
     type: 'Material',
     description: <span>
       Flowers such as <Yellow>azaleas</Yellow> and <Yellow>roses</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
@@ -649,7 +516,7 @@ export default Object.freeze({
   },
   MEDICINAL_POWDER: {
     name: 'Medicinal Powder',
-    icon: MedicinalPowderIcon,
+    icon: Icon.MedicinalPowder,
     type: 'Material',
     description: <span>
       Medicinals such as <Yellow>mushrooms</Yellow> and <Yellow>cultivated ginseng</Yellow> ground with a <Yellow>Blue Salt Knife</Yellow>.
@@ -660,7 +527,7 @@ export default Object.freeze({
   },
   GROUND_GRAIN: {
     name: 'Ground Grain',
-    icon: GroundGrainIcon,
+    icon: Icon.GroundGrain,
     type: 'Material',
     description: <span>
       Grain such as <Yellow>barley</Yellow> and <Yellow>rice</Yellow> ground with a <Yellow>Blue Salt Knife</Yellow>.
@@ -671,7 +538,7 @@ export default Object.freeze({
   },
   GROUND_SPICES: {
     name: 'Ground Spices',
-    icon: GroundSpicesIcon,
+    icon: Icon.GroundSpices,
     type: 'Material',
     description: <span>
       Spices such as <Yellow>iris</Yellow> and <Yellow>mint</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
@@ -682,7 +549,7 @@ export default Object.freeze({
   },
   ORCHARD_PUREE: {
     name: 'Orchard Puree',
-    icon: OrchardPureeIcon,
+    icon: Icon.OrchardPuree,
     type: 'Material',
     description: <span>
       Fruits such as <Yellow>grapes</Yellow> and <Yellow>apples</Yellow> chopped with a <Yellow>Blue Salt Knife</Yellow> into bite-size pieces.
@@ -693,7 +560,7 @@ export default Object.freeze({
   },
   HONEY: {
     name: 'Honey',
-    icon: HoneyIcon,
+    icon: Icon.Honey,
     type: 'Herb',
     description: <span>
       Can be harvested from <Yellow>Acorn Beehives</Yellow>. It's chiefly used in husbandry and raising pets.
@@ -702,7 +569,7 @@ export default Object.freeze({
   },
   HAY_BALE: {
     name: 'Hay Bale',
-    icon: HayBaleIcon,
+    icon: Icon.HayBale,
     type: 'Contraption',
     description: <span>
       A material often found when harvesting grains. It can be used as food for livestock.
@@ -711,7 +578,7 @@ export default Object.freeze({
   },
   EGG: {
     name: 'Egg',
-    icon: EggIcon,
+    icon: Icon.Egg,
     type: 'Material',
     description: <span>
       A material found by collecting from <Yellow>thriving hens</Yellow> that have been fed <Yellow>ground grain</Yellow>. It's chiefly used in cooking.
@@ -720,7 +587,7 @@ export default Object.freeze({
   },
   LEMON: {
     name: 'Lemon',
-    icon: LemonIcon,
+    icon: Icon.Lemon,
     type: 'Fruit',
     description: <span>
       A material found by gathering from <Yellow>fruited lemon trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -730,7 +597,7 @@ export default Object.freeze({
   },
   APPLE: {
     name: 'Apple',
-    icon: AppleIcon,
+    icon: Icon.Apple,
     type: 'Fruit',
     description: <span>
       A material found by gathering from <Yellow>fruited apple trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -740,7 +607,7 @@ export default Object.freeze({
   },
   CARROT: {
     name: 'Carrot',
-    icon: CarrotIcon,
+    icon: Icon.Carrot,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>carrots</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -750,7 +617,7 @@ export default Object.freeze({
   },
   LAVENDER: {
     name: 'Lavender',
-    icon: LavenderIcon,
+    icon: Icon.Lavender,
     type: 'Spice',
     description: <span>
       A material found by harvesting <Yellow>lavender</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -760,7 +627,7 @@ export default Object.freeze({
   },
   GRAPE: {
     name: 'Grape',
-    icon: GrapeIcon,
+    icon: Icon.Grape,
     type: 'Fruit',
     description: <span>
       A material found by harvesting <Yellow>fruited grapevines</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -770,7 +637,7 @@ export default Object.freeze({
   },
   AVOCADO: {
     name: 'Avocado',
-    icon: AvocadoIcon,
+    icon: Icon.Avocado,
     type: 'Fruit',
     description: <span>
       A material found by harvesting <Yellow>fruited avocado trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -780,7 +647,7 @@ export default Object.freeze({
   },
   TOMATO: {
     name: 'Tomato',
-    icon: TomatoIcon,
+    icon: Icon.Tomato,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>tomatoes</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -790,7 +657,7 @@ export default Object.freeze({
   },
   GARLIC: {
     name: 'Garlic',
-    icon: GarlicIcon,
+    icon: Icon.Garlic,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>garlic</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -800,7 +667,7 @@ export default Object.freeze({
   },
   CUCUMBER: {
     name: 'Cucumber',
-    icon: CucumberIcon,
+    icon: Icon.Cucumber,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>cucumber</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -810,7 +677,7 @@ export default Object.freeze({
   },
   ONION: {
     name: 'Onion',
-    icon: OnionIcon,
+    icon: Icon.Onion,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>onions</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -820,7 +687,7 @@ export default Object.freeze({
   },
   POTATO: {
     name: 'Potato',
-    icon: PotatoIcon,
+    icon: Icon.Potato,
     type: 'Vegetable',
     description: <span>
       A material found by harvesting <Yellow>potatoes</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -830,7 +697,7 @@ export default Object.freeze({
   },
   FIG: {
     name: 'Fig',
-    icon: FigIcon,
+    icon: Icon.Fig,
     type: 'Fruit',
     description: <span>
       A material found by harvesting <Yellow>fruited fig trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -840,7 +707,7 @@ export default Object.freeze({
   },
   BANANA: {
     name: 'Banana',
-    icon: BananaIcon,
+    icon: Icon.Banana,
     type: 'Fruit',
     description: <span>
       A material found by harvesting <Yellow>fruited banana trees</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -850,7 +717,7 @@ export default Object.freeze({
   },
   RICE: {
     name: 'Rice',
-    icon: RiceIcon,
+    icon: Icon.Rice,
     type: 'Grain',
     description: <span>
       A material found by harvesting <Yellow>rice</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -860,7 +727,7 @@ export default Object.freeze({
   },
   MILLET: {
     name: 'Millet',
-    icon: QuinoaIcon,
+    icon: Icon.Quinoa,
     type: 'Grain',
     description: <span>
       A material found by harvesting <Yellow>millet</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -870,7 +737,7 @@ export default Object.freeze({
   },
   BARLEY: {
     name: 'Barley',
-    icon: BarleyIcon,
+    icon: Icon.Barley,
     type: 'Grain',
     description: <span>
       A material found by harvesting <Yellow>barley</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -880,7 +747,7 @@ export default Object.freeze({
   },
   CORN: {
     name: 'Corn',
-    icon: CornIcon,
+    icon: Icon.Corn,
     type: 'Grain',
     description: <span>
       A material found by harvesting <Yellow>corn</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -890,7 +757,7 @@ export default Object.freeze({
   },
   ROSE: {
     name: 'Rose',
-    icon: RoseIcon,
+    icon: Icon.Rose,
     type: 'Flower',
     description: <span>
       A material found by harvesting <Yellow>roses</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
@@ -900,7 +767,7 @@ export default Object.freeze({
   },
   AZALEA: {
     name: 'Azalea',
-    icon: AzaleaIcon,
+    icon: Icon.Azalea,
     type: 'Flower',
     description: <span>
       A material found by harvesting <Yellow>azaleas</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
@@ -910,7 +777,7 @@ export default Object.freeze({
   },
   NARCISSUS: {
     name: 'Narcissus',
-    icon: NarcissusIcon,
+    icon: Icon.Narcissus,
     type: 'Flower',
     description: <span>
       A material found by harvesting <Yellow>narcissus</Yellow>. It's chiefly used in alchemy and local specialties.<br /><br />
@@ -920,7 +787,7 @@ export default Object.freeze({
   },
   IRIS: {
     name: 'Iris',
-    icon: IrisIcon,
+    icon: Icon.Iris,
     type: 'Spice',
     description: <span>
       A material found by harvesting <Yellow>irises</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -930,7 +797,7 @@ export default Object.freeze({
   },
   MUSHROOM: {
     name: 'Mushroom',
-    icon: MushroomIcon,
+    icon: Icon.Mushroom,
     type: 'Herb',
     description: <span>
       A material found by harvesting <Yellow>mushrooms</Yellow>. It's chiefly used in cooking and local specialties.<br /><br />
@@ -940,7 +807,7 @@ export default Object.freeze({
   },
   GOOSE_DOWN: {
     name: 'Goose Down',
-    icon: GooseDownIcon,
+    icon: Icon.GooseDown,
     type: 'Textile',
     description: <span>
       A material found by harvesting from <Yellow>thriving geese</Yellow> that have been fed <Yellow>ground grain</Yellow>.
@@ -950,7 +817,7 @@ export default Object.freeze({
   },
   DUCK_DOWN: {
     name: 'Duck Down',
-    icon: DuckDownIcon,
+    icon: Icon.DuckDown,
     type: 'Textile',
     description: <span>
       A material found by harvesting from <Yellow>thriving ducks</Yellow> that have been fed <Yellow>ground grain</Yellow>.
@@ -960,7 +827,7 @@ export default Object.freeze({
   },
   WOOL: {
     name: 'Wool',
-    icon: WoolIcon,
+    icon: Icon.Wool,
     type: 'Textile',
     description: <span>
       A material found by shearing <Yellow>Thriving Sheep</Yellow> that have been fed <Yellow>Combined Feed</Yellow>.
@@ -970,7 +837,7 @@ export default Object.freeze({
   },
   SUNFLOWER: {
     name: 'Sunflower',
-    icon: SunflowerIcon,
+    icon: Icon.Sunflower,
     type: 'Spice',
     quality: QUALITY.GRAND,
     description: <span>
@@ -981,7 +848,7 @@ export default Object.freeze({
   },
   LILY: {
     name: 'Lily',
-    icon: LilyIcon,
+    icon: Icon.Lily,
     type: 'Flower',
     quality: QUALITY.GRAND,
     description: <span>
@@ -992,7 +859,7 @@ export default Object.freeze({
   },
   CORNFLOWER: {
     name: 'Cornflower',
-    icon: CornflowerIcon,
+    icon: Icon.Cornflower,
     type: 'Flower',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1003,7 +870,7 @@ export default Object.freeze({
   },
   MILK: {
     name: 'Milk',
-    icon: MilkIcon,
+    icon: Icon.Milk,
     type: 'Material',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1014,7 +881,7 @@ export default Object.freeze({
   },
   OLIVE: {
     name: 'Olive',
-    icon: OliveIcon,
+    icon: Icon.Olive,
     type: 'Fruit',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1025,7 +892,7 @@ export default Object.freeze({
   },
   MINT: {
     name: 'Mint',
-    icon: MintIcon,
+    icon: Icon.Mint,
     type: 'Spice',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1036,7 +903,7 @@ export default Object.freeze({
   },
   ROSEMARY: {
     name: 'Rosemary',
-    icon: RosemaryIcon,
+    icon: Icon.Rosemary,
     type: 'Spice',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1047,7 +914,7 @@ export default Object.freeze({
   },
   POMEGRANATE: {
     name: 'Pomegranate',
-    icon: PomegranateIcon,
+    icon: Icon.Pomegranate,
     type: 'Fruit',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1058,7 +925,7 @@ export default Object.freeze({
   },
   ORANGE: {
     name: 'Orange',
-    icon: OrangeIcon,
+    icon: Icon.Orange,
     type: 'Fruit',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1069,7 +936,7 @@ export default Object.freeze({
   },
   STRAWBERRY: {
     name: 'Strawberry',
-    icon: StrawberryIcon,
+    icon: Icon.Strawberry,
     type: 'Fruit',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1080,7 +947,7 @@ export default Object.freeze({
   },
   ALOE: {
     name: 'Aloe',
-    icon: AloeIcon,
+    icon: Icon.Aloe,
     type: 'Herb',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1091,7 +958,7 @@ export default Object.freeze({
   },
   BAY_LEAF: {
     name: 'Bay Leaf',
-    icon: BayLeafIcon,
+    icon: Icon.BayLeaf,
     type: 'Herb',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1102,7 +969,7 @@ export default Object.freeze({
   },
   GINKGO_LEAF: {
     name: 'Ginkgo Leaf',
-    icon: GinkgoLeafIcon,
+    icon: Icon.GinkgoLeaf,
     type: 'Herb',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1113,7 +980,7 @@ export default Object.freeze({
   },
   PEANUT: {
     name: 'Peanut',
-    icon: PeanutIcon,
+    icon: Icon.Peanut,
     type: 'Grain',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1124,7 +991,7 @@ export default Object.freeze({
   },
   OATS: {
     name: 'Oats',
-    icon: BarleyIcon,
+    icon: Icon.Barley,
     type: 'Grain',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1135,7 +1002,7 @@ export default Object.freeze({
   },
   RYE: {
     name: 'Rye',
-    icon: WheatIcon,
+    icon: Icon.Wheat,
     type: 'Grain',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1146,7 +1013,7 @@ export default Object.freeze({
   },
   YAM: {
     name: 'Yam',
-    icon: YamIcon,
+    icon: Icon.Yam,
     type: 'Vegetable',
     quality: QUALITY.GRAND,
     description: <span>
@@ -1157,7 +1024,7 @@ export default Object.freeze({
   },
   TURMERIC: {
     name: 'Turmeric',
-    icon: TurmericIcon,
+    icon: Icon.Turmeric,
     type: 'Spice',
     quality: QUALITY.RARE,
     description: <span>
@@ -1168,7 +1035,7 @@ export default Object.freeze({
   },
   CULTIVATED_GINSENG: {
     name: 'Cultivated Ginseng',
-    icon: GinsengIcon,
+    icon: Icon.Ginseng,
     type: 'Herb',
     quality: QUALITY.RARE,
     description: <span>
@@ -1179,7 +1046,7 @@ export default Object.freeze({
   },
   JUJUBE: {
     name: 'Jujube',
-    icon: JujubeIcon,
+    icon: Icon.Jujube,
     type: 'Fruit',
     quality: QUALITY.RARE,
     description: <span>
@@ -1190,7 +1057,7 @@ export default Object.freeze({
   },
   CHERRY: {
     name: 'Cherry',
-    icon: CherryIcon,
+    icon: Icon.Cherry,
     type: 'Fruit',
     quality: QUALITY.RARE,
     description: <span>
@@ -1201,7 +1068,7 @@ export default Object.freeze({
   },
   MORINGA_FRUIT: {
     name: 'Moringa Fruit',
-    icon: OliveIcon,
+    icon: Icon.Olive,
     type: 'Fruit',
     quality: QUALITY.RARE,
     description: <span>
@@ -1212,7 +1079,7 @@ export default Object.freeze({
   },
   SAFFRON: {
     name: 'Saffron',
-    icon: SaffronIcon,
+    icon: Icon.Saffron,
     type: 'Spice',
     quality: QUALITY.RARE,
     description: <span>
@@ -1223,7 +1090,7 @@ export default Object.freeze({
   },
   YATA_FUR: {
     name: 'Yata Fur',
-    icon: YataFurIcon,
+    icon: Icon.YataFur,
     type: 'Textile',
     quality: QUALITY.RARE,
     description: <span>
@@ -1234,7 +1101,7 @@ export default Object.freeze({
   },
   SMALL_SEED_OIL: {
     name: 'Small Seed Oil',
-    icon: SmallSeedOilIcon,
+    icon: Icon.SmallSeedOil,
     type: 'Material',
     description: <span>
       It's chiefly used for making Leather Armor and other crafts.<br /><br />
@@ -1245,7 +1112,7 @@ export default Object.freeze({
   },
   SMALL_ROOT_PIGMENT: {
     name: 'Small Root Pigment',
-    icon: SmallRootPigmentIcon,
+    icon: Icon.SmallRootPigment,
     type: 'Material',
     description: <span>
       It's chiefly used for making Cloth Armor and other crafts.<br /><br />
@@ -1256,7 +1123,7 @@ export default Object.freeze({
   },
   OPAQUE_POLISH: {
     name: 'Opaque Polish',
-    icon: OpaquePolishIcon,
+    icon: Icon.OpaquePolish,
     type: 'Material',
     description: <span>
       It's chiefly used for making plate armor and other crafts.<br /><br />
@@ -1267,7 +1134,7 @@ export default Object.freeze({
   },
   SUNLIGHT_ARCHEUM_DUST: {
     name: 'Sunlight Archeum Dust',
-    icon: SunlightDustIcon,
+    icon: Icon.SunlightDust,
     type: 'Archeum',
     description: <span>
       Pure, condensed magic, trapped in physical form. Energy from the sun makes it especially useful in weapon crafting.<br /><br />
@@ -1279,7 +1146,7 @@ export default Object.freeze({
   },
   MOONLIGHT_ARCHEUM_DUST: {
     name: 'Moonlight Archeum Dust',
-    icon: MoonlightDustIcon,
+    icon: Icon.MoonlightDust,
     type: 'Archeum',
     description: <span>
       Pure, condensed magic, trapped in physical form. Energy from the moon makes it especially useful in armorcrafting.<br /><br />
@@ -1291,7 +1158,7 @@ export default Object.freeze({
   },
   STARLIGHT_ARCHEUM_DUST: {
     name: 'Starlight Archeum Dust',
-    icon: StarlightDustIcon,
+    icon: Icon.StarlightDust,
     type: 'Archeum',
     description: <span>
       Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />
@@ -1303,7 +1170,7 @@ export default Object.freeze({
   },
   MYSTERIOUS_ABYSSAL_ENHANCER: {
     name: 'Mysterious Abyssal Enhancer',
-    icon: AbyssalEnhancerIcon,
+    icon: Icon.AbyssalEnhancer,
     quality: QUALITY.GRAND,
     unidentified: true,
     type: 'Synthesis Material',
@@ -1316,7 +1183,7 @@ export default Object.freeze({
   },
   NORYETTE_EARRING: {
     name: 'Noryette Earring',
-    icon: NoryetteEarringIcon,
+    icon: Icon.NoryetteEarring,
     type: 'Earring',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1332,7 +1199,7 @@ export default Object.freeze({
   },
   NORYETTE_RING: {
     name: 'Noryette Ring',
-    icon: NoryetteRingIcon,
+    icon: Icon.NoryetteRing,
     type: 'Ring',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1348,7 +1215,7 @@ export default Object.freeze({
   },
   NORYETTE_AWAKENING_SCROLL: {
     name: 'Noryette Awakening Scroll',
-    icon: NoryetteAwakeningScrollIcon,
+    icon: Icon.NoryetteAwakeningScroll,
     type: 'Awakening Materials',
     quality: QUALITY.RARE,
     bindsOnPickup: true,
@@ -1362,7 +1229,7 @@ export default Object.freeze({
   },
   LUMINOUS_NORYETTE_AWAKENING_SCROLL: {
     name: 'Luminous Noryette Awakening Scroll',
-    icon: NoryetteAwakeningScrollIcon,
+    icon: Icon.NoryetteAwakeningScroll,
     type: 'Awakening Materials',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1376,7 +1243,7 @@ export default Object.freeze({
   },
   MISTSONG_GRINDING_GUARDIAN_SCROLL: {
     name: 'Mistsong Grinding Guardian Scroll',
-    icon: GreaterGrindingScrollIcon,
+    icon: Icon.GreaterGrindingScroll,
     type: 'Other',
     quality: QUALITY.RARE,
     description: <span>
@@ -1393,7 +1260,7 @@ export default Object.freeze({
   },
   EXPLORERS_BOW: {
     name: 'Explorer\'s Bow',
-    icon: ExplorersBowIcon,
+    icon: Icon.ExplorersBow,
     type: 'Bow',
     quality: QUALITY.BASIC,
     synthesisGrade: QUALITY.ARCANE,
@@ -1412,7 +1279,7 @@ export default Object.freeze({
   },
   EXPLORERS_1H_WEAPON_CRATE: {
     name: 'Explorer\'s 1H Weapon Crate',
-    icon: ExplorersCrateIcon,
+    icon: Icon.ExplorerCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1430,7 +1297,7 @@ export default Object.freeze({
   },
   EXPLORERS_2H_WEAPON_CRATE: {
     name: 'Explorer\'s 2H Weapon Crate',
-    icon: ExplorersCrateIcon,
+    icon: Icon.ExplorerCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>Allows you to choose a 2H Weapon.<br /><br />
@@ -1439,7 +1306,7 @@ export default Object.freeze({
   },
   EXPLORERS_CLOTH_CRATE: {
     name: 'Explorer\'s Cloth Crate',
-    icon: ExplorersClothCrateIcon,
+    icon: Icon.ExplorerClothCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1454,7 +1321,7 @@ export default Object.freeze({
   },
   EXPLORERS_LEATHER_CRATE: {
     name: 'Explorer\'s Leather Crate',
-    icon: ExplorersLeatherCrateIcon,
+    icon: Icon.ExplorerLeatherCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1469,7 +1336,7 @@ export default Object.freeze({
   },
   EXPLORERS_PLATE_CRATE: {
     name: 'Explorer\'s Plate Crate',
-    icon: ExplorersPlateCrateIcon,
+    icon: Icon.ExplorerPlateCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1484,7 +1351,7 @@ export default Object.freeze({
   },
   EXPLORERS_CLOTH_COMPONENT_CRATE: {
     name: 'Explorer\'s Cloth Component Crate',
-    icon: ExplorersClothCrateIcon,
+    icon: Icon.ExplorerClothCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1498,7 +1365,7 @@ export default Object.freeze({
   },
   EXPLORERS_LEATHER_COMPONENT_CRATE: {
     name: 'Explorer\'s Leather Component Crate',
-    icon: ExplorersLeatherCrateIcon,
+    icon: Icon.ExplorerLeatherCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1512,7 +1379,7 @@ export default Object.freeze({
   },
   EXPLORERS_PLATE_COMPONENT_CRATE: {
     name: 'Explorer\'s Plate Component Crate',
-    icon: ExplorersPlateCrateIcon,
+    icon: Icon.ExplorerPlateCrate,
     type: 'Crate',
     bindsOnPickup: true,
     description: <span>
@@ -1526,7 +1393,7 @@ export default Object.freeze({
   },
   STORY_QUEST_INFUSION_RANK_1: {
     name: 'Unidentified Story Quest Infusion: Rank 1',
-    icon: StoryInfusionIcon,
+    icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
     quality: QUALITY.GRAND,
     unidentified: true,
@@ -1539,7 +1406,7 @@ export default Object.freeze({
   },
   STORY_QUEST_INFUSION_RANK_2: {
     name: 'Unidentified Story Quest Infusion: Rank 2',
-    icon: StoryInfusionIcon,
+    icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
     quality: QUALITY.RARE,
     unidentified: true,
@@ -1552,7 +1419,7 @@ export default Object.freeze({
   },
   STORY_QUEST_INFUSION_RANK_3: {
     name: 'Unidentified Story Quest Infusion: Rank 3',
-    icon: StoryInfusionIcon,
+    icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
     quality: QUALITY.ARCANE,
     unidentified: true,
@@ -1565,7 +1432,7 @@ export default Object.freeze({
   },
   STORY_AWAKENING_SCROLL_RANK_1: {
     name: 'Equipment Awakening Scroll Rank 1',
-    icon: StoryAwakeningScrollIcon,
+    icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
     quality: QUALITY.GRAND,
@@ -1576,7 +1443,7 @@ export default Object.freeze({
   },
   STORY_AWAKENING_SCROLL_RANK_2: {
     name: 'Equipment Awakening Scroll Rank 2',
-    icon: StoryAwakeningScrollIcon,
+    icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
     quality: QUALITY.RARE,
@@ -1588,7 +1455,7 @@ export default Object.freeze({
   },
   STORY_AWAKENING_SCROLL_RANK_3: {
     name: 'Equipment Awakening Scroll Rank 3',
-    icon: StoryAwakeningScrollIcon,
+    icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
     quality: QUALITY.ARCANE,
@@ -1600,7 +1467,7 @@ export default Object.freeze({
   },
   ADVENTURERS_EVENSTONE: {
     name: 'Adventurer\'s Evenstone',
-    icon: TimeStoneIcon,
+    icon: Icon.TimeStone,
     type: 'Talisman',
     bindsOnPickup: true,
     description: <span>
@@ -1617,7 +1484,7 @@ export default Object.freeze({
   },
   LUMBER: {
     name: 'Lumber',
-    icon: LumberIcon,
+    icon: Icon.Lumber,
     type: 'Lumber',
     description: <span>
       Processed from <Yellow>Logs</Yellow>. It's chiefly used in carpentry.<br /><br />
@@ -1628,7 +1495,7 @@ export default Object.freeze({
   },
   STONE_BRICK: {
     name: 'Stone Brick',
-    icon: StoneBrickIcon,
+    icon: Icon.StoneBrick,
     type: 'Stone Brick',
     description: <span>
       A processed <Yellow>Stone</Yellow>.<br />
@@ -1640,7 +1507,7 @@ export default Object.freeze({
   },
   IRON_INGOT: {
     name: 'Iron Ingot',
-    icon: IronIngotIcon,
+    icon: Icon.IronIngot,
     type: 'Metal',
     description: <span>
       Processed from <Yellow>Iron Ore</Yellow>. It's chiefly used in making weapons and plate armor.<br /><br />
@@ -1651,7 +1518,7 @@ export default Object.freeze({
   },
   LEATHER: {
     name: 'Leather',
-    icon: LeatherIcon,
+    icon: Icon.Leather,
     type: 'Hide',
     description: <span>
       Processed from <Yellow>pelts</Yellow>. It's chiefly used in leather armor and other leather goods.<br /><br />
@@ -1662,7 +1529,7 @@ export default Object.freeze({
   },
   FABRIC: {
     name: 'Fabric',
-    icon: FabricIcon,
+    icon: Icon.Fabric,
     type: 'Fabric',
     description: <span>
       Processed from <Yellow>Wool</Yellow> or <Yellow>Cotton</Yellow>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
@@ -1673,7 +1540,7 @@ export default Object.freeze({
   },
   ROYAL_SEED: {
     name: 'Royal Seed',
-    icon: RoyalSeedIcon,
+    icon: Icon.RoyalSeed,
     type: 'Seed',
     quality: QUALITY.ARCANE,
     description: <span>
@@ -1684,7 +1551,7 @@ export default Object.freeze({
   },
   BLUE_SALT_HAMMER: {
     name: 'Blue Salt Hammer',
-    icon: BlueSaltHammerIcon,
+    icon: Icon.BlueSaltHammer,
     type: 'Contraption',
     description: <span>
       A blessed hammer.<br />
@@ -1695,7 +1562,7 @@ export default Object.freeze({
   },
   TIME_SPACE_RIFT_SHARD: {
     name: 'Time-Space Rift Shard',
-    icon: TimeSpaceShardIcon,
+    icon: Icon.TimeSpaceRiftShard,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1708,7 +1575,7 @@ export default Object.freeze({
   },
   YETIS_PELT: {
     name: 'Yeti\'s Pelt',
-    icon: YetisPeltIcon,
+    icon: Icon.YetisPelt,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1721,7 +1588,7 @@ export default Object.freeze({
   },
   TWINHEAD_VIPER_FANG: {
     name: 'Twinhead Viper Fang',
-    icon: TwinViperFangIcon,
+    icon: Icon.TwinheadViperFang,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1734,7 +1601,7 @@ export default Object.freeze({
   },
   REVENANT_SOUL: {
     name: 'Revenant Soul',
-    icon: RevenantSoulIcon,
+    icon: Icon.RevenantSoul,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1747,7 +1614,7 @@ export default Object.freeze({
   },
   GHOST_BLADES_WEAPON_SHARD: {
     name: 'Ghost Blade\'s Weapon Shard',
-    icon: GhostBladeShardIcon,
+    icon: Icon.GhostBladeWeaponShard,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1760,7 +1627,7 @@ export default Object.freeze({
   },
   CENTAURS_TAIL: {
     name: 'Centaur\'s Tail',
-    icon: CentaursTailIcon,
+    icon: Icon.CentaurTail,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1773,7 +1640,7 @@ export default Object.freeze({
   },
   SHARK_FIN: {
     name: 'Shark Fin',
-    icon: SharkFinIcon,
+    icon: Icon.SharkFin,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1786,7 +1653,7 @@ export default Object.freeze({
   },
   DROWNED_CORPSE_FLUID: {
     name: 'Drowned Corpse Fluid',
-    icon: CorpseFluidIcon,
+    icon: Icon.DrownedCorpseFluid,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1799,7 +1666,7 @@ export default Object.freeze({
   },
   MINOTAUR_HORN: {
     name: 'Minotaur Horn',
-    icon: MinotaurHornIcon,
+    icon: Icon.MinotaurHorn,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1812,7 +1679,7 @@ export default Object.freeze({
   },
   REDTALON_HELM: {
     name: 'Redtalon Helm',
-    icon: RedtalonHelmIcon,
+    icon: Icon.RedtalonHelm,
     type: 'Pet Gear',
     quality: QUALITY.ARCANE,
     bindsOnPickup: true,
@@ -1835,7 +1702,7 @@ export default Object.freeze({
   },
   REDTALON_ARMOR: {
     name: 'Redtalon Armor',
-    icon: RedtalonArmorIcon,
+    icon: Icon.RedtalonArmor,
     type: 'Pet Gear',
     quality: QUALITY.ARCANE,
     bindsOnPickup: true,
@@ -1860,7 +1727,7 @@ export default Object.freeze({
   },
   REDTALON_SADDLE: {
     name: 'Redtalon Saddle',
-    icon: RedtalonSaddleIcon,
+    icon: Icon.RedtalonSaddle,
     type: 'Pet Gear',
     quality: QUALITY.ARCANE,
     bindsOnPickup: true,
@@ -1883,7 +1750,7 @@ export default Object.freeze({
   },
   REDTALON_LEGGUARDS: {
     name: 'Redtalon Legguards',
-    icon: RedtalonLegguardsIcon,
+    icon: Icon.RedtalonLegguards,
     type: 'Pet Gear',
     quality: QUALITY.ARCANE,
     bindsOnPickup: true,
@@ -1905,7 +1772,7 @@ export default Object.freeze({
   },
   LABYRINTH_VALUABLES_CHEST: {
     name: 'Labyrinth Valuables Chest',
-    icon: LabyrinthValuablesChestIcon,
+    icon: Icon.LabyrinthValuablesChest,
     type: 'Other',
     quality: QUALITY.ARCANE,
     bindsOnPickup: true,
@@ -1917,7 +1784,7 @@ export default Object.freeze({
   },
   CARMILAS_MEMORY: {
     name: 'Carmila\'s Memory',
-    icon: CarmilasMemoryIcon,
+    icon: Icon.CarmilasMemory,
     type: 'Earring',
     quality: QUALITY.ARCANE,
     reqLevel: 50,
@@ -1931,7 +1798,7 @@ export default Object.freeze({
   },
   SUNSET_PORTALSTONE: {
     name: 'Sunset Portalstone',
-    icon: SunsetPortalstoneIcon,
+    icon: Icon.SunsetPortalstone,
     type: 'Material',
     quality: QUALITY.HEROIC,
     bindsOnPickup: true,
@@ -1944,7 +1811,7 @@ export default Object.freeze({
   },
   SUPERIOR_DOOMSHADOW_NODACHI: {
     name: 'Superior Doomshadow Nodachi',
-    icon: SupDoomshadowNodachiIcon,
+    icon: Icon.SuperiorDoomshadowNodachi,
     type: 'Nodachi',
     quality: QUALITY.RARE,
     reqLevel: 53,
@@ -1975,7 +1842,7 @@ export default Object.freeze({
   },
   SUNPOINT: {
     name: 'Sunpoint',
-    icon: SunpointIcon,
+    icon: Icon.Sunpoint,
     type: 'Gem',
     quality: QUALITY.RARE,
     description: <span>Drawing on the power of sunlight, this jewel is required to create Regrade Scrolls.</span>,
@@ -1983,7 +1850,7 @@ export default Object.freeze({
   },
   MOONPOINT: {
     name: 'Moonpoint',
-    icon: MoonpointIcon,
+    icon: Icon.Moonpoint,
     type: 'Gem',
     quality: QUALITY.RARE,
     description: <span>Drawing on the power of moonlight, this jewel is required to create Regrade Scrolls.</span>,
@@ -1991,7 +1858,7 @@ export default Object.freeze({
   },
   STARPOINT: {
     name: 'Starpoint',
-    icon: StarpointIcon,
+    icon: Icon.Starpoint,
     type: 'Gem',
     quality: QUALITY.RARE,
     description: <span>Drawing on the power of starlight, this jewel is required to create Regrade Scrolls.</span>,
@@ -1999,7 +1866,7 @@ export default Object.freeze({
   },
   SUNGLOW_LUNAGEM: {
     name: 'Sunglow Lunagem',
-    icon: SunglowLunagemIcon,
+    icon: Icon.SunglowLunagem,
     type: 'Lunagem',
     quality: QUALITY.RARE,
     description: <span>
@@ -2024,18 +1891,18 @@ export default Object.freeze({
   },
   DERANGED_SPIRIT: {
     name: 'Deranged Spirit',
-    icon: DerangedSpiritIcon,
+    icon: Icon.DerangedSpirit,
     type: 'Material',
     quality: QUALITY.HEROIC,
     description: <span>
-      A haze of madness clouds the energy of this troubled spirit.<br/>
+      A haze of madness clouds the energy of this troubled spirit.<br />
       Can be obtained in <Orange>Serpentis</Orange>.
     </span>,
     price: 54000,
   },
   MYSTERIOUS_GEM: {
     name: 'Mysterious Gem',
-    icon: MysteriousGemIcon,
+    icon: Icon.MysteriousGem,
     type: 'Quest Item',
     quality: QUALITY.ARCANE,
     questStarter: true,
@@ -2043,4 +1910,251 @@ export default Object.freeze({
     reqLevel: 50,
     description: 'Begins the quest "Gentle Whispers."',
   },
+  ABYSSAL_SHARD: {
+    name: 'Abyssal Shard',
+    icon: Icon.AbyssalShard,
+    type: 'Material',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      It warms your hand with demonic, abyssal magic. It can be obtained in <Yellow>dungeons</Yellow>.<br />
+      Used for equipment crafting.
+    </span>,
+    price: 1200,
+  },
+  ABYSSAL_CRYSTAL: {
+    name: 'Abyssal Crystal',
+    icon: Icon.AbyssalCrystal,
+    type: 'Material',
+    quality: QUALITY.RARE,
+    bindsOnPickup: true,
+    description: <span>
+      It burns your your hand with demonic, abyssal magic. It can be obtained in <Yellow>dungeons</Yellow>.<br />
+      Used for equipment crafting.
+    </span>,
+    price: 360,
+  },
+  ETERNAL_WINTER_CHILL: {
+    name: 'Eternal Winter Chill',
+    icon: Icon.EternalWinterChill,
+    type: 'Material',
+    description: 'This crafting material radiates the chill of rocky cavern.',
+    price: 1000,
+  },
+  HEAT_OF_ETERNAL_SUMMER: {
+    name: 'Heat of Eternal Summer',
+    icon: Icon.HeatOfEternalSummer,
+    type: 'Material',
+    description: 'The crafting material radiates the warmth of a summer garden.',
+    price: 500,
+  },
+  PRIME_LUNARITE: {
+    name: 'Prime Lunarite',
+    icon: Icon.PrimeLunarite,
+    type: 'Alchemy',
+    description: 'Used to craft lunastones, this essence shines softly with the arcane glow of the moon.',
+    price: 4500,
+  },
+  BLACK_PEARL: {
+    name: 'Black Pearl',
+    icon: Icon.BlackPearl,
+    type: 'Gem',
+    quality: QUALITY.RARE,
+    description: <span>
+      A rare material found by gathering from <Blue>Black Pearl Shells</Blue> on the beach. It's chiefly used in alchemy, local specialties, and components.<br /><br />
+      <Use>
+        Spend 5 Labor to process 100 Sparkling Shell Dust.<br />
+        Auto-use with shift+right-click.<br /><br />
+        Requirements<br />
+        - 1 Black Pearl<br />
+        - 1 Blue Salt Knife
+      </Use>
+    </span>,
+    price: 10000,
+  },
+  AMETHYST: {
+    name: 'Amethyst',
+    icon: Icon.Amethyst,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  DIAMOND: {
+    name: 'Diamond',
+    icon: Icon.Diamond,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  EMERALD: {
+    name: 'Emerald',
+    icon: Icon.Emerald,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  RUBY: {
+    name: 'Ruby',
+    icon: Icon.Ruby,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  SAPPHIRE: {
+    name: 'Sapphire',
+    icon: Icon.Sapphire,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  TOPAZ: {
+    name: 'Topaz',
+    icon: Icon.Topaz,
+    type: 'Gem',
+    description: <span>
+      A material found by mining <Blue>Fortuna Veins</Blue>, which appear randomly when mining <Yellow>Stone Piles</Yellow>.<br />
+      It's chiefly used in making accessories and handicrafts.
+    </span>,
+  },
+  SMALL_BREATH_OF_LIFE: {
+    name: 'Small Breath of Life',
+    icon: Icon.SmallBreathOfLife,
+    type: 'Furniture',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      Places a <Yellow>Small Breath of Life</Yellow> apparatus in a completed house, that allows you to sooth a pet's soul and grow it to maturity.<br /><br />
+      Placement: house floor or yard
+    </span>,
+    price: 2250,
+  },
+  BLANK_REGRADE_SCROLL: {
+    name: 'Blank Regrade Scroll',
+    icon: Icon.BlankRegradeScroll,
+    type: 'Talisman',
+    description: <span>
+      This paper has been specifically processed to absorb the energy of specialized crafting materials, such as Sunpoints and Moonpoints.<br /><br />
+      Vocation: Printing<br />
+      Workbench: Paper Press
+    </span>,
+    price: 10,
+  },
+  BEAUTIFULLY_COLORED_FABRIC: {
+    name: 'Beautifully Colored Fabric',
+    icon: Icon.BeautifullyColoredFabric,
+    type: 'Fabric',
+    description: <span>
+      Processed from <Yellow>Fabric</Yellow>. It's chiefly used in cloth armor and other tailoring goods.<br /><br />
+      Vocation: Tailoring<br />
+      Workbench: Weaving Loom
+    </span>,
+    price: 2500,
+  },
+  STURDY_INGOT: {
+    name: 'Sturdy Ingot',
+    icon: Icon.SturdyIngot,
+    type: 'Metal',
+    description: <span>
+      Processed from <Yellow>Iron Ingots</Yellow>. It's chiefly used in making weapons and plate armor.<br /><br />
+      Vocation: Metalwork<br />
+      Workbench: Smelter
+    </span>,
+    price: 2500,
+  },
+  FINE_LEATHER: {
+    name: 'Fine Leather',
+    icon: Icon.FineLeather,
+    type: 'Hide',
+    description: <span>
+      Processed from <Yellow>Leather</Yellow>. It's chiefly used in leather armor and other leather goods.<br /><br />
+      Vocation: Leatherwork<br />
+      Workbench: Leather Workbench
+    </span>,
+    price: 2500,
+  },
+  PRISMATIC_DIAMOND: {
+    name: 'Prismatic Diamond',
+    icon: Icon.PrismaticDiamond,
+    type: 'Material',
+    description: <span>
+      Made of marine resources and jewels; can be used for advanced crafts.<br /><br />
+      Vocation: Handicraft<br />
+      Workstation: Handicraft Kiln
+    </span>,
+    price: 100,
+  },
+  PRISMATIC_PEARL: {
+    name: 'Prismatic Pearl',
+    icon: Icon.PrismaticPearl,
+    type: 'Material',
+    description: <span>
+      Made of marine resources and jewels; can be used for advanced crafts.<br /><br />
+      Vocation: Handicraft<br />
+      Workstation: Handicraft Kiln
+    </span>,
+    price: 100,
+  },
+  HONORFORGED_MEDAL: {
+    name: 'Honorforged Medal',
+    icon: Icon.HonorforgedMedal,
+    type: 'Material',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: 'Proof of an honorable performance. Can be used in crafting.',
+    price: 30,
+  },
+  PUREBRED_BEAR_CERTIFICATE: {
+    name: 'Purebred Bear Certificate',
+    icon: Icon.Certificate,
+    type: 'Material',
+    quality: QUALITY.RARE,
+    description: 'Certifies that a bear is purebred and healthy. Deliver to the rancher on Mirage Isle.',
+    price: 20,
+  },
+  DILIGENCE_COIN: {
+    name: 'Diligence Coin',
+    icon: Icon.DiligenceCoin,
+    type: 'Coin',
+    quality: QUALITY.ARCANE,
+    bindsOnPickup: true,
+    description: 'A coin gifted to diligent, hard workers, for a job well done.',
+    price: 250,
+  },
+  MANASTORM_CRYSTAL: {
+    name: 'Manastorm Crystal',
+    icon: Icon.ManastormCrystal,
+    type: 'Other',
+    quality: QUALITY.GRAND,
+    bindsOnPickup: true,
+    description: <span>
+      The crystal swirls with powerful magic. It can be found by opening <Orange>Locked Gold Crates.</Orange><br/><br/>
+      Used in crafting <Orange>gliders, pets, mounts and their armor.</Orange>
+    </span>,
+    price: 750,
+  },
+  CHILLED_SEAFOAM: {
+    name: 'Chilled Seafoam',
+    icon: Icon.ChilledSeafoam,
+    type: 'Material',
+    quality: QUALITY.UNIQUE,
+    description: <span>
+      Once spent, the sea's energy condenses into the whipped froth that tops waves and whitecaps.<br />
+      Can be obtained in the <Blue>Sea of Drowned Love</Blue>. Used in equipment crafting.
+    </span>,
+    price: 350000,
+  },
 });
+
+export default ITEM;
+
+Object.values(ITEM).forEach(i => !i.icon && console.warn('Item Missing Icon:', i.name));

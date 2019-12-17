@@ -1,9 +1,3 @@
-import React, { Component } from 'react';
-import {
-  func,
-  number,
-  string,
-} from 'react-proptypes';
 import {
   IconButton,
   Paper,
@@ -12,8 +6,14 @@ import {
 } from '@material-ui/core';
 import { Delete } from '@material-ui/icons';
 import cn from 'classnames';
-import moment from 'moment';
 import TREE from 'data/trees';
+import moment from 'moment';
+import React, { Component } from 'react';
+import {
+  func,
+  number,
+  string,
+} from 'react-proptypes';
 import {
   hhmmssFromDate,
   timeFormat,

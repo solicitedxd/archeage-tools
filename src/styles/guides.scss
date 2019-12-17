@@ -12,7 +12,7 @@
     max-width: 828px;
     margin-right: 12px;
 
-    .MuiPaper-root + .MuiPaper-root:not(.MuiExpansionPanel-root) {
+    .MuiPaper-root + .MuiPaper-root:not(.MuiExpansionPanel-root):not(.lightbox-thumb) {
       margin-top: 16px;
     }
 
@@ -45,7 +45,7 @@
     .quest-items {
       display: flex;
 
-      span[data-quality] {
+      span {
         display: inline-block;
         margin-right: 6px;
       }
@@ -86,6 +86,13 @@
           }
         }
       }
+    }
+
+    .lightbox-group {
+      display: flex;
+      align-items: stretch;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
     }
   }
 

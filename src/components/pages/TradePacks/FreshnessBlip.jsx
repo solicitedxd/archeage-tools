@@ -1,5 +1,3 @@
-import React, { Component } from 'react';
-import { oneOf } from 'react-proptypes';
 import {
   Table,
   TableBody,
@@ -10,6 +8,8 @@ import {
   Typography,
 } from '@material-ui/core';
 import { FRESHNESS } from 'constants/tradepacks';
+import React, { Component } from 'react';
+import { oneOf } from 'react-proptypes';
 
 class FreshnessBlip extends Component {
   static propTypes = {

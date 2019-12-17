@@ -1,10 +1,10 @@
+import config from 'config';
+import rootReducer from 'reducers';
 import {
   applyMiddleware,
   compose,
   createStore,
 } from 'redux';
-import config from 'config';
-import rootReducer from 'reducers';
 import middleware from './middleware';
 
 const dummyDevTools = (f) => f;

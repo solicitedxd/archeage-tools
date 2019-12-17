@@ -1,32 +1,3 @@
-import CripplingMireIcon from 'images/skill/occultism/Crippling_Mire.png';
-import AbsorbLifeIcon from 'images/skill/occultism/Absorb_Life.png';
-import PlayDeadIcon from 'images/skill/occultism/Play_Dead.png';
-import CursedThornsIcon from 'images/skill/occultism/Cursed_Thorns.png';
-import ShadowstepIcon from 'images/skill/occultism/Shadowstep.png';
-import BoneyardIcon from 'images/skill/occultism/Boneyard.png';
-import SummonCrowsIcon from 'images/skill/occultism/Summon_Crows.png';
-import HellSpearIcon from 'images/skill/occultism/Hell_Spear.png';
-import PainHarvestIcon from 'images/skill/occultism/Pain_Harvest.png';
-import ShadowVortexIcon from 'images/skill/occultism/Shadow_Vortex.png';
-import SummonWraithIcon from 'images/skill/occultism/Summon_Wraith.png';
-import DeathsVengeanceIcon from 'images/skill/occultism/Deaths_Vengeance.png';
-import UnnaturalSpeedIcon from 'images/skill/occultism/Unnatural_Speed.png';
-import TraumatizeIcon from 'images/skill/occultism/Traumatize.png';
-import InevitabilityIcon from 'images/skill/occultism/Inevitability.png';
-import BurningBrandIcon from 'images/skill/occultism/Burning_Brand.png';
-import DeathsBeckoningIcon from 'images/skill/occultism/Deaths_Beckoning.png';
-import CriticalFailureIcon from 'images/skill/occultism/Critical_Failure.png';
-import CripplingMireQuake from 'images/skill/occultism/Crippling_Mire_Quake.png';
-import CripplingMireStone from 'images/skill/occultism/Crippling_Mire_Stone.png';
-import HellSpearFlame from 'images/skill/occultism/Hell_Spear_Flame.png';
-import HellSpearMist from 'images/skill/occultism/Hell_Spear_Mist.png';
-import SummonWraithMist from 'images/skill/occultism/Summon_Wraith_Mist.png';
-import SummonWraithWave from 'images/skill/occultism/Summon_Wraith_Wave.png';
-import ShadowStepLightning from 'images/skill/occultism/Shadowstep_Lightning.png';
-import ShadowStepMist from 'images/skill/occultism/Shadowstep_Mist.png';
-import AbsorbLifeforceFlame from 'images/skill/occultism/Absorb_Life_Flame.png';
-import AbsorbLifeforceStone from 'images/skill/occultism/Absorb_Life_Stone.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/occultism/';
 
 const skills = Object.freeze([
   {
-    icon: CripplingMireIcon,
+    icon: Icon.CripplingMire,
     name: 'Crippling Mire',
     rank: 4,
     mana: 93,
@@ -62,7 +35,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: AbsorbLifeIcon,
+    icon: Icon.AbsorbLife,
     name: 'Absorb Lifeforce',
     rank: 14,
     mana: 220,
@@ -81,7 +54,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: PlayDeadIcon,
+    icon: Icon.PlayDead,
     name: 'Play Dead',
     mana: 25,
     channeled: true,
@@ -97,7 +70,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: CursedThornsIcon,
+    icon: Icon.CursedThorns,
     name: 'Cursed Thorns',
     rank: 2,
     mana: 105,
@@ -111,7 +84,7 @@ const skills = Object.freeze([
       'Seeds burst instantly if stepped on.',
   },
   {
-    icon: ShadowstepIcon,
+    icon: Icon.Shadowstep,
     name: 'Shadow Step',
     mana: 29,
     range: [0, 18],
@@ -121,7 +94,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: BoneyardIcon,
+    icon: Icon.Boneyard,
     name: 'Boneyard',
     rank: 7,
     mana: 142,
@@ -134,7 +107,7 @@ const skills = Object.freeze([
       'The Bone Prison disappears in #10 sec# if not destroyed.',
   },
   {
-    icon: SummonCrowsIcon,
+    icon: Icon.SummonCrows,
     name: 'Summon Crows',
     rank: 4,
     mana: 356,
@@ -157,7 +130,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: HellSpearIcon,
+    icon: Icon.HellSpear,
     name: 'Hell Spear',
     rank: 4,
     mana: 472,
@@ -170,7 +143,7 @@ const skills = Object.freeze([
       'Inflicts impale, preventing all actions for #${impaleDuration}sec.#',
   },
   {
-    icon: PainHarvestIcon,
+    icon: Icon.PainHarvest,
     name: 'Pain Harvest',
     rank: 2,
     mana: 71,
@@ -186,7 +159,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ShadowVortexIcon,
+    icon: Icon.ShadowVortex,
     name: 'Shadow Vortex',
     mana: 302,
     range: [0, 20],
@@ -197,7 +170,7 @@ const skills = Object.freeze([
       'Placing a new shadow vortex on an existing one will end the original spell early.',
   },
   {
-    icon: SummonWraithIcon,
+    icon: Icon.SummonWraith,
     name: 'Summon Wraith',
     rank: 2,
     mana: 686,
@@ -210,7 +183,7 @@ const skills = Object.freeze([
     descriptionNote: '\rSpell ends early if channeling is canceled or the caster moves.',
   },
   {
-    icon: DeathsVengeanceIcon,
+    icon: Icon.DeathsVengeance,
     name: 'Death\'s Vengeance',
     mana: 394,
     damage: { base: 1440, attack: ATTACK.MAGIC, ratio: 120 },
@@ -226,7 +199,7 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: UnnaturalSpeedIcon,
+    icon: Icon.UnnaturalSpeed,
     name: 'Unnatural Speed',
     description: 'Decreases Cast Time #-2%.#\r' +
       'Increases Attack Speed #+40.#',
@@ -239,7 +212,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: TraumatizeIcon,
+    icon: Icon.Traumatize,
     name: 'Traumatize',
     description: 'Increases Duration of Impale and Stun Effects #+20%.#',
     skillMod: [
@@ -251,12 +224,12 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: InevitabilityIcon,
+    icon: Icon.Inevitability,
     name: 'Inevitability',
     description: 'Impale and Stun effects by #Occultism# skills never miss.',
   },
   {
-    icon: BurningBrandIcon,
+    icon: Icon.BurningBrand,
     name: 'Burning Brand',
     description: 'Grants a stack of #Burning Brand# for each enemy hit by #Hell Spear, Summon Crows, Bone Prison,# or #Quake Crippling Mire.#\r\r' +
       '#Burning Brand:#\r' +
@@ -271,12 +244,12 @@ export const passives = Object.freeze([
       '- Prevents gaining stacks of Burning Brand for the duration.',
   },
   {
-    icon: DeathsBeckoningIcon,
+    icon: Icon.DeathsBeckoning,
     name: 'Death\'s Beckoning',
     description: 'Every time an enemy is damaged by #Crippling Mire# or #Absorb Lifeforce,# active Occultism Cooldowns are reduced #-1%.#',
   },
   {
-    icon: CriticalFailureIcon,
+    icon: Icon.CriticalFailure,
     name: 'Critical Failure',
     description: '#Impales# enemies when they miss you with an attack.\r\r' +
       'This effect can\'t hit the same target more than once every #12 sec.#',
@@ -289,7 +262,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.QUAKE,
-        icon: CripplingMireQuake,
+        icon: Icon.CripplingMireQuake,
         mana: 375,
         range: [0, 8],
         cooldown: 36,
@@ -307,7 +280,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: CripplingMireStone,
+        icon: Icon.CripplingMireStone,
         range: [0, 20],
         description: 'Forms a painful link with the target, dealing ${damage} Magic Damage over #6 sec# and slowing the target\'s Move Speed #-80%# and Attack Speed #-600# for the duration.\r' +
           'Counts as an ongoing spell, but is canceled if the target moves far enough away from the caster.',
@@ -319,7 +292,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: HellSpearFlame,
+        icon: Icon.HellSpearFlame,
         impaleDuration: 4,
         description: 'Summons a circle of burning spears after a #2 sec# delay, dealing ${damage} Magic Damage to all enemies within the radius.\r' +
           'Inflicts impale, preventing all actions for #${impaleDuration}sec.#\r' +
@@ -328,7 +301,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: HellSpearMist,
+        icon: Icon.HellSpearMist,
         mana: 236,
         range: [0, 12],
         effectRange: null,
@@ -341,7 +314,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: SummonWraithMist,
+        icon: Icon.SummonWraithMist,
         range: [0, 15],
         damage: null,
         channeled: false,
@@ -352,7 +325,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: SummonWraithWave,
+        icon: Icon.SummonWraithWave,
         effectRange: null,
         damage: { base: 230, attack: ATTACK.MAGIC, ratio: 120 },
         channeled: false,
@@ -368,7 +341,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: ShadowStepLightning,
+        icon: Icon.ShadowstepLightning,
         range: [0, 15],
         description: 'Teleports the caster directly behind an ally or enemy up to #3 times.#\r' +
           'With each teleportation, the range decreases from #15m to 12m, and then 6m.#\r\r' +
@@ -378,7 +351,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: ShadowStepMist,
+        icon: Icon.ShadowstepMist,
         cooldown: 20,
         description: 'Teleports the caster directly behind an ally or enemy, and allows to track stealthed enemies.\r' +
           'This skill can\'t be used without a target.\r\r' +
@@ -393,7 +366,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: AbsorbLifeforceFlame,
+        icon: Icon.AbsorbLifeFlame,
         range: [0, 7],
         damage: { base: 2154, attack: ATTACK.MELEE, ratio: 204 },
         description: 'Drains life from an enemy, dealing ${damage} Melee Damage and reducing the target\'s received Healing #-60%# for #8.5 sec#.\r' +
@@ -402,7 +375,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: AbsorbLifeforceStone,
+        icon: Icon.AbsorbLifeStone,
         damage: { base: 1140, attack: ATTACK.MAGIC, ratio: 108 },
         impaleDuration: 1,
         description: 'Drains life from an enemy, dealing ${damage} Magic Damage and reducing the target\'s received Healing #-60%# for #4.5 sec#.\r' +

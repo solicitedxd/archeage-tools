@@ -1,32 +1,3 @@
-import FlameboltIcon from 'images/skill/sorcery/Flamebolt.png';
-import FreezingArrowIcon from 'images/skill/sorcery/Freezing_Arrow.png';
-import InsulatingLensIcon from 'images/skill/sorcery/Insulating_Lens.png';
-import ArcLightningIcon from 'images/skill/sorcery/Arc_Lightning.png';
-import MagicCircleIcon from 'images/skill/sorcery/Magic_Circle.png';
-import FreezingEarthIcon from 'images/skill/sorcery/Freezing_Earth.png';
-import FlameBarrierIcon from 'images/skill/sorcery/Flame_Barrier.png';
-import ChainLightningIcon from 'images/skill/sorcery/Chain_Lightning.png';
-import SearingRainIcon from 'images/skill/sorcery/Searing_Rain.png';
-import FrigidTracksIcon from 'images/skill/sorcery/Frigid_Tracks.png';
-import MeteorStrikeIcon from 'images/skill/sorcery/Meteor_Strike.png';
-import GodsWhipIcon from 'images/skill/sorcery/Gods_Whip.png';
-import ManaPoolIncreaseIcon from 'images/skill/sorcery/Mana_Pool_Increase.png';
-import AranzebsInfusionIcon from 'images/skill/sorcery/Aranzebs_Infusion.png';
-import MindOverMatterIcon from 'images/skill/sorcery/Mind_Over_Matter.png';
-import ManaFountainIcon from 'images/skill/sorcery/Mana_Fountain.png';
-import HeirtoAyanadIcon from 'images/skill/sorcery/Heir_to_Ayanad.png';
-import SorceryAdeptIcon from 'images/skill/sorcery/Sorcery_Adept.png';
-import FlameboltFlame from 'images/skill/sorcery/Flamebolt_Flame.png';
-import FlameboltLightning from 'images/skill/sorcery/Flamebolt_Lightning.png';
-import ChainLightningFlame from 'images/skill/sorcery/Chain_Lightning_Flame.png';
-import ChainLightningWave from 'images/skill/sorcery/Chain_Lightning_Wave.png';
-import MeteorStrikeLightning from 'images/skill/sorcery/Meteor_Strike_Lightning.png';
-import MeteorStrikeWave from 'images/skill/sorcery/Meteor_Strike_Wave.png';
-import GodsWhipLightning from 'images/skill/sorcery/Gods_Whip_Lightning.png';
-import GodsWhipWave from 'images/skill/sorcery/Gods_Whip_Wave.png';
-import FlameBarrierMist from 'images/skill/sorcery/Flame_Barrier_Mist.png';
-import FlameBarrierWave from 'images/skill/sorcery/Flame_Barrier_Wave.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/sorcery/';
 
 const skills = Object.freeze([
   {
-    icon: FlameboltIcon,
+    icon: Icon.Flamebolt,
     name: 'Flamebolt',
     rank: 1,
     mana: 18,
@@ -64,7 +37,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FreezingArrowIcon,
+    icon: Icon.FreezingArrow,
     name: 'Freezing Arrow',
     rank: 18,
     mana: 201,
@@ -88,7 +61,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: InsulatingLensIcon,
+    icon: Icon.InsulatingLens,
     name: 'Insulating Lens',
     rank: 5,
     mana: 108,
@@ -102,7 +75,7 @@ const skills = Object.freeze([
       'Applies a #30 sec# Cooldown when the effect ends.',
   },
   {
-    icon: ArcLightningIcon,
+    icon: Icon.ArcLightning,
     name: 'Arc Lightning',
     rank: 7,
     mana: 188,
@@ -123,7 +96,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: MagicCircleIcon,
+    icon: Icon.MagicCircle,
     name: 'Magic Circle',
     rank: 3,
     mana: 134,
@@ -135,7 +108,7 @@ const skills = Object.freeze([
       'Use the skill again to teleport back to the Magic Circle\'s location.',
   },
   {
-    icon: FreezingEarthIcon,
+    icon: Icon.FreezingEarth,
     name: 'Freezing Earth',
     rank: 6,
     mana: 260,
@@ -157,7 +130,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FlameBarrierIcon,
+    icon: Icon.FlameBarrier,
     name: 'Flame Barrier',
     rank: 7,
     mana: 473,
@@ -177,7 +150,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ChainLightningIcon,
+    icon: Icon.ChainLightning,
     name: 'Chain Lightning',
     rank: 4,
     mana: 198,
@@ -204,7 +177,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SearingRainIcon,
+    icon: Icon.SearingRain,
     name: 'Searing Rain',
     rank: 2,
     mana: 487,
@@ -226,7 +199,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FrigidTracksIcon,
+    icon: Icon.FrigidTracks,
     name: 'Frigid Tracks',
     rank: 1,
     mana: 118,
@@ -241,7 +214,7 @@ const skills = Object.freeze([
       'Grants affected enemies temporary #Freeze Immunity# when the Confinement effect expires.',
   },
   {
-    icon: MeteorStrikeIcon,
+    icon: Icon.MeteorStrike,
     name: 'Meteor Strike',
     rank: 2,
     mana: 605,
@@ -261,7 +234,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: GodsWhipIcon,
+    icon: Icon.GodsWhip,
     name: 'Gods\' Whip',
     rank: 1,
     mana: 86,
@@ -287,12 +260,12 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: ManaPoolIncreaseIcon,
+    icon: Icon.ManaPoolIncrease,
     name: 'Mana Pool Increase',
     description: 'Increases Max Mana #+35%.#',
   },
   {
-    icon: AranzebsInfusionIcon,
+    icon: Icon.AranzebsInfusion,
     name: 'Aranzeb\'s Infusion',
     description: 'Decreases Cast Time of Sorcery Skills #-8%.#',
     skillMod: [
@@ -304,7 +277,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: MindOverMatterIcon,
+    icon: Icon.MindOverMatter,
     name: 'Mind Over Matter',
     description: 'Increases duration of Burning, Freeze and Electric Shock #+30%#.',
     skillMod: [
@@ -326,7 +299,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: ManaFountainIcon,
+    icon: Icon.ManaFountain,
     name: 'Mana Fountain',
     description: 'Grants the #Mana Fountain# buff whenever you cast #Insulating Lens, Frigid Tracks, or Magic Circle.#\r\r' +
       '#Mana Fountain:#\r' +
@@ -335,7 +308,7 @@ export const passives = Object.freeze([
       '- Lasts #20 - 60 sec.#',
   },
   {
-    icon: HeirtoAyanadIcon,
+    icon: Icon.HeirToAyanad,
     name: 'Heir to Ayanad',
     description: 'Increases Magic Skill Damage from Sorcery Skills #+10%.#',
     skillMod: [
@@ -347,7 +320,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: SorceryAdeptIcon,
+    icon: Icon.SorceryAdept,
     name: 'Sorcery Adept',
     description: 'Increase Magic Critical Rate #+6%#\r' +
       'Increases Sorcery Skill Damage +5%',
@@ -367,7 +340,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: FlameboltFlame,
+        icon: Icon.FlameboltFlame,
         mana: 24,
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 360 },
         castTime: 1.5,
@@ -377,7 +350,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: FlameboltLightning,
+        icon: Icon.FlameboltLightning,
         mana: 21,
         range: [0, 20],
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 80 },
@@ -406,7 +379,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ChainLightningFlame,
+        icon: Icon.ChainLightningFlame,
         damage: { base: 556, attack: ATTACK.MAGIC, ratio: 110 },
         effects: [BUFF.BURNING],
         description: 'Inflicts #Consuming Flames# on a single target, which deals ${damage} Magic Damage after #2 sec# and then travels to another enemy within a #5m# radius.\r' +
@@ -414,7 +387,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: ChainLightningWave,
+        icon: Icon.ChainLightningWave,
         effects: [BUFF.FREEZING, BUFF.SNARED],
         description: 'Shoots a ball of ice that deals ${damage} Magic Damage to a single enemy and the shatters, unleashing ice shards in a #5m# ring around the primary target.\r' +
           'Ice Shards deal additional Magic Damage and inflict Snare, preventing affected enemies from moving or turning.\r' +
@@ -428,7 +401,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: MeteorStrikeLightning,
+        icon: Icon.MeteorStrikeLightning,
         range: [0, 25],
         effectRange: 4,
         damage: { base: 1161, attack: ATTACK.MAGIC, ratio: 320 },
@@ -447,12 +420,12 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: MeteorStrikeWave,
+        icon: Icon.MeteorStrikeWave,
         mana: 1629,
         effectRange: 10,
         damage: { base: 1784, attack: ATTACK.MAGIC, ratio: 300 },
         effects: [BUFF.FREEZING],
-        description: 'Summons a barrage of giant hailstones to obliterate the target area, inflicting up to ${damage} Magic Damage per hailstone.\r' +
+        description: 'Summons a barrage of giant Icon.hailstones to obliterate the target area, inflicting up to ${damage} Magic Damage per Icon.hailstone.\r' +
           'Inflicts #Deep Freeze# on all enemies hit #5# or more times, Confining them for #14 sec.#\r' +
           'Being damaged by a direct attack will free the targets early, but debuffs that deal damage over time will not end this effect.\r' +
           'Deep Freeze duration reduced #-50%# in PvP.\r' +
@@ -466,7 +439,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: GodsWhipLightning,
+        icon: Icon.GodsWhipLightning,
         range: [0, 22],
         damage: { base: 288, attack: ATTACK.MAGIC, ratio: 80 },
         castTime: 0,
@@ -474,7 +447,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: GodsWhipWave,
+        icon: Icon.GodsWhipWave,
         mana: 315,
         range: [0, 34],
         castTime: 0,
@@ -490,7 +463,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: FlameBarrierMist,
+        icon: Icon.FlameBarrierMist,
         range: [0, 20],
         burningDamage: { base: 1982, attack: ATTACK.MAGIC, ratio: 600 },
         duration: 4,
@@ -501,7 +474,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: FlameBarrierWave,
+        icon: Icon.FlameBarrierWave,
         damage: { base: 481, attack: ATTACK.MAGIC, ratio: 150 },
         effects: [BUFF.FROZEN],
         description: 'Calls forth a #15m# wide wall of blue fire for #10 sec#, which Freezes all enemies within its area of effect. Decreases Move Speed #-30%#.\r' +

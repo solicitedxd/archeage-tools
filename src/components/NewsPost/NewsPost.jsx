@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import { string } from 'react-proptypes'
 import {
   AppBar,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import React, { Component } from 'react';
+import { string } from 'react-proptypes';
 
 class NewsPost extends Component {
   static propTypes = {
@@ -24,9 +24,9 @@ class NewsPost extends Component {
             <Typography variant="overline">{date}</Typography>
           </Toolbar>
         </AppBar>
-        <div className="body-container">
+        <Typography component="div" className="body-container">
           {children}
-        </div>
+        </Typography>
       </Paper>
     );
   }

@@ -1,4 +1,4 @@
-import { SET_REGION } from 'constants/calendar';
+import { SET_REGION } from 'constants/schedule';
 
 export const triggerLocalStorageUpdate = [
   SET_REGION,

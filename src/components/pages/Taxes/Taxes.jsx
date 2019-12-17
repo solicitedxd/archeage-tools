@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
 import {
   AppBar,
   Checkbox,
@@ -13,14 +10,17 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import cn from 'classnames';
+import { PROFICIENCY } from 'constants/proficiencies';
 import {
   HOUSING_TYPES,
-  PROFICIENCY,
   TAX_BURDEN,
 } from 'constants/taxes';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { deepCopy } from 'utils/skills';
-import PropertyBox from './PropertyBox';
 import { setTitle } from 'utils/string';
+import PropertyBox from './PropertyBox';
 
 class Taxes extends Component {
   constructor() {
@@ -80,7 +80,7 @@ class Taxes extends Component {
     setTitle('Tax Calculator');
 
     return (
-      <div className={cn('calendar-container', { mobile })}>
+      <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">

@@ -1,4 +1,4 @@
-import { FACTION } from 'constants/dailies';
+import { FACTION } from 'constants/map';
 
 export default {
   quests: {},
@@ -10,7 +10,7 @@ export default {
   hideMode: false,
   hiddenQuests: {},
   version: 1,
-}
+};
 
 export const override = ({
   hideMode: false,

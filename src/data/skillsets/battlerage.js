@@ -5,39 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
-import TripleSlashIcon from 'images/skill/battlerage/Triple_Slash.png';
-import ChargeIcon from 'images/skill/battlerage/Charge.png';
-import BattleFocusIcon from 'images/skill/battlerage/Battle_Focus.png';
-import WhirlwindSlashIcon from 'images/skill/battlerage/Whirlwind_Slash.png';
-import SunderEarthIcon from 'images/skill/battlerage/Sunder_Earth.png';
-import FrenzyIcon from 'images/skill/battlerage/Frenzy.png';
-import PrecisionStrikeIcon from 'images/skill/battlerage/Precision_Strike.png';
-import TigerStrikeIcon from 'images/skill/battlerage/Tiger_Strike.png';
-import BondbreakerIcon from 'images/skill/battlerage/Bondbreaker.png';
-import TerrifyingRoarIcon from 'images/skill/battlerage/Terrifying_Roar.png';
-import HammerTossIcon from 'images/skill/battlerage/Hammer_Toss.png';
-import BehindEnemyLinesIcon from 'images/skill/battlerage/Behind_Enemy_Lines.png';
-import DeflectAndRetaliateIcon from 'images/skill/battlerage/Deflect_and_Retaliate.png';
-import RecklessChargeIcon from 'images/skill/battlerage/Reckless_Charge.png';
-import PunctureIcon from 'images/skill/battlerage/Puncture.png';
-import AttackSpeedTrainingIcon from 'images/skill/battlerage/Attack_Speed_Training.png';
-import WeaponsMasteryIcon from 'images/skill/battlerage/Weapons_Mastery.png';
-import DeadlyDuelistIcon from 'images/skill/battlerage/Deadly_Duelist.png';
-import TripleSlashLightning from 'images/skill/battlerage/Triple_Slash_Lightning.png';
-import TripleSlashQuake from 'images/skill/battlerage/Triple_Slash_Quake.png';
-import PrecisionStrikeGale from 'images/skill/battlerage/Precision_Strike_Gale.png';
-import PrecisionStrikeWave from 'images/skill/battlerage/Precision_Strike_Wave.png';
-import TigerStrikeLife from 'images/skill/battlerage/Tiger_Strike_Life.png';
-import TigerStrikeLightning from 'images/skill/battlerage/Tiger_Strike_Lightning.png';
-import BehindEnemyLinesGale from 'images/skill/battlerage/Behind_Enemy_Lines_Gale.png';
-import BehindEnemyLinesStone from 'images/skill/battlerage/Behind_Enemy_Lines_Stone.png';
-import SunderEarthMist from 'images/skill/battlerage/Sunder_Earth_Mist.png';
-import SunderEarthQuake from 'images/skill/battlerage/Sunder_Earth_Quake.png';
 import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/battlerage/';
 
 const skills = Object.freeze([
   {
-    icon: TripleSlashIcon,
+    icon: Icon.TripleSlash,
     name: 'Triple Slash',
     rank: 1,
     mana: 12,
@@ -64,7 +37,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ChargeIcon,
+    icon: Icon.Charge,
     name: 'Charge',
     rank: 18,
     mana: 62,
@@ -90,7 +63,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BattleFocusIcon,
+    icon: Icon.BattleFocus,
     name: 'Battle Focus',
     rank: 2,
     mana: 54,
@@ -100,7 +73,7 @@ const skills = Object.freeze([
     global: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: WhirlwindSlashIcon,
+    icon: Icon.WhirlwindSlash,
     name: 'Whirlwind Slash',
     rank: 7,
     mana: 132,
@@ -132,7 +105,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SunderEarthIcon,
+    icon: Icon.SunderEarth,
     name: 'Sunder Earth',
     rank: 9,
     mana: 209,
@@ -159,7 +132,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FrenzyIcon,
+    icon: Icon.Frenzy,
     name: 'Frenzy',
     rank: 3,
     mana: 110,
@@ -174,7 +147,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: PrecisionStrikeIcon,
+    icon: Icon.PrecisionStrike,
     name: 'Precision Strike',
     rank: 6,
     mana: 94,
@@ -192,7 +165,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: TigerStrikeIcon,
+    icon: Icon.TigerStrike,
     name: 'Tiger Strike',
     rank: 3,
     mana: 183,
@@ -227,7 +200,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BondbreakerIcon,
+    icon: Icon.Bondbreaker,
     name: 'Bondbreaker',
     mana: 88,
     cooldown: 18,
@@ -235,7 +208,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NONE,
   },
   {
-    icon: TerrifyingRoarIcon,
+    icon: Icon.TerrifyingRoar,
     name: 'Terrifying Roar',
     rank: 4,
     mana: 69,
@@ -253,7 +226,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: HammerTossIcon,
+    icon: Icon.HammerToss,
     name: 'Hammer Toss',
     mana: 188,
     range: [0, 15],
@@ -270,7 +243,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BehindEnemyLinesIcon,
+    icon: Icon.BehindEnemyLines,
     name: 'Behind Enemy Lines',
     mana: 157,
     range: [6, 20],
@@ -297,24 +270,24 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: DeflectAndRetaliateIcon,
+    icon: Icon.DeflectAndRetaliate,
     name: 'Deflect and Retaliate',
     description: 'Each successful parry resets the cooldown on all #Battlerage# attack skills.\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {
-    icon: RecklessChargeIcon,
+    icon: Icon.RecklessCharge,
     name: 'Reckless Charge',
     description: 'Using #Charge, Tiger Strike or Behind Enemy Lines# grants you the #Reckless Charge# buff, decreasing received Physical Damage #-15%# for #4 seconds#.',
   },
   {
-    icon: PunctureIcon,
+    icon: Icon.Puncture,
     name: 'Puncture',
     description: 'Your Melee Critical Strikes inflict #Puncture# on the enemy, reducing their Physical Defense #-3000# for #5 sec.#\r\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {
-    icon: AttackSpeedTrainingIcon,
+    icon: Icon.AttackSpeedTraining,
     name: 'Attack Speed Training',
     description: 'Gain one stack of #Delirium# for each Battlerage attack that successfully hits an enemy. Max 1 stack per second.\r\r' +
       '#Delirium:#\r' +
@@ -324,7 +297,7 @@ export const passives = Object.freeze([
       '- Stacks up to #5 times.#',
   },
   {
-    icon: WeaponsMasteryIcon,
+    icon: Icon.WeaponsMastery,
     name: 'Weapons Mastery',
     description: 'Increases Melee Skill Damage from Battlerage Skills #+10%.#',
     skillMod: [
@@ -336,7 +309,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: DeadlyDuelistIcon,
+    icon: Icon.DeadlyDuelist,
     name: 'Deadly Duelist',
     description: 'Increases Melee Critical Hits #+6%#\r' +
       'Equipping Two-Handed Weapons or Dual Wield Weapons allows you to #Parry ranged attacks#.',
@@ -349,7 +322,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: TripleSlashLightning,
+        icon: Icon.TripleSlashLightning,
         mana: 9,
         damage: { base: 0, attack: ATTACK.MELEE, ratio: 110 },
         description: 'A constant pattern of #3 distinct strikes#, each dealing ${damage} Physical Damage.\n' +
@@ -358,7 +331,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.QUAKE,
-        icon: TripleSlashQuake,
+        icon: Icon.TripleSlashQuake,
         range: [0],
         effectRange: 5,
         damage: { base: 0, attack: ATTACK.MELEE, ratio: 250 },
@@ -373,7 +346,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: PrecisionStrikeGale,
+        icon: Icon.PrecisionStrikeGale,
         cooldown: 30,
         description: 'Delivers a powerful attack that deals ${damage} Melee Damage.\r\r' +
           'A Critical Hit increases Critical Damage for this attack #+70%.#\r' +
@@ -382,7 +355,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: PrecisionStrikeWave,
+        icon: Icon.PrecisionStrikeWave,
         description: 'Delivers a powerful attack that deals ${damage} Melee Damage.\r' +
           'When attacking targets with #30%# Health or below, Critical Rate for this attack #+35.0%#.\r' +
           'Critical Damage for this attack is increased #+70.0%.#',
@@ -394,7 +367,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIFE,
-        icon: TigerStrikeLife,
+        icon: Icon.TigerStrikeLife,
         cooldown: 28,
         effects: [],
         description: 'Rushes past an enemy, dealing ${damage} Melee Damage.\r' +
@@ -404,7 +377,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: TigerStrikeLightning,
+        icon: Icon.TigerStrikeLightning,
         range: [0, 12],
         damage: { base: 445, attack: ATTACK.MELEE, ratio: 80 },
         effects: [],
@@ -418,7 +391,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: BehindEnemyLinesGale,
+        icon: Icon.BehindEnemyLinesGale,
         effectRange: 3,
         description: 'Perform a high leap that lands at the target location, dealing ${damage} Melee Damage to all enemies within the area of effect.\r' +
           '#Each# hit decreases the Cooldown of #Charge -2 sec#.\r\r' +
@@ -426,7 +399,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: BehindEnemyLinesStone,
+        icon: Icon.BehindEnemyLinesStone,
         range: [6, 18],
         description: 'Perform a high leap that lands at the target location, dealing ${damage} Melee Damage to all enemies within the area of effect.\r\r' +
           'Inflicts #${effects[0]}# on all affected enemies, reducing their Move Speed #-27%,# Attack Speed #-75,# and Skill Damage #-8%# for #3sec.#',
@@ -450,12 +423,12 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: SunderEarthMist,
+        icon: Icon.SunderEarthMist,
         description: 'Smashes open a wide fault line in front of you, dealing ${damage} Melee Damage to all enemies in a line. Affected enemies also receive additional #+15%# Damage for #3 sec#.',
       },
       {
         element: ELEMENT.QUAKE,
-        icon: SunderEarthQuake,
+        icon: Icon.SunderEarthQuake,
         effectRange: 15,
         damage: { base: 903, attack: ATTACK.MELEE, ratio: 260 },
         description: 'Smashes open a wide fault line in front of you, dealing ${damage} Melee Damage to all enemies in a line.',

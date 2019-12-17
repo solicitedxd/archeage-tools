@@ -1,10 +1,10 @@
-import React from 'react';
-import cn from 'classnames';
 import { Typography } from '@material-ui/core';
-import { REWARD } from 'constants/dailies';
+import cn from 'classnames';
+import { CURRENCY } from 'constants/items';
+import React from 'react';
 
-export default ({ type, count, style, component = 'p' }) => {
-  if (type === REWARD.COIN) {
+const Currency = ({ type, count, style, inline = false }) => {
+  if (type === CURRENCY.COIN) {
     const copper = count % 100;
     const silver = Math.floor(count / 100) % 100;
     const gold = Math.floor(count / 10000);
@@ -12,7 +12,7 @@ export default ({ type, count, style, component = 'p' }) => {
     return (
       <Typography
         style={style}
-        component={component}
+        component={inline ? 'span' : 'p'}
         className={cn({ 'negative': count < 0 })}
       >
         {count < 0 && '-'}
@@ -25,11 +25,13 @@ export default ({ type, count, style, component = 'p' }) => {
     return (
       <Typography
         className={cn('currency', type)}
-        component={component}
+        component={inline ? 'span' : 'p'}
         style={style}
       >
         {count}
       </Typography>
     );
   }
-}
+};
+
+export default Currency;

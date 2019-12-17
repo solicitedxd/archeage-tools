@@ -88,6 +88,12 @@ body {
   max-width: 1080px;
 }
 
+.section:after, .body-container:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
 .quest-container .section {
   margin: 20px 15px;
 }
@@ -200,4 +206,88 @@ body {
   position: fixed !important;
   bottom: 16px;
   left: 16px;
+}
+
+.lightbox-thumb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 12px;
+  max-width: 120px;
+
+  &.MuiPaper-root {
+    background-color: #E2E2E2;
+  }
+
+  img {
+    max-width: 120px;
+    display: block;
+    cursor: zoom-in;
+  }
+
+  span {
+    text-align: center;
+    display: block;
+    opacity: 0.8;
+  }
+}
+
+.tool-container {
+  margin: 0 20px;
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+blockquote {
+  font-family: Georgia, serif;
+  font-size: 16px;
+  font-style: italic;
+  margin: 0.25em 0;
+  padding: 0.35em 40px;
+  line-height: 1.45;
+  position: relative;
+  display: block;
+}
+
+blockquote:before {
+  display: block;
+  padding-left: 10px;
+  content: "\201C";
+  font-size: 80px;
+  position: absolute;
+  left: -20px;
+  top: -20px;
+  opacity: 0.6;
+}
+
+blockquote cite {
+  opacity: 0.5;
+  font-size: 14px;
+  display: block;
+  margin-top: 5px;
+}
+
+blockquote cite:before {
+  content: "\2014 \2009";
+}
+
+.alert-red {
+  color: #CC0000;
+  font-weight: bold;
+}
+
+.dark-mode {
+  .lightbox-thumb {
+    background-color: #525252;
+  }
+
+  .alert-red {
+    color: #FF0000;
+  }
 }

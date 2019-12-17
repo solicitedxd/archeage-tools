@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   ExpansionPanel,
   ExpansionPanelDetails,
@@ -7,6 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { ExpandMore } from '@material-ui/icons';
+import React from 'react';
 
 const Ability = ({ name, description, counters, deadly }) => (
   <ExpansionPanel elevation={2}>
@@ -25,9 +25,10 @@ const Ability = ({ name, description, counters, deadly }) => (
       </Typography>
     </ExpansionPanelSummary>
     <ExpansionPanelDetails>
+      {description &&
       <Typography>
         {description}
-      </Typography>
+      </Typography>}
       {counters !== undefined && counters.length > 0 &&
       <React.Fragment>
         <Typography variant="subtitle2" color="primary" component="div" className="tips">Tips:</Typography>

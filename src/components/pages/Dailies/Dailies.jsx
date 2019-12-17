@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import cn from 'classnames';
 import {
   AppBar,
   Dialog,
@@ -21,14 +18,15 @@ import {
   resetHide,
   resetQuests,
 } from 'actions/dailies';
+import cn from 'classnames';
 import ScrollToTop from 'components/ScrollToTop';
-import {
-  CONTINENT,
-  REWARD,
-  TYPE,
-} from 'constants/dailies';
+import { DAILY_TYPE } from 'constants/dailies';
+import { CURRENCY } from 'constants/items';
+import { CONTINENT } from 'constants/map';
 import dailyQuests from 'data/dailies';
 import ITEM from 'data/items';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { getZones } from 'utils/dailies';
 import { setTitle } from 'utils/string';
 import Filters from './Filters';
@@ -97,7 +95,7 @@ class Dailies extends Component {
         visible = false;
       }
 
-      if (visible && types.length > 0 && ((quest.type && !types.includes(quest.type)) || (!quest.type && !types.includes(TYPE.OTHER)))) {
+      if (visible && types.length > 0 && ((quest.type && !types.includes(quest.type)) || (!quest.type && !types.includes(DAILY_TYPE.OTHER)))) {
         visible = false;
       }
 
@@ -115,7 +113,7 @@ class Dailies extends Component {
       let rewardArray = completed ? claimedRewards : availableRewards;
       quest.rewards.forEach(reward => {
         let rewardGroup;
-        if (reward.type === REWARD.ITEM) {
+        if (reward.type === CURRENCY.ITEM) {
           rewardGroup = rewardArray.find(rw => rw.type === reward.type && rw.item.name === reward.item.name);
         } else {
           rewardGroup = rewardArray.find(rw => rw.type === reward.type);
@@ -126,7 +124,7 @@ class Dailies extends Component {
         } else {
           // create new reward entry
           const newGroup = { ...reward, count: reward.count || 1 };
-          if (reward.type === REWARD.GILDA) {
+          if (reward.type === CURRENCY.GILDA) {
             newGroup.item = ITEM.GILDA_STAR;
           }
           rewardArray.push(newGroup);

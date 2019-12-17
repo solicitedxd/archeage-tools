@@ -1,17 +1,17 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
 import ItemLink from 'components/Item/ItemLink';
+import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
-import Link from 'components/Link';
+import React from 'react';
 
 const name = 'Gilda Star Dailies';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Nov 4, 2019',
+  lastUpdated: 'Dec 10, 2019',
 };
 
 const ARarePerfume = ({ faction }) => (
@@ -227,9 +227,10 @@ const sections = [
               locations listed, or walk there.</Typography>
             <Typography variant="body2">Please note: While it is possible to perform Raising a Wild Snowlion and Raising
               a Malfunctioning Leomorph, it can prove to tedious the first time (to acquire the port) and difficult due
-              to guards and hostile players. The easiest way to reach Falcorth or Arcum might be to teleport to the
-              Palace Cellar dungeon location in Mahadevi (which is every character has by default), and then run from
-              there.</Typography>
+              to guards and hostile players. The easiest way to reach Arcum might be to teleport to the Palace Cellar
+              dungeon location in Mahadevi (which is every character has by default), and then run from there. For
+              Falcorth, head to the Rookborne Community Center and then head west over the mountains towards the
+              community center, then towards Cloudgrain.</Typography>
             <hr />
             <Typography variant="h6">Signs of the Salphira Cult</Typography>
             <MapEmbed
@@ -740,7 +741,7 @@ const sections = [
       <TabContent
         tabs={[
           {
-            label: 'Ezna',
+            label: 'Marianople',
             content:
               <MapEmbed zone={ZONE.MARIANOPLE_CITY}
                         points={[{ label: '[Nuia] Seamist Researcher', coords: [{ x: 48.4, y: 41.1 }] }]} />,

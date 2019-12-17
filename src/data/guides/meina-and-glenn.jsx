@@ -1,9 +1,9 @@
-import React from 'react';
-import MapEmbed from 'components/MapEmbed';
-import { ZONE } from 'constants/map';
-import Ability from 'components/Ability';
 import { Typography } from '@material-ui/core';
+import Ability from 'components/Ability';
+import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
+import { ZONE } from 'constants/map';
+import React from 'react';
 
 const name = 'Meina and Glenn';
 

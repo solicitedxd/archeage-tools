@@ -1,32 +1,3 @@
-import CriticalDiscordIcon from 'images/skill/songcraft/Critical_Discord.png';
-import StartlingStrainIcon from 'images/skill/songcraft/Startling_Strain.png';
-import QuickstepIcon from 'images/skill/songcraft/Quickstep.png';
-import DissonanceIcon from 'images/skill/songcraft/Dissonance.png';
-import DoubleTimeIcon from 'images/skill/songcraft/Double-Time.png';
-import OdetoRecoveryIcon from 'images/skill/songcraft/Ode_to_Recovery.png';
-import HealingHymnIcon from 'images/skill/songcraft/Healing_Hymn.png';
-import DeadlyRefrainIcon from 'images/skill/songcraft/Deadly_Refrain.png';
-import BulwarkBalladIcon from 'images/skill/songcraft/Bulwark_Ballad.png';
-import SonicWaveIcon from 'images/skill/songcraft/Sonic_Wave.png';
-import BloodyChanteyIcon from 'images/skill/songcraft/Bloody_Chantey.png';
-import BattleHymnIcon from 'images/skill/songcraft/Battle_Hymn.png';
-import PiercingMelodyIcon from 'images/skill/songcraft/Piercing_Melody.png';
-import HoldtheNoteIcon from 'images/skill/songcraft/Hold_the_Note.png';
-import ZealIcon from 'images/skill/songcraft/Zeal.png';
-import DisciplinedPerformanceIcon from 'images/skill/songcraft/Disciplined_Performance.png';
-import LingeringImpactIcon from 'images/skill/songcraft/Lingering_Impact.png';
-import LoudspeakerIcon from 'images/skill/songcraft/Loudspeaker.png';
-import StartlingStrainLife from 'images/skill/songcraft/Startling_Strain_Life.png';
-import StartlingStrainWave from 'images/skill/songcraft/Startling_Strain_Wave.png';
-import HealingHymnStone from 'images/skill/songcraft/Healing_Hymn_Stone.png';
-import HealingHymnWave from 'images/skill/songcraft/Healing_Hymn_Wave.png';
-import SonicWaveLife from 'images/skill/songcraft/Sonic_Wave_Life.png';
-import SonicWaveMist from 'images/skill/songcraft/Sonic_Wave_Mist.png';
-import DoubleTimeFlame from 'images/skill/songcraft/Double-Time_Flame.png';
-import DoubleTimeWave from 'images/skill/songcraft/Double-Time_Wave.png';
-import CriticalDiscordFlame from 'images/skill/songcraft/Critical_Discord_Flame.png';
-import CriticalDiscordQuake from 'images/skill/songcraft/Critical_Discord_Quake.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/songcraft/';
 
 const skills = Object.freeze([
   {
-    icon: CriticalDiscordIcon,
+    icon: Icon.CriticalDiscord,
     name: 'Critical Discord',
     rank: 10,
     mana: 94,
@@ -54,7 +27,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: StartlingStrainIcon,
+    icon: Icon.StartlingStrain,
     name: 'Startling Strain',
     mana: 11,
     range: [0, 15],
@@ -71,7 +44,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: QuickstepIcon,
+    icon: Icon.Quickstep,
     name: '[Perform] Quickstep',
     rank: 5,
     mana: 162,
@@ -95,7 +68,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: DissonanceIcon,
+    icon: Icon.Dissonance,
     name: 'Dissonance',
     rank: 14,
     mana: 155,
@@ -114,7 +87,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: DoubleTimeIcon,
+    icon: Icon.DoubleTime,
     name: 'Double-Time',
     mana: 29,
     cooldown: 28,
@@ -122,7 +95,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: OdetoRecoveryIcon,
+    icon: Icon.OdeToRecovery,
     name: '[Perform] Ode to Recovery',
     rank: 3,
     mana: 176,
@@ -144,7 +117,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: HealingHymnIcon,
+    icon: Icon.HealingHymn,
     name: 'Healing Hymn',
     rank: 6,
     range: [0, 30],
@@ -156,7 +129,7 @@ const skills = Object.freeze([
     descriptionNote: '\rThis skill does not stop ongoing Perform skills.',
   },
   {
-    icon: DeadlyRefrainIcon,
+    icon: Icon.DeadlyRefrain,
     name: 'Deadly Refrain',
     mana: 52,
     cooldown: 8,
@@ -164,7 +137,7 @@ const skills = Object.freeze([
       'Stacks up to 15 times.',
   },
   {
-    icon: BulwarkBalladIcon,
+    icon: Icon.BulwarkBallad,
     name: '[Perform] Bulwark Ballad',
     rank: 2,
     mana: 151,
@@ -187,7 +160,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SonicWaveIcon,
+    icon: Icon.SonicWave,
     name: 'Sonic Wave',
     mana: 170,
     cooldown: 45,
@@ -197,7 +170,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {
-    icon: BloodyChanteyIcon,
+    icon: Icon.BloodyChantey,
     name: '[Perform] Bloody Chantey',
     rank: 2,
     mana: 228,
@@ -220,7 +193,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BattleHymnIcon,
+    icon: Icon.BattleHymn,
     name: 'Battle Hymn',
     mana: 355,
     range: [0, 50],
@@ -233,12 +206,12 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: PiercingMelodyIcon,
+    icon: Icon.PiercingMelody,
     name: 'Piercing Melody',
     description: '#Discord# and #Dissonance# effects always hit.',
   },
   {
-    icon: HoldtheNoteIcon,
+    icon: Icon.HoldTheNote,
     name: 'Hold the Note',
     description: 'Increases the performance time of Quickstep, Ode to Recovery, Bloody Chantey, and Bulwark Ballad #+15 sec.#',
     skillMod: [
@@ -250,13 +223,13 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: ZealIcon,
+    icon: Icon.Zeal,
     name: 'Zeal',
     description: 'Whenever you inflict a Critical Hit or Critical Heal, gain #+30%# increased Critical Rate and Critical Heal Rate for #5 sec.#\r\r' +
       'This ability has a #12 sec# Cooldown once triggered.',
   },
   {
-    icon: DisciplinedPerformanceIcon,
+    icon: Icon.DisciplinedPerformance,
     name: 'Disciplined Performance',
     description: 'When casting #Deadly Refrain,# gain #2# additional stacks of Rhythm.\r' +
       'Gain an additional stack of #Rhythm# for every 3 seconds a Perform skill is maintained.\r' +
@@ -267,12 +240,12 @@ export const passives = Object.freeze([
       '- Lasts #20 seconds,# and is refresh whenever you would gain a stack of Rhythm.',
   },
   {
-    icon: LingeringImpactIcon,
+    icon: Icon.LingeringImpact,
     name: 'Lingering Impact',
     description: 'Increases the duration of Perform skills #+2 sec#',
   },
   {
-    icon: LoudspeakerIcon,
+    icon: Icon.Loudspeaker,
     name: 'Loudspeaker',
     description: 'Increases the range for Quickstep, Ode to Recovery, Bloody Chantey, and Bulwark Ballad to #25m.#',
     skillMod: [
@@ -291,7 +264,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIFE,
-        icon: StartlingStrainLife,
+        icon: Icon.StartlingStrainLife,
         mana: 14,
         effects: [BUFF.STARTLING_STRAIN_LIFE],
         description: 'Magically improves the beneficial effects the target receives from Perform skills #+30%# for #28sec.#\r' +
@@ -300,7 +273,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: StartlingStrainWave,
+        icon: Icon.StartlingStrainWave,
         mana: 14,
         effects: [BUFF.CHARMED],
         description: '#Charms# an enemy, making the more susceptible to other Songcraft skill effects for #24sec.#\r' +
@@ -319,7 +292,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.STONE,
-        icon: HealingHymnStone,
+        icon: Icon.HealingHymnStone,
         range: [0, 20],
         healing: null,
         cooldown: 23,
@@ -330,7 +303,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.WAVE,
-        icon: HealingHymnWave,
+        icon: Icon.HealingHymnWave,
         mana: 923,
         healing: null,
         description: 'Plays a revitalizing song that instantly restores a party member\'s Mana #+374.#\r' +
@@ -344,12 +317,12 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIFE,
-        icon: SonicWaveLife,
+        icon: Icon.SonicWaveLife,
         description: 'Unleash a magically-enhanced wave, #removing 1 negative effect# from all allies in a wide corridor extending #15m# in front of you.',
       },
       {
         element: ELEMENT.MIST,
-        icon: SonicWaveMist,
+        icon: Icon.SonicWaveMist,
         description: 'Unleash a magically-enhanced wave, granting #Mist Sonic Wave# to all allies in a wide corridor extending #15m# in front of you.\r' +
           'Affected allies escape all current targeting by enemies, and can\'t be targeted by enemies again for #6sec.#\r' +
           'Only applies in PvP.',
@@ -361,13 +334,13 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: DoubleTimeFlame,
+        icon: Icon.DoubleTimeFlame,
         description: 'Dramatically increases the caster\'s Move Speed for a short time, growing up to #+130%# Move Speed over #2sec#.\r' +
           'The duration resets, should the caster suffer a direct attack.',
       },
       {
         element: ELEMENT.WAVE,
-        icon: DoubleTimeWave,
+        icon: Icon.DoubleTimeWave,
         cooldown: 40,
         description: 'Dramatically increases the caster\'s Move Speed for a short time, growing up to #+80%# Move Speed over #1 sec.#\r' +
           'Playing a perform skill increases the duration up to #5 sec.#',
@@ -379,14 +352,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: CriticalDiscordFlame,
+        icon: Icon.CriticalDiscordFlame,
         damage: { base: 345, attack: ATTACK.MAGIC, ratio: 65 },
         description: 'Deals ${damage} Magic Damage.\r' +
           'Inflicts #${effects[0]}# on hit, decreasing affected enemies\' Physical and Magic Defense #-15%# for #3sec.#',
       },
       {
         element: ELEMENT.QUAKE,
-        icon: CriticalDiscordQuake,
+        icon: Icon.CriticalDiscordQuake,
         effectRange: 6,
         damage: { base: 345, attack: ATTACK.MAGIC, ratio: 65 },
         description: 'Deals ${damage} Magic Damage in a #${effectRange}m# area.\r' +

@@ -1,10 +1,10 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
+import Ability from 'components/Ability';
 import MapEmbed from 'components/MapEmbed';
+import SkillLink from 'components/Skill/SkillLink';
 import TabContent from 'components/TabContent';
 import { ZONE } from 'constants/map';
-import Ability from 'components/Ability';
-import SkillLink from 'components/Skill/SkillLink';
+import React from 'react';
 
 const name = 'Hounds and Nightmares';
 

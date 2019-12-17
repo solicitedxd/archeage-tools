@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   Table,
   TableBody,
@@ -8,10 +7,11 @@ import {
   Typography,
 } from '@material-ui/core';
 import Ability from 'components/Ability';
-import SkillLink from 'components/Skill/SkillLink';
 import Item from 'components/Item';
-import ITEM from 'data/items';
+import SkillLink from 'components/Skill/SkillLink';
 import { ELEMENT } from 'constants/skills';
+import ITEM from 'data/items';
+import React from 'react';
 
 const name = 'Noryette Challenge';
 

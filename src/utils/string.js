@@ -2,7 +2,7 @@ export const substitute = (template, obj) => template.replace(/\${([a-z0-9_]+)(\
   if (_) {
     return obj[capture] ? obj[capture][index] : null;
   } else {
-    return obj[capture]
+    return obj[capture];
   }
 });
 
@@ -26,4 +26,24 @@ export const validateQuantity = (min, max) => (value) => {
   if (value <= min) value = min;
   if (value > max) value = max;
   return value;
+};
+
+export const pascalCase = (s) => {
+  return s.replace(/(\w)(\w*)/g, (g0, g1, g2) => {
+    return g1.toUpperCase() + g2.toLowerCase();
+  }).replace(/([^\w])/g, () => '');
+};
+
+export const slug = (text) => {
+  return text.toLowerCase()
+  .replace(/[^\w ]+/g, '')
+  .split(' ')
+  .join('-');
+};
+
+export const unslug = (slug) => {
+  return slug.toLowerCase()
+  .split('-')
+  .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+  .join('');
 };

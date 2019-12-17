@@ -1,6 +1,3 @@
-import React, { Component } from 'react';
-import { array } from 'react-proptypes';
-import { connect } from 'react-redux';
 import {
   Button,
   ButtonGroup,
@@ -10,7 +7,6 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import cn from 'classnames';
 import {
   filterComplete,
   filterContinents,
@@ -18,15 +14,22 @@ import {
   filterRewards,
   filterTypes,
   resetQuests,
-  setQuestStatus,
   setHideMode,
+  setQuestStatus,
 } from 'actions/dailies';
+import cn from 'classnames';
+import {
+  CURRENCY_HIDE,
+  DAILY_TYPE,
+} from 'constants/dailies';
+import { CURRENCY } from 'constants/items';
 import {
   CONTINENT,
   FACTION,
-  REWARD,
-  TYPE,
-} from 'constants/dailies';
+} from 'constants/map';
+import React, { Component } from 'react';
+import { array } from 'react-proptypes';
+import { connect } from 'react-redux';
 import RewardsDisplay from './RewardsDisplay';
 
 class Filters extends Component {
@@ -125,8 +128,8 @@ class Filters extends Component {
         </div>
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Rewards</Typography>
-          <div className="filter-group rewards">
-            {Object.values(REWARD).sort().map(reward => (
+          <div className="filter-group rewards grid">
+            {Object.values(CURRENCY).filter(r => !CURRENCY_HIDE.includes(r)).sort().map(reward => (
               <Tooltip title={reward} key={reward}>
                 <Button
                   variant={rewards.includes(reward) ? 'contained' : 'outlined'}
@@ -142,7 +145,7 @@ class Filters extends Component {
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Quest Types</Typography>
           <div className="filter-group">
-            {Object.values(TYPE).sort().map(type => (
+            {Object.values(DAILY_TYPE).sort().map(type => (
               <Button
                 key={type}
                 variant={types.includes(type) ? 'contained' : 'outlined'}

@@ -1,17 +1,18 @@
+import Dailies from 'components/pages/Dailies';
+import Guides from 'components/pages/Guides';
+import GuideViewer from 'components/pages/GuideViewer';
+import Home from 'components/pages/Home';
+import Main from 'components/pages/Main';
+import Mounts from 'components/pages/Mounts';
+import NotFound from 'components/pages/NotFound';
+import Calendar from 'components/pages/Schedule';
+import Skills from 'components/pages/Skills';
+import Taxes from 'components/pages/Taxes';
+import Thunderstruck from 'components/pages/Thunderstruck';
+import TradePacks from 'components/pages/TradePacks';
 import React from 'react';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
-import Main from 'components/pages/Main';
-import Home from 'components/pages/Home';
-import Dailies from 'components/pages/Dailies';
-import Skills from 'components/pages/Skills';
-import Calendar from 'components/pages/Calendar';
-import Taxes from 'components/pages/Taxes';
-import Thunderstruck from 'components/pages/Thunderstruck';
-import Guides from 'components/pages/Guides';
-import GuideViewer from 'components/pages/GuideViewer';
-import TradePacks from 'components/pages/TradePacks';
-import NotFound from 'components/pages/NotFound';
 
 export default (
   <Main>
@@ -24,6 +25,7 @@ export default (
       <Route path="/guides" exact component={Guides} />
       <Route path="/guides/:guide?" component={GuideViewer} />
       <Route path="/trade-packs" component={TradePacks} />
+      <Route path="/mounts/:mount?" component={Mounts} />
       <Route path="/" exact component={Home} />
       <Route component={NotFound} />
     </Switch>

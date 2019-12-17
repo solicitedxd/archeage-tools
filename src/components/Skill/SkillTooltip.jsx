@@ -1,21 +1,21 @@
+import {
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import cn from 'classnames';
+import EffectIcon from 'components/Skill/EffectIcon';
+import {
+  ELEMENT,
+  GLOBAL_CD,
+  SKILLMOD,
+} from 'constants/skills';
+import SKILLSET from 'data/skillsets';
 import React from 'react';
 import {
   bool,
   number,
   oneOf,
 } from 'react-proptypes';
-import cn from 'classnames';
-import {
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
-import {
-  ELEMENT,
-  GLOBAL_CD,
-  SKILLMOD,
-} from 'constants/skills';
-import EffectIcon from 'components/Skill/EffectIcon';
-import SKILLSET from 'data/skillsets';
 import {
   applyTooltipColor,
   deepCopy,
@@ -24,12 +24,13 @@ import {
 } from 'utils/skills';
 import { substitute } from 'utils/string';
 
-const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPoints }) => {
+const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPoints, requiredLevel }) => {
   const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset);
   if (!skillSetKey) return;
 
   const skillSet = SKILLSET[skillSetKey];
   const skills = passive ? skillSet.passives : skillSet.skills;
+  const basic = skillSetKey === 'BASIC';
 
   let skill = deepCopy(skills[skillId]);
   // validate skill exists
@@ -50,7 +51,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
     }
   }
 
-  if (!passive && spentPoints >= 2) {
+  if (!passive && spentPoints >= 2 && skillSet.passives) {
     const percentIncreases = {};
     skillSet.passives.forEach((passive, index) => {
       if (!passive.skillMod) return;
@@ -195,13 +196,15 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
         <div className="skill-name">
           {!passive &&
           <div className="skill-types">
-            <Typography variant="h5" component="h5" className="tt-orange skillset">{skillsetName}</Typography>
-            <Typography variant="h5" component="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'tt-orange'
-              : 'tt-yellow')}>{element}</Typography>
+            <Typography variant="h5" className="tt-orange skillset">{skillsetName}</Typography>
+            {!basic &&
+            <Typography variant="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'tt-orange'
+              : 'tt-yellow')}>{element}</Typography>}
           </div>}
-          {passive && <Typography variant="h5" component="h5" className="passive-skill">Passive Skill</Typography>}
-          <Typography variant="h4" component="h4"
-                      className="passive-skill">{name}{!passive && ` (Rank ${rank || 1})`}</Typography>
+          {passive && <Typography variant="h5" className="passive-skill">Passive Skill</Typography>}
+          <Typography variant="h4" className="passive-skill">
+            {name}{!passive && !basic && ` (Rank ${rank || 1})`}
+          </Typography>
         </div>
       </section>
       {!passive &&
@@ -242,10 +245,11 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
           )}
         </div>
       </section>}
-      {disabled &&
+      {(disabled || requiredLevel) &&
       <section className="skill-requirements">
-        <p>Learning Req.: [{skillsetName}] {passive ? skillId + 2 : getPointReq(skillId)} or
-          higher</p>
+        {disabled &&
+        <p>Learning Req.: [{skillsetName}] {passive ? skillId + 2 : getPointReq(skillId)} or higher</p>}
+        {requiredLevel && <p>Pet must be Lv{requiredLevel}+ to use.</p>}
       </section>
       }
     </div>
@@ -286,6 +290,7 @@ SkillTooltip.propTypes = {
   disabled: bool,
   spentPoints: number,
   disableTooltip: bool,
+  requiredLevel: number,
 };
 
 SkillTooltip.defaultProps = {
@@ -294,6 +299,7 @@ SkillTooltip.defaultProps = {
   disabled: false,
   spentPoints: 0,
   disableTooltip: false,
+  requiredLevel: null,
 };
 
 export default SkillTooltip;

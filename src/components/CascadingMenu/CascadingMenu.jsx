@@ -1,5 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import {
   Menu,
   MenuItem,
@@ -8,6 +6,8 @@ import {
   withStyles,
 } from '@material-ui/core';
 import { ArrowLeft } from '@material-ui/icons';
+import PropTypes from 'prop-types';
+import React from 'react';
 import styles from './CascadingMenu.styles';
 
 // source: https://github.com/mui-org/material-ui/issues/11723

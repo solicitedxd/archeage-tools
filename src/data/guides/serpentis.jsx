@@ -1,11 +1,11 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
-import MapEmbed from 'components/MapEmbed';
-import { ZONE } from 'constants/map';
-import SkillLink from 'components/Skill/SkillLink';
 import Ability from 'components/Ability';
 import Item from 'components/Item';
+import MapEmbed from 'components/MapEmbed';
+import SkillLink from 'components/Skill/SkillLink';
+import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
+import React from 'react';
 
 const name = 'Serpentis';
 
@@ -231,7 +231,8 @@ const sections = [
         counters={[
           'Briefly walk into a  to cleanse the debuff. Don\'t stay too long; when the box disappears it will kill you instead.',
           'Spread from other players, as the landing area of the effect can hit multiple players',
-          <Typography component="span">Use <SkillLink skillset="Shadowplay" name="Stealth" /> during the cast to prevent it from targeting you.</Typography>,
+          <Typography component="span">Use <SkillLink skillset="Shadowplay" name="Stealth" /> during the cast to prevent
+            it from targeting you.</Typography>,
         ]}
         deadly
       />,

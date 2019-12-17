@@ -1,31 +1,14 @@
-import BladeFlurryIcon from 'images/skill/swiftblade/Blade_Flurry.png';
-import CrescentSliceIcon from 'images/skill/swiftblade/Crescent_Slice.png';
-import SinisterStrikeIcon from 'images/skill/swiftblade/Sinister_Strike.png';
-import BlinkIcon from 'images/skill/swiftblade/Blink.png';
-import RelentlessAssaultIcon from 'images/skill/swiftblade/Relentless_Assault.png';
-import ReverberateIcon from 'images/skill/swiftblade/Reverberate.png';
-import EntangleIcon from 'images/skill/swiftblade/Entangle.png';
-import DuskShroudIcon from 'images/skill/swiftblade/Dusk_Shroud.png';
-import FleetingFootstepsIcon from 'images/skill/swiftblade/Fleeting_Footsteps.png';
-import BladeblastIcon from 'images/skill/swiftblade/Bladeblast.png';
-import PrimalStrikeIcon from 'images/skill/swiftblade/Primal_Strike.png';
-import TwinShadowIcon from 'images/skill/swiftblade/Twin_Shadow.png';
-import TwinStrikeMasteryIcon from 'images/skill/swiftblade/Twin_Strike_Mastery.png';
-import InsightoftheHawkIcon from 'images/skill/swiftblade/Insight_of_the_Hawk.png';
-import PredatoryInstinctIcon from 'images/skill/swiftblade/Predatory_Instinct.png';
-import AdrenalineRushIcon from 'images/skill/swiftblade/Adrenaline_Rush.png';
-import WindwalkerIcon from 'images/skill/swiftblade/Windwalker.png';
-import RendingMasteryIcon from 'images/skill/swiftblade/Rending_Mastery.png';
 import {
   ATTACK,
   BUFF,
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import * as Icon from '../../images/skill/swiftblade/';
 
 const skills = Object.freeze([
   {
-    icon: BladeFlurryIcon,
+    icon: Icon.BladeFlurry,
     name: 'Blade Flurry',
     mana: 12,
     effectRange: 4,
@@ -55,7 +38,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: CrescentSliceIcon,
+    icon: Icon.CrescentSlice,
     name: 'Crescent Slice',
     rank: 7,
     mana: 132,
@@ -83,7 +66,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SinisterStrikeIcon,
+    icon: Icon.SinisterStrike,
     name: 'Sinister Strike',
     rank: 8,
     mana: 104,
@@ -108,7 +91,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BlinkIcon,
+    icon: Icon.Blink,
     name: 'Blink',
     mana: 23,
     range: [0, 9],
@@ -136,7 +119,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: RelentlessAssaultIcon,
+    icon: Icon.RelentlessAssault,
     name: 'Relentless Assault',
     rank: 5,
     mana: 277,
@@ -161,7 +144,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ReverberateIcon,
+    icon: Icon.Reverberate,
     name: 'Reverberate',
     cooldown: 60,
     description: 'Copies the previously used Swiftblade skill, allowing the caster to reuse it, if cast within #3 seconds#.\r' +
@@ -169,7 +152,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: EntangleIcon,
+    icon: Icon.Entangle,
     name: 'Entangle',
     rank: 4,
     mana: 51,
@@ -181,7 +164,7 @@ const skills = Object.freeze([
     unblockable: true,
   },
   {
-    icon: DuskShroudIcon,
+    icon: Icon.DuskShroud,
     name: 'Dusk Shroud',
     mana: 241,
     range: [0, 12],
@@ -201,7 +184,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FleetingFootstepsIcon,
+    icon: Icon.FleetingFootsteps,
     name: 'Fleeting Footsteps',
     mana: 76,
     cooldown: 55,
@@ -210,7 +193,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.REDUCED_USEWHILE,
   },
   {
-    icon: BladeblastIcon,
+    icon: Icon.Bladeblast,
     name: 'Bladeblast',
     rank: 3,
     mana: 183,
@@ -234,7 +217,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: PrimalStrikeIcon,
+    icon: Icon.PrimalStrike,
     name: 'Primal Strike',
     mana: 65,
     cooldown: 45,
@@ -243,7 +226,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NONE,
   },
   {
-    icon: TwinShadowIcon,
+    icon: Icon.TwinShadow,
     name: 'Twin Shadow Strike',
     mana: 165,
     range: [0, 5],
@@ -264,17 +247,17 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: TwinStrikeMasteryIcon,
+    icon: Icon.TwinStrikeMastery,
     name: 'Twin Strike Mastery',
     description: 'Equipping Dual-Wield Weapons decreases the Cooldown of Swiftblade Skills #-30%#.',
   },
   {
-    icon: InsightoftheHawkIcon,
+    icon: Icon.InsightOfTheHawk,
     name: 'Insight of the Hawk',
     description: 'Critical Hits grant #Insight of the Hawk# for #5 sec#, which teleports the caster behind the target, the next time #Sinister Strike# is used.',
   },
   {
-    icon: PredatoryInstinctIcon,
+    icon: Icon.PredatoryInstinct,
     name: 'Predatory Instinct',
     description: 'Increases Swiftblade Skill Damage #+10%#.',
     skillMod: [
@@ -286,7 +269,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: AdrenalineRushIcon,
+    icon: Icon.AdrenalineRush,
     name: 'Adrenaline Rush',
     description: 'Attacking a target under the effect of Instinct triggers an #Adrenaline Rush#.\r\r' +
       '#Adrenaline Rush#:\r' +
@@ -296,7 +279,7 @@ export const passives = Object.freeze([
       '- Stacks up to #6 times#.',
   },
   {
-    icon: WindwalkerIcon,
+    icon: Icon.Windwalker,
     name: 'Windwalker',
     description: 'Increases the skill range of #Bladeblast and Blink +100%#.',
     skillMod: [
@@ -313,7 +296,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: RendingMasteryIcon,
+    icon: Icon.RendingMastery,
     name: 'Rending Mastery',
     description: 'Equipping Dual-Wield Weapons increases the Melee Critical Hit Damage #+16%#.',
   },

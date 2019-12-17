@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
 import {
   AppBar,
   Paper,
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { setTitle } from 'utils/string';
 import Link from 'components/Link';
+import React, { Component } from 'react';
+import { setTitle } from 'utils/string';
 
 class NotFound extends Component {
   static propTypes = {};
@@ -18,7 +18,7 @@ class NotFound extends Component {
   render() {
     setTitle('Not Found');
     return (
-      <div className="calendar-container">
+      <div className="tool-container">
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">

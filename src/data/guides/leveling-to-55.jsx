@@ -1,12 +1,12 @@
-import React from 'react';
 import { Typography } from '@material-ui/core';
-import ITEM from 'data/items';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
-import TabContent from 'components/TabContent/TabContent';
-import MapEmbed from 'components/MapEmbed';
-import { ZONE } from 'constants/map';
 import Link from 'components/Link';
+import MapEmbed from 'components/MapEmbed';
+import TabContent from 'components/TabContent/TabContent';
+import { ZONE } from 'constants/map';
+import ITEM from 'data/items';
+import React from 'react';
 
 const name = 'Leveling to 55';
 

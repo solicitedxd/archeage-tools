@@ -1,4 +1,4 @@
-import classes from 'constants/classes';
+import classes from 'data/classes';
 import { substitute } from 'utils/string';
 
 export const findClassName = (skillset0, skillset1, skillset2) => {
@@ -99,6 +99,7 @@ export const compareBuff = (buff1, buff2) => {
 export const applyTooltipColor = (string) => string
 .replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
 .replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
+.replace(/(\*([^*]+)\*)/g, (m, g0, text) => `<span class="tt-blue">${text}</span>`)
 .replace(/\r/g, () => '<br />');
 
 export const prepareComboText = (combo, skill) => {

@@ -14,7 +14,7 @@ const src = join(root, 'src');
 
 module.exports = {
   entry: [
-    join(src, 'index')
+    join(src, 'index'),
   ],
   mode: 'production',
   output: {

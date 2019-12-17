@@ -1,32 +1,3 @@
-import EndlessArrowsIcon from 'images/skill/archery/Endless_Arrows.png';
-import ChargedBoltIcon from 'images/skill/archery/Charged_Bolt.png';
-import SteadyShootingIcon from 'images/skill/archery/Steady_Shooting.png';
-import FendingArrowIcon from 'images/skill/archery/Fending_Arrow.png';
-import BlazingArrowIcon from 'images/skill/archery/Blazing_Arrow.png';
-import SnareIcon from 'images/skill/archery/Snare.png';
-import DeadeyeIcon from 'images/skill/archery/Deadeye.png';
-import ConcussiveArrowIcon from 'images/skill/archery/Concussive_Arrow.png';
-import HuntersGuileIcon from 'images/skill/archery/Hunters_Guile.png';
-import DoubleRecurveIcon from 'images/skill/archery/Double_Recurve.png';
-import MissileRainIcon from 'images/skill/archery/Missile_Rain.png';
-import SnipeIcon from 'images/skill/archery/Snipe.png';
-import WildInstinctsIcon from 'images/skill/archery/Wild_Instincts.png';
-import RelentlessIcon from 'images/skill/archery/Relentless.png';
-import SharpshootingIcon from 'images/skill/archery/Sharpshooting.png';
-import FeralClawsIcon from 'images/skill/archery/Feral_Claws.png';
-import MarksmanIcon from 'images/skill/archery/Marksman.png';
-import EagleEyesIcon from 'images/skill/archery/Eagle_Eyes.png';
-import ChargedBoltFlame from 'images/skill/archery/Charged_Bolt_Flame.png';
-import ChargedBoltGale from 'images/skill/archery/Charged_Bolt_Gale.png';
-import ConcussiveArrowFlame from 'images/skill/archery/Concussive_Arrow_Flame.png';
-import ConcussiveArrowMist from 'images/skill/archery/Concussive_Arrow_Mist.png';
-import MissileRainFlame from 'images/skill/archery/Missile_Rain_Flame.png';
-import MissileRainMist from 'images/skill/archery/Missile_Rain_Mist.png';
-import EndlessArrowsFlame from 'images/skill/archery/Endless_arrows_Flame.png';
-import EndlessArrowsStone from 'images/skill/archery/Endless_Arrows_Stone.png';
-import SnipeFlame from 'images/skill/archery/Snipe_Flame.png';
-import SnipeLightning from 'images/skill/archery/Snipe_Lightning.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/archery/';
 
 const skills = Object.freeze([
   {
-    icon: EndlessArrowsIcon,
+    icon: Icon.EndlessArrows,
     name: 'Endless Arrows',
     mana: 5,
     range: [0, 25],
@@ -53,7 +26,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: ChargedBoltIcon,
+    icon: Icon.ChargedBolt,
     name: 'Charged Bolt',
     rank: 18,
     mana: 62,
@@ -84,7 +57,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SteadyShootingIcon,
+    icon: Icon.SteadyShooting,
     name: 'Steady Shooting',
     rank: 5,
     mana: 65,
@@ -98,7 +71,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: FendingArrowIcon,
+    icon: Icon.FendingArrow,
     name: 'Fending Arrow',
     rank: 7,
     mana: 66,
@@ -121,7 +94,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BlazingArrowIcon,
+    icon: Icon.BlazingArrow,
     name: 'Blazing Arrow',
     rank: 6,
     mana: 72,
@@ -160,7 +133,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: SnareIcon,
+    icon: Icon.Snare,
     name: 'Snare',
     rank: 6,
     mana: 102,
@@ -178,7 +151,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: DeadeyeIcon,
+    icon: Icon.Deadeye,
     name: 'Deadeye',
     rank: 4,
     mana: 69,
@@ -190,7 +163,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: ConcussiveArrowIcon,
+    icon: Icon.ConcussiveArrow,
     name: 'Concussive Arrow',
     rank: 4,
     mana: 327,
@@ -217,7 +190,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: HuntersGuileIcon,
+    icon: Icon.HuntersGuile,
     name: 'Hunter\'s Guile',
     mana: 71,
     cooldown: 60,
@@ -227,7 +200,7 @@ const skills = Object.freeze([
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
-    icon: DoubleRecurveIcon,
+    icon: Icon.DoubleRecurve,
     name: 'Double Recurve',
     rank: 2,
     mana: 110,
@@ -239,7 +212,7 @@ const skills = Object.freeze([
       'Can be charged twice.',
   },
   {
-    icon: MissileRainIcon,
+    icon: Icon.MissileRain,
     name: 'Missile Rain',
     mana: 173,
     range: [10, 50],
@@ -251,7 +224,7 @@ const skills = Object.freeze([
       'This skill can hit the same enemy multiple times.',
   },
   {
-    icon: SnipeIcon,
+    icon: Icon.Snipe,
     name: 'Snipe',
     mana: 299,
     range: [0, 45],
@@ -271,22 +244,22 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: WildInstinctsIcon,
+    icon: Icon.WildInstincts,
     name: 'Wild Instincts',
     description: 'Increases Move Speed +#8%.#',
   },
   {
-    icon: RelentlessIcon,
+    icon: Icon.Relentless,
     name: 'Relentless',
     description: 'Decreases the Mana Cost of Archery skill #-10%# while under the effect of #Steady Shooting or Deadeye#.',
   },
   {
-    icon: SharpshootingIcon,
+    icon: Icon.Sharpshooting,
     name: 'Sharpshooting',
     description: '#Archery# attacks gain a "sweet spot" of #30m,# at which they deal #+30%# bonus damage.',
   },
   {
-    icon: FeralClawsIcon,
+    icon: Icon.FeralClaws,
     name: 'Feral Claws',
     description: '#Archery# critical attacks grant you one stack of #Feral Mark.# Max 1 stack per second.\r\r' +
       '#Feral Mark:#\r' +
@@ -296,7 +269,7 @@ export const passives = Object.freeze([
       '- Stacks up to #5 times.#',
   },
   {
-    icon: MarksmanIcon,
+    icon: Icon.Marksman,
     name: 'Marksman',
     description: 'Increases Ranged Skill Damage from Archery Skills #+10%.#',
     skillMod: [
@@ -308,7 +281,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: EagleEyesIcon,
+    icon: Icon.EagleEyes,
     name: 'Eagle Eyes',
     description: 'Increases Ranged Critical Rate #+9%.#',
   },
@@ -320,14 +293,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ChargedBoltFlame,
+        icon: Icon.ChargedBoltFlame,
         range: [0, 17],
         description: 'Fires a crippling arrow at an enemy, dealing ${damage} Ranged Damage and inflicting Slow for #3sec.# Decreases Move Speed #-30%#.\r' +
           'This skill\'s range is reduced #-8m# compared to regular Charged Bolt, but it deals +30% damage to targets within #8m.#',
       },
       {
         element: ELEMENT.GALE,
-        icon: ChargedBoltGale,
+        icon: Icon.ChargedBoltGale,
         mana: 38,
         cooldown: 6,
         damage: { base: 538, attack: ATTACK.RANGED, ratio: 160 },
@@ -341,7 +314,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: ConcussiveArrowFlame,
+        icon: Icon.ConcussiveArrowFlame,
         damage: { base: 1148, attack: ATTACK.RANGED, ratio: 440 },
         castTime: 4,
         description: 'Prepares an enhanced explosive arrow, dealing up to ${damage} Ranged Damage to all enemies within a #${effectRange}m# radius of the primary target.\r\r' +
@@ -360,7 +333,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: ConcussiveArrowMist,
+        icon: Icon.ConcussiveArrowMist,
         range: [0],
         castTime: 0,
         damage: { base: 1225, attack: ATTACK.RANGED, ratio: 240 },
@@ -378,7 +351,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: MissileRainFlame,
+        icon: Icon.MissileRainFlame,
         range: [10, 30],
         effectRange: 4,
         castTime: 3,
@@ -388,7 +361,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: MissileRainMist,
+        icon: Icon.MissileRainMist,
         range: [0, 25],
         effectRange: null,
         damage: { base: 79, attack: ATTACK.RANGED, ratio: 60 },
@@ -405,14 +378,14 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: EndlessArrowsFlame,
+        icon: Icon.EndlessArrowsFlame,
         mana: 24,
         damage: { base: 0, attack: ATTACK.RANGED, ratio: 170 },
         globalCooldown: GLOBAL_CD.INCREASED,
       },
       {
         element: ELEMENT.STONE,
-        icon: EndlessArrowsStone,
+        icon: Icon.EndlessArrowsStone,
         damage: { base: 0, attack: ATTACK.RANGED, ratio: 43 },
         description: 'Unleash a constant stream of arrows at a single enemy, dealing ${damage} Ranged Damage per shot.\r' +
           'Inflicts the #Stone Endless Arrows# effect on the target, which Inflicts #Trip# on the target for #2 sec.#, at the #50th stack#, preventing them to move or use skills. for #3sec#.',
@@ -424,7 +397,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: SnipeFlame,
+        icon: Icon.SnipeFlame,
         range: [0, 35],
         damage: { base: 2016, attack: ATTACK.RANGED, ratio: 600 },
         description: 'Shoots a powerful beam of light at a chose target, dealing ${damage} Ranged Damage.\r' +
@@ -432,7 +405,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.LIGHTNING,
-        icon: SnipeLightning,
+        icon: Icon.SnipeLightning,
         castTime: 5,
         description: 'Shoots a powerful beam of light at a chosen target, dealing ${damage} Ranged Damage to it and all enemies in the beam\'s path.\r' +
           'Use this skill again during channeling to release the arrow beam early.\r' +

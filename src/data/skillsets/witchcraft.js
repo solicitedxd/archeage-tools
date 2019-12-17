@@ -1,32 +1,3 @@
-import EarthenGripIcon from 'images/skill/witchcraft/Earthen_Grip.png';
-import EnervateIcon from 'images/skill/witchcraft/Enervate.png';
-import BubbleTrapIcon from 'images/skill/witchcraft/Bubble_Trap.png';
-import InsidiousWhisperIcon from 'images/skill/witchcraft/Insidious_Whisper.png';
-import MirrorWarpIcon from 'images/skill/witchcraft/Mirror_Warp.png';
-import PurgeIcon from 'images/skill/witchcraft/Purge.png';
-import LassitudeIcon from 'images/skill/witchcraft/Lassitude.png';
-import StillnessIcon from 'images/skill/witchcraft/Stillness.png';
-import DahutasBreathIcon from 'images/skill/witchcraft/Dahutas_Breath.png';
-import FocalConcussionIcon from 'images/skill/witchcraft/Focal_Concussion.png';
-import BansheeWailIcon from 'images/skill/witchcraft/Banshee_Wail.png';
-import FiendsKnellIcon from 'images/skill/witchcraft/Fiends_Knell.png';
-import FoldingTimeIcon from 'images/skill/witchcraft/Folding_Time.png';
-import HomingHexesIcon from 'images/skill/witchcraft/Homing_Hexes.png';
-import IllusionsFavorIcon from 'images/skill/witchcraft/Illusions_Favor.png';
-import ExploitationIcon from 'images/skill/witchcraft/Exploitation.png';
-import AugmentWitchcraftIcon from 'images/skill/witchcraft/Augment_Witchcraft.png';
-import EnshroudIcon from 'images/skill/witchcraft/Enshroud.png';
-import EarthenGripLightning from 'images/skill/witchcraft/Earthen_Grip_Lightning.png';
-import EarthenGripQuake from 'images/skill/witchcraft/Earthen_Grip_Quake.png';
-import BubbleTrapGale from 'images/skill/witchcraft/Bubble_Trap_Gale.png';
-import BubbleTrapMist from 'images/skill/witchcraft/Bubble_Trap_Mist.png';
-import BansheeWailMist from 'images/skill/witchcraft/Banshee_Wail_Mist.png';
-import BansheeWailStone from 'images/skill/witchcraft/Banshee_Wail_Stone.png';
-import MirrorWarpFlame from 'images/skill/witchcraft/Mirror_Warp_Flame.png';
-import MirrorWarpStone from 'images/skill/witchcraft/Mirror_Warp_Stone.png';
-import DahutasBreathMist from 'images/skill/witchcraft/Dahutas_Breath_Mist.png';
-import DahutasBreathQuake from 'images/skill/witchcraft/Dahutas_Breath_Quake.png';
-import { getSkillIdByName } from 'utils/skillsets';
 import {
   ATTACK,
   BUFF,
@@ -34,10 +5,12 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
+import * as Icon from '../../images/skill/witchcraft/';
 
 const skills = Object.freeze([
   {
-    icon: EarthenGripIcon,
+    icon: Icon.EarthenGrip,
     name: 'Earthen Grip',
     rank: 14,
     mana: 167,
@@ -64,7 +37,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: EnervateIcon,
+    icon: Icon.Enervate,
     name: 'Enervate',
     rank: 14,
     mana: 55,
@@ -81,7 +54,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: BubbleTrapIcon,
+    icon: Icon.BubbleTrap,
     name: 'Bubble Trap',
     rank: 5,
     mana: 108,
@@ -106,7 +79,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: InsidiousWhisperIcon,
+    icon: Icon.InsidiousWhisper,
     name: 'Insidious Whisper',
     rank: 5,
     mana: 71,
@@ -124,7 +97,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: MirrorWarpIcon,
+    icon: Icon.MirrorWarp,
     name: 'Mirror Warp',
     mana: 29,
     cooldown: 30,
@@ -141,7 +114,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: PurgeIcon,
+    icon: Icon.Purge,
     name: 'Purge',
     mana: 59,
     range: [0, 20],
@@ -161,7 +134,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: LassitudeIcon,
+    icon: Icon.Lassitude,
     name: 'Lassitude',
     mana: 55,
     range: [0, 10],
@@ -179,7 +152,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: StillnessIcon,
+    icon: Icon.Stillness,
     name: 'Stillness',
     ran: 52,
     range: [0, 20],
@@ -191,7 +164,7 @@ const skills = Object.freeze([
       'Removes all enemy Songcraft effects in the area.',
   },
   {
-    icon: DahutasBreathIcon,
+    icon: Icon.DahutasBreath,
     name: 'Dahuta\'s Breath',
     rank: 2,
     mana: 454,
@@ -209,7 +182,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FocalConcussionIcon,
+    icon: Icon.FocalConcussion,
     name: 'Focal Concussion',
     rank: 4,
     mana: 178,
@@ -222,7 +195,7 @@ const skills = Object.freeze([
       'Sleep duration reduced -50% in PvP.',
   },
   {
-    icon: BansheeWailIcon,
+    icon: Icon.BansheeWail,
     name: 'Banshee Wail',
     mana: 159,
     effectRange: 5,
@@ -240,7 +213,7 @@ const skills = Object.freeze([
     ],
   },
   {
-    icon: FiendsKnellIcon,
+    icon: Icon.FiendsKnell,
     name: 'Fiend\'s Knell',
     mana: 1420,
     range: [0, 30],
@@ -270,7 +243,7 @@ const skills = Object.freeze([
 
 export const passives = Object.freeze([
   {
-    icon: FoldingTimeIcon,
+    icon: Icon.FoldingTime,
     name: 'Folding Time',
     description: 'Decreases Cast Time for all Skills #-4%#\r' +
       'Increases Attack Speed #+20#.',
@@ -283,12 +256,12 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: HomingHexesIcon,
+    icon: Icon.HomingHexes,
     name: 'Homing Hexes',
     description: '#Insidious Whisper, Banshee Wail, Bubble Trap,# and #Lassitude# never miss.',
   },
   {
-    icon: IllusionsFavorIcon,
+    icon: Icon.IllusionsFavor,
     name: 'Illusion\'s Favor',
     description: 'Decreases the Cast Time for #Earthen Grip, Insidious Whisper, Stillness, Bubble Trap,# and #Fiend\'s Knell -0.5 sec.#',
     skillMod: [
@@ -300,7 +273,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: ExploitationIcon,
+    icon: Icon.Exploitation,
     name: 'Exploitation',
     description: 'Gain a stack of #Exploitation# for each enemy you inflict with fear using Banshee\'s Wail or Insidious Whisper.\r\r' +
       '#Exploitation:#\r' +
@@ -311,7 +284,7 @@ export const passives = Object.freeze([
       '- While under the effects of Exploitation, both spells will deal #90%# of their damage as mana burn instead of normal damage, restoring an equal amount of mana to you.',
   },
   {
-    icon: AugmentWitchcraftIcon,
+    icon: Icon.AugmentWitchcraft,
     name: 'Augment Witchcraft',
     description: 'Increases the duration of #Earthen Grip, Bubble Trap, Insidious Whisper, Lassitude,# and #Banshee Wail# effects #+20%.#',
     skillMod: [
@@ -323,7 +296,7 @@ export const passives = Object.freeze([
     ],
   },
   {
-    icon: EnshroudIcon,
+    icon: Icon.Enshroud,
     name: 'Enshroud',
     description: 'Decreases Witchcraft Skill Cooldowns #-30%.#',
     skillMod: [
@@ -342,7 +315,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.LIGHTNING,
-        icon: EarthenGripLightning,
+        icon: Icon.EarthenGripLightning,
         range: [0, 12],
         castTime: 0.5,
         description: 'Calls forth a hand from the ground to hold an enemy. Inflicts Snare on the target, preventing them from moving or turning for #${duration}sec.#\r' +
@@ -353,7 +326,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.QUAKE,
-        icon: EarthenGripQuake,
+        icon: Icon.EarthenGripQuake,
         range: [0],
         effectRange: 8,
         damage: { base: 1125, attack: ATTACK.MAGIC, ratio: 100 },
@@ -369,7 +342,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.GALE,
-        icon: BubbleTrapGale,
+        icon: Icon.BubbleTrapGale,
         range: [0, 8],
         castTime: 2,
         cooldown: 21,
@@ -392,7 +365,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.MIST,
-        icon: BubbleTrapMist,
+        icon: Icon.BubbleTrapMist,
         mana: 216,
         effectRange: 4,
         effects: [],
@@ -411,7 +384,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: BansheeWailMist,
+        icon: Icon.BansheeWailMist,
         range: [0, 20],
         description: 'Summons a Phantasm at the target location for #7 sec.# The Phantasm inflicts Fear on #up to 8# enemies within a #5m# radius every second, causing them to run in random directions for up to #3.8sec# and preventing all other actions except Evade, Block, and Parry.\r' +
           'Being damaged by a direct attack has a chance to free the target early, but debuffs that deal damage over time will not end this effect.\r' +
@@ -421,7 +394,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: BansheeWailStone,
+        icon: Icon.BansheeWailStone,
         effects: [BUFF.FEARED, BUFF.SLOWED],
         duration: 2.8,
         description: 'Inflicts Fear and Slow on #up to 8# nearby enemies for #${duration}sec#. Slows their Move Speed #-40%#, causes them to run in random directions, and prevents all other actions, except Evade, Block, and Parry.\r' +
@@ -435,7 +408,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.FLAME,
-        icon: MirrorWarpFlame,
+        icon: Icon.MirrorWarpFlame,
         cooldown: 40,
         description: 'Gives the caster the option to teleport 8m to the right or left multiple times for #2sec#.\r' +
           'Teleports the caster #8m# to the left or right.\r' +
@@ -444,7 +417,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.STONE,
-        icon: MirrorWarpStone,
+        icon: Icon.MirrorWarpStone,
         description: 'Gives the caster the option to teleport 15m to the right or left.\r' +
           'Temporarily escapes enemy targeting during PvP.',
         noWalls: true,
@@ -463,7 +436,7 @@ export const ancestrals = Object.freeze([
     variants: [
       {
         element: ELEMENT.MIST,
-        icon: DahutasBreathMist,
+        icon: Icon.DahutasBreathMist,
         range: [8, 20],
         effectRange: 8,
         description: 'Sends forth a wave that deals ${damage} Magic Damage and pulls up to #8 enemies 10m# towards the castern.',
@@ -471,7 +444,7 @@ export const ancestrals = Object.freeze([
       },
       {
         element: ELEMENT.QUAKE,
-        icon: DahutasBreathQuake,
+        icon: Icon.DahutasBreathQuake,
         description: 'Sends forth a wave that deals ${damage} Magic Damage and pushes up to #8 enemies 10m# away from you, and additionally pushes enemies nearby the affected enemies.',
         descriptionNote: '\rThe additional push effect is not available in the water.',
       },
