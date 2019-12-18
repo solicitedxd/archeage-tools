@@ -895,4 +895,49 @@ export default Object.freeze([
     description: 'Charges forward for #3sec#, breaking through enemy lines. Inflicts Knockback and Trip on affected enemies. This skill counts as a Push effect.\r' +
       'Can\'t be used while carrying a trade pack.',
   },
+  {
+    icon: Icon.Bite,
+    id: 'Vicious Bite Wyvern',
+    name: 'Vicious Bite',
+    range: [0, 15],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Strikes a distant target, dealing Physical Damage and additional damage over #14sec#.\r' +
+      'Can\'t be used while charging, airborne, or carrying a trade pack.',
+  },
+  {
+    icon: Icon.Run,
+    id: 'Run Wyvern',
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases pet\'s Move Speed #+50%# for #10sec#.\r' +
+      'Increases Glide speed #+50%# while gliding.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.ToTheAir,
+    name: 'To the Air',
+    cooldown: 10,
+    description: 'Encourages the small wyvern to fly for #5min#.\r' +
+      'Can\'t be used while charging or carrying a trade pack.',
+  },
+  {
+    icon: Icon.RamWyvern,
+    id: 'Ram Wyvern',
+    name: 'Ram',
+    cooldown: 60,
+    description: 'Charges forward, breaking through enemy lines for #3sec#. Rammed enemies receive damage and are knocked back.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Flamebreath,
+    name: 'Flamebreath',
+    range: [0, 20],
+    cooldown: 180,
+    description: 'Lets the wyvern unleash a burst of flame, incinerating enemies.\r' +
+      'Can be used from the ground.\r' +
+      'Inflicts Siege Damage on enemies and deals additional Magic Damage.\r' +
+      'Can\'t be used while charging or airborne.',
+  },
 ]);

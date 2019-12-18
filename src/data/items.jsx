@@ -2137,7 +2137,7 @@ const ITEM = Object.freeze({
     quality: QUALITY.GRAND,
     bindsOnPickup: true,
     description: <span>
-      The crystal swirls with powerful magic. It can be found by opening <Orange>Locked Gold Crates.</Orange><br/><br/>
+      The crystal swirls with powerful magic. It can be found by opening <Orange>Locked Gold Crates.</Orange><br /><br />
       Used in crafting <Orange>gliders, pets, mounts and their armor.</Orange>
     </span>,
     price: 750,
@@ -2152,6 +2152,38 @@ const ITEM = Object.freeze({
       Can be obtained in the <Blue>Sea of Drowned Love</Blue>. Used in equipment crafting.
     </span>,
     price: 350000,
+  },
+  TERRITORY_COIN: {
+    name: 'Territory Coin',
+    icon: Icon.TerritoryCoin,
+    type: 'Coin',
+    bindsOnPickup: true,
+    description: <span>
+      This special coin symbolizes the authority of the ruling faction.<br />
+      Can be used in Territories.
+    </span>,
+  },
+  BLAZING_WIND_SPIRIT_LEATHER: {
+    name: 'Blazing Wind Spirit Leather',
+    icon: Icon.BlazingWindSpiritLeather,
+    type: 'Hide',
+    description: <span>
+      This ancient leather was treated with scorching steam to make it more durable.<br /><br />
+      Vocation: Leatherwork<br />
+      Workbench: Leather Workbench
+    </span>,
+    price: 9500,
+  },
+  BLAZING_CLOUDSPUN_FABRIC: {
+    name: 'Blazing Cloudspun Fabric',
+    icon: Icon.BlazingCloudspunFabric,
+    type: 'Fabric',
+    description: <span>
+      This ancient fabric was treated with scorching steam to make it more durable (not to mention wrinkle-free!).<br /><br />
+      Vocation: Tailoring<br />
+      Workbench: Weaving Loom
+    </span>,
+    price: 9500,
   },
 });
 

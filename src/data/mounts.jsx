@@ -981,10 +981,10 @@ const MOUNT = [
         mountFrom="Gray Lilyut Horse"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1009,10 +1009,10 @@ const MOUNT = [
         mountFrom="Brown Lilyut Horse"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1037,10 +1037,10 @@ const MOUNT = [
         mountFrom="Buckskin Lilyut Horse"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1065,11 +1065,11 @@ const MOUNT = [
         mountFrom="Green Elk"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1094,11 +1094,11 @@ const MOUNT = [
         mountFrom="White Elk"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1123,11 +1123,11 @@ const MOUNT = [
         mountFrom="Violet Elk"
         material={ITEM.AMETHYST}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1152,7 +1152,7 @@ const MOUNT = [
         mountFrom="Coalmane Snowlion"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1160,7 +1160,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1185,7 +1185,7 @@ const MOUNT = [
         mountFrom="Sandmane Snowlion"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1193,7 +1193,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1218,7 +1218,7 @@ const MOUNT = [
         mountFrom="Sandmane Snowlion"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1226,7 +1226,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1251,12 +1251,12 @@ const MOUNT = [
         mountFrom="Browntail Leomorph"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1281,12 +1281,12 @@ const MOUNT = [
         mountFrom="Whitetail Leomorph"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -1311,12 +1311,12 @@ const MOUNT = [
         mountFrom="Blacktail Leomorph"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<p>
+        differences={<Typography>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </p>}
+        </Typography>}
       />,
   },
   {
@@ -2480,6 +2480,60 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
+    </React.Fragment>,
+  },
+  {
+    name: 'Small Wyvern',
+    quote: 'This adorable wyvern runt can only fly with the help of the Golden Wyvern\'s wingbeats to provide an updraft.\n ' +
+      'They can only be summoned by members of the faction with a ruling Auroria territory.',
+    speed: 11.5,
+    skills: [
+      ['Vicious Bite Wyvern'],
+      ['Run Wyvern'],
+      'To the Air',
+      ['Ram Wyvern'],
+      'Flamebreath',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CRAFTED,
+    ],
+    obtainText: <React.Fragment>
+      <Typography>In order to obtain this mount, your nation must first own a castle that has the workshop built. After
+        you've obtained this mount, your nation must control a castle to use it.</Typography>
+      <p>The materials needed are as follows:</p>
+      <ul>
+        <li>
+          <ItemLink item={ITEM.BLUE_SALT_BOND} count={30} noLink />
+          <ul>
+            <li>Obtained from various Blue Salt quests, such as Supply Demand daily quests.</li>
+          </ul>
+        </li>
+        <li>
+          <ItemLink item={ITEM.TERRITORY_COIN} count={30} noLink />
+          <ul>
+            <li>
+              Obtained from various castle-related activities, usually in the form as Territory Pence (100 Pence = 1
+              Coin).
+            </li>
+          </ul>
+        </li>
+        <li>
+          <ItemLink item={ITEM.BLAZING_WIND_SPIRIT_LEATHER} count={1} noLink />
+          <ul>
+            <li>Highest tier of leather; quite expensive to craft. Can be traded.</li>
+          </ul>
+        </li>
+        <li>
+          <ItemLink item={ITEM.BLAZING_CLOUDSPUN_FABRIC} count={1} noLink />
+          <ul>
+            <li>Highest tier of fabric; quite expensive to craft. Can be traded.</li>
+          </ul>
+        </li>
+      </ul>
+      <p>Take these materials to the workbench at your castle to craft it.</p>
     </React.Fragment>,
   },
 ];

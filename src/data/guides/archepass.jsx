@@ -13,7 +13,7 @@ const name = 'ArchePass';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Dec 12, 2019',
+  lastUpdated: 'Dec 18, 2019',
 };
 
 const sections = [
@@ -166,14 +166,14 @@ const sections = [
         name="Blue Salt Bond Quest x1"
         description="Complete 1 Supply Demand quest at a Community Center."
         counters={[
-          'Warning - Supply Demand: Lumber is bugged and doesn\'t count towards this mission.',
+          'Warning - Supply Demand: 20 Lumber is bugged and doesn\'t count towards this mission.',
         ]}
       />,
       <Ability
         name="Blue Salt Bond Quest x2"
         description="Complete 2 Supply Demand quests at Community Centers."
         counters={[
-          'Warning - Supply Demand: Lumber is bugged and doesn\'t count towards this mission.',
+          'Warning - Supply Demand: 20 Lumber is bugged and doesn\'t count towards this mission.',
         ]}
       />,
       <Typography variant="h6">ArcheMaster Challenges</Typography>,
@@ -229,15 +229,19 @@ const sections = [
             </ul>
           </li>
           <li>
-            Blue Salt Bond Quest x1 and x2 <span className="alert-red">do not count Supply Demand: Lumber</span>.
+            Blue Salt Bond Quest x1 and x2 <span className="alert-red">do not count Supply Demand: 20 Lumber</span>.
           </li>
-          <li>
+          <li>S
             The XP mission loses progress when logging off your character or switching to an instance from the Instance
             menu. It's possible for it to even show as completed, but able to give the reward, or be reduced to a
             negative value.
           </li>
           <li>
             Switching your active pass will lock its missions again, forcing you to pay again to unlock each mission.
+          </li>
+          <li>
+            Sometimes upon logging in, an ArchePass mission will be marked as at 100% progress, but can not be
+            completed. <span className="alert-red">A mission in this state must be re-rolled.</span>
           </li>
         </ul>
       </Typography>,
