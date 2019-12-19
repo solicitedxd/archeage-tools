@@ -93,9 +93,9 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '01:00:00', duration: '01:00:00', name: 'Claim' },
-        // { time: '01:00:00', duration: '01:00:00', name: 'Preparation' },
-        // { time: '02:00:00', duration: '01:00:00', name: 'Siege' },
+        // { time: '01:00:00', duration: '01:00:00', name: 'Claim' },
+        { time: '01:00:00', duration: '01:00:00', name: 'Preparation' },
+        { time: '02:00:00', duration: '01:00:00', name: 'Siege' },
       ],
       EU: [
         // { time: '20:00:00', duration: '01:00:00', name: 'Claim' },
