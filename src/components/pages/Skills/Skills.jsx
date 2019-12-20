@@ -135,11 +135,12 @@ class Skills extends Component {
 
   encodeSkillTrees = () => {
     const { skillTrees } = this.state;
-    return skillTrees.map(tree => {
+    return skillTrees.filter(tree => Boolean(tree.treeName)).map(tree => {
       if (!tree.treeName) {
         return '';
       }
-      return `${tree.treeName}.${encodeSkillsAsHex(tree.skills)}.${encodeAncestrals(tree.ancestrals)}`;
+      const ancestrals = encodeAncestrals(tree.ancestrals);
+      return `${tree.treeName}.${encodeSkillsAsHex(tree.skills)}${ancestrals && `.${ancestrals}` || ''}`;
     }).join(':');
   };
 

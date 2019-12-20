@@ -60,20 +60,22 @@ export const decodeSkillHex = (hex) => {
 
 export const encodeAncestrals = (ancestrals) => {
   const chars = [];
-  for (let i = 0; i < 5; i++) {
+  let last = 0;
+  for (let i = 0; i < ancestrals.length; i++) {
     if (ancestrals[i] === 1 || ancestrals[i] === 2) {
       chars[i] = ancestrals[i];
+      last = i + 1;
     } else {
       chars[i] = 0;
     }
   }
-  return chars.join('');
+  return chars.join('').substr(0, last);
 };
 
 export const decodeAncestrals = (chars) => {
   if (!chars) return [];
   const ancestrals = [];
-  for (let i = 0; i < 5; i++) {
+  for (let i = 0; i < chars.length; i++) {
     if (chars[i] === '1') {
       ancestrals[i] = 1;
     } else if (chars[i] === '2') {
