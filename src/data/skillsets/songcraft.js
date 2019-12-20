@@ -33,8 +33,8 @@ const skills = Object.freeze([
     range: [0, 15],
     cooldown: 18,
     effects: [BUFF.SNARED, BUFF.CHARMED],
-    description: '#Snares# an enemy with a special performance, stopping them from moving or turning for #1sec.#\r' +
-      'When the Snare expires the enemy is #${effects[1]},# making them more susceptible to other Songcraft skill effects from #28 sec.#',
+    description: '#Roots# an enemy with a special performance, stopping them from moving or turning for #1sec.#\r' +
+      'When the Root expires the enemy is #${effects[1]},# making them more susceptible to other Songcraft skill effects from #28 sec.#',
     descriptionNote: '\rThis skill does not stop ongoing Perform skills.',
     combos: [
       {
@@ -121,7 +121,7 @@ const skills = Object.freeze([
     name: 'Healing Hymn',
     rank: 6,
     range: [0, 30],
-    healing: { base: 1140, attack: ATTACK.HEALING, ratio: 0 },
+    healing: { base: 1440, attack: ATTACK.HEALING, ratio: 0 },
     cooldown: 15,
     description: 'Plays a healing song that instantly restores ${healing} Health to the caster or an ally.\r' +
       'The effect can travel to another 2 allies within #10m#.\r' +
@@ -133,7 +133,7 @@ const skills = Object.freeze([
     name: 'Deadly Refrain',
     mana: 52,
     cooldown: 8,
-    description: 'Grants the caster 1 stack of #Rhythm,# increasing Critical Damage and Crit Heal Bonus #+1.5%# and decreasing all Songcraft Cooldowns #-0.4 sec# per stack.\r' +
+    description: 'Grants the caster 1 stack of #Rhythm,# increasing Critical Damage and Crit Heal Bonus #+2%%# and decreasing all Songcraft Cooldowns #-0.4 sec# per stack.\r' +
       'Stacks up to 15 times.',
   },
   {
@@ -355,7 +355,7 @@ export const ancestrals = Object.freeze([
         icon: Icon.CriticalDiscordFlame,
         damage: { base: 345, attack: ATTACK.MAGIC, ratio: 65 },
         description: 'Deals ${damage} Magic Damage.\r' +
-          'Inflicts #${effects[0]}# on hit, decreasing affected enemies\' Physical and Magic Defense #-15%# for #3sec.#',
+          'Inflicts #${effects[0]}# on hit, decreasing affected enemies\' Physical and Magic Defense #-30%# for #3sec.#',
       },
       {
         element: ELEMENT.QUAKE,

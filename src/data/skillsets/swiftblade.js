@@ -21,7 +21,7 @@ const skills = Object.freeze([
       'If the third attack hits, a stack of #Instinct# is gained.\r\r' +
       '#Instinct:#\r' +
       '- Lasts for #5sec#.\r' +
-      '- Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +40%#.\r' +
+      '- Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +50%#.\r' +
       'Can be stacked #twice#, but cancels a stack after each successful hit.',
     descriptionNote: '\rThis skill has a reduced Global Cooldown.\r' +
       'Hold the skill for auto-use.\r' +
@@ -101,7 +101,7 @@ const skills = Object.freeze([
     description: 'Teleports you to a selected location within #${range[1]}m#, and if used again within #5sec.#, allows you to teleport back to your original location.\r' +
       'Inflicts ${effects[0]} on enemies within a #${effectRange}m# radius.\r\r' +
       '#Instinct:#\r' +
-      'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +40%#.\r' +
+      'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +50%#.\r' +
       'Can be stacked #twice#, but cancels a stack after each successful hit.\r' +
       'Lasts for #5sec#.',
     globalCooldown: GLOBAL_CD.REDUCED_USEWHILE,
@@ -179,7 +179,8 @@ const skills = Object.freeze([
       },
       {
         buff: BUFF.FEARED,
-        text: 'Increases the duration of of Fear, if the target is the Dusk Shroud #+3 sec#.',
+        causes: BUFF.TRIPPED,
+        text: 'Trips ${c} targets in the Shroud for #3 sec.#',
       },
     ],
   },
@@ -204,7 +205,7 @@ const skills = Object.freeze([
     description: 'Allows you to swiftly charge #${distance}m# forward, dealing ${damage} Melee Damage to enemies in your path.\r' +
       'If the target is hit, a stack of #${effects[0]}# is gained for #5sec#.\r\r' +
       '#Instinct:#\r' +
-      'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +40%#.\r' +
+      'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +50%#.\r' +
       'Can be stacked #twice#, but cancels a stack after each successful hit.',
     unblockable: true,
     movement: true,
@@ -227,7 +228,7 @@ const skills = Object.freeze([
   },
   {
     icon: Icon.TwinShadow,
-    name: 'Twin Shadow Strike',
+    name: 'Twin Shadow Slash',
     mana: 165,
     range: [0, 5],
     damage: { base: 576, attack: ATTACK.MELEE, ratio: 150 },

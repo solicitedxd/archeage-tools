@@ -1,6 +1,6 @@
 import {
-  SET_ONLY_OBTAINABLE,
   SET_DISPLAY_GRID,
+  SET_ONLY_OBTAINABLE,
 } from 'constants/mounts';
 import initialState from 'initialStates/mounts';
 import { getItem } from 'utils/localStorage';

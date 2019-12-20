@@ -27,7 +27,6 @@ const skills = Object.freeze([
     name: 'Poisoned Weapons',
     rank: 18,
     mana: 93,
-    damage: { base: 1274, attack: ATTACK.MAGIC, ratio: 240 },
     poisonDamage: { base: 1274, attack: ATTACK.MAGIC, ratio: 240 },
     cooldown: 9,
     effects: [BUFF.POISONED],
@@ -84,7 +83,7 @@ const skills = Object.freeze([
     rank: 9,
     mana: 157,
     range: [0, 15],
-    damage: { base: 1176, attack: ATTACK.MELEE, ratio: 120 },
+    damage: { base: 1176, attack: ATTACK.MELEE, ratio: 100 },
     cooldown: 18,
     description: 'Leap toward an enemy and deal ${damage} Melee Damage.',
     movement: true,
@@ -191,7 +190,7 @@ const skills = Object.freeze([
     mana: 79,
     range: [0, 12],
     cooldown: 45,
-    description: 'Steals #1 to 3# random buffs from an enemy and applies them to yourself.',
+    description: 'Steals #2 to 3# random buffs from an enemy and applies them to yourself.',
     combos: [
       {
         buff: BUFF.CONVERSION_SHIELD,
@@ -305,8 +304,7 @@ export const ancestrals = Object.freeze([
         range: [0, 6],
         damage: { base: 547, attack: ATTACK.MELEE, ratio: 200 },
         description: 'Leap directly over an enemy\'s head, dealing ${damage} Melee Damage as you pass and then continuing on to land #18m# past them.\r' +
-          'Inflicts #Bloodthirst Shock# that Temporarily rooted by the Bloodthirst shock attack.\r' +
-          '83517 DO NOT TRANSLATE for #1sec#.',
+          'Inflicts #Bloodthirst Shock# that temporarily rooted by the Bloodthirst shock attack for #1sec#.',
         combos: [
           {
             buff: BUFF.MARKED,
@@ -417,12 +415,12 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.FLAME,
         icon: Icon.PoisonedWeaponsFlame,
         description: 'Coats your weapons in poison for #3sec.#\r' +
-          'Your next Melee or Ranged attack during that time will deal an additional ${damage} Magic Damage over #6 sec#. The poison can be transferred continuously.',
+          'Your next Melee or Ranged attack during that time will deal an additional ${poisonDamage} Magic Damage over #6 sec#. The poison can be transferred continuously.',
       },
       {
         element: ELEMENT.WAVE,
         icon: Icon.PoisonedWeaponsWave,
-        damage: null,
+        poisonDamage: null,
         description: 'Coats your weapons in poison for #6sec.#\r' +
           'Your next Melee or Ranged attack during that time will decrease the Evasion of the target #-10%# over #6 sec#.',
       },

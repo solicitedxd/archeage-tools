@@ -1,21 +1,33 @@
 {
-  "presets": ["es2015", "react"],
-  "plugins": [
-    "transform-runtime",
-    "transform-decorators-legacy",
-    "transform-class-properties",
-    "transform-object-rest-spread",
-    ["wildcard", {
-      "exts": ["js", "es6", "es", "jsx", "png"]
-    }]
-  ],
-  "env": {
-    "test": {
-      "plugins": [
+    "presets": [
+        "es2015",
+        "react"
+    ],
+    "plugins": [
         "transform-runtime",
         "transform-decorators-legacy",
-        "transform-class-properties"
-      ]
+        "transform-class-properties",
+        "transform-object-rest-spread",
+        [
+            "wildcard",
+            {
+                "exts": [
+                    "js",
+                    "es6",
+                    "es",
+                    "jsx",
+                    "png"
+                ]
+            }
+        ]
+    ],
+    "env": {
+        "test": {
+            "plugins": [
+                "transform-runtime",
+                "transform-decorators-legacy",
+                "transform-class-properties"
+            ]
+        }
     }
-  }
 }

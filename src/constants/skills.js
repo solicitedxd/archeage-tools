@@ -57,7 +57,7 @@ export const BUFF = Object.freeze({
   PRAYER: { name: 'Prayer', icon: Icon.Prayer },
   PROVOKE: { name: 'Provoked', icon: Icon.Provoke, negative: true },
   PURGE: { name: 'Purge', icon: WitchcraftIcon.Purge },
-  RESURGENCE: { name: 'Resurgence', icon: VitalismIcon.Resurgence },
+  RESURGENCE: { name: 'Resurgence', icon: Icon.Resurgence },
   SHACKLE: { name: 'Shackle', icon: Icon.Shackle, negative: true },
   SHAKEN: { name: 'Shaken', icon: Icon.Shaken, negative: true },
   MAGIC_SHIELD: { name: 'Magic Shield', icon: Icon.MagicShield },
@@ -115,10 +115,9 @@ export const GLOBAL_CD = Object.freeze({
   NONE: 0,
   NO_TRIGGER: 1,
   REDUCED: 2,
-  NO_TRIGGER_REDUCED: 3,
-  REDUCED_USEWHILE: 4,
-  INCREASED: 5,
-  NORMAL: 6,
+  REDUCED_USEWHILE: 3,
+  INCREASED: 4,
+  NORMAL: 5,
 });
 
 export const ELEMENT = Object.freeze({

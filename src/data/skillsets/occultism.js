@@ -44,7 +44,7 @@ const skills = Object.freeze([
     cooldown: 18,
     effects: [BUFF.STUNNED],
     stunDuration: 2,
-    description: 'Drains life from an enemy, dealing ${damage} Magic Damage and reducing the target\'s received Healing #-60%# for #6.3 sec#. During the same period, heals you for #13%# of Max Health.\r\r' +
+    description: 'Drains life from an enemy, dealing ${damage} Magic Damage and reducing the target\'s received Healing #-60%# for #6.5 sec#. During the same period, heals you for #13%# of Max Health.\r\r' +
       'Counts as an ongoing spell. If the target moves more than #20m# away from you the spell ends early, #stunning# them for #${stunDuration}sec#.',
     combos: [
       {
@@ -104,7 +104,7 @@ const skills = Object.freeze([
     effects: [BUFF.STAGGER],
     description: 'Deals ${damage} Magic damage to the primary target and all surrounding enemies in a #5m# radius, trapping them in a Bone Prison for up to #10 sec.#\r' +
       'Staggers all affected enemies, briefly disabling movement and skill use and canceling all Cast Time and Channeled skills.\r' +
-      'The Bone Prison disappears in #10 sec# if not destroyed.',
+      'The Bone Prison disappears in #7 sec# if not destroyed.',
   },
   {
     icon: Icon.SummonCrows,
@@ -181,6 +181,12 @@ const skills = Object.freeze([
     description: 'Summons malevolent spirits to attack up to #20 enemies# within the radius, dealing ${damage} Magic Damage per second for up to 9 seconds.\r' +
       'Inflicts Wraith\'s Curse on all affected enemies, significantly Slowing their Move Speed, Attack Speed, and Cast Time.',
     descriptionNote: '\rSpell ends early if channeling is canceled or the caster moves.',
+    combos: [
+      {
+        buff: BUFF.PAIN_HARVEST,
+        text: 'Inflicts Cursed Seeds on targets, after successfully dealing Magic Critical Damage, if the caster is under the effect of ${b}',
+      },
+    ],
   },
   {
     icon: Icon.DeathsVengeance,
@@ -322,6 +328,7 @@ export const ancestrals = Object.freeze([
         description: 'Summons a wraith at the target location to curse up to 20 enemies within the radius for up to 9 seconds.\r' +
           'Inflicts Wraith\'s Curse on all affected enemies, significantly Slowing their Move Speed, Attack Speed, and Cast Time.',
         descriptionNote: '\rCannot be used in conjunction with Fiend\'s Knell or Mist Banshee Wail (Witchcraft)',
+        combos: [],
       },
       {
         element: ELEMENT.WAVE,

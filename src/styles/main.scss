@@ -88,7 +88,7 @@ body {
   max-width: 1080px;
 }
 
-.section:after, .body-container:after {
+.section:not(.home-banners):after, .body-container:after {
   content: "";
   display: table;
   clear: both;

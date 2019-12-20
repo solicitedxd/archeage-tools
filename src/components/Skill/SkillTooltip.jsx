@@ -123,10 +123,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
       descriptionNotes.push('This skill does not trigger a Global Cooldown, and can be used during Global Cooldowns.');
       break;
     case GLOBAL_CD.NO_TRIGGER:
-      descriptionNotes.push('This skill does not trigger a Global Cooldown.');
-      break;
-    case GLOBAL_CD.NO_TRIGGER_REDUCED:
-      descriptionNotes.push('This skill does not trigger a Global Cooldown.\rThis skill has a reduced Global Cooldown.');
+      descriptionNotes.push('This skill doesn\'t trigger a Global Cooldown.');
       break;
     case GLOBAL_CD.REDUCED:
       descriptionNotes.push('This skill has a reduced Global Cooldown.');
@@ -216,7 +213,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
       </section>}
       {!passive &&
       <section>
-        {!channeled && <p>{castTime > 0 ? `Cast Time: ${castTime} sec` : 'Instant'}</p>}
+        {!channeled && <p>{castTime > 0 ? `Cast Time: ${castTime.toFixed(1)} sec` : 'Instant'}</p>}
         {channeled && <p>Channeled Skill</p>}
         {cooldownTime && <p>{cooldownTime} Cooldown</p>}
       </section>}

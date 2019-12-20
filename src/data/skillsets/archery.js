@@ -198,6 +198,12 @@ const skills = Object.freeze([
       'Critical Ranged Attacks increase Move Speed #+20%#.\r' +
       'Resets the active Cooldowns of Snare and Fending Arrow when cast.',
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
+    combos: [
+      {
+        buff: BUFF.PAIN_HARVEST,
+        causes: 'Triggers Hunter\'s Guile for 30 sec if under the effect of ${buff}',
+      },
+    ],
   },
   {
     icon: Icon.DoubleRecurve,
@@ -208,8 +214,7 @@ const skills = Object.freeze([
       'Increases Ranged Critical Rate #+5%.#\r' +
       'Lasts #5sec#.',
     descriptionNote: '\rThis skill doesn\'t trigger a Global Cooldown.\r' +
-      'Can\'t be used while Snared.\r' +
-      'Can be charged twice.',
+      'Can\'t be used while Snared. Can be charged twice.',
   },
   {
     icon: Icon.MissileRain,
@@ -411,6 +416,32 @@ export const ancestrals = Object.freeze([
           'Use this skill again during channeling to release the arrow beam early.\r' +
           'The longer you channel, the more Defense Reduction is applied to the target (up to #-30%#).',
         descriptionNote: '\rThe minimum channeling time is 2 seconds.',
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Double Recurve'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: Icon.DoubleRecurveFlame,
+        mana: 118,
+        rank: 1,
+        cooldown: 90,
+        description: 'Inflicts #Double Recurve (Flame)# that Increases Ranged Critical Rate #+20%#\r' +
+          'Lasts #20sec#.',
+        descriptionNote: null,
+        globalCooldown: GLOBAL_CD.NO_TRIGGER,
+      },
+      {
+        element: ELEMENT.LIFE,
+        icon: Icon.DoubleRecurveLife,
+        mana: 118,
+        rank: 1,
+        description: 'After charging for #8 sec#, allows the caster to leap 5m backwards.',
+        descriptionNote: '\rThis skill doesn\'t trigger a Global Cooldown.\r' +
+          'Can\'t be used while Snared.\r' +
+          'Can be charged tree times.',
       },
     ],
   },

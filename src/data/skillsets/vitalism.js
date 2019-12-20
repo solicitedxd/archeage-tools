@@ -193,7 +193,7 @@ const skills = Object.freeze([
     mana: 347,
     range: [0, 30],
     allyHealing: { base: 1267, attack: ATTACK.HEALING, ratio: 240 },
-    selfHealing: { base: 1267, attack: ATTACK.HEALING, ratio: 240 },
+    selfHealing: { base: 886, attack: ATTACK.HEALING, ratio: 168 },
     castTime: 1,
     effects: [BUFF.RENEWAL],
     description: 'Calls forth energy from the land to bless the caster or an ally for #30 sec#.\r\r' +
@@ -315,10 +315,10 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.QUAKE,
         icon: Icon.AntithesisQuake,
         effectRange: 6,
-        allyHealing: { base: 390, attack: ATTACK.HEALING, ratio: 220 },
-        selfHealing: { base: 274, attack: ATTACK.HEALING, ratio: 153 },
-        enemyDamage: { base: 752, attack: ATTACK.HEALING, ratio: 220 },
-        description: 'A burst of holy energy that heals ${selfHealing} Health for you or heals ${damage} Health for allies within a #${effectRange}m# radius of the primary target, and deals ${enemyDamage} Magic Damage to all enemies in the same area.',
+        allyHealing: { base: 355, attack: ATTACK.HEALING, ratio: 200 },
+        selfHealing: { base: 247, attack: ATTACK.HEALING, ratio: 141 },
+        enemyDamage: { base: 684, attack: ATTACK.HEALING, ratio: 200 },
+        description: 'A burst of holy energy that heals ${selfHealing} Health for you or heals ${allyHealing} Health for allies within a #${effectRange}m# radius of the primary target, and deals ${enemyDamage} Magic Damage to all enemies in the same area.',
       },
     ],
   },
@@ -328,7 +328,7 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.FLAME,
         icon: Icon.SkewerFlame,
-        damage: { base: 1203, attack: ATTACK.HEALING, ratio: 330 },
+        damage: { base: 1094, attack: ATTACK.HEALING, ratio: 300 },
         castTime: 1.5,
         description: 'Summons skewers in a #5m# radius at the target location.\r' +
           'Can be used up to #3 times# in a row before starting its Cooldown, but the damage is reduced on consecutive casts.\r' +
@@ -337,10 +337,10 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.LIFE,
         icon: Icon.SkewerLife,
-        damage: { base: 569, attack: ATTACK.HEALING, ratio: 110 },
-        healing: { base: 398, attack: ATTACK.HEALING, ratio: 77 },
+        allyHealing: { base: 517, attack: ATTACK.HEALING, ratio: 100 },
+        selfHealing: { base: 361, attack: ATTACK.HEALING, ratio: 71 },
         castTime: 0,
-        description: 'Summons three skewers within a #20m# circle at the target location, Impaling enemies for #1sec# and restoring ${healing} to the caster and ${damage} Health to allies.\r' +
+        description: 'Summons three skewers within a #20m# circle at the target location, Impaling enemies for #1sec# and restoring ${selfHealing} to the caster and ${allyHealing} Health to allies.\r' +
           'Skewers heal twice as much where they overlap.',
         descriptionNote: null,
         combos: [],
@@ -354,19 +354,19 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.FLAME,
         icon: Icon.FerventHealingFlame,
         mana: 976,
-        allyHealing: { base: 91, attack: ATTACK.HEALING, ratio: 44 },
-        selfHealing: { base: 63, attack: ATTACK.HEALING, ratio: 31 },
+        allyHealing: { base: 83, attack: ATTACK.HEALING, ratio: 40 },
+        selfHealing: { base: 57, attack: ATTACK.HEALING, ratio: 29 },
         castTime: 4,
         cooldown: 30,
-        description: 'Restores ${selfHealing} Health for the caster or ${damage} Health for an ally every second for up to #25 sec#.\r' +
+        description: 'Restores ${selfHealing} Health for the caster or ${allyHealing} Health for an ally every second for up to #25 sec#.\r' +
           'Use this skill again while channeling to cast the spell early. The longer you channel, the more powerful the healing effect will be.',
       },
       {
         element: ELEMENT.LIGHTNING,
         icon: Icon.FerventHealingLightning,
         mana: 266,
-        allyHealing: { base: 244, attack: ATTACK.HEALING, ratio: 77 },
-        selfHealing: { base: 244, attack: ATTACK.HEALING, ratio: 77 },
+        allyHealing: { base: 222, attack: ATTACK.HEALING, ratio: 70 },
+        selfHealing: { base: 155, attack: ATTACK.HEALING, ratio: 49 },
         cooldown: 0,
         description: 'Instantly restores ${selfHealing} Health for the caster and ${allyHealing} Health for an ally.\r' +
           'This skill has no Cooldown, but the Mana cost increases by 50% of the base Mana cost per cast.\r' +
@@ -382,7 +382,7 @@ export const ancestrals = Object.freeze([
         icon: Icon.HolyBoltFlame,
         mana: 99,
         range: [0, 30],
-        damage: { base: 275, attack: ATTACK.HEALING, ratio: 55 },
+        damage: { base: 250, attack: ATTACK.HEALING, ratio: 50 },
         castTime: 1,
         description: 'Fires a bolt of holy light that deals ${damage} Magic Damage to a single target.\r' +
           'This skill deals #+100%# Magic Damage to non-dungeon monsters.\r' +
@@ -444,8 +444,8 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.LIFE,
         icon: Icon.HealingCircleLife,
-        allyHealing: { base: 760, attack: ATTACK.HEALING, ratio: 385 },
-        selfHealing: { base: 531, attack: ATTACK.HEALING, ratio: 270 },
+        allyHealing: { base: 691, attack: ATTACK.HEALING, ratio: 350 },
+        selfHealing: { base: 486, attack: ATTACK.HEALING, ratio: 244 },
         castTime: 0,
         description: 'Instantly creates a circle of glowing runes in a #10m# radius at the caster\'s location, which heals up to #10# allies including the caster.\r' +
           'The circle regenerates ${selfHealing} Health for the caster and ${allyHealing} Health for affected Allies.\r' +
@@ -456,8 +456,8 @@ export const ancestrals = Object.freeze([
         icon: Icon.HealingCircleWave,
         range: [0, 20],
         effectRange: 10,
-        allyHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },
-        selfHealing: { base: 3484, attack: ATTACK.HEALING, ratio: 1760 },
+        allyHealing: { base: 3168, attack: ATTACK.HEALING, ratio: 1600 },
+        selfHealing: { base: 2217, attack: ATTACK.HEALING, ratio: 1120 },
         cooldown: 90,
         description: 'Creates a Healing Flower that heals ${selfHealing} Health to the caster and ${allyHealing} Health to up to #20# raid members within a #${effectRange}m# radius every 3 seconds over 1 minute.',
         descriptionNote: '\rThe Healing Flower can be destroyed if attacked.',

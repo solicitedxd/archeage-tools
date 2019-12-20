@@ -165,8 +165,9 @@ const skills = Object.freeze([
     name: 'Revitalizing Cheer',
     rank: 3,
     mana: 76,
+    selfHealing: { base: 555, attack: ATTACK.HEALING, ratio: 100 },
     cooldown: 45,
-    description: 'Heals the caster for #587# Health plus an amount equal to #50%#of stacked #Mettle#, consuming all Mettle in the process.\r' +
+    description: 'Heals the caster for ${selfHealing} Health plus an amount equal to #50%#of stacked #Mettle#, consuming all Mettle in the process.\r' +
       'Grants #Revitalizing Cheer# that Max Health #+35.0%# for #10sec#.',
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
     combos: [
@@ -377,6 +378,25 @@ export const ancestrals = Object.freeze([
         description: 'Surrounds the caster with magical armor that #triples# their Aggro for #1min#.',
         descriptionNote: null,
         globalCooldown: GLOBAL_CD.NO_TRIGGER,
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Revitalizing Cheer'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: Icon.RevitalizingCheerLife,
+        cooldown: 30,
+        selfHealing: { base: 110, attack: ATTACK.HEALING, ratio: 100 },
+        description: 'Heals the caster for ${selfHealing} Health plus an amount equal to #10%# of stacked #Mettle#, consuming all Mettle in the process.\r\r' +
+          'Grants #Revitalizing Cheer (Life)# that Max Health #+20.0%# for #40sec#',
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: Icon.RevitalizingCheerWave,
+        description: 'Heals the caster for ${selfHealing} Health plus an amount equal to #50%# of stacked #Mettle#, consuming all Mettle in the process.\r\r' +
+          'Grants #Revitalizing Cheer (Wave)# that Received Healing #+80.0%# for #10sec#',
       },
     ],
   },

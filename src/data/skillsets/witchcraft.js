@@ -15,7 +15,7 @@ const skills = Object.freeze([
     rank: 14,
     mana: 167,
     range: [0, 20],
-    damage: { base: 834, attack: ATTACK.MAGIC, ratio: 220 },
+    damage: { base: 835, attack: ATTACK.MAGIC, ratio: 220 },
     castTime: 1,
     cooldown: 18,
     effects: [BUFF.SNARED],
@@ -45,7 +45,7 @@ const skills = Object.freeze([
     damage: { base: 432, attack: ATTACK.MAGIC, ratio: 90 },
     cooldown: 24,
     effects: [BUFF.ENERVATED],
-    description: 'Deals ${damage} Magic Damage to the enemy, and burns #504# mana over #10sec.# Decreases healing effectiveness #-60%# and increases duration of Stun and Trip #+30%.#',
+    description: 'Deals ${damage} Magic Damage to the enemy, and burns #288# mana over #10sec.# Decreases healing effectiveness #-60%# and increases duration of Stun and Trip #+30%.#',
     combos: [
       {
         buff: BUFF.FEARED,
@@ -222,10 +222,11 @@ const skills = Object.freeze([
     cooldown: 60,
     description: 'Summons a fiend to follow you, relentlessly attacking your enemies with special skills.\r' +
       'Trips up to #8 enemies# in a #5m# area for #1.5sec# where the Fiend is summoned.\r' +
-      'The fiend\'s Health decreases #-5%# ever #sec#.\r' +
+      'The fiend\'s Health decreases #-5%# every #sec#.\r' +
       'Snares up to #8 enemies# within a #6m# radius for #10 sec#.\r' +
       'Snare duration #-50%# during PvP.',
-    descriptionNote: 'The Fiend can\'t be healed, and can\'t be summoned at the same time as Mist Banshee Wail or Mist Summon Wraith.',
+    descriptionNote: '\r' +
+      'The Fiend can\'t be healed, and can\'t be summoned at the same time as Mist Banshee Wail or Mist Summon Wraith.',
     combos: [
       {
         buff: BUFF.ENERVATED,
@@ -330,7 +331,7 @@ export const ancestrals = Object.freeze([
         range: [0],
         effectRange: 8,
         damage: { base: 1125, attack: ATTACK.MAGIC, ratio: 100 },
-        description: 'Calls forth hands from the ground that grab all enemies within #${effectRange}#. Inflicts Snare on affected enemies, preventing them from moving or turning for #${duration}sec.#\r' +
+        description: 'Calls forth hands from the ground that grab all enemies within #${effectRange}m#. Inflicts Snare on affected enemies, preventing them from moving or turning for #${duration}sec.#\r' +
           'Deals ${damage} Magic Damage upon expiration.\r' +
           'Being damaged by a direct attack will free the target early, but debuffs that deal direct damage over time will not end this effect.\r' +
           'Snare duration reduced -50% in PvP.',
@@ -346,6 +347,7 @@ export const ancestrals = Object.freeze([
         range: [0, 8],
         castTime: 2,
         cooldown: 21,
+        duration: 9.4,
         effects: [],
         description: 'Confines an enemy inside a bubble for #${duration}sec# and slowly lifts it into the air, preventing all actions except Evade, Block, and Parry.\r' +
           'Being damaged by a direct attack will free the target early, but debuffs that deal direct damage over time will not end this effect.\r' +
@@ -371,7 +373,7 @@ export const ancestrals = Object.freeze([
         effects: [],
         duration: 8.4,
         description: 'Summons a mist at the target location that lasts for #15 sec,# affecting all enemies within a #${effectRange}m# radius.\r' +
-          'Each time an enemy enters the mist it becomes Confined in a bubble, rising into the air for ${duration} and preventing all actions except Evade, Block, and Parry.\r' +
+          'Each time an enemy enters the mist it becomes Confined in a bubble, rising into the air for #${duration}sec# and preventing all actions except Evade, Block, and Parry.\r' +
           'Being damaged by a direct attack will free the target early, but debuffs that deal damage over time will not end this effect.\r' +
           'Enemies in bubbles take -50% less Magic Damage.\r' +
           'Bubble duration reduced -50% in PvP.',
@@ -413,14 +415,14 @@ export const ancestrals = Object.freeze([
         description: 'Gives the caster the option to teleport 8m to the right or left multiple times for #2sec#.\r' +
           'Teleports the caster #8m# to the left or right.\r' +
           'Temporarily escapes enemy targeting during PvP.',
-        noWalls: true,
+        descriptionNote: '\rCan\'t pass through walls or other solid objects.',
       },
       {
         element: ELEMENT.STONE,
         icon: Icon.MirrorWarpStone,
         description: 'Gives the caster the option to teleport 15m to the right or left.\r' +
           'Temporarily escapes enemy targeting during PvP.',
-        noWalls: true,
+        descriptionNote: '\rCan\'t pass through walls or other solid objects.',
         combos: [
           {
             buff: BUFF.RESURGENCE,

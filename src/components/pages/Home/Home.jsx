@@ -26,8 +26,9 @@ const Home = () => {
           unfortunately it's difficult to get them all, and there are guides for obtaining all the available mounts in
           the gallery.</p>
         <p>Mounts will be trickling in from here on.</p>
-        <Typography>The ArchePass reset timer is back, along with a new guide on <Link to="/guides/archepass">the
-          ArchePass</Link>.</Typography>
+        <p>The ArchePass reset timer is back, along with a new guide on <Link to="/guides/archepass">the
+          ArchePass</Link>.</p>
+        <Typography>12/20/2019: Updated Skills to the 6.1.9 patch.</Typography>
       </NewsPost>
       <NewsPost
         title="Event Schedule Update"

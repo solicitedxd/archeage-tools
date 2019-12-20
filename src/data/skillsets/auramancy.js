@@ -49,7 +49,7 @@ const skills = Object.freeze([
     cooldown: 20,
     description: 'Converts #25%# of Received Magic Damage to Health.\r' +
       'Lasts #5sec#.',
-    globalCooldown: GLOBAL_CD.NO_TRIGGER,
+    descriptionNote: '\rThis skill does not trigger a Global Cooldown.',
     incapacitated: true,
     combos: [
       {
@@ -83,7 +83,7 @@ const skills = Object.freeze([
     mana: 29,
     cooldown: 35,
     description: 'Magically teleports the caster forward #15m.#',
-    globalCooldown: GLOBAL_CD.NONE,
+    descriptionNote: '\rThis skill can be used during Global Cooldowns, and does not trigger a Global Cooldown.',
     movement: true,
   },
   {
@@ -246,7 +246,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.FLAME,
         icon: Icon.ConversionShieldFlame,
         effects: [BUFF.CONVERSION_SHIELD_FLAME],
-        description: 'Reflects 25% of incoming Magic Damage, and converts it into Health.\r' +
+        description: 'Reflects #25%# of incoming Magic Damage, and converts it into Health.\r' +
           'The caster receives #75%# of Magic Damage.\r' +
           'Last #3sec#.',
       },
@@ -318,7 +318,7 @@ export const ancestrals = Object.freeze([
         combos: [
           {
             buff: BUFF.PROVOKE,
-            text: 'Decreases the Magic Skill Damage of taunted targets #-10%# for #10 sec#.',
+            text: 'Decreases the Magic Skill Damage of taunted targets #-15%# for #10 sec#.',
           },
         ],
       },

@@ -89,7 +89,7 @@ const skills = Object.freeze([
     effects: [BUFF.MALICE_CHARGE],
     description: 'Stacks a #${effects[0]}# every second for #10 sec#. Malice Charges stack up to a maximum of #10# and remain for #5 sec#, but a new stack resets the timer.\r' +
       'The effects of #Serpent Bite#, #Ghastly Pack#, #Ring Throw#, #Shadow Cloak# and #Bladefall# are enhanced, when used with the appropriate amount of Malice Charges.',
-    descriptionNote: 'This skill does not trigger a Global Cooldown.',
+    descriptionNote: 'This skill doesn\'t trigger a Global Cooldown.',
   },
   {
     icon: Icon.SoulboundEdge,
@@ -142,8 +142,8 @@ const skills = Object.freeze([
     castTime: 1.5,
     cooldown: 60,
     description: 'Teleports the cater and up to #10# allies to a selected location within #10m#.',
-    descriptionNote: 'Allies that are Invincible or carrying a trade pack can\'t be teleported. If the caster is under the effects of Snared, only the allies are teleported.',
-    noWalls: true,
+    descriptionNote: 'Allies that are Invincible or carrying a trade pack can\'t be teleported. If the caster is under the effects of Snared, only the allies are teleported.\r' +
+      'Can\'t pass through walls or other solid objects.',
   },
   {
     icon: Icon.VoidSurge,
@@ -395,7 +395,6 @@ export const ancestrals = Object.freeze([
         castTime: 3,
         description: 'Teleports up to #5 enemies# in a selected #5m# radius to your location.',
         descriptionNote: '\rCan only be used on hostile targets.',
-        noWalls: false,
       },
     ],
   },

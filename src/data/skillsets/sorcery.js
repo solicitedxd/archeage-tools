@@ -69,8 +69,8 @@ const skills = Object.freeze([
     damage: { base: 792, attack: ATTACK.MAGIC, ratio: 225 },
     castTime: 1.5,
     effects: [BUFF.INSULATING_LENS],
-    description: 'Grants the caster a magic shield for #40 sec#, which absorbs up to ${damage} Damage and grants immunity to Trip, before breaking.\r' +
-      'The ${effects[0]} explodes into ice shards when broken, Snaring all enemies within a #6m# radius.\r' +
+    description: 'Grants the caster a magic shield for #40 sec#, which absorbs up to ${damage} Damage and grants immunity to Trip, before breaking.\r\r' +
+      'The #${effects[0]}# explodes into ice shards when broken, Snaring all enemies within a #6m# radius.\r' +
       'This counts as a Freezing effect.\r\r' +
       'Applies a #30 sec# Cooldown when the effect ends.',
   },
@@ -135,12 +135,12 @@ const skills = Object.freeze([
     rank: 7,
     mana: 473,
     range: [0],
-    burningDamage: { base: 1331, attack: ATTACK.MAGIC, ratio: 400 },
-    duration: 5,
+    damage: { base: 1331, attack: ATTACK.MAGIC, ratio: 400 },
+    burningDuration: 5,
     castTime: 0,
     cooldown: 26,
     effects: [BUFF.BURNING, BUFF.SLOWED],
-    description: 'Calls forth a #20m# wide wall of fire for #10 sec,# which Slows all enemies within its area of effect. Decreases Move Speed #-40%#. Inflicts #Flame Barrier# on enemies that touch it, dealing ${burningDamage} Magic Damage over #${duration}sec.#\r' +
+    description: 'Calls forth a #20m# wide wall of fire for #10 sec,# which Slows all enemies within its area of effect. Decreases Move Speed #-40%#. Inflicts #Flame Barrier# on enemies that touch it, dealing ${damage} Magic Damage over #${burningDuration}sec.#\r' +
       'This counts as a Burning effect.',
     combos: [
       {
@@ -288,7 +288,7 @@ export const passives = Object.freeze([
       },
       {
         type: SKILLMOD.PERCENT,
-        vars: { burningDamage: 1.3, duration: 1.3 },
+        vars: { burningDuration: 1.3 },
         skills: [6],
       },
       {
@@ -345,7 +345,7 @@ export const ancestrals = Object.freeze([
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 360 },
         castTime: 1.5,
         description: 'Hurl a single powerful flamebolt at the target, dealing ${damage} Magic Damage.\r' +
-          'Inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
+          'Inflicts #${effects[0]}# on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
         globalCooldown: GLOBAL_CD.NORMAL,
       },
       {
@@ -443,7 +443,6 @@ export const ancestrals = Object.freeze([
         range: [0, 22],
         damage: { base: 288, attack: ATTACK.MAGIC, ratio: 80 },
         castTime: 0,
-        globalCooldown: GLOBAL_CD.NO_TRIGGER_REDUCED,
       },
       {
         element: ELEMENT.WAVE,
@@ -465,20 +464,19 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.MIST,
         icon: Icon.FlameBarrierMist,
         range: [0, 20],
-        burningDamage: { base: 1982, attack: ATTACK.MAGIC, ratio: 600 },
-        duration: 4,
-        description: 'Inflicts Flame Mark on the target, dealing ${burningDamage} Magic Damage over #${duration} sec#, then creates a wide wall of fire after #5 sec#.\r' +
-          'The #Flame Barrier# lasts for #10 sec#, dealing Flame Barrier damage when Stalker\'s Mark ends.\r' +
-          'Engulfs the target in flames and inflicts ${burningDamage} Magic Damage over time.\r' +
-          'Move Speed #-60%#',
+        damage: { base: 1982, attack: ATTACK.MAGIC, ratio: 600 },
+        duration: 10,
+        description: 'Inflicts #Flame Mark# on the target for #5 sec#. Creates a Flame Barrier that engulfs the target in flames and inflicts ${damage} Magic Damage over #${duration} sec#, when the #Flame Mark# ends.\r' +
+          'The Flame Barrier inflicts #Mist Flame# on anyone who touches it, dealing ${damage} Magic Damage and decreasing Move Speed #-60%# for #${burningDuration}sec#.',
       },
       {
         element: ELEMENT.WAVE,
         icon: Icon.FlameBarrierWave,
         damage: { base: 481, attack: ATTACK.MAGIC, ratio: 150 },
         effects: [BUFF.FROZEN],
-        description: 'Calls forth a #15m# wide wall of blue fire for #10 sec#, which Freezes all enemies within its area of effect. Decreases Move Speed #-30%#.\r' +
-          'Inflicts #Flame Wave# on enemies that touch it, dealing ${damage} Magic Damage.',
+        description: 'Calls forth a #15m# wide wall of blue fire for #10 sec#, which deals ${damage} Magic Damage to enemies that touch it.\r' +
+          'Inflicts #Frostbite# to all enemies within its area of effect for #3 sec#.\r' +
+          'Decreases Move Speed of affected enemies #-30%#.',
         combo: [],
       },
     ],
