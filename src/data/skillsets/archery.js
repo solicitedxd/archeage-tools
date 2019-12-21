@@ -201,7 +201,7 @@ const skills = Object.freeze([
     combos: [
       {
         buff: BUFF.PAIN_HARVEST,
-        causes: 'Triggers Hunter\'s Guile for 30 sec if under the effect of ${buff}',
+        text: 'Triggers Hunter\'s Guile for 30 sec if under the effect of ${b}',
       },
     ],
   },
