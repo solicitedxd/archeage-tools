@@ -6,6 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { HelpOutlineRounded } from '@material-ui/icons';
+import cn from 'classnames';
 import { EVENT_TYPE } from 'constants/schedule';
 import {
   GAME_TIME_EVENTS,
@@ -22,10 +23,12 @@ class EventList extends Component {
   static propTypes = {
     type: string.isRequired,
     regionNA: bool,
+    embed: bool,
   };
 
   static defaultProps = {
     regionNA: true,
+    embed: false,
   };
 
   state = {
@@ -66,7 +69,7 @@ class EventList extends Component {
   };
 
   render() {
-    const { type, regionNA } = this.props;
+    const { type, regionNA, embed } = this.props;
 
     let events = [];
     switch (type) {
@@ -83,7 +86,7 @@ class EventList extends Component {
     }
 
     return (
-      <Paper className="event-list">
+      <Paper className={cn({ 'event-list': !embed })}>
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="subtitle1" className="title-text">{type}</Typography>

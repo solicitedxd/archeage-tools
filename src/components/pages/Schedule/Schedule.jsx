@@ -16,9 +16,13 @@ import { EVENT_TYPE } from 'constants/schedule';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
 import React, { Component } from 'react';
-import { bool } from 'react-proptypes';
+import {
+  bool,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { setTitle } from 'utils/string';
+import CargoShip from './CargoShip';
 import EventList from './EventList';
 
 // prevent optimize imports from removing
@@ -28,6 +32,7 @@ class Schedule extends Component {
   static propTypes = {
     mobile: bool,
     regionNA: bool,
+    cargoShip: object,
   };
 
   static defaultProps = {
@@ -35,7 +40,7 @@ class Schedule extends Component {
   };
 
   render() {
-    const { mobile, regionNA, setRegion } = this.props;
+    const { mobile, regionNA, setRegion, cargoShip } = this.props;
 
     setTitle('Event Schedule');
 
@@ -59,17 +64,23 @@ class Schedule extends Component {
           </AppBar>
         </Paper>
         <div className={cn('section', 'calendar-categories', { mobile })}>
-          {Object.values(EVENT_TYPE).map(type => <EventList key={type} type={type} regionNA={regionNA} />)}
+          <EventList type={EVENT_TYPE.REAL_TIME_EVENT} regionNA={regionNA} />
+          <EventList type={EVENT_TYPE.WORLD_BOSSES} regionNA={regionNA} />
+          <div className="event-list">
+            <EventList type={EVENT_TYPE.GAME_TIME_EVENT} regionNA={regionNA} embed />
+            <CargoShip {...cargoShip} />
+          </div>
         </div>
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ calendar: { time, completed, regionNA }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { time, completed, regionNA, cargoShip }, display: { mobile } }) => ({
   time,
   completed,
   regionNA,
+  cargoShip,
   mobile,
 });
 

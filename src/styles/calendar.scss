@@ -43,6 +43,82 @@
     }
   }
 
+  .cargo-ship {
+    margin-top: 20px;
+
+    .cargo-settings-btn {
+      margin-right: -12px;
+    }
+
+    .cargo-slider {
+      color: #009688;
+      position: relative;
+      height: 2px;
+      margin: 16px 16px 0;
+      padding: 11px 0;
+      box-sizing: content-box;
+
+      .cargo-rail {
+        width: 100%;
+        height: 2px;
+        opacity: 0.5;
+        position: absolute;
+        border-radius: 1px;
+        background-color: currentColor;
+      }
+
+      .cargo-icon {
+        display: inline-block;
+        background: url(../images/npc_icon.png) no-repeat;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+
+        &.austera {
+          background-position: -386px -97px;
+          top: 0;
+          left: -12px;
+        }
+
+        &.two-crowns {
+          background-position: -409px -97px;
+          top: 0;
+          right: -12px;
+        }
+
+        &.ship {
+          width: 17px;
+          height: 20px;
+          background-position: -412px -122px;
+          top: -8px;
+
+          &.moving {
+            animation: sailing 2.5s infinite;
+            animation-timing-function: linear;
+          }
+
+          &.reverse {
+            transform: scaleX(-1);
+
+            &.moving {
+              animation: sailing-reverse 2.5s infinite;
+              animation-timing-function: linear;
+            }
+          }
+        }
+      }
+    }
+
+    .cargo-text {
+      margin: 6px 12px;
+      padding-bottom: 8px;
+
+      .MuiTypography-body1 {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
   .ev-status {
     display: flex;
     flex-direction: column;
@@ -137,4 +213,28 @@
     background-position: -133px -102px;
   }
 
+}
+
+@keyframes sailing {
+  0%, 100% {
+    transform: translateY(0) rotate(0.005turn);
+  }
+  33% {
+    transform: translateY(2px) rotate(0.02turn);
+  }
+  66% {
+    transform: translateY(-2px) rotate(-0.02turn);
+  }
+}
+
+@keyframes sailing-reverse {
+  0%, 100% {
+    transform: translateY(0px) rotate(-0.005turn) scaleX(-1);
+  }
+  33% {
+    transform: translateY(2px) rotate(-0.02turn) scaleX(-1);
+  }
+  66% {
+    transform: translateY(-2px) rotate(0.02turn) scaleX(-1);
+  }
 }
