@@ -40,7 +40,7 @@ class Schedule extends Component {
   };
 
   render() {
-    const { mobile, regionNA, setRegion, cargoShip } = this.props;
+    const { mobile, regionNA, setRegion } = this.props;
 
     setTitle('Event Schedule');
 
@@ -68,7 +68,7 @@ class Schedule extends Component {
           <EventList type={EVENT_TYPE.WORLD_BOSSES} regionNA={regionNA} />
           <div className="event-list">
             <EventList type={EVENT_TYPE.GAME_TIME_EVENT} regionNA={regionNA} embed />
-            <CargoShip {...cargoShip} />
+            <CargoShip />
           </div>
         </div>
       </div>
@@ -76,11 +76,10 @@ class Schedule extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { time, completed, regionNA, cargoShip }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { time, completed, regionNA }, display: { mobile } }) => ({
   time,
   completed,
   regionNA,
-  cargoShip,
   mobile,
 });
 

@@ -15,16 +15,30 @@ export const hhmmssFromDate = (date) => {
   const hours = timeMatch[2];
   const minutes = timeMatch[3];
   const seconds = timeMatch[4];
-  let remaining = [];
+
+  return hhmmssFormat({ days, hours, minutes, seconds });
+};
+
+export const hhmmssFromSeconds = (ss) => {
+  const seconds = Math.round(ss % 60);
+  const minutes = Math.floor(ss / 60) % 60;
+  const hours = Math.floor(ss / 60 / 60) % 24;
+  const days = Math.floor(ss / 60 / 60 / 24);
+
+  return hhmmssFormat({ days, hours, minutes, seconds });
+};
+
+const hhmmssFormat = ({ days, hours, minutes, seconds }) => {
+  const remaining = [];
   if (days > 0) {
     remaining.push(days);
   }
   if (days > 0 || hours > 0) {
-    remaining.push(hours);
+    remaining.push(String(hours).padStart(2, 0));
   }
-  if (days > 0 || hours > 0 || minutes > 0 || seconds > 0) {
-    remaining.push(minutes);
-    remaining.push(seconds);
+  if (days > 0 || hours > 0 || minutes > 0 || seconds >= 0) {
+    remaining.push(String(minutes).padStart(2, 0));
+    remaining.push(String(seconds).padStart(2, 0));
   }
   return remaining.join(':');
 };

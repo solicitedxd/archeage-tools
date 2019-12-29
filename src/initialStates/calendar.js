@@ -4,7 +4,7 @@ export default {
   regionNA: true,
   cargoShip: {
     port: null,
-    duration: 0,
+    duration: null,
     timestamp: null,
   },
 };

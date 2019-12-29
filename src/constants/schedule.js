@@ -1,6 +1,7 @@
 import { ZONE } from 'constants/map';
 
 export const SET_REGION = 'SET_REGION';
+export const SET_CARGO_SHIP = 'SET_CARGO_SHIP';
 
 export const DAY = Object.freeze({
   SUNDAY: 'Sunday',
@@ -22,6 +23,7 @@ export const CARGO_SCHEDULE = Object.freeze([
   {
     text: 'docked at Solis Trade Outlet.',
     port: ZONE.SOLIS_HEADLANDS,
+    reverse: true,
     duration: 1200,
   },
   {
@@ -38,6 +40,6 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'sailing from Two Crowns to Solis.',
     sailing: true,
     reverse: true,
-    duration: 647.77,
+    duration: 648,
   },
 ]);

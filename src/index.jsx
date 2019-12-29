@@ -1,3 +1,5 @@
+import MomentUtils from '@date-io/moment';
+import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import { createBrowserHistory } from 'history';
 import React from 'react';
@@ -14,11 +16,13 @@ const store = configureStore(history);
 
 const dom = (
   <AppContainer>
-    <Provider store={store}>
-      <Router history={history}>
-        {routes}
-      </Router>
-    </Provider>
+    <MuiPickersUtilsProvider utils={MomentUtils}>
+      <Provider store={store}>
+        <Router history={history}>
+          {routes}
+        </Router>
+      </Provider>
+    </MuiPickersUtilsProvider>
   </AppContainer>
 );
 
