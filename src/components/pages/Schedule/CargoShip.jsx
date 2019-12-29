@@ -107,6 +107,10 @@ class CargoShip extends Component {
     if (this.interval) {
       clearInterval(this.interval);
     }
+    // do not attempt to initialize if there's no saved data
+    if (!portInitial) {
+      return;
+    }
 
     const now = moment();
     const timestamp = moment(timestampRaw);
