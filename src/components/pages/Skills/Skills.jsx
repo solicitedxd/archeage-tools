@@ -1,22 +1,17 @@
 import {
   AppBar,
-  Button,
-  Dialog,
-  DialogContent,
   IconButton,
   Paper,
-  TextField,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
 import {
-  Close,
-  FileCopy,
   Replay,
   Share,
 } from '@material-ui/icons';
 import cn from 'classnames';
+import CopyDialog from 'components/CopyDialog';
 import { MAX_POINTS } from 'constants/skills';
 import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
@@ -43,7 +38,6 @@ class Skills extends Component {
     ],
     share: false,
     shareCode: null,
-    copied: false,
   };
 
   loadBuild = (props) => {
@@ -181,18 +175,12 @@ class Skills extends Component {
     this.setState({ share: false });
   };
 
-  handleCopyShare = () => {
-    this.copyTextfield.children[0].select();
-    document.execCommand('copy');
-    this.setState({ copied: true });
-  };
-
   getSpentPoints = () => {
     return this.state.skillTrees.map(tree => getTreePoints(tree.skills)).reduce((a, b) => a + b);
   };
 
   render() {
-    const { skillTrees, share, shareCode, copied } = this.state;
+    const { skillTrees, share, shareCode } = this.state;
     const { location, mobile } = this.props;
 
     let className;
@@ -248,41 +236,13 @@ class Skills extends Component {
             />,
           )}
         </div>
-        <Dialog
+        <CopyDialog
           open={share}
-          onClose={this.handleClose}
-        >
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Share Build</Typography>
-              <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <Close />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <DialogContent>
-            <TextField
-              label="Shareable Link"
-              defaultValue={`${window.location.protocol}//${window.location.host}${location.pathname}#${shareCode}`}
-              InputProps={{
-                readOnly: true,
-                ref: (node) => this.copyTextfield = node,
-              }}
-              fullWidth
-              multiline
-              helperText={copied ? <span style={{ color: 'green' }}>Copied!</span> : null}
-            />
-            <Button
-              onClick={this.handleCopyShare}
-              startIcon={<FileCopy />}
-              color="primary"
-              variant="contained"
-              style={{ marginTop: 8 }}
-            >
-              Copy link
-            </Button>
-          </DialogContent>
-        </Dialog>
+          handleClose={this.handleClose}
+          title="Share Build"
+          label="Shareable Link"
+          value={`${window.location.protocol}//${window.location.host}${location.pathname}#${shareCode}`}
+        />
         <SkillCombos skillTrees={skillTrees} />
       </div>
     );

@@ -21,23 +21,23 @@ export const EVENT_TYPE = Object.freeze({
 
 export const CARGO_SCHEDULE = Object.freeze([
   {
-    text: 'docked in Solis Headlands.',
+    text: 'docked in Solis Headlands',
     port: ZONE.SOLIS_HEADLANDS,
     reverse: true,
     duration: 1200,
   },
   {
-    text: 'sailing to Two Crowns.',
+    text: 'sailing to Two Crowns',
     sailing: true,
     duration: 620,
   },
   {
-    text: 'docked in Two Crowns.',
+    text: 'docked in Two Crowns',
     port: ZONE.TWO_CROWNS,
     duration: 1200,
   },
   {
-    text: 'sailing to Solis Headlands.',
+    text: 'sailing to Solis Headlands',
     sailing: true,
     reverse: true,
     duration: 648,

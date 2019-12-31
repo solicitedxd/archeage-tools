@@ -18,10 +18,12 @@ import {
 import {
   Close,
   Settings,
+  Share,
 } from '@material-ui/icons';
 import { KeyboardTimePicker } from '@material-ui/pickers';
 import { setCargoShip } from 'actions/calendar';
 import cn from 'classnames';
+import CopyDialog from 'components/CopyDialog';
 import { ZONE } from 'constants/map';
 import { CARGO_SCHEDULE } from 'constants/schedule';
 import moment from 'moment';
@@ -50,6 +52,7 @@ class CargoShip extends Component {
 
   state = {
     open: false,
+    share: false,
     setup: {
       port: '',
       duration: maximumDuration(),
@@ -167,20 +170,29 @@ class CargoShip extends Component {
     this.setState({ stepIndex, timeRemaining, shipPosition, endTime });
   };
 
+  toggleShare = () => {
+    this.setState({ share: !this.state.share });
+  };
+
   render() {
     const { port } = this.props;
-    const { open, setup, stepIndex, endTime, shipPosition } = this.state;
+    const { open, setup, stepIndex, endTime, shipPosition, share } = this.state;
     const now = moment();
     const step = CARGO_SCHEDULE[stepIndex];
     let message;
+    let shareMessage = '';
 
     if (!port || !endTime) {
       message = 'Initialize the timer by clicking the Settings cog.';
     } else {
+      const endSec = endTime.diff(now) / 1000;
       message = <React.Fragment>
-        The cargo ship is {step.text}<br />
-        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(endTime.diff(now) / 1000)}.
+        The cargo ship is {step.text}.<br />
+        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(endSec)}.
       </React.Fragment>;
+      const arriveMin = Math.floor(endSec / 60);
+      shareMessage = `Cargo ship is ${step.text}, ${step.port ? 'departing' : 'arriving'} in ${arriveMin === 0
+        ? 'less than a minute' : `${arriveMin} min`}.`;
     }
 
     return [
@@ -189,8 +201,13 @@ class CargoShip extends Component {
           <Toolbar variant="dense">
             <Typography variant="subtitle1" className="title-text">Cargo Ship</Typography>
             <Tooltip title="Setup Timer">
-              <IconButton className="cargo-settings-btn" onClick={this.toggleDialog}>
+              <IconButton onClick={this.toggleDialog}>
                 <Settings />
+              </IconButton>
+            </Tooltip>
+            <Tooltip title="Share Timer">
+              <IconButton className="cargo-settings-btn" onClick={this.toggleShare} disabled={!port || !endTime}>
+                <Share />
               </IconButton>
             </Tooltip>
           </Toolbar>
@@ -277,6 +294,14 @@ class CargoShip extends Component {
           </Button>
         </DialogActions>
       </Dialog>,
+      <CopyDialog
+        open={share}
+        handleClose={this.toggleShare}
+        title="Share Cargo Timer"
+        label="Cargo Ship Status"
+        value={shareMessage}
+        key="share-cargo"
+      />,
     ];
   }
 }
