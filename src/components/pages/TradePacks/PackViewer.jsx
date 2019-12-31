@@ -108,7 +108,6 @@ class PackViewer extends Component {
 
   setUnitSize = (unitSize) => {
     this.setState({ unitSize });
-    console.log(this.state)
   };
 
   getLaborCost = (cost, proficiency) => {
