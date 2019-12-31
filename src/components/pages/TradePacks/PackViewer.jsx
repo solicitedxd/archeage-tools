@@ -99,10 +99,16 @@ class PackViewer extends Component {
 
   state = {
     transportExpand: false,
+    unitSize: 10000,
   };
 
   setTransportExpand = (transportExpand) => {
     this.setState({ transportExpand });
+  };
+
+  setUnitSize = (unitSize) => {
+    this.setState({ unitSize });
+    console.log(this.state)
   };
 
   getLaborCost = (cost, proficiency) => {
@@ -114,6 +120,7 @@ class PackViewer extends Component {
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
     const { transportExpand } = this.state;
+    const { unitSize } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
     const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
 
@@ -221,7 +228,7 @@ class PackViewer extends Component {
       if (mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER && craftLarder) {
         return;
       }
-      totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
+      totalGold += (prices[mat.item.name] || 0) * this.state.unitSize * mat.count;
     });
     if (sellZone === CARGO) {
       totalGold = CARGO_SUPPLY[supplyLevel].price;
@@ -299,7 +306,15 @@ class PackViewer extends Component {
                   Item
                 </TableCell>
                 <TableCell>
-                  Gold per unit
+                  <Select
+                    value={this.state.unitSize}
+                    onChange={(e) => this.setUnitSize(e.target.value)}
+                    // onChange={console.log(this.state.unitSize)}
+                  >
+                    <MenuItem value={10000}>Gold per unit</MenuItem>
+                    <MenuItem value={1000}>Gold per 10 units</MenuItem>
+                    <MenuItem value={100}>Gold per 100 units</MenuItem>
+                  </Select>
                 </TableCell>
                 {isAgedPack &&
                 <TableCell>
@@ -359,7 +374,7 @@ class PackViewer extends Component {
                     {itemShowCost(material) ?
                       <Currency
                         type={CURRENCY.COIN}
-                        count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
+                        count={Math.round((prices[material.item.name] || 0) * this.state.unitSize * material.count * quantity)}
                       /> :
                       '--'}
                   </TableCell>
