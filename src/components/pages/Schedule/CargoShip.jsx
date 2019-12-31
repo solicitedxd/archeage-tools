@@ -28,7 +28,6 @@ import moment from 'moment';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
-  number,
   oneOf,
   string,
 } from 'react-proptypes';
@@ -41,14 +40,12 @@ const getNextIndex = (index) => index + 1 === CARGO_SCHEDULE.length ? 0 : index 
 class CargoShip extends Component {
   static propTypes = {
     port: oneOf([ZONE.SOLIS_HEADLANDS, ZONE.TWO_CROWNS]),
-    duration: number,
-    timestamp: string,
+    endTime: string,
   };
 
   static defaultProps = {
     port: null,
-    duration: 0,
-    timestamp: null,
+    endTime: null,
   };
 
   state = {
@@ -58,9 +55,10 @@ class CargoShip extends Component {
       duration: maximumDuration(),
     },
     stepIndex: 0,
-    timeRemaining: 0,
+    endTime: 0,
     shipPosition: 0,
   };
+
   interval = null;
 
   toggleDialog = () => {
@@ -88,7 +86,7 @@ class CargoShip extends Component {
     // convert the duration moment to seconds
     const durMoment = setup.duration;
     const duration = (durMoment.minutes() * 60) + durMoment.seconds() + (durMoment.milliseconds() / 1000);
-    const props = { ...setup, duration, timestamp: moment().format() };
+    const props = { ...setup, endTime: moment().add(duration, 'seconds').format() };
     this.props.setCargoShip(props);
     this.initialize(props);
     this.toggleDialog();
@@ -102,7 +100,7 @@ class CargoShip extends Component {
     clearInterval(this.interval);
   }
 
-  initialize = ({ port: portInitial, duration: durationInitial, timestamp: timestampRaw }) => {
+  initialize = ({ port: portInitial, endTime: endTimeInitial }) => {
     // prevent multiple ticks
     if (this.interval) {
       clearInterval(this.interval);
@@ -113,28 +111,23 @@ class CargoShip extends Component {
     }
 
     const now = moment();
-    const timestamp = moment(timestampRaw);
 
     let port = portInitial;
-    let duration = durationInitial;
     let step = CARGO_SCHEDULE.find(step => step.port === port);
     let stepIndex = CARGO_SCHEDULE.indexOf(step);
-    let stepEnd = timestamp.clone().add(duration, 'second');
+    let stepEnd = moment(endTimeInitial);
 
     let lastPortProps = null;
     // fast-forward the state in case of re-visit
     while (stepEnd.isBefore(now)) {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
-      duration = step.duration;
       port = step.port;
+      stepEnd.add(step.duration, 'seconds');
       if (step.port) {
-        lastPortProps = { port: step.port, duration: step.duration, timestamp: stepEnd.format() };
+        lastPortProps = { port: step.port, endTime: stepEnd.format() };
       }
-      stepEnd.add(duration, 'seconds');
     }
-
-    duration = stepEnd.diff(now, 'seconds');
 
     // save the fast-forward
     if (lastPortProps) {
@@ -143,24 +136,27 @@ class CargoShip extends Component {
 
     this.setState({
       stepIndex,
-      timeRemaining: duration,
+      endTime: stepEnd,
     }, () => {
       this.interval = setInterval(this.timerTick, 1000);
     });
   };
 
   timerTick = () => {
-    let { stepIndex, timeRemaining, shipPosition } = this.state;
+    let { stepIndex, endTime, shipPosition } = this.state;
+    const now = moment();
     let step = CARGO_SCHEDULE[stepIndex];
-    timeRemaining -= 1;
+    let timeRemaining = endTime.diff(now) / 1000;
+
     if (timeRemaining < 0) {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
       timeRemaining = step.duration + timeRemaining;
+      endTime = moment().add(timeRemaining, 'seconds');
 
       // update the save so it doesn't have to fast-forward as much on next load
       if (step.port) {
-        this.props.setCargoShip({ port: step.port, duration: step.duration, timestamp: moment().format() });
+        this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
       }
     }
     if (step.port) {
@@ -168,21 +164,22 @@ class CargoShip extends Component {
     } else {
       shipPosition = timeRemaining;
     }
-    this.setState({ stepIndex, timeRemaining, shipPosition });
+    this.setState({ stepIndex, timeRemaining, shipPosition, endTime });
   };
 
   render() {
     const { port } = this.props;
-    const { open, setup, stepIndex, timeRemaining, shipPosition } = this.state;
+    const { open, setup, stepIndex, endTime, shipPosition } = this.state;
+    const now = moment();
     const step = CARGO_SCHEDULE[stepIndex];
     let message;
 
-    if (!port) {
+    if (!port || !endTime) {
       message = 'Initialize the timer by clicking the Settings cog.';
     } else {
       message = <React.Fragment>
-        Cargo Ship is {step.text}<br />
-        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(Math.abs(timeRemaining))}.
+        The cargo ship is {step.text}<br />
+        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(endTime.diff(now) / 1000)}.
       </React.Fragment>;
     }
 

@@ -92,7 +92,6 @@
           height: 20px;
           background-position: -412px -122px;
           top: -8px;
-          transition: left 0.5s ease-in-out, right 0.5s ease-in-out;
 
           &.moving {
             animation: sailing 2.5s infinite;

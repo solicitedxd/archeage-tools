@@ -20,7 +20,7 @@ export const hhmmssFromDate = (date) => {
 };
 
 export const hhmmssFromSeconds = (ss) => {
-  const seconds = Math.round(ss % 60);
+  const seconds = Math.floor(ss % 60);
   const minutes = Math.floor(ss / 60) % 60;
   const hours = Math.floor(ss / 60 / 60) % 24;
   const days = Math.floor(ss / 60 / 60 / 24);
