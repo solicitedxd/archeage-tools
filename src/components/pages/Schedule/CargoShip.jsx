@@ -157,12 +157,14 @@ class CargoShip extends Component {
       step = CARGO_SCHEDULE[stepIndex];
       timeRemaining = step.duration + timeRemaining + 1;
       endTime = moment().add(timeRemaining, 'seconds');
+
+      if (step.port) {
+        // update the save so it doesn't have to fast-forward as much on next load
+        this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
+      }
     }
     if (step.port) {
       shipPosition = 0;
-
-      // update the save so it doesn't have to fast-forward as much on next load
-      this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
     } else {
       shipPosition = timeRemaining;
     }
