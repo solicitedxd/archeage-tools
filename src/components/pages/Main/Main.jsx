@@ -33,6 +33,7 @@ import {
 import { clearNotification } from 'actions/notification';
 import cn from 'classnames';
 import CascadingMenu from 'components/CascadingMenu';
+import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
 import navigation from 'constants/navigation';
 import React from 'react';
@@ -273,6 +274,7 @@ class Main extends React.PureComponent {
           <div className="section footer-wrapper">
             <div className="footer">
               <Typography variant="caption" className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
+              <DiscordButton />
               <iframe
                 src="https://www.patreon.com/platform/iframe?widget=become-patron-button&amp;redirectURI=https%3A%2F%2Farcheage.mokulu.io%2F&amp;creatorID=12806740&amp;openInNewTab=true"
                 scrolling="no" allowtransparency="true" frameBorder="0" className="patreon-widget"
