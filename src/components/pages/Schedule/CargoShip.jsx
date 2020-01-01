@@ -88,7 +88,7 @@ class CargoShip extends Component {
     const { setup } = this.state;
     // convert the duration moment to seconds
     const durMoment = setup.duration;
-    const duration = (durMoment.minutes() * 60) + durMoment.seconds() + (durMoment.milliseconds() / 1000);
+    const duration = (durMoment.minutes() * 60) + durMoment.seconds();
     const props = { ...setup, endTime: moment().add(duration, 'seconds').format() };
     this.props.setCargoShip(props);
     this.initialize(props);
@@ -126,7 +126,7 @@ class CargoShip extends Component {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
       port = step.port;
-      stepEnd.add(step.duration, 'seconds');
+      stepEnd.add(step.duration + 1, 'seconds');
       if (step.port) {
         lastPortProps = { port: step.port, endTime: stepEnd.format() };
       }
@@ -151,19 +151,18 @@ class CargoShip extends Component {
     let step = CARGO_SCHEDULE[stepIndex];
     let timeRemaining = endTime.diff(now) / 1000;
 
-    if (timeRemaining < 0) {
+    // continue to check the time remaining in case of tab desync
+    while (timeRemaining < 0) {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
-      timeRemaining = step.duration + timeRemaining;
+      timeRemaining = step.duration + timeRemaining + 1;
       endTime = moment().add(timeRemaining, 'seconds');
-
-      // update the save so it doesn't have to fast-forward as much on next load
-      if (step.port) {
-        this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
-      }
     }
     if (step.port) {
       shipPosition = 0;
+
+      // update the save so it doesn't have to fast-forward as much on next load
+      this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
     } else {
       shipPosition = timeRemaining;
     }
