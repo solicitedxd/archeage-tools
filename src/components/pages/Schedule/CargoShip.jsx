@@ -84,6 +84,13 @@ class CargoShip extends Component {
     this.setState({ setup: { ...this.state.setup, [field]: value } });
   };
 
+  handleEnter = (e) => {
+    const { setup } = this.state;
+    if (e.key === 'Enter' && setup.port && setup.duration) {
+      this.submitSetup();
+    }
+  };
+
   submitSetup = () => {
     const { setup } = this.state;
     // convert the duration moment to seconds
@@ -126,7 +133,7 @@ class CargoShip extends Component {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
       port = step.port;
-      stepEnd.add(step.duration + 1, 'seconds');
+      stepEnd.add(step.duration, 'seconds');
       if (step.port) {
         lastPortProps = { port: step.port, endTime: stepEnd.format() };
       }
@@ -155,7 +162,7 @@ class CargoShip extends Component {
     while (timeRemaining < 0) {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
-      timeRemaining = step.duration + timeRemaining + 1;
+      timeRemaining = step.duration + timeRemaining;
       endTime = moment().add(timeRemaining, 'seconds');
 
       if (step.port) {
@@ -275,6 +282,7 @@ class CargoShip extends Component {
                 format="mm:ss"
                 value={setup.duration}
                 onChange={this.handleSetupChange('duration')}
+                onKeyPress={this.handleEnter}
                 open={false}
                 KeyboardButtonProps={{
                   style: {

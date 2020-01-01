@@ -40,6 +40,6 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'sailing to Solis Headlands',
     sailing: true,
     reverse: true,
-    duration: 648,
+    duration: 647.5,
   },
 ]);
