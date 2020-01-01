@@ -33,7 +33,7 @@ import {
 import { clearNotification } from 'actions/notification';
 import cn from 'classnames';
 import CascadingMenu from 'components/CascadingMenu';
-import DiscordButton from 'components/DiscordButton/DiscordButton';
+import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
 import navigation from 'constants/navigation';
 import React from 'react';
