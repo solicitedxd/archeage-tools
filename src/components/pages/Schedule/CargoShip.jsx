@@ -198,9 +198,10 @@ class CargoShip extends Component {
         The cargo ship is {step.text}.<br />
         It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(endSec)}.
       </React.Fragment>;
-      const arriveMin = Math.floor(endSec / 60);
-      shareMessage = `Cargo ship is ${step.text}, ${step.port ? 'departing' : 'arriving'} in ${arriveMin === 0
-        ? 'less than a minute' : `${arriveMin} min`}.`;
+      const arriveMin = Math.round(endSec / 60);
+      shareMessage = `Cargo ship is ${step.port ? `leaving ${step.portFrom}`
+        : `arriving at ${step.portTo}`} in ${Math.floor(endSec / 60) === 0 ? 'less than a minute'
+        : `${arriveMin} minute${arriveMin > 1 ? 's' : ''}`}.`;
     }
 
     return [

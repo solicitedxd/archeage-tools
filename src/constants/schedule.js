@@ -23,23 +23,27 @@ export const CARGO_SCHEDULE = Object.freeze([
   {
     text: 'docked in Solis Headlands',
     port: ZONE.SOLIS_HEADLANDS,
+    portFrom: 'Austera',
     reverse: true,
     duration: 1200,
   },
   {
     text: 'sailing to Two Crowns',
     sailing: true,
-    duration: 620,
+    portTo: 'Two Crowns',
+    duration: 621,
   },
   {
     text: 'docked in Two Crowns',
     port: ZONE.TWO_CROWNS,
+    portFrom: ZONE.TWO_CROWNS,
     duration: 1200,
   },
   {
     text: 'sailing to Solis Headlands',
     sailing: true,
+    portTo: 'Austera',
     reverse: true,
-    duration: 647.5,
+    duration: 648,
   },
 ]);
