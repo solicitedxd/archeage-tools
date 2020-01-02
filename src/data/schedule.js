@@ -3,6 +3,7 @@ import {
   EVENT_TYPE,
 } from 'constants/schedule';
 import AbyssalAttackIcon from 'images/event/abyssal_attack.png';
+import ArchePassResetIcon from 'images/event/archepass_reset.png';
 import BossMonsterIcon from 'images/event/boss_monster.png';
 import CastleSiegeIcon from 'images/event/castle_siege.png';
 import CrimsonRiftIcon from 'images/event/crimson_rift.png';
@@ -37,7 +38,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
   },
   {
-    icon: DailyResetIcon,
+    icon: ArchePassResetIcon,
     name: 'ArchePass Reset',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     days: {
@@ -84,7 +85,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
   },
   {
     icon: CastleSiegeIcon,
-    name: 'Castle Siege',
+    name: 'Castle',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     days: {
       NA: [DAY.THURSDAY],
@@ -92,13 +93,13 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        // { time: '01:00:00', duration: '01:00:00', name: 'Claim' },
-        { time: '01:00:00', duration: '01:00:00', name: 'Preparation' },
+        { time: '20:00:00', duration: '05:00:00', name: 'Transportation', days: [DAY.WEDNESDAY] },
+        { time: '01:00:00', duration: '01:00:00', name: 'Claim / Siege Prep' },
         { time: '02:00:00', duration: '01:00:00', name: 'Siege' },
       ],
       EU: [
-        // { time: '20:00:00', duration: '01:00:00', name: 'Claim' },
-        { time: '20:00:00', duration: '01:00:00', name: 'Preparation' },
+        { time: '15:00:00', duration: '05:00:00', name: 'Transportation' },
+        { time: '20:00:00', duration: '01:00:00', name: 'Claim / Siege Prep' },
         { time: '21:00:00', duration: '01:00:00', name: 'Siege' },
       ],
     },
