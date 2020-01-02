@@ -146,6 +146,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
   {
     icon: GoldenPlainsIcon,
     name: 'Golden Plains Battle (Instance)',
+    link: '/guides/honor-dailies#golden-plains-battle',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
@@ -210,6 +211,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
   {
     icon: LuscaAwakeningIcon,
     name: 'Lusca Awakening',
+    link: '/guides/honor-dailies#lusca-awakening',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
@@ -281,7 +283,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: CrimsonRiftIcon,
     name: 'Crimson Rift',
-    link: '/guides/gilda-dailies#miscellaneous-quests',
+    link: '/guides/honor-dailies#crimson-rift',
     inGameTime: '12:00',
     times: [
       { time: '00:20:00', duration: '00:10:00', name: 'Mainland' },
@@ -301,7 +303,7 @@ export const GAME_TIME_EVENTS = Object.freeze([
   {
     icon: GrimghastRiftIcon,
     name: 'Grimghast Rift',
-    link: '/guides/gilda-dailies#miscellaneous-quests',
+    link: '/guides/honor-dailies#grimghast-rift',
     inGameTime: '00:00',
     times: [
       { time: '02:20:00', duration: '00:10:00' },
