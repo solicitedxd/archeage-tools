@@ -118,8 +118,7 @@ class PackViewer extends Component {
 
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
-    const { transportExpand } = this.state;
-    const { unitSize } = this.state;
+    const { transportExpand, unitSize } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
     const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
 
@@ -227,7 +226,7 @@ class PackViewer extends Component {
       if (mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER && craftLarder) {
         return;
       }
-      totalGold += (prices[mat.item.name] || 0) * this.state.unitSize * mat.count;
+      totalGold += (prices[mat.item.name] || 0) * unitSize * mat.count;
     });
     if (sellZone === CARGO) {
       totalGold = CARGO_SUPPLY[supplyLevel].price;
@@ -306,9 +305,8 @@ class PackViewer extends Component {
                 </TableCell>
                 <TableCell>
                   <Select
-                    value={this.state.unitSize}
+                    value={unitSize}
                     onChange={(e) => this.setUnitSize(e.target.value)}
-                    // onChange={console.log(this.state.unitSize)}
                   >
                     <MenuItem value={10000}>Gold per unit</MenuItem>
                     <MenuItem value={1000}>Gold per 10 units</MenuItem>
@@ -373,7 +371,7 @@ class PackViewer extends Component {
                     {itemShowCost(material) ?
                       <Currency
                         type={CURRENCY.COIN}
-                        count={Math.round((prices[material.item.name] || 0) * this.state.unitSize * material.count * quantity)}
+                        count={Math.round((prices[material.item.name] || 0) * unitSize * material.count * quantity)}
                       /> :
                       '--'}
                   </TableCell>
