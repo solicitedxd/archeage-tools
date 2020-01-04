@@ -25,4 +25,8 @@ export const QUALITY = Object.freeze({
   UNIQUE: 'Unique',
   CELESTIAL: 'Celestial',
   DIVINE: 'Divine',
+  EPIC: 'Epic',
+  LEGENDARY: 'Legendary',
+  MYTHIC: 'Mythic',
+  ETERNAL: 'Eternal',
 });

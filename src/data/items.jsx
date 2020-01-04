@@ -2185,6 +2185,25 @@ const ITEM = Object.freeze({
     </span>,
     price: 9500,
   },
+  TERRITORY_PENCE: {
+    name: 'Territory Pence',
+    icon: Icon.TerritoryPence,
+    type: 'Other',
+    bindsOnPickup: true,
+    description: <span>
+      This coin proces your invaluable contributions to the territory. Every 100 Territory Pence you earn can be exchanged for a Territory Coin.
+      <Use>Use 100 Territory Pence to craft a Territory Coin.<br />Auto-use: shift+right-click</Use>
+    </span>,
+  },
+  TERRITORY_RESOURCE_COIN: {
+    name: 'Territory Resource Coin',
+    icon: Icon.TerritoryResourceCoin,
+    type: 'Other',
+    bindsOnPickup: true,
+    description: <span>
+      A coin required to receive Territory Supplies. Can be obtained through Territory Activities.
+    </span>,
+  },
 });
 
 export default ITEM;

@@ -389,7 +389,7 @@ class PackViewer extends Component {
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Labor</TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(MULTIPURPOSE_AGING_LARDER.labor * quantity, 'husbandry')}
+                  {this.getLaborCost(MULTIPURPOSE_AGING_LARDER.labor, 'husbandry') * quantity}
                 </TableCell>
               </TableRow>}
               {labor > 0 &&
@@ -399,7 +399,7 @@ class PackViewer extends Component {
                   {isAgedPack ? 'Harvest Labor' : 'Craft Labor'}
                 </TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(labor * quantity, isAgedPack ? 'husbandry' : 'commerce')}
+                  {this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce') * quantity}
                 </TableCell>
               </TableRow>}
             </TableBody>
@@ -611,7 +611,7 @@ class PackViewer extends Component {
                 <TableRow>
                   <TableCell>Sell Labor</TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(sellLabor * quantity, 'commerce')}
+                    {this.getLaborCost(sellLabor, 'commerce') * quantity}
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">

@@ -2,6 +2,7 @@ import {
   Card,
   CardHeader,
   Checkbox,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import {
@@ -54,7 +55,7 @@ class Quest extends Component {
   };
 
   render() {
-    const { name, zones: zoneObj, difficulty, rewards, quests, faction, hideMode, hiddenQuests } = this.props;
+    const { name, zones: zoneObj, difficulty, rewards, quests, faction, hideMode, hiddenQuests, note } = this.props;
     const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
     const zones = getZones(zoneObj, faction);
 
@@ -63,7 +64,7 @@ class Quest extends Component {
 
     const checked = hideMode ? hidden : completed;
 
-    return (
+    const quest = (
       <Card onClick={() => this.handleChange(null, !checked)}>
         <CardHeader
           className={cn('quest-card', { 'checked': checked && !hideMode }, { 'hidden': !hidden && hideMode })}
@@ -114,6 +115,16 @@ class Quest extends Component {
         />
       </Card>
     );
+
+    if (note) {
+      return (
+        <Tooltip title={note}>
+          {quest}
+        </Tooltip>
+      );
+    } else {
+      return quest;
+    }
   }
 }
 

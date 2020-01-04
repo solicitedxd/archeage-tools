@@ -300,6 +300,7 @@ export const CONTINENT = Object.freeze({
       ZONE.NUIMARI,
       ZONE.EXELOCH,
       ZONE.AEGIS_ISLAND,
+      ZONE.MISTSONG_SUMMIT,
     ],
   },
   INSTANCE: {

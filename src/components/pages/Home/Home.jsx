@@ -17,6 +17,27 @@ const Home = () => {
         {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
       </div>
       <NewsPost
+        title="Discord Event Notifications"
+        date="Jan 4, 2020"
+      >
+        <Typography>The <MuiLink href="https://discord.gg/5acTKYu" target="_blank">Mokulu.io Discord</MuiLink> is
+          available for everyone to join. You can get notifications about announcements for ArcheAge Tools and leave
+          feedback.</Typography>
+        <p>I've also created a Discord bot that will post messages every time there's an event about to start in
+          ArcheAge.</p>
+        <p>Patrons have the perk of being mentioned whenever chosen event types are posted, giving them a direct ping as
+          a notice.</p>
+        <p>The Daily Checklist received new quests:</p>
+        <ul>
+          <li>Mistsong Summit dailies.</li>
+          <li>Castle dailies.</li>
+          <li>Safety in Numbers (Blue Salt daily)</li>
+        </ul>
+        <Typography>The Trade Pack calculator now allows you to choose the quantity of the price you enter for mats
+          (Gold per unit, per 10, or per 100) [Thanks to Travinns]. The labor cost calculation was also fixed to
+          properly reduce the labor cost of multiple packs when a proficiency bonus was active.</Typography>
+      </NewsPost>
+      <NewsPost
         title="Mount Gallery"
         date="Dec 17, 2019"
       >
