@@ -28,3 +28,7 @@ export const hhmmssFromDate = (date) => {
   }
   return remaining.join(':');
 };
+
+export const maxDecimals = (number, fractionDigits) => {
+  return Math.round(number * (10 ** fractionDigits)) / (10 ** fractionDigits);
+};
