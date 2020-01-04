@@ -70,6 +70,7 @@ import {
   oneOf,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { maxDecimals } from 'utils/thunderstruck';
 
 const getZonePrefix = (zone) => {
   if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
@@ -99,7 +100,7 @@ class PackViewer extends Component {
 
   state = {
     transportExpand: false,
-    unitSize: 10000,
+    unitSize: 1,
   };
 
   setTransportExpand = (transportExpand) => {
@@ -226,7 +227,7 @@ class PackViewer extends Component {
       if (mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER && craftLarder) {
         return;
       }
-      totalGold += (prices[mat.item.name] || 0) * unitSize * mat.count;
+      totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
     });
     if (sellZone === CARGO) {
       totalGold = CARGO_SUPPLY[supplyLevel].price;
@@ -303,24 +304,24 @@ class PackViewer extends Component {
                 <TableCell>
                   Item
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   <Select
                     value={unitSize}
                     onChange={(e) => this.setUnitSize(e.target.value)}
                   >
-                    <MenuItem value={10000}>Gold per unit</MenuItem>
-                    <MenuItem value={1000}>Gold per 10 units</MenuItem>
+                    <MenuItem value={1}>Gold per unit</MenuItem>
+                    <MenuItem value={10}>Gold per 10 units</MenuItem>
                     <MenuItem value={100}>Gold per 100 units</MenuItem>
                   </Select>
                 </TableCell>
                 {isAgedPack &&
-                <TableCell>
+                <TableCell align="right">
                   Craft?
                 </TableCell>}
-                <TableCell>
+                <TableCell align="right">
                   Quantity
                 </TableCell>
-                <TableCell>
+                <TableCell align="right">
                   Total Price
                 </TableCell>
               </TableRow>
@@ -337,8 +338,8 @@ class PackViewer extends Component {
                     {itemShowCost(material) ?
                       <Input
                         id={`mat-cost-${material.item.name}`}
-                        value={prices[material.item.name] || 0}
-                        onChange={setPrice(material.item.name)}
+                        value={maxDecimals(Number(prices[material.item.name] || 0) * unitSize, 4)}
+                        onChange={setPrice(material.item.name, unitSize)}
                         type="number"
                         inputProps={{
                           style: { textAlign: 'right', width: 120 },
@@ -371,7 +372,7 @@ class PackViewer extends Component {
                     {itemShowCost(material) ?
                       <Currency
                         type={CURRENCY.COIN}
-                        count={Math.round((prices[material.item.name] || 0) * unitSize * material.count * quantity)}
+                        count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
                       /> :
                       '--'}
                   </TableCell>
@@ -423,14 +424,14 @@ class PackViewer extends Component {
                       <TableCell>
                         Fuel Item
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="right">
                         Gold per unit
                       </TableCell>
-                      <TableCell>
+                      <TableCell align="right">
                         Quantity
                       </TableCell>
-                      <TableCell>
-                        Total Cost
+                      <TableCell align="right">
+                        Total Price
                       </TableCell>
                     </TableRow>
                   </TableHead>
@@ -443,7 +444,7 @@ class PackViewer extends Component {
                         <TableCell align="right">
                           <Input
                             id={`transp-mat-cost-${item.name}`}
-                            value={prices[item.name] || 0}
+                            value={maxDecimals(prices[item.name] || 0, 4)}
                             onChange={setPrice(item.name)}
                             type="number"
                             inputProps={{
