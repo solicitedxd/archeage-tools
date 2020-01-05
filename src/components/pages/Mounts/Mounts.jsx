@@ -20,12 +20,10 @@ import {
   Zoom,
 } from '@material-ui/core';
 import TableSortLabel from '@material-ui/core/TableSortLabel';
-import {
-  Apps,
-  Cancel,
-  List,
-  Search,
-} from '@material-ui/icons';
+import AppsIcon from '@material-ui/icons/Apps';
+import CancelIcon from '@material-ui/icons/Cancel';
+import ListIcon from '@material-ui/icons/List';
+import SearchIcon from '@material-ui/icons/Search';
 import {
   setDisplayGrid,
   setOnlyObtainable,
@@ -171,10 +169,10 @@ class Mounts extends Component {
                 onChange={(e, value) => setDisplayGrid(Boolean(!value))}
               >
                 <Tooltip title="Grid View">
-                  <Tab icon={<Apps />} aria-label="grid" />
+                  <Tab icon={<AppsIcon />} aria-label="grid" />
                 </Tooltip>
                 <Tooltip title="List View">
-                  <Tab icon={<List />} aria-label="list" />
+                  <Tab icon={<ListIcon />} aria-label="list" />
                 </Tooltip>
               </Tabs>
             </Toolbar>
@@ -188,13 +186,13 @@ class Mounts extends Component {
               InputProps={{
                 startAdornment: (
                   <InputAdornment position="start">
-                    <Search />
+                    <SearchIcon />
                   </InputAdornment>
                 ),
                 endAdornment: (
                   <InputAdornment position="end">
                     <Tooltip title="Clear">
-                      <Cancel className="clear-input" onClick={() => this.setSearch({ target: { value: '' } })} />
+                      <CancelIcon className="clear-input" onClick={() => this.setSearch({ target: { value: '' } })} />
                     </Tooltip>
                   </InputAdornment>
                 ),

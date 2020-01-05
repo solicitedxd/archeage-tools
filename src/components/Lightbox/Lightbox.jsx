@@ -8,7 +8,7 @@ import {
   Typography,
   Zoom,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
 import cn from 'classnames';
 import NoImage from 'images/guides/NoImage.png';
 import React, { Component } from 'react';
@@ -69,7 +69,7 @@ class Lightbox extends Component {
             <Toolbar variant="dense">
               <Typography variant="subtitle1" className="title-text">{title}</Typography>
               <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Toolbar>
           </AppBar>

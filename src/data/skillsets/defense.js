@@ -312,7 +312,7 @@ export const ancestrals = Object.freeze([
           'Stacks a Mettle per damage received.\r' +
           'Must equip a shield.\r' +
           'This effect cannot be stolen or removed by enemies. Grants 50% of received damage as stacks of #Mettle#.\r\r' +
-          'Grants #Close Protection# to the chosen ally for #5sec#. Decreases Move Speed #-10%#.\r' +
+          'Grants #CloseIcon Protection# to the chosen ally for #5sec#. Decreases Move Speed #-10%#.\r' +
           'Grants Immunity to Stun, Impale, Trip, Snare, Slow, Shack, Push, and Dive Trap.',
         globalCooldown: GLOBAL_CD.REDUCED,
       },

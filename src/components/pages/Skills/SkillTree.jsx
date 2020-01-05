@@ -7,11 +7,9 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  Close,
-  Replay,
-  SwapHoriz,
-} from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
+import ReplayIcon from '@material-ui/icons/Replay';
+import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import Skill from 'components/Skill';
 import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
@@ -68,12 +66,12 @@ class SkillTree extends Component {
               {!selectingSkillset &&
               <Tooltip title="Reset Tree">
                 <IconButton color="inherit" aria-label="Reset" onClick={() => resetSkillTree(treeId)}>
-                  <Replay />
+                  <ReplayIcon />
                 </IconButton>
               </Tooltip>}
               <Tooltip title={selectingSkillset ? 'Cancel' : 'Swap Tree'}>
                 <IconButton color="inherit" aria-label="Swap" onClick={() => this.toggleSelecting(!selectingSkillset)}>
-                  {selectingSkillset ? <Close /> : <SwapHoriz />}
+                  {selectingSkillset ? <CloseIcon /> : <SwapHorizIcon />}
                 </IconButton>
               </Tooltip>
             </div>}

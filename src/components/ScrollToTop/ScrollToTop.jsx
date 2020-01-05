@@ -2,7 +2,7 @@ import {
   Fab,
   Zoom,
 } from '@material-ui/core';
-import { ExpandLess } from '@material-ui/icons';
+import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import React, { Component } from 'react';
 import { scrollToTop } from 'utils/string';
 
@@ -49,7 +49,7 @@ class ScrollToTop extends Component {
           className="fab"
           onClick={this.handleClick}
         >
-          <ExpandLess />
+          <ExpandLessIcon />
         </Fab>
       </Zoom>
     );

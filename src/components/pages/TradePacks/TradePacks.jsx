@@ -26,7 +26,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Replay } from '@material-ui/icons';
+import ReplayIcon from '@material-ui/icons/Replay';
 import {
   resetSettings,
   setContinent,
@@ -124,7 +124,7 @@ class TradePacks extends Component {
               <Typography variant="subtitle1" className="title-text">Trade Pack Calculator</Typography>
               <Tooltip title="Reset All Settings">
                 <IconButton color="inherit" aria-label="Reset" onClick={this.requestReset}>
-                  <Replay />
+                  <ReplayIcon />
                 </IconButton>
               </Tooltip>
             </Toolbar>

@@ -9,7 +9,7 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import { Menu } from '@material-ui/icons';
+import MenuIcon from '@material-ui/icons/Menu';
 import KeyComponent from 'components/KeyComponent';
 import Link from 'components/Link';
 import NotFound from 'components/pages/NotFound';
@@ -142,7 +142,7 @@ class GuideViewer extends Component {
           className="fab-left"
           onClick={this.handleToCClick}
         >
-          <Menu />
+          <MenuIcon />
         </Fab>}
         <Drawer anchor="left" open={mobile && toc} onClose={this.closeToC}>
           <List style={{ width: 250 }}>

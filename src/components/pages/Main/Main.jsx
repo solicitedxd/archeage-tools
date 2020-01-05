@@ -19,12 +19,10 @@ import {
 } from '@material-ui/core/styles';
 import createPalette from '@material-ui/core/styles/createPalette';
 import createTypography from '@material-ui/core/styles/createTypography';
-import {
-  Brightness4,
-  BrightnessHigh,
-  Close,
-  Menu,
-} from '@material-ui/icons';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
+import CloseIcon from '@material-ui/icons/Close';
+import MenuIcon from '@material-ui/icons/Menu';
 import { ThemeProvider } from '@material-ui/styles';
 import {
   setDarkMode,
@@ -189,7 +187,7 @@ class Main extends React.PureComponent {
                 if (navLink.darkMode) {
                   return (
                     <IconButton onClick={this.handleDarkMode} key="dark-mode">
-                      {darkMode ? <BrightnessHigh /> : <Brightness4 style={{ color: 'white' }} />}
+                      {darkMode ? <BrightnessHighIcon /> : <Brightness4Icon style={{ color: 'white' }} />}
                     </IconButton>
                   );
                 }
@@ -230,7 +228,7 @@ class Main extends React.PureComponent {
               })}
               {mobile &&
               <IconButton color="inherit" aria-label="Open Drawer" onClick={this.handleOpen}>
-                <Menu />
+                <MenuIcon />
               </IconButton>}
               <Drawer anchor="right" open={mobile && drawerOpen} onClose={this.handleClose}>
                 <List style={{ width: 250 }}>
@@ -249,7 +247,7 @@ class Main extends React.PureComponent {
                           <ListItem button>
                             <ListItemIcon color="inherit" className="nav-icon">
                               <Icon style={{ fontSize: 32 }}>
-                                {darkMode ? <BrightnessHigh /> : <Brightness4 />}
+                                {darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
                               </Icon>
                             </ListItemIcon>
                             <ListItemText primary={navLink.name} />
@@ -302,7 +300,7 @@ class Main extends React.PureComponent {
                 className="notification-close"
                 onClick={clearNotification}
               >
-                <Close />
+                <CloseIcon />
               </IconButton>,
             ]}
           />

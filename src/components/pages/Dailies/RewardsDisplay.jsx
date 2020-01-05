@@ -4,7 +4,7 @@ import {
   ExpansionPanelSummary,
   Typography,
 } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import XP from 'components/XP';
@@ -49,7 +49,7 @@ class RewardsDisplay extends Component {
 
     return (
       <ExpansionPanel expanded={expanded} onChange={this.handleChange}>
-        <ExpansionPanelSummary expandIcon={<ExpandMore />}>
+        <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography>{title}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>

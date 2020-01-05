@@ -5,7 +5,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { HelpOutlineRounded } from '@material-ui/icons';
+import HelpOutlineRoundedIcon from '@material-ui/icons/HelpOutlineRounded';
 import { EVENT_TYPE } from 'constants/schedule';
 import {
   GAME_TIME_EVENTS,
@@ -99,7 +99,7 @@ class EventList extends Component {
                   completed or killed by other players before the timer's in-progress duration is over.</Typography>
               </>
             }>
-              <HelpOutlineRounded
+              <HelpOutlineRoundedIcon
                 style={{ cursor: 'help' }}
               />
             </Tooltip>}

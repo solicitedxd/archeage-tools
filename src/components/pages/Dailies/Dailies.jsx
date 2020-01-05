@@ -8,12 +8,10 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  Close,
-  Replay,
-  Settings,
-  Visibility,
-} from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
+import ReplayIcon from '@material-ui/icons/Replay';
+import SettingsIcon from '@material-ui/icons/Settings';
+import VisibilityIcon from '@material-ui/icons/Visibility';
 import {
   resetHide,
   resetQuests,
@@ -150,12 +148,12 @@ class Dailies extends Component {
               </Typography>}
               <Tooltip title={hideMode ? 'Restore all hidden' : 'Reset all quests.'}>
                 <IconButton color="inherit" aria-label="Reset" onClick={this.handleReset}>
-                  {hideMode ? <Visibility /> : <Replay />}
+                  {hideMode ? <VisibilityIcon /> : <ReplayIcon />}
                 </IconButton>
               </Tooltip>
               {this.showSettingsMenu() &&
               <IconButton color="inherit" aria-label="Menu" onClick={this.handleOpen}>
-                <Settings />
+                <SettingsIcon />
               </IconButton>}
             </Toolbar>
           </AppBar>
@@ -182,7 +180,7 @@ class Dailies extends Component {
             <Toolbar variant="dense">
               <Typography variant="subtitle1" className="title-text">Filters</Typography>
               <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Toolbar>
           </AppBar>

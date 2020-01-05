@@ -8,7 +8,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
 import cn from 'classnames';
 import {
   getMapImage,
@@ -168,7 +168,7 @@ class MapEmbed extends Component {
               <Typography variant="subtitle1" className="title-text">{zone}</Typography>
               <Tooltip title="Close">
                 <IconButton onClick={this.handleClose}>
-                  <Close />
+                  <CloseIcon />
                 </IconButton>
               </Tooltip>
             </Toolbar>

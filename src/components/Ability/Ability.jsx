@@ -5,13 +5,13 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 
 const Ability = ({ name, description, counters, deadly }) => (
   <ExpansionPanel elevation={2}>
     <ExpansionPanelSummary
-      expandIcon={<ExpandMore />}
+      expandIcon={<ExpandMoreIcon />}
       aria-controls={`${name}-content`}
       id={`${name}-content`}
     >

@@ -23,10 +23,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  Close,
-  ExpandMore,
-} from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import {
   setCraftLarder,
   setDegradation,
@@ -262,7 +260,7 @@ class PackViewer extends Component {
           <Toolbar variant="dense">
             <Typography variant="subtitle1" className="title-text">{packName}</Typography>
             <IconButton color="inherit" aria-label="Close" onClick={onClose}>
-              <Close />
+              <CloseIcon />
             </IconButton>
           </Toolbar>
         </AppBar>
@@ -411,7 +409,7 @@ class PackViewer extends Component {
                 Transporting to {sellZone}
               </Typography>
               <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
-                <ExpandMore
+                <ExpandMoreIcon
                   className={transportExpand ? 'collapsed' : 'expanded'}
                 />
               </IconButton>

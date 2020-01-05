@@ -7,7 +7,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
 import cn from 'classnames';
 import Link from 'components/Link';
 import SkillIcon from 'components/Skill/SkillIcon';
@@ -89,7 +89,7 @@ class MountViewer extends Component {
             <Typography variant="subtitle1" className="title-text">{mount.name}</Typography>
             <Tooltip title="Close">
               <IconButton onClick={this.onClose}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Tooltip>
           </Toolbar>

@@ -6,10 +6,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  ToggleOff,
-  ToggleOn,
-} from '@material-ui/icons';
+import ToggleOffIcon from '@material-ui/icons/ToggleOff';
+import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import Skill from 'components/Skill';
 import EffectIcon from 'components/Skill/EffectIcon';
 import SKILLSET from 'data/skillsets';
@@ -195,7 +193,7 @@ class SkillCombos extends Component {
               : 'Learned'} Combos ({combos.length})</Typography>
             <Tooltip title={`Show ${showAll ? 'Only Learned' : 'All Available'} Combos`}>
               <IconButton color="inherit" aria-label="Toggle Visibility" onClick={this.toggleVisibility}>
-                {showAll ? <ToggleOff /> : <ToggleOn />}
+                {showAll ? <ToggleOffIcon /> : <ToggleOnIcon />}
               </IconButton>
             </Tooltip>
           </Toolbar>
