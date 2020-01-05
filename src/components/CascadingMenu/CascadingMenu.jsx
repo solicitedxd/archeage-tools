@@ -80,7 +80,7 @@ class CascadingMenu extends React.Component {
         key={menuItem.key}
       >
         {hasSubMenu && (
-          <React.Fragment>
+          <>
             <ArrowLeft className={classes.arrowIcon} />
             <Paper
               className={`${classes.subMenu} ${
@@ -93,7 +93,7 @@ class CascadingMenu extends React.Component {
                 )}
               </MenuList>
             </Paper>
-          </React.Fragment>
+          </>
         )}
         <div className={classes.caption}>{menuItem.caption}</div>
       </MenuItem>

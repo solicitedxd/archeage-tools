@@ -52,7 +52,7 @@ const TooltipContent = ({ itemName }) => {
   } = item;
 
   return (
-    <React.Fragment>
+    <>
       <section className="header" data-quality={quality}>
         <div className={cn('item-icon', 'icon', { 'unidentified': unidentified, 'quest': questStarter })}>
           <img src={icon} alt="" />
@@ -94,15 +94,15 @@ const TooltipContent = ({ itemName }) => {
       {(maxGrade || synthesisGrade || tempering || salvageable) &&
       <section>
         {maxGrade &&
-        <React.Fragment>
+        <>
           <p className="tt-orange">Maximum Grade</p>
           <p className="tt-orange">(~{maxGrade})</p>
-        </React.Fragment>}
+        </>}
         {synthesisGrade &&
-        <React.Fragment>
+        <>
           <p className="tt-orange">Synthesis Available</p>
           <p className="tt-orange">(~{synthesisGrade})</p>
-        </React.Fragment>}
+        </>}
         {tempering && <p>Tempering Available</p>}
         {salvageable && <p>Mag Salvageable</p>}
       </section>}
@@ -119,7 +119,7 @@ const TooltipContent = ({ itemName }) => {
           <div className="shop-price"><p>Shop Price:</p> <Currency type={CURRENCY.COIN} count={price} /></div> :
           <p className="no-sell">Cannot Sell</p>}
       </section>
-    </React.Fragment>
+    </>
   );
 };
 

@@ -11,7 +11,7 @@ import Item from 'components/Item';
 import SkillLink from 'components/Skill/SkillLink';
 import { ELEMENT } from 'constants/skills';
 import ITEM from 'data/items';
-import React from 'react';
+import React, { Fragment } from 'react';
 
 const name = 'Noryette Challenge';
 
@@ -161,7 +161,7 @@ const sections = [
           </TableHead>
           <TableBody>
             {rewards.map((rewards, tier) => (
-              <React.Fragment key={`reward-${tier}`}>
+              <Fragment key={`reward-${tier}`}>
                 <TableRow>
                   <TableCell rowSpan={tier !== 8 ? 1 : 5}>{tier * 5 + (tier === 0 ? 1 : 0)}</TableCell>
                   <TableCell rowSpan={tier === 0 ? 4 : 5}>Rank {tier + 1} Crate</TableCell>
@@ -186,7 +186,7 @@ const sections = [
                 {tier < 8 && <TableRow><TableCell>{tier * 5 + (tier === 0 ? 3 : 2)}</TableCell></TableRow>}
                 {tier < 8 && <TableRow><TableCell>{tier * 5 + (tier === 0 ? 4 : 3)}</TableCell></TableRow>}
                 {tier > 0 && tier < 8 && <TableRow><TableCell>{tier * 5 + 4}</TableCell></TableRow>}
-              </React.Fragment>
+              </Fragment>
             ))}
           </TableBody>
         </Table>
@@ -206,8 +206,8 @@ const sections = [
         description="Marian receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Marian consumes all stacks to heal herself."
         counters={[
-          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
-            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</React.Fragment>,
+          <>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
+            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</>,
         ]}
       />,
       <Typography variant="h6">Strategy</Typography>,
@@ -223,8 +223,8 @@ const sections = [
         description="Ynga Mk.II's target is periodically assaulted with a barrage of missile that each deal medium damage."
         counters={[
           'If you\'re not equipped to handle large incoming damage, drop your aggro to prevent being the target of this attack.',
-          <React.Fragment>Use defensive abilities, like <SkillLink skillset="Auramancy" name="Thwart" />, to help
-            mitigate the incoming damage.</React.Fragment>,
+          <>Use defensive abilities, like <SkillLink skillset="Auramancy" name="Thwart" />, to help
+            mitigate the incoming damage.</>,
           'Healer: Keep the player who is tanking topped off to prevent this attack from finishing them off.',
         ]}
         deadly
@@ -258,8 +258,8 @@ const sections = [
         description="Mahra targets an enemy and channels Large Arrow Snipe on the target, dealing lethal damage after 2 seconds."
         counters={[
           'Alternate the use of abilities that interrupt such as Stuns, Impales, and Shackles, to cancel the channel and avoid applying a crowd control school immunity.',
-          <React.Fragment><SkillLink skillset="DEFENSE" name="Invincibility" /> can be used to mitigate the damage
-            instead.</React.Fragment>,
+          <><SkillLink skillset="DEFENSE" name="Invincibility" /> can be used to mitigate the damage
+            instead.</>,
         ]}
         deadly
       />,
@@ -284,8 +284,8 @@ const sections = [
         description="Mahra receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Mahra consumes all stacks to heal herself."
         counters={[
-          <React.Fragment>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
-            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</React.Fragment>,
+          <>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
+            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</>,
         ]}
       />,
       <Ability

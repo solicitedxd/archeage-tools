@@ -17,7 +17,7 @@ import React from 'react';
 import { slug } from 'utils/string';
 
 const HORSE_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.SOLZREED_PENINSULA}
       points={[
@@ -37,11 +37,11 @@ const HORSE_HOW_TO = (
       north across the Feuille Sound and into Solzreed, and then north towards the Community Center.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const ELK_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.GWEONID_FOREST}
       points={[
@@ -62,11 +62,11 @@ const ELK_HOW_TO = (
       your glider ready!</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const BOAR_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.AUBRE_CRADLE}
       points={[
@@ -87,11 +87,11 @@ const BOAR_HOW_TO = (
     </p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const SNOWLION_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.FALCORTH_PLAINS}
       points={[
@@ -111,11 +111,11 @@ const SNOWLION_HOW_TO = (
       mountains and into Falcorth, and continue through towards Cloudgrain.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const LEOMORPH_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.ARCUM_IRIS}
       points={[
@@ -135,11 +135,11 @@ const LEOMORPH_HOW_TO = (
       the Mahadevi-Arcum mountains and into Arcum Iris, and continue through towards Parchsun Settlement.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const PANGOLIN_HOW_TO = (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.SUNBITE_WILDS}
       points={[
@@ -163,11 +163,11 @@ const PANGOLIN_HOW_TO = (
       along the road.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
       <Currency type={CURRENCY.VOCATION} count={10000} inline /> from the Vocation Shop.</p>
-  </React.Fragment>
+  </>
 );
 
 const GILDA_HOW_TO = ({ children, gilda }) => (
-  <React.Fragment>
+  <>
     <div className="right" style={{ display: 'grid', gridGap: '0.5em', padding: '0 0 0 8px' }}>
       <MapEmbed
         zone={ZONE.MARIANOPLE_CITY}
@@ -193,11 +193,11 @@ const GILDA_HOW_TO = ({ children, gilda }) => (
       you own.</p>
     <p>To soothe the soul and raise the mount, it requires 500 Labor and the following materials:</p>
     {children}
-  </React.Fragment>
+  </>
 );
 
 const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, differences }) => (
-  <React.Fragment>
+  <>
     <MapEmbed
       zone={ZONE.DIAMOND_SHORES}
       points={[
@@ -259,11 +259,11 @@ const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, difference
       to upgrade it, but remember to take its armor off first or it will be lost in the process.</p>
     <Typography variant="h6">Skill Differences</Typography>
     {differences}
-  </React.Fragment>
+  </>
 );
 
 export const DONKEY_HOW_TO = (
-  <React.Fragment>
+  <>
     <Typography>At level 30, you can pick up the quest <Typography color="primary" component="span"><span
       className="dropdown-icon Quest" /> The Basics of Trade</Typography> from the Blue Salt Brotherhood NPC inside the
       hero hall of Marianople or Austera.</Typography>
@@ -272,7 +272,7 @@ export const DONKEY_HOW_TO = (
     <p>If you picked a different foal from this quest line, the only way to get this one is to purchase it for&nbsp;
       <Currency type={CURRENCY.VOCATION} count="10,000" inline /> from the Vocation Shop.</p>
     <p>After you have the foal, raise it to get this donkey mount.</p>
-  </React.Fragment>
+  </>
 );
 
 const MOUNT = [
@@ -297,10 +297,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {HORSE_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Brown Lilyut Horse',
@@ -345,10 +345,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {HORSE_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Green Elk',
@@ -370,10 +370,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {ELK_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'White Elk',
@@ -416,10 +416,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {ELK_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Nightslaver Boar',
@@ -527,10 +527,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {SNOWLION_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Snowmane Snowlion',
@@ -553,10 +553,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {SNOWLION_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Browntail Leomorph',
@@ -579,10 +579,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {LEOMORPH_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Whitetail Leomorph',
@@ -627,10 +627,10 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {LEOMORPH_HOW_TO}
       <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={400} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Blackscale Pangolin',
@@ -843,10 +843,10 @@ const MOUNT = [
       CURRENCY.MANASTORM,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</Typography>
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Coral',
@@ -1336,7 +1336,7 @@ const MOUNT = [
     obtainable: [
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography color="primary"><span className="dropdown-icon Quest" /> Past the Storm, Now the Thunder</Typography>
       <p>After obtaining a <Link to="/mount/stormdarter">Stormdarter</Link>, this quest will be available from
         any Honor Point Collector.</p>
@@ -1345,7 +1345,7 @@ const MOUNT = [
         <Currency type={CURRENCY.HONOR} count="30,000" inline /> from the Honor Shop).</p>
       <p>As a reward, you will receive an Essence-fed Stormdarter which can be consumed to grant you a level 30 Thunder
         Dash.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Ebonfur Bjorne',
@@ -1364,7 +1364,7 @@ const MOUNT = [
     obtainable: [
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <MapEmbed
         zone={ZONE.MIRAGE_ISLE}
         points={[
@@ -1391,7 +1391,7 @@ const MOUNT = [
         item={ITEM.HONEY} count={500} plural="" />.</p>
       <p>As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an
         Ebonfur Bjorne.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Yata',
@@ -1407,11 +1407,11 @@ const MOUNT = [
       CURRENCY.COIN,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>The Yata mount can be purchased as a calf from any Stablehand for&nbsp;
         <Currency type={CURRENCY.COIN} count={50000} inline /> and raised.</Typography>
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={500} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Striped Yata',
@@ -1426,7 +1426,7 @@ const MOUNT = [
     obtainable: [
       HUSBANDRY,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>The Striped Yata Calf is a common drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
         involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
@@ -1434,7 +1434,7 @@ const MOUNT = [
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
       <p>When compared to the Yata, this mount has increased speed.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Palomino Yata',
@@ -1450,7 +1450,7 @@ const MOUNT = [
     obtainable: [
       HUSBANDRY,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
         involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
@@ -1459,7 +1459,7 @@ const MOUNT = [
       <p>Once you have a calf, simply raise it to get this mount.</p>
       <p>When compared to the Striped Yata, this mount has the <SkillLink skillset="Basic" id="Run" /> skill, and is
         equivalent to the Black Yata.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Black Yata',
@@ -1475,7 +1475,7 @@ const MOUNT = [
     obtainable: [
       HUSBANDRY,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
         involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
@@ -1484,7 +1484,7 @@ const MOUNT = [
       <p>Once you have a calf, simply raise it to get this mount.</p>
       <p>When compared to the Striped Yata, this mount has the <SkillLink skillset="Basic" id="Run" /> skill, and is
         equivalent to the Palomino Yata.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Polaris Bjorne',
@@ -1503,7 +1503,7 @@ const MOUNT = [
     obtainable: [
       HUSBANDRY,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>The Polaris Cub is produced by pregnant Blizzard Bears, which is an uncommon event that
         occurs when a female Blizzard Bear is nearby a male Blizzard Bear. Some players partake in bear breeding, which
         involves filling many farms with Blizzard Bears for the chance to produce rare pets.</Typography>
@@ -1513,7 +1513,7 @@ const MOUNT = [
         (this mount).</p>
       <p>Note that the upgrade loses 0.3 m/s in speed, but gains the skill <SkillLink skillset="Basic" name="Roll" />.
       </p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Fuchsiafin',
@@ -1532,7 +1532,7 @@ const MOUNT = [
       CURRENCY.MANASTORM,
       CRAFTED,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <MapEmbed
         zone={ZONE.SEA_OF_DROWNED_LOVE}
         points={[
@@ -1564,7 +1564,7 @@ const MOUNT = [
         </li>
       </ul>
       <p>Alternatively, Fuchsiafin can be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Cyanfin',
@@ -1598,10 +1598,10 @@ const MOUNT = [
       CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {DONKEY_HOW_TO}
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Brown Donkey',
@@ -1620,10 +1620,10 @@ const MOUNT = [
       CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {DONKEY_HOW_TO}
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Gray Donkey',
@@ -1642,10 +1642,10 @@ const MOUNT = [
       CURRENCY.CREDIT,
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       {DONKEY_HOW_TO}
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={600} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Black Donkey',
@@ -1731,11 +1731,11 @@ const MOUNT = [
       CURRENCY.VOCATION,
       CURRENCY.MANASTORM,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="600,000" inline /> from
         the Vocation Shop.</Typography>
       <p>This mount can also be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Mirage Lilyut Horse',
@@ -1988,12 +1988,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>
         On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.
       </Typography>
       <p>On Unchained, it currently cannot be obtainable.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Hellwing Pegasus',
@@ -2070,12 +2070,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.DILIGENCE,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>
         On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={550} />.
       </Typography>
       <p>On Legacy, this mount is no longer obtainable.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Steel Lightning',
@@ -2115,7 +2115,7 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <MapEmbed
         zone={ZONE.HASLA}
         points={[
@@ -2134,7 +2134,7 @@ const MOUNT = [
       <p>
         Alternatively, this mount can be obtained outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Moonlight Kitsu',
@@ -2236,10 +2236,10 @@ const MOUNT = [
       CURRENCY.MANASTORM,
       CURRENCY.CREDIT,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.</Typography>
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'White Reindeer',
@@ -2334,10 +2334,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.DILIGENCE,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Lord Cottontail',
@@ -2356,10 +2356,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.DILIGENCE,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Sir Hoppington',
@@ -2378,10 +2378,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.DILIGENCE,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Andelph Drakora',
@@ -2398,7 +2398,7 @@ const MOUNT = [
     obtainable: [
       QUEST,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>
         This mount is acquired by completing the <Typography color="primary" component="span">Skywarden
         Collection</Typography>, an achievement for collecting 38 prestigious mounts.
@@ -2480,7 +2480,7 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
-    </React.Fragment>,
+    </>,
   },
   {
     name: 'Small Wyvern',
@@ -2500,7 +2500,7 @@ const MOUNT = [
     obtainable: [
       CRAFTED,
     ],
-    obtainText: <React.Fragment>
+    obtainText: <>
       <Typography>In order to obtain this mount, your nation must first own a castle that has the workshop built. After
         you've obtained this mount, your nation must control a castle to use it.</Typography>
       <p>The materials needed are as follows:</p>
@@ -2534,7 +2534,7 @@ const MOUNT = [
         </li>
       </ul>
       <p>Take these materials to the workbench at your castle to craft it.</p>
-    </React.Fragment>,
+    </>,
   },
 ];
 

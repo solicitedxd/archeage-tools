@@ -285,10 +285,10 @@ class PackViewer extends Component {
               />
             </div>
             <Tooltip title={
-              <React.Fragment>
+              <>
                 <Typography variant="body2">Calculate Demand Degradation</Typography>
                 <Typography variant="caption">For every 4 packs, the demand will be reduced by 1%.</Typography>
-              </React.Fragment>
+              </>
             }>
               <Checkbox
                 checked={degradeDemand}
@@ -405,7 +405,7 @@ class PackViewer extends Component {
             </TableBody>
           </Table>}
           {sellZone !== CARGO &&
-          <React.Fragment>
+          <>
             <div className="pack-header">
               <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
                 Transporting to {sellZone}
@@ -487,7 +487,7 @@ class PackViewer extends Component {
                 </Table>
               </div>
             </Collapse>
-          </React.Fragment>
+          </>
           }
           {sellZone === CARGO &&
           <div className="sell-config">
@@ -616,10 +616,10 @@ class PackViewer extends Component {
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
                     {sellZone === CARGO && pack.item ?
-                      <React.Fragment>
+                      <>
                         {packValue}&nbsp;
                         <Item {...pack.item} className="inline" />
-                      </React.Fragment> :
+                      </> :
                       <Currency type={CURRENCY.COIN} count={packValue} />}
                   </TableCell>
                 </TableRow>

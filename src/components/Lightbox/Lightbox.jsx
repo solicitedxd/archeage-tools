@@ -51,7 +51,7 @@ class Lightbox extends Component {
     const { open } = this.state;
 
     return (
-      <React.Fragment>
+      <>
         <Paper
           className={cn('lightbox-thumb', { [float]: Boolean(float) })}
           elevation={elevation}
@@ -78,7 +78,7 @@ class Lightbox extends Component {
             <Typography>{caption}</Typography>
           </DialogContent>
         </Dialog>
-      </React.Fragment>
+      </>
     );
   }
 }

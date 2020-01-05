@@ -34,7 +34,6 @@ module.exports = {
       data: join(src, 'data'),
       images: join(src, 'images'),
       initialStates: join(src, 'initialStates'),
-      mappers: join(src, 'mappers'),
       reducers: join(src, 'reducers'),
       styles: join(src, 'styles'),
       utils: join(src, 'utils'),

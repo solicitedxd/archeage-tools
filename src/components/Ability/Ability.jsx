@@ -30,12 +30,12 @@ const Ability = ({ name, description, counters, deadly }) => (
         {description}
       </Typography>}
       {counters !== undefined && counters.length > 0 &&
-      <React.Fragment>
+      <>
         <Typography variant="subtitle2" color="primary" component="div" className="tips">Tips:</Typography>
         <ul className="dashed">
           {counters.map((tip, i) => <li key={`${name}-${i}`}><Typography component="span">{tip}</Typography></li>)}
         </ul>
-      </React.Fragment>}
+      </>}
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );

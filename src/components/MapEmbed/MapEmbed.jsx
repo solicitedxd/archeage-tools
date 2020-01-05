@@ -14,7 +14,10 @@ import {
   getMapImage,
   ZONE,
 } from 'constants/map';
-import React, { Component } from 'react';
+import React, {
+  Component,
+  Fragment,
+} from 'react';
 import {
   array,
   oneOf,
@@ -128,7 +131,7 @@ class MapEmbed extends Component {
                     labels = [labels];
                   }
                   return (
-                    <React.Fragment key={`point-list-${zone}-${index}`}>
+                    <Fragment key={`point-list-${zone}-${index}`}>
                       {labels.map((label, id) => (
                         <div
                           key={`point-list-${zone}-${index}-${id}`}
@@ -141,7 +144,7 @@ class MapEmbed extends Component {
                             <span className="label-text">{label}</span>
                           </Typography>
                         </div>))}
-                    </React.Fragment>
+                    </Fragment>
                   );
                 })}
               </div>
@@ -152,7 +155,7 @@ class MapEmbed extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         {embed}
         <Dialog
           open={open}
@@ -197,7 +200,7 @@ class MapEmbed extends Component {
                   labels = [labels];
                 }
                 return (
-                  <React.Fragment key={`embed-list-${zone}-${index}`}>
+                  <Fragment key={`embed-list-${zone}-${index}`}>
                     {labels.map((label, id) => (
                       <div
                         key={`embed-list-${zone}-${index}-${id}`}
@@ -210,7 +213,7 @@ class MapEmbed extends Component {
                           {label}
                         </Typography>
                       </div>))}
-                  </React.Fragment>
+                  </Fragment>
                 );
               })}
             </div>
@@ -219,7 +222,7 @@ class MapEmbed extends Component {
               : `${(Math.round(mouseX / 928 * 1000) / 10)}%, ${(Math.round(mouseY / 556 * 1000) / 10)}%`}</Typography>}
           </DialogContent>
         </Dialog>
-      </React.Fragment>
+      </>
     );
   }
 }

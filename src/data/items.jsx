@@ -8,13 +8,13 @@ const Blue = ({ children }) => <span className="tt-blue">{children}</span>;
 const Yellow = ({ children }) => <span className="tt-yellow">{children}</span>;
 const Orange = ({ children }) => <span className="tt-orange">{children}</span>;
 const Use = ({ children, title = 'Use:' }) => (
-  <React.Fragment>
+  <>
     <span className="tt-use">{title}</span>
     {children && <Green>{children}</Green>}
-  </React.Fragment>
+  </>
 );
 const Process = ({ into, labor = 5, count = 10, knives = 1 }) => (
-  <React.Fragment>
+  <>
     <Use>
       Spend {labor} Labor to process {into}.<br />
       Auto-use with shift + right-click.<br /><br />
@@ -22,7 +22,7 @@ const Process = ({ into, labor = 5, count = 10, knives = 1 }) => (
       - {count} items of the same type<br />
       - {knives} Blue Salt Knife
     </Use>
-  </React.Fragment>
+  </>
 );
 
 const ITEM = Object.freeze({

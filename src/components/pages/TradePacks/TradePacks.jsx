@@ -302,10 +302,10 @@ class TradePacks extends Component {
                         const isPack = (zone !== sellZone && packValue);
                         let displayValue = isPack ? `${packValue}g` : '--';
                         if (isPack && continent === CARGO && pack.item) {
-                          displayValue = <React.Fragment>
+                          displayValue = <>
                             {Math.round(packValue)}&nbsp;
                             <Item {...pack.item} className="inline" />
-                          </React.Fragment>;
+                          </>;
                         }
                         const cell = (
                           <TableCell
@@ -337,12 +337,12 @@ class TradePacks extends Component {
           </div>
           <div className="trade-footer body-container">
             {continent !== CARGO &&
-            <React.Fragment>
+            <>
               <FreshnessBlip freshness="Luxury" />
               <FreshnessBlip freshness="Fine" />
               <FreshnessBlip freshness="Commercial" />
               <FreshnessBlip freshness="Preserved" />
-            </React.Fragment> ||
+            </> ||
             <FreshnessBlip freshness="Cargo" />}
             <Typography variant="overline">
               Prices shown at {percentage}% demand with high profit{war[sellZone] ? ' and +15% war bonus' : ''}. 2%
