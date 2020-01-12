@@ -1187,8 +1187,8 @@ export default [
   {
     name: 'Safety in Numbers',
     zones: {
-      nuia: [ZONE.MARIANOPLE],
-      haranya: [ZONE.SOLIS_HEADLANDS],
+      nuia: [ZONE.MARIANOPLE, ZONE.TWO_CROWNS, ZONE.CINDERSTONE_MOOR],
+      haranya: [ZONE.SOLIS_HEADLANDS, ZONE.VILLANELLE, ZONE.YNYSTERE],
     },
     rewards: [{ type: CURRENCY.GILDA, count: 3 }],
     type: DAILY_TYPE.BLUE_SALT,

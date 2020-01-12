@@ -19,7 +19,7 @@ import {
 } from 'actions/dailies';
 import cn from 'classnames';
 import {
-  CURRENCY_HIDE,
+  CURRENCY_DISPLAY,
   DAILY_TYPE,
 } from 'constants/dailies';
 import { CURRENCY } from 'constants/items';
@@ -129,7 +129,7 @@ class Filters extends Component {
         <div className="filter-field">
           <Typography variant="subtitle2" className="label">Rewards</Typography>
           <div className="filter-group rewards grid">
-            {Object.values(CURRENCY).filter(r => !CURRENCY_HIDE.includes(r)).sort().map(reward => (
+            {Object.values(CURRENCY).filter(r => CURRENCY_DISPLAY.includes(r)).sort().map(reward => (
               <Tooltip title={reward} key={reward}>
                 <Button
                   variant={rewards.includes(reward) ? 'contained' : 'outlined'}
