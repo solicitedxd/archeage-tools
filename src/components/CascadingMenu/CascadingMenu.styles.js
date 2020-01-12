@@ -31,7 +31,7 @@ const styles = theme => ({
       theme.transitions.easing.easeInOut
     } 0ms, transform ${theme.transitions.duration.shorter}ms ${
       theme.transitions.easing.easeInOut
-    } 0ms`, // match Menu transition
+    } 0ms`, // match MenuIcon transition
     top: '-8px',
     visibility: 'hidden',
   },

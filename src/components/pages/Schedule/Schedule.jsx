@@ -6,10 +6,8 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  ToggleOff,
-  ToggleOn,
-} from '@material-ui/icons';
+import ToggleOffIcon from '@material-ui/icons/ToggleOff';
+import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import { setRegion } from 'actions/calendar';
 import cn from 'classnames';
 import { EVENT_TYPE } from 'constants/schedule';
@@ -50,7 +48,7 @@ class Schedule extends Component {
                 NA
                 <Tooltip title="Toggle Regional Times">
                   <IconButton color="inherit" aria-label="Reset" onClick={() => setRegion(!regionNA)}>
-                    {regionNA ? <ToggleOff /> : <ToggleOn />}
+                    {regionNA ? <ToggleOffIcon /> : <ToggleOnIcon />}
                   </IconButton>
                 </Tooltip>
                 EU

@@ -25,6 +25,7 @@ module.exports = {
   resolve: {
     alias: Object.assign({}, devConfig.resolve.alias, {
       config: join(src, 'config', 'production.js'),
+      'react-dom': 'react-dom',
     }),
     extensions: devConfig.resolve.extensions,
   },

@@ -7,7 +7,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Close } from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
 import cn from 'classnames';
 import Link from 'components/Link';
 import SkillIcon from 'components/Skill/SkillIcon';
@@ -89,7 +89,7 @@ class MountViewer extends Component {
             <Typography variant="subtitle1" className="title-text">{mount.name}</Typography>
             <Tooltip title="Close">
               <IconButton onClick={this.onClose}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Tooltip>
           </Toolbar>
@@ -97,6 +97,10 @@ class MountViewer extends Component {
         <DialogContent className={cn('mount-viewer', mobile)}>
           <div className="info">
             <img src={Portrait[pascalCase(mount.name)] || NoPortrait} alt={mount.name} className="portrait" />
+            {mount.imageCredit &&
+            <Typography variant="caption" component="div" align="right">
+              Image credit: {mount.imageCredit}
+            </Typography>}
             <div className="obtainables">
               <Typography color="primary" component="span">Obtain with: </Typography>
               {mount.obtainable && mount.obtainable.length > 0

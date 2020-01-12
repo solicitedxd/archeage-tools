@@ -15,7 +15,7 @@ const meta = {
 };
 
 const ARarePerfume = ({ faction }) => (
-  <React.Fragment>
+  <>
     <Typography variant="h6">A Rare Perfume</Typography>
     <Typography>A Rare Perfume is acquired from the {faction} Wanderer in any major city. You must create
       a <ItemLink item={ITEM.CONDENSED_SCENT} /> by using one of the Perfume Mortars located behind the
@@ -35,7 +35,7 @@ const ARarePerfume = ({ faction }) => (
       completion you will only be able to start the {faction === 'Western' ? 'Haranyan' : 'Nuian'} version of Guerilla
       Marketing, which involves going to three locations in {faction === 'Western' ? 'Tigerspine Mountains'
         : 'Lilyut Hills'} and might be difficult due to guards and hostile players.</Typography>
-  </React.Fragment>
+  </>
 );
 
 const sections = [
@@ -54,7 +54,7 @@ const sections = [
       {
         label: 'Nuia',
         content:
-          <React.Fragment>
+          <>
             <TabContent tabs={[
               {
                 label: 'Marianople',
@@ -244,12 +244,12 @@ const sections = [
               accepting the quest from Caernord, you can use the teleport to Greater Palace Cellar in the "Dungeon"
               tab of your teleport book. Once you've teleported, the 12 hellhound leashes that you need will be
               scattered around the dungeon's peace zone.</Typography>
-          </React.Fragment>,
+          </>,
       },
       {
         label: 'Haranya',
         content:
-          <React.Fragment>
+          <>
             <TabContent tabs={[
               {
                 label: 'Austera',
@@ -439,7 +439,7 @@ const sections = [
               "Dungeon" tab of your teleport book. Once you've teleported, you will need to head north our of the ravine
               and then south until you're just outside Roadsend, but watch out for guards and hostile players. Collect 8
               Faulty Gunpowder from outside of the town.</Typography>
-          </React.Fragment>,
+          </>,
       },
     ],
   },

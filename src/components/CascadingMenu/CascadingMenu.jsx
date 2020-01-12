@@ -5,7 +5,7 @@ import {
   Paper,
   withStyles,
 } from '@material-ui/core';
-import { ArrowLeft } from '@material-ui/icons';
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
 import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './CascadingMenu.styles';
@@ -80,8 +80,8 @@ class CascadingMenu extends React.Component {
         key={menuItem.key}
       >
         {hasSubMenu && (
-          <React.Fragment>
-            <ArrowLeft className={classes.arrowIcon} />
+          <>
+            <ArrowLeftIcon className={classes.arrowIcon} />
             <Paper
               className={`${classes.subMenu} ${
                 subMenuState.open ? classes.subMenuOpen : ''
@@ -93,7 +93,7 @@ class CascadingMenu extends React.Component {
                 )}
               </MenuList>
             </Paper>
-          </React.Fragment>
+          </>
         )}
         <div className={classes.caption}>{menuItem.caption}</div>
       </MenuItem>
@@ -101,7 +101,7 @@ class CascadingMenu extends React.Component {
   };
 
   render() {
-    // no-unused-vars is disabled so that menuItems isn't passed to Menu
+    // no-unused-vars is disabled so that menuItems isn't passed to MenuIcon
     // eslint-disable-next-line no-unused-vars
     const {
       anchorElement,

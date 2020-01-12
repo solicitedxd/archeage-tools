@@ -4,7 +4,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Delete } from '@material-ui/icons';
+import DeleteIcon from '@material-ui/icons/Delete';
 import cn from 'classnames';
 import TREE from 'data/trees';
 import moment from 'moment';
@@ -95,7 +95,7 @@ class TreeCard extends Component {
         <div className="tree-delete">
           <Tooltip title="Delete this timer.">
             <IconButton onClick={onDelete}>
-              <Delete />
+              <DeleteIcon />
             </IconButton>
           </Tooltip>
         </div>

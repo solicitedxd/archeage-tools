@@ -3,7 +3,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { Help } from '@material-ui/icons';
+import HelpIcon from '@material-ui/icons/Help';
 import React, { Component } from 'react';
 import {
   array,
@@ -42,7 +42,7 @@ class PropertyBox extends Component {
         <Typography variant="subtitle1" className="property-name">
           {name}
           <Tooltip title={<div dangerouslySetInnerHTML={{ __html: properties.join('<br />') }} />}>
-            <Help fontSize="small" color="primary" className="help-icon" />
+            <HelpIcon fontSize="small" color="primary" className="help-icon" />
           </Tooltip>
         </Typography>
         <Typography className="property-size" color="textPrimary">{size}, {base} per week</Typography>
@@ -57,7 +57,7 @@ class PropertyBox extends Component {
           />
           {showHostile &&
           <Tooltip title="Friendly Territory is of the continent of your home faction.">
-            <Help fontSize="small" color="primary" className="help-icon" />
+            <HelpIcon fontSize="small" color="primary" className="help-icon" />
           </Tooltip>}
         </div>
         {showHostile &&
@@ -71,7 +71,7 @@ class PropertyBox extends Component {
             variant="filled"
           />
           <Tooltip title="Hostile Territory is any of the continents not of your home faction.">
-            <Help fontSize="small" color="primary" className="help-icon" />
+            <HelpIcon fontSize="small" color="primary" className="help-icon" />
           </Tooltip>
         </div>}
       </div>

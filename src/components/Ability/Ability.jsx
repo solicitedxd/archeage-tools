@@ -5,13 +5,13 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { ExpandMore } from '@material-ui/icons';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
 
 const Ability = ({ name, description, counters, deadly }) => (
   <ExpansionPanel elevation={2}>
     <ExpansionPanelSummary
-      expandIcon={<ExpandMore />}
+      expandIcon={<ExpandMoreIcon />}
       aria-controls={`${name}-content`}
       id={`${name}-content`}
     >
@@ -30,12 +30,12 @@ const Ability = ({ name, description, counters, deadly }) => (
         {description}
       </Typography>}
       {counters !== undefined && counters.length > 0 &&
-      <React.Fragment>
+      <>
         <Typography variant="subtitle2" color="primary" component="div" className="tips">Tips:</Typography>
         <ul className="dashed">
           {counters.map((tip, i) => <li key={`${name}-${i}`}><Typography component="span">{tip}</Typography></li>)}
         </ul>
-      </React.Fragment>}
+      </>}
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );

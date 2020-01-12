@@ -1,13 +1,11 @@
 {
     "presets": [
-        "es2015",
-        "react"
+        "@babel/preset-env",
+        "@babel/preset-react"
     ],
     "plugins": [
-        "transform-runtime",
-        "transform-decorators-legacy",
-        "transform-class-properties",
-        "transform-object-rest-spread",
+        "@babel/proposal-class-properties",
+        "@babel/transform-runtime",
         [
             "wildcard",
             {
@@ -20,14 +18,5 @@
                 ]
             }
         ]
-    ],
-    "env": {
-        "test": {
-            "plugins": [
-                "transform-runtime",
-                "transform-decorators-legacy",
-                "transform-class-properties"
-            ]
-        }
-    }
+    ]
 }

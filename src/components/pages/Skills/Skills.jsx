@@ -10,12 +10,10 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  Close,
-  FileCopy,
-  Replay,
-  Share,
-} from '@material-ui/icons';
+import CloseIcon from '@material-ui/icons/Close';
+import FileCopyIcon from '@material-ui/icons/FileCopy';
+import ReplayIcon from '@material-ui/icons/Replay';
+import ShareIcon from '@material-ui/icons/Share';
 import cn from 'classnames';
 import { MAX_POINTS } from 'constants/skills';
 import SKILLSET from 'data/skillsets';
@@ -221,12 +219,12 @@ class Skills extends Component {
                 <Typography variant="subtitle2">{spentPoints}/{MAX_POINTS}</Typography>
                 <Tooltip title="Reset All Trees">
                   <IconButton color="inherit" aria-label="Reset" onClick={this.resetAllTrees}>
-                    <Replay />
+                    <ReplayIcon />
                   </IconButton>
                 </Tooltip>
                 <Tooltip title="Share Build" onClick={this.handleShare}>
                   <IconButton color="inherit" aria-label="Share">
-                    <Share />
+                    <ShareIcon />
                   </IconButton>
                 </Tooltip>
               </Toolbar>
@@ -256,7 +254,7 @@ class Skills extends Component {
             <Toolbar variant="dense">
               <Typography variant="subtitle1" className="title-text">Share Build</Typography>
               <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Toolbar>
           </AppBar>
@@ -274,7 +272,7 @@ class Skills extends Component {
             />
             <Button
               onClick={this.handleCopyShare}
-              startIcon={<FileCopy />}
+              startIcon={<FileCopyIcon />}
               color="primary"
               variant="contained"
               style={{ marginTop: 8 }}

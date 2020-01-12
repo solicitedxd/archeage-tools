@@ -5,7 +5,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { HelpOutlineRounded } from '@material-ui/icons';
+import HelpOutlineRoundedIcon from '@material-ui/icons/HelpOutlineRounded';
 import { EVENT_TYPE } from 'constants/schedule';
 import {
   GAME_TIME_EVENTS,
@@ -89,7 +89,7 @@ class EventList extends Component {
             <Typography variant="subtitle1" className="title-text">{type}</Typography>
             {type === EVENT_TYPE.GAME_TIME_EVENT &&
             <Tooltip title={
-              <React.Fragment>
+              <>
                 <Typography>In-Game Time</Typography>
                 <Typography variant="caption" component="p">In-Game Time estimation is approximate. All servers may vary
                   by a minute or so.</Typography>
@@ -97,9 +97,9 @@ class EventList extends Component {
                   full in-game day occurring in 4 hours of real-life time.</Typography>
                 <Typography variant="caption" component="p">Events and bosses spawn at the specified time, but may be
                   completed or killed by other players before the timer's in-progress duration is over.</Typography>
-              </React.Fragment>
+              </>
             }>
-              <HelpOutlineRounded
+              <HelpOutlineRoundedIcon
                 style={{ cursor: 'help' }}
               />
             </Tooltip>}

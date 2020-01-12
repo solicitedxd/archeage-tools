@@ -74,8 +74,8 @@ const sections = [
         name="Resurgence"
         description="Glenn steals an active Resurgence buff from a player and applies his own version to either Meina or himself. This heals for immense amounts."
         counters={[
-          <React.Fragment>Healers should not use <SkillLink skillset="Vitalism" name="Resurgence" /> at
-            all.</React.Fragment>,
+          <>Healers should not use <SkillLink skillset="Vitalism" name="Resurgence" /> at
+            all.</>,
         ]}
       />,
       <Ability

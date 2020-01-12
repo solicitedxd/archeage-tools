@@ -69,7 +69,7 @@ class TabContent extends Component {
 
     if (title) {
       return (
-        <React.Fragment>
+        <>
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography className="title-text">{title}</Typography>
@@ -79,17 +79,17 @@ class TabContent extends Component {
           <div className="body-container">
             {content}
           </div>
-        </React.Fragment>
+        </>
       );
     }
 
     return (
-      <React.Fragment>
+      <>
         <Paper style={{ marginBottom: 8 }}>
           <TabsList />
         </Paper>
         {content}
-      </React.Fragment>
+      </>
     );
   }
 }

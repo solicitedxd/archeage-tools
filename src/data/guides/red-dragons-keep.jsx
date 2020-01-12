@@ -98,8 +98,8 @@ export const sections = Object.freeze([
         name="Reverse Gravity"
         description="The Red Dragon frequently confines nearby players and lifts them into the air. After a short delay, all players are slammed into the ground, taking heavy damage from Fall Shock."
         counters={[
-          <React.Fragment>You can cancel the damage of Fall Shock on yourself to prevent the slam by using <SkillLink
-            skillset="Auramancy" name="Shrug It Off" />. You will still take partial damage.</React.Fragment>,
+          <>You can cancel the damage of Fall Shock on yourself to prevent the slam by using <SkillLink
+            skillset="Auramancy" name="Shrug It Off" />. You will still take partial damage.</>,
         ]}
       />,
       <Ability
