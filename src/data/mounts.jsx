@@ -185,7 +185,7 @@ const GILDA_HOW_TO = ({ children, gilda }) => (
       />
     </div>
     <Typography>
-      In order to obtain this mount, you must first purchase its Gilda Soul for&nbsp;
+      To obtain this mount, you must first purchase its Gilda Soul for&nbsp;
       <ItemLink item={ITEM.GILDA_STAR} count={gilda} /> from the Gilda Start Soul Merchant in Marianople or Austera.
     </Typography>
     <p>You will also need to purchase a <ItemLink item={ITEM.SMALL_BREATH_OF_LIFE} /> for&nbsp;
@@ -726,10 +726,11 @@ const MOUNT = [
     quote: 'These ghostly steeds are said to come from the Hereafter itself. Legends claim that they will serve their chosen riders even after death.',
     speed: 11.5,
     skills: [
-      'Back Kick',
+      'Mounted Attack',
+      'Ghostly Steps',
+      'Mounted Defense',
       'Hereafter Dash',
       'Nui\'s Veil',
-      'Ghostly Steps',
     ],
     types: [
       MOUNT_TYPE.STANDARD,
@@ -823,7 +824,9 @@ const MOUNT = [
         <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
         <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
-      <p>This mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
+      <p>
+        On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+      </p>
     </GILDA_HOW_TO>,
   },
   {
@@ -844,8 +847,9 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</Typography>
-      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</p>
+      <Typography>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} /> or
+        purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
@@ -873,7 +877,8 @@ const MOUNT = [
         <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
         <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
-      <p>This mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
+      <p>On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+      </p>
     </GILDA_HOW_TO>,
   },
   {
@@ -900,7 +905,8 @@ const MOUNT = [
         <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
         <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
-      <p>This mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
+      <p>On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+      </p>
     </GILDA_HOW_TO>,
   },
   {
@@ -933,6 +939,7 @@ const MOUNT = [
   },
   {
     name: 'Mirage Leomorph',
+    imageCredit: 'Thaofrost',
     speed: 10.2,
     skills: [
       ['Run'],
@@ -1261,6 +1268,7 @@ const MOUNT = [
   },
   {
     name: 'Gallant Whitetail Leomorph',
+    imageCredit: 'Thaofrost',
     speed: 11.5,
     skills: [
       'Mounted Attack',
@@ -1563,7 +1571,7 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
-      <p>Alternatively, Fuchsiafin can be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
+      <p>On Legacy, Fuchsiafin can be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
     </>,
   },
   {
@@ -1691,9 +1699,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Carrot Wings',
@@ -1734,7 +1745,7 @@ const MOUNT = [
     obtainText: <>
       <Typography>This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="600,000" inline /> from
         the Vocation Shop.</Typography>
-      <p>This mount can also be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
+      <p>On Legacy, this mount can also be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
     </>,
   },
   {
@@ -1855,9 +1866,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Candy-fueled Bestcargot',
@@ -1874,9 +1888,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Candy-fueled Fastropod',
@@ -1925,9 +1942,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Freezing Soulscar',
@@ -1946,9 +1966,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Vanhi',
@@ -1967,9 +1990,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Kamari',
@@ -1992,7 +2018,7 @@ const MOUNT = [
       <Typography>
         On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.
       </Typography>
-      <p>On Unchained, it currently cannot be obtainable.</p>
+      <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
@@ -2010,9 +2036,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Stormwing Pegasus',
@@ -2029,9 +2058,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Celestial Pegasus',
@@ -2048,9 +2080,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={250} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={250} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Earthen Roar',
@@ -2094,9 +2129,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Crimson Lightning',
@@ -2124,7 +2162,8 @@ const MOUNT = [
         button="View on Map"
         buttonFloat="right"
       />
-      <Typography>If you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into this mount
+      <Typography>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
+        this mount
         by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
         Essence.</Typography>
       <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
@@ -2134,6 +2173,7 @@ const MOUNT = [
       <p>
         Alternatively, this mount can be obtained outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
+      <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
@@ -2153,9 +2193,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Celestial Kitsu',
@@ -2174,9 +2217,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Siegeram Taurus',
@@ -2195,9 +2241,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Stormrose',
@@ -2215,9 +2264,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Brown Reindeer',
@@ -2237,8 +2289,9 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.</Typography>
-      <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
+      <Typography>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> or
+        purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
@@ -2292,9 +2345,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Gweonid Vine Giant',
@@ -2313,9 +2369,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
-    </Typography>,
+    obtainText: <>
+      <Typography>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+      </Typography>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Lady Fluffsworth',
@@ -2501,7 +2560,7 @@ const MOUNT = [
       CRAFTED,
     ],
     obtainText: <>
-      <Typography>In order to obtain this mount, your nation must first own a castle that has the workshop built. After
+      <Typography>To obtain this mount, your nation must first own a castle that has the workshop built. After
         you've obtained this mount, your nation must control a castle to use it.</Typography>
       <p>The materials needed are as follows:</p>
       <ul>

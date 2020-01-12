@@ -97,6 +97,10 @@ class MountViewer extends Component {
         <DialogContent className={cn('mount-viewer', mobile)}>
           <div className="info">
             <img src={Portrait[pascalCase(mount.name)] || NoPortrait} alt={mount.name} className="portrait" />
+            {mount.imageCredit &&
+            <Typography variant="caption" component="div" align="right">
+              Image credit: {mount.imageCredit}
+            </Typography>}
             <div className="obtainables">
               <Typography color="primary" component="span">Obtain with: </Typography>
               {mount.obtainable && mount.obtainable.length > 0
