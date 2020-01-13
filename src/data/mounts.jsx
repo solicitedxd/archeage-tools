@@ -27,8 +27,8 @@ const HORSE_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Lilyut foals can be acquired from the stables by the Solzreed Community Center for&nbsp;
-      <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Lilyut foals can be acquired from the stables by the Solzreed Community Center for&nbsp;
+      <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Solzreed with the nearest teleport location being the Community
       Center.</p>
     <p>For East players: if you've already been to the Solzreed Community Center, you can teleport to that point and the
@@ -51,8 +51,8 @@ const ELK_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Elk calves can be acquired from the stables west of the Gweonid Community Center for&nbsp;
-      <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Elk calves can be acquired from the stables west of the Gweonid Community Center for&nbsp;
+      <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Gweonid with the nearest teleport location being the Community Center.</p>
     <p>For East players: if you've already been to the Gweonid Community Center, you can teleport to that point and head
       west to the stables.<br />
@@ -76,8 +76,8 @@ const BOAR_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Boar shoats can be acquired from the stables right next to the Aubre Cradle Community Center for&nbsp;
-      <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Boar shoats can be acquired from the stables right next to the Aubre Cradle Community Center for&nbsp;
+      <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Aubre Cradle with the nearest teleport location being the Community
       Center.</p>
     <p>For East players: if you've already been to the Aubre Cradle Community Center, you can teleport to that point
@@ -102,8 +102,8 @@ const SNOWLION_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Snowlions cubs can be acquired from the stables south of Cloudgrain for&nbsp;
-      <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Snowlion cubs can be acquired from the stables south of Cloudgrain for&nbsp;
+      <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Falcorth with the nearest teleport location being Cloudgrain.</p>
     <p>For West players: if you've already been to the Falcorth Community Center, you can head southwest while avoiding
       guards to get to the stable master.<br />
@@ -125,8 +125,8 @@ const LEOMORPH_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Leomorph cubs can be acquired from the stables east of Parchsun Settlement for&nbsp;
-      <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Leomorph cubs can be acquired from the stables east of Parchsun Settlement for&nbsp;
+      <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Arcum Iris with the nearest teleport location being Parchsun
       Settlement.</p>
     <p>For West players: if you've already been to the Arcum Iris Community Center, you can head east around the city
@@ -151,8 +151,8 @@ const PANGOLIN_HOW_TO = (
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>Pangolin pups can be acquired from the stables south-east of Harani Construction Site or from the stable
-      at Communal Ranch for <Currency type={CURRENCY.COIN} count={1000} inline />.</Typography>
+    <p>Pangolin pups can be acquired from the stables south-east of Harani Construction Site or from the stable
+      at Communal Ranch for <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Sunbite Wilds with the nearest teleports of the locations previously
       stated.</p>
     <p>For West players: if you've already been to the Sunbite Community Center, you can head west around the city at
@@ -184,10 +184,10 @@ const GILDA_HOW_TO = ({ children, gilda }) => (
         button="Austera Map"
       />
     </div>
-    <Typography>
+    <p>
       To obtain this mount, you must first purchase its Gilda Soul for&nbsp;
       <ItemLink item={ITEM.GILDA_STAR} count={gilda} /> from the Gilda Start Soul Merchant in Marianople or Austera.
-    </Typography>
+    </p>
     <p>You will also need to purchase a <ItemLink item={ITEM.SMALL_BREATH_OF_LIFE} /> for&nbsp;
       <ItemLink item={ITEM.GILDA_STAR} count={10} /> if you don't have one already, which must be placed on land that
       you own.</p>
@@ -206,10 +206,10 @@ const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, difference
       button="View on Map"
       buttonFloat="right"
     />
-    <Typography>
+    <p>
       To obtain this mount, you must first craft the Gallant {animaType} Anima at the Distorted Mistsong Workbench,
       located outside of Mistsong Summit.
-    </Typography>
+    </p>
     <p>Crafting a Gallant {animaType} Anima will require the following materials:</p>
     <ul>
       <li>
@@ -264,9 +264,9 @@ const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, difference
 
 export const DONKEY_HOW_TO = (
   <>
-    <Typography>At level 30, you can pick up the quest <Typography color="primary" component="span"><span
+    <p>At level 30, you can pick up the quest <Typography color="primary" component="span"><span
       className="dropdown-icon Quest" /> The Basics of Trade</Typography> from the Blue Salt Brotherhood NPC inside the
-      hero hall of Marianople or Austera.</Typography>
+      hero hall of Marianople or Austera.</p>
     <p>Completing the quest is very easy; just go to the Dewstone Plains or Mahadevi Community Center and talk to the
       Community Center Manager and pick this foal.</p>
     <p>If you picked a different foal from this quest line, the only way to get this one is to purchase it for&nbsp;
@@ -847,8 +847,8 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} /> or
-        purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</Typography>
+      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} /> or
+        purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -988,10 +988,10 @@ const MOUNT = [
         mountFrom="Gray Lilyut Horse"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1016,10 +1016,10 @@ const MOUNT = [
         mountFrom="Brown Lilyut Horse"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1044,10 +1044,10 @@ const MOUNT = [
         mountFrom="Buckskin Lilyut Horse"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
           giving this mount three movement abilities.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1072,11 +1072,11 @@ const MOUNT = [
         mountFrom="Green Elk"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1101,11 +1101,11 @@ const MOUNT = [
         mountFrom="White Elk"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1130,11 +1130,11 @@ const MOUNT = [
         mountFrom="Violet Elk"
         material={ITEM.AMETHYST}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
           <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
           target.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1159,7 +1159,7 @@ const MOUNT = [
         mountFrom="Coalmane Snowlion"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1167,7 +1167,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1192,7 +1192,7 @@ const MOUNT = [
         mountFrom="Sandmane Snowlion"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1200,7 +1200,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1225,7 +1225,7 @@ const MOUNT = [
         mountFrom="Sandmane Snowlion"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
           <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
           detection.<br />
@@ -1233,7 +1233,7 @@ const MOUNT = [
           <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
           <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
           <SkillLink skillset="Basic" name="Leader of the Pack" />.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1258,12 +1258,12 @@ const MOUNT = [
         mountFrom="Browntail Leomorph"
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1289,12 +1289,12 @@ const MOUNT = [
         mountFrom="Whitetail Leomorph"
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1319,12 +1319,12 @@ const MOUNT = [
         mountFrom="Blacktail Leomorph"
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
-        differences={<Typography>
+        differences={<p>
           <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
           seconds on its cooldown.<br />
           <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
           <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
-        </Typography>}
+        </p>}
       />,
   },
   {
@@ -1345,7 +1345,7 @@ const MOUNT = [
       QUEST,
     ],
     obtainText: <>
-      <Typography color="primary"><span className="dropdown-icon Quest" /> Past the Storm, Now the Thunder</Typography>
+      <p color="primary"><span className="dropdown-icon Quest" /> Past the Storm, Now the Thunder</p>
       <p>After obtaining a <Link to="/mount/stormdarter">Stormdarter</Link>, this quest will be available from
         any Honor Point Collector.</p>
       <p>To complete this quest, you must summon a level 50 Stormdarter and have&nbsp;
@@ -1381,7 +1381,7 @@ const MOUNT = [
         button="View on Map"
         buttonFloat="right"
       />
-      <Typography color="primary"><span className="dropdown-icon Quest" /> Be Prepared for Anything</Typography>
+      <p color="primary"><span className="dropdown-icon Quest" /> Be Prepared for Anything</p>
       <p>After obtaining a <Link to="/mount/polaris-bjorne">Polaris Bjorne</Link>, this quest
         will be available from the daru Morudo in Mirage Isle.</p>
       <p>To complete this quest, you must summon a level 50 Polaris Bjorne and have a <ItemLink
@@ -1416,8 +1416,8 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>The Yata mount can be purchased as a calf from any Stablehand for&nbsp;
-        <Currency type={CURRENCY.COIN} count={50000} inline /> and raised.</Typography>
+      <p>The Yata mount can be purchased as a calf from any Stablehand for&nbsp;
+        <Currency type={CURRENCY.COIN} count={50000} inline /> and raised.</p>
       <p>On Legacy, this mount can also be purchased for <Currency type={CURRENCY.CREDIT} count={500} inline />.</p>
     </>,
   },
@@ -1435,9 +1435,9 @@ const MOUNT = [
       HUSBANDRY,
     ],
     obtainText: <>
-      <Typography>The Striped Yata Calf is a common drop from pregnant Cashmere Yatas, which is an uncommon event that
+      <p>The Striped Yata Calf is a common drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
-        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
+        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</p>
       <p>The calf can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
@@ -1459,9 +1459,9 @@ const MOUNT = [
       HUSBANDRY,
     ],
     obtainText: <>
-      <Typography>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
+      <p>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
-        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
+        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</p>
       <p>The calf can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
@@ -1484,9 +1484,9 @@ const MOUNT = [
       HUSBANDRY,
     ],
     obtainText: <>
-      <Typography>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
+      <p>The Palomino Yata Calf is a rare drop from pregnant Cashmere Yatas, which is an uncommon event that
         occurs when a female Cashmere Yata is nearby a male Cashmere Yata. Some players partake in yata breeding, which
-        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</Typography>
+        involves filling many farms with Cashmere Yatas for the chance to produce rare pets.</p>
       <p>The calf can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
@@ -1512,9 +1512,9 @@ const MOUNT = [
       HUSBANDRY,
     ],
     obtainText: <>
-      <Typography>The Polaris Cub is produced by pregnant Blizzard Bears, which is an uncommon event that
+      <p>The Polaris Cub is produced by pregnant Blizzard Bears, which is an uncommon event that
         occurs when a female Blizzard Bear is nearby a male Blizzard Bear. Some players partake in bear breeding, which
-        involves filling many farms with Blizzard Bears for the chance to produce rare pets.</Typography>
+        involves filling many farms with Blizzard Bears for the chance to produce rare pets.</p>
       <p>The cub can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>The the cub is raised, it will either become the Polaris Ursun (which is a battle pet) or the Polaris Bjorne
@@ -1549,10 +1549,9 @@ const MOUNT = [
         button="View on Map"
         buttonFloat="right"
       />
-      <Typography>This mount can be obtained in one of two ways.</Typography>
-      <p>The first is by collecting materials from the 5-player dungeon, Sea of Drowned Love. You will need the
-        following materials and can combine them at the workbench "Center of Dahuta's Power" located in the Sunspeck
-        Sea:</p>
+      <p>This mount can be obtained by collecting materials from the 5-player dungeon, Sea of Drowned Love. You will
+        need the following materials and can combine them at the workbench "Center of Dahuta's Power" located in the
+        Sunspeck Sea:</p>
       <ul>
         <li>
           <ItemLink item={ITEM.CHILLED_SEAFOAM} count={35} plural="" noLink />
@@ -1571,7 +1570,7 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
-      <p>On Legacy, Fuchsiafin can be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
+      <p>On Legacy, Fuchsiafin can also be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
     </>,
   },
   {
@@ -1700,9 +1699,7 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </Typography>
+      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1721,10 +1718,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.VOCATION,
     ],
-    obtainText: <Typography>
+    obtainText: <p>
       This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="450,000" inline /> from the Vocation
       Shop.
-    </Typography>,
+    </p>,
   },
   {
     name: 'Soulmule',
@@ -1743,8 +1740,8 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="600,000" inline /> from
-        the Vocation Shop.</Typography>
+      <p>This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="600,000" inline /> from
+        the Vocation Shop.</p>
       <p>On Legacy, this mount can also be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
     </>,
   },
@@ -1765,10 +1762,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.CREDIT,
     ],
-    obtainText: <Typography>
+    obtainText: <p>
       This mount is only obtainable on Legacy and can be purchased for&nbsp;
       <Currency type={CURRENCY.CREDIT} count={1345} inline />.
-    </Typography>,
+    </p>,
   },
   {
     name: 'Black Lilyut Horse',
@@ -1802,10 +1799,10 @@ const MOUNT = [
     obtainable: [
       CURRENCY.CREDIT,
     ],
-    obtainText: <Typography>
+    obtainText: <p>
       This mount is only obtainable on Legacy and can be purchased for&nbsp;
       <Currency type={CURRENCY.CREDIT} count={1345} inline />.
-    </Typography>,
+    </p>,
   },
   {
     name: 'Tamed Owlina',
@@ -1824,9 +1821,9 @@ const MOUNT = [
     obtainable: [
       QUEST,
     ],
-    obtainText: <Typography>Obtained from the quest <Typography color="primary" component="span"><span
+    obtainText: <p>Obtained from the quest <Typography color="primary" component="span"><span
       className="dropdown-icon Quest" /> Neverending Disaster</Typography>, the 8th and final quest of the story chapter
-      "Hiram Mountains Chapter 3. Hage's Prophecy". </Typography>,
+      "Hiram Mountains Chapter 3. Hage's Prophecy". </p>,
   },
   {
     name: 'Frost Dragon',
@@ -1845,9 +1842,12 @@ const MOUNT = [
     obtainable: [
       CURRENCY.MANASTORM,
     ],
-    obtainText: <Typography>
-      This mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-    </Typography>,
+    obtainText: <>
+      <p>
+        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+      </p>
+      <p>On Unchained, this mount cannot be obtained.</p>
+    </>,
   },
   {
     name: 'Typhoon Drake',
@@ -1867,9 +1867,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1889,9 +1889,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1943,9 +1943,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1967,9 +1967,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1991,9 +1991,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2015,9 +2015,9 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2037,9 +2037,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2059,9 +2059,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2081,9 +2081,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={250} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2106,9 +2106,9 @@ const MOUNT = [
       CURRENCY.DILIGENCE,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={550} />.
-      </Typography>
+      </p>
       <p>On Legacy, this mount is no longer obtainable.</p>
     </>,
   },
@@ -2130,9 +2130,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2162,10 +2162,10 @@ const MOUNT = [
         button="View on Map"
         buttonFloat="right"
       />
-      <Typography>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
+      <p>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
         this mount
         by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
-        Essence.</Typography>
+        Essence.</p>
       <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
         Drill Camp in Hasla, to complete the quest <span className="dropdown-icon Quest" />&nbsp;
         <Typography color="primary" component="span">A Bolt of Crimson Lightning</Typography> in exchange for a Crimson
@@ -2194,9 +2194,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2218,9 +2218,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2242,9 +2242,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2265,9 +2265,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2289,8 +2289,8 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <Typography>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> or
-        purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</Typography>
+      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> or
+        purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2346,9 +2346,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2370,9 +2370,9 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
-      </Typography>
+      </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -2394,7 +2394,7 @@ const MOUNT = [
       CURRENCY.DILIGENCE,
     ],
     obtainText: <>
-      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Legacy, this mount cannot currently be obtained.</p>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
@@ -2416,7 +2416,7 @@ const MOUNT = [
       CURRENCY.DILIGENCE,
     ],
     obtainText: <>
-      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Legacy, this mount cannot currently be obtained.</p>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
@@ -2438,7 +2438,7 @@ const MOUNT = [
       CURRENCY.DILIGENCE,
     ],
     obtainText: <>
-      <Typography>On Legacy, this mount cannot currently be obtained.</Typography>
+      <p>On Legacy, this mount cannot currently be obtained.</p>
       <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
@@ -2458,10 +2458,10 @@ const MOUNT = [
       QUEST,
     ],
     obtainText: <>
-      <Typography>
+      <p>
         This mount is acquired by completing the <Typography color="primary" component="span">Skywarden
         Collection</Typography>, an achievement for collecting 38 prestigious mounts.
-      </Typography>
+      </p>
 
       <ul className="list-cols">
         <li>
@@ -2560,8 +2560,8 @@ const MOUNT = [
       CRAFTED,
     ],
     obtainText: <>
-      <Typography>To obtain this mount, your nation must first own a castle that has the workshop built. After
-        you've obtained this mount, your nation must control a castle to use it.</Typography>
+      <p>To obtain this mount, your nation must first own a castle that has the workshop built. After
+        you've obtained this mount, your nation must control a castle to use it.</p>
       <p>The materials needed are as follows:</p>
       <ul>
         <li>

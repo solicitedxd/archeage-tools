@@ -177,13 +177,15 @@ body {
 .body-container {
   padding: 8px 12px;
 
-  p:first-child {
-    margin: 0;
-  }
-
   p:not(:first-child) {
     margin-top: 8px;
   }
+}
+
+p:first-child,
+p:last-child,
+h6 + p {
+  margin: 0;
 }
 
 .footer-wrapper {
