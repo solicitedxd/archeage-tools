@@ -1346,7 +1346,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p color="primary"><span className="dropdown-icon Quest" /> Past the Storm, Now the Thunder</p>
-      <p>After obtaining a <Link to="/mount/stormdarter">Stormdarter</Link>, this quest will be available from
+      <p>After obtaining a <Link to="/mounts/stormdarter">Stormdarter</Link>, this quest will be available from
         any Honor Point Collector.</p>
       <p>To complete this quest, you must summon a level 50 Stormdarter and have&nbsp;
         <ItemLink item={ITEM.HONORFORGED_MEDAL} count={15} /> (costs&nbsp;
@@ -1382,7 +1382,7 @@ const MOUNT = [
         buttonFloat="right"
       />
       <p color="primary"><span className="dropdown-icon Quest" /> Be Prepared for Anything</p>
-      <p>After obtaining a <Link to="/mount/polaris-bjorne">Polaris Bjorne</Link>, this quest
+      <p>After obtaining a <Link to="/mounts/polaris-bjorne">Polaris Bjorne</Link>, this quest
         will be available from the daru Morudo in Mirage Isle.</p>
       <p>To complete this quest, you must summon a level 50 Polaris Bjorne and have a <ItemLink
         item={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
