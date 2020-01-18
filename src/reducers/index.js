@@ -5,6 +5,7 @@ import dailies from './dailies';
 import display from './display';
 import mounts from './mounts';
 import notification from './notification';
+import session from './session';
 import thunderstruck from './thunderstruck';
 import tradepacks from './tradepacks';
 
@@ -15,6 +16,7 @@ const rootReducer = (history) => combineReducers({
   mounts,
   notification,
   router: connectRouter(history),
+  session,
   thunderstruck,
   tradepacks,
 });
@@ -24,6 +26,7 @@ export const getLocalData = {
   calendar: ({ calendar }) => calendar,
   display: ({ display }) => display,
   mounts: ({ mounts }) => mounts,
+  session: ({ session }) => session,
   thunderstruck: ({ thunderstruck }) => thunderstruck,
   tradepacks: ({ tradepacks }) => tradepacks,
 };

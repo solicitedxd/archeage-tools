@@ -5,6 +5,7 @@ import {
   compose,
   createStore,
 } from 'redux';
+import history from './history';
 import middleware from './middleware';
 
 const dummyDevTools = (f) => f;
@@ -31,4 +32,6 @@ const configureStore = (history) => {
   return store;
 };
 
-export default configureStore;
+const store = configureStore(history);
+
+export default store;

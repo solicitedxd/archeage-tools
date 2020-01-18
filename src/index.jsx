@@ -1,16 +1,13 @@
 import { ConnectedRouter as Router } from 'connected-react-router';
-import { createBrowserHistory } from 'history';
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
 import { Provider } from 'react-redux';
+import history from './history';
 import './images/favicon.ico';
 import './images/ucc-teal.png';
 import routes from './routes';
-import configureStore from './store';
-
-const history = createBrowserHistory();
-const store = configureStore(history);
+import store from './store';
 
 const dom = (
   <AppContainer>

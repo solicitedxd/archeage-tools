@@ -1,47 +1,37 @@
 export default [
-  { name: 'Daily Checklist', short: 'Dailies', path: '/dailies' },
-  { name: 'Skill Builder', short: 'Skills', path: '/skills' },
-  { name: 'Trade Pack Calculator', short: 'Trade Packs', path: '/trade-packs' },
-  { name: 'Event Schedule', short: 'Schedule', path: '/schedule' },
-  { name: 'Mounts', path: '/mounts', noBanner: true },
-  { name: 'Taxes Calculator', short: 'Taxes', path: '/taxes', noBanner: true },
-  { name: 'Thunderstrucks', path: '/thunderstruck', noBanner: true },
   {
-    name: 'Guides', path: '/guides', noBanner: true, children: [
-      {
-        name: 'Gameplay', children: [
-          { name: 'Leveling to 55', path: '/guides/leveling-to-55' },
-          { name: 'Honor Points', path: '/guides/honor-points' },
-          { name: 'ArchePass', path: '/guides/archepass' },
-        ],
-      },
-      {
-        name: 'Daily Quests', children: [
-          { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
-          { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },
-          { name: 'Honor Dailies', path: '/guides/honor-dailies' },
-        ],
-      },
-      {
-        name: 'Dungeons', children: [
-          { name: 'Serpentis', path: '/guides/serpentis' },
-          { name: 'Mistsong Summit', path: '/guides/mistsong-summit' },
-        ],
-      },
-      {
-        name: 'World Bosses', children: [
-          { name: 'Hounds and Nightmares', path: '/guides/hounds-and-nightmares' },
-          { name: 'Meina & Glenn', path: '/guides/meina-and-glenn' },
-        ],
-      },
-      {
-        name: 'Instances', children: [
-          { name: 'Red Dragon\'s Keep', path: '/guides/red-dragons-keep' },
-          { name: 'Noryette Challenge', path: '/guides/noryette-challenge' },
-        ],
-      },
+    name: 'Calculators',
+    children: [
+      { name: 'Skill Builder', path: '/skills' },
+      { name: 'Trade Pack Calculator', path: '/trade-packs' },
+      { name: 'Land Tax Calculator', path: '/taxes' },
     ],
   },
-
-  { name: 'Toggle Dark Mode', darkMode: true, noBanner: true },
+  {
+    name: 'Timers',
+    children: [
+      { name: 'Event Schedule', path: '/schedule' },
+      { name: 'Crop Timers', path: '/crops' },
+    ],
+  },
+  {
+    name: 'Lists',
+    children: [
+      { name: 'Daily Checklist', path: '/dailies' },
+      { name: 'Recipes', path: '/recipes' },
+    ],
+  },
+  {
+    name: 'Guides',
+    path: '/guides',
+    children: [
+      { name: 'Gameplay', path: '/guides/gameplay' },
+      { name: 'Daily Quests', path: '/guides/dailies' },
+      { name: 'Classes', path: '/guides/classes' },
+      { name: 'Mounts', path: '/mounts' },
+      { name: 'Dungeons', path: '/guides/dungeons' },
+      { name: 'World Bosses', path: '/guides/world-bosses' },
+      { name: 'Instances', path: '/guides/instances' },
+    ],
+  },
 ];

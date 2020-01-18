@@ -10,11 +10,13 @@ const notification = (state = initialState, action) => {
       return {
         message: action.message,
         duration: action.duration,
+        variant: action.variant,
         open: true,
       };
     case NOTIFICATION_CLEAR:
       return {
-        ...initialState,
+        ...state,
+        open: false,
       };
     default:
       return state;

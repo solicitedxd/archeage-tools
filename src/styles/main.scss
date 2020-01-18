@@ -1,3 +1,8 @@
+/** Variables **/
+$patreon: rgb(232, 91, 70);
+$discord: #7289DA;
+
+/** HTML and body */
 html {
   font-size: 100%;
   background: url(../images/background.png) no-repeat center bottom;
@@ -21,20 +26,79 @@ body {
   margin: 0;
 }
 
-/** Title Bar **/
-#logo-icon-wrapper {
-  margin-right: 6px;
+/** Header **/
+header.site-header, footer.site-footer {
+  display: flex;
+  height: 52px;
+  padding: 6px 12px;
+  align-items: center;
+  background: #009688;
+  position: relative;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+  color: #FFFFFF;
 }
 
-.icon-button {
-  padding: 0 !important;
+header.site-header {
+  #logo-icon {
+    width: 52px;
+    height: 52px;
+    background: url(../images/ucc-white.png) no-repeat;
+    background-size: 52px;
+  }
+
+  .icon-button {
+    padding: 0 !important;
+    margin-right: 8px;
+  }
+
+  h6 {
+    font-size: x-large;
+  }
+
+  .user-welcome, .user-menu-icon {
+    margin-left: 6px;
+  }
+
+  .user-menu-icon {
+    padding: 2px !important;;
+  }
+
+  .MuiAvatar-colorDefault {
+    color: #009688;
+    background: #E2E2E2;
+  }
 }
 
-#logo-icon {
-  width: 48px;
-  height: 48px;
-  background: url(../images/ucc-white.png) no-repeat;
-  background-size: 48px;
+.content-wrapper {
+  min-height: calc(100vh - 128px);
+  overflow: hidden;
+  display: block;
+  position: relative;
+}
+
+footer.site-footer {
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.5);
+  justify-content: space-between;
+  position: relative;
+  bottom: 0;
+  width: calc(100% - 24px);
+}
+
+.menu-icon-right {
+  margin-left: 8px;
+}
+
+.avatar {
+  border: 2px solid;
+  background-color: #E2E2E2;
+
+  &.patreon {
+    border-color: $patreon;
+  }
+
+  &.discord {
+    border-color: $discord;
+  }
 }
 
 .title-text {
@@ -43,40 +107,64 @@ body {
 
 .nav-item {
   margin: 0 8px !important;
-  cursor: pointer;
+}
+
+.verify-warn {
+  color: #FFA000;
 }
 
 .nav-icon {
-  width: 32px;
-  height: 32px;
+  width: 32px !important;
+  height: 32px !important;
   background: url('../images/nav_icons.png') no-repeat 0 -132px;
+  margin-right: 8px;
 
-  &.dailies {
+  &.Account {
+    background-position: -33px 0;
+  }
+
+  &.Lists {
     background-position: -33px -66px;
   }
 
-  &.skills {
+  &.Calculators {
     background-position: -33px -33px;
   }
 
-  &.thunderstruck {
-    background-position: -33px -99px;
-  }
-
-  &.trade-packs {
-    background-position: -33px -231px;
-  }
-
-  &.schedule {
+  &.Timers {
     background-position: -33px -330px;
   }
 
-  &.taxes {
-    background-position: -33px -298px;
+  &.Guides {
+    background-position: -33px -198px;
   }
 
-  &.guides {
-    background-position: -33px -198px;
+  &.Settings {
+    background-position: -33px -165px;
+  }
+}
+
+.MuiList-root.nested-list {
+  .MuiListItem-root {
+    padding-left: 72px;
+
+    &.nested-icon {
+      padding-left: 40px;
+
+      .MuiListItemIcon-root {
+        margin-right: 8px;
+      }
+    }
+  }
+}
+
+.nested-list-icons {
+  .MuiListItem-root {
+    padding-left: 40px;
+
+    .MuiListItemIcon-root {
+      margin-right: 8px;
+    }
   }
 }
 
@@ -306,7 +394,6 @@ blockquote cite:before {
   align-items: center;
   text-decoration: none;
   padding: 2px 10px 0;
-  margin-right: 6px;
 
   &:hover {
     background-color: #6980D1;

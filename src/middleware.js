@@ -5,6 +5,7 @@ import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
 import { triggerLocalStorageUpdate as thunderstruck } from 'actions/thunderstruck';
 import { triggerLocalStorageUpdate as tradepacks } from 'actions/tradepacks';
 import { routerMiddleware } from 'connected-react-router';
+import { triggerLocalStorageUpdate as session } from 'constants/session';
 import { getLocalData } from 'reducers';
 import thunk from 'redux-thunk';
 import { setItem } from 'utils/localStorage';
@@ -14,6 +15,7 @@ const keysAndActionTypes = {
   calendar,
   display,
   mounts,
+  session,
   thunderstruck,
   tradepacks,
 };

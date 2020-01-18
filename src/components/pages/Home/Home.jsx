@@ -2,10 +2,8 @@ import {
   Link as MuiLink,
   Typography,
 } from '@material-ui/core';
-import Banner from 'components/Banner';
 import Link from 'components/Link';
 import NewsPost from 'components/NewsPost';
-import navigation from 'constants/navigation';
 import React from 'react';
 import { setTitle } from 'utils/string';
 
@@ -13,9 +11,9 @@ const Home = () => {
   setTitle();
   return (
     <div>
-      <div className="home-banners section">
-        {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
-      </div>
+      {/*<div className="home-banners section">*/}
+      {/*  {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}*/}
+      {/*</div>*/}
       <NewsPost
         title="Kyrios Mounts and Fixes"
         date="Mar 1, 2020"
