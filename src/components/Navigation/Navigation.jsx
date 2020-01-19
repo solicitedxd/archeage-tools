@@ -42,7 +42,6 @@ class Navigation extends Component {
   };
 
   handleOpen = (e) => {
-    console.log(e);
     this.setState({ userEl: e.target });
   };
 

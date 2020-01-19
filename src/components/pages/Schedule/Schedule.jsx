@@ -38,7 +38,7 @@ class Schedule extends Component {
     setTitle('Event Schedule');
 
     return (
-      <div className="calendar-container tool-container">
+      <div className="calendar-container">
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">

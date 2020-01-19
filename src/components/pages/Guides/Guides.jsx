@@ -19,7 +19,7 @@ class Guides extends Component {
   render() {
     setTitle('Guides');
     return (
-      <div className="tool-container">
+      <>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -47,7 +47,7 @@ class Guides extends Component {
             })}
           </div>
         </Paper>
-      </div>
+      </>
     );
   }
 }

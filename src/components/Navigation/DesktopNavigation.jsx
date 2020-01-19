@@ -118,6 +118,10 @@ class DesktopNavigation extends Component {
                 vertical: 'bottom',
                 horizontal: 'right',
               }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
               onClose={this.handleCloseMenu(navLink.name)}
               open={Boolean(anchorEl[navLink.name])}
               getContentAnchorEl={null}
@@ -167,6 +171,10 @@ class DesktopNavigation extends Component {
           getContentAnchorEl={null}
           anchorOrigin={{
             vertical: 'bottom',
+            horizontal: 'right',
+          }}
+          transformOrigin={{
+            vertical: 'top',
             horizontal: 'right',
           }}
           open={Boolean(userMenu)}

@@ -106,24 +106,28 @@ class Main extends React.PureComponent {
       <ThemeProvider theme={this.createPalette()}>
         <>
           <header className="site-header">
-            <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper" className="icon-button">
-              <RouterLink id="logo-icon" to="/" />
-            </IconButton>
-            <Typography variant="h6" className="title title-text">
-              ArcheAge Tools
-            </Typography>
+            <div className="inner-wrapper">
+              <IconButton color="inherit" aria-label="Menu" id="logo-icon-wrapper" className="icon-button">
+                <RouterLink id="logo-icon" to="/" />
+              </IconButton>
+              <Typography variant="h6" className="title title-text">
+                ArcheAge Tools
+              </Typography>
 
-            <Navigation />
+              <Navigation />
+            </div>
           </header>
           <div className="content-wrapper">
             {children}
           </div>
           <footer className="site-footer">
-            <Typography className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
-            <Link href="https://www.mokulu.io/privacy-policy" color="textPrimary">
-              <Typography>Privacy Policy</Typography>
-            </Link>
-            {!mobile && <DiscordButton />}
+            <div className="inner-wrapper">
+              <Typography className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
+              <Link href="https://www.mokulu.io/privacy-policy" color="textPrimary" target="_blank">
+                <Typography>Privacy Policy</Typography>
+              </Link>
+              {!mobile && <DiscordButton />}
+            </div>
           </footer>
 
           <Notification
