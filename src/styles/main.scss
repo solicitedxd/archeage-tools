@@ -217,7 +217,7 @@ footer.site-footer {
 
   .news-list {
     min-width: 375px;
-    width: 802px;
+    max-width: 802px;
   }
 }
 
@@ -258,6 +258,10 @@ footer.site-footer {
     &:last-child {
       margin-bottom: 0;
     }
+
+    &:focus .home-banner {
+      background-position: 0 -350px;
+    }
   }
 
   .home-banner {
@@ -269,10 +273,6 @@ footer.site-footer {
 
     &:hover {
       background-position: 0 -262px;
-    }
-
-    &:focus {
-      background-position: 0 -350px;
     }
 
     .banner-icon {
@@ -346,10 +346,12 @@ footer.site-footer {
   .news-container {
     display: block;
   }
+}
 
-  .home-banners {
-    .home-banner {
-      zoom: 0.8875;
+@media only screen and (max-width: 418px) {
+  .news-container {
+    .home-banners {
+      width: 378px;
     }
   }
 }
