@@ -1,6 +1,8 @@
 import {
   SESSION_LOGOUT,
   SESSION_USER,
+  SESSION_WINDOW,
+  SESSION_WINDOW_CLOSE,
 } from 'constants/session';
 import initialSate from 'initialStates/session';
 import Cookies from 'js-cookie';
@@ -14,9 +16,9 @@ const cookieProps = {
 };
 
 const session = (state = getItem('session', initialSate), action) => {
+  const { type, ...other } = action;
   switch (action.type) {
     case SESSION_USER:
-      const { type, ...other } = action;
       const { access_token, refresh_token } = other;
       const expires = moment().add(30, 'days').toDate();
       if (access_token) {
@@ -39,6 +41,19 @@ const session = (state = getItem('session', initialSate), action) => {
       Cookies.remove('access_token', cookieProps);
       Cookies.remove('refresh_token', cookieProps);
       return initialSate;
+    case SESSION_WINDOW:
+      return {
+        ...state,
+        windows: {
+          ...state.windows,
+          ...other,
+        },
+      };
+    case SESSION_WINDOW_CLOSE:
+      return {
+        ...state,
+        windows: {},
+      };
     default:
       return state;
   }

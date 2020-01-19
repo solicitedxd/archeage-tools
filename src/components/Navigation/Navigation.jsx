@@ -2,6 +2,13 @@ import {
   Link,
   MenuItem,
 } from '@material-ui/core';
+import {
+  displayLogin,
+  displayRegister,
+  logout,
+} from 'actions/session';
+import Login from 'components/Account/Login';
+import Register from 'components/Account/Register';
 import DesktopNavigation from 'components/Navigation/DesktopNavigation';
 import MobileNavigation from 'components/Navigation/MobileNavigation';
 import config from 'config';
@@ -24,13 +31,13 @@ class Navigation extends Component {
     this.handleClose();
     switch (action) {
       case 'logout':
-        // handle logout
+        this.props.logout();
         break;
       case 'login':
-        // handle login
+        this.props.displayLogin(true);
         break;
       case 'register':
-        // handle register
+        this.props.displayRegister(true);
         break;
       default:
       // do nothing
@@ -112,6 +119,12 @@ class Navigation extends Component {
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
         />
+
+        {!session.isAuthenticated &&
+        <>
+          <Login />
+          <Register />
+        </>}
       </>
     );
   }
@@ -122,6 +135,10 @@ const mapStateToProps = ({ session, display: { mobile } }) => ({
   mobile,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  displayRegister,
+  displayLogin,
+  logout,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);

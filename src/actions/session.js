@@ -1,20 +1,20 @@
-import { go } from 'actions/navigate';
 import { setNotification } from 'actions/notification';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import {
   SESSION_LOGOUT,
   SESSION_USER,
+  SESSION_WINDOW,
+  SESSION_WINDOW_CLOSE,
 } from 'constants/session';
 import { pathOr } from 'ramda';
 import xhr from 'utils/xhr';
 
-export const attemptLogin = (data) => (dispatch, getState) => new Promise((resolve, reject) => {
-  const { session } = getState();
+export const attemptLogin = (data) => (dispatch) => new Promise((resolve, reject) => {
   xhr.post(config.endpoints.session.authenticate, { grant_type: 'password', ...data }, { withCredentials: true })
   .then(({ data }) => {
-    dispatch({ type: SESSION_USER, ...data, redirect: '' });
-    resolve(session.redirect);
+    dispatch({ type: SESSION_USER, ...data });
+    resolve();
   })
   .catch(error => {
     const status = pathOr(500, ['status'])(error);
@@ -75,25 +75,31 @@ export const refreshSession = () => (dispatch, getStorage) => new Promise((resol
 export const requiresLogin = () => (dispatch) => {
   dispatch({ type: SESSION_LOGOUT });
   dispatch(setNotification('Your session has expired. Please log in.', NOTIFICATION_TYPE.ERROR));
-  go('/login');
+  dispatch(displayLogin(true));
+};
+
+export const displayLogin = (login) => (dispatch) => {
+  dispatch({ type: SESSION_WINDOW, login });
+};
+
+export const displayRegister = (register) => (dispatch) => {
+  dispatch({ type: SESSION_WINDOW, register });
+};
+
+export const closeWindow = () => (dispatch) => {
+  dispatch({ type: SESSION_WINDOW_CLOSE });
 };
 
 export const requiresAuth = () => (dispatch, getState) => {
   const { session } = getState();
-  const allowed = Boolean(session.access_token) && Boolean(session.username);
+  const allowed = Boolean(session.access_token);
 
   if (!allowed) {
     setNotification('You must login to see this page.', NOTIFICATION_TYPE.WARNING);
-    dispatch({ type: SESSION_USER, redirect: window.location.pathname });
-    go('/login');
+    dispatch({ type: SESSION_USER });
   }
 };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: SESSION_LOGOUT });
-  go('/');
-};
-
-export const clearRedirect = () => (dispatch) => {
-  dispatch({ type: SESSION_USER, redirect: '' });
 };

@@ -406,6 +406,19 @@ blockquote cite:before {
   }
 }
 
+.form-control {
+  width: 220px;
+
+  & > div {
+    margin-bottom: 6px !important;
+  }
+
+  .submit {
+    width: 100%;
+    margin: 12px 0 0 0;
+  }
+}
+
 .dark-mode {
   .lightbox-thumb {
     background-color: #525252;
