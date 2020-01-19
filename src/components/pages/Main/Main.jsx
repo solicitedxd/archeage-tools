@@ -50,6 +50,11 @@ class Main extends React.PureComponent {
             marginRight: 8,
           },
         },
+        MuiListItemAvatar: {
+          root: {
+            minWidth: 32,
+          },
+        },
         MuiListItemIcon: {
           root: {
             minWidth: 24,

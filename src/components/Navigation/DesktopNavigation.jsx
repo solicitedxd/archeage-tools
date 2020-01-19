@@ -3,6 +3,10 @@ import {
   Divider,
   IconButton,
   Link as MuiLink,
+  ListItem,
+  ListItemAvatar,
+  ListItemIcon,
+  ListItemText,
   Menu,
   MenuItem,
   Tooltip,
@@ -104,28 +108,31 @@ class DesktopNavigation extends Component {
 
     return (
       <>
-        {navigation.map(navLink => {
-          return [
-            <Typography className="nav-item" key={navLink.name}>
+        {navigation.map(navLink => (
+          <div key={navLink.name}>
+            <Typography className="nav-item" onMouseOver={this.handleOpenMenu(navLink.name)}>
               <Link color="inherit" to={navLink.path} onClick={this.handleOpenMenu(navLink.name)}>
                 {navLink.name}
               </Link>
-            </Typography>,
+            </Typography>
             <Menu
-              key={`menu-${navLink.name}`}
               anchorEl={anchorEl[navLink.name]}
               anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
               }}
               onClose={this.handleCloseMenu(navLink.name)}
               open={Boolean(anchorEl[navLink.name])}
               getContentAnchorEl={null}
+              PaperProps={{
+                onMouseLeave: this.handleCloseMenu(navLink.name),
+              }}
+              autoFocus={false}
             >
+              <ListItem dense divider>
+                <ListItemIcon><span className={cn('nav-icon', navLink.name)} /></ListItemIcon>
+                <ListItemText primary={<Typography variant="overline">{navLink.name}</Typography>} />
+              </ListItem>
               {navLink.children.map(child => (
                 <Link
                   color="inherit"
@@ -139,9 +146,9 @@ class DesktopNavigation extends Component {
                   </MenuItem>
                 </Link>
               ))}
-            </Menu>,
-          ];
-        })}
+            </Menu>
+          </div>
+        ))}
         {session.isAuthenticated && !session.verified &&
         <Tooltip title="E-mail is not verified. Click to verify.">
           <MuiLink href={myAccountUrl}>
@@ -156,6 +163,7 @@ class DesktopNavigation extends Component {
              data-patreon-widget-type="become-patron-button">Become a Patron!</a>
         </div>}
         <IconButton
+          onMouseOver={handleOpen}
           onClick={handleOpen}
           className="user-menu-icon"
           aria-controls="user-menu"
@@ -170,16 +178,25 @@ class DesktopNavigation extends Component {
           anchorEl={userMenu}
           getContentAnchorEl={null}
           anchorOrigin={{
-            vertical: 'bottom',
-            horizontal: 'right',
-          }}
-          transformOrigin={{
             vertical: 'top',
-            horizontal: 'right',
+            horizontal: 'left',
           }}
           open={Boolean(userMenu)}
           onClose={handleClose}
+          PaperProps={{
+            onMouseLeave: handleClose,
+          }}
+          autoFocus={false}
         >
+          <ListItem dense divider>
+            <ListItemAvatar>
+              <Avatar src={session.avatarSrc} className={cn('avatar', 'nav-icon', { [session.avatarPlatform]: true })}>
+                {!session.avatarSrc && <PersonIcon />}
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
+              : 'Account'}</Typography>} />
+          </ListItem>
           {menuItems}
           <Divider />
           <MenuItem onClick={this.handleDarkMode}>
