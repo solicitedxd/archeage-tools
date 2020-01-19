@@ -210,73 +210,147 @@ footer.site-footer {
   margin-right: 0;
 }
 
-.home-banners {
+.news-container {
   display: flex;
-  justify-content: space-evenly;
-  margin: 14px auto;
-  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  margin-top: 0;
+
+  .news-list {
+    min-width: 375px;
+    width: 802px;
+  }
 }
 
-.home-banner {
-  width: 240px;
-  height: 94px;
-  position: relative;
-  margin: 8px 4px;
-  opacity: 0.9;
+@media only screen and (max-width: 856px) {
+  .news-container {
+    display: block;
 
-  &.disabled {
-    -moz-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-    -o-filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-    -webkit-filter: grayscale(100%);
-    filter: url("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'grayscale\'><feColorMatrix type=\'matrix\' values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#grayscale");
-    cursor: not-allowed;
+    .home-banners {
+      margin: 10px 0 0 0;
+      flex-direction: row;
+      flex-wrap: wrap;
+      width: 100%;
 
-    &:hover:after {
-      position: absolute;
-      content: "Coming Soon";
-      font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
-      font-size: 20px;
-      color: #D0BFAC;
-      background: rgba(0, 0, 0, 0.25);
-      top: 30px;
-      padding: 2px 59px;
+      a, a:first-child, a:last-child {
+        margin: 4px;
+      }
+    }
+  }
+}
+
+.home-banners {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0 0 20px;
+  flex-direction: column;
+  width: 378px;
+  align-self: flex-start;
+
+  a {
+    text-decoration: none !important;
+    margin: 6px 0;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 
-  &:hover {
-    opacity: 1;
+  .home-banner {
+    width: 378px;
+    height: 87px;
+    display: flex;
+    background-image: url(../images/1st_category.png);
+    background-position: 0 -174px;
+
+    &:hover {
+      background-position: 0 -262px;
+    }
+
+    &:focus {
+      background-position: 0 -350px;
+    }
+
+    .banner-icon {
+      width: 110px;
+      height: 87px;
+      background-image: url(../images/1st_category.png);
+
+      &.taxes {
+        background-position: -1px 0;
+      }
+
+      &.mounts {
+        background-position: -112px 0;
+      }
+
+      &.crops {
+        background-position: -223px 0;
+      }
+
+      &.trade-packs {
+        background-position: -334px 0;
+      }
+
+      &.skills {
+        background-position: -1px -87px;
+      }
+
+      &.folio {
+        background-position: -112px -87px;
+      }
+
+      &.dailies {
+        background-position: -223px -87px;
+      }
+
+      &.schedule {
+        background-position: -334px -87px;
+      }
+    }
+
+    .banner-text {
+      display: flex;
+      flex-direction: column;
+      width: 268px;
+      justify-content: center;
+
+      .banner-name {
+        color: #583D18;
+        font-size: 16px;
+        padding: 0 0 6px;
+        text-align: center;
+      }
+
+      .banner-info {
+        color: #805316;
+        font-size: 12px;
+        line-height: 16px;
+        text-align: center;
+        padding: 1px 10%;
+        background: rgba(255, 255, 255, 0.15);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        border-radius: 3px;
+        align-self: center;
+        width: 75%;
+      }
+    }
+  }
+}
+
+.mobile {
+  .news-container {
+    display: block;
   }
 
-  &:focus {
-    top: 2px;
-    left: 2px;
-  }
-
-  &.dailies {
-    background-image: url('../images/banners/instance_golden_plains.png');
-  }
-
-  &.skills {
-    background-image: url('../images/banners/instance_the_last_day_of_hiramakand.png');
-  }
-
-  &.trade-packs {
-    background-image: url('../images/banners/instance_sea_survival_2.png');
-  }
-
-  &.schedule {
-    background-image: url('../images/banners/instance_carcass.png');
-  }
-
-  &.guides {
-    background-image: url('../images/banners/instance_dewplane_boss.png');
-  }
-
-  .banner-text {
-    position: absolute;
-    color: #D0BFAC;
-    top: 70px;
-    right: 6px;
+  .home-banners {
+    .home-banner {
+      zoom: 0.8875;
+    }
   }
 }
 

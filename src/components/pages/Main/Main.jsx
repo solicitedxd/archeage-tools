@@ -13,6 +13,7 @@ import createTypography from '@material-ui/core/styles/createTypography';
 import { ThemeProvider } from '@material-ui/styles';
 import { clearNotification } from 'actions/notification';
 import { fetchMe } from 'actions/session';
+import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
 import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
@@ -122,7 +123,7 @@ class Main extends React.PureComponent {
               <Navigation />
             </div>
           </header>
-          <div className="content-wrapper">
+          <div className={cn('content-wrapper', { mobile })}>
             {children}
           </div>
           <footer className="site-footer">
