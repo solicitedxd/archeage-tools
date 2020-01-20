@@ -131,7 +131,13 @@ class DesktopNavigation extends Component {
             >
               <ListItem dense divider>
                 <ListItemIcon><span className={cn('nav-icon', navLink.name)} /></ListItemIcon>
-                <ListItemText primary={<Typography variant="overline">{navLink.name}</Typography>} />
+                <ListItemText
+                  primary={
+                    navLink.path
+                      ? <Link to={navLink.path} variant="overline" color="inherit">{navLink.name}</Link>
+                      : <Typography variant="overline">{navLink.name}</Typography>
+                  }
+                />
               </ListItem>
               {navLink.children.map(child => (
                 <Link

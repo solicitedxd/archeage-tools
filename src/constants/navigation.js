@@ -24,6 +24,7 @@ export default [
   {
     name: 'Guides',
     path: '/guides',
+    mobileName: 'All Guides',
     children: [
       { name: 'Gameplay', path: '/guides/gameplay' },
       { name: 'Daily Quests', path: '/guides/dailies' },

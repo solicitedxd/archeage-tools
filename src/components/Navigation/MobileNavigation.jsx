@@ -110,6 +110,17 @@ class MobileNavigation extends Component {
               </ListItem>,
               <Collapse in={expanded[navLink.name]} timeout="auto" unmountOnExit key={`collapse-${navLink.name}`}>
                 <List component="div" disablePadding className="nested-list">
+                  {navLink.path && navLink.mobileName &&
+                  <Link
+                    to={navLink.path}
+                    color="inherit"
+                    onClick={handleClose}
+                    underline="none"
+                  >
+                    <ListItem button>
+                      <ListItemText primary={navLink.mobileName} />
+                    </ListItem>
+                  </Link>}
                   {navLink.children.map(child => (
                     <Link
                       to={child.path}
