@@ -23,7 +23,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: join(root, 'public'),
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.js',
   },
   resolve: {
     alias: {
@@ -46,7 +46,7 @@ module.exports = {
     rules: loaders,
   },
   devServer: {
-    contentBase: './public',
+    contentBase: join(root, 'public'),
     // do not print bundle build stats
     noInfo: true,
     // enable HMR
@@ -55,8 +55,10 @@ module.exports = {
     inline: true,
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
-    // disable CORS host check
-    disableHostCheck: true,
+    allowedHosts: [
+      'localhost',
+      '.mokulu.io',
+    ],
     port: PORT,
     host: HOST,
   },

@@ -1,3 +1,4 @@
+import { replace } from 'actions/navigate';
 import { setNotification } from 'actions/notification';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
@@ -31,7 +32,11 @@ export const fetchMe = () => (dispatch) => new Promise((resolve) => {
   xhr.get(config.endpoints.session.me)
   .then(({ data }) => {
     dispatch({ type: SESSION_USER, ...data });
-    resolve();
+    xhr.get(config.endpoints.service.me)
+    .then(({ data: permissions }) => {
+      dispatch({ type: SESSION_USER, permissions });
+      resolve();
+    });
   })
   .catch(() => {
   });
@@ -90,16 +95,29 @@ export const closeWindow = () => (dispatch) => {
   dispatch({ type: SESSION_WINDOW_CLOSE });
 };
 
-export const requiresAuth = () => (dispatch, getState) => {
-  const { session } = getState();
-  const allowed = Boolean(session.access_token);
+export const requiresPermission = (permission, failPath) => (dispatch) => {
+  const allowed = dispatch(hasPermission(permission));
 
   if (!allowed) {
-    setNotification('You must login to see this page.', NOTIFICATION_TYPE.WARNING);
-    dispatch({ type: SESSION_USER });
+    dispatch(setNotification('You do not have permission to view this page.', NOTIFICATION_TYPE.ERROR));
+    replace(failPath || '/');
   }
 };
 
 export const logout = () => (dispatch) => {
   dispatch({ type: SESSION_LOGOUT });
+};
+
+export const hasPermission = (permission) => (dispatch, getState) => {
+  const permissions = pathOr([], ['session', 'permissions'])(getState());
+
+  if (permissions.includes(permission.toLowerCase())) {
+    return true;
+  }
+
+  // find wildcard permissions
+  return permission.split('.').some((_, i, permWhole) => {
+    const wildcard = permWhole.slice(0, i).join('.');
+    return permissions.includes(wildcard ? wildcard : '*');
+  });
 };

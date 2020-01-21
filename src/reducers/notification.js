@@ -17,6 +17,7 @@ const notification = (state = initialState, action) => {
       return {
         ...state,
         open: false,
+        duration: 0,
       };
     default:
       return state;
