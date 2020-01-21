@@ -2,8 +2,12 @@ import {
   AppBar,
   Link as MuiLink,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import CreateIcon from '@material-ui/icons/Create';
+import { push } from 'actions/navigate';
 import Banner from 'components/Banner';
 import Link from 'components/Link';
 import NewsPost from 'components/NewsPost';
@@ -17,6 +21,11 @@ const Home = () => {
     <AppBar position="static" key="news-header" className="section" style={{ marginBottom: 0 }}>
       <Toolbar variant="dense">
         <Typography variant="h4" className="title-text">News</Typography>
+        <Tooltip title="Create New Post">
+          <IconButton color="inherit" onClick={() => push('/news/create')}>
+            <CreateIcon />
+          </IconButton>
+        </Tooltip>
       </Toolbar>
     </AppBar>,
     <div className="news-container section" key="news-main">

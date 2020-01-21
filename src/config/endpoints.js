@@ -6,6 +6,8 @@ export default {
   },
   service: {
     me: '/service/me',
+    newsPage: '/service/news',
+    newsPost: '/service/news/${postId}',
     item: '/service/item?ids=${itemIds}',
     recipeByProduct: '/service/recipe/product/${itemId}',
     recipeSearchByProduct: '/service/recipe/product',

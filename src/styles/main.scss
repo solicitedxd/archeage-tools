@@ -241,6 +241,10 @@ footer.site-footer {
   }
 }
 
+.news-author {
+  margin: 6px 0 0 12px !important;
+}
+
 @media only screen and (max-width: 856px) {
   .news-container {
     display: block;
@@ -433,6 +437,19 @@ h6 + p {
 
 .right {
   float: right;
+}
+
+.editor-container {
+  margin: 16px 8px;
+
+  #mui-rte-editor {
+    padding: 0 12px;
+  }
+}
+
+.mark-tooltip {
+  text-decoration: dashed;
+  cursor: help;
 }
 
 blockquote {
