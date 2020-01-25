@@ -1,6 +1,7 @@
 import { QUALITY } from 'constants/items';
 import React from 'react';
-import * as Icon from '../images/item/';
+// import * as Icon from '../images/item/';
+const Icon = {};
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
 const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
@@ -2247,5 +2248,3 @@ const ITEM = Object.freeze({
 });
 
 export default ITEM;
-
-Object.values(ITEM).forEach(i => !i.icon && console.warn('Item Missing Icon:', i.name));

@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import calendar from './calendar';
 import dailies from './dailies';
 import display from './display';
+import gameData from './gameData';
 import mounts from './mounts';
 import notification from './notification';
 import session from './session';
@@ -13,6 +14,7 @@ const rootReducer = (history) => combineReducers({
   dailies,
   display,
   calendar,
+  gameData,
   mounts,
   notification,
   router: connectRouter(history),

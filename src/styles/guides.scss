@@ -67,7 +67,8 @@
           vertical-align: middle;
         }
 
-        span[data-quality] {
+        // FIXME
+        span[data-grade] {
           display: inline-block;
           margin: 0 4px;
         }

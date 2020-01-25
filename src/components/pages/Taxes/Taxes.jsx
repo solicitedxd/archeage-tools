@@ -116,14 +116,14 @@ class Taxes extends Component {
                   id: 'proficiency',
                 }}
                 renderValue={() => (
-                  <div className="proficiency-row" data-quality={proficiency.quality}>
+                  <div className="proficiency-row" data-grade={proficiency.quality}>
                     <span className={cn('proficiency-icon', proficiency.name)} />
                     <span className="quality-color">{proficiency.name}</span>
                   </div>
                 )}
               >
                 {PROFICIENCY.map(proficiency => (
-                  <MenuItem value={proficiency.name} key={proficiency.name} data-quality={proficiency.quality}>
+                  <MenuItem value={proficiency.name} key={proficiency.name} data-grade={proficiency.quality}>
                     <span className={cn('proficiency-icon', proficiency.name)} />
                     <span className="quality-color">{proficiency.name}</span>
                   </MenuItem>

@@ -1,56 +1,67 @@
+import { fetchItem } from 'actions/gameData';
 import cn from 'classnames';
-import ItemTooltip from 'components/Item/ItemTooltip';
-import { QUALITY } from 'constants/items';
 import React, { Component } from 'react';
 import {
   bool,
-  node,
   number,
-  string,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
+import ItemTooltip from './ItemTooltip';
 
 class Item extends Component {
   static propTypes = {
-    name: string.isRequired,
-    icon: node.isRequired,
-    type: string,
-    description: node,
-    quality: string,
-    price: number,
-    bindsOnPickup: bool,
+    id: number.isRequired,
+    grade: number,
     count: number,
-    unidentified: bool,
-    questStarter: bool,
-    className: string,
     tooltipDisabled: bool,
+    inline: bool,
   };
 
   static defaultProps = {
-    type: '',
-    description: <span>No description</span>,
-    quality: QUALITY.BASIC,
-    price: 0,
-    bindsOnPickup: false,
+    grade: 1,
     count: 1,
-    unidentified: false,
-    questStarter: false,
-    className: '',
     tooltipDisabled: false,
+    inline: false,
   };
 
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   if (!nextProps.name) {
+  //     fetchItem(this.props.id);
+  //   }
+  // }
+
+  componentDidMount() {
+    fetchItem(this.props.id);
+  }
+
   render() {
-    const { name, icon, quality, count, unidentified, questStarter, className, tooltipDisabled } = this.props;
+    const { id, name, icon, count, defaultGrade, overlay, inline, tooltipDisabled } = this.props;
+    let { grade } = this.props;
+    if (defaultGrade !== grade && defaultGrade > 1) {
+      grade = defaultGrade;
+    }
+
+    if (!name) return <div />;
+
     return (
-      <ItemTooltip itemName={name} disabled={tooltipDisabled}>
-        <span data-quality={quality} className={className}>
-          <span className={cn('item-icon', { 'unidentified': unidentified, 'quest': questStarter })}>
-            <img src={icon} alt={name} />
-            <span className="count">{count}</span>
-          </span>
+      <ItemTooltip itemId={id} grade={grade} disabled={tooltipDisabled || !name}>
+        <span className={cn('item-icon', { [overlay]: Boolean(overlay), inline })} data-grade={grade} data-id={id}>
+          <img src={`/images/item/${icon}.png`} alt={name} />
+          <span className="count">{count}</span>
         </span>
       </ItemTooltip>
     );
   }
 }
 
-export default Item;
+const mapStateToProps = ({ gameData: { items } }, { id }) => {
+  const item = items[id] || {};
+  if (!item) return {};
+  const { grade, ...itemFull } = item;
+  return {
+    ...itemFull,
+    defaultGrade: grade,
+  };
+};
+
+export default connect(mapStateToProps, null)(Item);

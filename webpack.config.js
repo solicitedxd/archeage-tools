@@ -3,6 +3,7 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 const { join, resolve } = path;
@@ -70,6 +71,9 @@ module.exports = {
       __VERSION__: JSON.stringify(pkg.version),
       __DEVELOPMENT__: true,
     }),
+    new CopyWebpackPlugin([
+      { from: join(root, 'static') },
+    ]),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),

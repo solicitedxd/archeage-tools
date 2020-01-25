@@ -1,4 +1,5 @@
 import Dailies from 'components/pages/Dailies';
+import Folio from 'components/pages/Folio';
 import Guides from 'components/pages/Guides';
 import GuideViewer from 'components/pages/GuideViewer';
 import Home from 'components/pages/Home';
@@ -26,6 +27,7 @@ export default (
       <Route path="/guides/:guide?" component={GuideViewer} />
       <Route path="/trade-packs" component={TradePacks} />
       <Route path="/mounts/:mount?" component={Mounts} />
+      <Route path="/folio/:vocation?/:recipeId?" component={Folio} />
       <Route path="/" exact component={Home} />
       <Route component={NotFound} />
     </Switch>

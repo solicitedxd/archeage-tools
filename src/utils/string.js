@@ -47,3 +47,11 @@ export const unslug = (slug) => {
   .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
   .join('');
 };
+
+export const transformLines = (string) => string.replace(/\n/g, '<br />');
+
+export const encodeColors = (string) => {
+  string = string.replace(/\|c([A-Z_]+)\|/g, (match, capture) => `<span class="text-${capture.toLowerCase()}">`);
+  string = string.replace(/\|c\|/g, () => `</span>`);
+  return transformLines(string);
+};

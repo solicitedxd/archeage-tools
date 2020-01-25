@@ -12,7 +12,6 @@ import { getItem } from 'utils/localStorage';
 const cookieProps = {
   secure: window.location.protocol === 'https:',
   domain: '.mokulu.io',
-  path: '',
 };
 
 const session = (state = getItem('session', initialSate), action) => {

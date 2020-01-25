@@ -128,7 +128,7 @@ class Thunderstruck extends Component {
                   <MenuItem
                     key={name}
                     value={name}
-                    data-quality={quality}
+                    data-grade={quality}
                   >
                     <span className="quality-color">{name}</span>
                   </MenuItem>),

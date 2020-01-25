@@ -68,12 +68,13 @@ export const refreshSession = () => (dispatch, getStorage) => new Promise((resol
     resolve(data);
   })
   .catch(error => {
-    const status = pathOr('', ['response', 'status'])(error);
+    const status = pathOr('', ['status'])(error);
     if (status === 400) {
       dispatch(setNotification('Your session has expired. Please log in again.', NOTIFICATION_TYPE.ERROR));
     } else {
       dispatch(setNotification('An unknown error occurred. Please log in again.', NOTIFICATION_TYPE.ERROR));
     }
+    dispatch({ type: SESSION_LOGOUT });
   });
 });
 
