@@ -129,7 +129,7 @@ class Main extends React.PureComponent {
           <footer className="site-footer">
             <div className="inner-wrapper">
               <Typography className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
-              <Link href="https://www.mokulu.io/privacy-policy" color="textPrimary" target="_blank">
+              <Link href="https://www.mokulu.io/privacy-policy" color="inherit" target="_blank">
                 <Typography>Privacy Policy</Typography>
               </Link>
               {!mobile && <DiscordButton />}

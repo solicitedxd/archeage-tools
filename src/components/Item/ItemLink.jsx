@@ -2,8 +2,7 @@ import {
   Link,
   Typography,
 } from '@material-ui/core';
-import Item from 'components/Item/Item';
-import ItemTooltip from 'components/Item/ItemTooltip';
+import { Skeleton } from '@material-ui/lab';
 import React, { Component } from 'react';
 import {
   bool,
@@ -11,10 +10,13 @@ import {
   object,
   string,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
+import Item from './Item';
+import ItemTooltip from './ItemTooltip';
 
 class ItemLink extends Component {
   static propTypes = {
-    item: object.isRequired,
+    id: number.isRequired,
     plural: string,
     count: number,
     style: object,
@@ -32,7 +34,7 @@ class ItemLink extends Component {
   state = {};
 
   render() {
-    const { item, plural, count, style, noLink, name } = this.props;
+    const { id, item, plural, count, style, noLink, name } = this.props;
 
     let text = '';
     if (count > 1) {
@@ -47,19 +49,23 @@ class ItemLink extends Component {
       }
     }
 
+    if (!item.icon) {
+      text = <Skeleton variant="text" />;
+    }
+
     if (noLink) {
       return (
         <Typography component="span">
-          <Item {...item} className="inline" />
+          <Item id={id} inline />
           {text}
         </Typography>
       );
     }
 
     return (
-      <ItemTooltip itemName={item.name}>
+      <ItemTooltip itemId={id} disabled={!item.icon}>
         <Link className="inline-link" style={style}>
-          <Item {...item} className="inline" tooltipDisabled />
+          <Item id={id} inline tooltipDisabled />
           {text}
         </Link>
       </ItemTooltip>
@@ -67,4 +73,8 @@ class ItemLink extends Component {
   }
 }
 
-export default ItemLink;
+const mapStateToProps = ({ gameData: { items } }, { id }) => ({
+  item: items[id] || {},
+});
+
+export default connect(mapStateToProps)(ItemLink);

@@ -1,3 +1,4 @@
+import { Skeleton } from '@material-ui/lab';
 import { fetchItem } from 'actions/gameData';
 import cn from 'classnames';
 import React, { Component } from 'react';
@@ -41,7 +42,7 @@ class Item extends Component {
       grade = defaultGrade;
     }
 
-    if (!name) return <div />;
+    if (!icon) return <Skeleton variant="rect" width={inline ? 20 : 48} height={inline ? 20 : 48} />;
 
     return (
       <ItemTooltip itemId={id} grade={grade} disabled={tooltipDisabled || !name}>

@@ -104,6 +104,15 @@
   cursor: help;
 }
 
+.item-result {
+  display: flex;
+  align-items: center;
+
+  .item-icon {
+    margin-right: 8px;
+  }
+}
+
 [data-grade="0"] {
   &.item-icon:after {
     background-image: url('../images/grades/0poor.png');

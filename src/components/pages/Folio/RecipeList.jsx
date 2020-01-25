@@ -14,11 +14,14 @@ import {
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {
   fetchItems,
+  fetchRecipeByMaterial,
+  fetchRecipeByProduct,
   fetchRecipeByVocation,
 } from 'actions/gameData';
 import { push } from 'actions/navigate';
 import Item from 'components/Item';
 import RecipeViewer from 'components/pages/Folio/RecipeViewer';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
@@ -43,21 +46,57 @@ class RecipeList extends Component {
 
   constructor(props) {
     super();
-    props.fetchRecipeByVocation(props.vocation);
+    this.getRecipeList(props);
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    this.getRecipeList(nextProps);
+  }
+
+  getPageVocation = (props) => {
+    const { vocation } = props || this.props;
+    const search = vocation.toLowerCase().match(/search-(product|material)/);
+    let loadId = vocation;
+    let itemId = null;
+    if (search) {
+      itemId = new URLSearchParams(document.location.search).get('itemId');
+      loadId = search[1].substr(0, 1) + itemId;
+    }
+
+    return { pagePath: search && search[0] || vocation, loadId, recipeType: search && search[1], itemId };
+  };
+
+  getRecipeList(props) {
+    const { pagePath, recipeType, itemId } = this.getPageVocation(props);
+    if (itemId) {
+      if (recipeType === 'material') {
+        props.fetchRecipeByMaterial(itemId);
+      } else {
+        props.fetchRecipeByProduct(itemId);
+      }
+    } else {
+      props.fetchRecipeByVocation(pagePath);
+    }
   }
 
   setRecipe = (recipe) => () => {
-    const { vocation } = this.props;
+    const { pagePath, itemId } = this.getPageVocation();
+    let query = '';
+    if (itemId) {
+      query = `?itemId=${itemId}`;
+    }
     if (!recipe) {
-      push(`/folio/${vocation}`);
+      push(`/folio/${pagePath}${query}`);
     } else {
-      push(`/folio/${vocation}/${recipe}`);
+      push(`/folio/${pagePath}/${recipe}${query}`);
     }
   };
 
   render() {
-    const { recipes, vocations, vocation, loaded, recipeId, mobile } = this.props;
+    const { recipes, vocations, vocation, items, loaded, recipeId, mobile } = this.props;
+    const { loadId, recipeType, itemId } = this.getPageVocation();
 
+    console.log(recipeType);
     return (
       <div className="section">
         <AppBar position="static">
@@ -71,13 +110,15 @@ class RecipeList extends Component {
               variant="h5"
               className="title-text"
             >
-              {vocations.find(v => v.toLowerCase() === vocation.toLowerCase()) || '...'}
+              {!recipeType && (vocations.find(v => v.toLowerCase() === vocation.toLowerCase()) || '...')}
+              {recipeType === 'product' && `Search by Product: ${pathOr('...', [itemId, 'name'])(items)}`}
+              {recipeType === 'material' && `Search by Material: ${pathOr('...', [itemId, 'name'])(items)}`}
             </Typography>
           </Toolbar>
         </AppBar>
         <Paper className="recipe-wrapper">
           <List className="recipe-list">
-            {loaded === vocation && Object.values(recipes).sort(sortBy('name')).map(recipe => (
+            {loaded === loadId && Object.values(recipes).sort(sortBy('name')).map(recipe => (
               <ListItem button dense={!mobile} onClick={this.setRecipe(recipe.id)} key={recipe.id}>
                 <ListItemAvatar className={mobile ? 'extended' : ''}>
                   <Item id={recipe.item} grade={recipe.grade} inline={!mobile} count={recipe.quantity} />
@@ -116,6 +157,8 @@ const mapStateToProps = ({ gameData, display: { mobile } }) => ({
 
 const mapDispatchToProps = {
   fetchRecipeByVocation,
+  fetchRecipeByMaterial,
+  fetchRecipeByProduct,
   fetchItems,
 };
 
