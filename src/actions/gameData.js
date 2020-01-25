@@ -51,6 +51,18 @@ export const fetchItems = (...items) => (dispatch, getState) => {
   }
 };
 
+export const searchItems = (query, searchType) => (dispatch) => new Promise((resolve, reject) => {
+  const endpoint = (searchType === 'product') ? config.endpoints.service.searchByProduct
+    : config.endpoints.service.searchByMaterial;
+
+  xhr.get(`${endpoint}?query=${encodeURI(query)}`)
+  .then(({ data }) => {
+    dispatch({ type: DATA_ITEM, data: arrayToMap(data) });
+    resolve(data);
+  })
+  .catch(() => reject());
+});
+
 export const fetchRecipeByVocation = (vocation) => (dispatch, getState) => {
   const { loaded: recipesLoaded } = getState().gameData;
 
@@ -99,6 +111,7 @@ export const fetchRecipeByMaterial = (materialId) => (dispatch, getState) => {
 };
 
 export const fetchRecipe = (recipeId) => new Promise((resolve, reject) => {
+  if (!recipeId) return;
   xhr.get(substitute(config.endpoints.service.recipe, { recipeId }))
   .then(({ data }) => resolve(data))
   .catch(() => reject());

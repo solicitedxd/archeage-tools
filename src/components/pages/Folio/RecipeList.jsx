@@ -96,7 +96,6 @@ class RecipeList extends Component {
     const { recipes, vocations, vocation, items, loaded, recipeId, mobile } = this.props;
     const { loadId, recipeType, itemId } = this.getPageVocation();
 
-    console.log(recipeType);
     return (
       <div className="section">
         <AppBar position="static">

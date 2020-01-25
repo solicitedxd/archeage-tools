@@ -12,13 +12,12 @@ import {
   Autocomplete,
   Skeleton,
 } from '@material-ui/lab';
+import { searchItems } from 'actions/gameData';
 import { push } from 'actions/navigate';
 import Item from 'components/Item';
-import config from 'config';
 import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import xhr from 'utils/xhr';
 
 const searchTypes = [
   { label: 'Product', value: 'product' },
@@ -47,16 +46,14 @@ class FolioHeader extends Component {
     });
   };
 
-  handleQuery = (e, pastQuery) => {
-    const query = pastQuery || e.target.value;
+  handleQuery = (queryInput, pastQuery) => {
+    const query = pastQuery || queryInput;
     if (query.length < 3) {
       this.setState({ options: [], query });
     } else {
-      const endpoint = (this.state.searchType === searchTypes[0].value) ? config.endpoints.service.searchByProduct
-        : config.endpoints.service.searchByMaterial;
       this.setState({ loading: true, query });
-      xhr.get(`${endpoint}?query=${query}`)
-      .then(({ data }) => {
+      this.props.searchItems(query, this.state.searchType)
+      .then((data) => {
         this.setState({ options: data, loading: false });
       })
       .catch(() => {
@@ -69,6 +66,7 @@ class FolioHeader extends Component {
 
   handleSearch = (e, item) => {
     const { searchType } = this.state;
+    if (!item) return;
 
     push(`/folio/search-${searchType}?itemId=${item.id}`);
   };
@@ -87,10 +85,15 @@ class FolioHeader extends Component {
             onOpen={() => this.setOpen(true)}
             onClose={() => this.setOpen(false)}
             onChange={this.handleSearch}
+            loading={loading}
             options={options}
             getOptionLabel={option => option.name}
+            filterOptions={(options) => options}
+            classes={{
+              noOptions: 'folio-no-option',
+            }}
             renderOption={option => (
-              <div className="item-result">
+              <div className="item-result" key={option.id}>
                 <Item id={option.id} inline />
                 {items[option.id]
                   ? <Typography variant="body2">{items[option.id].name}</Typography>
@@ -98,6 +101,9 @@ class FolioHeader extends Component {
               </div>
             )}
             freeSolo
+            onInputChange={(e, value) => {
+              this._handleQuery(value);
+            }}
             renderInput={params => (
               <TextField
                 {...params}
@@ -106,10 +112,6 @@ class FolioHeader extends Component {
                 variant="standard"
                 size="small"
                 margin="none"
-                onChange={(e) => {
-                  e.persist();
-                  this._handleQuery(e);
-                }}
                 InputProps={{
                   ...params.InputProps,
                   endAdornment: (
@@ -127,8 +129,11 @@ class FolioHeader extends Component {
           />
           <RadioGroup name="search-type" value={searchType} onChange={this.handleTypeChange} row={!mobile}>
             {searchTypes.map(searchType => (
-              <FormControlLabel control={<Radio size="small" color="primary" />} {...searchType}
-                                key={searchType.value} />
+              <FormControlLabel
+                control={<Radio size="small" color="primary" />}
+                {...searchType}
+                key={searchType.value}
+              />
             ))}
           </RadioGroup>
         </Toolbar>
@@ -142,4 +147,8 @@ const mapStateToProps = ({ gameData: { items }, display: { mobile } }) => ({
   mobile,
 });
 
-export default connect(mapStateToProps)(FolioHeader);
+const mapDispatchToProps = {
+  searchItems,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FolioHeader);

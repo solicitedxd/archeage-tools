@@ -40,6 +40,10 @@
   }
 }
 
+.folio-no-option {
+  display: none;
+}
+
 .vocation-grid {
   display: flex;
   flex-wrap: wrap;
@@ -236,6 +240,12 @@
   .folio-header {
     .MuiToolbar-root {
       padding: 0;
+    }
+  }
+
+  .recipe-wrapper {
+    .recipe-list {
+      min-width: fit-content;
     }
   }
 }
