@@ -1,2 +1,6 @@
 export const DISPLAY_MOBILE = 'DISPLAY_MOBILE';
 export const DARK_MODE = 'DARK_MODE';
+export const OPEN_DIALOG = 'OPEN_DIALOG';
+export const CLOSE_DIALOG = 'CLOSE_DIALOG';
+
+export const DIALOG_PROFICIENCY = 'DIALOG_PROFICIENCY';

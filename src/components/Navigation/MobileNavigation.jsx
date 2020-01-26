@@ -21,12 +21,14 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import MenuIcon from '@material-ui/icons/Menu';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
+  openDialog,
   setDarkMode,
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
+import { DIALOG_PROFICIENCY } from 'constants/display';
 import navigation from 'constants/navigation';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -50,7 +52,6 @@ class MobileNavigation extends Component {
     open: bool.isRequired,
     handleOpen: func.isRequired,
     handleClose: func.isRequired,
-    openProficiencies: func.isRequired,
   };
 
   static defaultProps = {
@@ -86,7 +87,7 @@ class MobileNavigation extends Component {
   };
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, open, handleOpen, handleClose, openProficiencies } = this.props;
+    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, open, handleOpen, handleClose, openDialog } = this.props;
     const { expanded } = this.state;
 
     if (pathOr(0, ['patreon', 'pledge'])(session) === 0 && mobile && open) {
@@ -171,7 +172,7 @@ class MobileNavigation extends Component {
             </ListItem>
             <Collapse in={expanded['Settings']} timeout="auto" unmountOnExit>
               <List component="div" disablePadding className="nested-list-icons">
-                <ListItem button onClick={openProficiencies}>
+                <ListItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>
                   <ListItemIcon><ListAltIcon /></ListItemIcon>
                   <ListItemText primary="Proficiencies" />
                 </ListItem>
@@ -215,6 +216,7 @@ const mapStateToProps = ({ display }) => ({
 const mapDispatchToProps = {
   setDarkMode,
   setMobile,
+  openDialog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileNavigation);

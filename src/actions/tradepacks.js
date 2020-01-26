@@ -7,7 +7,6 @@ import {
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
-  SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -25,7 +24,6 @@ export const triggerLocalStorageUpdate = [
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
-  SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -51,10 +49,6 @@ export const setFreshness = (originZone, packType, sellZone) => (dispatch) => (e
 
 export const setInterest = (e, showInterest) => (dispatch) => {
   dispatch({ type: SET_INTEREST, showInterest });
-};
-
-export const setProficiency = (proficiency) => (dispatch) => (e, { key: rank }) => {
-  dispatch({ type: SET_PROFICIENCY, proficiency, rank });
 };
 
 export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (e, percentage) => {

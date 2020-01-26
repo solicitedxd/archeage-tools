@@ -18,11 +18,13 @@ import PersonIcon from '@material-ui/icons/Person';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
+  openDialog,
   setDarkMode,
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
 import Link from 'components/Link';
+import { DIALOG_PROFICIENCY } from 'constants/display';
 import navigation from 'constants/navigation';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -49,7 +51,6 @@ class DesktopNavigation extends Component {
     userMenu: object,
     handleOpen: func.isRequired,
     handleClose: func.isRequired,
-    openProficiencies: func.isRequired,
   };
 
   static defaultProps = {
@@ -104,7 +105,7 @@ class DesktopNavigation extends Component {
   }
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, userMenu, handleOpen, handleClose, openProficiencies } = this.props;
+    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, userMenu, handleOpen, handleClose, openDialog } = this.props;
     const { anchorEl } = this.state;
 
     return (
@@ -205,7 +206,7 @@ class DesktopNavigation extends Component {
               : 'Account'}</Typography>} />
           </ListItem>
           {menuItems}
-          <MenuItem button onClick={openProficiencies}>Proficiencies</MenuItem>
+          <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
           <Divider />
           <MenuItem onClick={this.handleDarkMode}>
             {darkMode ? 'Light' : 'Dark'} Mode
@@ -232,6 +233,7 @@ const mapStateToProps = ({ display }) => ({
 const mapDispatchToProps = {
   setDarkMode,
   setMobile,
+  openDialog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DesktopNavigation);

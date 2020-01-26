@@ -25,6 +25,7 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { calculateLabor } from 'actions/proficiencies';
 import {
   setCraftLarder,
   setDegradation,
@@ -45,7 +46,10 @@ import {
   CONTINENT,
   ZONE,
 } from 'constants/map';
-import { PROFICIENCY_RANK } from 'constants/proficiencies';
+import {
+  COMMERCE,
+  HUSBANDRY,
+} from 'constants/proficiencies';
 import {
   AGED_PACK,
   CARGO,
@@ -110,17 +114,11 @@ class PackViewer extends Component {
     this.setState({ unitSize });
   };
 
-  getLaborCost = (cost, proficiency) => {
-    const { proficiencies } = this.props;
-    const proficiencyRank = PROFICIENCY_RANK.find(prof => prof.name === proficiencies[proficiency]);
-    return Math.round(cost * proficiencyRank.cost);
-  };
-
   render() {
     const { open, onClose, originZone, packType, sellZone } = this.props;
     const { transportExpand, unitSize } = this.state;
-    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
-    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
+    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war } = this.props;
+    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor } = this.props;
 
     // do nothing if value is missing
     if (originZone === null || packType === null || sellZone === null) return null;
@@ -208,9 +206,9 @@ class PackViewer extends Component {
     let { labor, gold, sellLabor } = pack;
 
     // sell labor
-    let totalLabor = this.getLaborCost(sellLabor, 'commerce');
+    let totalLabor = calculateLabor(sellLabor, COMMERCE);
     // craft labor
-    totalLabor += this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce');
+    totalLabor += calculateLabor(labor, isAgedPack ? HUSBANDRY : COMMERCE);
 
     const materials = pack.materials ? [...pack.materials] : [];
     if (isAgedPack && craftLarder) {
@@ -218,7 +216,7 @@ class PackViewer extends Component {
         materials.splice(1 + i, 0, { ...mat, indent: true }),
       );
       gold += LARDER_BASE.gold;
-      totalLabor += this.getLaborCost(LARDER_BASE.labor, 'commerce');
+      totalLabor += calculateLabor(LARDER_BASE.labor, COMMERCE);
     }
     let totalGold = gold;
     materials.forEach(mat => {
@@ -237,9 +235,9 @@ class PackViewer extends Component {
     totalGold *= quantity;
 
     const transportCosts = {};
-    TRANSPORTATION_FUEL.forEach((item) => {
-      transportCosts[item.name] = Math.round((prices[item.name] || 0) * pathOr(0, [originZone, sellZone,
-        item.name])(transportationQty) * 10000);
+    TRANSPORTATION_FUEL.forEach((itemId) => {
+      transportCosts[itemId] = Math.round((prices[itemId] || 0) * pathOr(0, [originZone, sellZone,
+        itemId])(transportationQty) * 10000);
     });
 
     const transportTotal = Object.values(transportCosts).reduce((a, b) => a + b);
@@ -254,6 +252,7 @@ class PackViewer extends Component {
       <Dialog
         open={open}
         onClose={onClose}
+        fullScreen={mobile}
         maxWidth="xl"
       >
         <AppBar position="static">
@@ -387,7 +386,7 @@ class PackViewer extends Component {
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Labor</TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(LARDER_BASE.labor, 'commerce') * quantity}
+                  {calculateLabor(LARDER_BASE.labor, COMMERCE) * quantity}
                 </TableCell>
               </TableRow>}
               {labor > 0 &&
@@ -397,7 +396,7 @@ class PackViewer extends Component {
                   {isAgedPack ? 'Harvest Labor' : 'Craft Labor'}
                 </TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce') * quantity}
+                  {calculateLabor(labor, isAgedPack ? HUSBANDRY : COMMERCE) * quantity}
                 </TableCell>
               </TableRow>}
             </TableBody>
@@ -434,16 +433,16 @@ class PackViewer extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {TRANSPORTATION_FUEL.map((item, i) => (
-                      <TableRow key={`transportation-${item.name}-${i}`}>
+                    {TRANSPORTATION_FUEL.map((itemId, i) => (
+                      <TableRow key={`transportation-${itemId}-${i}`}>
                         <TableCell>
-                          <ItemLink item={item} />
+                          <ItemLink id={itemId} />
                         </TableCell>
                         <TableCell align="right">
                           <Input
-                            id={`transp-mat-cost-${item.name}`}
-                            value={maxDecimals(prices[item.name] || 0, 4)}
-                            onChange={setPrice(item.name)}
+                            id={`transp-mat-cost-${itemId}`}
+                            value={maxDecimals(prices[itemId] || 0, 4)}
+                            onChange={setPrice(itemId)}
                             type="number"
                             inputProps={{
                               style: { textAlign: 'right', width: 120 },
@@ -456,7 +455,7 @@ class PackViewer extends Component {
                         </TableCell>
                         <TableCell align="right">
                           <TextField
-                            id={`transp-mat-qty-${item.name}`}
+                            id={`transp-mat-qty-${itemId}`}
                             hiddenLabel
                             type="number"
                             margin="none"
@@ -465,12 +464,12 @@ class PackViewer extends Component {
                               max: 99,
                             }}
                             className="quantity"
-                            value={pathOr(0, [originZone, sellZone, item.name])(transportationQty)}
-                            onChange={setTransportationQuantity(originZone, sellZone, item.name)}
+                            value={pathOr(0, [originZone, sellZone, itemId])(transportationQty)}
+                            onChange={setTransportationQuantity(originZone, sellZone, itemId)}
                           />
                         </TableCell>
                         <TableCell align="right">
-                          <Currency type={CURRENCY.COIN} count={transportCosts[item.name]} />
+                          <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
                         </TableCell>
                       </TableRow>
                     ))}
@@ -525,7 +524,7 @@ class PackViewer extends Component {
                     Labor Cost
                   </TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(labor, 'commerce')}
+                    {calculateLabor(labor, COMMERCE)}
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -609,7 +608,7 @@ class PackViewer extends Component {
                 <TableRow>
                   <TableCell>Sell Labor</TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(sellLabor, 'commerce') * quantity}
+                    {calculateLabor(sellLabor, COMMERCE) * quantity}
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
@@ -658,8 +657,9 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks }) => ({
+const mapStateToProps = ({ tradepacks, display: { mobile } }) => ({
   ...tradepacks,
+  mobile,
 });
 
 const mapDispatchToProps = {
@@ -673,6 +673,7 @@ const mapDispatchToProps = {
   setSupply,
   setTransportationQuantity,
   setWar,
+  calculateLabor,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackViewer);

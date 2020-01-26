@@ -1,5 +1,29 @@
 export const PROFICIENCY_UPDATE = 'PROFICIENCY_UPDATE';
 
+// proficiency constants
+export const HUSBANDRY = 'Husbandry';
+export const FARMING = 'Farming';
+export const FISHING = 'Fishing';
+export const LOGGING = 'Logging';
+export const GATHERING = 'Gathering';
+export const MINING = 'Mining';
+export const ALCHEMY = 'Alchemy';
+export const COOKING = 'Cooking';
+export const HANDICRAFTS = 'Handicrafts';
+export const MACHINING = 'Machining';
+export const METALWORK = 'Metalwork';
+export const PRINTING = 'Printing';
+export const MASONRY = 'Masonry';
+export const TAILORING = 'Tailoring';
+export const LEATHERWORK = 'Leatherwork';
+export const WEAPONRY = 'Weaponry';
+export const CARPENTRY = 'Carpentry';
+export const CONSTRUCTION = 'Construction';
+export const LARCENY = 'Larceny';
+export const COMMERCE = 'Commerce';
+export const ARTISTRY = 'Artistry';
+export const EXPLORATION = 'Exploration';
+
 export const PROFICIENCY_RANK = Object.freeze([
   {
     name: 'Basic',
@@ -17,25 +41,25 @@ export const PROFICIENCY_RANK = Object.freeze([
     name: 'Veteran',
     grade: 3,
     maxValue: 30000,
-    cost: 1,
+    cost: 0.95,
   },
   {
     name: 'Expert',
     grade: 4,
     maxValue: 40000,
-    cost: 0.95,
+    cost: 0.9,
   },
   {
     name: 'Master',
     grade: 5,
     maxValue: 50000,
-    cost: 0.9,
+    cost: 0.85,
   },
   {
     name: 'Authority',
     grade: 6,
     maxValue: 70000,
-    cost: 0.85,
+    cost: 0.8,
   },
   {
     name: 'Champion',

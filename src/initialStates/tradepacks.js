@@ -9,10 +9,6 @@ export default {
   prices: {
     'Blue Salt Hammer': 1,
   },
-  proficiencies: {
-    commerce: 'Basic',
-    husbandry: 'Basic',
-  },
   quantities: {},
   showInterest: true,
   supply: {},

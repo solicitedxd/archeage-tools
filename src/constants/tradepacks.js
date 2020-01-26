@@ -1,4 +1,3 @@
-import ITEM from 'data/items';
 import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
@@ -9,7 +8,6 @@ export const SET_INTEREST = 'SET_INTEREST';
 export const SET_PERCENTAGE = 'SET_PERCENTAGE';
 export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
 export const SET_PRICE = 'SET_PRICE';
-export const SET_PROFICIENCY = 'SET_PROFICIENCY';
 export const SET_QUANTITY = 'SET_QUANTITY';
 export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_TRANSPORTATION_QUANTITY = 'SET_TRANSPORTATION_QUANTITY';
@@ -42,9 +40,9 @@ export const NO_FRESHNESS = Object.freeze([
 ]);
 
 export const TRANSPORTATION_FUEL = Object.freeze([
-  ITEM.CARROT,
-  ITEM.ECO_FRIENDLY_FUEL,
-  ITEM.AXLE_GREASE,
+  7998,
+  26548,
+  42314,
 ]);
 
 export const FRESHNESS = Object.freeze({

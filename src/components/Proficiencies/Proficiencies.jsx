@@ -9,25 +9,18 @@ import {
   Typography,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { closeDialog } from 'actions/display';
 import { fetchVocations } from 'actions/gameData';
 import { updateProficiency } from 'actions/proficiencies';
 import cn from 'classnames';
+import { DIALOG_PROFICIENCY } from 'constants/display';
 import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import React, { Component } from 'react';
-import {
-  bool,
-  func,
-} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { pascalCase } from 'utils/string';
 import * as VocationIcon from '../../images/vocation/';
 
 class Proficiencies extends Component {
-  static propTypes = {
-    open: bool.isRequired,
-    onClose: func.isRequired,
-  };
-
   componentDidMount() {
     this.props.fetchVocations();
   }
@@ -103,15 +96,17 @@ class Proficiencies extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { vocations }, proficiencies, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { vocations }, proficiencies, display: { mobile, dialog } }) => ({
   vocations,
   proficiencies,
   mobile,
+  open: dialog === DIALOG_PROFICIENCY,
 });
 
 const mapDispatchToProps = {
   fetchVocations,
   updateProficiency,
+  onClose: closeDialog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Proficiencies);

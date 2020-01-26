@@ -7,7 +7,6 @@ import {
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_PRICE,
-  SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -72,14 +71,6 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
       return {
         ...state,
         percentage: action.percentage,
-      };
-    case SET_PROFICIENCY:
-      return {
-        ...state,
-        proficiencies: {
-          ...state.proficiencies,
-          [action.proficiency]: action.rank,
-        },
       };
     case SET_PRICE:
       return {
