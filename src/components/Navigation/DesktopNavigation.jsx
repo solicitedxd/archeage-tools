@@ -4,10 +4,7 @@ import {
   IconButton,
   Link as MuiLink,
   ListItem,
-  ListItemAvatar,
-  ListItemIcon,
   ListItemText,
-  Menu,
   MenuItem,
   Tooltip,
   Typography,
@@ -23,7 +20,6 @@ import {
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
-import Link from 'components/Link';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import navigation from 'constants/navigation';
 import { pathOr } from 'ramda';
@@ -39,6 +35,7 @@ import {
   injectPatreon,
   isMobileBrowser,
 } from 'utils/display';
+import NavMenu from './NavMenu';
 
 class DesktopNavigation extends Component {
   static propTypes = {
@@ -49,8 +46,6 @@ class DesktopNavigation extends Component {
     session: object.isRequired,
     menuItems: array.isRequired,
     userMenu: object,
-    handleOpen: func.isRequired,
-    handleClose: func.isRequired,
   };
 
   static defaultProps = {
@@ -63,28 +58,9 @@ class DesktopNavigation extends Component {
     userMenu: null,
   };
 
-  state = {
-    anchorEl: {},
-  };
-
   handleDarkMode = () => {
     const { darkMode, setDarkMode } = this.props;
     setDarkMode(!darkMode);
-  };
-
-  handleOpenMenu = (menuId) => (event) => {
-    const { anchorEl } = this.state;
-    event.preventDefault();
-    this.setState({ anchorEl: { ...anchorEl, [menuId]: event.target } });
-    return false;
-  };
-
-  handleCloseMenu = (menuId) => (event) => {
-    const { anchorEl } = this.state;
-    if (event && event.stopPropagation) {
-      event.stopPropagation();
-    }
-    this.setState({ anchorEl: { ...anchorEl, [menuId]: null } });
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -105,58 +81,11 @@ class DesktopNavigation extends Component {
   }
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, userMenu, handleOpen, handleClose, openDialog } = this.props;
-    const { anchorEl } = this.state;
+    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, openDialog } = this.props;
 
     return (
       <>
-        {navigation.map(navLink => (
-          <div key={navLink.name}>
-            <Typography className="nav-item" onMouseOver={this.handleOpenMenu(navLink.name)}>
-              <Link color="inherit" to={navLink.path} onClick={this.handleOpenMenu(navLink.name)}>
-                {navLink.name}
-              </Link>
-            </Typography>
-            <Menu
-              anchorEl={anchorEl[navLink.name]}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
-              onClose={this.handleCloseMenu(navLink.name)}
-              open={Boolean(anchorEl[navLink.name])}
-              getContentAnchorEl={null}
-              PaperProps={{
-                onMouseLeave: this.handleCloseMenu(navLink.name),
-              }}
-              autoFocus={false}
-            >
-              <ListItem dense divider>
-                <ListItemIcon><span className={cn('nav-icon', navLink.name)} /></ListItemIcon>
-                <ListItemText
-                  primary={
-                    navLink.path
-                      ? <Link to={navLink.path} variant="overline" color="inherit">{navLink.name}</Link>
-                      : <Typography variant="overline">{navLink.name}</Typography>
-                  }
-                />
-              </ListItem>
-              {navLink.children.map(child => (
-                <Link
-                  color="inherit"
-                  to={child.path}
-                  onClick={this.handleCloseMenu(navLink.name)}
-                  key={`${navLink.name}-${child.name}`}
-                  underline="none"
-                >
-                  <MenuItem>
-                    {child.name}
-                  </MenuItem>
-                </Link>
-              ))}
-            </Menu>
-          </div>
-        ))}
+        {navigation.map(navLink => <NavMenu key={navLink.name} {...navLink} />)}
         {session.isAuthenticated && !session.verified &&
         <Tooltip title="E-mail is not verified. Click to verify.">
           <MuiLink href={myAccountUrl}>
@@ -170,57 +99,38 @@ class DesktopNavigation extends Component {
           <a href="https://www.patreon.com/bePatron?u=12806740" target="_blank"
              data-patreon-widget-type="become-patron-button">Become a Patron!</a>
         </div>}
-        <IconButton
-          onMouseOver={handleOpen}
-          onClick={handleOpen}
-          className="user-menu-icon"
-          aria-controls="user-menu"
-          aria-haspopup="true"
-        >
-          <Avatar src={session.avatarSrc} className={cn('avatar', { [session.avatarPlatform]: true })}>
-            {!session.avatarSrc && <PersonIcon />}
-          </Avatar>
-        </IconButton>
-        <Menu
-          id="user-menu"
-          anchorEl={userMenu}
-          getContentAnchorEl={null}
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'left',
-          }}
-          open={Boolean(userMenu)}
-          onClose={handleClose}
-          PaperProps={{
-            onMouseLeave: handleClose,
-          }}
-          autoFocus={false}
-        >
-          <ListItem dense divider>
-            <ListItemAvatar>
-              <Avatar src={session.avatarSrc} className={cn('avatar', 'nav-icon', { [session.avatarPlatform]: true })}>
+        <NavMenu
+          name="My Account"
+          button={
+            <IconButton
+              className="user-menu-icon"
+              aria-controls="user-menu"
+              aria-haspopup="true"
+            >
+              <Avatar src={session.avatarSrc} className={cn('avatar', { [session.avatarPlatform]: true })}>
                 {!session.avatarSrc && <PersonIcon />}
               </Avatar>
-            </ListItemAvatar>
-            <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
-              : 'Account'}</Typography>} />
-          </ListItem>
-          {menuItems}
-          <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
-          <Divider />
-          <MenuItem onClick={this.handleDarkMode}>
-            {darkMode ? 'Light' : 'Dark'} Mode
-            {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
-              className="menu-icon-right" />}
-          </MenuItem>
-          {isMobileBrowser() &&
-          <MenuItem onClick={() => {
-            handleClose();
-            setMobile(true);
-          }}>
-            Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
-          </MenuItem>}
-        </Menu>
+            </IconButton>
+          }
+          children={<>
+            <ListItem dense divider>
+              <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
+                : 'Account'}</Typography>} />
+            </ListItem>
+            {menuItems}
+            <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
+            <Divider />
+            <MenuItem onClick={this.handleDarkMode}>
+              {darkMode ? 'Light' : 'Dark'} Mode
+              {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
+                className="menu-icon-right" />}
+            </MenuItem>
+            {isMobileBrowser() &&
+            <MenuItem onClick={() => setMobile(true)}>
+              Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
+            </MenuItem>}
+          </>}
+        />
       </>
     );
   }

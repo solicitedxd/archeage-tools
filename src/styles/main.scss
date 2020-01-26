@@ -121,12 +121,31 @@ footer.site-footer {
   flex: 1;
 }
 
-.nav-item {
-  margin: 0 8px !important;
-}
-
 .verify-warn {
   color: #FFA000;
+}
+
+.nav-popper {
+  top: -12px !important;
+
+  .MuiTooltip-tooltip.nav-tooltip {
+    padding: 0 !important;
+    color: #FFFFFF;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    background-color: #424242;
+  }
+}
+
+.nav-item {
+  position: relative;
+  top: 2px;
+  cursor: pointer;
+  margin-right: 12px !important;
+
+  .nav-icon {
+    margin-right: 2px;
+    vertical-align: middle;
+  }
 }
 
 .nav-icon {
@@ -134,6 +153,7 @@ footer.site-footer {
   height: 32px !important;
   background: url('../images/nav_icons.png') no-repeat 0 -132px;
   margin-right: 8px;
+  display: inline-block;
 
   &.Account {
     background-position: -33px 0;

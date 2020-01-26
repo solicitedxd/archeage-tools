@@ -30,6 +30,7 @@ import {
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
+import { setTitle } from 'utils/string';
 
 class RecipeList extends Component {
   static propTypes = {
@@ -96,6 +97,10 @@ class RecipeList extends Component {
     const { recipes, vocations, vocation, items, loaded, recipeId, mobile } = this.props;
     const { loadId, recipeType, itemId } = this.getPageVocation();
 
+    const vocationName = vocations.find(v => v.toLowerCase() === vocation.toLowerCase()) || '...';
+
+    setTitle(`${!recipeType ? vocationName : pathOr('...', [itemId, 'name'])(items)} Recipes - Folio`);
+
     return (
       <div className="section">
         <AppBar position="static">
@@ -109,7 +114,7 @@ class RecipeList extends Component {
               variant="h5"
               className="title-text"
             >
-              {!recipeType && (vocations.find(v => v.toLowerCase() === vocation.toLowerCase()) || '...')}
+              {!recipeType && vocationName}
               {recipeType === 'product' && `Search by Product: ${pathOr('...', [itemId, 'name'])(items)}`}
               {recipeType === 'material' && `Search by Material: ${pathOr('...', [itemId, 'name'])(items)}`}
             </Typography>

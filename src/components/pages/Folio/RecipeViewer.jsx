@@ -19,6 +19,7 @@ import {
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { setTitle } from 'utils/string';
 
 class RecipeViewer extends Component {
   static propTypes = {
@@ -63,6 +64,8 @@ class RecipeViewer extends Component {
   render() {
     const { items, handleClose } = this.props;
     const { recipe } = this.state;
+
+    recipe.name && setTitle(`${recipe.name} - Folio`);
 
     return (
       <>

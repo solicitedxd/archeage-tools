@@ -9,7 +9,10 @@ import RecipeList from 'components/pages/Folio/RecipeList';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { pascalCase } from 'utils/string';
+import {
+  pascalCase,
+  setTitle,
+} from 'utils/string';
 import * as VocationIcon from '../../../images/vocation/';
 import FolioHeader from './FolioHeader';
 
@@ -20,6 +23,8 @@ class Folio extends Component {
 
   render() {
     const { match: { params: { vocation, recipeId } }, vocations } = this.props;
+
+    setTitle('Folio');
 
     return (
       <>

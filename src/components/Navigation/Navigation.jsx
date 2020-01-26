@@ -9,12 +9,12 @@ import {
 } from 'actions/session';
 import Login from 'components/Account/Login';
 import Register from 'components/Account/Register';
-import DesktopNavigation from 'components/Navigation/DesktopNavigation';
-import MobileNavigation from 'components/Navigation/MobileNavigation';
 import config from 'config';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import DesktopNavigation from './DesktopNavigation';
+import MobileNavigation from './MobileNavigation';
 
 const myAccountUrl = `http://${config.dev ? 'dev' : 'www'}.mokulu.io/my-account`;
 
@@ -103,8 +103,6 @@ class Navigation extends Component {
           menuItems={menuItems}
           session={session}
           myAccountUrl={myAccountUrl}
-          handleOpen={this.handleOpen}
-          handleClose={this.handleClose}
           userMenu={userEl}
         />}
         <MobileNavigation

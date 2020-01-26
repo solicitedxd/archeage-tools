@@ -40,7 +40,7 @@ class Link extends Component {
     return (
       <MuiLink
         {...other}
-        component={RouterLink}
+        component={other.to ? RouterLink : null}
         onClick={this.handleClick}
       >
         {children}
