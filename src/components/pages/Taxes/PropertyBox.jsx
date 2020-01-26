@@ -35,13 +35,20 @@ class PropertyBox extends Component {
   state = {};
 
   render() {
-    const { id, name, size, base, onChange, properties, values, showHostile } = this.props;
+    const { id, name, size, base, onChange, properties, values, exempt, showHostile } = this.props;
+
+    const displayHostile = !exempt && showHostile;
 
     return (
       <div className="property-box">
         <Typography variant="subtitle1" className="property-name">
           {name}
-          <Tooltip title={<div dangerouslySetInnerHTML={{ __html: properties.join('<br />') }} />}>
+          <Tooltip title={
+            <>
+              <div dangerouslySetInnerHTML={{ __html: properties.join('<br />') }} />
+              {exempt && <div>&nbsp;<br />[These farms do not count towards<br />tax rate increases.]</div>}
+            </>
+          }>
             <HelpIcon fontSize="small" color="primary" className="help-icon" />
           </Tooltip>
         </Typography>
@@ -49,26 +56,28 @@ class PropertyBox extends Component {
         <div className="property-input">
           <TextField
             id={`${id}-friendly`}
-            label={showHostile ? 'Friendly Property Count' : 'Property Count'}
+            label={displayHostile ? 'Friendly Property Count' : 'Property Count'}
             value={values[0]}
             onChange={onChange(id, 0)}
-            margin="normal"
-            variant="filled"
+            variant="outlined"
+            margin="dense"
+            size="small"
           />
-          {showHostile &&
+          {displayHostile &&
           <Tooltip title="Friendly Territory is of the continent of your home faction.">
             <HelpIcon fontSize="small" color="primary" className="help-icon" />
           </Tooltip>}
         </div>
-        {showHostile &&
+        {displayHostile &&
         <div className="property-input">
           <TextField
             id={`${id}-enemy`}
             label="Hostile Property Count"
             value={values[1]}
             onChange={onChange(id, 1)}
-            margin="normal"
-            variant="filled"
+            variant="outlined"
+            margin="dense"
+            size="small"
           />
           <Tooltip title="Hostile Territory is any of the continents not of your home faction.">
             <HelpIcon fontSize="small" color="primary" className="help-icon" />

@@ -13,7 +13,7 @@
       flex: 1 0 49%;
 
       p:first-child {
-        font-weight: bold;
+        color: #82571A;
         width: 60%;
       }
 
@@ -103,8 +103,14 @@
   }
 }
 
-.proficiency-row {
-  display: flex;
-  align-items: center;
-  margin: 0 0 0 4px;
+.dark-mode {
+  .calculator-totals {
+    .total-list {
+      & > div {
+        p:first-child {
+          color: #7DA8E5;
+        }
+      }
+    }
+  }
 }
