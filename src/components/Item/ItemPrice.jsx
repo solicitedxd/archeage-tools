@@ -4,17 +4,14 @@ import {
 } from '@material-ui/core';
 import { setItemPrice } from 'actions/itemPrice';
 import React, { Component } from 'react';
-import {
-  number,
-  oneOf,
-} from 'react-proptypes';
+import { number } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { maxDecimals } from 'utils/thunderstruck';
 
 class ItemPrice extends Component {
   static propTypes = {
     itemId: number.isRequired,
-    unitSize: oneOf([1, 10, 100]),
+    unitSize: number,
   };
 
   static defaultProps = {
@@ -30,7 +27,7 @@ class ItemPrice extends Component {
     return (
       <Input
         id={`item-price-${itemId}`}
-        value={maxDecimals(itemPrice[itemId] || 0, 4)}
+        value={maxDecimals(itemPrice[itemId] * unitSize || 0, 4)}
         onChange={(e) => setItemPrice(itemId, e.target.value, unitSize)}
         type="number"
         margin="dense"

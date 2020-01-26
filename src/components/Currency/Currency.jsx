@@ -5,7 +5,7 @@ import React from 'react';
 
 const Currency = ({ type, count, style, inline = false }) => {
   if (type === CURRENCY.COIN) {
-    const copper = count % 100;
+    const copper = Math.round(count % 100);
     const silver = Math.floor(count / 100) % 100;
     const gold = Math.floor(count / 10000);
 

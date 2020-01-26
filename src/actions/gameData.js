@@ -21,6 +21,7 @@ const fetchItemQueue = debounce(() => {
 }, 50);
 
 export const fetchItem = (itemId) => {
+  if (!itemId || itemId === 'undefined') return;
   itemQueue.add(itemId);
 
   fetchItemQueue();
@@ -85,9 +86,9 @@ export const fetchRecipeByProduct = (productId) => (dispatch, getState) => {
   const loaded = `p${productId}`;
   if (recipesLoaded === loaded) return;
 
-  xhr.get(substitute(config.endpoints.service.recipeByProduct, { itemId: productId }))
-  .then(({ data }) => {
-    dispatch({ type: DATA_RECIPE, data: arrayToMap(data), loaded });
+  fetchRecipeProduct(productId)
+  .then((data) => {
+    dispatch({ type: DATA_RECIPE, data, loaded });
   })
   .catch(() => {
     dispatch(setNotification('Failed to fetch recipe data.', NOTIFICATION_TYPE.WARNING));
@@ -109,6 +110,16 @@ export const fetchRecipeByMaterial = (materialId) => (dispatch, getState) => {
     dispatch(setNotification('Failed to fetch recipe data.', NOTIFICATION_TYPE.WARNING));
   });
 };
+
+export const fetchRecipeProduct = (itemId) => new Promise((resolve, reject) => {
+  xhr.get(substitute(config.endpoints.service.recipeByProduct, { itemId }))
+  .then(({ data }) => {
+    resolve(arrayToMap(data));
+  })
+  .catch((error) => {
+    reject(error);
+  });
+});
 
 export const fetchRecipe = (recipeId) => new Promise((resolve, reject) => {
   if (!recipeId) return;

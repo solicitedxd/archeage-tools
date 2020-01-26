@@ -116,11 +116,11 @@
 .recipe-viewer {
   color: #82571A;
 
-  .body-container {
+  .craft-container {
     max-width: 372px;
   }
 
-  .craft-header {
+  .craft-header, .MuiTypography-h6:not(.title-text) {
     color: #5C421E;
   }
 
@@ -164,6 +164,25 @@
     width: 120px;
     padding-right: 20px;
 
+    .sale {
+      margin-top: 2px;
+      display: inline-flex;
+      align-items: center;
+
+      .icon {
+        width: 35px;
+        height: 22px;
+        background: url(../images/discount.png);
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      p {
+        margin: 0 0 0 4px;
+        font-size: 0.8rem;
+      }
+    }
+
     h6 {
       display: inline-block;
     }
@@ -203,13 +222,53 @@
       }
     }
   }
+
+  .material-breakdown {
+    width: 100%;
+    overflow: auto;
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .MuiInputLabel-root {
+        display: inline-block;
+        color: #82571A;
+      }
+
+      .MuiInput-root {
+        width: 50px;
+        margin-left: 6px;
+      }
+    }
+
+    .material-item {
+      display: flex;
+      border: 1px solid #82571A;
+      border-radius: 2px;
+      padding: 4px;
+      margin: 0 0 6px;
+
+      & > .MuiTypography-body1 {
+        white-space: nowrap;
+      }
+
+      .material-choice {
+        margin-left: 6px;
+
+        .material-option {
+        }
+      }
+    }
+  }
 }
 
 .dark-mode {
   .recipe-viewer {
     color: #A7C2E7;
 
-    .craft-header {
+    .craft-header, .MuiTypography-h6:not(.title-text) {
       color: #7DA8E5;
     }
 
@@ -220,6 +279,18 @@
 
     .craft-cost .currency {
       color: #A7C2E7;
+    }
+
+    .material-breakdown {
+      .material-header {
+        .MuiInputLabel-root {
+          color: #A7C2E7;
+        }
+      }
+    }
+
+    .material-item {
+      border-color: #A7C2E7;
     }
   }
 }
@@ -247,5 +318,17 @@
     .recipe-list {
       min-width: fit-content;
     }
+  }
+}
+
+.recipe-tooltip {
+  line-height: normal;
+
+  .MuiTypography-body1, .currency {
+    font-size: 0.8rem;
+  }
+
+  .currency {
+    color: #FFFFFF;
   }
 }

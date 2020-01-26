@@ -106,7 +106,7 @@ class RecipeList extends Component {
         <AppBar position="static">
           <Toolbar variant="dense">
             <Tooltip title="Back">
-              <IconButton onClick={() => push('/folio')} style={{ margin: '0 8px 0 -16px' }}>
+              <IconButton onClick={() => push('/folio')} style={{ margin: '0 8px 0 -16px' }} color="inherit">
                 <ArrowBackIcon />
               </IconButton>
             </Tooltip>

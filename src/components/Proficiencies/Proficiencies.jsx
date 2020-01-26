@@ -38,7 +38,7 @@ class Proficiencies extends Component {
           <Toolbar variant="dense">
             <Typography variant="h6" className="title-text">My Proficiencies</Typography>
             <Tooltip title="Close">
-              <IconButton onClick={onClose}>
+              <IconButton onClick={onClose} color="inherit">
                 <CloseIcon />
               </IconButton>
             </Tooltip>
