@@ -6,7 +6,6 @@ import {
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
-  SET_PRICE,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -23,7 +22,6 @@ export const triggerLocalStorageUpdate = [
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
-  SET_PRICE,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -67,11 +65,6 @@ export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
 
 export const setWar = (zone) => (dispatch) => (e, war) => {
   dispatch({ type: SET_WAR, zone, war });
-};
-
-export const setPrice = (item, unitSize = 1) => (dispatch) => (e) => {
-  const { target: { value } } = e;
-  dispatch({ type: SET_PRICE, item, price: (Math.abs(value) / unitSize).toFixed(6) });
 };
 
 export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {

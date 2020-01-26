@@ -1,6 +1,7 @@
 import { triggerLocalStorageUpdate as calendar } from 'actions/calendar';
 import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { triggerLocalStorageUpdate as display } from 'actions/display';
+import { triggerLocalStorageUpdate as itemPrice } from 'actions/itemPrice';
 import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
 import { triggerLocalStorageUpdate as proficiencies } from 'actions/proficiencies';
 import { triggerLocalStorageUpdate as thunderstruck } from 'actions/thunderstruck';
@@ -15,6 +16,7 @@ const keysAndActionTypes = {
   dailies,
   calendar,
   display,
+  itemPrice,
   mounts,
   proficiencies,
   session,

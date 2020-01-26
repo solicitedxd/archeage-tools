@@ -7,8 +7,6 @@ import {
   FormControl,
   FormControlLabel,
   IconButton,
-  Input,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -32,7 +30,6 @@ import {
   setFreshness,
   setInterest,
   setPercentage,
-  setPrice,
   setQuantity,
   setSupply,
   setTransportationQuantity,
@@ -41,6 +38,7 @@ import {
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
+import ItemPrice from 'components/Item/ItemPrice';
 import { CURRENCY } from 'constants/items';
 import {
   CONTINENT,
@@ -73,7 +71,6 @@ import {
   oneOf,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { maxDecimals } from 'utils/thunderstruck';
 
 const getZonePrefix = (zone) => {
   if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
@@ -118,7 +115,7 @@ class PackViewer extends Component {
     const { open, onClose, originZone, packType, sellZone } = this.props;
     const { transportExpand, unitSize } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war } = this.props;
-    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor } = this.props;
+    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor } = this.props;
 
     // do nothing if value is missing
     if (originZone === null || packType === null || sellZone === null) return null;
@@ -333,19 +330,7 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell align="right">
                     {itemShowCost(material) ?
-                      <Input
-                        id={`mat-cost-${material.item.name}`}
-                        value={maxDecimals(Number(prices[material.item.name] || 0) * unitSize, 4)}
-                        onChange={setPrice(material.item.name, unitSize)}
-                        type="number"
-                        inputProps={{
-                          style: { textAlign: 'right', width: 120 },
-                          min: 0,
-                          max: 10000,
-                          step: 0.0001,
-                        }}
-                        endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                      /> :
+                      <ItemPrice itemId={material.item.name} unitSize={unitSize} /> :
                       '--'}
                   </TableCell>
                   {isAgedPack &&
@@ -439,19 +424,7 @@ class PackViewer extends Component {
                           <ItemLink id={itemId} />
                         </TableCell>
                         <TableCell align="right">
-                          <Input
-                            id={`transp-mat-cost-${itemId}`}
-                            value={maxDecimals(prices[itemId] || 0, 4)}
-                            onChange={setPrice(itemId)}
-                            type="number"
-                            inputProps={{
-                              style: { textAlign: 'right', width: 120 },
-                              min: 0,
-                              max: 10000,
-                              step: 0.0001,
-                            }}
-                            endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                          />
+                          <ItemPrice itemId={itemId} />
                         </TableCell>
                         <TableCell align="right">
                           <TextField
@@ -657,9 +630,10 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks, display: { mobile } }) => ({
+const mapStateToProps = ({ tradepacks, display: { mobile }, itemPrice }) => ({
   ...tradepacks,
   mobile,
+  prices: itemPrice,
 });
 
 const mapDispatchToProps = {
@@ -668,7 +642,6 @@ const mapDispatchToProps = {
   setFreshness,
   setInterest,
   setPercentage,
-  setPrice,
   setQuantity,
   setSupply,
   setTransportationQuantity,

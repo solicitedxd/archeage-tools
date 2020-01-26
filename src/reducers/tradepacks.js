@@ -6,7 +6,6 @@ import {
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
-  SET_PRICE,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -71,14 +70,6 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
       return {
         ...state,
         percentage: action.percentage,
-      };
-    case SET_PRICE:
-      return {
-        ...state,
-        prices: {
-          ...state.prices,
-          [action.item]: action.price,
-        },
       };
     case SET_QUANTITY:
       return {

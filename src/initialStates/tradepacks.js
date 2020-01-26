@@ -6,9 +6,6 @@ export default {
   degradeDemand: false,
   percentage: 130,
   percentages: {},
-  prices: {
-    'Blue Salt Hammer': 1,
-  },
   quantities: {},
   showInterest: true,
   supply: {},
