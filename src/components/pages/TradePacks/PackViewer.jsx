@@ -45,7 +45,7 @@ import {
   CONTINENT,
   ZONE,
 } from 'constants/map';
-import { PROFICIENCY } from 'constants/proficiencies';
+import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import {
   AGED_PACK,
   CARGO,
@@ -112,7 +112,7 @@ class PackViewer extends Component {
 
   getLaborCost = (cost, proficiency) => {
     const { proficiencies } = this.props;
-    const proficiencyRank = PROFICIENCY.find(prof => prof.name === proficiencies[proficiency]);
+    const proficiencyRank = PROFICIENCY_RANK.find(prof => prof.name === proficiencies[proficiency]);
     return Math.round(cost * proficiencyRank.cost);
   };
 

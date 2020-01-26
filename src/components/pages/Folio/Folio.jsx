@@ -34,7 +34,7 @@ class Folio extends Component {
             </AppBar>
             <Paper>
               <div className="vocation-grid">
-                {vocations.map(vocation => (
+                {vocations.filter(v => v !== 'Mining' && v !== 'Larceny').map(vocation => (
                   <Link to={`/folio/${vocation.toLowerCase()}`} key={vocation}>
                     <Paper elevation={5} className="vocation">
                       <img src={VocationIcon[pascalCase(vocation)]} alt={vocation} />
@@ -51,7 +51,7 @@ class Folio extends Component {
 }
 
 const mapStateToProps = ({ gameData: { vocations } }) => ({
-  vocations,
+  vocations: vocations.map(v => v.name).sort(),
 });
 
 const mapDispatchToProps = {

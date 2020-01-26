@@ -11,7 +11,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import cn from 'classnames';
-import { PROFICIENCY } from 'constants/proficiencies';
+import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import {
   HOUSING_TYPES,
   TAX_BURDEN,
@@ -32,7 +32,7 @@ class Taxes extends Component {
     this.state = {
       properties,
       showHostile: false,
-      proficiency: PROFICIENCY[0].name,
+      proficiency: PROFICIENCY_RANK[0].name,
     };
   }
 
@@ -60,7 +60,7 @@ class Taxes extends Component {
   render() {
     const { mobile } = this.props;
     const { properties, showHostile, proficiency: proficiencyName } = this.state;
-    const proficiency = PROFICIENCY.find(prof => prof.name === proficiencyName);
+    const proficiency = PROFICIENCY_RANK.find(prof => prof.name === proficiencyName);
 
     const propertyCount = Object.values(properties)
     .map(values => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (showHostile ? 1 : 0)))
@@ -122,7 +122,7 @@ class Taxes extends Component {
                   </div>
                 )}
               >
-                {PROFICIENCY.map(proficiency => (
+                {PROFICIENCY_RANK.map(proficiency => (
                   <MenuItem value={proficiency.name} key={proficiency.name} data-grade={proficiency.quality}>
                     <span className={cn('proficiency-icon', proficiency.name)} />
                     <span className="quality-color">{proficiency.name}</span>

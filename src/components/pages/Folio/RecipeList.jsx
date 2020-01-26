@@ -151,6 +151,7 @@ class RecipeList extends Component {
 
 const mapStateToProps = ({ gameData, display: { mobile } }) => ({
   ...gameData,
+  vocations: pathOr([], ['vocations'])(gameData).map(v => v.name),
   mobile,
 });
 

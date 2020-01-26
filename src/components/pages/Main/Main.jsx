@@ -17,6 +17,7 @@ import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
 import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
+import Proficiencies from 'components/Proficiencies';
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
@@ -24,7 +25,9 @@ import { Link as RouterLink } from 'react-router-dom';
 import 'styles/index';
 
 class Main extends React.PureComponent {
-  state = {};
+  state = {
+    proficienciesOpen: false,
+  };
 
   createPalette = () => {
     const { darkMode } = this.props;
@@ -92,9 +95,18 @@ class Main extends React.PureComponent {
     }
   }
 
+  openProficiencies = () => {
+    this.setState({ proficienciesOpen: true });
+  };
+
+  closeProficiencies = () => {
+    this.setState({ proficienciesOpen: false });
+  };
+
   render() {
     const { children, notification, darkMode, mobile } = this.props;
     const { clearNotification } = this.props;
+    const { proficienciesOpen } = this.state;
 
     if (darkMode) {
       document.documentElement.classList.add('dark-mode');
@@ -120,7 +132,7 @@ class Main extends React.PureComponent {
                 ArcheAge Tools
               </Typography>
 
-              <Navigation />
+              <Navigation openProficiencies={this.openProficiencies} />
             </div>
           </header>
           <div className={cn('content-wrapper', { mobile })}>
@@ -140,6 +152,7 @@ class Main extends React.PureComponent {
             {...notification}
             handleClose={clearNotification}
           />
+          <Proficiencies open={proficienciesOpen} onClose={this.closeProficiencies} />
         </>
       </ThemeProvider>
     );

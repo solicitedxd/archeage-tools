@@ -6,6 +6,7 @@ import display from './display';
 import gameData from './gameData';
 import mounts from './mounts';
 import notification from './notification';
+import proficiencies from './proficiencies';
 import session from './session';
 import thunderstruck from './thunderstruck';
 import tradepacks from './tradepacks';
@@ -17,6 +18,7 @@ const rootReducer = (history) => combineReducers({
   gameData,
   mounts,
   notification,
+  proficiencies,
   router: connectRouter(history),
   session,
   thunderstruck,
@@ -28,6 +30,7 @@ export const getLocalData = {
   calendar: ({ calendar }) => calendar,
   display: ({ display }) => display,
   mounts: ({ mounts }) => mounts,
+  proficiencies: ({ proficiencies }) => proficiencies,
   session: ({ session }) => session,
   thunderstruck: ({ thunderstruck }) => thunderstruck,
   tradepacks: ({ tradepacks }) => tradepacks,

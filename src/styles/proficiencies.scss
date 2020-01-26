@@ -1,0 +1,137 @@
+.proficiency-wrapper {
+  max-width: 600px;
+  margin: auto;
+
+  .proficiency-group {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    & + .proficiency-group {
+      margin-top: 10px;
+    }
+
+    h6 {
+      flex-basis: 100%;
+    }
+
+    .proficiency {
+      display: flex;
+      margin-bottom: 6px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border: 1px solid #9F875A;
+        border-radius: 1px;
+      }
+
+      .proficiency-stats {
+        display: flex;
+        flex-direction: column;
+        margin-left: 4px;
+
+        .proficiency-name {
+          color: #BC996F;
+          font-size: 1.2rem;
+        }
+
+        .proficiency-value {
+          .MuiInputBase-root {
+            width: 70px;
+            font-size: 0.8rem;
+
+            input {
+              padding-top: 2px;
+              padding-bottom: 1px;
+            }
+          }
+        }
+
+        .proficiency-bar {
+          width: 142px;
+          height: 8px;
+          border: 1px solid #543612;
+          position: relative;
+          border-radius: 2px;
+
+          .quality-bar {
+            height: 100%;
+            position: absolute;
+            top: 0;
+            z-index: 1;
+            border-radius: 2px;
+          }
+
+          &:after {
+            position: absolute;
+            content: "";
+            width: 142px;
+            height: 8px;
+            background-color: #745B3B;
+          }
+        }
+      }
+    }
+
+    .spacer {
+      width: 186px;
+    }
+  }
+}
+
+.proficiency-icon {
+  width: 19px;
+  height: 17px;
+  background: url(../images/skill.png);
+  margin-right: 6px;
+  display: inline-block;
+
+  &.Basic {
+    background-position: -190px -115px;
+  }
+
+  &.Novice {
+    background-position: -223px -59px;
+  }
+
+  &.Veteran {
+    background-position: -170px -81px;
+  }
+
+  &.Expert {
+    background-position: -189px -81px;
+  }
+
+  &.Master {
+    background-position: -208px -81px;
+  }
+
+  &.Authority {
+    background-position: -227px -81px;
+  }
+
+  &.Champion {
+    background-position: -170px -98px;
+  }
+
+  &.Adept {
+    background-position: -189px -98px;
+  }
+
+  &.Herald {
+    background-position: -208px -98px;
+  }
+
+  &.Virtuoso {
+    background-position: -227px -98px;
+  }
+
+  &.Celebrity {
+    background-position: -171px -115px;
+  }
+
+  &.Famed {
+    background-position: -171px -135px;
+  }
+}

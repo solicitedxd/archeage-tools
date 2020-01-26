@@ -14,14 +14,15 @@ import MobileNavigation from 'components/Navigation/MobileNavigation';
 import config from 'config';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import { func } from 'react-proptypes';
 import { connect } from 'react-redux';
 
 const myAccountUrl = `http://${config.dev ? 'dev' : 'www'}.mokulu.io/my-account`;
 
 class Navigation extends Component {
-  static propTypes = {};
-
-  static defaultProps = {};
+  static propTypes = {
+    openProficiencies: func.isRequired,
+  };
 
   state = {
     userEl: null,
@@ -53,7 +54,7 @@ class Navigation extends Component {
   };
 
   render() {
-    const { session, mobile } = this.props;
+    const { session, mobile, openProficiencies } = this.props;
     const { userEl } = this.state;
 
     const menuItems = [];
@@ -110,6 +111,7 @@ class Navigation extends Component {
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
           userMenu={userEl}
+          openProficiencies={openProficiencies}
         />}
         <MobileNavigation
           menuItems={menuItems}
@@ -118,6 +120,7 @@ class Navigation extends Component {
           open={Boolean(userEl)}
           handleOpen={this.handleOpen}
           handleClose={this.handleClose}
+          openProficiencies={openProficiencies}
         />
 
         {!session.isAuthenticated &&

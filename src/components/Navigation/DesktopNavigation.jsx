@@ -49,6 +49,7 @@ class DesktopNavigation extends Component {
     userMenu: object,
     handleOpen: func.isRequired,
     handleClose: func.isRequired,
+    openProficiencies: func.isRequired,
   };
 
   static defaultProps = {
@@ -103,7 +104,7 @@ class DesktopNavigation extends Component {
   }
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, userMenu, handleOpen, handleClose } = this.props;
+    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, userMenu, handleOpen, handleClose, openProficiencies } = this.props;
     const { anchorEl } = this.state;
 
     return (
@@ -204,6 +205,7 @@ class DesktopNavigation extends Component {
               : 'Account'}</Typography>} />
           </ListItem>
           {menuItems}
+          <MenuItem button onClick={openProficiencies}>Proficiencies</MenuItem>
           <Divider />
           <MenuItem onClick={this.handleDarkMode}>
             {darkMode ? 'Light' : 'Dark'} Mode

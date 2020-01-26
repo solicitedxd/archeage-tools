@@ -37,7 +37,7 @@ import {
 import cn from 'classnames';
 import Item from 'components/Item';
 import { CONTINENT } from 'constants/map';
-import { PROFICIENCY } from 'constants/proficiencies';
+import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import {
   AGED_PACK,
   CARGO,
@@ -101,8 +101,8 @@ class TradePacks extends Component {
     const { setPercentage, setProficiency, setWar } = this.props;
     const { reset, zone, open, packType, originZone } = this.state;
 
-    const commerceProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.commerce);
-    const husbandryProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.husbandry);
+    const commerceProficiency = PROFICIENCY_RANK.find(prof => prof.name === proficiencies.commerce);
+    const husbandryProficiency = PROFICIENCY_RANK.find(prof => prof.name === proficiencies.husbandry);
 
     let continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
     if (continent !== CARGO) {
@@ -177,7 +177,7 @@ class TradePacks extends Component {
                   </div>
                 )}
               >
-                {PROFICIENCY.map(proficiency => (
+                {PROFICIENCY_RANK.map(proficiency => (
                   <MenuItem value={proficiency.name} key={proficiency.name} data-grade={proficiency.quality}>
                     <span className={cn('proficiency-icon', proficiency.name)} />
                     <span className="quality-color">{proficiency.name}</span>
@@ -201,7 +201,7 @@ class TradePacks extends Component {
                   </div>
                 )}
               >
-                {PROFICIENCY.map(proficiency => (
+                {PROFICIENCY_RANK.map(proficiency => (
                   <MenuItem value={proficiency.name} key={proficiency.name} data-grade={proficiency.quality}>
                     <span className={cn('proficiency-icon', proficiency.name)} />
                     <span className="quality-color">{proficiency.name}</span>

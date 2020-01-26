@@ -17,6 +17,7 @@ import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 import DesktopWindowsIcon from '@material-ui/icons/DesktopWindows';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import MenuIcon from '@material-ui/icons/Menu';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
@@ -49,6 +50,7 @@ class MobileNavigation extends Component {
     open: bool.isRequired,
     handleOpen: func.isRequired,
     handleClose: func.isRequired,
+    openProficiencies: func.isRequired,
   };
 
   static defaultProps = {
@@ -84,7 +86,7 @@ class MobileNavigation extends Component {
   };
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, open, handleOpen, handleClose } = this.props;
+    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, open, handleOpen, handleClose, openProficiencies } = this.props;
     const { expanded } = this.state;
 
     if (pathOr(0, ['patreon', 'pledge'])(session) === 0 && mobile && open) {
@@ -169,6 +171,10 @@ class MobileNavigation extends Component {
             </ListItem>
             <Collapse in={expanded['Settings']} timeout="auto" unmountOnExit>
               <List component="div" disablePadding className="nested-list-icons">
+                <ListItem button onClick={openProficiencies}>
+                  <ListItemIcon><ListAltIcon /></ListItemIcon>
+                  <ListItemText primary="Proficiencies" />
+                </ListItem>
                 <ListItem button onClick={this.toggleDarkMode}>
                   <ListItemIcon>{darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}</ListItemIcon>
                   <ListItemText primary={darkMode ? 'Light Mode' : 'Dark Mode'} />
