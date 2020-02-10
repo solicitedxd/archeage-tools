@@ -125,7 +125,9 @@ export const REAL_TIME_EVENTS = Object.freeze([
       NA: [
         { time: '01:15:00', duration: '01:00:00' },
       ],
-      EU: [],
+      EU: [
+        { time: '20:15:00', duration: '01:00:00' },
+      ],
     },
   },
   {
