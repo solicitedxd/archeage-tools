@@ -1,2 +1,5 @@
 /yarn-error.log
 /public/
+/node_modules/
+
+.idea

@@ -1322,7 +1322,7 @@ export default Object.freeze({
     },
   },
   [ZONE.WHITE_ARDEN]: {
-    freshness: FRESHNESS.FINE,
+    freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
         materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
@@ -1794,8 +1794,8 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
+        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.ROSEMARY, count: 5 }],
         sell: {
-          materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.ROSEMARY, count: 5 }],
           [ZONE.TWO_CROWNS]: 18.9345,
           [ZONE.SOLZREED_PENINSULA]: 20.7557,
           [ZONE.CINDERSTONE_MOOR]: 21.0619,
