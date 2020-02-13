@@ -3,6 +3,7 @@ import {
   InputAdornment,
 } from '@material-ui/core';
 import { setItemPrice } from 'actions/itemPrice';
+import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import { number } from 'react-proptypes';
 import { connect } from 'react-redux';
@@ -19,16 +20,59 @@ class ItemPrice extends Component {
     inputStyle: {},
   };
 
-  state = {};
+  state = {
+    price: '0',
+    focused: false,
+  };
+
+  setItemPrice = debounce(this.props.setItemPrice, 250);
+
+  componentDidMount() {
+    const { itemPrice, itemId, unitSize } = this.props;
+
+    this.setState({ price: maxDecimals(itemPrice[itemId] * unitSize || 0, 4) });
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    const { itemPrice, itemId, unitSize } = nextProps;
+    const { focused } = this.state;
+
+    if (!focused) {
+      const price = maxDecimals(itemPrice[itemId] * unitSize || 0, 4);
+      this.setState({ price });
+    }
+  }
+
+  handleChange = (e) => {
+    const { itemId, unitSize } = this.props;
+    const price = String(e.target.value).replace(/[^\d\\.]+/g, '');
+
+    this.setState({ price }, () => {
+      if (!isNaN(price)) {
+        this.setItemPrice(itemId, price, unitSize);
+      }
+    });
+  };
+
+  handleFocus = (focused) => () => {
+    this.setState({ focused }, () => {
+      if (!focused && this.state.price === '') {
+        this.setState({ price: '0' });
+      }
+    });
+  };
 
   render() {
-    const { itemPrice, itemId, unitSize, setItemPrice, inputStyle } = this.props;
+    const { itemId, inputStyle } = this.props;
+    const { price } = this.state;
 
     return (
       <Input
         id={`item-price-${itemId}`}
-        value={maxDecimals(itemPrice[itemId] * unitSize || 0, 4)}
-        onChange={(e) => setItemPrice(itemId, e.target.value, unitSize)}
+        value={price}
+        onChange={this.handleChange}
+        onFocus={this.handleFocus(true)}
+        onBlur={this.handleFocus(false)}
         type="number"
         margin="dense"
         inputProps={{
