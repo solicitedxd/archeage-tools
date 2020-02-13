@@ -4,7 +4,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
-import { fetchVocations } from 'actions/gameData';
+import { fetchVocations, fetchCategories } from 'actions/gameData';
 import RecipeList from 'components/pages/Folio/RecipeList';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -18,6 +18,7 @@ import FolioHeader from './FolioHeader';
 
 class Folio extends Component {
   componentDidMount() {
+    this.props.fetchCategories();
     this.props.fetchVocations();
   }
 
@@ -60,6 +61,7 @@ const mapStateToProps = ({ gameData: { vocations } }) => ({
 });
 
 const mapDispatchToProps = {
+  fetchCategories,
   fetchVocations,
 };
 

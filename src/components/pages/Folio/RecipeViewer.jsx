@@ -42,6 +42,7 @@ import {
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { objectHasProperties } from 'utils/object';
 import { setTitle } from 'utils/string';
 
 class RecipeViewer extends Component {
@@ -172,8 +173,8 @@ class RecipeViewer extends Component {
             ...mat,
             quantity: Math.ceil(quantity / recipe.quantity) * mat.quantity,
           }, options));
-          craftGold += recipe.gold * (options.sale ? 0.9 : 1) * quantity;
-          craftLabor += calculateLabor(recipe.labor, recipe.vocation) * quantity;
+          craftGold += recipe.gold * (options.sale ? 0.9 : 1) * Math.ceil(quantity / recipe.quantity);
+          craftLabor += calculateLabor(recipe.labor, recipe.vocation) * Math.ceil(quantity / recipe.quantity);
         }
       }
     });
@@ -372,9 +373,9 @@ class RecipeViewer extends Component {
                   <TableCell align="right">
                     <Currency
                       type={CURRENCY.COIN}
-                      count={(craftGold || 0) + Object.getOwnPropertyNames(materialList).length > 0
+                      count={(craftGold || 0) + (objectHasProperties(materialList)
                         ? Object.entries(materialList).map(([itemId, quantity]) => quantity * (itemPrice[itemId] || 0) * 10000).reduce((a, b) => a + b)
-                        : 0}
+                        : 0)}
                     />
                   </TableCell>
                 </TableRow>

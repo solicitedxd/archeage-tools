@@ -1,12 +1,15 @@
 import { setNotification } from 'actions/notification';
 import config from 'config';
 import {
+  DATA_CATEGORIES,
   DATA_ITEM,
   DATA_RECIPE,
   DATA_VOCATION,
 } from 'constants/gameData';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import debounce from 'lodash.debounce';
+import { arrayToMap } from 'utils/array';
+import { objectHasProperties } from 'utils/object';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 import store from '../store';
@@ -26,11 +29,6 @@ export const fetchItem = (itemId) => {
 
   fetchItemQueue();
 };
-
-const arrayToMap = (array) => array.reduce((obj, item) => {
-  obj[item.id] = item;
-  return obj;
-}, {});
 
 export const fetchItems = (...items) => (dispatch, getState) => {
   const { items: storedItems } = getState().gameData;
@@ -140,5 +138,19 @@ export const fetchVocations = () => (dispatch, getState) => {
   })
   .catch(() => {
     dispatch(setNotification('Failed to fetch vocation data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchCategories = () => (dispatch, getState) => {
+  const { categories } = getState().gameData;
+
+  if (objectHasProperties(categories)) return;
+
+  xhr.get(config.endpoints.service.recipeCategories)
+  .then(({ data }) => {
+    dispatch({ type: DATA_CATEGORIES, categories: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch category data.', NOTIFICATION_TYPE.WARNING));
   });
 };

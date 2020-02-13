@@ -1,4 +1,5 @@
 import {
+  DATA_CATEGORIES,
   DATA_ITEM,
   DATA_RECIPE,
   DATA_VOCATION,
@@ -25,6 +26,11 @@ const gameData = (state = initialState, action) => {
       return {
         ...state,
         vocations: action.vocations,
+      };
+    case DATA_CATEGORIES:
+      return {
+        ...state,
+        categories: action.categories,
       };
     default:
       return state;

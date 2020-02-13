@@ -66,7 +66,7 @@ class FolioHeader extends Component {
 
   handleSearch = (e, item) => {
     const { searchType } = this.state;
-    if (!item) return;
+    if (!item.id) return;
 
     push(`/folio/search-${searchType}?itemId=${item.id}`);
   };
