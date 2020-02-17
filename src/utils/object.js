@@ -1,1 +1,1 @@
-export const objectHasProperties = (object) => Object.getOwnPropertyNames(object).length > 0;
+export const objectHasProperties = (object) => object ? Object.getOwnPropertyNames(object).length > 0 : false;

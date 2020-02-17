@@ -1,7 +1,6 @@
 import {
   DATA_CATEGORIES,
   DATA_ITEM,
-  DATA_RECIPE,
   DATA_VOCATION,
 } from 'constants/gameData';
 import initialState from 'initialStates/gameData';
@@ -15,12 +14,6 @@ const gameData = (state = initialState, action) => {
           ...state.items,
           ...action.data,
         },
-      };
-    case DATA_RECIPE:
-      return {
-        ...state,
-        recipes: action.data,
-        loaded: action.loaded,
       };
     case DATA_VOCATION:
       return {

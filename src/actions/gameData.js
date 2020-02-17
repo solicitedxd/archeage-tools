@@ -3,7 +3,6 @@ import config from 'config';
 import {
   DATA_CATEGORIES,
   DATA_ITEM,
-  DATA_RECIPE,
   DATA_VOCATION,
 } from 'constants/gameData';
 import { NOTIFICATION_TYPE } from 'constants/notification';
@@ -62,61 +61,34 @@ export const searchItems = (query, searchType) => (dispatch) => new Promise((res
   .catch(() => reject());
 });
 
-export const fetchRecipeByVocation = (vocation) => (dispatch, getState) => {
-  const { loaded: recipesLoaded } = getState().gameData;
+export const searchRecipes = (query, searchType) => (dispatch) => new Promise((resolve, reject) => {
+  const endpoint = (searchType === 'product') ? config.endpoints.service.recipeSearchByProduct
+    : config.endpoints.service.recipeSearchByMaterial;
 
-  // don't re-fetch a vocation set
-  if (recipesLoaded === vocation) return;
+  xhr.get(`${endpoint}?query=${encodeURI(query)}`)
+  .then(({ data }) => {
+    dispatch({ type: DATA_ITEM, data: arrayToMap(data) });
+    resolve(data);
+  })
+  .catch(() => reject());
+});
 
+export const fetchRecipeByVocation = (vocation) => new Promise((resolve, reject) => {
   xhr.get(substitute(config.endpoints.service.recipeByVocation, { vocation }))
-  .then(({ data }) => {
-    dispatch({ type: DATA_RECIPE, data: arrayToMap(data), loaded: vocation });
-  })
-  .catch(() => {
-    dispatch(setNotification('Failed to fetch recipe data.', NOTIFICATION_TYPE.WARNING));
-  });
-};
+  .then(({ data }) => resolve(data))
+  .catch((error) => reject(error));
+});
 
-export const fetchRecipeByProduct = (productId) => (dispatch, getState) => {
-  const { loaded: recipesLoaded } = getState().gameData;
-
-  // don't re-fetch a product set
-  const loaded = `p${productId}`;
-  if (recipesLoaded === loaded) return;
-
-  fetchRecipeProduct(productId)
-  .then((data) => {
-    dispatch({ type: DATA_RECIPE, data, loaded });
-  })
-  .catch(() => {
-    dispatch(setNotification('Failed to fetch recipe data.', NOTIFICATION_TYPE.WARNING));
-  });
-};
-
-export const fetchRecipeByMaterial = (materialId) => (dispatch, getState) => {
-  const { loaded: recipesLoaded } = getState().gameData;
-
-  // don't re-fetch a material set
-  const loaded = `m${materialId}`;
-  if (recipesLoaded === loaded) return;
-
-  xhr.get(substitute(config.endpoints.service.recipeByMaterial, { itemId: materialId }))
-  .then(({ data }) => {
-    dispatch({ type: DATA_RECIPE, data: arrayToMap(data), loaded });
-  })
-  .catch(() => {
-    dispatch(setNotification('Failed to fetch recipe data.', NOTIFICATION_TYPE.WARNING));
-  });
-};
-
-export const fetchRecipeProduct = (itemId) => new Promise((resolve, reject) => {
+export const fetchRecipeByProduct = (itemId) => new Promise((resolve, reject) => {
   xhr.get(substitute(config.endpoints.service.recipeByProduct, { itemId }))
-  .then(({ data }) => {
-    resolve(arrayToMap(data));
-  })
-  .catch((error) => {
-    reject(error);
-  });
+  .then(({ data }) => resolve(data))
+  .catch((error) => reject(error));
+});
+
+export const fetchRecipeByMaterial = (itemId) => new Promise((resolve, reject) => {
+  xhr.get(substitute(config.endpoints.service.recipeByMaterial, { itemId }))
+  .then(({ data }) => resolve(data))
+  .catch((error) => reject(error));
 });
 
 export const fetchRecipe = (recipeId) => new Promise((resolve, reject) => {

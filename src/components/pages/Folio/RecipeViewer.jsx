@@ -23,7 +23,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import { openDialog } from 'actions/display';
 import {
   fetchRecipe,
-  fetchRecipeProduct,
+  fetchRecipeByProduct,
 } from 'actions/gameData';
 import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
@@ -42,6 +42,7 @@ import {
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { arrayToMap } from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import { setTitle } from 'utils/string';
 
@@ -58,7 +59,7 @@ class RecipeViewer extends Component {
 
   state = {
     recipe: {},
-    subRecipes: {},
+    recipes: {},
     materials: {},
     quantity: 1,
     showBreakdown: true,
@@ -82,26 +83,19 @@ class RecipeViewer extends Component {
   }
 
   loadRecipe = (recipeId) => {
-    const { recipes } = this.props;
-    if (recipes.hasOwnProperty(recipeId)) {
-      this.setState({ recipe: recipes[recipeId] }, () => {
-        recipes[recipeId].materials.forEach(mat => this.loadSubRecipes(mat.item));
-      });
-    } else {
-      fetchRecipe(recipeId)
-      .then((recipe) => this.setState({ recipe }, () => {
-        recipe.materials.forEach(mat => this.loadSubRecipes(mat.item));
-      }))
-      .catch(() => {
-      });
-    }
+    fetchRecipe(recipeId)
+    .then((recipe) => this.setState({ recipe }, () => {
+      recipe.materials.forEach(mat => this.loadRecipes(mat.item));
+    }))
+    .catch(() => {
+    });
   };
 
   handleClickMaterial = (itemId) => {
-    const { subRecipes } = this.state;
+    const { recipes } = this.state;
     if (itemId === null) return;
 
-    const recipe = Object.values(subRecipes).find(recipe => recipe.item === itemId);
+    const recipe = Object.values(recipes).find(recipe => recipe.item === itemId);
     if (recipe) {
       const { search, pathname } = document.location;
       const path = pathname.split('/');
@@ -110,15 +104,15 @@ class RecipeViewer extends Component {
     }
   };
 
-  loadSubRecipes = (itemId) => {
+  loadRecipes = (itemId) => {
     if (this.loadedItems.includes(itemId)) return;
     this.loadedItems.push(itemId);
 
-    fetchRecipeProduct(itemId)
+    fetchRecipeByProduct(itemId)
     .then(data => {
-      const { subRecipes } = this.state;
-      this.setState({ subRecipes: { ...subRecipes, ...data } }, () => {
-        Object.values(data).forEach(recipe => recipe.materials.forEach(mat => this.loadSubRecipes(mat.item)));
+      const { recipes } = this.state;
+      this.setState({ recipes: { ...recipes, ...arrayToMap(data) } }, () => {
+        Object.values(data).forEach(recipe => recipe.materials.forEach(mat => this.loadRecipes(mat.item)));
       });
     })
     .catch(() => {
@@ -147,7 +141,7 @@ class RecipeViewer extends Component {
 
   render() {
     const { items, handleClose, proficiencies, calculateLabor, openDialog, itemPrice, mobile } = this.props;
-    const { recipe, subRecipes, materials, quantity, showBreakdown } = this.state;
+    const { recipe, recipes, materials, quantity, showBreakdown } = this.state;
 
     recipe.name && setTitle(`${recipe.name} - Folio`);
 
@@ -167,7 +161,7 @@ class RecipeViewer extends Component {
       if (value === 'gold') {
         addMaterial(itemId, quantity);
       } else {
-        const recipe = Object.values(subRecipes).find(r => String(r.id) === value);
+        const recipe = Object.values(recipes).find(r => String(r.id) === value);
         if (recipe) {
           recipe.materials.forEach((mat) => calculateMatStep({
             ...mat,
@@ -324,7 +318,7 @@ class RecipeViewer extends Component {
                   {...mat}
                   quantity={mat.quantity * quantity}
                   materials={materials[mat.item]}
-                  recipes={subRecipes}
+                  recipes={recipes}
                   onUpdate={this.handleUpdateMaterial(mat.item)}
                   depth={1}
                 />
@@ -394,8 +388,7 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { recipes, items }, proficiencies, itemPrice, display: { mobile } }) => ({
-  recipes,
+const mapStateToProps = ({ gameData: { items }, proficiencies, itemPrice, display: { mobile } }) => ({
   items,
   proficiencies,
   itemPrice,
