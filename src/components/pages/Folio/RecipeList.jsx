@@ -64,10 +64,10 @@ class RecipeList extends Component {
           .then(this.updateRecipeList);
         }
       } else if (productQuery) {
-        props.searchRecipes(productQuery, 'product', 100)
+        props.searchRecipes(productQuery, 'product')
         .then(this.updateRecipeList);
       } else if (materialQuery) {
-        props.searchRecipes(materialQuery, 'material', 100)
+        props.searchRecipes(materialQuery, 'material')
         .then(this.updateRecipeList);
       }
     } else {

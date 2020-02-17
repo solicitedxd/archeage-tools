@@ -1,1 +1,1 @@
-export const isNumber = (number) => !Number.isNaN(number);
+export const isNumber = (number) => !Number.isNaN(Number.parseFloat(number));
