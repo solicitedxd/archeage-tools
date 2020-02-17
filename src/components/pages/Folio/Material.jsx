@@ -7,6 +7,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import Tooltip from '@material-ui/core/Tooltip';
+import { fetchRecipeByProduct } from 'actions/gameData';
 import { calculateLabor } from 'actions/proficiencies';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
@@ -36,6 +37,15 @@ class Material extends Component {
     quantity: 1,
     grade: 1,
     materials: { value: 'gold' },
+  };
+
+  componentDidMount() {
+    this.getRecipeComponents();
+  }
+
+  getRecipeComponents = () => {
+    const { item, fetchRecipeByProduct } = this.props;
+    fetchRecipeByProduct(item);
   };
 
   handleSelectOption = (e) => {
@@ -121,7 +131,7 @@ class Material extends Component {
               </Tooltip>}
               <Collapse in={materials.value === String(recipe.id)} unmountOnExit>
                 {recipe.materials && recipe.materials.map(mat => (
-                  <Material
+                  <ConnectedMaterial
                     key={`mat-${item}-${recipe.id}-${mat.item}`}
                     recipeId={recipeId}
                     {...mat}
@@ -130,10 +140,6 @@ class Material extends Component {
                     recipes={recipes}
                     onUpdate={this.handleUpdateMaterial(mat.item)}
                     depth={depth + 1}
-                    // We need to pass these because they originally come from redux, but connect isn't defined yet in
-                    // these recursive calls
-                    proficiencies={proficiencies}
-                    calculateLabor={calculateLabor}
                   />
                 ))}
               </Collapse>
@@ -151,6 +157,9 @@ const mapStateToProps = ({ proficiencies }) => ({
 
 const mapDispatchToProps = {
   calculateLabor,
+  fetchRecipeByProduct,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Material);
+const ConnectedMaterial = connect(mapStateToProps, mapDispatchToProps)(Material);
+
+export default ConnectedMaterial;

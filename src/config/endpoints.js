@@ -12,7 +12,7 @@ export default {
     recipeByMaterial: '/service/recipe/material/${itemId}',
     recipeSearchByMaterial: '/service/recipe/material',
     recipeByVocation: '/service/recipe/vocation/${vocation}',
-    recipe: '/service/recipe/${recipeId}',
+    recipe: '/service/recipe?ids=${recipeIds}',
     recipeCategories: '/service/recipe/categories',
     vocations: '/service/vocations',
     searchByProduct: '/service/search/product',

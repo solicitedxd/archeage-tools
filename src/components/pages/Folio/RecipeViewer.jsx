@@ -58,8 +58,6 @@ class RecipeViewer extends Component {
   };
 
   state = {
-    recipe: {},
-    recipes: {},
     materials: {},
     quantity: 1,
     showBreakdown: true,
@@ -69,7 +67,7 @@ class RecipeViewer extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.recipeId !== nextProps.recipeId) {
-      this.loadRecipe(nextProps.recipeId);
+      fetchRecipe(nextProps.recipeId);
       // reset crafting breakdown
       this.setState({ materials: {}, quantity: 1, sale: false });
     }
@@ -78,18 +76,9 @@ class RecipeViewer extends Component {
   componentDidMount() {
     const { recipeId } = this.props;
     if (recipeId) {
-      this.loadRecipe(recipeId);
+      fetchRecipe(recipeId);
     }
   }
-
-  loadRecipe = (recipeId) => {
-    fetchRecipe(recipeId)
-    .then((recipe) => this.setState({ recipe }, () => {
-      recipe.materials.forEach(mat => this.loadRecipes(mat.item));
-    }))
-    .catch(() => {
-    });
-  };
 
   handleClickMaterial = (itemId) => {
     const { recipes } = this.state;
@@ -140,8 +129,13 @@ class RecipeViewer extends Component {
   };
 
   render() {
-    const { items, handleClose, proficiencies, calculateLabor, openDialog, itemPrice, mobile } = this.props;
-    const { recipe, recipes, materials, quantity, showBreakdown } = this.state;
+    const { items, recipes, proficiencies, itemPrice } = this.props;
+    const { handleClose, calculateLabor, openDialog } = this.props;
+    const { mobile, recipeId } = this.props;
+
+    const { materials, quantity, showBreakdown } = this.state;
+
+    const recipe = recipes[recipeId] || {};
 
     recipe.name && setTitle(`${recipe.name} - Folio`);
 
@@ -388,9 +382,10 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items }, proficiencies, itemPrice, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { items, recipes }, proficiencies, itemPrice, display: { mobile } }) => ({
   items,
   proficiencies,
+  recipes,
   itemPrice,
   mobile,
 });

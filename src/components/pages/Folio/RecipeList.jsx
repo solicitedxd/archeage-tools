@@ -40,41 +40,77 @@ class RecipeList extends Component {
   state = {
     recipeList: [],
     categories: {},
+    loaded: '',
   };
 
   componentDidMount() {
-    this.getRecipeList(this.props);
+    this.checkRecipes();
   }
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    this.getRecipeList(nextProps);
+  componentDidUpdate(prevProps, prevState) {
+    // ignore state updates
+    if (!equals(prevState, this.state)) return;
+
+    const { vocation, productQuery, materialQuery } = this.props;
+    const { loaded } = this.state;
+
+    if (vocation !== prevProps.vocation || productQuery !== prevProps.productQuery || materialQuery !== prevProps.materialQuery) {
+      this.setState({ recipeList: [] });
+    }
+
+    if (loaded !== this.getRecipeKey()) {
+      this.checkRecipes();
+    }
   }
 
-  getRecipeList(props) {
-    const { vocation, productQuery, materialQuery } = props;
-    this.setState({ loading: true });
+  getRecipeKey = () => {
+    const { vocation, productQuery, materialQuery } = this.props;
+
+    let recipeKey;
+    if (vocation === 'search') {
+      if (productQuery) {
+        recipeKey = `product-${productQuery}`;
+      } else if (materialQuery) {
+        recipeKey = `material-${materialQuery}`;
+      }
+    } else {
+      recipeKey = vocation;
+    }
+    return recipeKey;
+  };
+
+  checkRecipes = () => {
+    const { recipes, vocationRecipes } = this.props;
+
+    this.getRecipeList();
+
+    const recipeKey = this.getRecipeKey();
+
+    if (vocationRecipes[recipeKey] && vocationRecipes[recipeKey].every((id) => Boolean(recipes[id]))) {
+      this.updateRecipeList(vocationRecipes[recipeKey].map(id => recipes[id]));
+    }
+  };
+
+  getRecipeList = () => {
+    const { fetchRecipeByProduct, fetchRecipeByMaterial, searchRecipes, fetchRecipeByVocation } = this.props;
+    const { vocation, productQuery, materialQuery } = this.props;
 
     if (vocation === 'search') {
       if (isNumber(productQuery || materialQuery)) {
         if (productQuery) {
-          fetchRecipeByProduct(productQuery)
-          .then(this.updateRecipeList);
+          fetchRecipeByProduct(productQuery);
         } else {
-          fetchRecipeByMaterial(materialQuery)
-          .then(this.updateRecipeList);
+          fetchRecipeByMaterial(materialQuery);
         }
       } else if (productQuery) {
-        props.searchRecipes(productQuery, 'product')
-        .then(this.updateRecipeList);
+        searchRecipes(productQuery, 'product');
       } else if (materialQuery) {
-        props.searchRecipes(materialQuery, 'material')
-        .then(this.updateRecipeList);
+        searchRecipes(materialQuery, 'material');
       }
     } else {
-      fetchRecipeByVocation(vocation)
-      .then(this.updateRecipeList);
+      fetchRecipeByVocation(vocation);
     }
-  }
+  };
 
   updateRecipeList = (recipes) => {
     const { categories } = this.props;
@@ -121,7 +157,7 @@ class RecipeList extends Component {
       category.recipes.push(recipe);
     });
 
-    this.setState({ recipeList, loading: false });
+    this.setState({ recipeList, loaded: this.getRecipeKey() });
   };
 
   toggleCategory = (id) => () => {
@@ -136,7 +172,7 @@ class RecipeList extends Component {
     const open = !Boolean(categories[id]);
 
     return (
-      <div className="recipe-category" key={id}>
+      <div className="recipe-category" key={`rcat-${id}`}>
         <ListItem button dense disableGutters className="category-title" onClick={this.toggleCategory(id)}>
           <ListItemAvatar className="category-toggle">
             {open ? <KeyboardArrowDownIcon /> : <KeyboardArrowRightIcon />}
@@ -150,7 +186,7 @@ class RecipeList extends Component {
             {category.recipes.length > 0 &&
             <List disablePadding>
               {category.recipes.map(recipe => (
-                <ListItem button dense={!mobile} onClick={handleClick(recipe.id)} key={recipe.id}>
+                <ListItem button dense={!mobile} onClick={handleClick(recipe.id)} key={`rlist-${recipe.id}`}>
                   <ListItemAvatar className={mobile ? 'extended' : ''}>
                     <Item id={recipe.item} grade={recipe.grade} inline={!mobile} count={recipe.quantity} />
                   </ListItemAvatar>
@@ -165,9 +201,9 @@ class RecipeList extends Component {
   };
 
   render() {
-    const { recipeList, loading } = this.state;
+    const { recipeList, loaded } = this.state;
 
-    if (loading) {
+    if (loaded !== this.getRecipeKey()) {
       const skeletons = [];
       for (let i = 0; i < 10; i++) {
         skeletons.push(<Skeleton variant="text" key={`skele-${i}`} />);
@@ -188,13 +224,18 @@ class RecipeList extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { categories }, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { categories, recipes, vocationRecipes }, display: { mobile } }) => ({
   categories,
+  recipes,
+  vocationRecipes,
   mobile,
 });
 
 const mapDispatchToProps = {
   searchRecipes,
+  fetchRecipeByMaterial,
+  fetchRecipeByProduct,
+  fetchRecipeByVocation,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeList);
