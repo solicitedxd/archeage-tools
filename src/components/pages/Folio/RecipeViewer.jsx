@@ -50,6 +50,7 @@ class RecipeViewer extends Component {
   static propTypes = {
     recipeId: number,
     handleClose: func,
+    onSizeChange: func,
   };
 
   static defaultProps = {
@@ -65,11 +66,28 @@ class RecipeViewer extends Component {
 
   loadedItems = [];
 
+  constructor(props) {
+    super(props);
+    this.recipeRef = React.createRef();
+  }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.recipeId !== nextProps.recipeId) {
       fetchRecipe(nextProps.recipeId);
       // reset crafting breakdown
       this.setState({ materials: {}, quantity: 1, sale: false });
+    }
+  }
+
+  componentDidUpdate() {
+    const { onSizeChange } = this.props;
+    const ref = this.recipeRef.current;
+
+    if (onSizeChange) {
+      setTimeout(() => {
+        const { height } = ref.getBoundingClientRect();
+        onSizeChange(height);
+      }, 250);
     }
   }
 
@@ -172,7 +190,7 @@ class RecipeViewer extends Component {
     });
 
     return (
-      <>
+      <div ref={this.recipeRef}>
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="h6" className="title-text">
@@ -377,7 +395,7 @@ class RecipeViewer extends Component {
             {materialList.length}
           </div>
         </DialogContent>
-      </>
+      </div>
     );
   }
 }

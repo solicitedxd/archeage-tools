@@ -26,6 +26,10 @@ import * as VocationIcon from '../../../images/vocation/';
 import FolioHeader from './FolioHeader';
 
 class Folio extends Component {
+  state = {
+    viewerHeight: 0,
+  };
+
   componentDidMount() {
     this.props.fetchCategories();
   }
@@ -54,8 +58,13 @@ class Folio extends Component {
     }
   };
 
+  handleSizeChange = (viewerHeight) => {
+    this.setState({ viewerHeight });
+  };
+
   render() {
     const { vocation, vocations, recipeId, categories, mobile, materialQuery, productQuery, items } = this.getProps();
+    const { viewerHeight } = this.state;
 
     const vocationName = vocation ? vocations.find(v => v.toLowerCase() === vocation.toLowerCase()) : null;
 
@@ -96,10 +105,11 @@ class Folio extends Component {
                 materialQuery={materialQuery}
                 productQuery={productQuery}
                 handleClick={this.setRecipe}
+                maxHeight={!mobile ? viewerHeight : 0}
               />}
               {!mobile &&
               <div className="recipe-viewer recipe-viewer-inline">
-                <RecipeViewer recipeId={recipeId} />
+                <RecipeViewer recipeId={recipeId} onSizeChange={this.handleSizeChange} />
               </div>}
               {mobile &&
               <Dialog

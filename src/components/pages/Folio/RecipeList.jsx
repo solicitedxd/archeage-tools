@@ -33,6 +33,7 @@ class RecipeList extends Component {
     materialQuery: oneOfType([string, number]),
     vocation: string,
     handleClick: func,
+    maxHeight: number,
   };
 
   static defaultProps = {};
@@ -201,6 +202,7 @@ class RecipeList extends Component {
   };
 
   render() {
+    const { maxHeight } = this.props;
     const { recipeList, loaded } = this.state;
 
     if (loaded !== this.getRecipeKey()) {
@@ -217,7 +219,7 @@ class RecipeList extends Component {
     }
 
     return (
-      <Typography component="div" className="recipe-list">
+      <Typography component="div" className="recipe-list" style={{ maxHeight: maxHeight > 0 ? maxHeight : null }}>
         {recipeList.map(cat => this.renderRecipeCategory(cat))}
       </Typography>
     );
