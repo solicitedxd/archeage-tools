@@ -67,6 +67,7 @@ class RecipeViewer extends Component {
 
   state = {
     showBreakdown: true,
+    auctionCut: 1,
   };
 
   constructor(props) {
@@ -154,13 +155,18 @@ class RecipeViewer extends Component {
     this.setState({ showBreakdown: !showBreakdown });
   };
 
+  setAuctionCut = (e, checked) => {
+    const auctionCut = e.target.value;
+    this.setState({ auctionCut: checked ? auctionCut : 1 });
+  };
+
   render() {
     const { items, recipes, proficiencies, itemPrice, categories } = this.props;
     const { handleClose, calculateLabor, openDialog } = this.props;
     const { mobile, recipeId } = this.props;
     const { materials, quantity, inventory } = this.props;
 
-    const { showBreakdown } = this.state;
+    const { showBreakdown, auctionCut } = this.state;
 
     const recipe = recipes[recipeId] || {};
 
@@ -213,6 +219,14 @@ class RecipeViewer extends Component {
       rankCategory = categories[rankCategory.parent];
       rankCategoryName = `${rankCategory.name} Mass Production`;
     }
+
+    const totalGold = (craftGold || 0) + (objectHasProperties(materialList)
+      ? Object.entries(materialList)
+      .map(([itemId, quantity]) =>
+        Math.max(quantity - (inventory[itemId] || 0), 0) * (itemPrice[itemId] || 0) * 10000)
+      .reduce((a, b) => a + b)
+      : 0);
+    const salePrice = (quantity * recipe.quantity * (itemPrice[recipe.item] || 0) * 10000) * Number.parseFloat(auctionCut);
 
     return (
       <div ref={this.recipeRef}>
@@ -449,15 +463,7 @@ class RecipeViewer extends Component {
                   <TableCell colSpan={4} />
                   <TableCell align="right">Total Gold:</TableCell>
                   <TableCell align="right" nowrap="true">
-                    <Currency
-                      type={CURRENCY.COIN}
-                      count={(craftGold || 0) + (objectHasProperties(materialList)
-                        ? Object.entries(materialList)
-                        .map(([itemId, quantity]) =>
-                          Math.max(quantity - (inventory[itemId] || 0), 0) * (itemPrice[itemId] || 0) * 10000)
-                        .reduce((a, b) => a + b)
-                        : 0)}
-                    />
+                    <Currency type={CURRENCY.COIN} count={totalGold} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -467,8 +473,77 @@ class RecipeViewer extends Component {
                 </TableRow>
               </TableBody>
             </Table>
-            {materialList.length}
           </div>
+          {recipe.item && items[recipe.item] && !items[recipe.item].bindsOnPickup &&
+          <>
+            <Divider />
+            <div className="material-breakdown">
+              <div className="material-header">
+                <Typography variant="h6">Crafting Profits</Typography>
+              </div>
+              <Table size={mobile ? 'medium' : 'small'}>
+                <TableHead>
+                  <TableRow>
+                    <TableCell width={20} />
+                    <TableCell align="right">Gold per unit</TableCell>
+                    <TableCell align="right">AH Cut</TableCell>
+                    <TableCell />
+                    <TableCell />
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TableCell width={20}>
+                      <ItemLink id={recipe.item} grade={recipe.grade} noLink name="" />
+                    </TableCell>
+                    <TableCell align="right">
+                      <ItemPrice itemId={recipe.item} unitSize={1} />
+                    </TableCell>
+                    <TableCell align="right">
+                      <Tooltip title={<Typography variant="subtitle1">10% Auction Cut</Typography>}>
+                        <Checkbox
+                          checked={auctionCut === '0.9'}
+                          onChange={this.setAuctionCut}
+                          value="0.9"
+                          color="primary"
+                        />
+                      </Tooltip>
+                      <Tooltip title={<Typography variant="subtitle1">5% Auction Cut</Typography>}>
+                        <Checkbox
+                          checked={auctionCut === '0.95'}
+                          onChange={this.setAuctionCut}
+                          value="0.95"
+                          color="primary"
+                        />
+                      </Tooltip>
+                    </TableCell>
+                    <TableCell align="right">Sale Price</TableCell>
+                    <TableCell align="right">
+                      <Currency
+                        type={CURRENCY.COIN}
+                        count={salePrice}
+                      />
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell colSpan={3} />
+                    <TableCell align="right">Profit:</TableCell>
+                    <TableCell align="right">
+                      <Currency type={CURRENCY.COIN} count={(salePrice - totalGold)} />
+                    </TableCell>
+                  </TableRow>
+                  {craftLabor > 0 &&
+                  <TableRow>
+                    <TableCell colSpan={3} />
+                    <TableCell align="right">Silver per Labor:</TableCell>
+                    <TableCell align="right">
+                      <Currency type={CURRENCY.COIN} count={(salePrice - totalGold) / craftLabor} />
+                    </TableCell>
+                  </TableRow>}
+                </TableBody>
+              </Table>
+            </div>
+          </>}
         </DialogContent>
       </div>
     );

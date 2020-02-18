@@ -1,11 +1,14 @@
 import {
-  Input,
   InputAdornment,
+  TextField,
 } from '@material-ui/core';
 import { setItemPrice } from 'actions/itemPrice';
 import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
-import { number } from 'react-proptypes';
+import {
+  number,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { maxDecimals } from 'utils/thunderstruck';
 
@@ -13,11 +16,13 @@ class ItemPrice extends Component {
   static propTypes = {
     itemId: number.isRequired,
     unitSize: number,
+    label: string,
   };
 
   static defaultProps = {
     unitSize: 1,
     inputStyle: {},
+    label: null,
   };
 
   state = {
@@ -63,11 +68,12 @@ class ItemPrice extends Component {
   };
 
   render() {
-    const { itemId, inputStyle } = this.props;
+    const { itemId, inputStyle, label } = this.props;
     const { price } = this.state;
 
     return (
-      <Input
+      <TextField
+        label={label}
         id={`item-price-${itemId}`}
         value={price}
         onChange={this.handleChange}
@@ -81,7 +87,9 @@ class ItemPrice extends Component {
           max: 10000,
           step: 0.0001,
         }}
-        endAdornment={<InputAdornment position="end">g</InputAdornment>}
+        InputProps={{
+          endAdornment: <InputAdornment position="end">g</InputAdornment>,
+        }}
       />
     );
   }
