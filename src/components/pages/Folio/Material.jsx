@@ -62,97 +62,127 @@ class Material extends Component {
     onUpdate({ ...materials, sale });
   };
 
+  handleUpdateCollapse = (collapsed) => () => {
+    const { materials, onUpdate } = this.props;
+    onUpdate({ ...materials, collapsed });
+  };
+
   render() {
-    const { item, grade, quantity, recipes, recipeId, materials, proficiencies, calculateLabor, depth } = this.props;
+    const { item, grade, quantity, recipes, recipeId, materials, proficiencies, itemPrice, calculateLabor, depth } = this.props;
+
+    const subRecipes = Object.values(recipes).filter(recipe => recipe.id !== recipeId && recipe.item === item);
+    const selectedRecipe = subRecipes.find(r => materials.value === String(r.id));
 
     return (
       <Paper elevation={depth} className="material-item">
-        <ItemLink id={item} grade={grade} noLink name={String(quantity)} />
-        <div className="material-choice">
-          <div className="material-option">
-            <FormControlLabel
-              control={
-                <Radio
-                  checked={materials.value === 'gold'}
-                  onChange={this.handleSelectOption}
-                  value="gold"
-                />
-              }
-              label={<ItemPrice itemId={item} unitSize={quantity} />}
-            />
-          </div>
-          {Object.values(recipes).filter(recipe => recipe.id !== recipeId && recipe.item === item).map(recipe => (
-            <div key={`opt-${item}-${recipe.id}`} className="material-option">
-              <Tooltip
-                title={
-                  <div className="recipe-tooltip">
-                    <div>Workbench: {recipe.workbench}</div>
-                    <div>Proficiency: {recipe.vocation} {recipe.requiredProficiency > 0 ? recipe.requiredProficiency
-                      : ''}</div>
-                    <div>Labor: {calculateLabor(recipe.labor, recipe.vocation)}</div>
-                    <div>Cost: <Currency type={CURRENCY.COIN} count={recipe.gold} inline /></div>
-                  </div>
-                }
-                placement="bottom-start"
-              >
+        <div className="material-left">
+          <ItemLink id={item} grade={grade} noLink name={String(quantity)} />
+          {(subRecipes.length > 0 || materials.collapsed) &&
+          <Tooltip title={materials.collapsed ? 'Expand' : 'Collapse'}>
+            <div className="material-collapse" onClick={this.handleUpdateCollapse(!Boolean(materials.collapsed))} />
+          </Tooltip>}
+        </div>
+        <div>
+          <Collapse in={materials.collapsed}>
+            <div className="collapsed-desc">
+              {selectedRecipe
+                ? <Typography>
+                  Recipe: {selectedRecipe.quantity > 1 ? `[${selectedRecipe.quantity}]` : ''} {selectedRecipe.name}
+                </Typography>
+                : <Typography>
+                  Purchase: <Currency type={CURRENCY.COIN} count={(itemPrice[item] || 0) * quantity * 10000} inline />
+                </Typography>}
+            </div>
+          </Collapse>
+          <Collapse in={!materials.collapsed} unmountOnExit>
+            <div className="material-choice">
+              <div className="material-option">
                 <FormControlLabel
                   control={
                     <Radio
-                      checked={materials.value === String(recipe.id)}
+                      checked={materials.value === 'gold'}
                       onChange={this.handleSelectOption}
-                      value={recipe.id}
+                      value="gold"
                     />
                   }
-                  label={
-                    <span
-                      className={(proficiencies[recipe.vocation] || 0) < recipe.requiredProficiency ? 'craft-locked'
-                        : ''}
-                    >
+                  label={<ItemPrice itemId={item} unitSize={quantity} />}
+                />
+              </div>
+              {subRecipes.map(recipe => (
+                <div key={`opt-${item}-${recipe.id}`} className="material-option">
+                  <Tooltip
+                    title={
+                      <div className="recipe-tooltip">
+                        <div>Workbench: {recipe.workbench}</div>
+                        <div>Proficiency: {recipe.vocation} {recipe.requiredProficiency > 0 ? recipe.requiredProficiency
+                          : ''}</div>
+                        <div>Labor: {calculateLabor(recipe.labor, recipe.vocation)}</div>
+                        <div>Cost: <Currency type={CURRENCY.COIN} count={recipe.gold} inline /></div>
+                      </div>
+                    }
+                    placement="bottom-start"
+                  >
+                    <FormControlLabel
+                      control={
+                        <Radio
+                          checked={materials.value === String(recipe.id)}
+                          onChange={this.handleSelectOption}
+                          value={recipe.id}
+                        />
+                      }
+                      label={
+                        <span
+                          className={(proficiencies[recipe.vocation] || 0) < recipe.requiredProficiency ? 'craft-locked'
+                            : ''}
+                        >
                       {recipe.quantity > 1 ? `[${recipe.quantity}]` : ''} {recipe.name}
                     </span>
-                  }
-                />
-              </Tooltip>
-              {materials.value === String(recipe.id) &&
-              <Tooltip
-                title={
-                  <div>
-                    <Typography variant="subtitle1">Sale:</Typography>
-                    <div>Toggle the 10% gold cost bonus from workstation ownership.</div>
-                  </div>
-                }
-              >
-                <Checkbox
-                  checked={materials.sale || false}
-                  onChange={this.handleUpdateSale}
-                  value="sale"
-                  color="primary"
-                />
-              </Tooltip>}
-              <Collapse in={materials.value === String(recipe.id)} unmountOnExit>
-                {recipe.materials && recipe.materials.map(mat => (
-                  <ConnectedMaterial
-                    key={`mat-${item}-${recipe.id}-${mat.item}`}
-                    recipeId={recipeId}
-                    {...mat}
-                    quantity={Math.ceil(quantity / recipe.quantity) * mat.quantity}
-                    materials={materials[mat.item]}
-                    recipes={recipes}
-                    onUpdate={this.handleUpdateMaterial(mat.item)}
-                    depth={depth + 1}
-                  />
-                ))}
-              </Collapse>
+                      }
+                    />
+                  </Tooltip>
+                  {materials.value === String(recipe.id) &&
+                  <Tooltip
+                    title={
+                      <div>
+                        <Typography variant="subtitle1">Sale:</Typography>
+                        <div>Toggle the 10% gold cost bonus from workstation ownership.</div>
+                      </div>
+                    }
+                  >
+                    <Checkbox
+                      checked={materials.sale || false}
+                      onChange={this.handleUpdateSale}
+                      value="sale"
+                      color="primary"
+                    />
+                  </Tooltip>}
+                  <Collapse in={materials.value === String(recipe.id)} unmountOnExit>
+                    {recipe.materials && recipe.materials.map(mat => (
+                      <ConnectedMaterial
+                        key={`mat-${item}-${recipe.id}-${mat.item}`}
+                        recipeId={recipeId}
+                        {...mat}
+                        quantity={Math.ceil(quantity / recipe.quantity) * mat.quantity}
+                        materials={materials[mat.item]}
+                        recipes={recipes}
+                        onUpdate={this.handleUpdateMaterial(mat.item)}
+                        depth={depth + 1}
+                      />
+                    ))}
+                  </Collapse>
+                </div>
+              ))}
             </div>
-          ))}
+          </Collapse>
         </div>
       </Paper>
     );
   }
 }
 
-const mapStateToProps = ({ proficiencies }) => ({
+const mapStateToProps = ({ proficiencies, itemPrice }) => ({
   proficiencies,
+  itemPrice,
 });
 
 const mapDispatchToProps = {

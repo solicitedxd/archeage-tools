@@ -267,6 +267,29 @@
       padding: 4px;
       margin: 0 0 6px;
 
+      .material-left {
+        display: flex;
+        flex-direction: column;
+
+        .material-collapse {
+          cursor: pointer;
+          flex: 1;
+          width: 10px;
+          min-height: 12px;
+          margin: 4px 5px;
+          background: #162339;
+          opacity: 0.15;
+
+          &:hover {
+            opacity: 0.3;
+          }
+        }
+      }
+
+      .collapsed-desc {
+        margin-left: 12px;
+      }
+
       & > .MuiTypography-body1 {
         white-space: nowrap;
       }
@@ -302,6 +325,14 @@
       .material-header {
         .MuiInputLabel-root {
           color: #A7C2E7;
+        }
+      }
+
+      .material-item {
+        .material-left {
+          .material-collapse {
+            background: #EAE5D0;
+          }
         }
       }
     }
