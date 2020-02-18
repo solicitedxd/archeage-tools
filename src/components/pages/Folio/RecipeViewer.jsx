@@ -7,6 +7,8 @@ import {
   IconButton,
   Input,
   InputLabel,
+  Radio,
+  RadioGroup,
   Table,
   TableBody,
   TableCell,
@@ -23,7 +25,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import { openDialog } from 'actions/display';
 import {
   fetchRecipe,
-  fetchRecipeByProduct,
+  fetchRecipeByCategory,
 } from 'actions/gameData';
 import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
@@ -42,7 +44,7 @@ import {
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { arrayToMap } from 'utils/array';
+import { sortBy } from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import { setTitle } from 'utils/string';
 
@@ -64,8 +66,6 @@ class RecipeViewer extends Component {
     showBreakdown: true,
   };
 
-  loadedItems = [];
-
   constructor(props) {
     super(props);
     this.recipeRef = React.createRef();
@@ -76,6 +76,10 @@ class RecipeViewer extends Component {
       fetchRecipe(nextProps.recipeId);
       // reset crafting breakdown
       this.setState({ materials: {}, quantity: 1, sale: false });
+    }
+    if (this.props.recipes[nextProps.recipeId] !== nextProps.recipes[nextProps.recipeId]) {
+      const recipe = nextProps.recipes[nextProps.recipeId];
+      nextProps.fetchRecipeByCategory(recipe.category);
     }
   }
 
@@ -98,32 +102,21 @@ class RecipeViewer extends Component {
     }
   }
 
+  goToRecipe = (recipeId) => {
+    const { search, pathname } = document.location;
+    const path = pathname.split('/');
+    path[3] = recipeId;
+    push(path.join('/') + search);
+  };
+
   handleClickMaterial = (itemId) => {
-    const { recipes } = this.state;
+    const { recipes } = this.props;
     if (itemId === null) return;
 
     const recipe = Object.values(recipes).find(recipe => recipe.item === itemId);
     if (recipe) {
-      const { search, pathname } = document.location;
-      const path = pathname.split('/');
-      path[3] = recipe.id;
-      push(path.join('/') + search);
+      this.goToRecipe(recipe.id);
     }
-  };
-
-  loadRecipes = (itemId) => {
-    if (this.loadedItems.includes(itemId)) return;
-    this.loadedItems.push(itemId);
-
-    fetchRecipeByProduct(itemId)
-    .then(data => {
-      const { recipes } = this.state;
-      this.setState({ recipes: { ...recipes, ...arrayToMap(data) } }, () => {
-        Object.values(data).forEach(recipe => recipe.materials.forEach(mat => this.loadRecipes(mat.item)));
-      });
-    })
-    .catch(() => {
-    });
   };
 
   handleUpdateMaterial = (itemId) => (materials) => {
@@ -147,7 +140,7 @@ class RecipeViewer extends Component {
   };
 
   render() {
-    const { items, recipes, proficiencies, itemPrice } = this.props;
+    const { items, recipes, proficiencies, itemPrice, categories } = this.props;
     const { handleClose, calculateLabor, openDialog } = this.props;
     const { mobile, recipeId } = this.props;
 
@@ -158,7 +151,7 @@ class RecipeViewer extends Component {
     recipe.name && setTitle(`${recipe.name} - Folio`);
 
     const materialList = {};
-    let craftGold = (recipe.gold * (materials.sale ? 0.9 : 1)) * quantity;
+    let craftGold = Math.round(recipe.gold * (materials.sale ? 0.9 : 1)) * quantity;
     let craftLabor = calculateLabor(recipe.labor, recipe.vocation) * quantity;
     const addMaterial = (itemId, quantity) => {
       if (!materialList[itemId]) {
@@ -179,7 +172,7 @@ class RecipeViewer extends Component {
             ...mat,
             quantity: Math.ceil(quantity / recipe.quantity) * mat.quantity,
           }, options));
-          craftGold += recipe.gold * (options.sale ? 0.9 : 1) * Math.ceil(quantity / recipe.quantity);
+          craftGold += Math.round(recipe.gold * (options.sale ? 0.9 : 1)) * Math.ceil(quantity / recipe.quantity);
           craftLabor += calculateLabor(recipe.labor, recipe.vocation) * Math.ceil(quantity / recipe.quantity);
         }
       }
@@ -188,6 +181,22 @@ class RecipeViewer extends Component {
     recipe.materials && recipe.materials.forEach((mat) => {
       calculateMatStep({ ...mat, quantity: mat.quantity * quantity }, materials);
     });
+
+    let rankCategory = recipe.rank && objectHasProperties(categories) ? categories[recipe.category] : {};
+    let rankCategoryName = rankCategory.name || '';
+    let rankRecipes = recipe.rank
+      ? Object.values(recipes).filter(r => r.category === recipe.category && r.rank > 0).sort(sortBy('rank'))
+      : [];
+    if (rankRecipes.filter(r => r.rank === 1).length > 1) {
+      rankRecipes = rankRecipes.filter(r => r.workbench === recipe.workbench);
+    }
+    if (rankCategoryName === 'Single Production') {
+      rankCategory = categories[rankCategory.parent];
+      rankCategoryName = `${rankCategory.name} Production`;
+    } else if (rankCategoryName === 'Mass Production') {
+      rankCategory = categories[rankCategory.parent];
+      rankCategoryName = `${rankCategory.name} Mass Production`;
+    }
 
     return (
       <div ref={this.recipeRef}>
@@ -212,13 +221,40 @@ class RecipeViewer extends Component {
         </AppBar>
         <DialogContent className="body-container">
           <div className="craft-container">
+            <div className="craft-rank craft-section">
+              <Typography className="craft-header">Crafting Rank</Typography>
+              <Typography variant="subtitle2">{recipe.rank ? `${rankCategoryName} Rank ${recipe.rank}`
+                : 'This item has no rank.'}</Typography>
+              <RadioGroup row>
+                {rankRecipes.map(r => (
+                  <Tooltip title={`Rank ${r.rank}: ${r.name}`} key={`rank-${r.rank}-${r.id}`}>
+                    <Radio
+                      checked={r.rank === recipe.rank}
+                      color="secondary"
+                      onChange={(e, checked) => checked && this.goToRecipe(r.id)}
+                    />
+                  </Tooltip>
+                ))}
+                {rankRecipes.length === 0 &&
+                <>
+                  <Radio disabled />
+                  <Radio disabled />
+                  <Radio disabled />
+                  <Radio disabled />
+                  <Radio disabled />
+                </>}
+              </RadioGroup>
+            </div>
             <div className="craft-result craft-section">
-              <div className="craft-item">
-                {recipe.item && <Item id={recipe.item} count={recipe.quantity} grade={recipe.grade} />}
+              <Typography className="craft-header">Craftable Item</Typography>
+              <div className="item-block">
+                <div className="craft-item">
+                  {recipe.item && <Item id={recipe.item} count={recipe.quantity} grade={recipe.grade} />}
+                </div>
+                <Typography>
+                  {recipe.quantity > 1 ? `[${recipe.quantity}]` : ''} {pathOr('', [recipe.item, 'name'])(items)}
+                </Typography>
               </div>
-              <Typography>
-                {recipe.quantity > 1 ? `[${recipe.quantity}]` : ''} {pathOr('', [recipe.item, 'name'])(items)}
-              </Typography>
             </div>
             <div className="craft-requirements craft-section">
               <Typography className="craft-header">Requirements</Typography>
@@ -400,10 +436,11 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items, recipes }, proficiencies, itemPrice, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { items, recipes, categories }, proficiencies, itemPrice, display: { mobile } }) => ({
   items,
   proficiencies,
   recipes,
+  categories,
   itemPrice,
   mobile,
 });
@@ -411,6 +448,7 @@ const mapStateToProps = ({ gameData: { items, recipes }, proficiencies, itemPric
 const mapDispatchToProps = {
   calculateLabor,
   openDialog,
+  fetchRecipeByCategory,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeViewer);

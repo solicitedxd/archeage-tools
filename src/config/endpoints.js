@@ -14,6 +14,7 @@ export default {
     recipeByVocation: '/service/recipe/vocation/${vocation}',
     recipe: '/service/recipe?ids=${recipeIds}',
     recipeCategories: '/service/recipe/categories',
+    recipeByCategory: '/service/recipe/categories/${category}',
     vocations: '/service/vocations',
     searchByProduct: '/service/search/product',
     searchByMaterial: '/service/search/material',

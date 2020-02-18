@@ -25,6 +25,7 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { sortBy } from 'utils/array';
 import { isNumber } from 'utils/number';
 
 class RecipeList extends Component {
@@ -156,6 +157,7 @@ class RecipeList extends Component {
     recipes.forEach(recipe => {
       const category = getCategory(recipe.category);
       category.recipes.push(recipe);
+      category.recipes = category.recipes.sort(sortBy('rank'));
     });
 
     this.setState({ recipeList, loaded: this.getRecipeKey() });

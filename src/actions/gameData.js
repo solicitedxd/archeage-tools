@@ -146,13 +146,28 @@ export const fetchRecipeByProduct = (itemId) => (dispatch, getState) => {
   });
 };
 
-export const fetchRecipeByMaterial = (itemId) => (dispatch) => {
+export const fetchRecipeByMaterial = (itemId) => (dispatch, getState) => {
   const key = `material-${itemId}`;
   if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
     return;
   }
 
   xhr.get(substitute(config.endpoints.service.recipeByMaterial, { itemId }))
+  .then(({ data }) => {
+    dispatch({ type: DATA_VOCATION_RECIPE, vocation: key, recipes: data });
+    dispatch(fetchRecipes(data));
+  })
+  .catch(() => {
+  });
+};
+
+export const fetchRecipeByCategory = (category) => (dispatch, getState) => {
+  const key = `category-${category}`;
+  if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
+    return;
+  }
+
+  xhr.get(substitute(config.endpoints.service.recipeByCategory, { category }))
   .then(({ data }) => {
     dispatch({ type: DATA_VOCATION_RECIPE, vocation: key, recipes: data });
     dispatch(fetchRecipes(data));

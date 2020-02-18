@@ -153,12 +153,15 @@
   }
 
   .craft-result {
-    display: flex;
-    align-items: center;
 
-    p {
-      margin: 0 0 0 8px;
-      color: #BB986E;
+    .item-block {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0 0 0 8px;
+        color: #BB986E;
+      }
     }
   }
 
