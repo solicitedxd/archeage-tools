@@ -79,7 +79,9 @@ class RecipeViewer extends Component {
     }
     if (this.props.recipes[nextProps.recipeId] !== nextProps.recipes[nextProps.recipeId]) {
       const recipe = nextProps.recipes[nextProps.recipeId];
-      nextProps.fetchRecipeByCategory(recipe.category);
+      if (recipe.category) {
+        nextProps.fetchRecipeByCategory(recipe.category);
+      }
     }
   }
 

@@ -67,7 +67,9 @@ class FolioHeader extends Component {
   handleSearch = (e, item) => {
     const { searchType } = this.state;
 
-    push(`/folio/search?${searchType}=${item.id || item}`);
+    if (item) {
+      push(`/folio/search?${searchType}=${item.id || item}`);
+    }
   };
 
   render() {
@@ -86,7 +88,7 @@ class FolioHeader extends Component {
             onChange={this.handleSearch}
             loading={loading}
             options={options}
-            getOptionLabel={option => option.name}
+            getOptionLabel={option => option.name || option}
             filterOptions={(options) => options}
             classes={{
               noOptions: 'folio-no-option',
