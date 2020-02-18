@@ -3,6 +3,7 @@ import { combineReducers } from 'redux';
 import calendar from './calendar';
 import dailies from './dailies';
 import display from './display';
+import folio from './folio';
 import gameData from './gameData';
 import itemPrice from './itemPrice';
 import mounts from './mounts';
@@ -16,6 +17,7 @@ const rootReducer = (history) => combineReducers({
   dailies,
   display,
   calendar,
+  folio,
   gameData,
   itemPrice,
   mounts,
@@ -31,6 +33,7 @@ export const getLocalData = {
   dailies: ({ dailies }) => dailies,
   calendar: ({ calendar }) => calendar,
   display: ({ display }) => display,
+  folio: ({ folio }) => folio,
   itemPrice: ({ itemPrice }) => itemPrice,
   mounts: ({ mounts }) => mounts,
   proficiencies: ({ proficiencies }) => proficiencies,

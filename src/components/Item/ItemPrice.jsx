@@ -7,7 +7,6 @@ import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import { number } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { isNumber } from 'utils/number';
 import { maxDecimals } from 'utils/thunderstruck';
 
 class ItemPrice extends Component {
@@ -49,7 +48,7 @@ class ItemPrice extends Component {
     const price = String(e.target.value).replace(/[^\d\\.]+/g, '');
 
     this.setState({ price }, () => {
-      if (isNumber(price)) {
+      if (!Number.isNaN(price)) {
         this.setItemPrice(itemId, price, unitSize);
       }
     });
@@ -77,7 +76,7 @@ class ItemPrice extends Component {
         type="number"
         margin="dense"
         inputProps={{
-          style: { textAlign: 'right', width: 120, ...inputStyle },
+          style: { textAlign: 'right', width: 100, ...inputStyle },
           min: 0,
           max: 10000,
           step: 0.0001,

@@ -24,6 +24,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { openDialog } from 'actions/display';
 import {
+  updateFolioInventory,
+  updateFolioMaterials,
+  updateFolioQuantity,
+} from 'actions/folio';
+import {
   fetchRecipe,
   fetchRecipeByCategory,
 } from 'actions/gameData';
@@ -61,8 +66,6 @@ class RecipeViewer extends Component {
   };
 
   state = {
-    materials: {},
-    quantity: 1,
     showBreakdown: true,
   };
 
@@ -121,19 +124,29 @@ class RecipeViewer extends Component {
     }
   };
 
-  handleUpdateMaterial = (itemId) => (materials) => {
-    this.setState({ materials: { ...this.state.materials, [itemId]: materials } });
+  handleUpdateMaterial = (itemId) => (mats) => {
+    const { recipeId, updateFolioMaterials, materials } = this.props;
+    updateFolioMaterials(recipeId, { ...materials, [itemId]: mats });
   };
 
   handleUpdateSale = (e, sale) => {
-    this.setState({ materials: { ...this.state.materials, sale } });
+    const { recipeId, updateFolioMaterials, materials } = this.props;
+    updateFolioMaterials(recipeId, { ...materials, sale });
   };
 
   handleQuantity = (e) => {
+    const { recipeId, updateFolioQuantity } = this.props;
     let quantity = e.target.value;
     quantity = Math.max(quantity, 1);
     quantity = Math.min(quantity, 999);
-    this.setState({ quantity });
+    updateFolioQuantity(recipeId, quantity);
+  };
+
+  handleMaterialQuantity = (itemId) => (e) => {
+    const { recipeId, updateFolioInventory, inventory } = this.props;
+    let quantity = e.target.value;
+    quantity = Math.max(quantity, 0);
+    updateFolioInventory(recipeId, { ...inventory, [itemId]: quantity });
   };
 
   toggleBreakdown = () => {
@@ -145,8 +158,9 @@ class RecipeViewer extends Component {
     const { items, recipes, proficiencies, itemPrice, categories } = this.props;
     const { handleClose, calculateLabor, openDialog } = this.props;
     const { mobile, recipeId } = this.props;
+    const { materials, quantity, inventory } = this.props;
 
-    const { materials, quantity, showBreakdown } = this.state;
+    const { showBreakdown } = this.state;
 
     const recipe = recipes[recipeId] || {};
 
@@ -385,8 +399,10 @@ class RecipeViewer extends Component {
                 <TableRow>
                   <TableCell>Material</TableCell>
                   <TableCell align="right">Qty</TableCell>
+                  <TableCell align="right">Have</TableCell>
+                  <TableCell align="right">Need</TableCell>
                   <TableCell align="right">Gold per unit</TableCell>
-                  <TableCell align="right">Total Gold</TableCell>
+                  <TableCell align="right" nowrap="true">Total Gold</TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -399,32 +415,53 @@ class RecipeViewer extends Component {
                       {quantity}
                     </TableCell>
                     <TableCell align="right">
-                      <ItemPrice itemId={Number(itemId)} unitSize={1} />
+                      <Input
+                        value={Math.min(inventory[itemId] || 0, quantity)}
+                        onChange={this.handleMaterialQuantity(itemId)}
+                        type="number"
+                        min={0}
+                        max={quantity}
+                        inputProps={{
+                          style: { textAlign: 'right', width: 60 },
+                        }}
+                      />
                     </TableCell>
                     <TableCell align="right">
-                      <Currency type={CURRENCY.COIN} count={quantity * (itemPrice[itemId] || 0) * 10000} />
+                      {Math.max(quantity - (inventory[itemId] || 0), 0)}
+                    </TableCell>
+                    <TableCell align="right">
+                      <ItemPrice itemId={Number(itemId)} unitSize={1} />
+                    </TableCell>
+                    <TableCell align="right" nowrap="true">
+                      <Currency
+                        type={CURRENCY.COIN}
+                        count={Math.max(quantity - (inventory[itemId] || 0), 0) * (itemPrice[itemId] || 0) * 10000}
+                      />
                     </TableCell>
                   </TableRow>
                 ))}
                 <TableRow>
-                  <TableCell colSpan={2} />
+                  <TableCell colSpan={4} />
                   <TableCell align="right">Craft Gold:</TableCell>
-                  <TableCell align="right"><Currency type={CURRENCY.COIN} count={craftGold} /></TableCell>
+                  <TableCell align="right" nowrap="true"><Currency type={CURRENCY.COIN} count={craftGold} /></TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={2} />
+                  <TableCell colSpan={4} />
                   <TableCell align="right">Total Gold:</TableCell>
-                  <TableCell align="right">
+                  <TableCell align="right" nowrap="true">
                     <Currency
                       type={CURRENCY.COIN}
                       count={(craftGold || 0) + (objectHasProperties(materialList)
-                        ? Object.entries(materialList).map(([itemId, quantity]) => quantity * (itemPrice[itemId] || 0) * 10000).reduce((a, b) => a + b)
+                        ? Object.entries(materialList)
+                        .map(([itemId, quantity]) =>
+                          Math.max(quantity - (inventory[itemId] || 0), 0) * (itemPrice[itemId] || 0) * 10000)
+                        .reduce((a, b) => a + b)
                         : 0)}
                     />
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell colSpan={2} />
+                  <TableCell colSpan={4} />
                   <TableCell align="right">Total Labor:</TableCell>
                   <TableCell align="right">{craftLabor || 0}</TableCell>
                 </TableRow>
@@ -438,19 +475,23 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items, recipes, categories }, proficiencies, itemPrice, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { items, recipes, categories }, proficiencies, itemPrice, display: { mobile }, folio }, { recipeId }) => ({
   items,
   proficiencies,
   recipes,
   categories,
   itemPrice,
   mobile,
+  ...Object.assign({ materials: {}, quantity: 1, inventory: {} }, folio[recipeId]),
 });
 
 const mapDispatchToProps = {
   calculateLabor,
   openDialog,
   fetchRecipeByCategory,
+  updateFolioMaterials,
+  updateFolioInventory,
+  updateFolioQuantity,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RecipeViewer);
