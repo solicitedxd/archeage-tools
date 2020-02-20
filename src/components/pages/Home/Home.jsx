@@ -17,6 +17,66 @@ const Home = () => {
         {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
       </div>
       <NewsPost
+        title=""
+        date="Feb 19, 2020"
+      >
+        <p>I've been working on a big update, but in the meantime, here are a bunch of fixes (some have been stealthily
+          fixed over the past month):</p>
+        <ul>
+          <li>
+            Schedule:
+            <ul>
+              <li>Updated Leviathan NA timer.</li>
+              <li>Added DGS EU timer.</li>
+            </ul>
+          </li>
+          <li>
+            Trade Packs:
+            <ul>
+              <li>Fixed Karkasse Local Specialty missing materials.</li>
+              <li>Fixed White Arden's freshness type.</li>
+            </ul>
+          </li>
+          <li>
+            Dailies:
+            <ul>
+              <li>Added daily quests for all of the remodeled houses.</li>
+              <li>Clarified the Blue Salt Requests that originally stated "Farmhouse".</li>
+              <li>
+                Added the Blue Salt residential daily quests (the corresponding quests for Community Center Supplies and
+                the Trade Outlet quests).<br />
+                Missing the Community Center Supplies zones for Airain Rock, Marianople, Karkasse Ridgelands, and
+                Tigerspine Mountains. If you can provide which quest is supplied in any of these zones, please drop me a
+                message in Discord.
+              </li>
+              <li>
+                Rewards Filter:
+                <ul>
+                  <li>Replaced Family XP with Blue Salt Bonds.</li>
+                  <li>Fixed Kyrios Badges showing on the list.</li>
+                </ul>
+              </li>
+              <li>Quest Types: removed Bonds.</li>
+              <li>
+                Added "Reset Filters" option. Use this if you previously had the Family XP or Bonds filter on to get rid
+                of them.
+              </li>
+            </ul>
+          </li>
+          <li>
+            Mounts:
+            <ul>
+              <li>Fixed some links to mounts in descriptions.</li>
+              <li>Updated all Manastorm descriptions to indicate that they can only be obtained in Legacy.</li>
+              <li>Added a few missing mount pictures.</li>
+              <li>Added an image credit line to the mount description.</li>
+            </ul>
+          </li>
+          <li>Updated ArchePass guide.</li>
+          <li>Minor styling fixes.</li>
+        </ul>
+      </NewsPost>
+      <NewsPost
         title="Discord Event Notifications"
         date="Jan 4, 2020"
       >

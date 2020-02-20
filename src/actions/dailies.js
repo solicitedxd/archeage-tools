@@ -8,6 +8,7 @@ import {
   QUEST_HIDE_MODE,
   QUEST_HIDE_RESET,
   QUEST_RESET,
+  QUEST_RESET_FILTERS,
   QUEST_STATUS,
 } from 'constants/dailies';
 
@@ -61,4 +62,8 @@ export const setHideMode = (value) => (dispatch) => {
 
 export const resetHide = () => (dispatch) => {
   dispatch({ type: QUEST_HIDE_RESET });
+};
+
+export const resetFilters = () => (dispatch) => {
+  dispatch({ type: QUEST_RESET_FILTERS });
 };

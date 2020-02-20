@@ -10,10 +10,10 @@ export const QUEST_FILTER_COMPLETE = 'QUEST_FILTER_COMPLETE';
 export const QUEST_HIDE = 'QUEST_HIDE';
 export const QUEST_HIDE_MODE = 'QUEST_HIDE_MODE';
 export const QUEST_HIDE_RESET = 'QUEST_HIDE_RESET';
+export const QUEST_RESET_FILTERS = 'QUEST_RESET_FILTERS';
 
 export const DAILY_TYPE = Object.freeze({
   BLUE_SALT: 'Blue Salt',
-  SUPPLY_DEMAND: 'Bonds',
   HUNTING_REQUEST: 'Hunting Request',
   WORLD_BOSS: 'World Boss',
   DUNGEON: 'Dungeon',
@@ -33,7 +33,7 @@ export const DIFFICULTY = Object.freeze({
 
 export const CURRENCY_DISPLAY = Object.freeze([
   CURRENCY.COIN,
-  CURRENCY.FAMILY_XP,
+  CURRENCY.BLUE_SALT_BOND,
   CURRENCY.GILDA,
   CURRENCY.GUILD_XP,
   CURRENCY.HONOR,

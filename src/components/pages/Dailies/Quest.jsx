@@ -96,6 +96,9 @@ class Quest extends Component {
                 if (reward.type === CURRENCY.GILDA) {
                   reward.item = ITEM.GILDA_STAR;
                 }
+                if (reward.type === CURRENCY.BLUE_SALT_BOND) {
+                  reward.item = ITEM.BLUE_SALT_BOND;
+                }
                 return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
               })}
             </div>}
