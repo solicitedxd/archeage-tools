@@ -506,7 +506,7 @@ class RecipeViewer extends Component {
                     <TableCell align="right">
                       <Tooltip title={<Typography variant="subtitle1">10% Auction Cut</Typography>}>
                         <Checkbox
-                          checked={auctionCut === STANDARD_AH_CUT}
+                          checked={auctionCut === String(STANDARD_AH_CUT)}
                           onChange={this.setAuctionCut}
                           value={STANDARD_AH_CUT}
                           color="primary"
@@ -514,7 +514,7 @@ class RecipeViewer extends Component {
                       </Tooltip>
                       <Tooltip title={<Typography variant="subtitle1">5% Auction Cut</Typography>}>
                         <Checkbox
-                          checked={auctionCut === PATRON_AH_CUT}
+                          checked={auctionCut === String(PATRON_AH_CUT)}
                           onChange={this.setAuctionCut}
                           value={PATRON_AH_CUT}
                           color="primary"
