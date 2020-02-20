@@ -81,6 +81,11 @@ class Main extends React.PureComponent {
             backgroundColor: null,
           },
         },
+        MuiInputAdornment: {
+          positionEnd: {
+            marginLeft: 0,
+          },
+        },
       },
     });
 

@@ -41,6 +41,12 @@ import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import Material from 'components/pages/Folio/Material';
 import { DIALOG_PROFICIENCY } from 'constants/display';
+import {
+  CRAFT_GOLD_SALE,
+  MAX_CRAFT_QTY,
+  PATRON_AH_CUT,
+  STANDARD_AH_CUT,
+} from 'constants/folio';
 import { CURRENCY } from 'constants/items';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -139,7 +145,7 @@ class RecipeViewer extends Component {
     const { recipeId, updateFolioQuantity } = this.props;
     let quantity = e.target.value;
     quantity = Math.max(quantity, 1);
-    quantity = Math.min(quantity, 999);
+    quantity = Math.min(quantity, MAX_CRAFT_QTY);
     updateFolioQuantity(recipeId, quantity);
   };
 
@@ -173,7 +179,7 @@ class RecipeViewer extends Component {
     recipe.name && setTitle(`${recipe.name} - Folio`);
 
     const materialList = {};
-    let craftGold = Math.round(recipe.gold * (materials.sale ? 0.9 : 1)) * quantity;
+    let craftGold = Math.round(recipe.gold * (materials.sale ? CRAFT_GOLD_SALE : 1)) * quantity;
     let craftLabor = calculateLabor(recipe.labor, recipe.vocation) * quantity;
     const addMaterial = (itemId, quantity) => {
       if (!materialList[itemId]) {
@@ -187,6 +193,7 @@ class RecipeViewer extends Component {
       const value = pathOr('gold', ['value'])(options);
       if (value === 'gold') {
         addMaterial(itemId, quantity);
+        craftLabor += options.labor || 0;
       } else {
         const recipe = Object.values(recipes).find(r => String(r.id) === value);
         if (recipe) {
@@ -194,7 +201,8 @@ class RecipeViewer extends Component {
             ...mat,
             quantity: Math.ceil(quantity / recipe.quantity) * mat.quantity,
           }, options));
-          craftGold += Math.round(recipe.gold * (options.sale ? 0.9 : 1)) * Math.ceil(quantity / recipe.quantity);
+          craftGold += Math.round(recipe.gold * (options.sale ? CRAFT_GOLD_SALE : 1))
+            * Math.ceil(quantity / recipe.quantity);
           craftLabor += calculateLabor(recipe.labor, recipe.vocation) * Math.ceil(quantity / recipe.quantity);
         }
       }
@@ -345,7 +353,12 @@ class RecipeViewer extends Component {
                 <div className="icon" />
                 <Typography>10%</Typography>
               </div>}
-              <span className="craft-gold"><Currency type={CURRENCY.COIN} count={recipe.gold || 0} inline /></span>
+              <span className="craft-gold">
+                <Currency
+                  type={CURRENCY.COIN}
+                  count={(recipe.gold || 0) * (materials.sale ? CRAFT_GOLD_SALE : 1)}
+                  inline />
+              </span>
             </div>
           </div>
           <div style={{ clear: 'both' }} />
@@ -361,7 +374,7 @@ class RecipeViewer extends Component {
                   onChange={this.handleQuantity}
                   type="number"
                   min={1}
-                  max={999}
+                  max={MAX_CRAFT_QTY}
                   inputProps={{
                     style: { textAlign: 'right' },
                   }}
@@ -502,17 +515,17 @@ class RecipeViewer extends Component {
                     <TableCell align="right">
                       <Tooltip title={<Typography variant="subtitle1">10% Auction Cut</Typography>}>
                         <Checkbox
-                          checked={auctionCut === '0.9'}
+                          checked={auctionCut === STANDARD_AH_CUT}
                           onChange={this.setAuctionCut}
-                          value="0.9"
+                          value={STANDARD_AH_CUT}
                           color="primary"
                         />
                       </Tooltip>
                       <Tooltip title={<Typography variant="subtitle1">5% Auction Cut</Typography>}>
                         <Checkbox
-                          checked={auctionCut === '0.95'}
+                          checked={auctionCut === PATRON_AH_CUT}
                           onChange={this.setAuctionCut}
-                          value="0.95"
+                          value={PATRON_AH_CUT}
                           color="primary"
                         />
                       </Tooltip>

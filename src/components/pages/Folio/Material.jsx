@@ -12,6 +12,7 @@ import { calculateLabor } from 'actions/proficiencies';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
+import NumberField from 'components/NumberField';
 import { CURRENCY } from 'constants/items';
 import React, { Component } from 'react';
 import {
@@ -57,6 +58,11 @@ class Material extends Component {
     onUpdate({ ...materialsO, [itemId]: materials });
   };
 
+  handleUpdateLabor = (labor) => {
+    const { materials, onUpdate } = this.props;
+    onUpdate({ ...materials, labor });
+  };
+
   handleUpdateSale = (e, sale) => {
     const { materials, onUpdate } = this.props;
     onUpdate({ ...materials, sale });
@@ -90,7 +96,8 @@ class Material extends Component {
                   Recipe: {selectedRecipe.quantity > 1 ? `[${selectedRecipe.quantity}]` : ''} {selectedRecipe.name}
                 </Typography>
                 : <Typography>
-                  Purchase: <Currency type={CURRENCY.COIN} count={(itemPrice[item] || 0) * quantity * 10000} inline />
+                  Purchase: <Currency type={CURRENCY.COIN} count={(itemPrice[item] || 0) * quantity * 10000}
+                                      inline /> and {materials.labor || 0} labor
                 </Typography>}
             </div>
           </Collapse>
@@ -106,6 +113,15 @@ class Material extends Component {
                     />
                   }
                   label={<ItemPrice itemId={item} unitSize={quantity} />}
+                />
+                <NumberField
+                  id={`item-labor-${item}`}
+                  onChange={this.handleUpdateLabor}
+                  value={materials.labor || 0}
+                  inputStyle={{ width: 72 }}
+                  endAdornment="Labor"
+                  min={0}
+                  max={100000}
                 />
               </div>
               {subRecipes.map(recipe => (
