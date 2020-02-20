@@ -1,22 +1,21 @@
 import { CURRENCY } from 'constants/items';
 import { FACTION } from 'constants/map';
-import ITEM from 'data/items';
 
 export const sortReward = (a, b) => a.type > b.type ? 1 : -1;
 
 export const sortItems = (a, b) => {
-  if (a.type === CURRENCY.GILDA && !a.item) {
-    a.item = ITEM.GILDA_STAR;
-  }
-  if (b.type === CURRENCY.GILDA && !b.item) {
-    b.item = ITEM.GILDA_STAR;
-  }
-  return a.item.name > b.item.name ? 1 : -1;
+  const nameA = a.item ? a.item.name : a.type;
+  const nameB = b.item ? b.item.name : b.type;
+
+  if (nameA === nameB) return 0;
+  return nameA > nameB ? 1 : -1;
 };
 
+const isItem = ({ type }) => (type === CURRENCY.ITEM || type === CURRENCY.GILDA || type === CURRENCY.BLUE_SALT_BOND);
+
 export const splitRewards = (rewards) => {
-  const rewardItems = rewards.filter((reward) => (reward.type === CURRENCY.ITEM || reward.type === CURRENCY.GILDA) && !reward.choice).sort(sortReward);
-  const rewardItemChoices = rewards.filter((reward) => (reward.type === CURRENCY.ITEM || reward.type === CURRENCY.GILDA) && reward.choice).sort(sortReward);
+  const rewardItems = rewards.filter((reward) => isItem(reward) && !reward.choice).sort(sortReward);
+  const rewardItemChoices = rewards.filter((reward) => isItem(reward) && reward.choice).sort(sortReward);
   const rewardXps = rewards.filter((reward) => reward.type === CURRENCY.GUILD_XP || reward.type === CURRENCY.FAMILY_XP).sort(sortReward);
   const rewardCurrencies = rewards.filter((reward) => reward.type === CURRENCY.COIN || reward.type === CURRENCY.HONOR || reward.type === CURRENCY.VOCATION || reward.type === CURRENCY.PRESTIGE || reward.type === CURRENCY.LEADERSHIP).sort(sortReward);
 
@@ -40,4 +39,8 @@ export const getZones = (zoneObj, faction) => {
   }
 
   return zones;
+};
+
+export const getKey = ({ name, id }) => {
+  return id || name;
 };

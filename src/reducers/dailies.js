@@ -8,6 +8,7 @@ import {
   QUEST_HIDE_MODE,
   QUEST_HIDE_RESET,
   QUEST_RESET,
+  QUEST_RESET_FILTERS,
   QUEST_STATUS,
 } from 'constants/dailies';
 import initialState from 'initialStates/dailies';
@@ -70,6 +71,13 @@ const dailies = (state = getItem('dailies', initialState), action) => {
       return {
         ...state,
         hiddenQuests: {},
+      };
+    case QUEST_RESET_FILTERS:
+      return {
+        ...state,
+        continents: [],
+        rewards: [],
+        types: [],
       };
     default:
       return state;

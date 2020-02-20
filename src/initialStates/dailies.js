@@ -9,7 +9,6 @@ export default {
   hideComplete: false,
   hideMode: false,
   hiddenQuests: {},
-  version: 1,
 };
 
 export const override = ({

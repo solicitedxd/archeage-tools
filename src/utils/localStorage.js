@@ -14,11 +14,6 @@ export const getItem = (key, initialState) => {
   if (value) {
     const item = JSON.parse(value);
 
-    if (initialState.version && item.version !== initialState.version) {
-      setItem(key, initialState);
-      return initialState;
-    }
-
     if (overrides[key]) {
       return Object.assign(item, overrides[key]);
     }

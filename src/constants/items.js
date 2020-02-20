@@ -7,6 +7,7 @@ export const CURRENCY = Object.freeze({
   LEADERSHIP: 'Leadership',
   GUILD_XP: 'Guild XP',
   FAMILY_XP: 'Family XP',
+  BLUE_SALT_BOND: 'Blue Salt Bond',
   ITEM: 'Items',
   CREDIT: 'Credits',
   DILIGENCE: 'Diligence Coins',

@@ -13,6 +13,7 @@ import ReplayIcon from '@material-ui/icons/Replay';
 import SettingsIcon from '@material-ui/icons/Settings';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import {
+  resetFilters,
   resetHide,
   resetQuests,
 } from 'actions/dailies';
@@ -25,7 +26,10 @@ import dailyQuests from 'data/dailies';
 import ITEM from 'data/items';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getZones } from 'utils/dailies';
+import {
+  getKey,
+  getZones,
+} from 'utils/dailies';
 import { setTitle } from 'utils/string';
 import Filters from './Filters';
 import Quest from './Quest';
@@ -56,6 +60,10 @@ class Dailies extends Component {
     }
   };
 
+  handleResetFilters = () => {
+    this.props.resetFilters();
+  };
+
   render() {
     const { continents, faction, rewards, types, hideComplete, quests, hideMode, hiddenQuests } = this.props;
     const { filtersOpen } = this.state;
@@ -69,8 +77,8 @@ class Dailies extends Component {
     const claimedRewards = [];
 
     const visibleQuests = dailyQuests.filter(quest => {
-      const completed = quests[quest.name] || false;
-      const hidden = hiddenQuests && hiddenQuests[quest.name] || false;
+      const completed = quests[getKey(quest)] || false;
+      const hidden = hiddenQuests && hiddenQuests[getKey(quest)] || false;
       let visible = true;
 
       if (!hideMode && hidden) {
@@ -125,14 +133,15 @@ class Dailies extends Component {
           if (reward.type === CURRENCY.GILDA) {
             newGroup.item = ITEM.GILDA_STAR;
           }
+          if (reward.type === CURRENCY.BLUE_SALT_BOND) {
+            newGroup.item = ITEM.BLUE_SALT_BOND;
+          }
           rewardArray.push(newGroup);
         }
       });
 
       return visible;
     });
-
-    const footnote = 'Note: This comprehensive list does not include most quests that aren\'t completable every day, such as some world boss quests.';
 
     setTitle('Daily Checklist');
 
@@ -160,7 +169,7 @@ class Dailies extends Component {
           {visibleQuests
           .sort((a, b) => ((a.sort || a.name) > (b.sort || b.name)) ? 1 : -1)
           .map((quest) => (
-            <Quest key={quest.name} {...quest} />
+            <Quest key={getKey(quest)} {...quest} />
           ))}
         </Paper>
         {!this.showSettingsMenu() &&
@@ -169,16 +178,25 @@ class Dailies extends Component {
             <AppBar position="static">
               <Toolbar variant="dense">
                 <Typography variant="subtitle1" className="title-text">Filters</Typography>
+                <Tooltip title="Reset all filters.">
+                  <IconButton color="inherit" aria-label="Reset" onClick={this.handleResetFilters}>
+                    <ReplayIcon />
+                  </IconButton>
+                </Tooltip>
               </Toolbar>
             </AppBar>
             <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
           </Paper>
-          <Typography variant="overline" className="footnote">{footnote}</Typography>
         </div>}
         <Dialog open={this.showSettingsMenu() && filtersOpen} onClose={this.handleClose}>
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography variant="subtitle1" className="title-text">Filters</Typography>
+              <Tooltip title="Reset all filters.">
+                <IconButton color="inherit" aria-label="Reset" onClick={this.handleResetFilters}>
+                  <ReplayIcon />
+                </IconButton>
+              </Tooltip>
               <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
                 <CloseIcon />
               </IconButton>
@@ -186,7 +204,6 @@ class Dailies extends Component {
           </AppBar>
           <DialogContent className="quest-filters">
             <Filters availableRewards={availableRewards} claimedRewards={claimedRewards} />
-            <Typography variant="overline" className="footnote-dialog">{footnote}</Typography>
           </DialogContent>
         </Dialog>
         <ScrollToTop />
@@ -210,6 +227,7 @@ const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideC
 const mapDispatchToProps = {
   resetQuests,
   resetHide,
+  resetFilters,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Dailies);

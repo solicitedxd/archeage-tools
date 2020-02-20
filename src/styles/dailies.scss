@@ -132,22 +132,6 @@
     display: flex;
     flex-wrap: wrap;
   }
-
-  .footnote {
-    margin: 12px;
-    color: #FFFFFF;
-    text-shadow: -1px -1px 0 #000000,
-    1px -1px 0 #000000,
-    -1px 1px 0 #000000,
-    1px 1px 0 #000000;
-    display: block;
-    text-align: justify;
-  }
-}
-
-.footnote-dialog {
-  display: block;
-  text-align: justify;
 }
 
 .currency, .dropdown-icon, .MuiTypography-body1.currency {
@@ -224,7 +208,7 @@
     top: 3px;
   }
 
-  &.Family.XP:after {
+  &.Blue:after {
     background-position: -189px -29px;
   }
 
@@ -346,10 +330,6 @@
           color: #4D9BDC;
         }
       }
-    }
-
-    .currency {
-      color: #C27B1A;
     }
   }
 
