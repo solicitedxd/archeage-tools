@@ -101,7 +101,7 @@ class Material extends Component {
                 </Typography>}
             </div>
           </Collapse>
-          <Collapse in={!materials.collapsed} unmountOnExit>
+          <Collapse in={!materials.collapsed}>
             <div className="material-choice">
               <div className="material-option">
                 <FormControlLabel
