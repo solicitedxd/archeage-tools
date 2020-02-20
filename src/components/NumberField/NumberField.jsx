@@ -18,6 +18,7 @@ class NumberField extends PureComponent {
     onChange: func.isRequired,
     endAdornment: string,
     inputStyle: object,
+    InputProps: object,
     min: number,
     max: number,
     step: number,
@@ -26,6 +27,8 @@ class NumberField extends PureComponent {
   static defaultProps = {
     step: 1,
     value: 0,
+    inputStyle: {},
+    InputProps: {},
   };
 
   state = {
@@ -87,7 +90,7 @@ class NumberField extends PureComponent {
   };
 
   render() {
-    const { inputStyle, min, max, step, endAdornment, defaultValue, ...otherProps } = this.props;
+    const { inputStyle, min, max, step, endAdornment, defaultValue, InputProps, ...otherProps } = this.props;
     const { value } = this.state;
 
     return (
@@ -107,6 +110,7 @@ class NumberField extends PureComponent {
         }}
         InputProps={{
           endAdornment: endAdornment ? <InputAdornment position="end">{endAdornment}</InputAdornment> : null,
+          ...InputProps,
         }}
       />
     );

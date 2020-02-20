@@ -3,7 +3,6 @@ import {
   Dialog,
   DialogContent,
   IconButton,
-  TextField,
   Toolbar,
   Tooltip,
   Typography,
@@ -13,6 +12,7 @@ import { closeDialog } from 'actions/display';
 import { fetchVocations } from 'actions/gameData';
 import { updateProficiency } from 'actions/proficiencies';
 import cn from 'classnames';
+import NumberField from 'components/NumberField';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import React, { Component } from 'react';
@@ -58,7 +58,7 @@ class Proficiencies extends Component {
                   <div className="proficiency" key={`prof-${vocation.name}`}>
                     <img src={VocationIcon[pascalCase(vocation.name)]} alt={vocation.name} />
                     <div className="proficiency-stats" data-grade={rank.grade}>
-                      <TextField
+                      <NumberField
                         className="proficiency-value"
                         label={(
                           <>
@@ -69,16 +69,14 @@ class Proficiencies extends Component {
                         InputLabelProps={{ className: 'proficiency-name' }}
                         size="small"
                         value={proficiency}
-                        onChange={(e) => updateProficiency(vocation.name, Number(e.target.value))}
-                        type="number"
+                        onChange={(value) => updateProficiency(vocation.name, Number(value))}
                         InputProps={{
                           disableUnderline: true,
                         }}
-                        inputProps={{
-                          min: 0,
-                          max: 230000,
-                          step: 10000,
-                        }}
+                        inputStyle={{ textAlign: 'left' }}
+                        min={0}
+                        max={230000}
+                        step={10000}
                       />
                       <div className="proficiency-bar">
                         <div className="quality-bar" style={{ width: `${Math.round(barPercent * 100)}%` }} />
