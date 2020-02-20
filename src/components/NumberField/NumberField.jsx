@@ -60,7 +60,6 @@ class NumberField extends PureComponent {
         value = Math.max(value, min);
       }
       value = maxDecimals(value, 4);
-      value = String(value);
     }
 
     this.setState({ value }, () => {
