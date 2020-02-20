@@ -5,7 +5,6 @@ import {
   DialogContent,
   Divider,
   IconButton,
-  Input,
   InputLabel,
   Radio,
   RadioGroup,
@@ -149,9 +148,8 @@ class RecipeViewer extends Component {
     updateFolioQuantity(recipeId, quantity);
   };
 
-  handleMaterialQuantity = (itemId) => (e) => {
+  handleMaterialQuantity = (itemId) => (quantity) => {
     const { recipeId, updateFolioInventory, inventory } = this.props;
-    let quantity = e.target.value;
     quantity = Math.max(quantity, 0);
     updateFolioInventory(recipeId, { ...inventory, [itemId]: quantity });
   };
@@ -438,15 +436,12 @@ class RecipeViewer extends Component {
                       {quantity}
                     </TableCell>
                     <TableCell align="right">
-                      <Input
-                        value={Math.min(inventory[itemId] || 0, quantity)}
+                      <NumberField
+                        value={inventory[itemId] || 0}
                         onChange={this.handleMaterialQuantity(itemId)}
-                        type="number"
                         min={0}
                         max={quantity}
-                        inputProps={{
-                          style: { textAlign: 'right', width: 60 },
-                        }}
+                        inputStyle={{ width: 60 }}
                       />
                     </TableCell>
                     <TableCell align="right">
