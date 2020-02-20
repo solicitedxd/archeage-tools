@@ -39,6 +39,7 @@ import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
+import NumberField from 'components/NumberField';
 import Material from 'components/pages/Folio/Material';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import {
@@ -141,9 +142,8 @@ class RecipeViewer extends Component {
     updateFolioMaterials(recipeId, { ...materials, sale });
   };
 
-  handleQuantity = (e) => {
+  handleQuantity = (quantity) => {
     const { recipeId, updateFolioQuantity } = this.props;
-    let quantity = e.target.value;
     quantity = Math.max(quantity, 1);
     quantity = Math.min(quantity, MAX_CRAFT_QTY);
     updateFolioQuantity(recipeId, quantity);
@@ -368,16 +368,12 @@ class RecipeViewer extends Component {
               <Typography variant="h6">{!mobile && 'Crafting '}Breakdown</Typography>
               <div>
                 <InputLabel htmlFor="craft-qty">Quantity:</InputLabel>
-                <Input
+                <NumberField
                   id="craft-qty"
                   value={quantity}
                   onChange={this.handleQuantity}
-                  type="number"
                   min={1}
                   max={MAX_CRAFT_QTY}
-                  inputProps={{
-                    style: { textAlign: 'right' },
-                  }}
                 />
                 <Tooltip
                   title={

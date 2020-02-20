@@ -61,17 +61,20 @@ class NumberField extends PureComponent {
 
     this.setState({ value }, () => {
       if (!Number.isNaN(value)) {
+        if (value === '' && min) {
+          value = min;
+        }
         onChange(value);
       }
     });
   };
 
   handleFocus = (focused) => (e) => {
-    const { onFocus, onBlur } = this.props;
+    const { onFocus, onBlur, min } = this.props;
 
     this.setState({ focused }, () => {
       if (!focused && this.state.value === '') {
-        this.setState({ value: '0' });
+        this.setState({ value: (min || 0) });
       }
 
       if (focused && onFocus) {
