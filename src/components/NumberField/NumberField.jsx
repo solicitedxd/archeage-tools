@@ -103,7 +103,7 @@ class NumberField extends PureComponent {
           step,
         }}
         InputProps={{
-          endAdornment: <InputAdornment position="end">{endAdornment}</InputAdornment>,
+          endAdornment: endAdornment ? <InputAdornment position="end">{endAdornment}</InputAdornment> : null,
         }}
       />
     );
