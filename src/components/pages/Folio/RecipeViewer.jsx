@@ -87,9 +87,9 @@ class RecipeViewer extends Component {
       // reset crafting breakdown
       this.setState({ materials: {}, quantity: 1, sale: false });
     }
-    if (this.props.recipes[nextProps.recipeId] !== nextProps.recipes[nextProps.recipeId]) {
+    if (this.props.recipes[this.props.recipeId] !== nextProps.recipes[nextProps.recipeId]) {
       const recipe = nextProps.recipes[nextProps.recipeId];
-      if (recipe.category) {
+      if (recipe && recipe.category) {
         nextProps.fetchRecipeByCategory(recipe.category);
       }
     }
