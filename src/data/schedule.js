@@ -154,9 +154,9 @@ export const REAL_TIME_EVENTS = Object.freeze([
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
-        { time: '01:30:00', duration: '05:00:00' },
         { time: '06:00:00', duration: '01:30:00' },
         { time: '15:00:00', duration: '02:00:00' },
+        { time: '23:00:00', duration: '05:00:00' },
       ],
       EU: [
         { time: '01:00:00', duration: '01:30:00' },
@@ -193,8 +193,8 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '01:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
-        { time: '07:00:00', duration: '00:30:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
+        { time: '02:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
+        { time: '07:00:00', duration: '00:30:00', days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
         { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
       ],
       EU: [
@@ -280,8 +280,8 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '01:15:00', duration: '00:45:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
-        { time: '07:00:00', duration: '00:30:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '02:15:00', duration: '00:45:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '07:00:00', duration: '00:30:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
         { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
       ],
       EU: [
@@ -297,9 +297,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
-        { time: '00:00:00', duration: '01:00:00' },
-        { time: '13:00:00', duration: '01:00:00' },
-        { time: '20:00:00', duration: '01:00:00' },
+        { time: '21:00:00', duration: '09:00:00' },
       ],
       EU: [
         { time: '16:00:00', duration: '09:00:00' },
