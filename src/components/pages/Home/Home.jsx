@@ -46,10 +46,7 @@ const Home = () => {
               <li>Clarified the Blue Salt Requests that originally stated "Farmhouse".</li>
               <li>
                 Added the Blue Salt residential daily quests (the corresponding quests for Community Center Supplies and
-                the Trade Outlet quests).<br />
-                Missing the Community Center Supplies zones for Airain Rock, Marianople, Karkasse Ridgelands, and
-                Tigerspine Mountains. If you can provide which quest is supplied in any of these zones, please drop me a
-                message in Discord.
+                the Trade Outlet quests).
               </li>
               <li>
                 Rewards Filter:
