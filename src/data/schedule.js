@@ -141,10 +141,10 @@ export const REAL_TIME_EVENTS = Object.freeze([
     type: EVENT_TYPE.WORLD_BOSSES,
     times: {
       NA: [
-        { time: '01:15:00', duration: '01:00:00' },
+        { time: '02:45:00', duration: '01:00:00' },
       ],
       EU: [
-        { time: '20:15:00', duration: '01:00:00' },
+        { time: '21:45:00', duration: '01:00:00' },
       ],
     },
   },
