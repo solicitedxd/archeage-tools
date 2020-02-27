@@ -367,6 +367,26 @@ export const ancestrals = Object.freeze([
       },
     ],
   },
+  {
+    skillId: getSkillIdByName(skills, 'Dissonance'),
+    variants: [
+      {
+        element: ELEMENT.LIGHTNING,
+        icon: Icon.DissonanceLightning,
+        description: 'Plays clashing sounds to weaken an enemy and lower their combat effectiveness quicker than other attributes.\r' +
+          'Inflicts @Dissonance@, decreasing affected enemies\' Skill Damage #-15%# for #9sec#.\r' +
+          'Deals ${damage} Magic Damage upon expiration.',
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: Icon.DissonanceQuake,
+        mana: 193,
+        description: 'Plays clashing sounds to weaken an enemy and lower their combat effectiveness.\r' +
+          'Inflicts @Dissonance@, decreasing affected enemies\' Skill Damage #-15%# for #9sec#.\r' +
+          'Deals ${damage} Magic Damage in a 6m area upon expiration.',
+      },
+    ],
+  },
 ]);
 
 export default skills;

@@ -92,7 +92,7 @@ const skills = Object.freeze([
     mana: 55,
     range: [0, 20],
     cooldown: 30,
-    description: 'Immune to Fear, Sleep, Bubble Trap, Freeze, Silence, Petrification, Taunt, and Telekinesis, for #5sec#. Can be used on the caster or an ally.',
+    description: 'Immune to Fear, Sleep, Bubble Trap, Freeze, Silence, Petrification, Taunt, and Telekinesis. for #5sec#. Can be used on the caster or an ally.',
     globalCooldown: GLOBAL_CD.REDUCED,
   },
   {

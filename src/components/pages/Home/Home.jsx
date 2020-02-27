@@ -17,9 +17,11 @@ const Home = () => {
         {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
       </div>
       <NewsPost
-        title=""
+        title="Minor Updates"
         date="Feb 19, 2020"
       >
+        <p>February 26: Updated Skills and Event Schedule for the 6.2 patch.</p>
+        <hr />
         <p>I've been working on a big update, but in the meantime, here are a bunch of fixes (some have been stealthily
           fixed over the past month):</p>
         <ul>

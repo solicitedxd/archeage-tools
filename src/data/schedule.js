@@ -18,6 +18,7 @@ import GrimghastRiftIcon from 'images/event/grimghast_rift.png';
 import KadumIcon from 'images/event/kadum.png';
 import LeviathanIcon from 'images/event/leviathan.png';
 import LuscaAwakeningIcon from 'images/event/lusca_awakening.png';
+import SeaBattlefieldIcon from 'images/event/sea_battlefield.png';
 
 export const REAL_TIME_EVENTS = Object.freeze([
   {
@@ -25,15 +26,15 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Abyssal Attack',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     days: {
-      NA: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
+      NA: [DAY.WEDNESDAY, DAY.FRIDAY, DAY.SUNDAY],
       EU: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
     },
     times: {
       NA: [
-        { time: '22:30:00', duration: '02:00:00' },
+        { time: '02:29:00', duration: '01:00:00' },
       ],
       EU: [
-        { time: '17:30:00', duration: '02:00:00' },
+        { time: '18:29:00', duration: '01:00:00' },
       ],
     },
   },
@@ -71,8 +72,8 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Black Dragon',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
-      NA: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
-      EU: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
+      NA: [DAY.WEDNESDAY, DAY.MONDAY],
+      EU: [DAY.TUESDAY, DAY.SUNDAY],
     },
     times: {
       NA: [
@@ -105,6 +106,23 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
   },
   {
+    icon: BossMonsterIcon,
+    name: 'Charybdis',
+    type: EVENT_TYPE.WORLD_BOSSES,
+    days: {
+      NA: [DAY.FRIDAY, DAY.MONDAY],
+      EU: [DAY.THURSDAY, DAY.SUNDAY],
+    },
+    times: {
+      NA: [
+        { time: '02:30:00', duration: '02:00:00' },
+      ],
+      EU: [
+        { time: '21:30:00', duration: '02:00:00' },
+      ],
+    },
+  },
+  {
     icon: DailyResetIcon,
     name: 'Daily Reset',
     type: EVENT_TYPE.REAL_TIME_EVENT,
@@ -132,38 +150,42 @@ export const REAL_TIME_EVENTS = Object.freeze([
   },
   {
     icon: FallOfHiramIcon,
-    name: 'The Fall of Hiram City (Instance)',
+    name: 'The Fall of Hiram City',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
-        { time: '00:00:00', duration: '04:00:00' },
-        { time: '14:00:00', duration: '02:00:00' },
+        { time: '01:30:00', duration: '05:00:00' },
+        { time: '06:00:00', duration: '01:30:00' },
+        { time: '15:00:00', duration: '02:00:00' },
       ],
       EU: [
-        { time: '09:00:00', duration: '02:00:00' },
-        { time: '19:00:00', duration: '04:00:00' },
+        { time: '01:00:00', duration: '01:30:00' },
+        { time: '10:00:00', duration: '02:00:00' },
+        { time: '18:00:00', duration: '05:00:00' },
       ],
     },
   },
   {
     icon: GoldenPlainsIcon,
-    name: 'Golden Plains Battle (Instance)',
+    name: 'Golden Plains Battle',
     link: '/guides/honor-dailies#golden-plains-battle',
     type: EVENT_TYPE.REAL_TIME_EVENT,
     times: {
       NA: [
-        { time: '01:30:00', duration: '01:00:00' },
-        { time: '16:00:00', duration: '01:30:00' },
+        { time: '01:30:00', duration: '00:45:00' },
+        { time: '06:30:00', duration: '00:30:00' },
+        { time: '19:30:00', duration: '00:45:00' },
       ],
       EU: [
-        { time: '11:00:00', duration: '01:30:00' },
-        { time: '20:30:00', duration: '01:00:00' },
+        { time: '01:30:00', duration: '00:30:00' },
+        { time: '14:30:00', duration: '00:45:00' },
+        { time: '20:30:00', duration: '00:45:00' },
       ],
     },
   },
   {
     icon: KadumIcon,
-    name: 'Kadum (Instance)',
+    name: 'Kadum',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
       NA: [],
@@ -171,12 +193,14 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '01:00:00', duration: '01:00:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
-        { time: '15:30:00', duration: '01:00:00', days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '01:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
+        { time: '07:00:00', duration: '00:30:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
+        { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
       ],
       EU: [
-        { time: '10:30:00', duration: '01:00:00' },
-        { time: '20:00:00', duration: '01:00:00' },
+        { time: '02:00:00', duration: '01:00:00' },
+        { time: '03:15:00', duration: '12:45:00' },
+        { time: '21:15:00', duration: '00:45:00' },
       ],
     },
   },
@@ -185,14 +209,16 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Kraken',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
-      NA: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
-      EU: [],
+      NA: [DAY.WEDNESDAY, DAY.MONDAY],
+      EU: [DAY.TUESDAY, DAY.SUNDAY],
     },
     times: {
       NA: [
-        { time: '00:05:00', duration: '02:00:00' },
+        { time: '02:30:00', duration: '02:00:00' },
       ],
-      EU: [],
+      EU: [
+        { time: '21:30:00', duration: '02:00:00' },
+      ],
     },
   },
   {
@@ -200,14 +226,16 @@ export const REAL_TIME_EVENTS = Object.freeze([
     name: 'Leviathan',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
-      NA: [DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY],
-      EU: [],
+      NA: [DAY.FRIDAY, DAY.MONDAY],
+      EU: [DAY.THURSDAY, DAY.SUNDAY],
     },
     times: {
       NA: [
-        { time: '01:00:00', duration: '02:00:00' },
+        { time: '02:30:00', duration: '02:00:00' },
       ],
-      EU: [],
+      EU: [
+        { time: '21:30:00', duration: '02:00:00' },
+      ],
     },
   },
   {
@@ -220,7 +248,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
         { time: '23:00:00', duration: '01:00:00' },
       ],
       EU: [
-        { time: '18:00:00', duration: '01:00:00' },
+        { time: '22:00:00', duration: '01:00:00' },
       ],
     },
   },
@@ -243,7 +271,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
   },
   {
     icon: DragonRedIcon,
-    name: 'Red Dragon\'s Keep (Instance)',
+    name: 'Red Dragon\'s Keep',
     link: '/guides/red-dragons-keep',
     type: EVENT_TYPE.WORLD_BOSSES,
     days: {
@@ -252,33 +280,34 @@ export const REAL_TIME_EVENTS = Object.freeze([
     },
     times: {
       NA: [
-        { time: '01:00:00', duration: '01:00:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
-        { time: '15:30:00', duration: '01:00:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
+        { time: '01:15:00', duration: '00:45:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '07:00:00', duration: '00:30:00', days: [DAY.MONDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
+        { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
       ],
       EU: [
-        { time: '10:30:00', duration: '01:00:00' },
-        { time: '20:00:00', duration: '01:00:00' },
+        { time: '02:00:00', duration: '01:00:00' },
+        { time: '03:15:00', duration: '12:45:00' },
+        { time: '21:15:00', duration: '00:45:00' },
       ],
     },
   },
-  // Naval Arena has been "temporarily" disabled
-  // {
-  //   icon: SeaOfChaosIcon,
-  //   name: 'Stillwater Gulf (Arena)',
-  //   type: EVENT_TYPE.REAL_TIME_EVENT,
-  //   times: {
-  //     NA: [
-  //       { time: '00:00:00', duration: '01:00:00' },
-  //       { time: '13:00:00', duration: '01:00:00' },
-  //       { time: '20:00:00', duration: '01:00:00' },
-  //     ],
-  //     EU: [
-  //       { time: '08:00:00', duration: '01:00:00' },
-  //       { time: '15:00:00', duration: '01:00:00' },
-  //       { time: '19:00:00', duration: '01:00:00' },
-  //     ],
-  //   },
-  // },
+  {
+    icon: SeaBattlefieldIcon,
+    name: 'Stillwater Gulf',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    times: {
+      NA: [
+        { time: '00:00:00', duration: '01:00:00' },
+        { time: '13:00:00', duration: '01:00:00' },
+        { time: '20:00:00', duration: '01:00:00' },
+      ],
+      EU: [
+        { time: '08:00:00', duration: '01:00:00' },
+        { time: '15:00:00', duration: '01:00:00' },
+        { time: '19:00:00', duration: '01:00:00' },
+      ],
+    },
+  },
 ]);
 
 export const GAME_TIME_EVENTS = Object.freeze([

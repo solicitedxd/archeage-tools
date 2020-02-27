@@ -464,6 +464,30 @@ export const ancestrals = Object.freeze([
       },
     ],
   },
+  {
+    skillId: getSkillIdByName(skills, 'Mend'),
+    variants: [
+      {
+        element: ELEMENT.LIFE,
+        icon: Icon.MendLife,
+        description: 'Restores ${selfHealing} Health for the caster and ${allyHealing} Health to up to #10 raid members# over #10 sec#.\r' +
+          'This skill does not target players, that have the Life variant of the @Mend@ buff active.',
+      },
+      {
+        element: ELEMENT.MIST,
+        icon: Icon.MendMist,
+        effectRange: 23,
+        description: 'Restores ${selfHealing} Health to the caster and ${allyHealing}Health to #5 party members#.\r' +
+          'This skill has a @wider effect range@.',
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: Icon.MendWave,
+        allyHealing: { base: 302, attack: ATTACK.HEALING, ratio: 150 },
+        description: 'Creates a @Shield@ that absorbs ${allyHealing} Damage for the caster and up to #10 allies# within 18m.',
+      },
+    ],
+  },
 ]);
 
 export default skills;

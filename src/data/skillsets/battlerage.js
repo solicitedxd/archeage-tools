@@ -100,7 +100,7 @@ const skills = Object.freeze([
       },
       {
         buff: BUFF.BLEEDING,
-        text: 'Deals +33% additional damage to ${b} targets.',
+        text: 'Deals +27% additional damage to ${b} targets.',
       },
     ],
   },
@@ -127,7 +127,7 @@ const skills = Object.freeze([
       },
       {
         buff: BUFF.BLEEDING,
-        text: 'Deals +34% additional damage to ${b} targets.',
+        text: 'Deals +28% additional damage to ${b} targets.',
       },
     ],
   },
@@ -160,7 +160,7 @@ const skills = Object.freeze([
     combos: [
       {
         buff: BUFF.BLEEDING,
-        text: 'Deals +37% additional damage to ${b} targets.',
+        text: 'Deals +30% additional damage to ${b} targets.',
       },
     ],
   },
@@ -230,6 +230,7 @@ const skills = Object.freeze([
     name: 'Hammer Toss',
     mana: 188,
     range: [0, 15],
+    effectRange: 3,
     damage: { base: 686, attack: ATTACK.MELEE, ratio: 209 },
     cooldown: 29,
     effects: [BUFF.STUNNED],
@@ -432,6 +433,32 @@ export const ancestrals = Object.freeze([
         effectRange: 15,
         damage: { base: 903, attack: ATTACK.MELEE, ratio: 260 },
         description: 'Smashes open a wide fault line in front of you, dealing ${damage} Melee Damage to all enemies in a line.',
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Frenzy'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: Icon.FrenzyFlame,
+        description: 'Enter a killing frenzy, gaining the following effects for #10sec#:\r' +
+          '- Lasts for #10sec#.\r' +
+          '- Consumes #90%# of the caster\'s Health.\r' +
+          '- Grants Immunity to Push effects.\r' +
+          '- Increases Melee Attack #+200#.\r' +
+          '- Decreases Received Healing #-50%# for 5 sec upon expiration.',
+      },
+      {
+        element: ELEMENT.WAVE,
+        icon: Icon.FrenzyWave,
+        description: 'Enter a killing frenzy, gaining the following effects for #10sec#:\r' +
+          '- Grants Immunity to Push effects.\r' +
+          '- Increases Melee Attack #+40# whenever you take damage.\r' +
+          '- Decreases Mana Costs for Battlerage Skills #-70%#.\r' +
+          '- Killing an enemy increases the duration of Frenzy #+10 sec, up to 20 sec#.\r' +
+          '- Immobilized for #4 sec# after expiration.\r' +
+          '- Lasts for #10sec#.',
       },
     ],
   },

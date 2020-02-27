@@ -41,22 +41,22 @@ export const PACK_COSTS = {
     sellLabor,
   },
   [PACK_TYPE.HONEY]: {
-    materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.HONEY, count: 4 },
-      { item: ITEM.HAY_BALE, count: 20 }],
+    materials: [{ item: ITEM.HONEY_AGING_LARDER, count: 1 }],
+    larderMaterials: [{ item: ITEM.HONEY, count: 4 }, { item: ITEM.HAY_BALE, count: 20 }],
     gold: 0,
     labor: 65,
     sellLabor,
   },
   [PACK_TYPE.CHEESE]: {
-    materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.MILK, count: 50 },
-      { item: ITEM.LEMON, count: 30 }],
+    materials: [{ item: ITEM.CHEESE_AGING_LARDER, count: 1 }],
+    larderMaterials: [{ item: ITEM.MILK, count: 50 }, { item: ITEM.LEMON, count: 30 }],
     gold: 0,
     labor: 65,
     sellLabor,
   },
   [PACK_TYPE.SALVE]: {
-    materials: [{ item: ITEM.MULTI_PURPOSE_AGING_LARDER, count: 1 }, { item: ITEM.CULTIVATED_GINSENG, count: 20 },
-      { item: ITEM.OLIVE, count: 30 }],
+    materials: [{ item: ITEM.SALVE_AGING_LARDER, count: 1 }],
+    larderMaterials: [{ item: ITEM.CULTIVATED_GINSENG, count: 20 }, { item: ITEM.OLIVE, count: 30 }],
     gold: 0,
     labor: 65,
     sellLabor,
@@ -93,9 +93,8 @@ export const PACK_COSTS = {
   },
 };
 
-export const MULTIPURPOSE_AGING_LARDER = {
-  materials: [{ item: ITEM.LUMBER, count: 5 }, { item: ITEM.STONE_BRICK, count: 10 },
-    { item: ITEM.IRON_INGOT, count: 10 }, { item: ITEM.ROYAL_SEED, count: 1 }],
+export const LARDER_BASE = {
+  materials: [{ item: ITEM.LUMBER, count: 2 }, { item: ITEM.ROYAL_SEED, count: 1 }],
   gold: 9000,
   labor: 65,
 };

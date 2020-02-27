@@ -101,7 +101,7 @@ const skills = Object.freeze([
     dotDamage: { base: 72, attack: ATTACK.MAGIC, ratio: 16 },
     cooldown: 15,
     description: 'Throws otherworldly blades that surround the target, dealing ${damage} Magic Damage.\r' +
-      'The blades then continue to deal ${dotDamage} Magic Damage every second for #10sec#.\r' +
+      'The blades then continue to deal ${dotDamage} Magic Damage #every second# for #10sec#.\r' +
       'On every hit, the enemy suffers a reduction of #-150# Physical Defense and #-150# Magic Defense, which stacks up to #15 times#, and lasts for #6sec#.',
     combos: [
       {
@@ -294,7 +294,7 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.WAVE,
         icon: Icon.ManaBoltsWave,
         damage: { base: 0, attack: ATTACK.MAGIC, ratio: 70 },
-        description: 'Launches your mana as three razor-sharp bolts, dealing ${damage} Magic Damage and increasing your Move Speed #+1%# per successful hit, up to #10%.#',
+        description: 'Launches your mana as three razor-sharp bolts, dealing ${damage} Magic Damage and increasing your Move Speed #+1%# per successful hit, up to #+10%.#',
       },
     ],
   },
@@ -304,7 +304,7 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.FLAME,
         icon: Icon.BladefallFlame,
-        cooldown: 33,
+        cooldown: 40,
         description: 'Calls down blades at the target location, dealing ${damage} Magic Damage to all enemies #once# within an #${effectRange}m# radius.',
         ancestralNote: '\r\rThis skill consumes less Malice Charges.',
         combos: [
@@ -335,7 +335,7 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.FLAME,
         icon: Icon.SerpentBiteFlame,
-        cooldown: 31,
+        cooldown: 38,
         ancestralNote: '\rThis skill consumes less Malice Charges.',
         combos: [
           {

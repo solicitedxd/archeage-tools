@@ -39,6 +39,7 @@ import Item from 'components/Item';
 import { CONTINENT } from 'constants/map';
 import { PROFICIENCY } from 'constants/proficiencies';
 import {
+  AGED_PACK,
   CARGO,
   CARGO_OUTLET,
   NO_FRESHNESS,
@@ -141,9 +142,9 @@ class TradePacks extends Component {
                 }}
                 renderValue={() => <div>{continent}</div>}
               >
-                <MenuItem>Haranya</MenuItem>
-                <MenuItem>Nuia</MenuItem>
-                <MenuItem>{CARGO}</MenuItem>
+                <MenuItem value="Haranya">Haranya</MenuItem>
+                <MenuItem value="Nuia">Nuia</MenuItem>
+                <MenuItem value={CARGO}>{CARGO}</MenuItem>
               </Select>
             </FormControl>
             <div className="pack-percentage">
@@ -270,7 +271,7 @@ class TradePacks extends Component {
               <TableBody>
                 {continentZones.map(zone => {
                   const zonePacks = TRADE_PACKS[zone] || { packs: {} };
-                  const freshness = zonePacks.freshness || { name: '' };
+                  const freshness = zonePacks.freshness;
                   return (
                     <TableRow
                       key={`pack-row-${zone}`}
@@ -289,8 +290,9 @@ class TradePacks extends Component {
                           // modify the percentage
                           packValue = packValue * (percentage / 130);
                           // modify the freshness
-                          if (freshness.HIGH && !NO_FRESHNESS.includes(packType)) {
-                            packValue *= freshness.HIGH.modifier;
+                          const packFreshness = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'];
+                          if (packFreshness.HIGH && !NO_FRESHNESS.includes(packType)) {
+                            packValue *= packFreshness.HIGH.modifier;
                           }
                           // modify war bonus
                           if (war[sellZone]) {

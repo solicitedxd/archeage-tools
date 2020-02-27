@@ -29,6 +29,12 @@ export const PACK_TYPE = Object.freeze({
   ANTIQUITIES: 'Antiquities',
 });
 
+export const AGED_PACK = Object.freeze([
+  PACK_TYPE.SALVE,
+  PACK_TYPE.CHEESE,
+  PACK_TYPE.HONEY,
+]);
+
 export const NO_FRESHNESS = Object.freeze([
   PACK_TYPE.BLUE_SALT,
   PACK_TYPE.ANTIQUITIES,
@@ -44,97 +50,211 @@ export const TRANSPORTATION_FUEL = Object.freeze([
 export const FRESHNESS = Object.freeze({
   LUXURY: {
     name: 'Luxury',
-    HIGH: {
-      modifier: 1.3,
-      time: 'within 15min',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.3,
+        time: 'within 15min',
+      },
+      REGULAR: {
+        modifier: 1.1,
+        time: 'within 30min',
+      },
+      REDUCED: {
+        modifier: 0.9,
+        time: 'within 60min',
+      },
+      DIMINISHED: {
+        modifier: 0.85,
+        time: 'within 2hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 2hr',
+      },
     },
-    REGULAR: {
-      modifier: 1.1,
-      time: 'within 30min',
-    },
-    REDUCED: {
-      modifier: 0.9,
-      time: 'within 60min',
-    },
-    LOW: {
-      modifier: 0.85,
-      time: 'after 60min',
+    AGED: {
+      REDUCED: {
+        modifier: 0.9,
+        time: 'within 24hr',
+      },
+      HIGH: {
+        modifier: 1.3,
+        time: 'within 48hr',
+      },
+      REGULAR: {
+        modifier: 1.1,
+        time: 'within 51h',
+      },
+      DIMINISHED: {
+        modifier: 0.85,
+        time: 'within 56hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 56h',
+      },
     },
   },
   FINE: {
     name: 'Fine',
-    HIGH: {
-      modifier: 1.15,
-      time: 'within 15min',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.15,
+        time: 'within 15min',
+      },
+      REGULAR: {
+        modifier: 1.05,
+        time: 'within 1hr',
+      },
+      REDUCED: {
+        modifier: 0.93,
+        time: 'within 3hr',
+      },
+      DIMINISHED: {
+        modifier: 0.88,
+        time: 'within 24hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 24hr',
+      },
     },
-    REGULAR: {
-      modifier: 1.05,
-      time: 'within 1hr',
-    },
-    REDUCED: {
-      modifier: 0.93,
-      time: 'within 3hr',
-    },
-    LOW: {
-      modifier: 0.88,
-      time: 'after 3hr',
+    AGED: {
+      REDUCED: {
+        modifier: 0.82,
+        time: 'within 24hr',
+      },
+      HIGH: {
+        modifier: 1.15,
+        time: 'within 48hr',
+      },
+      REGULAR: {
+        modifier: 1.02,
+        time: 'within 52hr',
+      },
+      DIMINISHED: {
+        modifier: 0.88,
+        time: 'within 60hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 60hr',
+      },
     },
   },
   COMMERCIAL: {
     name: 'Commercial',
-    HIGH: {
-      modifier: 1.05,
-      time: 'within 30min',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.05,
+        time: 'within 30min',
+      },
+      REGULAR: {
+        modifier: 1.02,
+        time: 'within 3hr',
+      },
+      REDUCED: {
+        modifier: 0.95,
+        time: 'within 12hr',
+      },
+      DIMINISHED: {
+        modifier: 0.90,
+        time: 'within 24hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 24hr',
+      },
     },
-    REGULAR: {
-      modifier: 1.02,
-      time: 'within 3hr',
-    },
-    REDUCED: {
-      modifier: 0.95,
-      time: 'within 12hr',
-    },
-    LOW: {
-      modifier: 0.90,
-      time: 'after 12hr',
+    AGED: {
+      REDUCED: {
+        modifier: 0.75,
+        time: 'within 24hr',
+      },
+      HIGH: {
+        modifier: 1.05,
+        time: 'within 60hr',
+      },
+      REGULAR: {
+        modifier: 1.02,
+        time: 'within 62hr',
+      },
+      DIMINISHED: {
+        modifier: 0.90,
+        time: 'within 96hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 96hr',
+      },
     },
   },
   PRESERVED: {
     name: 'Preserved',
-    HIGH: {
-      modifier: 1.03,
-      time: 'within 6hr',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.03,
+        time: 'within 6hr',
+      },
+      REGULAR: {
+        modifier: 1.01,
+        time: 'within 12hr',
+      },
+      REDUCED: {
+        modifier: 0.96,
+        time: 'within 24hr',
+      },
+      DIMINISHED: {
+        modifier: 0.92,
+        time: 'within 72hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 72hr',
+      },
     },
-    REGULAR: {
-      modifier: 1.01,
-      time: 'within 12hr',
-    },
-    REDUCED: {
-      modifier: 0.96,
-      time: 'within 24hr',
-    },
-    LOW: {
-      modifier: 0.92,
-      time: 'after 24hr',
+    AGED: {
+      REDUCED: {
+        modifier: 0.73,
+        time: 'within 24hr',
+      },
+      HIGH: {
+        modifier: 1.03,
+        time: 'within 72hr',
+      },
+      REGULAR: {
+        modifier: 1.01,
+        time: 'within 88hr',
+      },
+      DIMINISHED: {
+        modifier: 0.92,
+        time: 'within 120hr',
+      },
+      LOW: {
+        modifier: 0.65,
+        time: 'after 120hr',
+      },
     },
   },
   CARGO: {
     name: 'Cargo',
-    HIGH: {
-      modifier: 1.15,
-      time: 'within 30min',
-    },
-    REGULAR: {
-      modifier: 1,
-      time: 'within 2hr',
-    },
-    REDUCED: {
-      modifier: 0.80,
-      time: 'within 6hr',
-    },
-    LOW: {
-      modifier: 0.60,
-      time: 'after 6hr',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.15,
+        time: 'within 30min',
+      },
+      REGULAR: {
+        modifier: 1,
+        time: 'within 2hr',
+      },
+      REDUCED: {
+        modifier: 0.80,
+        time: 'within 6hr',
+      },
+      LOW: {
+        modifier: 0.60,
+        time: 'after 6hr',
+      },
     },
   },
 });

@@ -47,6 +47,7 @@ import {
 } from 'constants/map';
 import { PROFICIENCY } from 'constants/proficiencies';
 import {
+  AGED_PACK,
   CARGO,
   CARGO_OUTLET,
   CARGO_SUPPLY,
@@ -57,7 +58,7 @@ import {
 } from 'constants/tradepacks';
 import ITEM from 'data/items';
 import TRADE_PACKS, {
-  MULTIPURPOSE_AGING_LARDER,
+  LARDER_BASE,
   PACK_COSTS,
 } from 'data/tradepacks';
 import { pathOr } from 'ramda';
@@ -129,6 +130,7 @@ class PackViewer extends Component {
     // spread the costs into the pack details first, to allow individual packs to overwrite costs
     const pack = { ...packCosts, ...pathOr({}, [originZone, 'packs', packType])(TRADE_PACKS) };
     const freshness = pathOr({}, [originZone, 'freshness'])(TRADE_PACKS);
+    const freshnessLevels = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'] || {};
     const profitLevel = pathOr('HIGH', [originZone, packType, sellZone])(profitLevels);
     const supplyLevel = sellZone === CARGO && (supply[originZone] || Object.keys(CARGO_SUPPLY)[0]);
     const quantity = pathOr(1, [originZone, packType])(quantities);
@@ -180,8 +182,8 @@ class PackViewer extends Component {
         packValue *= quantity;
       }
       // modify the freshness
-      if (freshness[profitLevel] && !NO_FRESHNESS.includes(packType)) {
-        packValue *= freshness[profitLevel].modifier;
+      if (freshnessLevels[profitLevel] && !NO_FRESHNESS.includes(packType)) {
+        packValue *= freshnessLevels[profitLevel].modifier;
       }
       // modify war bonus
       if (war[sellZone]) {
@@ -201,8 +203,7 @@ class PackViewer extends Component {
       packValue = 0;
     }
 
-    const larderItem = pack.materials && pack.materials.find(mat => mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER);
-    const isAgedPack = Boolean(larderItem);
+    const isAgedPack = AGED_PACK.includes(packType);
 
     let { labor, gold, sellLabor } = pack;
 
@@ -213,16 +214,15 @@ class PackViewer extends Component {
 
     const materials = pack.materials ? [...pack.materials] : [];
     if (isAgedPack && craftLarder) {
-      const larderIndex = pack.materials.indexOf(larderItem);
-      MULTIPURPOSE_AGING_LARDER.materials.forEach((mat, i) =>
-        materials.splice(larderIndex + 1 + i, 0, { ...mat, indent: true }),
+      [...LARDER_BASE.materials, ...pack.larderMaterials].forEach((mat, i) =>
+        materials.splice(1 + i, 0, { ...mat, indent: true }),
       );
-      gold += MULTIPURPOSE_AGING_LARDER.gold;
-      totalLabor += this.getLaborCost(MULTIPURPOSE_AGING_LARDER.labor, 'husbandry');
+      gold += LARDER_BASE.gold;
+      totalLabor += this.getLaborCost(LARDER_BASE.labor, 'commerce');
     }
     let totalGold = gold;
     materials.forEach(mat => {
-      if (mat.item === ITEM.MULTI_PURPOSE_AGING_LARDER && craftLarder) {
+      if (!mat.indent && craftLarder) {
         return;
       }
       totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
@@ -351,7 +351,7 @@ class PackViewer extends Component {
                   </TableCell>
                   {isAgedPack &&
                   <TableCell>
-                    {material.item === ITEM.MULTI_PURPOSE_AGING_LARDER &&
+                    {!material.indent &&
                     <Checkbox
                       checked={craftLarder}
                       onChange={setCraftLarder}
@@ -387,7 +387,7 @@ class PackViewer extends Component {
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Labor</TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(MULTIPURPOSE_AGING_LARDER.labor, 'husbandry') * quantity}
+                  {this.getLaborCost(LARDER_BASE.labor, 'commerce') * quantity}
                 </TableCell>
               </TableRow>}
               {labor > 0 &&
@@ -555,16 +555,16 @@ class PackViewer extends Component {
                   renderValue={() =>
                     <Typography>
                       {profitLevel.substr(0, 1)}{profitLevel.toLowerCase().substr(1)} Profit:&nbsp;
-                      {freshness[profitLevel].modifier >= 1 && `+${Math.round((freshness[profitLevel].modifier - 1) * 100)}%`}
-                      {freshness[profitLevel].modifier < 1 && `-${Math.round((1 - freshness[profitLevel].modifier) * 100)}%`}
+                      {freshnessLevels[profitLevel].modifier >= 1 && `+${Math.round((freshnessLevels[profitLevel].modifier - 1) * 100)}%`}
+                      {freshnessLevels[profitLevel].modifier < 1 && `-${Math.round((1 - freshnessLevels[profitLevel].modifier) * 100)}%`}
                     </Typography>}
                 >
-                  {Object.keys(freshness).filter(k => k !== 'name').map(profitLevel => (
-                    <MenuItem key={profitLevel}>
+                  {Object.keys(freshnessLevels).filter(k => k !== 'name').map(profitLevel => (
+                    <MenuItem key={profitLevel} value={profitLevel}>
                       {profitLevel.substr(0, 1)}{profitLevel.toLowerCase().substr(1)} Profit:&nbsp;
-                      {freshness[profitLevel].modifier >= 1 && `+${Math.round((freshness[profitLevel].modifier - 1) * 100)}%`}
-                      {freshness[profitLevel].modifier < 1 && `-${Math.round((1 - freshness[profitLevel].modifier) * 100)}%`}
-                      &nbsp;({freshness[profitLevel].time})
+                      {freshnessLevels[profitLevel].modifier >= 1 && `+${Math.round((freshnessLevels[profitLevel].modifier - 1) * 100)}%`}
+                      {freshnessLevels[profitLevel].modifier < 1 && `-${Math.round((1 - freshnessLevels[profitLevel].modifier) * 100)}%`}
+                      &nbsp;({freshnessLevels[profitLevel].time})
                     </MenuItem>
                   ))}
                 </Select>

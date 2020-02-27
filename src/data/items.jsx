@@ -453,26 +453,55 @@ const ITEM = Object.freeze({
     description: <span>This mysterious oil was invented by wagon drivers who weren't satisfied with Eco-Friendly Fuel. It helps old wagons move smoothly again.</span>,
     price: 500,
   },
-  MULTI_PURPOSE_AGING_LARDER: {
-    name: 'Multi-Purpose Aging Larder',
-    icon: Icon.MultiPurposeAgingLarder,
-    reqLevel: 30,
+  SALVE_AGING_LARDER: {
+    name: 'Salve Aging Larder',
+    icon: Icon.SalveAgingLarder,
     type: 'Contraption',
     description: <span>
-      Used for aging specialty trade packs.<br />
+      Used for producing <Yellow>Aged Cheese Specialties.</Yellow><br />
       Can only be installed in specialty crafting areas.<br />
-      Disappears in <Orange>10 minutes</Orange> if no ingredients are added.<br /><br />
-      Vocation: Husbandry<br />
-      Acquire from a Farmer's Workstation<br />
-      Aging Time: 3 days<br /><br />
-      <Orange>Ingredients</Orange><br />
-      For Aged Salve: 20 Cultivated Ginseng and 30 Olives<br />
-      For Aged Cheese: 50 Milk and 30 Lemons<br />
-      For Aged Honey: 4 Honey and 20 Hay Bales<br /><br />
-      <Orange>Required Proficiency:</Orange><br />
-      For Aged Salve: none<br />
-      For Aged Cheese: Commerce 10,000+<br />
-      For Aged Honey: Commerce 20,000+<br /><br />
+      <Orange>Placed Larders disappear after 24 hours.</Orange><br /><br />
+      Must be Lv30+ to craft a pack.<br /><br />
+      Vocation: Commerce<br />
+      Workbench: Farmer's Workstation<br /><br />
+      <Use>
+        Use with right-click.<br />
+        Can be positioned on the ground with left-click.<br /><br />
+        Costs 5 Labor if not placed on personal land.
+      </Use>
+    </span>,
+    price: 300,
+  },
+  CHEESE_AGING_LARDER: {
+    name: 'Cheese Aging Larder',
+    icon: Icon.CheeseAgingLarder,
+    type: 'Contraption',
+    description: <span>
+      Used for producing <Yellow>Aged Cheese Specialties.</Yellow><br />
+      Can only be installed in specialty crafting areas.<br />
+      <Orange>Placed Larders disappear after 24 hours.</Orange><br /><br />
+      Must be Lv30+ to craft a pack.<br /><br />
+      Vocation: Commerce<br />
+      Workbench: Farmer's Workstation<br /><br />
+      <Use>
+        Use with right-click.<br />
+        Can be positioned on the ground with left-click.<br /><br />
+        Costs 5 Labor if not placed on personal land.
+      </Use>
+    </span>,
+    price: 300,
+  },
+  HONEY_AGING_LARDER: {
+    name: 'Honey Aging Larder',
+    icon: Icon.HoneyAgingLarder,
+    type: 'Contraption',
+    description: <span>
+      Used for producing <Yellow>Aged Honey Specialties.</Yellow><br />
+      Can only be installed in specialty crafting areas.<br />
+      <Orange>Placed Larders disappear after 24 hours.</Orange><br /><br />
+      Must be Lv30+ to craft a pack.<br /><br />
+      Vocation: Commerce<br />
+      Workbench: Farmer's Workstation<br /><br />
       <Use>
         Use with right-click.<br />
         Can be positioned on the ground with left-click.<br /><br />

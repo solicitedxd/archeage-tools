@@ -78,7 +78,8 @@ const skills = Object.freeze([
     range: [0, 10],
     damage: { base: 672, attack: ATTACK.RANGED, ratio: 150 },
     cooldown: 21,
-    description: 'Fires an enchanted arrow at an enemy, dealing ${damage} Ranged Damage and pushing them #15m# away from you.This counts as a Push effect.\r' +
+    description: 'Fires an enchanted arrow at an enemy, dealing ${damage} Ranged Damage and pushing them #15m# away from you, Rooting the target for #0.3 sec#.\r' +
+      'This counts as a Push effect.\r' +
       'This attack also interrupts the target, cancelling all Cast Time, Channeled, and Ongoing skills.',
     unblockable: true,
     combos: [
@@ -159,7 +160,10 @@ const skills = Object.freeze([
     cooldown: 80,
     description: 'Grants the following effects for #1min:#\r\r' +
       '#Deadeye:#\r' +
-      'Standing still longer than #0.8 second# increases Defense Penetration #+3,500# and the range of Archery Skills #+2m#.',
+      'Standing still for #0.8 sec# or more grants Defense Penetration +#3000# and immunity to pull effects..\r' +
+      'Also, Increases Archery Skill Range #+1m# per second.\r' +
+      'Stacks up to 20 times.\r' +
+      'The effect ends early if the caster moves.',
     globalCooldown: GLOBAL_CD.NO_TRIGGER,
   },
   {
@@ -236,7 +240,7 @@ const skills = Object.freeze([
     damage: { base: 1613, attack: ATTACK.RANGED, ratio: 480 },
     castTime: 2,
     cooldown: 27,
-    description: 'Shoots a powerful beam of light at a chose target, dealing ${damage} Ranged Damage to it and all enemies in the beam\'s path.',
+    description: 'Shoots a powerful beam of light at a chosen target within #${range[1]}m#, dealing ${damage} Ranged Damage to it and all enemies in the beam\'s path.',
     combos: [
       {
         buff: BUFF.SNARED,
@@ -357,12 +361,11 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.FLAME,
         icon: Icon.MissileRainFlame,
-        range: [10, 30],
+        mana: 867,
         effectRange: 4,
-        castTime: 3,
         description: 'Showers a target area with arrows, dealing ${damage} Ranged Damage per projectile.\r' +
           'This skill can hit the same enemy multiple times.\r' +
-          'This skill deals more damage than regular Missile Rain, but has reduced range, cast speed, and area of affect.',
+          'This skill can shoot more arrows for a longer duration, but cannot be used while moving.',
       },
       {
         element: ELEMENT.MIST,
@@ -391,9 +394,10 @@ export const ancestrals = Object.freeze([
       {
         element: ELEMENT.STONE,
         icon: Icon.EndlessArrowsStone,
-        damage: { base: 0, attack: ATTACK.RANGED, ratio: 43 },
-        description: 'Unleash a constant stream of arrows at a single enemy, dealing ${damage} Ranged Damage per shot.\r' +
-          'Inflicts the #Stone Endless Arrows# effect on the target, which Inflicts #Trip# on the target for #2 sec.#, at the #50th stack#, preventing them to move or use skills. for #3sec#.',
+        mana: 46,
+        damage: { base: 0, attack: ATTACK.RANGED, ratio: 128 },
+        description: 'Unleash a constant stream of arrows that bounce from a target to another, dealing ${damage} Ranged Damage to the primary target.\r' +
+          'Inflicts the additional Damage to nearby enemies within #5m# up to #5 times#.',
       },
     ],
   },
@@ -406,13 +410,15 @@ export const ancestrals = Object.freeze([
         range: [0, 35],
         damage: { base: 2016, attack: ATTACK.RANGED, ratio: 600 },
         description: 'Shoots a powerful beam of light at a chose target, dealing ${damage} Ranged Damage.\r' +
-          'This skill deals additional #+60%# Ranged Damage to targets under the effects of Slow, Snare, Silence, Obscure Vision or targets with 30% of Health or lower.',
+          'This skill deals additional #+10%# Ranged Damage to targets under the effects of Slow, Snare, Silence, or Obscure Vision.\r' +
+          'Also, deals additional #+20%#Ranged Damage to targets with 30% Health or lower.\r' +
+          'Stacks up to 3 times.',
       },
       {
         element: ELEMENT.LIGHTNING,
         icon: Icon.SnipeLightning,
         castTime: 5,
-        description: 'Shoots a powerful beam of light at a chosen target, dealing ${damage} Ranged Damage to it and all enemies in the beam\'s path.\r' +
+        description: 'Shoots a powerful beam of light at a chosen target within #${range[1]}m#, dealing ${damage} Ranged Damage to it and all enemies in the beam\'s path.\r' +
           'Use this skill again during channeling to release the arrow beam early.\r' +
           'The longer you channel, the more Defense Reduction is applied to the target (up to #-30%#).',
         descriptionNote: '\rThe minimum channeling time is 2 seconds.',

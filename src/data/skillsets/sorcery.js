@@ -21,7 +21,7 @@ const skills = Object.freeze([
     effects: [BUFF.BURNING],
     description: 'Hurl a ball of fire, dealing ${damage} Magic Damage to a single enemy.\r' +
       'Can be repeated up to #3 times# in a row before starting its Cooldown.\r' +
-      'The first attack inflicts ${effects[0]} on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
+      'The first attack inflicts #${effects[0]}# on the target, making them more susceptible to certain spell effects for #${duration}sec.#',
     globalCooldown: GLOBAL_CD.REDUCED,
     continuousHold: true,
     combos: [
@@ -189,7 +189,8 @@ const skills = Object.freeze([
     cooldown: 13,
     effects: [BUFF.BURNING],
     description: 'Rains down fire on all enemies in a #10m# radius for #7 sec,# dealing ${damage} Magic Damage per second.\r' +
-      'The skill grants #Immunity# to all debuffs for the same period of time.\r' +
+      'The last projectile has a chance to deal 5 times greater Damage.\r' +
+      'The skill grants #Immunity# to all debuffs for the same period of time.\r\r' +
       'Inflicts #${effects[0]}# on all affected enemies, making them more susceptible to certain spell effects for #${duration}sec#.',
     combos: [
       {
@@ -478,6 +479,25 @@ export const ancestrals = Object.freeze([
           'Inflicts #Frostbite# to all enemies within its area of effect for #3 sec#.\r' +
           'Decreases Move Speed of affected enemies #-30%#.',
         combo: [],
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Magic Circle'),
+    variants: [
+      {
+        element: ELEMENT.FLAME,
+        icon: Icon.MagicCircleFlame,
+        description: 'Summons a @Magic Circle@ beneath the caster\'s feet that only benefits the caster for #20 sec#.\r' +
+          'Increases Magic Attack +#141.0#, Magic Critical Rate #+9%# and the Range of Sorcery Skills #+7m#.\r\r' +
+          '#Use the skill again to teleport back to the Magic Circle\'s Location.#',
+      },
+      {
+        element: ELEMENT.QUAKE,
+        icon: Icon.MagicCircleQuake,
+        description: 'Summons a @Magic Circle@ beneath the caster\'s feet for #20 sec#.\r' +
+          'Increases Magic Attack #+117.0# and Magic Critical Rate #+7%# while within the magic circle.\r\r' +
+          '#Use the skill again to teleport back to the Magic Circle\'s Location.#',
       },
     ],
   },

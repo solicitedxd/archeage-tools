@@ -90,6 +90,7 @@ const skills = Object.freeze([
     range: [0, 18],
     cooldown: 30,
     description: 'Teleports the caster directly behind an ally or enemy.\r' +
+      'This skill can\'t be used if the caster is Snared.\r' +
       'Does not allow the caster to pass through obstacles.',
     globalCooldown: GLOBAL_CD.REDUCED,
   },
@@ -351,20 +352,19 @@ export const ancestrals = Object.freeze([
         icon: Icon.ShadowstepLightning,
         range: [0, 15],
         description: 'Teleports the caster directly behind an ally or enemy up to #3 times.#\r' +
-          'With each teleportation, the range decreases from #15m to 12m, and then 6m.#\r\r' +
+          'With each teleportation, the range decreases from #15m to 12m, and then 6m.#\r' +
+          'This skill can\'t be used if the caster is Snared.\r' +
           'Does not allow the caster to pass through obstacles.',
-        descriptionNote: 'This skill has a reduced Global Cooldown.',
-        globalCooldown: GLOBAL_CD.NORMAL,
+        globalCooldown: GLOBAL_CD.REDUCED,
       },
       {
         element: ELEMENT.MIST,
         icon: Icon.ShadowstepMist,
         cooldown: 20,
         description: 'Teleports the caster directly behind an ally or enemy, and allows to track stealthed enemies.\r' +
-          'This skill can\'t be used without a target.\r\r' +
+          'This skill can\'t be used without a target or if the caster is Snared.\r' +
           'Does not allow the caster to pass through obstacles.',
-        descriptionNote: 'This skill has a reduced Global Cooldown.',
-        globalCooldown: GLOBAL_CD.NORMAL,
+        globalCooldown: GLOBAL_CD.REDUCED,
       },
     ],
   },
@@ -384,10 +384,11 @@ export const ancestrals = Object.freeze([
         element: ELEMENT.STONE,
         icon: Icon.AbsorbLifeStone,
         damage: { base: 1140, attack: ATTACK.MAGIC, ratio: 108 },
+        cooldown: 28,
         impaleDuration: 1,
         description: 'Drains life from an enemy, dealing ${damage} Magic Damage and reducing the target\'s received Healing #-60%# for #4.5 sec#.\r' +
           'At the same time, heals you for #13%# of your Max Health.\r\r' +
-          'Counts as an ongoing spell. If the target moves more than #20m# away from you the spell ends early, #stunning# them for #${stunDuration}sec#. #Stuns# also enemies between the caster and the primary target for #${impaleDuration}sec#.',
+          'Counts as an ongoing spell. If the target moves more than #20m# away from you the spell ends early, #stunning# them for #${stunDuration}sec#. Also #Stuns# up to #8 enemies# between the caster and the primary target for #${impaleDuration}sec#.',
       },
     ],
   },

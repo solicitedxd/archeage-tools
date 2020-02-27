@@ -155,7 +155,7 @@ const skills = Object.freeze([
     mana: 97,
     damage: { base: 438, attack: ATTACK.MELEE, ratio: 80 },
     cooldown: 30,
-    description: 'For #8sec,# whenever you receive damage from a direct attack, you deal ${damage} Melee Damage and dealing additional Damage equal to #1%-2%# of your Max Health to up to#20 enemies# within an #8m# radius.\r' +
+    description: 'For #8sec,# whenever you receive damage from a direct attack, you deal ${damage} Melee Damage and dealing additional Damage equal to #1%-2%# of your Max Health to up to #20 enemies# within an #8m# radius.\r' +
       '(This skill is not triggered by debuffs that deal damage over time.)\r\r' +
       'Triples the caster\'s Aggro.',
     descriptionNote: 'This skill doesn\'t trigger a Global Cooldown.',
@@ -313,7 +313,7 @@ export const ancestrals = Object.freeze([
           'Must equip a shield.\r' +
           'This effect cannot be stolen or removed by enemies. Grants 50% of received damage as stacks of #Mettle#.\r\r' +
           'Grants #Close Protection# to the chosen ally for #5sec#. Decreases Move Speed #-10%#.\r' +
-          'Grants Immunity to Stun, Impale, Trip, Snare, Slow, Shack, Push, and Dive Trap.',
+          'Grants Immunity to Stun, Impale, Trip, Snare, Slow, Shackle, and Dive Trap.',
         globalCooldown: GLOBAL_CD.REDUCED,
       },
     ],

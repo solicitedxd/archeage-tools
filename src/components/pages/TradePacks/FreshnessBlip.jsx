@@ -16,34 +16,58 @@ class FreshnessBlip extends Component {
     freshness: oneOf(Object.values(FRESHNESS).map(f => f.name)).isRequired,
   };
 
+  getModifier = (modifier) => {
+    if (modifier >= 1) {
+      return `+${Math.round((modifier - 1) * 100)}%`;
+    } else {
+      return `-${Math.round((1 - modifier) * 100)}%`;
+    }
+  };
+
+  getName = (key) => `${key.substr(0, 1)}${key.toLowerCase().substr(1)}`;
+
   render() {
     const { freshness } = this.props;
 
     const data = Object.values(FRESHNESS).find(f => f.name === freshness);
-    const profits = Object.keys(data).filter(k => k !== 'name');
 
     return (
       <Tooltip
         title={<Table size="small" className="freshness-table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={2} align="center" className={`freshness ${freshness}`}>
+              <TableCell colSpan={data.AGED ? 4 : 2} align="center" className={`freshness ${freshness}`}>
                 {freshness} Packs
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {profits.map(p => {
-              const { modifier, time } = data[p];
+            {data.AGED &&
+            <TableRow>
+              <TableCell colSpan={2} align="center">Regular</TableCell>
+              <TableCell colSpan={2} align="center">Aged</TableCell>
+            </TableRow>}
+            {Object.keys(data.STANDARD).map((p, i) => {
+              const STANDARD = data.STANDARD[p];
+              const { AGED } = data;
+              const agedKey = AGED && Object.keys(AGED)[i];
               return (
-                <TableRow key={`profit-${p}`}>
+                <TableRow key={`profit-${p}`} className="profit-row">
                   <TableCell>
-                    {p.substr(0, 1)}{p.toLowerCase().substr(1)} Profit
+                    {this.getName(p)} Profit
                   </TableCell>
                   <TableCell>
-                    {modifier >= 1 && `+${Math.round((modifier - 1) * 100)}% ${time}`}
-                    {modifier < 1 && `-${Math.round((1 - modifier) * 100)}% ${time}`}
+                    {this.getModifier(STANDARD.modifier)} {STANDARD.time}
                   </TableCell>
+                  {AGED &&
+                  <>
+                    <TableCell>
+                      {this.getName(agedKey)} Profit
+                    </TableCell>
+                    <TableCell>
+                      {this.getModifier(AGED[agedKey].modifier)} {AGED[agedKey].time}
+                    </TableCell>
+                  </>}
                 </TableRow>
               );
             })}

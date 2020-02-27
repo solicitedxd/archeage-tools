@@ -1,9 +1,11 @@
 import {
   ATTACK,
   BUFF,
+  ELEMENT,
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
+import { getSkillIdByName } from 'utils/skillsets';
 import * as Icon from '../../images/skill/swiftblade/';
 
 const skills = Object.freeze([
@@ -16,7 +18,8 @@ const skills = Object.freeze([
     effects: [BUFF.INSTINCT],
     description: 'Swings your weapon, dealing ${damage} Melee Damage to the target.\r' +
       'Can be used #3 times# in a row.\r' +
-      'If dual-wield weapons are equipped, the second attack deals #+50%# Melee Critical Damage based on the left-hand weapon\'s damage.\r' +
+      'If dual-wield weapons are equipped, both the right and left-hand weapon hit the target on the second attack.\r' +
+      'The Critical Damage of the left-hand weapon is increased by #+50%#.\r' +
       'The third attack, teleports the caster #5m# forward and turns them to face their enemy.\r' +
       'If the third attack hits, a stack of #Instinct# is gained.\r\r' +
       '#Instinct:#\r' +
@@ -48,7 +51,8 @@ const skills = Object.freeze([
     effects: [BUFF.SHAKEN],
     description: 'Spins a circle, dealing ${damage} Melee Damage to all targets within a #${effectRange}m# radius.\r' +
       'Inflicts #${effects[0]}# on affected enemies, decreasing their Move Speed -#27%#, Skill Damage -#8%# and Attack Speed -#75# for #3sec#.\r' +
-      'If dual-wield weapons are equipped, the Critical Hit Damage is increased by #+50%#, based on the left-hand weapon\'s damage.',
+      'If dual-wield weapons are equipped, both the right and left-hand weapon hit the target.\r' +
+      'The Critical Damage of the left-hand weapon is increased by #+50%#.',
     combos: [
       {
         buff: BUFF.SHAKEN,
@@ -72,7 +76,7 @@ const skills = Object.freeze([
     mana: 104,
     range: [0, 4],
     cooldown: 24,
-    damage: { base: 958, attack: ATTACK.MELEE, ratio: 250 },
+    damage: { base: 1149, attack: ATTACK.MELEE, ratio: 300 },
     description: 'Deals ${damage} Melee Damage to your target.\r' +
       'If the skill is used while the caster is hiding in a #Dusk Shroud#, the Skill Damage is increased #+102%#.',
     combos: [
@@ -98,12 +102,14 @@ const skills = Object.freeze([
     effectRange: 3,
     cooldown: 35,
     effects: [BUFF.INSTINCT],
-    description: 'Teleports you to a selected location within #${range[1]}m#, and if used again within #5sec.#, allows you to teleport back to your original location.\r' +
+    description: 'Teleports you to a selected location within #${range[1]}m#, and if used again within #5sec.#.\r' +
+      'Allows you to teleport back to your original location, if used again within #5 sec.#\r' +
       'Inflicts ${effects[0]} on enemies within a #${effectRange}m# radius.\r\r' +
       '#Instinct:#\r' +
       'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +50%#.\r' +
       'Can be stacked #twice#, but cancels a stack after each successful hit.\r' +
-      'Lasts for #5sec#.',
+      'Lasts for #5sec#.\r\r' +
+      'The teleportation range of this skill can be increased +100% with the passive skill "Windwalker".',
     globalCooldown: GLOBAL_CD.REDUCED_USEWHILE,
     movement: true,
     noWalls: true,
@@ -127,7 +133,8 @@ const skills = Object.freeze([
     damage: { base: 219, attack: ATTACK.MELEE, ratio: 60 },
     cooldown: 12,
     description: 'Rapidly attacks the target #4 times# in a row, dealing ${damage} Melee Damage each hit.\r' +
-      'If dual-wield weapons are equipped, the 1st, 2nd and 4th attack deal additional #+50%# Critical Damage, based on the left-hand weapons damage.',
+      'If dual-wield weapons are equipped, both the right and left-hand weapon hit the target on the the 1st, 2nd and 4th attack.\r' +
+      'The Critical Damage of the left-hand weapon is increased by #+50%#.',
     combos: [
       {
         buff: BUFF.INSTINCT,
@@ -189,8 +196,7 @@ const skills = Object.freeze([
     name: 'Fleeting Footsteps',
     mana: 76,
     cooldown: 55,
-    description: 'Triggers the #Fleeting Footsteps# effect for #15sec#, which decreases the duration of Slow #-70%#.\r' +
-      'Gaining another stack of #Fleeting Footsteps# increases the duration up to #30 sec#.',
+    description: 'Triggers the #Fleeting Footsteps# effect for #15sec#, which Decreases the Slow duration #-50%#.',
     globalCooldown: GLOBAL_CD.REDUCED_USEWHILE,
   },
   {
@@ -222,19 +228,21 @@ const skills = Object.freeze([
     name: 'Primal Strike',
     mana: 65,
     cooldown: 45,
-    description: 'Recklessly attacks the target, inflicting #Primal Strike# for #10sec#.\r' +
-      'Primal Strike increases the Attack Speed +#350# and the Received Damage #+50%#. Gaining additional stack of #Primal Strike# increases the duration up to #20 sec#.',
-    globalCooldown: GLOBAL_CD.NONE,
+    description: 'Recklessly attacks the target.\r' +
+      'Decreases Cooldown -40% for #Sinister Strike, Crescent Slice, Relentless Assault, and TWin Shadow Slash.#',
+    descriptionNote: '\rThis skill doesn\'t trigger a Global Cooldown.\r' +
+      'Can be used during Global Cooldown.',
   },
   {
     icon: Icon.TwinShadow,
     name: 'Twin Shadow Slash',
     mana: 165,
     range: [0, 5],
-    damage: { base: 576, attack: ATTACK.MELEE, ratio: 150 },
+    damage: { base: 634, attack: ATTACK.MELEE, ratio: 160 },
     cooldown: 21,
     description: 'Performs a vicious blade dance, dealing ${damage} Melee Damage.\r' +
-      'If dual-wield weapons are equipped, the Critical Damage is increased +50%, based on the left-hand weapon\'s damage.\r' +
+      'If dual-wield weapons are equipped, both the right and left-hand weapon hit the target.\r' +
+      'The Critical Damage of the left-hand weapon is increased #+50%#.\r' +
       'This skill can be used #twice# in a row.',
     movement: true,
     combos: [
@@ -282,12 +290,12 @@ export const passives = Object.freeze([
   {
     icon: Icon.Windwalker,
     name: 'Windwalker',
-    description: 'Increases the skill range of #Bladeblast and Blink +100%#.',
+    description: 'Increases the skill range of #Bladeblast, Blink, and Twin Shadow Slash +100%#.',
     skillMod: [
       {
         type: SKILLMOD.PERCENT,
         vars: { range: 2 },
-        skills: [3],
+        skills: [3, 11],
       },
       {
         type: SKILLMOD.PERCENT,
@@ -303,6 +311,53 @@ export const passives = Object.freeze([
   },
 ]);
 
-export const ancestrals = Object.freeze([]);
+export const ancestrals = Object.freeze([
+  {
+    skillId: getSkillIdByName(skills, 'Blade Flurry'),
+    variants: [
+      {
+        element: ELEMENT.WAVE,
+        icon: Icon.BladeFlurryWave,
+        effects: [],
+        description: 'Swings your weapon, dealing ${damage} Melee Damage to the target.\r' +
+          'Can be used #3 times# in a row.\r\r' +
+          'If dual-wield weapons are equipped, both the right and left-hand weapon hit the target on the second attack.\r' +
+          'The Critical Damage of the left-hand weapon is increased #+50%#.',
+        descriptionNote: '\rThis skill has a reduced Global Cooldown.\r' +
+          'Hold the skill for auto-use.',
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Sinister Strike'),
+    variants: [
+      {
+        element: ELEMENT.WAVE,
+        icon: Icon.SinisterStrikeWave,
+        damage: { base: 766, attack: ATTACK.MELEE, ratio: 200 },
+        description: 'Deals ${damage} Melee Damage to your target, using your @left-hand weapon@.\r' +
+          'If the skill is used while the caster is hiding in a #Dusk Shroud#, the Skill Damage is increased #+102%#.',
+        descriptionNote: '\rThis skill doesn\'t trigger a Global Cooldown.\r' +
+          'Can only be used when equipped with Dual-Wield Weapons.',
+      },
+    ],
+  },
+  {
+    skillId: getSkillIdByName(skills, 'Blink'),
+    variants: [
+      {
+        element: ELEMENT.MIST,
+        icon: Icon.BlinkMist,
+        description: 'Teleports you to a select location within #${range[1]}#, hiding you in @Stealth@ for #1 sec#.\r' +
+          'Inflicts #Instinct# on enemies within a #3m# radius.\r\r' +
+          '#Instinct:#\r' +
+          'Increases the Damage dealt by #Crescent Slice, Sinister Strike, Relentless Assault, and Twin Shadow Slash +50%#.\r' +
+          'Can be stacked #twice#, but cancels a stack after each successful hit.\r' +
+          'Lasts for #5sec#.\r\r' +
+          'The teleportation range of this skill can be increased +100% with the passive skill "Windwalker".',
+      },
+    ],
+  },
+]);
 
 export default skills;

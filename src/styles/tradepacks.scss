@@ -109,9 +109,10 @@ $Cargo: #FF4053;
   background-color: $Cargo;
 }
 
-.freshness-tip-container {
+.MuiTooltip-tooltip.freshness-tip-container {
   padding: 0 !important;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.85);
+  max-width: none;
 }
 
 .material-indent {
@@ -194,6 +195,12 @@ $Cargo: #FF4053;
 
   .MuiTableCell-root {
     border-color: transparent;
+  }
+
+  .profit-row {
+    .MuiTableCell-root {
+      font-size: 0.75rem;
+    }
   }
 
   .MuiTableCell-body {
