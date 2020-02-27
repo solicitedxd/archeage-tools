@@ -198,8 +198,8 @@ export const REAL_TIME_EVENTS = Object.freeze([
         { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.TUESDAY, DAY.THURSDAY, DAY.SATURDAY] },
       ],
       EU: [
-        { time: '02:00:00', duration: '01:00:00' },
-        { time: '03:15:00', duration: '12:45:00' },
+        { time: '02:00:00', duration: '00:30:00' },
+        { time: '15:15:00', duration: '00:45:00' },
         { time: '21:15:00', duration: '00:45:00' },
       ],
     },
@@ -285,8 +285,8 @@ export const REAL_TIME_EVENTS = Object.freeze([
         { time: '20:15:00', duration: '00:45:00', days: [DAY.SUNDAY, DAY.MONDAY, DAY.WEDNESDAY, DAY.FRIDAY] },
       ],
       EU: [
-        { time: '02:00:00', duration: '01:00:00' },
-        { time: '03:15:00', duration: '12:45:00' },
+        { time: '02:00:00', duration: '00:30:00' },
+        { time: '15:15:00', duration: '00:45:00' },
         { time: '21:15:00', duration: '00:45:00' },
       ],
     },
@@ -302,9 +302,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
         { time: '20:00:00', duration: '01:00:00' },
       ],
       EU: [
-        { time: '08:00:00', duration: '01:00:00' },
-        { time: '15:00:00', duration: '01:00:00' },
-        { time: '19:00:00', duration: '01:00:00' },
+        { time: '16:00:00', duration: '09:00:00' },
       ],
     },
   },
