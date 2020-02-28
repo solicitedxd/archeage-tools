@@ -6,6 +6,12 @@ html {
   min-height: 100%;
 }
 
+@media only screen and (min-width: 1921px) {
+  html {
+    background-size: contain;
+  }
+}
+
 html.dark-mode {
   background-color: #121212;
 }
