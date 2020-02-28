@@ -41,6 +41,17 @@ const ITEM = Object.freeze({
     bindsOnPickup: true,
     allowPricing: true,
   },
+  KYRIOS_BADGE: {
+    name: 'Kyrios Badge',
+    icon: Icon.KyriosBadge,
+    type: 'Coin',
+    description: <>
+      Granted to those who have proven their strength.<br /><br />
+      Can be obtained from any <Orange>arena</Orange>, based on results. Can be traded for other items in the Arena
+      Shop.
+    </>,
+    bindsOnPickup: true,
+  },
   SHATIGONS_SAND: {
     name: 'Shatigon\'s Sand',
     icon: Icon.ShatigonsSand,

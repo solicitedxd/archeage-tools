@@ -2666,6 +2666,338 @@ const MOUNT = [
       </p>
     </>,
   },
+  {
+    name: 'Tamed Ant',
+    speed: 11.5,
+    skills: [
+      ['Run Ant'],
+      ['Camouflage Ant'],
+      'Strong Smell',
+      'Survival',
+      'Ant\'s Diligence',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Scorpion',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Jabberwock',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Mandragora',
+    imageCredit: 'Shelias',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Boar',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Starfish',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Crab',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Tsunami Elemental',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Turtle',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Skyfin',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Razorbeak',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Bladewing',
+    quote: 'Made out of salvaged steel and electrical parts from Tigerspine Mountains, this rusty friend should be touched with caution. Every so often, he could end up giving you some... shocks of love.\n',
+    speed: 11.5,
+    skills: [
+      ['Run Bladewing'],
+      ['Wild Charge Bat'],
+      ['Overrun Bladewing'],
+      'Beep Boop Beep',
+      'Push',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Owl',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Honeybee',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Bat',
+    quote: 'Don\'t be fooled by this adorable face; this bat may love you, but will gladly bite anyone else. Keep it happy with some fresh fruit and it will love you forever.',
+    speed: 11.5,
+    skills: [
+      ['Run Bat'],
+      ['Wild Charge Bat'],
+      'Bleeding',
+      'Ultrasonic Waves',
+      'Loud Screech',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.KYRIOS,
+    ],
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tuskora',
+    quote: 'Tuskora is the matriarch of a large elephant herd in Mahadevi. Known to be the most intelligent and powerful of her herd, she only lends her strength to animal tamers she deems worthy.',
+    speed: 11.5,
+    skills: [],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      QUEST,
+    ],
+    obtainText: <>
+      <p>
+        This mount is acquired by completing the <Typography color="primary" component="span">Tuskora
+        Collection</Typography>, an achievement for collecting all 15 Tamed mounts from the Arena Shop.
+      </p>
+
+      <ul className="list-cols">
+        <li>
+          Terrestrial Conqueror
+          <ul>
+            <li><Link to="/mounts/tamed-ant">Tamed Ant</Link></li>
+            <li><Link to="/mounts/tamed-boar">Tamed Boar</Link></li>
+            <li><Link to="/mounts/tamed-mandragora">Tamed Mandragora</Link></li>
+          </ul>
+        </li>
+        <li>
+          Champion of the Sea
+          <ul>
+            <li><Link to="/mounts/tamed-starfish">Tamed Starfish</Link></li>
+            <li><Link to="/mounts/tamed-crab">Tamed Crab</Link></li>
+            <li><Link to="/mounts/tamed-turtle">Tamed Turtle</Link></li>
+            <li><Link to="/mounts/tamed-tsunami-elemental">Tamed Tsunami Elemental</Link></li>
+          </ul>
+        </li>
+        <li>
+          Oddly Cute
+          <ul>
+            <li><Link to="/mounts/tamed-scorpion">Tamed Scorpion</Link></li>
+            <li><Link to="/mounts/tamed-jabberwock">Tamed Jabberwock</Link></li>
+            <li><Link to="/mounts/tamed-bladewing">Tamed Bladewing</Link></li>
+          </ul>
+        </li>
+        <li>
+          Winged Warrior
+          <ul>
+            <li><Link to="/mounts/tamed-owl">Tamed Owl</Link></li>
+            <li><Link to="/mounts/tamed-honeybee">Tamed Honeybee</Link></li>
+            <li><Link to="/mounts/tamed-bat">Tamed Bat</Link></li>
+            <li><Link to="/mounts/tamed-skyfin">Tamed Skyfin</Link></li>
+            <li><Link to="/mounts/tamed-razorbeak">Tamed Razorbeak</Link></li>
+          </ul>
+        </li>
+      </ul>
+    </>,
+  },
 ];
 
 export default MOUNT;
