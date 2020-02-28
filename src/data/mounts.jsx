@@ -1841,12 +1841,15 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
   {
@@ -2152,6 +2155,7 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <MapEmbed
@@ -2163,8 +2167,7 @@ const MOUNT = [
         buttonFloat="right"
       />
       <p>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
-        this mount
-        by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
+        this mount by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
         Essence.</p>
       <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
         Drill Camp in Hasla, to complete the quest <span className="dropdown-icon Quest" />&nbsp;
@@ -2173,7 +2176,8 @@ const MOUNT = [
       <p>
         Alternatively, this mount can be obtained outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>On Unchained, this mount can only be acquired using the first method above by purchasing a Crimson Lightning
+        Essence for <ItemLink item={ITEM.DILIGENCE_COIN} count={150} />, and then completing the associated quest.</p>
     </>,
   },
   {
@@ -2192,12 +2196,15 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
   {
@@ -2216,12 +2223,15 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
   {
@@ -2324,9 +2334,18 @@ const MOUNT = [
     types: [
       MOUNT_TYPE.STANDARD,
     ],
-    obtainText: <p>
-      On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
-    </p>,
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.
+        </p>
+      </>,
   },
   {
     name: 'Stormwraith Kirin',
@@ -2593,6 +2612,58 @@ const MOUNT = [
         </li>
       </ul>
       <p>Take these materials to the workbench at your castle to craft it.</p>
+    </>,
+  },
+  {
+    name: 'Aquestria',
+    quote: 'Once thought to be a myth, Aquestria is a classic feature in fish tales throughout Erenor. To some she is a deadly trickster--for others, a savior of drowning sailors. But on one point all agree: anyone lucky enough to saddle Aquestria will win the creature\'s undying loyalty, and need never fear the ocean depths again.',
+    speed: 7.5,
+    skills: [
+      ['Scan Ships Aquestria'],
+      'Aquestria Dash',
+      'Sharp Dive',
+      ['Acrobatics Aquestria'],
+      'Bubble Trap',
+    ],
+    types: [
+      MOUNT_TYPE.AQUATIC,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <>
+      <p>
+        On Legacy, this mount used to be obtainable from the Seaside Treasure Chest.
+      </p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Golden Manticore',
+    quote: 'Regal and ferocious, Manticores are a symbol of bravery in battle. It is said that a Manticore\'s roar erases cowardice, inspiring even flagging troops to new acts of heroism.',
+    speed: 11.5,
+    skills: [
+      ['Run Manticore'],
+      ['Overrun Manticore'],
+      ['Glide Manticore'],
+      'Wing Boost',
+      'Roar of the Pride',
+    ],
+    types: [
+      MOUNT_TYPE.FLYING,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText: <>
+      <p>
+        On Legacy, this mount used to be obtainable from the Manticore Archeum Supply Crate.
+      </p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
 ];

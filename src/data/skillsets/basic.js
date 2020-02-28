@@ -470,6 +470,13 @@ export default Object.freeze([
     description: 'Displays all ships and drydocks within #100m# for #10sec#.',
   },
   {
+    id: 'Scan Ships Aquestria',
+    icon: Icon.ScanShips,
+    name: 'Scan Ships',
+    cooldown: 60,
+    description: 'Aquestria creates sound waves to detect all ships and drydocks within 200m for 10 seconds.',
+  },
+  {
     icon: Icon.DolphinDash,
     name: 'Dolphin Dash',
     cooldown: 25,
@@ -489,6 +496,47 @@ export default Object.freeze([
     cooldown: 10,
     description: 'Utilizes the fins to launch a powerful leap. May trigger different tricks depending on the dolphin\'s mood.\r' +
       'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.AquestriaDash,
+    name: 'Aquestria Dash',
+    cooldown: 25,
+    description: 'Increases Move Sped #+50#% for #10# seconds.\r' +
+      'Can\'t be used while performing Sharp Dive or Acrobatics.',
+  },
+  {
+    icon: Icon.SharpDive,
+    name: 'Sharp Dive',
+    cooldown: 30,
+    description: 'A quick dive down into the depths.\r' +
+      'Can\'t be used while Dashing, carrying a trade pack, or performing Acrobatics.',
+  },
+  {
+    id: 'Acrobatics Aquestria',
+    icon: Icon.AcrobaticsAquestria,
+    name: 'Acrobatics',
+    cooldown: 10,
+    description: 'Allows Aquestria free rein to frolic as she wishes. May trigger different tricks depending on the creature\'s mood.\r' +
+      'Can\'t be used while carrying a trade pack or performing Aquestria Dash or Dive.',
+  },
+  {
+    icon: Icon.BubbleTrap,
+    name: 'Bubble Trap',
+    range: [0, 20],
+    cooldown: 40,
+    description: 'Traps an enemy inside a bubble for #4 sec# and slowly lifts it into the air. Bubble duration reduced -50% in PvP.\r' +
+      'Enemies in bubbles can\'t attack, but will be freed upon taking damage.\r' +
+      'Can\'t be used while performing Sharp Dive or Acrobatics.',
+    combos: [
+      {
+        buff: BUFF.ELECTROCUTED,
+        text: 'Deals additional Magic Damage to ${b} targets.',
+      },
+      {
+        buff: BUFF.BURNING,
+        text: '${b} targets are thrown higher.',
+      },
+    ],
   },
   {
     icon: Icon.DreamingDonkey,
@@ -939,5 +987,49 @@ export default Object.freeze([
       'Can be used from the ground.\r' +
       'Inflicts Siege Damage on enemies and deals additional Magic Damage.\r' +
       'Can\'t be used while charging or airborne.',
+  },
+  {
+    id: 'Run Manticore',
+    icon: Icon.RunManticore,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases pet\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Increases gliding speed #+30%# while airborne.',
+  },
+  {
+    id: 'Overrun Manticore',
+    icon: Icon.Bite,
+    name: 'Overrun',
+    range: [0, 15],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Triggers a forward charge to bite an enemy, dealing Physical Damage.\r' +
+      'Decreases enemy\'s Move Speed #-30%# for 3 seconds and inflicts damage over #10 sec#.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    id: 'Glide Manticore',
+    icon: Icon.GlideManticore,
+    name: 'Glide',
+    cooldown: 60,
+    description: 'Glide through the skies with your mount for #5 min#.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    icon: Icon.WingBoost,
+    name: 'Wing Boost',
+    cooldown: 25,
+    description: 'Leap #30m# forward.\r' +
+      'Grants Invincibility for #3 seconds# if used while airborne.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    icon: Icon.RoarOfThePride,
+    name: 'Roar of the Pride',
+    effectRange: 16,
+    cooldown: 60,
+    description: 'Decreases received damage #-7%# for all raid members and their mounts within #15m#.\r' +
+      'Lasts #7# seconds.\r' +
+      'Can\'t be used while airborne.',
   },
 ]);
