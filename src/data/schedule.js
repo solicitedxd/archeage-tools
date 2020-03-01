@@ -34,7 +34,7 @@ export const REAL_TIME_EVENTS = Object.freeze([
         { time: '02:29:00', duration: '01:00:00' },
       ],
       EU: [
-        { time: '18:29:00', duration: '01:00:00' },
+        { time: '21:29:00', duration: '01:00:00' },
       ],
     },
   },
