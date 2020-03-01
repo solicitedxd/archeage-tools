@@ -17,6 +17,21 @@ const Home = () => {
         {navigation.map(navLink => <Banner {...navLink} text={navLink.name} key={navLink.path || navLink.name} />)}
       </div>
       <NewsPost
+        title="Kyrios Mounts and Fixes"
+        date="Mar 1, 2020"
+      >
+        <p>I've finally gotten around to adding the mounts available for Kyrios Badges from the Arena Shop, along with
+          Tuskora. I only have one picture, and I'm still in the process of adding their skills, so a large handful
+          might be missing some for the next few days.</p>
+        <p>I've also fixed a few issues:</p>
+        <ul>
+          <li>Abyssal Attack time for EU.</li>
+          <li>Events that run through midnight UTC would stop showing as active after midnight.</li>
+          <li>Non-aged trade pack materials sometimes didn't factor in the material price into the total gold value.
+          </li>
+        </ul>
+      </NewsPost>
+      <NewsPost
         title="Minor Updates"
         date="Feb 19, 2020"
       >

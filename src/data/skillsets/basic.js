@@ -1,7 +1,9 @@
 import { BUFF } from 'constants/skills';
 import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
+import Push from 'images/skill/defense/Bull_Rush.png';
 import Beastsense from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import Snipe from 'images/skill/shadowplay/Ruthless_Assault.png';
+import LoudScreech from 'images/skill/witchcraft/Enervate.png';
 import * as Icon from '../../images/skill/basic/';
 
 export default Object.freeze([
@@ -470,6 +472,13 @@ export default Object.freeze([
     description: 'Displays all ships and drydocks within #100m# for #10sec#.',
   },
   {
+    id: 'Scan Ships Aquestria',
+    icon: Icon.ScanShips,
+    name: 'Scan Ships',
+    cooldown: 60,
+    description: 'Aquestria creates sound waves to detect all ships and drydocks within 200m for 10 seconds.',
+  },
+  {
     icon: Icon.DolphinDash,
     name: 'Dolphin Dash',
     cooldown: 25,
@@ -489,6 +498,47 @@ export default Object.freeze([
     cooldown: 10,
     description: 'Utilizes the fins to launch a powerful leap. May trigger different tricks depending on the dolphin\'s mood.\r' +
       'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.AquestriaDash,
+    name: 'Aquestria Dash',
+    cooldown: 25,
+    description: 'Increases Move Sped #+50#% for #10# seconds.\r' +
+      'Can\'t be used while performing Sharp Dive or Acrobatics.',
+  },
+  {
+    icon: Icon.SharpDive,
+    name: 'Sharp Dive',
+    cooldown: 30,
+    description: 'A quick dive down into the depths.\r' +
+      'Can\'t be used while Dashing, carrying a trade pack, or performing Acrobatics.',
+  },
+  {
+    id: 'Acrobatics Aquestria',
+    icon: Icon.AcrobaticsAquestria,
+    name: 'Acrobatics',
+    cooldown: 10,
+    description: 'Allows Aquestria free rein to frolic as she wishes. May trigger different tricks depending on the creature\'s mood.\r' +
+      'Can\'t be used while carrying a trade pack or performing Aquestria Dash or Dive.',
+  },
+  {
+    icon: Icon.BubbleTrap,
+    name: 'Bubble Trap',
+    range: [0, 20],
+    cooldown: 40,
+    description: 'Traps an enemy inside a bubble for #4 sec# and slowly lifts it into the air. Bubble duration reduced -50% in PvP.\r' +
+      'Enemies in bubbles can\'t attack, but will be freed upon taking damage.\r' +
+      'Can\'t be used while performing Sharp Dive or Acrobatics.',
+    combos: [
+      {
+        buff: BUFF.ELECTROCUTED,
+        text: 'Deals additional Magic Damage to ${b} targets.',
+      },
+      {
+        buff: BUFF.BURNING,
+        text: '${b} targets are thrown higher.',
+      },
+    ],
   },
   {
     icon: Icon.DreamingDonkey,
@@ -857,7 +907,7 @@ export default Object.freeze([
     icon: Icon.WildCharge,
     name: 'Wild Charge',
     cooldown: 60,
-    description: 'Charges forward foe #3sec#, breaking through enemy lines. Inflicts Knockback and Trip on affected enemies.\r' +
+    description: 'Charges forward for #3sec#, breaking through enemy lines. Inflicts Knockback and Trip on affected enemies.\r' +
       'This counts as a Push effect.\r' +
       'Can\'t be used while carrying a trade pack.',
   },
@@ -939,5 +989,160 @@ export default Object.freeze([
       'Can be used from the ground.\r' +
       'Inflicts Siege Damage on enemies and deals additional Magic Damage.\r' +
       'Can\'t be used while charging or airborne.',
+  },
+  {
+    id: 'Run Manticore',
+    icon: Icon.RunManticore,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases pet\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Increases gliding speed #+30%# while airborne.',
+  },
+  {
+    id: 'Overrun Manticore',
+    icon: Icon.Bite,
+    name: 'Overrun',
+    range: [0, 15],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Triggers a forward charge to bite an enemy, dealing Physical Damage.\r' +
+      'Decreases enemy\'s Move Speed #-30%# for 3 seconds and inflicts damage over #10 sec#.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    id: 'Glide Manticore',
+    icon: Icon.GlideManticore,
+    name: 'Glide',
+    cooldown: 60,
+    description: 'Glide through the skies with your mount for #5 min#.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    icon: Icon.WingBoost,
+    name: 'Wing Boost',
+    cooldown: 25,
+    description: 'Leap #30m# forward.\r' +
+      'Grants Invincibility for #3 seconds# if used while airborne.\r' +
+      'Can\'t be used while under the effects of Roar of the Pride.',
+  },
+  {
+    icon: Icon.RoarOfThePride,
+    name: 'Roar of the Pride',
+    effectRange: 16,
+    cooldown: 60,
+    description: 'Decreases received damage #-7%# for all raid members and their mounts within #15m#.\r' +
+      'Lasts #7# seconds.\r' +
+      'Can\'t be used while airborne.',
+  },
+  {
+    id: 'Run Ant',
+    icon: Icon.RunAnt,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Pet Move Speed #+50%# for #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Camouflage Ant',
+    icon: Icon.CamouflageAnt,
+    name: 'Camouflage',
+    cooldown: 60,
+    description: 'Can\'t be targeted for #3 sec#.\r' +
+      'You cannot turn left or right once the charge begins.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.StrongSmell,
+    name: 'Strong Smell',
+    range: [0, 15],
+    cooldown: 45,
+    description: 'Lured the ant, dealing Ranged Damage and decreasing the target\'s Attack Speed #-30%# for 5 sec.',
+  },
+  {
+    icon: Icon.Survival,
+    name: 'Survival',
+    cooldown: 300,
+    description: 'Hide yourself immediately.\r' +
+      'Moving or being attacked will cancel this effect.',
+  },
+  {
+    icon: Icon.AntsDiligence,
+    name: 'Ant\'s Diligence',
+    effectRange: 10,
+    cooldown: 180,
+    description: 'Increases Move Speed for #3 min +60%# for allies carrying trade packs.',
+  },
+  {
+    id: 'Run Bat',
+    icon: Icon.RunBat,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Wild Charge Bat',
+    icon: Icon.Breakthrough,
+    name: 'Wild Charge',
+    cooldown: 60,
+    description: 'Charges forward for #3sec#, breaking through enemy lines.\r' +
+      'Inflicts Knockback and Trip on affected enemies.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Bite,
+    name: 'Bleeding',
+    range: [0, 5],
+    cooldown: 30,
+    effects: [BUFF.BLEEDING],
+    description: 'Bites the selected target, inflicting continuous damage.',
+  },
+  {
+    icon: Icon.UltrasonicWaves,
+    name: 'Ultrasonic Waves',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Decreases Attack Speed #-50%# of enemies with a #4m# radius for #3 sec#.\r\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: LoudScreech,
+    name: 'Loud Screech',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'After dealing damage to enemies within a #4m# radius, inflicts Trip for #2 sec#.\r\r' +
+      'Can\'t be used while under the effects of Run! or Wild Charge.',
+  },
+  {
+    id: 'Run Bladewing',
+    icon: Icon.RunBladewing,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Overrun Bladewing',
+    icon: Icon.Overrun,
+    name: 'Overrun',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Charges at a faraway target, inflicting Electric Shock for #3 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.BeepBoopBeep,
+    name: 'Beep Boop Beep',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Decreases Attack -30% of enemies within a #4m# radius.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Push,
+    name: 'Push',
+    cooldown: 30,
+    description: 'Pushes nearby enemies within #4m#, #10m# away.',
   },
 ]);
