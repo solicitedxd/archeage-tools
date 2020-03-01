@@ -222,7 +222,7 @@ class PackViewer extends Component {
     }
     let totalGold = gold;
     materials.forEach(mat => {
-      if (!mat.indent && craftLarder) {
+      if (!mat.indent && craftLarder && isAgedPack) {
         return;
       }
       totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
