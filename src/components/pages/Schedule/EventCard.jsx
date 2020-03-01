@@ -81,55 +81,72 @@ class EventCard extends Component {
     return { times, days };
   };
 
+  createEventTime = (days, daysRaw) => (time, yesterday) => {
+    const now = moment.utc().milliseconds(0);
+    const { name, inGameTime } = time;
+
+    let running = null;
+
+    if (time.days) {
+      days = time.days;
+    } else {
+      days = daysRaw;
+    }
+    const [hh, mm, ss] = time.time.split(':');
+    const startTime = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
+    if (yesterday === true) {
+      startTime.subtract(1, 'day');
+    }
+    let endTime;
+    if (time.duration) {
+      const [hh2, mm2, ss2] = time.duration.split(':');
+      endTime = moment(startTime);
+      endTime.add(hh2, 'hours');
+      endTime.add(mm2, 'minutes');
+      endTime.add(ss2, 'seconds');
+    }
+    // if the event only starts on specific days, we need to move it to that day first
+    while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
+      startTime.add(1, 'day');
+      endTime && endTime.add(1, 'day');
+    }
+    // check if the event is running, if so, we want to show a running timer
+    if (!startTime.isAfter(now) && endTime && endTime.isAfter(now)) {
+      running = { ...time, time: moment(startTime) };
+      if (endTime) {
+        running.ends = moment(endTime);
+      }
+    }
+    // move the start time forward for events that have already started
+    while (!startTime.isAfter(now)) {
+      startTime.add(1, 'day');
+      endTime && endTime.add(1, 'day');
+    }
+    // now that the day has been progressed, move the day forward to an appropriate day
+    while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
+      startTime.add(1, 'day');
+      endTime && endTime.add(1, 'day');
+    }
+
+    return { ...time, time: startTime, ends: endTime, name, inGameTime, running };
+  };
+
+  toInt = (time) => {
+    const [hh, mm, ss] = time.time.split(':');
+    return hh + (mm / 60) + (ss / (60 * 60));
+  };
+
   getNextOccurrence = () => {
     const { times: timesRaw, days: daysRaw } = this.getTimes();
     if (!timesRaw) return;
     let days = daysRaw;
 
-    const now = moment.utc().milliseconds(0);
-    let running = null;
-    const times = timesRaw.map(time => {
-      const { name, inGameTime } = time;
+    const createTime = this.createEventTime(days, daysRaw);
+    const times = timesRaw.map(createTime);
 
-      if (time.days) {
-        days = time.days;
-      } else {
-        days = daysRaw;
-      }
-      const [hh, mm, ss] = time.time.split(':');
-      const startTime = moment.utc().hour(hh).minute(mm).second(ss);
-      let endTime;
-      if (time.duration) {
-        const [hh2, mm2, ss2] = time.duration.split(':');
-        endTime = moment(startTime);
-        endTime.add(hh2, 'hours');
-        endTime.add(mm2, 'minutes');
-        endTime.add(ss2, 'seconds');
-      }
-      // if the event only starts on specific days, we need to move it to that day first
-      while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
-        startTime.add(1, 'day');
-        endTime && endTime.add(1, 'day');
-      }
-      // check if the event is running, if so, we want to show a running timer
-      if (startTime.isBefore(now) && endTime && endTime.isAfter(now)) {
-        running = { ...time, time: moment(startTime) };
-        if (endTime) {
-          running.ends = moment(endTime);
-        }
-      }
-      // move the start time forward for events that have already started
-      while (startTime.isBefore(now)) {
-        startTime.add(1, 'day');
-        endTime && endTime.add(1, 'day');
-      }
-      // now that the day has been progressed, move the day forward to an appropriate day
-      while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
-        startTime.add(1, 'day');
-        endTime && endTime.add(1, 'day');
-      }
-      return { ...time, time: startTime, ends: endTime, name, inGameTime };
-    });
+    const lastTime = timesRaw.sort((a, b) => this.toInt(a) - this.toInt(b))[timesRaw.length - 1];
+    times.push(createTime(lastTime, true));
+    const running = (times.find(t => t.running !== null) || {}).running;
 
     const nextOccurrence = {
       time: null,
