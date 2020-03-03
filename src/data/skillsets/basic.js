@@ -1,9 +1,12 @@
 import { BUFF } from 'constants/skills';
 import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
 import Push from 'images/skill/defense/Bull_Rush.png';
+import Absorption from 'images/skill/defense/Lasso.png';
 import Beastsense from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
 import Snipe from 'images/skill/shadowplay/Ruthless_Assault.png';
 import LoudScreech from 'images/skill/witchcraft/Enervate.png';
+import Surprise from 'images/skill/witchcraft/Insidious_Whisper.png';
+import SharpClaws from 'images/skill/witchcraft/Stillness.png';
 import * as Icon from '../../images/skill/basic/';
 
 export default Object.freeze([
@@ -1144,5 +1147,279 @@ export default Object.freeze([
     name: 'Push',
     cooldown: 30,
     description: 'Pushes nearby enemies within #4m#, #10m# away.',
+  },
+  {
+    id: 'Run Scorpion',
+    icon: Icon.RunScorpion,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases the pet\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.HuntersGuile,
+    name: 'Hunter\'s Guile',
+    cooldown: 60,
+    description: 'Increases Evasion #+20%# for the mount and the rider for #6 sec#.\r' +
+      'Increases the mount\'s Move Speed #+20%#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.VenomousTail,
+    name: 'Venomous Tail',
+    range: [0, 5],
+    cooldown: 45,
+    effects: [BUFF.POISONED],
+    description: 'Impales the target with its sharp tail, dealing Physical Damage and additional damage over #8 sec#.',
+  },
+  {
+    icon: Icon.AggressiveClaws,
+    name: 'Aggressive Claws',
+    effectRange: 5,
+    cooldown: 60,
+    description: 'Creates shockwaves that deal damage and inflicts Shaken to affected enemies.',
+  },
+  {
+    icon: Icon.ReleasePoision,
+    name: 'Release Poision',
+    effectRange: 15,
+    cooldown: 90,
+    description: 'Poisons hostile pets within #15m#.',
+  },
+  {
+    id: 'Run Jabberwock',
+    icon: Icon.RunJabberwock,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases the pet\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.DesperateEscape,
+    name: 'Desperate Escape',
+    cooldown: 5,
+    description: 'Increases the mount\'s Move Speed #+65%# for #1.5 sec#, then gradually decreases to #-30%# for #4 seconds#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.TerrifyingCry,
+    name: 'Terrifying Cry',
+    effectRange: 15,
+    cooldown: 60,
+    description: 'Decreases Move Speed for #7 sec -35%# for hostile mounts within #15m#.',
+  },
+  {
+    icon: Icon.DerangedMumble,
+    name: 'Deranged Mumble',
+    range: [0, 12],
+    castTime: 1.5,
+    cooldown: 45,
+    description: 'After 1.5 seconds, increase the target\'s Cast Time up to #+40%# for #4 sec#.',
+  },
+  {
+    icon: Icon.UncontrollableMove,
+    name: 'Uncontrollable Move',
+    cooldown: 90,
+    description: 'The Jabberwock is running out of control for #10 sec#.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    id: 'Run Mandragora',
+    icon: Icon.RunMandragora,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases the pet\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Breakthrough Mandragora',
+    icon: Icon.BreakthroughMandragora,
+    name: 'Breakthrough',
+    cooldown: 60,
+    description: 'Charges forward for #3 sec#, breaking through enemy lines.\r' +
+      'Inflicts Knockback and Trip on affected enemies.\r' +
+      'This skill counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Chaos,
+    name: 'Chaos',
+    range: [0, 17],
+    cooldown: 45,
+    description: 'Selects a hostile target, and inflicts Fear for #2 sec# if the target is not receiving any damage.',
+  },
+  {
+    icon: Icon.Irrational,
+    name: 'Irrational',
+    cooldown: 60,
+    description: 'Cancels the Mandragora\'s fear.',
+  },
+  {
+    icon: Icon.Photosynthesis,
+    name: 'Photosynthesis',
+    channeled: true,
+    cooldown: 90,
+    description: 'Increases received Healing #+20%# for allies within 16m for 10 sec.\r' +
+      'Cancels if the caster moves.',
+  },
+  {
+    id: 'Run Boar',
+    icon: Icon.RunBoar,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Pet Move Speed #+50%# for #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.ProtectiveInstincts,
+    name: 'Protective Instincts',
+    cooldown: 60,
+    description: 'Increases #Defense and Magic Defense# for #3 sec#.\r' +
+      'You cannot turn left or right once the charge begins.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.PenetratingHorn,
+    name: 'Penetrating Horn',
+    range: [0, 15],
+    cooldown: 45,
+    effects: [BUFF.BLEEDING],
+    description: 'A ramming horn deals Physical Damage and additional damage over #10 sec#.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.DetectSmell,
+    name: 'Detect Smell',
+    range: [0, 16],
+    castTime: 1.5,
+    cooldown: 60,
+    description: 'After 1.5 seconds, decreases Move Speed #-20%# of the target within #5m#.',
+  },
+  {
+    icon: Icon.BlazingSkin,
+    name: 'Blazing Skin',
+    cooldown: 60,
+    description: 'Grants Frostbite and Burning Immunity to the rider and the mount for #7 sec#.',
+  },
+  {
+    id: 'Run Starfish',
+    icon: Icon.RunStarfish,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Wild Charge Starfish',
+    icon: Icon.Breakthrough,
+    name: 'Wild Charge',
+    cooldown: 60,
+    description: 'Charges forward for #3sec#, breaking through enemy lines.\r' +
+      'Inflicts Knockback and Trip on affected enemies.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Overwhelm Starfish',
+    icon: Icon.Overrun,
+    name: 'Overwhelm',
+    range: [0, 7],
+    cooldown: 24,
+    description: 'Triggers a charge towards a distant enemy, decreasing the enemy\'s Move Speed.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Surprise,
+    name: 'Surprise',
+    range: [0, 7],
+    cooldown: 45,
+    description: 'Fears the target for 2 seconds.',
+  },
+  {
+    icon: Icon.UnderwaterCold,
+    name: 'Underwater Cold',
+    effectRange: 4,
+    cooldown: 90,
+    description: 'Freezes enemies within a #4m# radius for #2 sec#.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Icon.ElephantMarch,
+    name: 'Elephant March',
+    cooldown: 30,
+    description: 'Charges forward for #3sec#, breaking through enemy lines.\r' +
+      'Inflicts Knockback and Trip on affected enemies.\r' +
+      'This counts as a Push effect.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Run Tuskora',
+    icon: Icon.RunTuskora,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Run Crab',
+    icon: Icon.RunCrab,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Absorption,
+    name: 'Absorption',
+    range: [0, 15],
+    cooldown: 30,
+    description: 'Pulls a distant target. Pulled enemies are Staggered, briefly stopping movement and canceling all Cast Time and Channeled skills.',
+  },
+  {
+    icon: SharpClaws,
+    name: 'Sharp Claws',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Interrupts enemy\'s casting and inflicts Silence for #2 sec#.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Teamwork,
+    name: 'Teamwork',
+    effectRange: 15,
+    cooldown: 60,
+    description: 'Increases Move Speed #+20%# of friendly mounts within a #15m# radius for 10 seconds.',
+  },
+  {
+    id: 'Run Tsunami Elemental',
+    icon: Icon.RunTsunamiElemental,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.PowerfulBlow,
+    name: 'Powerful Blow',
+    effectRange: 5,
+    cooldown: 60,
+    description: 'Trips an enemy within a #5m# radius for #2 sec.#\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Icon.BubbleTrap,
+    name: 'Tsunami Trap',
+    effectRange: 5,
+    cooldown: 60,
+    description: 'Bubble Traps an enemy within a #5m# radius for #2 sec#.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Icon.TsunamiBomb,
+    name: 'Tsunami Bomb',
+    range: [0, 15],
+    effectRange: 5,
+    cooldown: 60,
+    description: 'Pushes enemies within a #5m# radius #10m# away, using a Tsunami Bomb.',
   },
 ]);
