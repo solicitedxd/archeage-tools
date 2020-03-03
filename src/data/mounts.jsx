@@ -1172,6 +1172,7 @@ const MOUNT = [
   },
   {
     name: 'Gallant Sandmane Snowlion',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       'Overrun',
@@ -1238,6 +1239,7 @@ const MOUNT = [
   },
   {
     name: 'Gallant Browntail Leomorph',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       'Mounted Attack',
@@ -2692,7 +2694,13 @@ const MOUNT = [
   {
     name: 'Tamed Scorpion',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Scorpion'],
+      'Hunter\'s Guile',
+      'Venomous Tail',
+      'Aggressive Claws',
+      'Release Poision',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2709,7 +2717,13 @@ const MOUNT = [
   {
     name: 'Tamed Jabberwock',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Jabberwock'],
+      'Desperate Escape',
+      'Terrifying Cry',
+      'Deranged Mumble',
+      'Uncontrollable Move',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2727,7 +2741,13 @@ const MOUNT = [
     name: 'Tamed Mandragora',
     imageCredit: 'Shelias',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Mandragora'],
+      ['Breakthrough Mandragora'],
+      'Chaos',
+      'Irrational',
+      'Photosynthesis',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2744,7 +2764,13 @@ const MOUNT = [
   {
     name: 'Tamed Boar',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Boar'],
+      'Protective Instincts',
+      'Penetrating Horn',
+      'Detect Smell',
+      'Blazing Skin',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2761,7 +2787,13 @@ const MOUNT = [
   {
     name: 'Tamed Starfish',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Starfish'],
+      ['Wild Charge Starfish'],
+      ['Overwhelm Starfish'],
+      'Surprise',
+      'Underwater Cold',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2778,7 +2810,13 @@ const MOUNT = [
   {
     name: 'Tamed Crab',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Crab'],
+      ['Wild Charge Starfish'],
+      'Absorption',
+      'Sharp Claws',
+      'Teamwork',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2794,8 +2832,15 @@ const MOUNT = [
   },
   {
     name: 'Tamed Tsunami Elemental',
+    imageCredit: 'Felnari',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Tsunami Elemental'],
+      ['Wild Charge Starfish'],
+      'Powerful Blow',
+      'Tsunami Trap',
+      'Tsunami Bomb',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2828,6 +2873,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Skyfin',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [],
     types: [
@@ -2845,6 +2891,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Razorbeak',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [],
     types: [
@@ -2886,6 +2933,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Owl',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [],
     types: [
@@ -2903,6 +2951,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Honeybee',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [],
     types: [
@@ -2920,6 +2969,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Bat',
+    imageCredit: 'Suicide',
     quote: 'Don\'t be fooled by this adorable face; this bat may love you, but will gladly bite anyone else. Keep it happy with some fresh fruit and it will love you forever.',
     speed: 11.5,
     skills: [
@@ -2946,7 +2996,10 @@ const MOUNT = [
     name: 'Tuskora',
     quote: 'Tuskora is the matriarch of a large elephant herd in Mahadevi. Known to be the most intelligent and powerful of her herd, she only lends her strength to animal tamers she deems worthy.',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Tuskora'],
+      'Elephant March',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
