@@ -2693,6 +2693,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Scorpion',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Scorpion'],
@@ -2716,6 +2717,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Jabberwock',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Jabberwock'],
@@ -2909,6 +2911,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Bladewing',
+    imageCredit: 'Suicide',
     quote: 'Made out of salvaged steel and electrical parts from Tigerspine Mountains, this rusty friend should be touched with caution. Every so often, he could end up giving you some... shocks of love.\n',
     speed: 11.5,
     skills: [
