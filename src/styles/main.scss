@@ -540,7 +540,7 @@ blockquote cite:before {
 }
 
 .editor-container {
-  margin: 16px 0;
+  margin: 16px 0 0;
   color: rgba(0, 0, 0, 0.87);
 
   #mui-rte-editor-container {
@@ -552,6 +552,10 @@ blockquote cite:before {
     width: auto;
   }
 
+  .buttons {
+    margin: 8px 0 0;
+    text-align: right;
+  }
 }
 
 .dark-mode {

@@ -49,7 +49,7 @@ export const customControls = (ref) => [
 
 export const toolbar = Object.freeze({
   [EDITOR_TYPE.NEWS]: ['heading', 'bold', 'italic', 'underline', 'strikethrough', 'link', 'bulletList', 'numberList',
-    'quote', 'insert-hr', 'clear', 'save'],
+    'quote', 'insert-hr', 'clear'],
   [EDITOR_TYPE.COMMENT]: [],
 });
 
