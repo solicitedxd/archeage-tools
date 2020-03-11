@@ -74,7 +74,7 @@ export const refreshSession = () => (dispatch, getStorage) => new Promise((resol
     } else {
       dispatch(setNotification('An unknown error occurred. Please log in again.', NOTIFICATION_TYPE.ERROR));
     }
-    dispatch({ type: SESSION_LOGOUT });
+    dispatch(logout());
   });
 });
 
