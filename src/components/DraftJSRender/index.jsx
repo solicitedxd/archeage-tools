@@ -52,6 +52,9 @@ const getEntityComponent = entityType => {
         }
       };
 
+    case 'HR':
+      return () => <hr />;
+
     default:
       console.error('Unknown entity: ', entityType);
       return ({ children }) => <div>{children}</div>;

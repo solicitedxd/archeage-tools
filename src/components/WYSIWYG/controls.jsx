@@ -1,4 +1,5 @@
 import { Typography } from '@material-ui/core';
+import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit';
 import TitleIcon from '@material-ui/icons/Title';
 import React from 'react';
 
@@ -24,18 +25,31 @@ export const EDITOR_TYPE = Object.freeze({
   COMMENT: 'comment',
 });
 
-export const customControls = [
+export const customControls = (ref) => [
   {
     name: 'heading',
     icon: <TitleIcon />,
     type: 'block',
     blockWrapper: <Typography variant="h6" />,
   },
+  {
+    name: 'hr',
+    type: 'atomic',
+    atomicComponent: () => <hr />,
+  },
+  {
+    name: 'insert-hr',
+    icon: <HorizontalSplitIcon />,
+    type: 'callback',
+    onClick: () => {
+      ref.current.insertAtomicBlock('hr');
+    },
+  },
 ];
 
 export const toolbar = Object.freeze({
   [EDITOR_TYPE.NEWS]: ['heading', 'bold', 'italic', 'underline', 'strikethrough', 'link', 'bulletList', 'numberList',
-    'quote', 'clear', 'save'],
+    'quote', 'insert-hr', 'clear', 'save'],
   [EDITOR_TYPE.COMMENT]: [],
 });
 

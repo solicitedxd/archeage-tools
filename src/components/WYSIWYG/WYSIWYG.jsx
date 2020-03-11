@@ -25,14 +25,17 @@ class WYSIWYG extends Component {
     onSave: null,
   };
 
+  ref = React.createRef();
+
   render() {
     const { value, onSave, type, ...otherProps } = this.props;
     return (
       <div className="editor-container">
         <Editor
           {...otherProps}
+          ref={this.ref}
           controls={toolbar[type]}
-          customControls={customControls}
+          customControls={customControls(this.ref)}
           inlineToolbar={true}
           inlineToolbarControls={inlineToolbar[type]}
           value={value}
