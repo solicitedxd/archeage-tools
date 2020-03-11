@@ -238,7 +238,18 @@ footer.site-footer {
   .news-list {
     min-width: 375px;
     max-width: 802px;
+    width: 100%;
+
+    .comments-action {
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
   }
+}
+
+.pagination-control {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px;
 }
 
 .news-author {
@@ -444,7 +455,7 @@ h6 + p {
 }
 
 .mark-tooltip {
-  text-decoration: dashed;
+  text-decoration: underline dashed #FFFFFF;
   cursor: help;
 }
 
