@@ -55,3 +55,5 @@ export const encodeColors = (string) => {
   string = string.replace(/\|c\|/g, () => `</span>`);
   return transformLines(string);
 };
+
+export const stringToContentState = (string) => JSON.parse(string || '{ "blocks": [], "entityMap": {} }');

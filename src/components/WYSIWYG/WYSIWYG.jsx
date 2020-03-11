@@ -1,40 +1,42 @@
+import {
+  customControls,
+  EDITOR_TYPE,
+  inlineToolbar,
+  toolbar,
+} from 'components/WYSIWYG/controls';
+import Editor from 'mui-rte';
 import React, { Component } from 'react';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import {
   func,
+  oneOf,
   string,
 } from 'react-proptypes';
 
 class WYSIWYG extends Component {
   static propTypes = {
-    initialState: string,
-    editorState: string,
-    onChange: func,
+    value: string,
+    onSave: func,
     label: string,
+    type: oneOf(Object.values(EDITOR_TYPE)).isRequired,
   };
 
   static defaultProps = {
-    editorState: null,
-    onChange: null,
+    value: null,
+    onSave: null,
   };
 
   render() {
-    const { editorState, onChange, label, ...otherProps } = this.props;
-
+    const { value, onSave, type, ...otherProps } = this.props;
     return (
-      <div>
+      <div className="editor-container">
         <Editor
           {...otherProps}
-          // controls={['heading', 'bold', 'italic', 'underline', 'strikethrough', 'numberList', 'bulletList', 'clear']}
-          // customControls={[
-          //  ...standardControls,
-          // ]}
-          // inlineToolbar
-          initialContentState={editorState}
-          // onChange={(contentState) => onChange(JSON.stringify(convertToRaw(contentState.getCurrentContent())))}
-          onContentStateChange={onChange}
-          // label={label}
+          controls={toolbar[type]}
+          customControls={customControls}
+          inlineToolbar={true}
+          inlineToolbarControls={inlineToolbar[type]}
+          value={value}
+          onSave={onSave}
         />
       </div>
     );

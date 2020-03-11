@@ -2665,11 +2665,6 @@ draft-js@^0.11.1, draft-js@^0.11.4:
     immutable "~3.7.4"
     object-assign "^4.1.1"
 
-draftjs-to-html@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/draftjs-to-html/-/draftjs-to-html-0.9.1.tgz#1c870fbb588d2390204cb4d0ee7e04ad0c709969"
-  integrity sha512-fFstE6+IayaVFBEvaFt/wN8vdj8FsTRzij7dy7LI9QIwf5LgfHFi9zSpvCg+feJ2tbYVqHxUkjcibwpsTpgFVQ==
-
 draftjs-utils@^0.10.2:
   version "0.10.2"
   resolved "https://registry.yarnpkg.com/draftjs-utils/-/draftjs-utils-0.10.2.tgz#a7f16d2c1c174ac38ba3bbf700c256f176b2699c"
@@ -4908,10 +4903,10 @@ ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
-mui-rte@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/mui-rte/-/mui-rte-1.11.0.tgz#acce9f88f11e15d6e9607b59db471d70742967fa"
-  integrity sha512-efwbyL2rlfnYihw/fqG8lpYWWtS80DplfhhsmSWU2aW5pIz/jr0CnfoxRcLacEA6VZSTxOLhDZS2Z2yheKWThQ==
+mui-rte@^1.14.0:
+  version "1.14.0"
+  resolved "https://registry.yarnpkg.com/mui-rte/-/mui-rte-1.14.0.tgz#43163b5b8d0336aa72305d5a793f6336b4dd2bd9"
+  integrity sha512-UOHXB9AdwnwRWHiVn9LnoxWP9S1iHdmQQjK5nhM6VAPW6zea9NvyPEZd3M1mduXq7JGmaF/Ym/a1uMut/IFODw==
   dependencies:
     "@types/classnames" "^2.2.9"
     "@types/draft-js" "^0.10.36"

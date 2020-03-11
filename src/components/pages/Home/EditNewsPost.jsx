@@ -1,6 +1,9 @@
 import {
   AppBar,
   Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Paper,
   TextField,
   Toolbar,
@@ -16,8 +19,10 @@ import {
 } from 'actions/navigate';
 import { setNotification } from 'actions/notification';
 import { requiresPermission } from 'actions/session';
+import IfPerm from 'components/IfPerm/IfPerm';
 import OptionalTooltip from 'components/OptionalTooltip';
 import WYSIWYG from 'components/WYSIWYG';
+import { EDITOR_TYPE } from 'components/WYSIWYG/controls';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
@@ -35,18 +40,18 @@ class EditNewsPost extends Component {
   constructor(props) {
     super(props);
     const { match: { params: { action } } } = props;
-    props.requiresPermission(`news.${action === 'edit' ? 'update' : 'create'}`, '/news');
+    props.requiresPermission(`news.${action === 'edit' ? 'edit' : 'create'}`, '/news');
 
     this.state = {
-      initialBody: '',
       formData: {
         title: '',
         body: '',
+        author: props.username,
       },
-      author: props.username,
       createDate: Date.now(),
       editDate: null,
       loading: false,
+      deleteConfirm: false,
     };
   }
 
@@ -57,10 +62,8 @@ class EditNewsPost extends Component {
       xhr.get(substitute(config.endpoints.service.newsPost, { postId }))
       .then(({ data }) => {
         this.setState({
-          initialBody: data.body,
           formData: {
             ...data,
-            body: '',
           },
           createDate: data.createDate,
           editDate: data.editDate,
@@ -81,44 +84,54 @@ class EditNewsPost extends Component {
     this.setState({ formData: { ...formData, [field]: e.target.value } });
   };
 
-  handleEditor = (body) => {
+  handleSubmit = (body) => {
+    const { match: { params: { action, postId } }, setNotification } = this.props;
     const { formData } = this.state;
-    this.setState({ formData: { ...formData, body } });
-  };
-
-  handleSubmit = (e) => {
-    const { match: { params: { action, postId } } } = this.props;
     this.setState({ loading: true });
-
-    e.preventDefault();
 
     const method = (action === 'edit') ? xhr.put : xhr.post;
     const endpoint = (action === 'edit') ? substitute(config.endpoints.service.newsPost, { postId })
-      : config.endpoints.service.newsPost;
+      : config.endpoints.service.newsPage;
 
-    method(endpoint, { ...this.state.formData })
+    method(endpoint, { ...formData, body })
     .then(({ data }) => {
-      this.props.setNotification(`${data.title} has been saved.`, NOTIFICATION_TYPE.SUCCESS);
+      setNotification(`${data.title} has been saved.`, NOTIFICATION_TYPE.SUCCESS);
       push(`/news/${data.id}`);
     })
     .catch((error) => {
       const message = pathOr('Failed to save news post.', ['data', 'errorMessage'])(error);
-      this.props.setNotification(message, NOTIFICATION_TYPE.ERROR);
+      setNotification(message, NOTIFICATION_TYPE.ERROR);
       this.setState({ loading: false });
     });
   };
 
   handleDelete = () => {
+    this.setState({ deleteConfirm: true });
+  };
 
+  handleDeleteCancel = () => {
+    this.setState({ deleteConfirm: false });
   };
 
   handleDeleteConfirm = () => {
-
+    const { match: { params: { postId } }, setNotification } = this.props;
+    const { formData: { title } } = this.state;
+    this.setState({ deleteConfirm: false });
+    xhr.delete(substitute(config.endpoints.service.newsPost, { postId }))
+    .then(() => {
+      setNotification(`'${title}' has been deleted.`, NOTIFICATION_TYPE.SUCCESS);
+      push('/news');
+    })
+    .catch((error) => {
+      const message = pathOr('Failed to delete news post.', ['data', 'errorMessage'])(error);
+      setNotification(message, NOTIFICATION_TYPE.ERROR);
+      push('/news');
+    });
   };
 
   render() {
     const { match: { params: { postId, action } } } = this.props;
-    const { formData: { title }, author, createDate, editDate, initialBody, loading } = this.state;
+    const { formData: { title, author, body }, createDate, editDate, loading, deleteConfirm } = this.state;
 
     return (
       <div className="section">
@@ -147,11 +160,13 @@ class EditNewsPost extends Component {
                   </Typography>
                 </OptionalTooltip>
                 {postId &&
-                <Tooltip title="Delete">
-                  <IconButton onClick={this.handleDelete} color="inherit">
-                    <DeleteIcon />
-                  </IconButton>
-                </Tooltip>}
+                <IfPerm permission="news.delete">
+                  <Tooltip title="Delete">
+                    <IconButton onClick={this.handleDelete} color="inherit">
+                      <DeleteIcon />
+                    </IconButton>
+                  </Tooltip>
+                </IfPerm>}
               </Toolbar>
             </AppBar>
             <div className="body-container">
@@ -166,22 +181,39 @@ class EditNewsPost extends Component {
                 value={title}
                 onChange={this.handleChange('title')}
               />
-              <Paper elevation={2} className="editor-container">
-                <WYSIWYG
-                  initialState={initialBody}
-                  onChange={this.handleEditor}
-                  label="Start typing..."
-                  readOnly={loading}
-                />
-              </Paper>
-              <div className="right">
-                <Button variant="contained" color="primary" type="submit" disabled={loading}>
-                  {action === 'edit' ? 'Save' : 'Post'}
-                </Button>
-              </div>
+              <WYSIWYG
+                type={EDITOR_TYPE.NEWS}
+                value={body}
+                onSave={this.handleSubmit}
+                label="Start typing..."
+                readOnly={loading}
+              />
             </div>
           </form>
         </Paper>
+        <Dialog
+          open={deleteConfirm}
+          onClose={this.handleDeleteCancel}
+        >
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Typography variant="subtitle1" className="title-text">Delete Post</Typography>
+              <Tooltip title="Close">
+                <IconButton onClick={this.handleDeleteCancel}>
+                  <CloseIcon />
+                </IconButton>
+              </Tooltip>
+            </Toolbar>
+          </AppBar>
+          <DialogContent>
+            <Typography>You are going to delete {title}.</Typography>
+            <Typography>This action cannot be reversed. Proceed?</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleDeleteConfirm}>Confirm</Button>
+            <Button color="primary" onClick={this.handleDeleteCancel}>Cancel</Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }

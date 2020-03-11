@@ -8,21 +8,23 @@ import {
 } from '@material-ui/core';
 import CreateIcon from '@material-ui/icons/Edit';
 import { push } from 'actions/navigate';
+import { setNotification } from 'actions/notification';
+import DraftJSRender from 'components/DraftJSRender';
+import IfPerm from 'components/IfPerm/IfPerm';
 import OptionalTooltip from 'components/OptionalTooltip';
 import EditNewsPost from 'components/pages/Home/EditNewsPost';
-import { mapEntityTransform } from 'components/WYSIWYG/controls';
 import config from 'config';
-import draftToHtml from 'draftjs-to-html';
+import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { substitute } from 'utils/string';
+import { connect } from 'react-redux';
+import {
+  stringToContentState,
+  substitute,
+} from 'utils/string';
 import xhr from 'utils/xhr';
 
 class NewsPost extends Component {
-  static propTypes = {};
-
-  static defaultProps = {};
-
   state = {};
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -34,12 +36,16 @@ class NewsPost extends Component {
   }
 
   loadPost = (props) => {
-    const { match: { params: { postId, action } } } = props;
+    const { match: { params: { postId, action } }, setNotification } = props;
 
     if (action !== 'edit') {
       xhr.get(substitute(config.endpoints.service.newsPost, { postId }))
       .then(({ data }) => {
-        this.setState({ ...data, body: JSON.parse(data.body) });
+        this.setState({ ...data });
+      })
+      .catch(() => {
+        setNotification('News post not found.', NOTIFICATION_TYPE.ERROR);
+        push('/news');
       });
     }
   };
@@ -52,8 +58,6 @@ class NewsPost extends Component {
     }
 
     const { id, title, body, author, createDate, editDate } = this.state;
-    console.log(body);
-    console.log(draftToHtml(body, {}, false, mapEntityTransform));
 
     return (
       <div className="section">
@@ -68,25 +72,25 @@ class NewsPost extends Component {
                 {moment(createDate).format('MMM DD, YYYY')}
               </Typography>
             </OptionalTooltip>
-            <Tooltip title="Create New Post">
-              <IconButton color="inherit" onClick={() => push(`/news/${id}/edit`)}>
-                <CreateIcon />
-              </IconButton>
-            </Tooltip>
+            <IfPerm permission="news.edit">
+              <Tooltip title="Edit Post">
+                <IconButton color="inherit" onClick={() => push(`/news/${id}/edit`)}>
+                  <CreateIcon />
+                </IconButton>
+              </Tooltip>
+            </IfPerm>
           </Toolbar>
         </AppBar>
         <Paper>
-          <Typography
-            component="div"
-            className="body-container"
-            dangerouslySetInnerHTML={{
-              __html: draftToHtml(body, {}, false, mapEntityTransform),
-            }}
-          />
+          <DraftJSRender contentState={stringToContentState(body)} />
         </Paper>
       </div>
     );
   }
 }
 
-export default NewsPost;
+const mapDispatchToProps = {
+  setNotification,
+};
+
+export default connect(null, mapDispatchToProps)(NewsPost);
