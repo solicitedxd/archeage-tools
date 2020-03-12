@@ -9,7 +9,7 @@ export default {
     newsPage: '/service/news?page=${page}',
     newsPost: '/service/news/${postId}',
     newComment: '/service/comment',
-    comment: '/service/comment/${commendId}',
+    comment: '/service/comment/${commentId}',
     comments: '/service/comment/byPost/${postId}',
     item: '/service/item?ids=${itemIds}',
     recipeByProduct: '/service/recipe/product/${itemId}',

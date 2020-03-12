@@ -20,6 +20,7 @@ import { connect } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import Sticky from 'react-sticky-el';
 import {
+  scrollTo,
   setTitle,
   slug,
   unslug,
@@ -59,12 +60,8 @@ class GuideViewer extends Component {
 
   goSection = (section, behavior = 'smooth') => {
     this.closeToC();
-    const element = document.getElementById(section);
-    if (element) {
-      element.scrollIntoView({
-        behavior,
-        block: 'start',
-      });
+    if (document.getElementById(section)) {
+      scrollTo(section, behavior);
     }
   };
 

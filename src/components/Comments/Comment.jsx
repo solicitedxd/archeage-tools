@@ -1,17 +1,27 @@
 import {
+  AppBar,
   Button,
   Collapse,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  IconButton,
+  Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import CloseIcon from '@material-ui/icons/Close';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import ReplyIcon from '@material-ui/icons/Reply';
+import { setNotification } from 'actions/notification';
 import Avatar from 'components/Avatar';
 import EditComment from 'components/Comments/EditComment';
 import DraftJSRender from 'components/DraftJSRender';
 import IfPerm from 'components/IfPerm';
 import Username from 'components/Username';
+import config from 'config';
+import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
 import {
   array,
@@ -20,9 +30,15 @@ import {
   number,
   string,
 } from 'prop-types';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
-import { stringToContentState } from 'utils/string';
+import {
+  stringToContentState,
+  substitute,
+} from 'utils/string';
+import xhr from 'utils/xhr';
 
 class Comment extends Component {
   static propTypes = {
@@ -55,7 +71,7 @@ class Comment extends Component {
   };
 
   setCollapsed = (collapsed) => () => {
-    this.setState({ collapsed, reply: false });
+    this.setState({ collapsed, reply: false, edit: false });
   };
 
   setReply = (reply) => () => {
@@ -70,15 +86,26 @@ class Comment extends Component {
     this.setState({ deleteOpen });
   };
 
+  handleDelete = () => {
+    const { id, onUpdateComments, setNotification } = this.props;
+    xhr.delete(substitute(config.endpoints.service.comment, { commentId: id }))
+    .then(({ data }) => onUpdateComments(data))
+    .catch(error => {
+      const message = pathOr('Failed to delete comment.', ['data', 'errorMessage'])(error);
+      setNotification(message, NOTIFICATION_TYPE.ERROR);
+    })
+    .finally(this.setDelete(false));
+  };
+
   render() {
     const { id, postId, body, author, createDate, editDate, replies, deleted, depth, onUpdateComments, sortAsc } = this.props;
     const { collapsed, reply, edit, deleteOpen } = this.state;
     const isEdited = (editDate && editDate !== createDate) && !deleted;
 
     return (
-      <div className="paper-border no-border">
+      <div className="paper-border no-border comment-box">
         <div className="collapsible-left">
-          <Avatar user={author} size={16} />
+          <Avatar user={author} size={0.875} />
           <Tooltip title={collapsed ? 'Expand' : 'Collapse'} placement="top">
             <div className="collapse sm" onClick={this.setCollapsed(!collapsed)} />
           </Tooltip>
@@ -86,18 +113,26 @@ class Comment extends Component {
         <div className="collapsible-right">
           <div>
             <Username user={author} />
-            <Typography variant="caption" className="time">
-              {moment(createDate).fromNow()}
-            </Typography>
+            <Tooltip title={new Date(createDate).toLocaleString(navigator.language || 'en-US')}>
+              <Typography variant="caption" className="time">
+                {moment(createDate).fromNow()}
+              </Typography>
+            </Tooltip>
             {isEdited &&
             <Tooltip title={new Date(editDate).toLocaleString(navigator.language || 'en-US')}>
               <Typography variant="caption" className="time edited">
-                (edited)
+                (edited {moment(editDate).fromNow()})
               </Typography>
             </Tooltip>}
           </div>
           <Collapse in={!collapsed}>
-            <DraftJSRender contentState={stringToContentState(body)} />
+            {!edit
+              ? <DraftJSRender contentState={stringToContentState(body)} />
+              :
+              <EditComment
+                {...this.props}
+                onCancel={this.setEdit(false)}
+              />}
             {!deleted &&
             <div className="small-buttons">
               <IfPerm permission="comment.create">
@@ -108,7 +143,7 @@ class Comment extends Component {
                   Reply
                 </Button>
               </IfPerm>
-              <IfPerm permission="comment.edit">
+              <IfPerm permission="comment.edit" orUserIs={author}>
                 <Button
                   startIcon={<EditIcon />}
                   onClick={this.setEdit(true)}
@@ -116,7 +151,7 @@ class Comment extends Component {
                   Edit
                 </Button>
               </IfPerm>
-              <IfPerm permission="comment.delete">
+              <IfPerm permission="comment.delete" orUserIs={author}>
                 <Button
                   startIcon={<DeleteIcon />}
                   onClick={this.setDelete(true)}
@@ -136,7 +171,7 @@ class Comment extends Component {
               />
             </Collapse>
             {replies && replies.sort(sortBy('createDate', sortAsc)).map(reply => (
-              <Comment
+              <ConnectedComment
                 {...reply}
                 onUpdateComments={onUpdateComments}
                 key={`comment-${reply.id}`}
@@ -146,9 +181,38 @@ class Comment extends Component {
             ))}
           </Collapse>
         </div>
+        <Dialog
+          open={deleteOpen}
+          onClose={this.setDelete(false)}
+        >
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Typography variant="subtitle1" className="title-text">Delete Comment</Typography>
+              <Tooltip title="Close">
+                <IconButton onClick={this.setDelete(false)}>
+                  <CloseIcon />
+                </IconButton>
+              </Tooltip>
+            </Toolbar>
+          </AppBar>
+          <DialogContent style={{ minHeight: 92 }}>
+            <blockquote><DraftJSRender contentState={stringToContentState(body)} raw /></blockquote>
+            <Typography>Are you sure you want to delete this comment?</Typography>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.setDelete(false)}>Cancel</Button>
+            <Button color="primary" onClick={this.handleDelete}>Delete</Button>
+          </DialogActions>
+        </Dialog>
       </div>
     );
   }
 }
 
-export default Comment;
+const mapDispatchToProps = {
+  setNotification,
+};
+
+const ConnectedComment = connect(null, mapDispatchToProps)(Comment);
+
+export default ConnectedComment;

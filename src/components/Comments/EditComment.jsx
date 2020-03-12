@@ -43,7 +43,9 @@ class EditComment extends Component {
   constructor(props) {
     super(props);
     const { depth, onCancel, replyUser, ...otherProps } = props;
-    props.requiresPermission(`comment.${props.id ? 'edit' : 'create'}`, () => onCancel);
+    if (!props.id) {
+      props.requiresPermission('comment.create', onCancel, 'You do not have permission to perform this action.');
+    }
 
     this.state = {
       ...otherProps,
@@ -55,7 +57,7 @@ class EditComment extends Component {
     const { id, setNotification, onCancel } = this.props;
     if (id) {
       this.setState({ loading: true });
-      xhr.get(substitute(config.endpoints.service.comment, { id }))
+      xhr.get(substitute(config.endpoints.service.comment, { commentId: id }))
       .then(({ data }) => {
         if (data.deleted) {
           setNotification('This comment has been deleted and cannot be edited.', NOTIFICATION_TYPE.WARNING);
@@ -96,7 +98,6 @@ class EditComment extends Component {
       : config.endpoints.service.newComment;
 
     method(endpoint, {
-      id,
       postId,
       body,
       reply,
@@ -106,7 +107,6 @@ class EditComment extends Component {
       onCancel();
     })
     .catch((error) => {
-      console.error(error);
       const message = pathOr('Failed to save comment.', ['data', 'errorMessage'])(error);
       setNotification(message, NOTIFICATION_TYPE.ERROR);
       onCancel();

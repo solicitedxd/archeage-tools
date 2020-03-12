@@ -72,6 +72,7 @@ const DraftJSRender = (
   {
     contentState: { blocks, entityMap },
     textComponent = ({ children }) => children,
+    raw = false,
   }) => {
   let blockList = [];
   let blocksDepthStack = [];
@@ -198,7 +199,9 @@ const DraftJSRender = (
     );
   };
 
-  return <Typography component="div" className="body-container">{renderArray(blockList)}</Typography>;
+  return raw
+    ? renderArray(blockList)
+    : <Typography component="div" className="body-container">{renderArray(blockList)}</Typography>;
 };
 
 export default DraftJSRender;

@@ -96,11 +96,11 @@ export const closeWindow = () => (dispatch) => {
   dispatch({ type: SESSION_WINDOW_CLOSE });
 };
 
-export const requiresPermission = (permission, failPath) => (dispatch) => {
+export const requiresPermission = (permission, failPath, message = 'You do not have permission to view this page.') => (dispatch) => {
   const allowed = dispatch(hasPermission(permission));
 
   if (!allowed) {
-    dispatch(setNotification('You do not have permission to view this page.', NOTIFICATION_TYPE.ERROR));
+    dispatch(setNotification(message, NOTIFICATION_TYPE.ERROR));
 
     if (typeof failPath === 'function') {
       failPath();

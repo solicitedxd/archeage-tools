@@ -210,8 +210,8 @@ class EditNewsPost extends Component {
             <Typography>This action cannot be reversed. Proceed?</Typography>
           </DialogContent>
           <DialogActions>
-            <Button onClick={this.handleDeleteConfirm}>Confirm</Button>
-            <Button color="primary" onClick={this.handleDeleteCancel}>Cancel</Button>
+            <Button onClick={this.handleDeleteCancel}>Cancel</Button>
+            <Button color="primary" onClick={this.handleDeleteConfirm}>Delete</Button>
           </DialogActions>
         </Dialog>
       </div>

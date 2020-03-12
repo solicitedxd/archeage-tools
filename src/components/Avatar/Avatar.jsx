@@ -30,7 +30,8 @@ class Avatar extends Component {
   }
 
   render() {
-    const { size, avatar } = this.props;
+    const { size: em, avatar } = this.props;
+    const size = `${em}em`;
 
     return (
       <MuiAvatar

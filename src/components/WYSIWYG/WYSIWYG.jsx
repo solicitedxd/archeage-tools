@@ -83,6 +83,7 @@ class WYSIWYG extends Component {
           inlineToolbarControls={inlineToolbar[type]}
           value={value}
           onChange={this.setEditorState}
+          maxLength={maxLength > 0 ? maxLength : null}
         />
         <div className="buttons">
           {maxLength > 0 &&

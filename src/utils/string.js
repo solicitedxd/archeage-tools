@@ -18,8 +18,12 @@ export const setTitle = (title) => {
   }
 };
 
+export const scrollTo = (elementId, behavior = 'smooth', block = 'start') => {
+  document.getElementById(elementId).scrollIntoView({ behavior, block });
+};
+
 export const scrollToTop = () => {
-  document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollTo('app');
 };
 
 export const validateQuantity = (min, max) => (value) => {
@@ -77,4 +81,19 @@ export const getCharCountOfContentState = (contentState) => {
   } catch (e) {
     return 0;
   }
+};
+
+export const eqIgnoreCase = (str1, str2) => {
+  if (str1 === null && str2 === null) {
+    return true;
+  }
+
+  str1 = String(str1);
+  str2 = String(str2);
+
+  if (str1 === str2) {
+    return true;
+  }
+
+  return (str1.toLowerCase() === str2.toLowerCase());
 };

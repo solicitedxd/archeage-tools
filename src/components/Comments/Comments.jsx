@@ -22,7 +22,10 @@ import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
-import { substitute } from 'utils/string';
+import {
+  scrollTo,
+  substitute,
+} from 'utils/string';
 import xhr from 'utils/xhr';
 import Comment from './Comment';
 import EditComment from './EditComment';
@@ -53,7 +56,7 @@ class Comments extends Component {
       this.loadComments();
     } else {
       comments = this.sortComments(comments);
-      this.setState({ comments, commentCount });
+      this.setState({ comments, commentCount }, () => this.scrollToComments());
     }
   }
 
@@ -62,12 +65,19 @@ class Comments extends Component {
     xhr.get(substitute(config.endpoints.service.comments, { postId }))
     .then(({ data }) => {
       this.updateComments(data);
+      this.scrollToComments();
     })
     .catch(error => {
       const message = pathOr('Failed to load comments for this page.', ['data', 'errorMessage'])(error);
 
       setNotification(message, NOTIFICATION_TYPE.ERROR);
     });
+  };
+
+  scrollToComments = () => {
+    if (document.location.hash === '#comments') {
+      setTimeout(() => scrollTo('comments'), 250);
+    }
   };
 
   countComments = (comments) => {
@@ -108,7 +118,7 @@ class Comments extends Component {
     const { comments, commentCount, newComment, sortAsc } = this.state;
 
     return (
-      <div className="section">
+      <div className="section" id="comments">
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="h6" className="title-text">
@@ -128,36 +138,32 @@ class Comments extends Component {
             </IfPerm>
           </Toolbar>
         </AppBar>
-        <Paper>
-          <div className="body-container space-children">
-            <Collapse in={newComment} unmountOnExit>
-              <EditComment
-                postId={postId}
-                depth={2}
-                onCancel={this.cancelNewComment}
-                onUpdateComments={this.updateComments}
-              />
-            </Collapse>
+        <Paper className="body-container space-children comments-container">
+          <Collapse in={newComment} unmountOnExit>
+            <EditComment
+              postId={postId}
+              depth={2}
+              onCancel={this.cancelNewComment}
+              onUpdateComments={this.updateComments}
+            />
+          </Collapse>
 
-            {comments && comments.map(comment => (
-              <Comment
-                {...comment}
-                onUpdateComments={this.updateComments}
-                key={`comment-${comment.id}`}
-                depth={2}
-                sortAsc={sortAsc}
-              />))}
-          </div>
+          {comments && comments.map(comment => (
+            <Comment
+              {...comment}
+              onUpdateComments={this.updateComments}
+              key={`comment-${comment.id}`}
+              depth={2}
+              sortAsc={sortAsc}
+            />))}
         </Paper>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({});
-
 const mapDispatchToProps = {
   setNotification,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Comments);
+export default connect(null, mapDispatchToProps)(Comments);
