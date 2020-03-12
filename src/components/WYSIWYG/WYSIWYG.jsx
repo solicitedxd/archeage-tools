@@ -1,4 +1,8 @@
-import { Button } from '@material-ui/core';
+import {
+  Button,
+  Typography,
+} from '@material-ui/core';
+import cn from 'classnames';
 import {
   customControls,
   EDITOR_TYPE,
@@ -9,10 +13,16 @@ import { convertToRaw } from 'draft-js';
 import Editor from 'mui-rte';
 import React, { Component } from 'react';
 import {
+  bool,
   func,
+  number,
   oneOf,
   string,
 } from 'react-proptypes';
+import {
+  getCharCountOfContentState,
+  stringToContentState,
+} from 'utils/string';
 
 class WYSIWYG extends Component {
   static propTypes = {
@@ -21,11 +31,15 @@ class WYSIWYG extends Component {
     onCancel: func,
     label: string,
     type: oneOf(Object.values(EDITOR_TYPE)).isRequired,
+    noMargin: bool,
+    maxLength: number,
   };
 
   static defaultProps = {
     value: null,
     onSave: null,
+    noMargin: false,
+    maxLength: 0,
   };
 
   state = {
@@ -42,14 +56,24 @@ class WYSIWYG extends Component {
     const { editorState } = this.state;
     const { onSave } = this.props;
     if (onSave) {
-      onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+      if (editorState) {
+        onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
+      } else {
+        onSave(stringToContentState());
+      }
     }
   };
 
   render() {
-    const { value, onSave, type, onCancel, ...otherProps } = this.props;
+    const { value, onSave, type, onCancel, noMargin, maxLength, ...otherProps } = this.props;
+    const { editorState } = this.state;
+
+    const remChars = maxLength > 0 && editorState !== null
+      ? Math.max(0, maxLength - getCharCountOfContentState(editorState.getCurrentContent()))
+      : maxLength;
+
     return (
-      <div className="editor-container">
+      <div className={cn('editor-container', { 'no-margin': noMargin })}>
         <Editor
           {...otherProps}
           ref={this.ref}
@@ -61,6 +85,10 @@ class WYSIWYG extends Component {
           onChange={this.setEditorState}
         />
         <div className="buttons">
+          {maxLength > 0 &&
+          <Typography className={cn('rem-chars', { 'none': remChars === 0 })} variant="body2">
+            Remaining Characters: {remChars}
+          </Typography>}
           {onCancel &&
           <Button
             onClick={onCancel}

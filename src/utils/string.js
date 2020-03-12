@@ -1,3 +1,5 @@
+import { convertFromRaw } from 'draft-js';
+
 export const substitute = (template, obj) => template.replace(/\${([a-z0-9_]+)(\[([0-9]+)])?}/gi, (match, capture, _, index) => {
   if (_) {
     return obj[capture] ? obj[capture][index] : null;
@@ -57,3 +59,22 @@ export const encodeColors = (string) => {
 };
 
 export const stringToContentState = (string) => JSON.parse(string || '{ "blocks": [], "entityMap": {} }');
+
+export const getCharCountOfContentString = (string) => {
+  try {
+    return getCharCountOfContentState(convertFromRaw(stringToContentState(string)));
+  } catch (e) {
+    return 0;
+  }
+};
+
+export const getCharCountOfContentState = (contentState) => {
+  try {
+    const plainText = contentState.getPlainText('');
+    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, '').trim(); // replace above characters w/ nothing
+    return cleanString.length;
+  } catch (e) {
+    return 0;
+  }
+};

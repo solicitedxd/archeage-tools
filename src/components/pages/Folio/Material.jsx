@@ -80,12 +80,12 @@ class Material extends Component {
     const selectedRecipe = subRecipes.find(r => materials.value === String(r.id));
 
     return (
-      <Paper elevation={depth} className="material-item">
-        <div className="material-left">
+      <Paper elevation={depth} className="material-item paper-border">
+        <div className="collapsible-left">
           <ItemLink id={item} grade={grade} noLink name={String(quantity)} />
           {(subRecipes.length > 0 || materials.collapsed) &&
-          <Tooltip title={materials.collapsed ? 'Expand' : 'Collapse'}>
-            <div className="material-collapse" onClick={this.handleUpdateCollapse(!Boolean(materials.collapsed))} />
+          <Tooltip title={materials.collapsed ? 'Expand' : 'Collapse'} placement="top">
+            <div className="collapse" onClick={this.handleUpdateCollapse(!Boolean(materials.collapsed))} />
           </Tooltip>}
         </div>
         <div>

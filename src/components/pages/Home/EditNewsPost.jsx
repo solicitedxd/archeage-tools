@@ -219,11 +219,11 @@ class EditNewsPost extends Component {
   }
 }
 
-export const mapStateToProps = ({ session: { username } }) => ({
+const mapStateToProps = ({ session: { username } }) => ({
   username,
 });
 
-export const mapDispatchToProps = {
+const mapDispatchToProps = {
   requiresPermission,
   setNotification,
 };

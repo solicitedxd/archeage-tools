@@ -541,9 +541,13 @@ blockquote cite:before {
 
 .editor-container {
   margin: 16px 0 0;
-  color: rgba(0, 0, 0, 0.87);
+
+  &.no-margin {
+    margin: 0;
+  }
 
   #mui-rte-editor-container {
+    color: rgba(0, 0, 0, 0.87);
     box-shadow: 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 2px 2px 0px rgba(0, 0, 0, 0.14), 0 1px 5px 0px rgba(0, 0, 0, 0.12);
     background-color: #FFFFFF;
     border-radius: 3px;
@@ -554,13 +558,135 @@ blockquote cite:before {
 
   .buttons {
     margin: 8px 0 0;
-    text-align: right;
+    display: flex;
+    align-items: center;
+
+    .rem-chars {
+      flex: 1;
+      opacity: 0.6;
+
+      &.none {
+        color: #EE0000;
+        opacity: 1;
+      }
+    }
   }
+}
+
+.space-children {
+  & > div + div {
+    margin-top: 6px;
+  }
+}
+
+.paper-border {
+  display: flex;
+  padding: 4px;
+  border: 1px solid rgba(130, 87, 26, 0.3);
+
+  &.no-border {
+    border: none;
+
+    padding: 4px 0 4px 4px;
+
+    .paper-border {
+      margin: 4px 0 4px 4px;
+    }
+
+    .collapsible-right {
+      .body-container {
+        padding: 4px 0 4px 6px;
+      }
+    }
+  }
+
+  & .paper-border {
+    margin: 4px;
+  }
+
+  .collapsible-left {
+    display: flex;
+    flex-direction: column;
+
+    .collapse {
+      cursor: pointer;
+      flex: 1;
+      width: 10px;
+      min-height: 12px;
+      margin: 4px 5px;
+      background: #162339;
+      opacity: 0.15;
+
+      &.sm {
+        width: 4px;
+        margin: 4px 8px;
+      }
+
+      &:hover {
+        opacity: 0.3;
+      }
+    }
+  }
+
+  .collapsible-right {
+    margin-left: 6px;
+    width: 100%;
+
+    .time {
+      margin-left: 6px;
+
+      &.edited {
+        opacity: 0.5;
+        cursor: help;
+        font-style: italic;
+      }
+    }
+
+    .body-container {
+      padding: 4px 6px;
+    }
+  }
+}
+
+.small-buttons {
+  .MuiButton-root {
+    text-transform: none;
+    font-size: 0.7rem;
+  }
+
+  .MuiButton-text {
+    padding: 1px 4px;
+  }
+}
+
+/**
+ * Role colors.
+ */
+.role-admin {
+  color: #9B59B6 !important;
+}
+
+.role-patron {
+  color: #E67E22 !important;
+}
+
+.role-contributor {
+  color: #3498DB !important;
 }
 
 .dark-mode {
   .lightbox-thumb {
     background-color: #525252;
+  }
+
+  .paper-border {
+    border-color: rgba(167, 194, 231, 0.7);
+
+    .collapsible-left {
+      .collapse {
+        background: #EAE5D0;
+      }
+    }
   }
 
   .alert-red {

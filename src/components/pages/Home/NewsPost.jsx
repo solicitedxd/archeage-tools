@@ -13,6 +13,7 @@ import CreateIcon from '@material-ui/icons/Edit';
 import { Skeleton } from '@material-ui/lab';
 import { push } from 'actions/navigate';
 import { setNotification } from 'actions/notification';
+import Comments from 'components/Comments/Comments';
 import DraftJSRender from 'components/DraftJSRender';
 import IfPerm from 'components/IfPerm/IfPerm';
 import Link from 'components/Link';
@@ -78,55 +79,65 @@ class NewsPost extends Component {
     const isEdited = (editDate && editDate !== createDate);
 
     return (
-      <div className="section">
-        <AppBar position="static">
-          <Toolbar variant="dense">
-            <Typography variant="h5">
-              {loading
-                ? <Skeleton variant="text" width={180} />
-                : (postId !== null ? title : <Link to={`/news/${id}`} color="inherit">{title}</Link>)}
-            </Typography>
-            <Typography variant="subtitle2" className="news-author title-text">
-              {loading
-                ? <Skeleton variant="text" width={60} />
-                : <>&nbsp;by {author}</>}</Typography>
-            {!loading &&
-            <OptionalTooltip
-              title={isEdited ? `Edited: ${new Date(editDate).toLocaleString(navigator.language || 'en-US')}` : null}
-            >
-              <Typography variant="overline" className={isEdited ? 'mark-tooltip' : ''}>
-                {moment(createDate).format('MMM DD, YYYY')}
+      <>
+        <div className="section">
+          <AppBar position="static">
+            <Toolbar variant="dense">
+              <Typography variant="h5">
+                {loading
+                  ? <Skeleton variant="text" width={180} />
+                  : (postId !== null ? title : <Link to={`/news/${id}`} color="inherit">{title}</Link>)}
               </Typography>
-            </OptionalTooltip>}
-            {loading && <Skeleton variant="text" width={60} />}
-            {!loading &&
-            <IfPerm permission="news.edit">
-              <Tooltip title="Edit Post">
-                <IconButton color="inherit" onClick={() => push(`/news/${id}/edit`)}>
-                  <CreateIcon />
-                </IconButton>
-              </Tooltip>
-            </IfPerm>}
-          </Toolbar>
-        </AppBar>
-        {!loading &&
-        <Paper>
-          <DraftJSRender contentState={stringToContentState(body)} />
-          {postId === null &&
-          <CardActions className="comments-action" disableSpacing>
-            <Button
-              startIcon={<ChatBubbleIcon />}
-              onClick={() => push(`/news/${id}#comments`)}
-            >
-              Comments: {commentCount}
-            </Button>
-          </CardActions>}
-        </Paper>}
-        {loading &&
-        <Paper>
-          <Skeleton variant="rect" width="100%" height={200} />
-        </Paper>}
-      </div>
+              <Typography variant="subtitle2" className="news-author title-text">
+                {loading
+                  ? <Skeleton variant="text" width={60} />
+                  : <>&nbsp;by {author}</>}</Typography>
+              {!loading &&
+              <OptionalTooltip
+                title={isEdited ? `Edited: ${new Date(editDate).toLocaleString(navigator.language || 'en-US')}` : null}
+              >
+                <Typography variant="overline" className={isEdited ? 'mark-tooltip' : ''}>
+                  {moment(createDate).format('MMM DD, YYYY')}
+                </Typography>
+              </OptionalTooltip>}
+              {loading && <Skeleton variant="text" width={60} />}
+              {!loading &&
+              <IfPerm permission="news.edit">
+                <Tooltip title="Edit Post">
+                  <IconButton color="inherit" onClick={() => push(`/news/${id}/edit`)}>
+                    <CreateIcon />
+                  </IconButton>
+                </Tooltip>
+              </IfPerm>}
+            </Toolbar>
+          </AppBar>
+          {!loading &&
+          <Paper>
+            <DraftJSRender contentState={stringToContentState(body)} />
+            {postId === null &&
+            <CardActions className="comments-action" disableSpacing>
+              <Button
+                startIcon={<ChatBubbleIcon />}
+                onClick={() => push(`/news/${id}#comments`)}
+              >
+                Comments: {commentCount}
+              </Button>
+            </CardActions>}
+          </Paper>}
+          {loading &&
+          <Paper>
+            <div className="body-container">
+              <Skeleton variant="rect" width="100%" height={200} />
+            </div>
+          </Paper>}
+        </div>
+        {postId !== null && id && !loading &&
+        <Comments
+          postId={`NEWS-${id}`}
+          comments={comments}
+          commentCount={commentCount}
+        />}
+      </>
     );
   }
 }

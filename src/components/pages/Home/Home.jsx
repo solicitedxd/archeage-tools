@@ -90,7 +90,7 @@ class Home extends Component {
           {loading && [0, 1, 2, 3, 4].map(i => <NewsPost loading={true} key={`loading-${i}`} />)}
           {error &&
           <Typography variant="h6" className="alert-red">{error}</Typography>}
-          {posts.length && !error &&
+          {posts.length > 0 && !error &&
           posts.map(post => <NewsPost key={`news-${post.id}`} {...post} />)}
           <Paper className="pagination-control">
             <Button
