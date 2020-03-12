@@ -3,15 +3,15 @@ export default [
     name: 'Calculators',
     children: [
       { name: 'Skill Builder', path: '/skills' },
-      { name: 'Trade Pack Calculator', path: '/trade-packs' },
-      { name: 'Land Tax Calculator', path: '/taxes' },
+      { name: 'Trade Packs', path: '/trade-packs' },
+      { name: 'Land Tax', path: '/taxes' },
     ],
   },
   {
     name: 'Timers',
     children: [
       { name: 'Event Schedule', path: '/schedule' },
-      { name: 'Crop Timers', path: '/crops' },
+      { name: 'Thunderstruck', path: '/thunderstruck' },
     ],
   },
   {
