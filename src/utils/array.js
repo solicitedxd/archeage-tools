@@ -14,7 +14,7 @@ export const sortBy = (field, asc = true) => (a, b) => {
   return (a[field] > b[field] ? 1 : -1) * (asc ? 1 : -1);
 };
 
-export const arrayToMap = (array) => array.reduce((obj, item) => {
-  obj[item.id] = item;
+export const arrayToMap = (array, key = 'id') => array.reduce((obj, item) => {
+  obj[item[key]] = item;
   return obj;
 }, {});

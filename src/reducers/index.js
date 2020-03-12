@@ -12,6 +12,7 @@ import proficiencies from './proficiencies';
 import session from './session';
 import thunderstruck from './thunderstruck';
 import tradepacks from './tradepacks';
+import users from './users';
 
 const rootReducer = (history) => combineReducers({
   dailies,
@@ -27,6 +28,7 @@ const rootReducer = (history) => combineReducers({
   session,
   thunderstruck,
   tradepacks,
+  users,
 });
 
 export const getLocalData = {

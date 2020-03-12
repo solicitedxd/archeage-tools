@@ -101,7 +101,12 @@ export const requiresPermission = (permission, failPath) => (dispatch) => {
 
   if (!allowed) {
     dispatch(setNotification('You do not have permission to view this page.', NOTIFICATION_TYPE.ERROR));
-    replace(failPath || '/');
+
+    if (typeof failPath === 'function') {
+      failPath();
+    } else {
+      replace(failPath || '/');
+    }
   }
 };
 

@@ -8,6 +8,9 @@ export default {
     me: '/service/me',
     newsPage: '/service/news?page=${page}',
     newsPost: '/service/news/${postId}',
+    newComment: '/service/comment',
+    comment: '/service/comment/${commendId}',
+    comments: '/service/comment/byPost/${postId}',
     item: '/service/item?ids=${itemIds}',
     recipeByProduct: '/service/recipe/product/${itemId}',
     recipeSearchByProduct: '/service/recipe/product',
@@ -20,5 +23,6 @@ export default {
     vocations: '/service/vocations',
     searchByProduct: '/service/search/product',
     searchByMaterial: '/service/search/material',
+    users: '/service/users?usernames=${names}',
   },
 };
