@@ -236,14 +236,17 @@ footer.site-footer {
   margin-top: 0;
 
   .news-list {
-    min-width: 375px;
     max-width: 802px;
     width: 100%;
-
-    .comments-action {
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-    }
   }
+}
+
+.paper-action {
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
 }
 
 .pagination-control {
