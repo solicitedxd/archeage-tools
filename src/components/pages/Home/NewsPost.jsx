@@ -86,7 +86,7 @@ class NewsPost extends Component {
         <OptionalTooltip
           title={isEdited ? `Edited: ${new Date(editDate).toLocaleString(navigator.language || 'en-US')}` : null}
         >
-          <Typography variant="overline" className={isEdited ? 'mark-tooltip' : ''}>
+          <Typography variant="overline" className={cn({ 'mark-tooltip': isEdited })}>
             {moment(createDate).format('MMM DD, YYYY')}
           </Typography>
         </OptionalTooltip>
@@ -94,7 +94,7 @@ class NewsPost extends Component {
 
     const authorBlock = loading
       ? <Skeleton variant="text" width={60} className={cn({ 'title-text': standalone })} />
-      : <Typography variant="subtitle2" className={cn({ 'title-text': standalone, 'news-author': !mobile })}>
+      : <Typography variant="subtitle2" className={cn({ 'title-text': !mobile, 'news-author': !mobile })}>
         {mobile && 'Written '} by {mobile ? <Username user={author} /> : author}
       </Typography>;
 
