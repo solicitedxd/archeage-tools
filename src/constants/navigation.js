@@ -24,16 +24,17 @@ export default [
   {
     name: 'Guides',
     path: '/guides',
-    mobileName: 'All Guides',
-    children: [
-      { name: 'Gameplay', path: '/guides/gameplay' },
-      { name: 'Daily Quests', path: '/guides/dailies' },
-      { name: 'Classes', path: '/guides/classes' },
-      { name: 'Mounts', path: '/mounts' },
-      { name: 'Dungeons', path: '/guides/dungeons' },
-      { name: 'World Bosses', path: '/guides/world-bosses' },
-      { name: 'Instances', path: '/guides/instances' },
-    ],
+    // Temporarily hide dropdown menu until guides rework
+    // mobileName: 'All Guides',
+    // children: [
+    //   { name: 'Gameplay', path: '/guides/gameplay' },
+    //   { name: 'Daily Quests', path: '/guides/dailies' },
+    //   { name: 'Classes', path: '/guides/classes' },
+    //   { name: 'Mounts', path: '/mounts' },
+    //   { name: 'Dungeons', path: '/guides/dungeons' },
+    //   { name: 'World Bosses', path: '/guides/world-bosses' },
+    //   { name: 'Instances', path: '/guides/instances' },
+    // ],
   },
 ];
 

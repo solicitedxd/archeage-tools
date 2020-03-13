@@ -19,7 +19,7 @@ class Avatar extends Component {
   };
 
   static defaultProps = {
-    size: 32,
+    size: 1,
   };
 
   componentDidMount() {

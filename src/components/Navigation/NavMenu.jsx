@@ -32,15 +32,17 @@ class NavMenu extends Component {
   render() {
     const { children, name, path, button } = this.props;
 
+    const navLink = (
+      <Typography className="nav-item">
+        <Link color="inherit" to={path}>
+          <span className={cn('nav-icon', name)} />{name}
+        </Link>
+      </Typography>
+    );
+
     // no dropdown
     if (!children) {
-      return (
-        <Typography>
-          <Link color="inherit" to={path}>
-            <span className={cn('nav-icon', name)} />{name}
-          </Link>
-        </Typography>
-      );
+      return navLink;
     }
 
     // dropdown
@@ -71,12 +73,7 @@ class NavMenu extends Component {
         placement="bottom-start"
         interactive
       >
-        {button ||
-        <Typography className="nav-item">
-          <Link color="inherit" to={path}>
-            <span className={cn('nav-icon', name)} />{name}
-          </Link>
-        </Typography>}
+        {button || navLink}
       </Tooltip>
     );
   }

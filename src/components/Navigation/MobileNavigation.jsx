@@ -124,7 +124,7 @@ class MobileNavigation extends Component {
                       <ListItemText primary={navLink.mobileName} />
                     </ListItem>
                   </Link>}
-                  {navLink.children.map(child => (
+                  {navLink.children && navLink.children.map(child => (
                     <Link
                       to={child.path}
                       color="inherit"
