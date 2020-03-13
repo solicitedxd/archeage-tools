@@ -4,6 +4,7 @@ import ItemLink from 'components/Item/ItemLink';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent/TabContent';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 import React from 'react';
@@ -14,6 +15,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 10, 2019',
 };
+
+const category = GUIDE_CATEGORY.GAMEPLAY;
 
 const sections = [
   {
@@ -179,4 +182,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

@@ -9,6 +9,7 @@ import {
 import Ability from 'components/Ability';
 import Item from 'components/Item';
 import SkillLink from 'components/Skill/SkillLink';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ELEMENT } from 'constants/skills';
 import ITEM from 'data/items';
 import React, { Fragment } from 'react';
@@ -19,6 +20,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 10, 2019',
 };
+
+const category = GUIDE_CATEGORY.DUNGEONS;
 
 const rewards = [
   { // 1
@@ -308,4 +311,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

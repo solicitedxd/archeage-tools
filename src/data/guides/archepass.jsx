@@ -3,6 +3,7 @@ import Ability from 'components/Ability';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { CURRENCY } from 'constants/items';
 import ITEM from 'data/items';
 import ArchePass from 'images/guides/ArchePass.png';
@@ -15,6 +16,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Feb 19, 2020',
 };
+
+const category = GUIDE_CATEGORY.GAMEPLAY;
 
 const sections = [
   {
@@ -242,4 +245,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

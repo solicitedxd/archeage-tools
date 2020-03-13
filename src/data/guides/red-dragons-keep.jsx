@@ -4,6 +4,7 @@ import ItemLink from 'components/Item/ItemLink';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 import React from 'react';
@@ -14,6 +15,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 25, 2019',
 };
+
+const category = GUIDE_CATEGORY.INSTANCES;
 
 export const sections = Object.freeze([
   {
@@ -149,4 +152,4 @@ export const sections = Object.freeze([
   },
 ]);
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };
