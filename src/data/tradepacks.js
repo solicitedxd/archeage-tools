@@ -1473,7 +1473,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.IRIS, count: 15 }],
+        materials: [{ item: ITEM.DRIED_FLOWERS, count: 150 }, { item: ITEM.IRIS, count: 15 }],
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 13.7156,
           [ZONE.CINDERSTONE_MOOR]: 11.8969,
