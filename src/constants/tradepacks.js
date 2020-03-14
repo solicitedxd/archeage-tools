@@ -1,3 +1,4 @@
+import ITEM from 'data/items';
 import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
@@ -39,9 +40,9 @@ export const NO_FRESHNESS = Object.freeze([
 ]);
 
 export const TRANSPORTATION_FUEL = Object.freeze([
-  7998,
-  26548,
-  42314,
+  ITEM.CARROT,
+  ITEM.ECO_FRIENDLY_FUEL,
+  ITEM.AXLE_GREASE,
 ]);
 
 export const FRESHNESS = Object.freeze({

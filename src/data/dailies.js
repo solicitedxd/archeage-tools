@@ -27,7 +27,7 @@ export default [
       nuia: [ZONE.MARIANOPLE],
       haranya: [ZONE.SOLIS_HEADLANDS],
     },
-    rewards: [{ type: CURRENCY.ITEM, item: ITEM.LABOR_RECHARGE }],
+    rewards: [{ type: CURRENCY.ITEM, item: ITEM.BOUND_LABOR_RECHARGER }],
   },
   {
     name: 'Battle of Mistmerrow',
@@ -36,7 +36,7 @@ export default [
       nuia: [ZONE.MARIANOPLE],
       haranya: [ZONE.SOLIS_HEADLANDS],
     },
-    rewards: [{ type: CURRENCY.ITEM, item: ITEM.LABOR_RECHARGE }],
+    rewards: [{ type: CURRENCY.ITEM, item: ITEM.BOUND_LABOR_RECHARGER }],
   },
   {
     name: 'Crimson Rift: Crimson Omens',
