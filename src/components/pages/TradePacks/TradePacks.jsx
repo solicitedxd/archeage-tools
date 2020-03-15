@@ -92,7 +92,7 @@ class TradePacks extends Component {
   };
 
   onCloseCalculator = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, originZone: null, packType: null });
   };
 
   render() {

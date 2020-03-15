@@ -16,6 +16,8 @@ export const updateProficiency = (vocation, proficiency) => (dispatch) => {
 };
 
 export const calculateLabor = (baseLabor, vocation) => (dispatch, getState) => {
+  if (!baseLabor) return 0;
+
   const proficiency = getState().proficiencies[vocation] || 0;
   const rank = PROFICIENCY_RANK.find(r => r.maxValue >= proficiency);
   const profIndex = PROFICIENCY_RANK.indexOf(rank);

@@ -60,6 +60,7 @@ const ITEM = Object.freeze({
   WATER: 15694,
   ECO_FRIENDLY_FUEL: 26548,
   AXLE_GREASE: 42314,
+  RECOVERY_POUCH_KIT: 19034,
   SALVE_AGING_LARDER: {
     name: 'Salve Aging Larder',
     icon: Icon.SalveAgingLarder,
@@ -1164,17 +1165,8 @@ const ITEM = Object.freeze({
     </span>,
     price: 100,
   },
-  BLUE_SALT_HAMMER: {
-    name: 'Blue Salt Hammer',
-    icon: Icon.BlueSaltHammer,
-    type: 'Contraption',
-    description: <span>
-      A blessed hammer.<br />
-      Used for various crafting purposes and builders' rites.<br />
-      Can be purchased from a <Blue>General Merchant</Blue>.
-    </span>,
-    price: 1000,
-  },
+  BLUE_SALT_KNIFE: 8326,
+  BLUE_SALT_HAMMER: 8329,
   TIME_SPACE_RIFT_SHARD: {
     name: 'Time-Space Rift Shard',
     icon: Icon.TimeSpaceRiftShard,

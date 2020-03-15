@@ -120,6 +120,20 @@ $Cargo: #FF4053;
   margin-left: 18px;
 }
 
+.pack-container {
+  .material-table {
+    min-width: 600px;
+  }
+
+  .transport table {
+    min-width: 600px;
+  }
+
+  .totals-table {
+    min-width: 400px;
+  }
+}
+
 .pack-header {
   display: flex;
   align-items: flex-start;
