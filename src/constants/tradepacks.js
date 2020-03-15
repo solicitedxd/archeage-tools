@@ -2,6 +2,7 @@ import ITEM from 'data/items';
 import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
+export const SET_OUTLET = 'SET_OUTLET';
 export const SET_CRAFT_LARDER = 'SET_CRAFT_LARDER';
 export const SET_DEGRADATION = 'SET_DEGRADATION';
 export const SET_FRESHNESS = 'SET_FRESHNESS';

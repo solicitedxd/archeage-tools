@@ -4,6 +4,7 @@ import {
   SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
+  SET_OUTLET,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_QUANTITY,
@@ -16,6 +17,7 @@ import { validateQuantity } from 'utils/string';
 
 export const triggerLocalStorageUpdate = [
   SET_CONTINENT,
+  SET_OUTLET,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
   SET_FRESHNESS,
@@ -31,6 +33,10 @@ export const triggerLocalStorageUpdate = [
 
 export const setContinent = (e, { props: { children: continent } }) => (dispatch) => {
   dispatch({ type: SET_CONTINENT, continent });
+};
+
+export const setOutlet = (e, outlet) => (dispatch) => {
+  dispatch({ type: SET_OUTLET, outlet });
 };
 
 export const setCraftLarder = (e, craftLarder) => (dispatch) => {

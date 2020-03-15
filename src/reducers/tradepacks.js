@@ -4,6 +4,7 @@ import {
   SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
+  SET_OUTLET,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_QUANTITY,
@@ -22,6 +23,11 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
       return {
         ...state,
         continent: action.continent,
+      };
+    case SET_OUTLET:
+      return {
+        ...state,
+        outlet: action.outlet,
       };
     case SET_CRAFT_LARDER:
       return {
