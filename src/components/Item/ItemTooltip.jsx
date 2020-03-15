@@ -78,7 +78,7 @@ const TooltipContent = (item) => {
         <p>{slot}</p>
         {attackSpeed > 0 && <p><span className="text-gray">Attack Speed</span> {attackSpeed.toFixed(1)}</p>}
         {durability > 0 && <p><span className="text-gray">Dura</span> {durability}/{durability}</p>}
-        {weaponType > 0 && <p><span className="text-gray">{weaponType}</span> Weapon Type</p>}
+        {weaponType && <p><span className="text-gray">{weaponType}</span> Weapon Type</p>}
       </section>}
       {((minDamage > 0 && maxDamage > 0 && attackSpeed > 0) || magicAttack > 0 || healingPower > 0 || (stats && stats.length > 0)) &&
       <section>
@@ -103,7 +103,7 @@ const TooltipContent = (item) => {
         {synthesisGrade &&
         <>
           <p className="text-orange">Synthesis Available</p>
-          <p className="text-orange">(~{Object.values(QUALITY)(synthesisGrade)})</p>
+          <p className="text-orange">(~{Object.values(QUALITY)[synthesisGrade]})</p>
         </>}
         {tempering && <p>Tempering Available</p>}
         {salvageable && <p>Mag Salvageable</p>}

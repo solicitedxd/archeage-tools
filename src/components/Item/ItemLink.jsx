@@ -50,7 +50,7 @@ class ItemLink extends Component {
     }
 
     if (!item.icon) {
-      text = <Skeleton variant="text" />;
+      text = <Skeleton variant="text" style={{ display: 'inline-block', marginLeft: 4, width: 80 }} />;
     }
 
     if (noLink) {

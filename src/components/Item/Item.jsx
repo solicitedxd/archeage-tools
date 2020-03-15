@@ -42,7 +42,14 @@ class Item extends Component {
       grade = defaultGrade;
     }
 
-    if (!icon) return <Skeleton variant="rect" width={inline ? 20 : '100%'} height={inline ? 20 : '100%'} />;
+    if (!icon) return (
+      <Skeleton
+        variant="rect"
+        width={inline ? 20 : '100%'}
+        height={inline ? 20 : '100%'}
+        style={{ display: inline ? 'inline-block' : 'block' }}
+      />
+    );
 
     return (
       <ItemTooltip itemId={id} grade={grade} disabled={tooltipDisabled || !name}>
