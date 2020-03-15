@@ -1,26 +1,22 @@
 import { Typography } from '@material-ui/core';
 import { fetchUser } from 'actions/users';
 import cn from 'classnames';
-import {
-  array,
-  string,
-} from 'prop-types';
+import { string } from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { sortBy } from 'utils/array';
 
 class Username extends Component {
   static propTypes = {
     user: string.isRequired,
     username: string,
-    roles: array,
+    userTag: string,
     variant: string,
     component: string,
   };
 
   static defaultProps = {
     username: null,
-    roles: null,
+    userTag: null,
     variant: 'body2',
     component: 'span',
   };
@@ -34,17 +30,16 @@ class Username extends Component {
   }
 
   render() {
-    const { username, variant, component, roles } = this.props;
-    const tagRole = roles && roles.sort(sortBy('id')).find(r => r.showTag && r.tag);
+    const { username, variant, component, userTag } = this.props;
 
     return (
       <Typography
         variant={variant}
         component={component}
         color="primary"
-        className={cn({ [tagRole && `role-${tagRole.tag.toLowerCase()}`]: Boolean(tagRole) })}
+        className={cn({ [userTag && `role-${userTag.toLowerCase()}`]: Boolean(userTag) })}
       >
-        {tagRole && `[${tagRole.tag}] `}
+        {userTag && `[${userTag}] `}
         {username}
       </Typography>
     );
