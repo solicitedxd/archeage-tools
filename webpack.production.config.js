@@ -3,6 +3,7 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 const devConfig = require('./webpack.config.js');
@@ -42,6 +43,9 @@ module.exports = {
       __DEVELOPMENT__: false,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
+    new CopyWebpackPlugin([
+      { from: join(root, 'static') },
+    ]),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),
