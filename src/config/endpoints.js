@@ -6,6 +6,7 @@ export default {
   },
   service: {
     me: '/service/me',
+    newsCreate: '/service/news',
     newsPage: '/service/news?page=${page}',
     newsPost: '/service/news/${postId}',
     newComment: '/service/comment',

@@ -91,7 +91,7 @@ class EditNewsPost extends Component {
 
     const method = (action === 'edit') ? xhr.put : xhr.post;
     const endpoint = (action === 'edit') ? substitute(config.endpoints.service.newsPost, { postId })
-      : config.endpoints.service.newsPage;
+      : config.endpoints.service.newsCreate;
 
     method(endpoint, { ...formData, body })
     .then(({ data }) => {
