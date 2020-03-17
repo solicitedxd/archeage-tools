@@ -25,6 +25,7 @@ import {
   setDarkMode,
   setMobile,
 } from 'actions/display';
+import { push } from 'actions/navigate';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
@@ -106,10 +107,14 @@ class MobileNavigation extends Component {
             subheader={<ListSubheader component={Paper}>ArcheAge Tools</ListSubheader>}
           >
             {navigation.map(navLink => [
-              <ListItem button onClick={this.handleExpand(navLink.name)} key={navLink.name}>
+              <ListItem
+                button
+                onClick={navLink.children ? this.handleExpand(navLink.name) : () => push(navLink.path)}
+                key={navLink.name}
+              >
                 <ListItemIcon><span className={cn('nav-icon', navLink.name)} /></ListItemIcon>
                 <ListItemText primary={navLink.name} />
-                {expanded[navLink.name] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+                {navLink.children && (expanded[navLink.name] ? <ExpandLessIcon /> : <ExpandMoreIcon />)}
               </ListItem>,
               <Collapse in={expanded[navLink.name]} timeout="auto" unmountOnExit key={`collapse-${navLink.name}`}>
                 <List component="div" disablePadding className="nested-list">

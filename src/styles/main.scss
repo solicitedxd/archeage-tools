@@ -159,7 +159,7 @@ footer.site-footer {
     background-position: -33px 0;
   }
 
-  &.Lists {
+  &.Dailies {
     background-position: -33px -66px;
   }
 
@@ -167,8 +167,12 @@ footer.site-footer {
     background-position: -33px -33px;
   }
 
-  &.Timers {
+  &.Schedule {
     background-position: -33px -330px;
+  }
+
+  &.Timers {
+    background-position: -33px -99px;
   }
 
   &.Guides {

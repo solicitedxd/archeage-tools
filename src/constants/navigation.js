@@ -1,8 +1,13 @@
 export default [
   {
+    name: 'Schedule',
+    path: '/schedule',
+  },
+  {
     name: 'Calculators',
     children: [
       { name: 'Skill Builder', path: '/skills' },
+      { name: 'Crafting Folio', path: '/folio' },
       { name: 'Trade Packs', path: '/trade-packs' },
       { name: 'Land Tax', path: '/taxes' },
     ],
@@ -10,16 +15,12 @@ export default [
   {
     name: 'Timers',
     children: [
-      { name: 'Event Schedule', path: '/schedule' },
       { name: 'Thunderstruck', path: '/thunderstruck' },
     ],
   },
   {
-    name: 'Lists',
-    children: [
-      { name: 'Daily Checklist', path: '/dailies' },
-      { name: 'Crafting Folio', path: '/folio' },
-    ],
+    name: 'Dailies',
+    path: '/dailies',
   },
   {
     name: 'Guides',
