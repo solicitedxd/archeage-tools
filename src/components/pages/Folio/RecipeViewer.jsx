@@ -322,7 +322,10 @@ class RecipeViewer extends Component {
             </div>
             <div className="craft-resource craft-section">
               <Typography className="craft-header">Using Resource</Typography>
-              <Typography variant="subtitle2">
+              <Typography
+                variant="subtitle2"
+                className={cn({ 'text-green': calculateLabor(recipe.labor, recipe.vocation) < recipe.labor })}
+              >
                 {recipe.name && `Labor Cost: ${calculateLabor(recipe.labor, recipe.vocation)}`}&nbsp;
               </Typography>
               <div className="craft-materials">
