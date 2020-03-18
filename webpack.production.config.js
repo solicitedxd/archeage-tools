@@ -33,6 +33,10 @@ module.exports = {
   module: {
     rules: loaders,
   },
+  // Don't show the Size Limit warnings.
+  performance: {
+    hints: false,
+  },
   plugins: [
     new WebpackCleanupPlugin(),
     new webpack.DefinePlugin({
