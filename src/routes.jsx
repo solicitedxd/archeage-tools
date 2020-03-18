@@ -25,6 +25,7 @@ export default (
       <Route path="/schedule" exact component={Calendar} />
       <Route path="/taxes" exact component={Taxes} />
       <Route path="/thunderstruck" exact component={Thunderstruck} />
+      <Route path="/crops" exact component={Thunderstruck} />
       <Route path="/guides" exact component={Guides} />
       <Route path="/guides/:guide?" component={GuideViewer} />
       <Route path="/trade-packs" component={TradePacks} />

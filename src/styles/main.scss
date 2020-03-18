@@ -119,6 +119,7 @@ footer.site-footer {
 
 .title-text {
   flex: 1;
+  white-space: nowrap;
 }
 
 .verify-warn {
@@ -141,6 +142,7 @@ footer.site-footer {
   top: 2px;
   cursor: pointer;
   margin-right: 12px !important;
+  text-align: center;
 
   .nav-icon {
     margin-right: 2px;
@@ -171,7 +173,11 @@ footer.site-footer {
     background-position: -33px -330px;
   }
 
-  &.Timers {
+  &.Crops {
+    background-position: -33px -297px;
+  }
+
+  &.Mounts {
     background-position: -33px -99px;
   }
 

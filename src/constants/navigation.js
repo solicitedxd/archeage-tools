@@ -13,10 +13,12 @@ export default [
     ],
   },
   {
-    name: 'Timers',
-    children: [
-      { name: 'Thunderstruck', path: '/thunderstruck' },
-    ],
+    name: 'Mounts',
+    path: '/mounts',
+  },
+  {
+    name: 'Crops',
+    path: '/crops',
   },
   {
     name: 'Dailies',
