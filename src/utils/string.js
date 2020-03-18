@@ -28,7 +28,7 @@ export const scrollToTop = () => {
 
 export const validateQuantity = (min, max) => (value) => {
   if (!value) return;
-  if (value.indexOf('.') >= 0) return Math.floor(value);
+  if (String(value).indexOf('.') >= 0) return Math.floor(value);
   if (value <= min) value = min;
   if (value > max) value = max;
   return value;

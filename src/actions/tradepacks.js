@@ -63,9 +63,8 @@ export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (
   }
 };
 
-export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
-  let { target: { value } } = e;
-  value = validateQuantity(1, 999)(value);
+export const setQuantity = (originZone, packType) => (dispatch) => (value) => {
+  value = validateQuantity(1, 1000)(value);
   dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
 };
 
@@ -77,9 +76,8 @@ export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {
   dispatch({ type: SET_SUPPLY, originZone, supply });
 };
 
-export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (e) => {
-  let { target: { value } } = e;
-  value = validateQuantity(0, 99)(value);
+export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (value) => {
+  value = validateQuantity(0, 100)(value);
   dispatch({ type: SET_TRANSPORTATION_QUANTITY, originZone, sellZone, item, value });
 };
 

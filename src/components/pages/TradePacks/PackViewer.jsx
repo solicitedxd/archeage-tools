@@ -16,7 +16,6 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TextField,
   Toolbar,
   Tooltip,
   Typography,
@@ -40,6 +39,7 @@ import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
+import NumberField from 'components/NumberField';
 import { CURRENCY } from 'constants/items';
 import {
   CONTINENT,
@@ -284,15 +284,12 @@ class PackViewer extends Component {
             <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
             <div className="pack-quantity">
               <Typography variant="caption" color="primary">Quantity:</Typography>
-              <TextField
+              <NumberField
                 id="pack-qty"
                 hiddenLabel
-                type="number"
                 margin="none"
-                InputProps={{
-                  min: 0,
-                  max: 999,
-                }}
+                min={1}
+                max={1000}
                 value={quantity}
                 onChange={setQuantity(originZone, packType)}
               />
@@ -446,15 +443,12 @@ class PackViewer extends Component {
                           <ItemPrice itemId={itemId} />
                         </TableCell>
                         <TableCell align="right">
-                          <TextField
+                          <NumberField
                             id={`transp-mat-qty-${itemId}`}
                             hiddenLabel
-                            type="number"
                             margin="none"
-                            InputProps={{
-                              min: 0,
-                              max: 99,
-                            }}
+                            min={0}
+                            max={100}
                             className="quantity"
                             value={pathOr(0, [originZone, sellZone, itemId])(transportationQty)}
                             onChange={setTransportationQuantity(originZone, sellZone, itemId)}

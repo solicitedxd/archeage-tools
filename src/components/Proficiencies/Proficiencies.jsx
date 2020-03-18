@@ -77,6 +77,7 @@ class Proficiencies extends Component {
                         min={0}
                         max={230000}
                         step={10000}
+                        margin="none"
                       />
                       <div className="proficiency-bar">
                         <div className="quality-bar" style={{ width: `${Math.round(barPercent * 100)}%` }} />

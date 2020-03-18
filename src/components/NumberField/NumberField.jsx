@@ -95,13 +95,13 @@ class NumberField extends PureComponent {
 
     return (
       <TextField
+        margin="dense"
         {...otherProps}
         value={value}
         onChange={this.handleChange}
         onFocus={this.handleFocus(true)}
         onBlur={this.handleFocus(false)}
         type="number"
-        margin="dense"
         inputProps={{
           style: { textAlign: 'right', ...inputStyle },
           min,
