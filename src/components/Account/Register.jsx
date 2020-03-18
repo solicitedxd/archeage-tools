@@ -38,7 +38,12 @@ class Register extends Component {
 
   handleChange = (field) => (e) => {
     const { formData } = this.state;
-    this.setState({ formData: { ...formData, [field]: e.target.value } });
+    let { value } = e.target;
+    // email regex doesn't accept capital letters
+    if (field === 'email') {
+      value = value.toLowerCase();
+    }
+    this.setState({ formData: { ...formData, [field]: value } });
   };
 
   handleSubmit = (e) => {
