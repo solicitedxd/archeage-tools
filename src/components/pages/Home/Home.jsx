@@ -57,7 +57,9 @@ class Home extends Component {
     xhr.get(substitute(config.endpoints.service.newsPage, { page }))
     .then(({ data }) => {
       this.setState({ ...data, loading: false });
-      document.location.hash = `#page=${data.page}`;
+      if (Number(data.page) !== 1 || document.location.hash) {
+        document.location.hash = `#page=${data.page}`;
+      }
       scroll && scrollToTop();
     })
     .catch(() => {
