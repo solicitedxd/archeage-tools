@@ -156,6 +156,10 @@ class Comments extends Component {
               depth={2}
               sortAsc={sortAsc}
             />))}
+          {(!comments || comments.length === 0) &&
+          <Typography align="center">
+            There are no comments on this topic.
+          </Typography>}
         </Paper>
       </div>
     );
