@@ -20,7 +20,7 @@ export default {
     recipeByVocation: '/service/recipe/vocation/${vocation}',
     recipe: '/service/recipe?ids=${recipeIds}',
     recipeCategories: '/service/recipe/categories',
-    recipeByCategory: '/service/recipe/categories/${category}',
+    recipeByCategory: '/service/recipe/categories/${category}?cat1=${subCat1}&cat2=${subCat2}',
     vocations: '/service/vocations',
     searchByProduct: '/service/search/product',
     searchByMaterial: '/service/search/material',

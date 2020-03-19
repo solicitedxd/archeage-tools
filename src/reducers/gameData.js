@@ -42,6 +42,7 @@ const gameData = (state = initialState, action) => {
       return {
         ...state,
         categories: action.categories,
+        subCategories: action.subCategories,
       };
     default:
       return state;

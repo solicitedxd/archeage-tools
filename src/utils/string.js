@@ -97,3 +97,7 @@ export const eqIgnoreCase = (str1, str2) => {
 
   return (str1.toLowerCase() === str2.toLowerCase());
 };
+
+export const randomString = (length) => {
+  return Math.random().toString(36).substring(2, Math.ceil(length / 2) + 2) + Math.random().toString(36).substring(2, Math.floor(length / 2) + 2);
+};

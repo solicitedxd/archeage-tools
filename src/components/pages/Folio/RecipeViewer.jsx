@@ -90,7 +90,7 @@ class RecipeViewer extends Component {
     if (this.props.recipes[this.props.recipeId] !== nextProps.recipes[nextProps.recipeId]) {
       const recipe = nextProps.recipes[nextProps.recipeId];
       if (recipe && recipe.category) {
-        nextProps.fetchRecipeByCategory(recipe.category);
+        nextProps.fetchRecipeByCategory(recipe.category, recipe.subCat1 || '', recipe.subCat2 || '');
       }
     }
   }
@@ -165,7 +165,7 @@ class RecipeViewer extends Component {
   };
 
   render() {
-    const { items, recipes, proficiencies, itemPrice, categories } = this.props;
+    const { items, recipes, proficiencies, itemPrice, categories, subCategories } = this.props;
     const { handleClose, calculateLabor, openDialog } = this.props;
     const { mobile, recipeId } = this.props;
     const { materials, quantity, inventory } = this.props;
@@ -210,19 +210,32 @@ class RecipeViewer extends Component {
       calculateMatStep({ ...mat, quantity: mat.quantity * quantity }, materials);
     });
 
-    let rankCategory = recipe.rank && objectHasProperties(categories) ? categories[recipe.category] : {};
+    let rankCategory = {};
+    if (recipe.rank) {
+      if ((recipe.subCat1 || recipe.subCat2) && objectHasProperties(subCategories)) {
+        rankCategory = subCategories[recipe.subCat2 || recipe.subCat1];
+
+        if (recipe.subCat2) {
+          rankCategory.parent = subCategories[recipe.subCat1];
+        } else {
+          rankCategory.parent = categories[recipe.category];
+        }
+      } else {
+        rankCategory = objectHasProperties(categories) ? categories[recipe.category] : {};
+      }
+    }
     let rankCategoryName = rankCategory.name || '';
     let rankRecipes = recipe.rank
-      ? Object.values(recipes).filter(r => r.category === recipe.category && r.rank > 0).sort(sortBy('rank'))
+      ? Object.values(recipes).filter(r => r.category === recipe.category && r.subCat1 === recipe.subCat1 && r.subCat2 === recipe.subCat2 && r.rank > 0).sort(sortBy('rank'))
       : [];
     if (rankRecipes.filter(r => r.rank === 1).length > 1) {
       rankRecipes = rankRecipes.filter(r => r.workbench === recipe.workbench);
     }
     if (rankCategoryName === 'Single Production') {
-      rankCategory = categories[rankCategory.parent];
+      rankCategory = rankCategory.parent;
       rankCategoryName = `${rankCategory.name} Production`;
     } else if (rankCategoryName === 'Mass Production') {
-      rankCategory = categories[rankCategory.parent];
+      rankCategory = rankCategory.parent;
       rankCategoryName = `${rankCategory.name} Mass Production`;
     }
 
@@ -557,11 +570,12 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items, recipes, categories }, proficiencies, itemPrice, display: { mobile }, folio }, { recipeId }) => ({
+const mapStateToProps = ({ gameData: { items, recipes, categories, subCategories }, proficiencies, itemPrice, display: { mobile }, folio }, { recipeId }) => ({
   items,
   proficiencies,
   recipes,
   categories,
+  subCategories,
   itemPrice,
   mobile,
   ...Object.assign({ materials: {}, quantity: 1, inventory: {} }, folio[recipeId]),

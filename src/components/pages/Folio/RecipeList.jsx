@@ -27,6 +27,7 @@ import {
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
 import { isNumber } from 'utils/number';
+import { randomString } from 'utils/string';
 
 class RecipeList extends Component {
   static propTypes = {
@@ -115,10 +116,10 @@ class RecipeList extends Component {
   };
 
   updateRecipeList = (recipes) => {
-    const { categories } = this.props;
+    const { categories, subCategories } = this.props;
 
     const recipeList = [];
-    const getCategory = (id) => {
+    const getCategory = (id, subCat1, subCat2) => {
       let category = null;
       const searchCat = (cat) => {
         if (cat.id === id) {
@@ -141,12 +142,38 @@ class RecipeList extends Component {
           let parent = getCategory(_category.parent);
           if (!parent.children.find(c => equals(c, _category))) {
             parent.children.push(_category);
+            parent.children = parent.children.sort(sortBy('id'));
           }
           _category = parent;
         }
 
         if (!recipeList.find(c => equals(c, _category))) {
           recipeList.push(_category);
+          recipeList.sort(sortBy('id'));
+        }
+      }
+
+      if (subCat1) {
+        const parent = category;
+        category = parent.children.find(c => c.idx === subCat1);
+        if (!category) {
+          category = Object.assign({ id: null }, subCategories[subCat1], { recipes: [], children: [] });
+          category.idx = category.id;
+          category.id = `${category.id}-${randomString(8)}`;
+          parent.children.push(category);
+          parent.children = parent.children.sort(sortBy('id'));
+        }
+      }
+
+      if (subCat2) {
+        const parent = category;
+        category = parent.children.find(c => c.idx === subCat2);
+        if (!category) {
+          category = Object.assign({ id: null }, subCategories[subCat2], { recipes: [], children: [] });
+          category.idx = category.id;
+          category.id = `${category.id}-${randomString(8)}`;
+          parent.children.push(category);
+          parent.children = parent.children.sort(sortBy('id'));
         }
       }
 
@@ -155,9 +182,8 @@ class RecipeList extends Component {
 
     // move recipes into their categories
     recipes.forEach(recipe => {
-      const category = getCategory(recipe.category);
+      const category = getCategory(recipe.category, recipe.subCat1, recipe.subCat2);
       category.recipes.push(recipe);
-      category.recipes = category.recipes.sort(sortBy('rank'));
     });
 
     this.setState({ recipeList, loaded: this.getRecipeKey() });
@@ -168,11 +194,11 @@ class RecipeList extends Component {
     this.setState({ categories: { ...categories, [id]: !Boolean(categories[id]) } });
   };
 
-  renderRecipeCategory = (category) => {
+  renderRecipeCategory = (category, depth = 1) => {
     const { mobile, handleClick } = this.props;
     const { categories } = this.state;
     const { id } = category;
-    const open = !Boolean(categories[id]);
+    const open = depth > 3 ? Boolean(categories[id]) : !Boolean(categories[id]);
 
     return (
       <div className="recipe-category" key={`rcat-${id}`}>
@@ -185,7 +211,7 @@ class RecipeList extends Component {
         <Collapse in={open}>
           <div className="category-children">
             {category.children.length > 0 &&
-            category.children.map(child => this.renderRecipeCategory(child))}
+            category.children.map(child => this.renderRecipeCategory(child, depth + 1))}
             {category.recipes.length > 0 &&
             <List disablePadding>
               {category.recipes.map(recipe => (
@@ -228,8 +254,9 @@ class RecipeList extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { categories, recipes, vocationRecipes }, display: { mobile } }) => ({
+const mapStateToProps = ({ gameData: { categories, subCategories, recipes, vocationRecipes }, display: { mobile } }) => ({
   categories,
+  subCategories,
   recipes,
   vocationRecipes,
   mobile,

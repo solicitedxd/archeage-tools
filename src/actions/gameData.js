@@ -161,13 +161,13 @@ export const fetchRecipeByMaterial = (itemId) => (dispatch, getState) => {
   });
 };
 
-export const fetchRecipeByCategory = (category) => (dispatch, getState) => {
-  const key = `category-${category}`;
+export const fetchRecipeByCategory = (category, subCat1, subCat2) => (dispatch, getState) => {
+  const key = `category-${category}-${subCat1}-${subCat2}`;
   if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
     return;
   }
 
-  xhr.get(substitute(config.endpoints.service.recipeByCategory, { category }))
+  xhr.get(substitute(config.endpoints.service.recipeByCategory, { category, subCat1, subCat2 }))
   .then(({ data }) => {
     dispatch({ type: DATA_VOCATION_RECIPE, vocation: key, recipes: data });
     dispatch(fetchRecipes(data));
@@ -198,7 +198,7 @@ export const fetchCategories = () => (dispatch, getState) => {
 
   xhr.get(config.endpoints.service.recipeCategories)
   .then(({ data }) => {
-    dispatch({ type: DATA_CATEGORIES, categories: arrayToMap(data) });
+    dispatch({ type: DATA_CATEGORIES, categories: arrayToMap(data.categories), subCategories: arrayToMap(data.types) });
   })
   .catch(() => {
     dispatch(setNotification('Failed to fetch category data.', NOTIFICATION_TYPE.WARNING));
