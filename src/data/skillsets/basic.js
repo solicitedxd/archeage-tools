@@ -1422,4 +1422,91 @@ export default Object.freeze([
     cooldown: 60,
     description: 'Pushes enemies within a #5m# radius #10m# away, using a Tsunami Bomb.',
   },
+  {
+    icon: Icon.Overpower,
+    name: 'Overpower',
+    cooldown: 60,
+    description: 'Triggers a forward leap that deals damage and inflicts Knockback and Trip on targeted enemy. Grants immunity to all debuffs.\r' +
+      'Can\'t be used with Breakthrough.',
+  },
+  {
+    id: 'Run Bison',
+    icon: Icon.RunBison,
+    name: 'Run',
+    cooldown: 30,
+    description: 'Increases the mount\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Cannot be used while wearing a trade pack.',
+  },
+  {
+    icon: Icon.Headbutt,
+    name: 'Headbutt',
+    range: [0, 15],
+    cooldown: 18,
+    description: 'Charge at a faraway target, dealing damage and sending it 20m backwards.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    id: 'Breakthrough Bison',
+    icon: Icon.BreakthroughBison,
+    name: 'Breakthrough',
+    cooldown: 60,
+    description: 'Triggers a forward charge for #3 ec# that makes you invincible.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.UnbreakableWill,
+    name: 'Unbreakable Will',
+    cooldown: 60,
+    description: 'Grants immunity to Ranged Damage, Trip, and Impale for #5 sec#, for both mount and rider.',
+  },
+  {
+    icon: Icon.Stomp,
+    name: 'Stomp',
+    cooldown: 90,
+    description: 'The Bison rears and slams the ground, tripping up to 4 enemies within #4m# and preventing all actions for #2 sec.#\r' +
+      'Can\'t be used while Run! or Breakthrough are active.',
+  },
+  {
+    id: 'Run Panther',
+    icon: Icon.RunPanther,
+    name: 'Run',
+    cooldown: 30,
+    description: 'Increases Move Speed by #50%# for #10 sec#.\r' +
+      'Can\'t be used while wearing a trade pack.',
+  },
+  {
+    id: 'Shred Panther',
+    icon: Icon.Bite,
+    name: 'Shred',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Bites the enemy, dealing Physical Damage and additional damage over #14sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.SwiftEscape,
+    name: 'Swift Escape',
+    cooldown: 60,
+    description: 'Removes Slowed and Snared effects from the pet and leaps #30m# forward.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Camouflage Panther',
+    icon: Icon.InvisiblePredator,
+    name: 'Camouflage',
+    cooldown: 60,
+    description: 'Stealths the mount and rider for #5 sec#.\r' +
+      'Enhances certain other skills while active.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Overrun,
+    name: 'Perfect Ambush',
+    range: [0, 20],
+    cooldown: 30,
+    description: 'Causes the mount to charge at a farawy target, dealing damage.\r' +
+      'The *Camouflage* debuff causes the target to*Trip* by throwing them to the ground.\r' +
+      'Can\'t be used while carrying a Trade Pack.',
+  },
 ]);

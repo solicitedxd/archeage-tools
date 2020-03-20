@@ -2365,12 +2365,15 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <p>
         On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
   {
@@ -3053,6 +3056,139 @@ const MOUNT = [
         </li>
       </ul>
     </>,
+  },
+  {
+    name: 'Brave Bison',
+    quote: 'This sturdy mount thrives in a variety of climates, from the golden plains to the snowswept tundra. Surprisingly, a number of young Firran have begun to favor these creatures of their traditional snowlion mounts ,seeing their fearlessness, strength, and constant migration as a natural reflection of traditional Firran values.',
+    speed: 11.5,
+    skills: [
+      ['Run Bison'],
+      'Headbutt',
+      ['Breakthrough Bison'],
+      'Unbreakable Will',
+      'Stomp',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Brave Bison Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Dread Steed',
+    quote: 'During the ancient war on Auroria, Anthalon slew thousands of Shadowhawks, then raised them as undead to act as Kyrios\'s formal guards and companions. He also slaughtered and raised their horses. These steeds can be trained to obey other masters, but darkness is still said to lurk in their hearts.',
+    speed: 11.5,
+    skills: [
+      'Mounted Attack',
+      ['Run'],
+      'Mounted Defense',
+      'Breakthrough',
+      'Overpower',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Dread Steed Archeum Supply Crate.<br />
+          They were also given away during a promotional period.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Rajani',
+    quote: 'Black war tigers are known as Rajani in honor of Empress Pavitra\'s legendary mount. It\'s said the cat devoured not only her enemies, but all of its other handlers, and would permit only the empress to touch it.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Striped Death Supply Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Shayeera',
+    quote: 'Ishmil, Empress Pavitra\'s bodyguard, was known for riding a fearsome white war tiger. He named it Shayeera, which was his clan\'s word for ghost. Since then, all white war tigers have been known by that name.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Emberpaw Panther',
+    quote: 'With armor blessed by the Nuon Gods, and their embodiment of strength and majesty, Emberpaw Panthers are believed to be a fighter’s strongest ally in combat. It is said that the Gods themselves used to ride these creatures into battle and never suffered a single defeat.',
+    speed: 11.5,
+    skills: [
+      ['Run Panther'],
+      ['Shred Panther'],
+      'Swift Escape',
+      ['Camouflage Panther'],
+      'Perfect Ambush',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Emberpaw Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
   },
 ];
 
