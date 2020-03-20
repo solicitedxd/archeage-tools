@@ -142,7 +142,7 @@ class RecipeList extends Component {
           let parent = getCategory(_category.parent);
           if (!parent.children.find(c => equals(c, _category))) {
             parent.children.push(_category);
-            parent.children = parent.children.sort(sortBy('id'));
+            parent.children.sort(sortBy('id'));
           }
           _category = parent;
         }
@@ -161,7 +161,7 @@ class RecipeList extends Component {
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
-          parent.children = parent.children.sort(sortBy('id'));
+          parent.children.sort(sortBy('id'));
         }
       }
 
@@ -173,7 +173,7 @@ class RecipeList extends Component {
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
-          parent.children = parent.children.sort(sortBy('id'));
+          parent.children.sort(sortBy('id'));
         }
       }
 
