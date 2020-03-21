@@ -444,7 +444,10 @@ class RecipeViewer extends Component {
               </TableHead>
               <TableBody>
                 {Object.entries(materialList).map(([itemId, quantity]) => (
-                  <TableRow key={`mat-total-${itemId}`}>
+                  <TableRow
+                    key={`mat-total-${itemId}`}
+                    className={cn({ 'row-complete': (inventory[itemId] >= quantity) })}
+                  >
                     <TableCell>
                       <ItemLink id={Number(itemId)} noLink name={mobile ? '' : null} />
                     </TableCell>
@@ -513,8 +516,15 @@ class RecipeViewer extends Component {
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell width={20}>
-                      <ItemLink id={recipe.item} grade={recipe.grade} noLink name="" />
+                    <TableCell>
+                      <ItemLink
+                        id={recipe.item}
+                        grade={recipe.grade}
+                        noLink
+                        name=""
+                        count={quantity * recipe.quantity}
+                        style={{ whiteSpace: 'nowrap' }}
+                      />
                     </TableCell>
                     <TableCell align="right">
                       <ItemPrice itemId={recipe.item} unitSize={1} />

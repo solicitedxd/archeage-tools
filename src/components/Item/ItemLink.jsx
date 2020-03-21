@@ -55,7 +55,7 @@ class ItemLink extends Component {
 
     if (noLink) {
       return (
-        <Typography component="span">
+        <Typography component="span" style={style}>
           <Item id={id} inline />
           {text}
         </Typography>
