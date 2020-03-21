@@ -67,11 +67,11 @@ const TooltipContent = (item) => {
         {petLevel > 0 && <p>Pet Level:{petLevel} ~ 55</p>}
         {bindsOnPickup && <p>Binds on Pickup</p>}
         {bindsOnEquip && <p>Binds on Equip</p>}
-        {remainingTime && <p className="tt-orange">Rem. Time: {remainingTime}</p>}
+        {remainingTime && <p className="text-orange">Rem. Time: {remainingTime}</p>}
       </section>}
       {synthesisXp > 0 &&
       <section>
-        <p className="tt-orange">XP 0/{synthesisXp} (0%)</p>
+        <p className="text-orange">XP 0/{synthesisXp} (0%)</p>
       </section>}
       {slot &&
       <section>

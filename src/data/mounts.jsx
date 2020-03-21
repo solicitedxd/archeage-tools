@@ -2372,7 +2372,7 @@ const MOUNT = [
         On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },

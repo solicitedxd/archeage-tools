@@ -163,7 +163,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
     descriptionNotes.push('This skill can be used while the caster is incapacitated.');
   }
   if (descriptionNotes.length > 1 || descriptionNote) {
-    description += `\r<span class="tt-bgreen description-note">${descriptionNotes.join('\r')}</span>`;
+    description += `\r<span class="text-buff description-note">${descriptionNotes.join('\r')}</span>`;
   }
 
   if (ancestralNote) {
@@ -193,10 +193,10 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
         <div className="skill-name">
           {!passive &&
           <div className="skill-types">
-            <Typography variant="h5" className="tt-orange skillset">{skillsetName}</Typography>
+            <Typography variant="h5" className="text-orange skillset">{skillsetName}</Typography>
             {!basic &&
-            <Typography variant="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'tt-orange'
-              : 'tt-yellow')}>{element}</Typography>}
+            <Typography variant="h5" className={cn('skill-type', element === ELEMENT.BASIC ? 'text-orange'
+              : 'text-yellow')}>{element}</Typography>}
           </div>}
           {passive && <Typography variant="h5" className="passive-skill">Passive Skill</Typography>}
           <Typography variant="h4" className="passive-skill">
@@ -237,7 +237,7 @@ const TooltipContent = ({ skillset, skillId, passive, element, disabled, spentPo
               <div className="combo-arrow"><img alt="" /></div>}
               {combo.causes &&
               <EffectIcon {...combo.causes} />}
-              <p className="tt-green" dangerouslySetInnerHTML={{ __html: prepareComboText(combo, skill) }} />
+              <p className="text-green" dangerouslySetInnerHTML={{ __html: prepareComboText(combo, skill) }} />
             </div>),
           )}
         </div>
