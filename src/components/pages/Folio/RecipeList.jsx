@@ -161,7 +161,7 @@ class RecipeList extends Component {
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
-          parent.children.sort(sortBy('id'));
+          parent.children.sort(sortBy('idx'));
         }
       }
 
@@ -173,7 +173,7 @@ class RecipeList extends Component {
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
-          parent.children.sort(sortBy('id'));
+          parent.child = parent.children.sort(sortBy('idx'));
         }
       }
 
