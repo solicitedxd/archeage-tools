@@ -2673,6 +2673,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Ant',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Ant'],
@@ -2744,7 +2745,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Mandragora',
-    imageCredit: 'Shelias',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Mandragora'],
@@ -2768,6 +2769,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Boar',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Boar'],
@@ -2791,6 +2793,8 @@ const MOUNT = [
   },
   {
     name: 'Tamed Starfish',
+    quote: 'Starfish might look cute from the top, but their bottom hides hundreds of vicious tentacles.',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Starfish'],
@@ -2814,6 +2818,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Crab',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Crab'],
@@ -2837,7 +2842,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Tsunami Elemental',
-    imageCredit: 'Felnari',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Tsunami Elemental'],
@@ -2861,8 +2866,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Turtle',
+    quote: 'Crabs use their deadly claws to pin you in position.',
+    imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Turtle'],
+      ['Wild Charge Bat'],
+      'Powerful Blow',
+      'Ocean Song',
+      'Protecting Shell',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2878,9 +2891,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Skyfin',
+    quote: 'Skyfins use their large wings to create Whirlwinds.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Skyfin'],
+      ['Wild Charge Bat'],
+      'Tail Thrash',
+      'Sonic Wave',
+      'Whirlwind',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2896,9 +2916,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Razorbeak',
+    quote: 'People often get charmed by the majestic feathers of this creature, but along with his beauty come sharp talons and an even sharper beak, perfect for tearing into enemies.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Razorbeak'],
+      ['Wild Charge Bat'],
+      'Beak Attack',
+      'Lasso',
+      'Razorbeak\'s Curse',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2939,9 +2966,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Owl',
+    quote: 'A similar breed to the Mail Owls trained in Andelph, this species is rather easy to control and teach some new tricks. Mail bag and goggles not included.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Owl'],
+      ['Wild Charge Bat'],
+      'Blind',
+      'Body Slam',
+      'Eye Contact',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2958,8 +2992,15 @@ const MOUNT = [
   {
     name: 'Tamed Honeybee',
     imageCredit: 'Suicide',
+    quote: 'Chonky Honeybees are the easiest to keep motivated and hard working: the occassional flower or drop of fruit nectar will keep this bee both happy and loyal.',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Honeybee'],
+      ['Wild Charge Bat'],
+      'Wingbeat',
+      'Stinger Attack',
+      'Pollen Bomb',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -3001,6 +3042,7 @@ const MOUNT = [
   {
     name: 'Tuskora',
     quote: 'Tuskora is the matriarch of a large elephant herd in Mahadevi. Known to be the most intelligent and powerful of her herd, she only lends her strength to animal tamers she deems worthy.',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Tuskora'],

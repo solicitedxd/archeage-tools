@@ -20,6 +20,8 @@ const Home = () => {
         title="Kyrios Mounts and Fixes"
         date="Mar 1, 2020"
       >
+        <p>March 20: All mount skills have been added, and the newly available Diligence mounts has been added.</p>
+        <hr />
         <p>I've finally gotten around to adding the mounts available for Kyrios Badges from the Arena Shop, along with
           Tuskora. I only have one picture, and I'm still in the process of adding their skills, so a large handful
           might be missing some for the next few days.</p>
