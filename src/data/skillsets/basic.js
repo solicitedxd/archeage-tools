@@ -1,12 +1,14 @@
 import { BUFF } from 'constants/skills';
-import OwnersEscape from 'images/skill/auramancy/Teleportation.png';
-import Push from 'images/skill/defense/Bull_Rush.png';
-import Absorption from 'images/skill/defense/Lasso.png';
-import Beastsense from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
-import Snipe from 'images/skill/shadowplay/Ruthless_Assault.png';
-import LoudScreech from 'images/skill/witchcraft/Enervate.png';
-import Surprise from 'images/skill/witchcraft/Insidious_Whisper.png';
-import SharpClaws from 'images/skill/witchcraft/Stillness.png';
+import Teleportation from 'images/skill/auramancy/Teleportation.png';
+import ViciousImplosion from 'images/skill/auramancy/Vicious_Implosion.png';
+import BullRush from 'images/skill/defense/Bull_Rush.png';
+import Lasso from 'images/skill/defense/Lasso.png';
+import CripplingMire from 'images/skill/occultism/Crippling_Mire.png';
+import BloodthirstIntensified from 'images/skill/shadowplay/Bloodthirst_Intensified.png';
+import RuthlessAssault from 'images/skill/shadowplay/Ruthless_Assault.png';
+import Enervate from 'images/skill/witchcraft/Enervate.png';
+import InsidiousWhisper from 'images/skill/witchcraft/Insidious_Whisper.png';
+import Stillness from 'images/skill/witchcraft/Stillness.png';
 import * as Icon from '../../images/skill/basic/';
 
 export default Object.freeze([
@@ -77,14 +79,14 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: OwnersEscape,
+    icon: Teleportation,
     name: 'Owner\'s Escape',
     cooldown: 30,
     description: 'Teleports the rider #18 meters# forward, out of the saddle.\r' +
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: OwnersEscape,
+    icon: Teleportation,
     name: 'Enhanced Owner\'s Escape',
     cooldown: 30,
     description: 'Teleports the rider forward #18m# and increases rider\'s Move Speed.\r' +
@@ -186,7 +188,7 @@ export default Object.freeze([
     description: 'Fires a burning arrow to deal +#300%# of Ranged Attack as Physical Damage; also deals +#200%# of Ranged Attack as damage over #5 seconds#.',
   },
   {
-    icon: Snipe,
+    icon: RuthlessAssault,
     name: 'Snipe',
     range: [0, 35],
     cooldown: 24,
@@ -199,7 +201,7 @@ export default Object.freeze([
     ],
   },
   {
-    icon: Snipe,
+    icon: RuthlessAssault,
     name: 'Precise Shot',
     range: [0, 35],
     cooldown: 24,
@@ -414,7 +416,7 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: Beastsense,
+    icon: BloodthirstIntensified,
     name: 'Beastsense',
     cooldown: 60,
     description: 'Widens rider\'s Stealth detection range #+50%#.',
@@ -704,7 +706,7 @@ export default Object.freeze([
     description: 'Propels all ally snails within 5m forward.',
   },
   {
-    icon: OwnersEscape,
+    icon: Teleportation,
     name: 'Launch Owner',
     cooldown: 20,
     description: 'Launches the rider forward. Can\'t be used if the rider is carrying a trade pack.',
@@ -870,7 +872,7 @@ export default Object.freeze([
       'Can\'t use while carrying a trade pack.',
   },
   {
-    icon: Beastsense,
+    icon: BloodthirstIntensified,
     name: 'Guardian\'s Eyes',
     cooldown: 60,
     description: 'Increases Stealth Detection #+200%#.',
@@ -1110,7 +1112,7 @@ export default Object.freeze([
       'Can\'t be used while under the effect of Run! or Wild Charge.',
   },
   {
-    icon: LoudScreech,
+    icon: Enervate,
     name: 'Loud Screech',
     effectRange: 4,
     cooldown: 45,
@@ -1143,7 +1145,7 @@ export default Object.freeze([
       'Can\'t be used while under the effect of Run! or Wild Charge.',
   },
   {
-    icon: Push,
+    icon: BullRush,
     name: 'Push',
     cooldown: 30,
     description: 'Pushes nearby enemies within #4m#, #10m# away.',
@@ -1329,7 +1331,7 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: Surprise,
+    icon: InsidiousWhisper,
     name: 'Surprise',
     range: [0, 7],
     cooldown: 45,
@@ -1369,14 +1371,14 @@ export default Object.freeze([
       'Can\'t be used while carrying a trade pack.',
   },
   {
-    icon: Absorption,
+    icon: Lasso,
     name: 'Absorption',
     range: [0, 15],
     cooldown: 30,
     description: 'Pulls a distant target. Pulled enemies are Staggered, briefly stopping movement and canceling all Cast Time and Channeled skills.',
   },
   {
-    icon: SharpClaws,
+    icon: Stillness,
     name: 'Sharp Claws',
     range: [0, 15],
     cooldown: 24,
@@ -1421,5 +1423,249 @@ export default Object.freeze([
     effectRange: 5,
     cooldown: 60,
     description: 'Pushes enemies within a #5m# radius #10m# away, using a Tsunami Bomb.',
+  },
+  {
+    icon: Icon.Overpower,
+    name: 'Overpower',
+    cooldown: 60,
+    description: 'Triggers a forward leap that deals damage and inflicts Knockback and Trip on targeted enemy. Grants immunity to all debuffs.\r' +
+      'Can\'t be used with Breakthrough.',
+  },
+  {
+    id: 'Run Bison',
+    icon: Icon.RunBison,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases the mount\'s Move Speed #+50%# for #10 sec#.\r' +
+      'Cannot be used while wearing a trade pack.',
+  },
+  {
+    icon: Icon.Headbutt,
+    name: 'Headbutt',
+    range: [0, 15],
+    cooldown: 18,
+    description: 'Charge at a faraway target, dealing damage and sending it 20m backwards.\r' +
+      'Can\'t use while carrying a trade pack.',
+  },
+  {
+    id: 'Breakthrough Bison',
+    icon: Icon.BreakthroughBison,
+    name: 'Breakthrough',
+    cooldown: 60,
+    description: 'Triggers a forward charge for #3 ec# that makes you invincible.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.UnbreakableWill,
+    name: 'Unbreakable Will',
+    cooldown: 60,
+    description: 'Grants immunity to Ranged Damage, Trip, and Impale for #5 sec#, for both mount and rider.',
+  },
+  {
+    icon: Icon.Stomp,
+    name: 'Stomp',
+    cooldown: 90,
+    description: 'The Bison rears and slams the ground, tripping up to 4 enemies within #4m# and preventing all actions for #2 sec.#\r' +
+      'Can\'t be used while Run! or Breakthrough are active.',
+  },
+  {
+    id: 'Run Panther',
+    icon: Icon.RunPanther,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Speed by #50%# for #10 sec#.\r' +
+      'Can\'t be used while wearing a trade pack.',
+  },
+  {
+    id: 'Shred Panther',
+    icon: Icon.Bite,
+    name: 'Shred',
+    range: [0, 5],
+    cooldown: 18,
+    effects: [BUFF.BLEEDING],
+    description: 'Bites the enemy, dealing Physical Damage and additional damage over #14sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.SwiftEscape,
+    name: 'Swift Escape',
+    cooldown: 60,
+    description: 'Removes Slowed and Snared effects from the pet and leaps #30m# forward.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    id: 'Camouflage Panther',
+    icon: Icon.InvisiblePredator,
+    name: 'Camouflage',
+    cooldown: 60,
+    description: 'Stealths the mount and rider for #5 sec#.\r' +
+      'Enhances certain other skills while active.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Overrun,
+    name: 'Perfect Ambush',
+    range: [0, 20],
+    cooldown: 30,
+    description: 'Causes the mount to charge at a farawy target, dealing damage.\r' +
+      'The *Camouflage* debuff causes the target to*Trip* by throwing them to the ground.\r' +
+      'Can\'t be used while carrying a Trade Pack.',
+  },
+  {
+    id: 'Run Honeybee',
+    icon: Icon.RunHoneybee,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Wingbeat,
+    name: 'Wingbeat',
+    range: [0, 7],
+    cooldown: 30,
+    description: 'Deals Damage to a target, decreasing Physical Defense #-30%# for #10 sec#.',
+  },
+  {
+    icon: Icon.StingerAttack,
+    name: 'Stinger Attack',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Fires a stinger at enemies within a #4m# radius.\r\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Icon.PollenBomb,
+    name: 'Pollen Bomb',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Throws a Pollen Bomb at an enemy within a #4m# radius, inflicting Shackle.\r\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    id: 'Run Owl',
+    icon: Icon.RunOwl,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Blind,
+    name: 'Blind',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Charges at a faraway target, inflicting Blind for #3 sec# and decreasing the Accuracy for Physical Attacks #-70%# of affected enemies for #3 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.Overrun,
+    name: 'Body Slam',
+    range: [0, 15],
+    cooldown: 24,
+    description: 'Pounces at and stuns a faraway target for #2 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.InvisiblePredator,
+    name: 'Eye Contact',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Inflicts Fear to enemies within a #4m# radius for 2 seconds.\r\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    id: 'Run Razorbeak',
+    icon: Icon.RunRazorbeak,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Icon.RippingClaws,
+    name: 'Beak Attack',
+    range: [0, 20],
+    cooldown: 30,
+    description: 'Charges at a faraway target, inflicting Bleeding to cause continuous damage.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: Lasso,
+    name: 'Lasso',
+    range: [0, 15],
+    cooldown: 30,
+    description: 'Pulls a distant target.\r' +
+      'Pulled enemies are Staggered, briefly stopping movement and canceling all Cast Time and Channeled skills.',
+  },
+  {
+    icon: Icon.RazorbeaksCurse,
+    name: 'Razorbeak\'s Curse',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Increases Received Damage +30% of enemies within a #4m# radius.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    id: 'Run Skyfin',
+    icon: Icon.RunSkyfin,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: InsidiousWhisper,
+    name: 'Tail Thrash',
+    range: [0, 15],
+    cooldown: 30,
+    description: 'Inflicts Skyfin\'s Target on the select enemy.\r' +
+      'Has a 20% chance to Trip the target whenever it receives Damage over 5 seconds.',
+  },
+  {
+    icon: Stillness,
+    name: 'Sonic Wave',
+    effectRange: 5,
+    cooldown: 45,
+    description: 'Decreases received Healing -30% of enemies within #5m# for #7 sec#.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: ViciousImplosion,
+    name: 'Whirlwind',
+    effectRange: 4,
+    cooldown: 60,
+    description: 'Creates a whirlwind, pushing an enemy within a #4m# up to #10m# away.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    id: 'Run Turtle',
+    icon: Icon.RunTurtle,
+    name: 'Run!',
+    cooldown: 30,
+    description: 'Increases Move Sped #+80%#, then gradually decreases it over #10 sec#.\r' +
+      'Can\'t be used while carrying a trade pack.',
+  },
+  {
+    icon: CripplingMire,
+    name: 'Powerful Blow',
+    range: [0, 7],
+    cooldown: 30,
+    description: 'Decreases the target\'s Attack Speed -300.',
+  },
+  {
+    icon: Icon.TerrifyingCry,
+    name: 'Ocean Song',
+    effectRange: 4,
+    cooldown: 45,
+    description: 'Decreases Attack -30% of enemies within a #4m# radius.\r' +
+      'Can\'t be used while under the effect of Run! or Wild Charge.',
+  },
+  {
+    icon: Icon.ProtectingShell,
+    name: 'Protecting Shell',
+    cooldown: 60,
+    description: 'Grants the Turtle\'s Protection to both the rider and the mount, which reduces 99% of incoming Damage for #3 sec#.\r' +
+      'Decreases Move Speed -50% while the effect lasts.',
   },
 ]);

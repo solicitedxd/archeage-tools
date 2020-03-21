@@ -2365,12 +2365,15 @@ const MOUNT = [
     ],
     obtainable: [
       CURRENCY.MANASTORM,
+      CURRENCY.DILIGENCE,
     ],
     obtainText: <>
       <p>
         On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>
+        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+      </p>
     </>,
   },
   {
@@ -2670,6 +2673,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Ant',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Ant'],
@@ -2741,7 +2745,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Mandragora',
-    imageCredit: 'Shelias',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Mandragora'],
@@ -2765,6 +2769,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Boar',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Boar'],
@@ -2788,6 +2793,8 @@ const MOUNT = [
   },
   {
     name: 'Tamed Starfish',
+    quote: 'Starfish might look cute from the top, but their bottom hides hundreds of vicious tentacles.',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Starfish'],
@@ -2811,6 +2818,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Crab',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Crab'],
@@ -2834,7 +2842,7 @@ const MOUNT = [
   },
   {
     name: 'Tamed Tsunami Elemental',
-    imageCredit: 'Felnari',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Tsunami Elemental'],
@@ -2858,8 +2866,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Turtle',
+    quote: 'Crabs use their deadly claws to pin you in position.',
+    imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Turtle'],
+      ['Wild Charge Bat'],
+      'Powerful Blow',
+      'Ocean Song',
+      'Protecting Shell',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2875,9 +2891,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Skyfin',
+    quote: 'Skyfins use their large wings to create Whirlwinds.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Skyfin'],
+      ['Wild Charge Bat'],
+      'Tail Thrash',
+      'Sonic Wave',
+      'Whirlwind',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2893,9 +2916,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Razorbeak',
+    quote: 'People often get charmed by the majestic feathers of this creature, but along with his beauty come sharp talons and an even sharper beak, perfect for tearing into enemies.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Razorbeak'],
+      ['Wild Charge Bat'],
+      'Beak Attack',
+      'Lasso',
+      'Razorbeak\'s Curse',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2936,9 +2966,16 @@ const MOUNT = [
   },
   {
     name: 'Tamed Owl',
+    quote: 'A similar breed to the Mail Owls trained in Andelph, this species is rather easy to control and teach some new tricks. Mail bag and goggles not included.',
     imageCredit: 'Suicide',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Owl'],
+      ['Wild Charge Bat'],
+      'Blind',
+      'Body Slam',
+      'Eye Contact',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2955,8 +2992,15 @@ const MOUNT = [
   {
     name: 'Tamed Honeybee',
     imageCredit: 'Suicide',
+    quote: 'Chonky Honeybees are the easiest to keep motivated and hard working: the occassional flower or drop of fruit nectar will keep this bee both happy and loyal.',
     speed: 11.5,
-    skills: [],
+    skills: [
+      ['Run Honeybee'],
+      ['Wild Charge Bat'],
+      'Wingbeat',
+      'Stinger Attack',
+      'Pollen Bomb',
+    ],
     types: [
       MOUNT_TYPE.STANDARD,
     ],
@@ -2998,6 +3042,7 @@ const MOUNT = [
   {
     name: 'Tuskora',
     quote: 'Tuskora is the matriarch of a large elephant herd in Mahadevi. Known to be the most intelligent and powerful of her herd, she only lends her strength to animal tamers she deems worthy.',
+    imageCredit: 'Suicide',
     speed: 11.5,
     skills: [
       ['Run Tuskora'],
@@ -3053,6 +3098,139 @@ const MOUNT = [
         </li>
       </ul>
     </>,
+  },
+  {
+    name: 'Brave Bison',
+    quote: 'This sturdy mount thrives in a variety of climates, from the golden plains to the snowswept tundra. Surprisingly, a number of young Firran have begun to favor these creatures of their traditional snowlion mounts ,seeing their fearlessness, strength, and constant migration as a natural reflection of traditional Firran values.',
+    speed: 11.5,
+    skills: [
+      ['Run Bison'],
+      'Headbutt',
+      ['Breakthrough Bison'],
+      'Unbreakable Will',
+      'Stomp',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Brave Bison Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Dread Steed',
+    quote: 'During the ancient war on Auroria, Anthalon slew thousands of Shadowhawks, then raised them as undead to act as Kyrios\'s formal guards and companions. He also slaughtered and raised their horses. These steeds can be trained to obey other masters, but darkness is still said to lurk in their hearts.',
+    speed: 11.5,
+    skills: [
+      'Mounted Attack',
+      ['Run'],
+      'Mounted Defense',
+      'Breakthrough',
+      'Overpower',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Dread Steed Archeum Supply Crate.<br />
+          They were also given away during a promotional period.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Rajani',
+    quote: 'Black war tigers are known as Rajani in honor of Empress Pavitra\'s legendary mount. It\'s said the cat devoured not only her enemies, but all of its other handlers, and would permit only the empress to touch it.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Striped Death Supply Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Shayeera',
+    quote: 'Ishmil, Empress Pavitra\'s bodyguard, was known for riding a fearsome white war tiger. He named it Shayeera, which was his clan\'s word for ghost. Since then, all white war tigers have been known by that name.',
+    speed: 11.5,
+    skills: [
+      ['Gnaw Predator'],
+      '4-Leg Lope',
+      ['Overrun Predator'],
+      ['Dash Predator'],
+      'Invisible Predator',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
+  },
+  {
+    name: 'Emberpaw Panther',
+    quote: 'With armor blessed by the Nuon Gods, and their embodiment of strength and majesty, Emberpaw Panthers are believed to be a fighter’s strongest ally in combat. It is said that the Gods themselves used to ride these creatures into battle and never suffered a single defeat.',
+    speed: 11.5,
+    skills: [
+      ['Run Panther'],
+      ['Shred Panther'],
+      'Swift Escape',
+      ['Camouflage Panther'],
+      'Perfect Ambush',
+    ],
+    types: [
+      MOUNT_TYPE.STANDARD,
+    ],
+    obtainable: [
+      CURRENCY.DILIGENCE,
+    ],
+    obtainText:
+      <>
+        <p>
+          On Legacy, this mount was once obtainable from the Emberpaw Crate.
+        </p>
+        <p>
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
+        </p>
+      </>,
   },
 ];
 
