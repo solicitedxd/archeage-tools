@@ -118,6 +118,7 @@ export const HOUSING_TYPES = Object.freeze({
     properties: [
       'Fellowship Plaza',
     ],
+    exempt: true,
   },
   MANSION: {
     name: 'Mansions',
