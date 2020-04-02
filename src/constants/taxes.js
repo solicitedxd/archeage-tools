@@ -111,7 +111,7 @@ export const HOUSING_TYPES = Object.freeze({
       '- Villas',
     ],
   },
-  PUBLIC_BUILDING: {
+  EXEMPT_PUBLIC_BUILDING: {
     name: 'Public Buildings',
     size: '28x28',
     base: 25,
