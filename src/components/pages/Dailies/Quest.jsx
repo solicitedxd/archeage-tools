@@ -26,7 +26,6 @@ import {
 import { connect } from 'react-redux';
 import {
   getZones,
-  sortItems,
   splitRewards,
 } from 'utils/dailies';
 
@@ -92,22 +91,22 @@ class Quest extends Component {
             </div>}
             {rewardItems.length > 0 &&
             <div className="reward-items">
-              {rewardItems.sort(sortItems).map(reward => {
+              {rewardItems.sort().map(reward => {
                 if (reward.type === CURRENCY.GILDA) {
                   reward.item = ITEM.GILDA_STAR;
                 }
                 if (reward.type === CURRENCY.BLUE_SALT_BOND) {
                   reward.item = ITEM.BLUE_SALT_BOND;
                 }
-                return <Item key={reward.item.name} count={reward.count} {...reward.item} />;
+                return <Item key={`ii-${reward.item}`} count={reward.count} id={reward.item} />;
               })}
             </div>}
-            {rewardItemChoices.sort(sortItems).length > 0 &&
+            {rewardItemChoices.sort().length > 0 &&
             <div className="reward-item-choices">
               <Typography variant="overline" className="choose-one">Choose One:</Typography>
               <div className="reward-items">
-                {rewardItemChoices.sort(sortItems).map(reward =>
-                  <Item key={reward.item.name} {...reward.item} count={reward.count} />,
+                {rewardItemChoices.sort().map(reward =>
+                  <Item key={`ic-${reward.item}`} id={reward.item} count={reward.count} />,
                 )}
               </div>
             </div>}

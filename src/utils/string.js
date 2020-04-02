@@ -1,3 +1,5 @@
+import { convertFromRaw } from 'draft-js';
+
 export const substitute = (template, obj) => template.replace(/\${([a-z0-9_]+)(\[([0-9]+)])?}/gi, (match, capture, _, index) => {
   if (_) {
     return obj[capture] ? obj[capture][index] : null;
@@ -16,13 +18,17 @@ export const setTitle = (title) => {
   }
 };
 
+export const scrollTo = (elementId, behavior = 'smooth', block = 'start') => {
+  document.getElementById(elementId).scrollIntoView({ behavior, block });
+};
+
 export const scrollToTop = () => {
-  document.getElementById('app').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  scrollTo('app');
 };
 
 export const validateQuantity = (min, max) => (value) => {
   if (!value) return;
-  if (value.indexOf('.') >= 0) return Math.floor(value);
+  if (String(value).indexOf('.') >= 0) return Math.floor(value);
   if (value <= min) value = min;
   if (value > max) value = max;
   return value;
@@ -46,4 +52,52 @@ export const unslug = (slug) => {
   .split('-')
   .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
   .join('');
+};
+
+export const transformLines = (string) => string.replace(/\n/g, '<br />');
+
+export const encodeColors = (string) => {
+  string = string.replace(/\|c([A-Z_]+)\|/g, (match, capture) => `<span class="text-${capture.toLowerCase()}">`);
+  string = string.replace(/\|c\|/g, () => `</span>`);
+  return transformLines(string);
+};
+
+export const stringToContentState = (string) => JSON.parse(string || '{ "blocks": [], "entityMap": {} }');
+
+export const getCharCountOfContentString = (string) => {
+  try {
+    return getCharCountOfContentState(convertFromRaw(stringToContentState(string)));
+  } catch (e) {
+    return 0;
+  }
+};
+
+export const getCharCountOfContentState = (contentState) => {
+  try {
+    const plainText = contentState.getPlainText('');
+    const regex = /(?:\r\n|\r|\n)/g; // new line, carriage return, line feed
+    const cleanString = plainText.replace(regex, '').trim(); // replace above characters w/ nothing
+    return cleanString.length;
+  } catch (e) {
+    return 0;
+  }
+};
+
+export const eqIgnoreCase = (str1, str2) => {
+  if (str1 === null && str2 === null) {
+    return true;
+  }
+
+  str1 = String(str1);
+  str2 = String(str2);
+
+  if (str1 === str2) {
+    return true;
+  }
+
+  return (str1.toLowerCase() === str2.toLowerCase());
+};
+
+export const randomString = (length) => {
+  return Math.random().toString(36).substring(2, Math.ceil(length / 2) + 2) + Math.random().toString(36).substring(2, Math.floor(length / 2) + 2);
 };

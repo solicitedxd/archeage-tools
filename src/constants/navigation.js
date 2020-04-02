@@ -1,47 +1,53 @@
 export default [
-  { name: 'Daily Checklist', short: 'Dailies', path: '/dailies' },
-  { name: 'Skill Builder', short: 'Skills', path: '/skills' },
-  { name: 'Trade Pack Calculator', short: 'Trade Packs', path: '/trade-packs' },
-  { name: 'Event Schedule', short: 'Schedule', path: '/schedule' },
-  { name: 'Mounts', path: '/mounts', noBanner: true },
-  { name: 'Taxes Calculator', short: 'Taxes', path: '/taxes', noBanner: true },
-  { name: 'Thunderstrucks', path: '/thunderstruck', noBanner: true },
   {
-    name: 'Guides', path: '/guides', noBanner: true, children: [
-      {
-        name: 'Gameplay', children: [
-          { name: 'Leveling to 55', path: '/guides/leveling-to-55' },
-          { name: 'Honor Points', path: '/guides/honor-points' },
-          { name: 'ArchePass', path: '/guides/archepass' },
-        ],
-      },
-      {
-        name: 'Daily Quests', children: [
-          { name: 'Gilda Dailies', path: '/guides/gilda-dailies' },
-          { name: 'Hiram Dailies', path: '/guides/hiram-dailies' },
-          { name: 'Honor Dailies', path: '/guides/honor-dailies' },
-        ],
-      },
-      {
-        name: 'Dungeons', children: [
-          { name: 'Serpentis', path: '/guides/serpentis' },
-          { name: 'Mistsong Summit', path: '/guides/mistsong-summit' },
-        ],
-      },
-      {
-        name: 'World Bosses', children: [
-          { name: 'Hounds and Nightmares', path: '/guides/hounds-and-nightmares' },
-          { name: 'Meina & Glenn', path: '/guides/meina-and-glenn' },
-        ],
-      },
-      {
-        name: 'Instances', children: [
-          { name: 'Red Dragon\'s Keep', path: '/guides/red-dragons-keep' },
-          { name: 'Noryette Challenge', path: '/guides/noryette-challenge' },
-        ],
-      },
+    name: 'Schedule',
+    path: '/schedule',
+  },
+  {
+    name: 'Calculators',
+    children: [
+      { name: 'Skill Builder', path: '/skills' },
+      { name: 'Crafting Folio', path: '/folio' },
+      { name: 'Trade Packs', path: '/trade-packs' },
+      { name: 'Land Tax', path: '/taxes' },
     ],
   },
+  {
+    name: 'Mounts',
+    path: '/mounts',
+  },
+  {
+    name: 'Trees',
+    path: '/thunderstruck',
+  },
+  {
+    name: 'Dailies',
+    path: '/dailies',
+  },
+  {
+    name: 'Guides',
+    path: '/guides',
+    // Temporarily hide dropdown menu until guides rework
+    // mobileName: 'All Guides',
+    // children: [
+    //   { name: 'Gameplay', path: '/guides/gameplay' },
+    //   { name: 'Daily Quests', path: '/guides/dailies' },
+    //   { name: 'Classes', path: '/guides/classes' },
+    //   { name: 'Mounts', path: '/mounts' },
+    //   { name: 'Dungeons', path: '/guides/dungeons' },
+    //   { name: 'World Bosses', path: '/guides/world-bosses' },
+    //   { name: 'Instances', path: '/guides/instances' },
+    // ],
+  },
+];
 
-  { name: 'Toggle Dark Mode', darkMode: true, noBanner: true },
+export const banners = [
+  { name: 'Event Schedule', info: 'Timers and schedule for daily events.', path: '/schedule' },
+  { name: 'Crafting Folio', info: 'View the crafting folio and plan out recipes.', path: '/folio' },
+  { name: 'Trade Pack Calculator', info: 'Calculate that sweet pack run money.', path: '/trade-packs' },
+  { name: 'Daily Checklist', info: 'Keep track of your daily quests.', path: '/dailies' },
+  { name: 'Skill Builder', info: 'Build and share skillset setups.', path: '/skills' },
+  { name: 'Mount Gallery', info: 'See available mounts and details on how to get them.', path: '/mounts' },
+  // { name: 'Crop Timers', info: 'Keep time of your planted crops, trees, and livestock.', path: '/crops' },
+  { name: 'Tax Calculator', info: 'Calculate the cost of property tax.', path: '/taxes' },
 ];

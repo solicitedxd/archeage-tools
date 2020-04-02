@@ -5,21 +5,31 @@ import {
   Typography,
 } from '@material-ui/core';
 import Link from 'components/Link';
-import navigation from 'constants/navigation';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import React, { Component } from 'react';
-import { setTitle } from 'utils/string';
+import {
+  setTitle,
+  slug,
+} from 'utils/string';
+import * as AllGuides from '../../../data/guides/';
+
+// populate guide categories with guides
+const guideCategories = Object.entries(GUIDE_CATEGORY).reduce((obj, [key, cat]) => {
+  obj[key] = {
+    name: cat,
+    children: Object.entries(AllGuides).filter(([, guide]) => guide.category === cat).reduce((objGuides, [guideKey, guide]) => {
+      objGuides[guideKey] = guide;
+      return objGuides;
+    }, {}),
+  };
+  return obj;
+}, {});
 
 class Guides extends Component {
-  static propTypes = {};
-
-  static defaultProps = {};
-
-  state = {};
-
   render() {
     setTitle('Guides');
     return (
-      <div className="tool-container">
+      <>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -27,15 +37,15 @@ class Guides extends Component {
             </Toolbar>
           </AppBar>
           <div className="body-container guide-list">
-            {navigation.find(n => n.path === '/guides').children.filter(c => !c.disabled).map(section => {
+            {Object.values(guideCategories).map(section => {
               return (
                 <div className="guide-category" key={`gc-${section.name}`}>
                   <Typography variant="h6">{section.name}</Typography>
                   <ul>
-                    {section.children.filter(g => !g.disabled).map((guide, id) => (
-                      <li key={`gc-${section.name}-${id}`}>
+                    {Object.entries(section.children).filter(g => !g.disabled).map(([id, guide]) => (
+                      <li key={`gc-${id}`}>
                         <Typography>
-                          <Link to={guide.path} color="primary" key={`gc-${section.name}-${id}`}>
+                          <Link to={`/guides/${slug(guide.name)}`} color="primary">
                             {guide.name}
                           </Link>
                         </Typography>
@@ -47,7 +57,7 @@ class Guides extends Component {
             })}
           </div>
         </Paper>
-      </div>
+      </>
     );
   }
 }

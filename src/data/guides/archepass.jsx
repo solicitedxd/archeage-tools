@@ -3,6 +3,7 @@ import Ability from 'components/Ability';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { CURRENCY } from 'constants/items';
 import ITEM from 'data/items';
 import ArchePass from 'images/guides/ArchePass.png';
@@ -16,6 +17,8 @@ const meta = {
   lastUpdated: 'Feb 19, 2020',
 };
 
+const category = GUIDE_CATEGORY.GAMEPLAY;
+
 const sections = [
   {
     title: 'The ArchePass',
@@ -27,7 +30,7 @@ const sections = [
       />,
       <Typography>The ArchePass is a weekly mission system unique to ArcheAge Unchained with the main rewards consisting
         of <ItemLink item={ITEM.DILIGENCE_COIN} plural="s" /> and&nbsp;
-        <ItemLink item={ITEM.LABOR_RECHARGE} plural="s" />.</Typography>,
+        <ItemLink item={ITEM.BOUND_LABOR_RECHARGER} plural="s" />.</Typography>,
       'There are four passes: a Basic pass (which has ludicrous point requirements for the rewards), and quarterly rotating Combat, Equipment, and Vocation passes.',
       'The quarterly passes will change every 3 months. The basis pass is refreshed every year.',
       <Lightbox
@@ -242,4 +245,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

@@ -99,10 +99,10 @@ export const compareBuff = (buff1, buff2) => {
 };
 
 export const applyTooltipColor = (string) => string
-.replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="tt-orange">${text}</span>`)
-.replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="tt-scale">${text}</span>`)
-.replace(/(\*([^*]+)\*)/g, (m, g0, text) => `<span class="tt-blue">${text}</span>`)
-.replace(/(@([^@]+)@)/g, (m, g0, text) => `<span class="tt-yellow">${text}</span>`)
+.replace(/(#([^#]+)#)/g, (m, g0, text) => `<span class="text-orange">${text}</span>`)
+.replace(/(&([^&]+)&)/g, (m, g0, text) => `<span class="text-scale">${text}</span>`)
+.replace(/(\*([^*]+)\*)/g, (m, g0, text) => `<span class="text-light_blue">${text}</span>`)
+.replace(/(@([^@]+)@)/g, (m, g0, text) => `<span class="text-yellow">${text}</span>`)
 .replace(/\r/g, () => '<br />');
 
 export const prepareComboText = (combo, skill) => {

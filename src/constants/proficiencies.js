@@ -1,76 +1,100 @@
-import { QUALITY } from 'constants/items';
+export const PROFICIENCY_UPDATE = 'PROFICIENCY_UPDATE';
 
-export const PROFICIENCY = Object.freeze([
+// proficiency constants
+export const HUSBANDRY = 'Husbandry';
+export const FARMING = 'Farming';
+export const FISHING = 'Fishing';
+export const LOGGING = 'Logging';
+export const GATHERING = 'Gathering';
+export const MINING = 'Mining';
+export const ALCHEMY = 'Alchemy';
+export const COOKING = 'Cooking';
+export const HANDICRAFTS = 'Handicrafts';
+export const MACHINING = 'Machining';
+export const METALWORK = 'Metalwork';
+export const PRINTING = 'Printing';
+export const MASONRY = 'Masonry';
+export const TAILORING = 'Tailoring';
+export const LEATHERWORK = 'Leatherwork';
+export const WEAPONRY = 'Weaponry';
+export const CARPENTRY = 'Carpentry';
+export const CONSTRUCTION = 'Construction';
+export const LARCENY = 'Larceny';
+export const COMMERCE = 'Commerce';
+export const ARTISTRY = 'Artistry';
+export const EXPLORATION = 'Exploration';
+
+export const PROFICIENCY_RANK = Object.freeze([
   {
     name: 'Basic',
-    quality: QUALITY.BASIC,
-    maxRank: 10000,
+    grade: 1,
+    maxValue: 10000,
     cost: 1,
   },
   {
     name: 'Novice',
-    quality: QUALITY.GRAND,
-    maxRank: 20000,
+    grade: 2,
+    maxValue: 20000,
     cost: 1,
   },
   {
     name: 'Veteran',
-    quality: QUALITY.RARE,
-    maxRank: 30000,
-    cost: 1,
-  },
-  {
-    name: 'Expert',
-    quality: QUALITY.ARCANE,
-    maxRank: 40000,
+    grade: 3,
+    maxValue: 30000,
     cost: 0.95,
   },
   {
-    name: 'Master',
-    quality: QUALITY.HEROIC,
-    maxRank: 50000,
+    name: 'Expert',
+    grade: 4,
+    maxValue: 40000,
     cost: 0.9,
   },
   {
-    name: 'Authority',
-    quality: QUALITY.UNIQUE,
-    maxRank: 70000,
+    name: 'Master',
+    grade: 5,
+    maxValue: 50000,
     cost: 0.85,
   },
   {
+    name: 'Authority',
+    grade: 6,
+    maxValue: 70000,
+    cost: 0.8,
+  },
+  {
     name: 'Champion',
-    quality: QUALITY.UNIQUE,
-    maxRank: 90000,
+    grade: 6,
+    maxValue: 90000,
     cost: 0.8,
   },
   {
     name: 'Adept',
-    quality: QUALITY.UNIQUE,
-    maxRank: 110000,
+    grade: 6,
+    maxValue: 110000,
     cost: 0.8,
   },
   {
     name: 'Herald',
-    quality: QUALITY.UNIQUE,
-    maxRank: 130000,
+    grade: 6,
+    maxValue: 130000,
     cost: 0.8,
   },
   {
     name: 'Virtuoso',
-    quality: QUALITY.UNIQUE,
-    maxRank: 150000,
+    grade: 6,
+    maxValue: 150000,
     cost: 0.75,
   },
   {
     name: 'Celebrity',
-    quality: QUALITY.CELESTIAL,
-    maxRank: 180000,
+    grade: 7,
+    maxValue: 180000,
     cost: 0.7,
   },
   {
     name: 'Famed',
-    quality: QUALITY.DIVINE,
-    maxRank: 230000,
+    grade: 8,
+    maxValue: 230000,
     cost: 0.6,
   },
 ]);

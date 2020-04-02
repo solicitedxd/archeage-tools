@@ -128,6 +128,28 @@ export const HOUSING_TYPES = Object.freeze({
       'Spired Chateau',
     ],
   },
+  EXEMPT_FARM: {
+    name: 'Exempt Farms',
+    size: '16x16',
+    base: 10,
+    properties: [
+      'Solar Scarecrow Farm',
+      'Lunar Scarecrow Farm',
+      'Stellar Scarecrow Farm',
+    ],
+    exempt: true,
+  },
+  EXEMPT_PAVILION: {
+    name: 'Exempt Pavilion',
+    size: '24x24',
+    base: 15,
+    properties: [
+      'Solar Pavilion Farm',
+      'Lunar Pavilion Farm',
+      'Stellar Pavilion Farm',
+    ],
+    exempt: true,
+  },
 });
 
 export const TAX_BURDEN = Object.freeze([

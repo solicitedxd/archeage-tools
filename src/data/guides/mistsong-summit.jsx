@@ -4,6 +4,7 @@ import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 import React from 'react';
@@ -14,6 +15,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Dec 1, 2019',
 };
+
+const category = GUIDE_CATEGORY.DUNGEONS;
 
 const sections = [
   {
@@ -210,4 +213,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

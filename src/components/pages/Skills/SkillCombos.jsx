@@ -50,7 +50,8 @@ class SkillCombos extends Component {
           />
           <EffectIcon
             {...effect}
-            tooltip={`<span class="tt-orange">${skill.name}</span> applies <span class="${effect.negative ? 'tt-debuff'
+            tooltip={`<span class="text-orange">${skill.name}</span> applies <span class="${effect.negative
+              ? 'tt-debuff'
               : 'tt-buff'}">${effect.name}</span>`}
           />
         </div>,
@@ -59,7 +60,7 @@ class SkillCombos extends Component {
     }
 
     // comboing skill
-    const comboText = `<span class="tt-orange">${activator.name}:</span> ${prepareComboText(causes, activator)}`;
+    const comboText = `<span class="text-orange">${activator.name}:</span> ${prepareComboText(causes, activator)}`;
     nodes.push(
       <div className="combo-skill" key={`skc-${Math.random()}`}>
         <Skill

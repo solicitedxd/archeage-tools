@@ -14,10 +14,7 @@ import {
   bool,
   string,
 } from 'react-proptypes';
-import {
-  sortItems,
-  splitRewards,
-} from 'utils/dailies';
+import { splitRewards } from 'utils/dailies';
 
 class RewardsDisplay extends Component {
   static propTypes = {
@@ -66,8 +63,8 @@ class RewardsDisplay extends Component {
             }
           </div>
           <div className="reward-panel-items">
-            {rewardItems.concat(rewardItemChoices).sort(sortItems).map(item =>
-              <Item key={item.item.name} {...item.item} count={item.count} />,
+            {rewardItems.concat(rewardItemChoices).sort().map(item =>
+              <Item key={`ir-${item.item}`} id={item.item} count={item.count} />,
             )}
           </div>
           {rewards.length === 0 && <Typography variant="subtitle1">No rewards</Typography>}

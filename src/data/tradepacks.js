@@ -9,103 +9,13 @@ import {
 } from 'constants/tradepacks';
 import ITEM from './items';
 
-const sellLabor = 70;
-
-const cargoPack = {
-  labor: 75,
-  sellLabor: 175,
-};
-
-export const PACK_COSTS = {
-  [PACK_TYPE.NORMAL]: {
-    gold: 5000,
-    labor: 50,
-    sellLabor,
-  },
-  [PACK_TYPE.GILDA]: {
-    materials: [{ item: ITEM.GILDA_STAR, count: 2 }],
-    gold: 5000,
-    labor: 180,
-    sellLabor,
-  },
-  [PACK_TYPE.LOCAL]: {
-    gold: 7500,
-    labor: 60,
-    sellLabor,
-  },
-  [PACK_TYPE.FERTILIZER]: {
-    materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 50 }, { item: ITEM.GROUND_GRAIN, count: 50 },
-      { item: ITEM.TRIMMED_MEAT, count: 50 }, { item: ITEM.DRIED_FLOWERS, count: 50 }],
-    gold: 7500,
-    labor: 60,
-    sellLabor,
-  },
-  [PACK_TYPE.HONEY]: {
-    materials: [{ item: ITEM.HONEY_AGING_LARDER, count: 1 }],
-    larderMaterials: [{ item: ITEM.HONEY, count: 4 }, { item: ITEM.HAY_BALE, count: 20 }],
-    gold: 0,
-    labor: 65,
-    sellLabor,
-  },
-  [PACK_TYPE.CHEESE]: {
-    materials: [{ item: ITEM.CHEESE_AGING_LARDER, count: 1 }],
-    larderMaterials: [{ item: ITEM.MILK, count: 50 }, { item: ITEM.LEMON, count: 30 }],
-    gold: 0,
-    labor: 65,
-    sellLabor,
-  },
-  [PACK_TYPE.SALVE]: {
-    materials: [{ item: ITEM.SALVE_AGING_LARDER, count: 1 }],
-    larderMaterials: [{ item: ITEM.CULTIVATED_GINSENG, count: 20 }, { item: ITEM.OLIVE, count: 30 }],
-    gold: 0,
-    labor: 65,
-    sellLabor,
-  },
-  [PACK_TYPE.BLUE_SALT]: {
-    materials: [{ item: ITEM.BLUE_SALT_BOND, count: 1 }, { item: ITEM.SMALL_ROOT_PIGMENT, count: 1 },
-      { item: ITEM.SMALL_SEED_OIL, count: 1 }, { item: ITEM.OPAQUE_POLISH, count: 1 }],
-    gold: 0,
-    labor: 600,
-    sellLabor,
-  },
-  [PACK_TYPE.SPECIAL]: {
-    gold: 7500,
-    labor: 60,
-    sellLabor,
-  },
-  [PACK_TYPE.ANTIQUITIES]: {
-    materials: [{ item: ITEM.BLUE_SALT_HAMMER, count: 2 }],
-    gold: 30000,
-    labor: 50,
-    sellLabor,
-  },
-  [ZONE.SOLIS_HEADLANDS]: {
-    ...cargoPack,
-  },
-  [ZONE.TWO_CROWNS]: {
-    ...cargoPack,
-  },
-  [ZONE.DIAMOND_SHORES]: {
-    ...cargoPack,
-  },
-  [ZONE.FREEDICH_ISLAND]: {
-    ...cargoPack,
-  },
-};
-
-export const LARDER_BASE = {
-  materials: [{ item: ITEM.LUMBER, count: 2 }, { item: ITEM.ROYAL_SEED, count: 1 }],
-  gold: 9000,
-  labor: 65,
-};
-
 export default Object.freeze({
   // Haranya
   [ZONE.ARCUM_IRIS]: {
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 180 }, { item: ITEM.TURMERIC, count: 3 }],
+        recipeId: 6237,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 14.4258,
           [ZONE.VILLANELLE]: 14.4261,
@@ -113,7 +23,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.EGG, count: 10 }],
+        recipeId: 6214,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 35.4716,
           [ZONE.VILLANELLE]: 35.4258,
@@ -121,7 +31,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 150 }, { item: ITEM.SUNFLOWER, count: 5 }],
+        recipeId: 9608,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.8685,
           [ZONE.VILLANELLE]: 15.8685,
@@ -129,6 +39,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7783,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.5897,
           [ZONE.VILLANELLE]: 16.5899,
@@ -162,7 +73,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.APPLE, count: 5 }],
+        recipeId: 6239,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 14.7768,
           [ZONE.VILLANELLE]: 14.7768,
@@ -170,7 +81,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 }],
+        recipeId: 6216,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 36.3463,
           [ZONE.VILLANELLE]: 36.3001,
@@ -178,7 +89,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 150 }, { item: ITEM.CARROT, count: 15 }],
+        recipeId: 9618,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.2546,
           [ZONE.VILLANELLE]: 16.2544,
@@ -186,6 +97,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7785,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.9933,
           [ZONE.VILLANELLE]: 16.9933,
@@ -214,6 +126,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11037,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 93.2792,
           [ZONE.VILLANELLE]: 93.2193,
@@ -226,7 +139,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 180 }, { item: ITEM.LAVENDER, count: 15 }],
+        recipeId: 9348,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.0609,
           [ZONE.VILLANELLE]: 15.0609,
@@ -234,7 +147,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.LEMON, count: 5 }],
+        recipeId: 9347,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 37.1424,
           [ZONE.VILLANELLE]: 37.0964,
@@ -242,7 +155,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 150 }, { item: ITEM.MINT, count: 5 }],
+        recipeId: 9612,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.5669,
           [ZONE.VILLANELLE]: 16.5667,
@@ -250,6 +163,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9350,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 17.3199,
           [ZONE.VILLANELLE]: 17.3201,
@@ -283,7 +197,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
+        recipeId: 6240,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 13.1731,
           [ZONE.VILLANELLE]: 13.1731,
@@ -291,7 +205,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6217,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 34.2737,
           [ZONE.VILLANELLE]: 34.2277,
@@ -299,7 +213,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 150 }, { item: ITEM.TOMATO, count: 15 }],
+        recipeId: 9609,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 14.4904,
           [ZONE.VILLANELLE]: 14.4904,
@@ -307,6 +221,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7786,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.1491,
           [ZONE.VILLANELLE]: 15.1491,
@@ -340,7 +255,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 180 }, { item: ITEM.FIG, count: 5 }],
+        recipeId: 6238,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 9.2793,
           [ZONE.VILLANELLE]: 9.2793,
@@ -348,7 +263,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.BANANA, count: 5 }],
+        recipeId: 6215,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 32.3630,
           [ZONE.VILLANELLE]: 32.3171,
@@ -356,7 +271,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 150 }, { item: ITEM.CUCUMBER, count: 15 }],
+        recipeId: 9610,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 10.2070,
           [ZONE.VILLANELLE]: 10.2072,
@@ -364,6 +279,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7784,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 10.6711,
           [ZONE.VILLANELLE]: 10.6709,
@@ -392,6 +308,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11035,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 88.0827,
           [ZONE.VILLANELLE]: 88.0228,
@@ -404,27 +321,28 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 180 }, { item: ITEM.JUJUBE, count: 2 }],
+        recipeId: 6236,
         sell: {
           [ZONE.VILLANELLE]: 13.9452,
           [ZONE.YNYSTERE]: 14.5529,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.YATA_FUR, count: 10 }],
+        recipeId: 6213,
         sell: {
           [ZONE.VILLANELLE]: 34.6798,
           [ZONE.YNYSTERE]: 35.7619,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 150 }, { item: ITEM.SAFFRON, count: 5 }],
+        recipeId: 9611,
         sell: {
           [ZONE.VILLANELLE]: 15.3397,
           [ZONE.YNYSTERE]: 16.0080,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7782,
         sell: {
           [ZONE.VILLANELLE]: 16.0369,
           [ZONE.YNYSTERE]: 16.7357,
@@ -454,27 +372,28 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 180 }, { item: ITEM.CHERRY, count: 2 }],
+        recipeId: 6242,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 13.9452,
           [ZONE.YNYSTERE]: 14.2856,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.WOOL, count: 10 }],
+        recipeId: 6219,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 34.6798,
           [ZONE.YNYSTERE]: 35.1977,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 150 }, { item: ITEM.RICE, count: 15 }],
+        recipeId: 9613,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.3397,
           [ZONE.YNYSTERE]: 15.7142,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7788,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.0369,
           [ZONE.YNYSTERE]: 16.4284,
@@ -504,7 +423,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.POMEGRANATE, count: 3 }],
+        recipeId: 6241,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.1452,
           [ZONE.VILLANELLE]: 10.1214,
@@ -512,7 +431,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6218,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 37.3823,
           [ZONE.VILLANELLE]: 32.7020,
@@ -520,7 +439,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 150 }, { item: ITEM.GARLIC, count: 15 }],
+        recipeId: 9614,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 16.6600,
           [ZONE.VILLANELLE]: 11.2677,
@@ -528,6 +447,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7787,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 17.4171,
           [ZONE.VILLANELLE]: 11.7798,
@@ -556,6 +476,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11036,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 94.6308,
           [ZONE.VILLANELLE]: 88.5251,
@@ -568,27 +489,28 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.OLIVE, count: 3 }],
+        recipeId: 6246,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.5331,
           [ZONE.VILLANELLE]: 15.8069,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.ORANGE, count: 5 }],
+        recipeId: 6223,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 35.7619,
           [ZONE.VILLANELLE]: 35.1977,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 150 }, { item: ITEM.ROSE, count: 15 }],
+        recipeId: 9617,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 18.1647,
           [ZONE.VILLANELLE]: 18.4662,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7792,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 18.9908,
           [ZONE.VILLANELLE]: 19.3055,
@@ -613,6 +535,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11042,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 92.5172,
           [ZONE.VILLANELLE]: 91.7807,
@@ -620,7 +543,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Ynystere Space-Time Fragment',
-        materials: [{ item: ITEM.TIME_SPACE_RIFT_SHARD, count: 2 }, { item: ITEM.IRON_INGOT, count: 100 }],
+        recipeId: 10314,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 37.6694,
           [ZONE.VILLANELLE]: 34.1068,
@@ -632,7 +555,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 200 }, { item: ITEM.APPLE, count: 5 }],
+        recipeId: 6245,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 19.3118,
           [ZONE.VILLANELLE]: 16.0288,
@@ -640,7 +563,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6222,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 40.8900,
           [ZONE.VILLANELLE]: 36.0698,
@@ -648,7 +571,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 160 }, { item: ITEM.MILLET, count: 5 }],
+        recipeId: 9619,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 21.2424,
           [ZONE.VILLANELLE]: 18.7422,
@@ -656,6 +579,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7791,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 22.2084,
           [ZONE.VILLANELLE]: 19.5941,
@@ -685,7 +609,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Rookborne Hide Rug',
-        materials: [{ item: ITEM.YETIS_PELT, count: 1 }, { item: ITEM.LEATHER, count: 100 }],
+        recipeId: 10315,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 48.9158,
           [ZONE.VILLANELLE]: 25.9383,
@@ -698,7 +622,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 200 }, { item: ITEM.MINT, count: 6 }],
+        recipeId: 6243,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 17.7168,
           [ZONE.VILLANELLE]: 17.7167,
@@ -706,7 +630,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.MORINGA_FRUIT, count: 3 }],
+        recipeId: 6220,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 38.2522,
           [ZONE.VILLANELLE]: 38.2062,
@@ -714,7 +638,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 160 }, { item: ITEM.ALOE, count: 5 }],
+        recipeId: 9620,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 19.4882,
           [ZONE.VILLANELLE]: 19.4882,
@@ -722,6 +646,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7789,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 20.3743,
           [ZONE.VILLANELLE]: 20.3741,
@@ -751,7 +676,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Windscour Concentrated Antidote',
-        materials: [{ item: ITEM.TWINHEAD_VIPER_FANG, count: 1 }, { item: ITEM.LUMBER, count: 100 }],
+        recipeId: 10316,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 41.8132,
           [ZONE.VILLANELLE]: 41.5857,
@@ -764,7 +689,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 200 }, { item: ITEM.POTATO, count: 15 }],
+        recipeId: 6244,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 18.7490,
           [ZONE.VILLANELLE]: 18.6887,
@@ -772,7 +697,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.AVOCADO, count: 5 }],
+        recipeId: 6221,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 39.7172,
           [ZONE.VILLANELLE]: 39.6716,
@@ -780,7 +705,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 160 }, { item: ITEM.PEANUT, count: 5 }],
+        recipeId: 9616,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 20.6239,
           [ZONE.VILLANELLE]: 20.5573,
@@ -788,6 +713,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7790,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 21.5614,
           [ZONE.VILLANELLE]: 21.4917,
@@ -816,6 +742,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11044,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 97.6775,
           [ZONE.VILLANELLE]: 97.6174,
@@ -823,6 +750,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.ANTIQUITIES]: {
+        recipeId: 9383,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 14.1536,
           [ZONE.VILLANELLE]: 14.0869,
@@ -831,7 +759,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Perinoor Ghost Light',
-        materials: [{ item: ITEM.REVENANT_SOUL, count: 1 }, { item: ITEM.STONE_BRICK, count: 50 }],
+        recipeId: 10317,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 49.0068,
           [ZONE.VILLANELLE]: 48.7792,
@@ -844,7 +772,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 200 }, { item: ITEM.LILY, count: 5 }],
+        recipeId: 6247,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 20.2894,
           [ZONE.VILLANELLE]: 20.2386,
@@ -852,7 +780,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        recipeId: 6224,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 42.3719,
           [ZONE.VILLANELLE]: 42.2717,
@@ -860,7 +788,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 160 }, { item: ITEM.CORNFLOWER, count: 5 }],
+        recipeId: 9615,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 22.3188,
           [ZONE.VILLANELLE]: 22.2630,
@@ -868,6 +796,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7793,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 23.3328,
           [ZONE.VILLANELLE]: 23.2748,
@@ -896,6 +825,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.ANTIQUITIES]: {
+        recipeId: 9378,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 15.8482,
           [ZONE.VILLANELLE]: 15.7924,
@@ -904,7 +834,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Hasla Scimitar',
-        materials: [{ item: ITEM.GHOST_BLADES_WEAPON_SHARD, count: 1 }, { item: ITEM.IRON_INGOT, count: 100 }],
+        recipeId: 10318,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 62.0380,
           [ZONE.VILLANELLE]: 61.5466,
@@ -917,7 +847,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 200 }, { item: ITEM.AZALEA, count: 15 }],
+        recipeId: 9352,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 19.1029,
           [ZONE.VILLANELLE]: 16.9847,
@@ -925,7 +855,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.APPLE, count: 5 }],
+        recipeId: 9351,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 40.3343,
           [ZONE.VILLANELLE]: 37.3360,
@@ -933,7 +863,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 160 }, { item: ITEM.YAM, count: 5 }],
+        recipeId: 9621,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 21.0137,
           [ZONE.VILLANELLE]: 18.6832,
@@ -941,6 +871,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9354,
         sell: {
           [ZONE.SOLIS_HEADLANDS]: 21.9688,
           [ZONE.VILLANELLE]: 21.4323,
@@ -975,27 +906,28 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
+        recipeId: 6227,
         sell: {
           [ZONE.TWO_CROWNS]: 12.0228,
           [ZONE.CINDERSTONE_MOOR]: 10.6411,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.EGG, count: 10 }],
+        recipeId: 6205,
         sell: {
           [ZONE.TWO_CROWNS]: 33.7826,
           [ZONE.CINDERSTONE_MOOR]: 32.5661,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 150 }, { item: ITEM.STRAWBERRY, count: 5 }],
+        recipeId: 9593,
         sell: {
           [ZONE.TWO_CROWNS]: 13.2248,
           [ZONE.CINDERSTONE_MOOR]: 12.7837,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7774,
         sell: {
           [ZONE.TWO_CROWNS]: 13.8262,
           [ZONE.CINDERSTONE_MOOR]: 13.3647,
@@ -1025,7 +957,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 180 }, { item: ITEM.APPLE, count: 5 }],
+        recipeId: 6225,
         sell: {
           [ZONE.TWO_CROWNS]: 14.7315,
           [ZONE.SOLZREED_PENINSULA]: 14.3808,
@@ -1033,7 +965,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 300 }, { item: ITEM.GOOSE_DOWN, count: 10 }],
+        recipeId: 6202,
         sell: {
           [ZONE.TWO_CROWNS]: 38.8415,
           [ZONE.SOLZREED_PENINSULA]: 35.3302,
@@ -1041,7 +973,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 150 }, { item: ITEM.ONION, count: 15 }],
+        recipeId: 9596,
         sell: {
           [ZONE.TWO_CROWNS]: 15.3417,
           [ZONE.SOLZREED_PENINSULA]: 15.819,
@@ -1049,6 +981,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7771,
         sell: {
           [ZONE.TWO_CROWNS]: 16.0388,
           [ZONE.SOLZREED_PENINSULA]: 16.538,
@@ -1077,6 +1010,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11039,
         sell: {
           [ZONE.TWO_CROWNS]: 96.5346,
           [ZONE.SOLZREED_PENINSULA]: 91.9539,
@@ -1089,7 +1023,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 180 }, { item: ITEM.OLIVE, count: 3 }],
+        recipeId: 6230,
         sell: {
           [ZONE.TWO_CROWNS]: 13.8642,
           [ZONE.SOLZREED_PENINSULA]: 10.2765,
@@ -1097,7 +1031,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6207,
         sell: {
           [ZONE.TWO_CROWNS]: 36.4784,
           [ZONE.SOLZREED_PENINSULA]: 32.9671,
@@ -1105,7 +1039,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.RICE, count: 15 }],
+        recipeId: 9594,
         sell: {
           [ZONE.TWO_CROWNS]: 14.1722,
           [ZONE.SOLZREED_PENINSULA]: 11.3045,
@@ -1113,6 +1047,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7776,
         sell: {
           [ZONE.TWO_CROWNS]: 14.8164,
           [ZONE.SOLZREED_PENINSULA]: 11.8182,
@@ -1141,6 +1076,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11038,
         sell: {
           [ZONE.TWO_CROWNS]: 90.4356,
           [ZONE.SOLZREED_PENINSULA]: 93.8565,
@@ -1153,7 +1089,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.BARLEY, count: 15 }],
+        recipeId: 9332,
         sell: {
           [ZONE.TWO_CROWNS]: 14.3225,
           [ZONE.SOLZREED_PENINSULA]: 15.2511,
@@ -1161,7 +1097,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        recipeId: 9331,
         sell: {
           [ZONE.TWO_CROWNS]: 37.9876,
           [ZONE.SOLZREED_PENINSULA]: 38.5125,
@@ -1169,7 +1105,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 150 }, { item: ITEM.RYE, count: 5 }],
+        recipeId: 9606,
         sell: {
           [ZONE.TWO_CROWNS]: 14.6764,
           [ZONE.SOLZREED_PENINSULA]: 16.5609,
@@ -1177,6 +1113,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9334,
         sell: {
           [ZONE.TWO_CROWNS]: 15.3435,
           [ZONE.SOLZREED_PENINSULA]: 17.3137,
@@ -1210,7 +1147,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 180 }, { item: ITEM.CORN, count: 15 }],
+        recipeId: 9336,
         sell: {
           [ZONE.TWO_CROWNS]: 13.9217,
           [ZONE.SOLZREED_PENINSULA]: 14.8771,
@@ -1218,7 +1155,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.RICE, count: 15 }],
+        recipeId: 9335,
         sell: {
           [ZONE.TWO_CROWNS]: 36.0773,
           [ZONE.SOLZREED_PENINSULA]: 36.6019,
@@ -1226,7 +1163,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 150 }, { item: ITEM.EGG, count: 10 }],
+        recipeId: 9605,
         sell: {
           [ZONE.TWO_CROWNS]: 14.4509,
           [ZONE.SOLZREED_PENINSULA]: 16.3651,
@@ -1234,6 +1171,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9338,
         sell: {
           [ZONE.TWO_CROWNS]: 15.1077,
           [ZONE.SOLZREED_PENINSULA]: 17.1091,
@@ -1267,7 +1205,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 180 }, { item: ITEM.NARCISSUS, count: 15 }],
+        recipeId: 6227,
         sell: {
           [ZONE.TWO_CROWNS]: 13.9177,
           [ZONE.SOLZREED_PENINSULA]: 10.3146,
@@ -1275,7 +1213,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.WOOL, count: 10 }],
+        recipeId: 6204,
         sell: {
           [ZONE.TWO_CROWNS]: 34.5679,
           [ZONE.SOLZREED_PENINSULA]: 32.9102,
@@ -1283,7 +1221,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.GINKGO_LEAF, count: 10 }],
+        recipeId: 9595,
         sell: {
           [ZONE.TWO_CROWNS]: 15.3094,
           [ZONE.SOLZREED_PENINSULA]: 11.346,
@@ -1291,6 +1229,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7773,
         sell: {
           [ZONE.TWO_CROWNS]: 16.0056,
           [ZONE.SOLZREED_PENINSULA]: 11.8616,
@@ -1324,7 +1263,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.GRAPE, count: 5 }],
+        recipeId: 6229,
         sell: {
           [ZONE.TWO_CROWNS]: 12.9337,
           [ZONE.SOLZREED_PENINSULA]: 14.9409,
@@ -1332,7 +1271,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6206,
         sell: {
           [ZONE.TWO_CROWNS]: 34.1666,
           [ZONE.SOLZREED_PENINSULA]: 36.7888,
@@ -1340,7 +1279,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 150 }, { item: ITEM.YAM, count: 5 }],
+        recipeId: 9603,
         sell: {
           [ZONE.TWO_CROWNS]: 14.2272,
           [ZONE.SOLZREED_PENINSULA]: 16.4348,
@@ -1348,6 +1287,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7775,
         sell: {
           [ZONE.TWO_CROWNS]: 14.8736,
           [ZONE.SOLZREED_PENINSULA]: 17.1818,
@@ -1376,6 +1316,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.ANTIQUITIES]: {
+        recipeId: 9386,
         sell: {
           [ZONE.TWO_CROWNS]: 10.9919,
           [ZONE.SOLZREED_PENINSULA]: 13.1996,
@@ -1383,6 +1324,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11041,
         sell: {
           [ZONE.TWO_CROWNS]: 90.4353,
           [ZONE.SOLZREED_PENINSULA]: 93.8563,
@@ -1395,7 +1337,7 @@ export default Object.freeze({
     freshness: FRESHNESS.FINE,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.CHERRY, count: 2 }],
+        recipeId: 6226,
         sell: {
           [ZONE.TWO_CROWNS]: 9.5251,
           [ZONE.SOLZREED_PENINSULA]: 12.9336,
@@ -1403,7 +1345,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        recipeId: 6203,
         sell: {
           [ZONE.TWO_CROWNS]: 32.4957,
           [ZONE.SOLZREED_PENINSULA]: 34.1449,
@@ -1411,7 +1353,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 150 }, { item: ITEM.IRIS, count: 15 }],
+        recipeId: 9598,
         sell: {
           [ZONE.TWO_CROWNS]: 10.4776,
           [ZONE.SOLZREED_PENINSULA]: 14.227,
@@ -1419,6 +1361,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7772,
         sell: {
           [ZONE.TWO_CROWNS]: 10.9538,
           [ZONE.SOLZREED_PENINSULA]: 14.8739,
@@ -1447,6 +1390,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11040,
         sell: {
           [ZONE.TWO_CROWNS]: 88.2557,
           [ZONE.SOLZREED_PENINSULA]: 90.4075,
@@ -1459,27 +1403,28 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 180 }, { item: ITEM.POMEGRANATE, count: 3 }],
+        recipeId: 6231,
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 12.4686,
           [ZONE.CINDERSTONE_MOOR]: 9.835,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.MILK, count: 5 }],
+        recipeId: 6208,
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 33.9673,
           [ZONE.CINDERSTONE_MOOR]: 31.4654,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 150 }, { item: ITEM.IRIS, count: 15 }],
+        recipeId: 9602,
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 13.7156,
           [ZONE.CINDERSTONE_MOOR]: 11.8969,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7777,
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 14.3388,
           [ZONE.CINDERSTONE_MOOR]: 12.4377,
@@ -1504,6 +1449,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.ANTIQUITIES]: {
+        recipeId: 9385,
         sell: {
           [ZONE.SOLZREED_PENINSULA]: 10.4802,
           [ZONE.CINDERSTONE_MOOR]: 9.74,
@@ -1515,27 +1461,28 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 180 }, { item: ITEM.BAY_LEAF, count: 3 }],
+        recipeId: 6233,
         sell: {
           [ZONE.TWO_CROWNS]: 9.835,
           [ZONE.SOLZREED_PENINSULA]: 10.641,
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.APPLE, count: 5 }],
+        recipeId: 6210,
         sell: {
           [ZONE.TWO_CROWNS]: 31.4654,
           [ZONE.SOLZREED_PENINSULA]: 32.5662,
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 150 }, { item: ITEM.AZALEA, count: 15 }],
+        recipeId: 9604,
         sell: {
           [ZONE.TWO_CROWNS]: 11.8968,
           [ZONE.SOLZREED_PENINSULA]: 12.7835,
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7779,
         sell: {
           [ZONE.TWO_CROWNS]: 12.4377,
           [ZONE.SOLZREED_PENINSULA]: 13.3647,
@@ -1560,6 +1507,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.BLUE_SALT]: {
+        recipeId: 11043,
         sell: {
           [ZONE.TWO_CROWNS]: 86.9118,
           [ZONE.SOLZREED_PENINSULA]: 88.3478,
@@ -1567,7 +1515,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Cinderstone Space-Time Fragment',
-        materials: [{ item: ITEM.TIME_SPACE_RIFT_SHARD, count: 2 }, { item: ITEM.IRON_INGOT, count: 100 }],
+        recipeId: 10319,
         sell: {
           [ZONE.TWO_CROWNS]: 26.2604,
           [ZONE.SOLZREED_PENINSULA]: 30.3862,
@@ -1579,7 +1527,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 200 }, { item: ITEM.YAM, count: 5 }],
+        recipeId: 6234,
         sell: {
           [ZONE.TWO_CROWNS]: 14.4044,
           [ZONE.SOLZREED_PENINSULA]: 16.2431,
@@ -1587,7 +1535,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 300 }, { item: ITEM.EGG, count: 10 }],
+        recipeId: 6211,
         sell: {
           [ZONE.TWO_CROWNS]: 34.1963,
           [ZONE.SOLZREED_PENINSULA]: 36.4618,
@@ -1595,7 +1543,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 160 }, { item: ITEM.OATS, count: 5 }],
+        recipeId: 9601,
         sell: {
           [ZONE.TWO_CROWNS]: 17.4624,
           [ZONE.SOLZREED_PENINSULA]: 17.8671,
@@ -1603,6 +1551,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7780,
         sell: {
           [ZONE.TWO_CROWNS]: 18.2561,
           [ZONE.SOLZREED_PENINSULA]: 18.6795,
@@ -1632,7 +1581,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Halcyona Braided Tail Blanket',
-        materials: [{ item: ITEM.CENTAURS_TAIL, count: 1 }, { item: ITEM.FABRIC, count: 100 }],
+        recipeId: 10320,
         sell: {
           [ZONE.TWO_CROWNS]: 27.7888,
           [ZONE.SOLZREED_PENINSULA]: 42.0862,
@@ -1645,7 +1594,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 200 }, { item: ITEM.MUSHROOM, count: 15 }],
+        recipeId: 6232,
         sell: {
           [ZONE.TWO_CROWNS]: 16.5845,
           [ZONE.SOLZREED_PENINSULA]: 19.5429,
@@ -1653,7 +1602,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.BANANA, count: 5 }],
+        recipeId: 6209,
         sell: {
           [ZONE.TWO_CROWNS]: 36.818,
           [ZONE.SOLZREED_PENINSULA]: 41.889,
@@ -1661,7 +1610,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_SPICES, count: 160 }, { item: ITEM.PEANUT, count: 5 }],
+        recipeId: 9599,
         sell: {
           [ZONE.TWO_CROWNS]: 18.243,
           [ZONE.SOLZREED_PENINSULA]: 20.9581,
@@ -1669,6 +1618,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7778,
         sell: {
           [ZONE.TWO_CROWNS]: 19.0722,
           [ZONE.SOLZREED_PENINSULA]: 21.9107,
@@ -1698,7 +1648,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Hellswamp Adhesive',
-        materials: [{ item: ITEM.DROWNED_CORPSE_FLUID, count: 1 }, { item: ITEM.FABRIC, count: 100 }],
+        recipeId: 10322,
         sell: {
           [ZONE.TWO_CROWNS]: 34.7698,
           [ZONE.SOLZREED_PENINSULA]: 59.6674,
@@ -1711,7 +1661,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 200 }, { item: ITEM.ROSEMARY, count: 5 }],
+        recipeId: 6235,
         sell: {
           [ZONE.TWO_CROWNS]: 16.1491,
           [ZONE.SOLZREED_PENINSULA]: 17.213,
@@ -1719,7 +1669,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 300 }, { item: ITEM.AVOCADO, count: 5 }],
+        recipeId: 6212,
         sell: {
           [ZONE.TWO_CROWNS]: 35.5071,
           [ZONE.SOLZREED_PENINSULA]: 37.5569,
@@ -1727,7 +1677,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.GROUND_GRAIN, count: 160 }, { item: ITEM.CUCUMBER, count: 15 }],
+        recipeId: 9600,
         sell: {
           [ZONE.TWO_CROWNS]: 18.8427,
           [ZONE.SOLZREED_PENINSULA]: 18.9346,
@@ -1735,6 +1685,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 7781,
         sell: {
           [ZONE.TWO_CROWNS]: 19.699,
           [ZONE.SOLZREED_PENINSULA]: 19.7952,
@@ -1764,7 +1715,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Sanddeep Preserved Fin',
-        materials: [{ item: ITEM.SHARK_FIN, count: 1 }, { item: ITEM.LUMBER, count: 100 }],
+        recipeId: 10321,
         sell: {
           [ZONE.TWO_CROWNS]: 28.3361,
           [ZONE.SOLZREED_PENINSULA]: 38.4007,
@@ -1777,7 +1728,7 @@ export default Object.freeze({
     freshness: FRESHNESS.COMMERCIAL,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 180 }, { item: ITEM.CORN, count: 15 }],
+        recipeId: 9344,
         sell: {
           [ZONE.TWO_CROWNS]: 17.2129,
           [ZONE.SOLZREED_PENINSULA]: 18.8689,
@@ -1785,7 +1736,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.DRIED_FLOWERS, count: 300 }, { item: ITEM.DUCK_DOWN, count: 10 }],
+        recipeId: 9343,
         sell: {
           [ZONE.TWO_CROWNS]: 37.593,
           [ZONE.SOLZREED_PENINSULA]: 39.9505,
@@ -1793,7 +1744,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.ORCHARD_PUREE, count: 150 }, { item: ITEM.ROSEMARY, count: 5 }],
+        recipeId: 9597,
         sell: {
           [ZONE.TWO_CROWNS]: 18.9345,
           [ZONE.SOLZREED_PENINSULA]: 20.7557,
@@ -1801,6 +1752,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9346,
         sell: {
           [ZONE.TWO_CROWNS]: 19.7953,
           [ZONE.SOLZREED_PENINSULA]: 21.6992,
@@ -1830,7 +1782,7 @@ export default Object.freeze({
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Karkasse Bulge',
-        materials: [{ item: ITEM.MINOTAUR_HORN, count: 1 }, { item: ITEM.LUMBER, count: 100 }],
+        recipeId: 10323,
         sell: {
           [ZONE.TWO_CROWNS]: 38.5782,
           [ZONE.SOLZREED_PENINSULA]: 50.1488,
@@ -1843,7 +1795,7 @@ export default Object.freeze({
     freshness: FRESHNESS.PRESERVED,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        materials: [{ item: ITEM.CHOPPED_PRODUCE, count: 200 }, { item: ITEM.MUSHROOM, count: 15 }],
+        recipeId: 9340,
         sell: {
           [ZONE.TWO_CROWNS]: 18.1862,
           [ZONE.SOLZREED_PENINSULA]: 20.0331,
@@ -1851,7 +1803,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.GILDA]: {
-        materials: [{ item: ITEM.TRIMMED_MEAT, count: 300 }, { item: ITEM.GRAPE, count: 5 }],
+        recipeId: 9339,
         sell: {
           [ZONE.TWO_CROWNS]: 38.8901,
           [ZONE.SOLZREED_PENINSULA]: 41.864,
@@ -1859,7 +1811,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.LOCAL]: {
-        materials: [{ item: ITEM.MEDICINAL_POWDER, count: 160 }, { item: ITEM.CORNFLOWER, count: 5 }],
+        recipeId: 9607,
         sell: {
           [ZONE.TWO_CROWNS]: 20.0048,
           [ZONE.SOLZREED_PENINSULA]: 22.0368,
@@ -1867,6 +1819,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.FERTILIZER]: {
+        recipeId: 9342,
         sell: {
           [ZONE.TWO_CROWNS]: 20.9139,
           [ZONE.SOLZREED_PENINSULA]: 23.0383,

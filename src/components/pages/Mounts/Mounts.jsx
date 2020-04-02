@@ -158,7 +158,7 @@ class Mounts extends Component {
     });
 
     return (
-      <div className="tool-container">
+      <>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -358,7 +358,7 @@ class Mounts extends Component {
           id={mount}
           onClose={() => this.props.history.push('/mounts')}
         />
-      </div>
+      </>
     );
   }
 }

@@ -1,3 +1,5 @@
+export const SET_ITEM_PRICE = 'SET_ITEM_PRICE';
+
 export const CURRENCY = Object.freeze({
   COIN: 'Coin',
   GILDA: 'Gilda Stars',

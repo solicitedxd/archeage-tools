@@ -26,18 +26,20 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import ListAltIcon from '@material-ui/icons/ListAlt';
 import ReplayIcon from '@material-ui/icons/Replay';
+import { openDialog } from 'actions/display';
 import {
   resetSettings,
   setContinent,
+  setOutlet,
   setPercentage,
-  setProficiency,
   setWar,
 } from 'actions/tradepacks';
 import cn from 'classnames';
 import Item from 'components/Item';
+import { DIALOG_PROFICIENCY } from 'constants/display';
 import { CONTINENT } from 'constants/map';
-import { PROFICIENCY } from 'constants/proficiencies';
 import {
   AGED_PACK,
   CARGO,
@@ -60,19 +62,16 @@ class TradePacks extends Component {
 
   state = {
     reset: false,
-    zone: 0,
     open: false,
     packType: null,
     originZone: null,
   };
 
+  setZone = this.props.setOutlet;
+
   setContinent = (e, value) => {
     this.props.setContinent(e, value);
-    this.setState({ zone: 0 });
-  };
-
-  setZone = (e, zone) => {
-    this.setState({ zone });
+    this.props.setOutlet(e, 0);
   };
 
   requestReset = () => {
@@ -93,16 +92,13 @@ class TradePacks extends Component {
   };
 
   onCloseCalculator = () => {
-    this.setState({ open: false });
+    this.setState({ open: false, originZone: null, packType: null });
   };
 
   render() {
-    const { mobile, continent, percentage, proficiencies, war } = this.props;
-    const { setPercentage, setProficiency, setWar } = this.props;
-    const { reset, zone, open, packType, originZone } = this.state;
-
-    const commerceProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.commerce);
-    const husbandryProficiency = PROFICIENCY.find(prof => prof.name === proficiencies.husbandry);
+    const { mobile, continent, percentage, war, outlet } = this.props;
+    const { setPercentage, setWar, openDialog } = this.props;
+    const { reset, open, packType, originZone } = this.state;
 
     let continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
     if (continent !== CARGO) {
@@ -110,7 +106,7 @@ class TradePacks extends Component {
     }
 
     const outletZones = OUTLET_ZONE.filter(zone => continentZones.includes(zone));
-    let sellZone = outletZones[zone];
+    let sellZone = outletZones[outlet];
     if (continent === CARGO) {
       sellZone = CARGO;
     }
@@ -161,54 +157,12 @@ class TradePacks extends Component {
                 valueLabelFormat={value => `${value}%`}
               />
             </div>
-            <FormControl>
-              <InputLabel htmlFor="commerce-proficiency">Commerce Proficiency</InputLabel>
-              <Select
-                value={proficiencies.commerce}
-                onChange={setProficiency('commerce')}
-                inputProps={{
-                  name: 'commerce-proficiency',
-                  id: 'commerce-proficiency',
-                }}
-                renderValue={() => (
-                  <div className="proficiency-row" data-quality={commerceProficiency.quality}>
-                    <span className={cn('proficiency-icon', commerceProficiency.name)} />
-                    <span className="quality-color">{commerceProficiency.name}</span>
-                  </div>
-                )}
-              >
-                {PROFICIENCY.map(proficiency => (
-                  <MenuItem value={proficiency.name} key={proficiency.name} data-quality={proficiency.quality}>
-                    <span className={cn('proficiency-icon', proficiency.name)} />
-                    <span className="quality-color">{proficiency.name}</span>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
-            <FormControl>
-              <InputLabel htmlFor="husbandry-proficiency">Husbandry Proficiency</InputLabel>
-              <Select
-                value={proficiencies.husbandry}
-                onChange={setProficiency('husbandry')}
-                inputProps={{
-                  name: 'husbandry-proficiency',
-                  id: 'husbandry-proficiency',
-                }}
-                renderValue={() => (
-                  <div className="proficiency-row" data-quality={husbandryProficiency.quality}>
-                    <span className={cn('proficiency-icon', husbandryProficiency.name)} />
-                    <span className="quality-color">{husbandryProficiency.name}</span>
-                  </div>
-                )}
-              >
-                {PROFICIENCY.map(proficiency => (
-                  <MenuItem value={proficiency.name} key={proficiency.name} data-quality={proficiency.quality}>
-                    <span className={cn('proficiency-icon', proficiency.name)} />
-                    <span className="quality-color">{proficiency.name}</span>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <Button
+              startIcon={<ListAltIcon />}
+              onClick={() => openDialog(DIALOG_PROFICIENCY)}
+            >
+              Configure Proficiency
+            </Button>
           </div>
         </Paper>
         <Dialog open={reset}>
@@ -229,7 +183,7 @@ class TradePacks extends Component {
             <Toolbar variant="dense">
               {continent !== CARGO &&
               <Tabs
-                value={zone}
+                value={outlet}
                 onChange={this.setZone}
                 className="title-text"
               >
@@ -239,7 +193,7 @@ class TradePacks extends Component {
               </Tabs>}
               {continent === CARGO &&
               <Typography variant="subtitle1" className="title-text">Cargo</Typography>}
-              {continent !== CARGO && zone === 2 &&
+              {continent !== CARGO && outlet === 2 &&
               <FormControlLabel
                 control={
                   <Checkbox
@@ -306,7 +260,7 @@ class TradePacks extends Component {
                         if (isPack && continent === CARGO && pack.item) {
                           displayValue = <>
                             {Math.round(packValue)}&nbsp;
-                            <Item {...pack.item} className="inline" />
+                            <Item id={pack.item} inline />
                           </>;
                         }
                         const cell = (
@@ -364,20 +318,21 @@ class TradePacks extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, proficiencies, war } }) => ({
+const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, war, outlet } }) => ({
   mobile,
   continent,
+  outlet,
   percentage,
-  proficiencies,
   war,
 });
 
 const mapDispatchToProps = {
   setContinent,
-  setProficiency,
+  setOutlet,
   setPercentage,
   setWar,
   resetSettings,
+  openDialog,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TradePacks);

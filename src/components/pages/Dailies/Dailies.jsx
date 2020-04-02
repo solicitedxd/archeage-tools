@@ -116,11 +116,11 @@ class Dailies extends Component {
       }
 
       // generate rewards
-      let rewardArray = completed ? claimedRewards : availableRewards;
+      const rewardArray = completed ? claimedRewards : availableRewards;
       quest.rewards.forEach(reward => {
         let rewardGroup;
         if (reward.type === CURRENCY.ITEM) {
-          rewardGroup = rewardArray.find(rw => rw.type === reward.type && rw.item.name === reward.item.name);
+          rewardGroup = rewardArray.find(rw => rw.type === reward.type && rw.item === reward.item);
         } else {
           rewardGroup = rewardArray.find(rw => rw.type === reward.type);
         }

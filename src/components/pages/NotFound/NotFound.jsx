@@ -18,7 +18,7 @@ class NotFound extends Component {
   render() {
     setTitle('Not Found');
     return (
-      <div className="tool-container">
+      <>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -36,7 +36,7 @@ class NotFound extends Component {
             </Typography>
           </div>
         </Paper>
-      </div>
+      </>
     );
   }
 }

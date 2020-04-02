@@ -19,6 +19,10 @@ module.exports = [
     exclude: /(node_modules)/,
   },
   {
+    test: /\.css$/i,
+    use: ['style-loader', 'css-loader'],
+  },
+  {
     test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
     loader: 'file-loader',
     exclude: /(node_modules)/,

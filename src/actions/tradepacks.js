@@ -4,10 +4,9 @@ import {
   SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
+  SET_OUTLET,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
-  SET_PRICE,
-  SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -18,14 +17,13 @@ import { validateQuantity } from 'utils/string';
 
 export const triggerLocalStorageUpdate = [
   SET_CONTINENT,
+  SET_OUTLET,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
-  SET_PRICE,
-  SET_PROFICIENCY,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -35,6 +33,10 @@ export const triggerLocalStorageUpdate = [
 
 export const setContinent = (e, { props: { children: continent } }) => (dispatch) => {
   dispatch({ type: SET_CONTINENT, continent });
+};
+
+export const setOutlet = (e, outlet) => (dispatch) => {
+  dispatch({ type: SET_OUTLET, outlet });
 };
 
 export const setCraftLarder = (e, craftLarder) => (dispatch) => {
@@ -53,10 +55,6 @@ export const setInterest = (e, showInterest) => (dispatch) => {
   dispatch({ type: SET_INTEREST, showInterest });
 };
 
-export const setProficiency = (proficiency) => (dispatch) => (e, { key: rank }) => {
-  dispatch({ type: SET_PROFICIENCY, proficiency, rank });
-};
-
 export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (e, percentage) => {
   if (originZone && packType && sellZone) {
     dispatch({ type: SET_PERCENTAGE, originZone, packType, percentage, sellZone });
@@ -65,9 +63,8 @@ export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (
   }
 };
 
-export const setQuantity = (originZone, packType) => (dispatch) => (e) => {
-  let { target: { value } } = e;
-  value = validateQuantity(1, 999)(value);
+export const setQuantity = (originZone, packType) => (dispatch) => (value) => {
+  value = validateQuantity(1, 1000)(value);
   dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
 };
 
@@ -75,18 +72,12 @@ export const setWar = (zone) => (dispatch) => (e, war) => {
   dispatch({ type: SET_WAR, zone, war });
 };
 
-export const setPrice = (item, unitSize = 1) => (dispatch) => (e) => {
-  const { target: { value } } = e;
-  dispatch({ type: SET_PRICE, item, price: (Math.abs(value) / unitSize).toFixed(6) });
-};
-
 export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {
   dispatch({ type: SET_SUPPLY, originZone, supply });
 };
 
-export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (e) => {
-  let { target: { value } } = e;
-  value = validateQuantity(0, 99)(value);
+export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (value) => {
+  value = validateQuantity(0, 100)(value);
   dispatch({ type: SET_TRANSPORTATION_QUANTITY, originZone, sellZone, item, value });
 };
 

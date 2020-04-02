@@ -186,10 +186,10 @@ const GILDA_HOW_TO = ({ children, gilda }) => (
     </div>
     <p>
       To obtain this mount, you must first purchase its Gilda Soul for&nbsp;
-      <ItemLink item={ITEM.GILDA_STAR} count={gilda} /> from the Gilda Start Soul Merchant in Marianople or Austera.
+      <ItemLink id={ITEM.GILDA_STAR} count={gilda} /> from the Gilda Start Soul Merchant in Marianople or Austera.
     </p>
-    <p>You will also need to purchase a <ItemLink item={ITEM.SMALL_BREATH_OF_LIFE} /> for&nbsp;
-      <ItemLink item={ITEM.GILDA_STAR} count={10} /> if you don't have one already, which must be placed on land that
+    <p>You will also need to purchase a <ItemLink id={ITEM.SMALL_BREATH_OF_LIFE} /> for&nbsp;
+      <ItemLink id={ITEM.GILDA_STAR} count={10} /> if you don't have one already, which must be placed on land that
       you own.</p>
     <p>To soothe the soul and raise the mount, it requires 500 Labor and the following materials:</p>
     {children}
@@ -213,42 +213,42 @@ const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, difference
     <p>Crafting a Gallant {animaType} Anima will require the following materials:</p>
     <ul>
       <li>
-        <ItemLink item={ITEM.SUNSET_PORTALSTONE} count={28} noLink />
+        <ItemLink id={ITEM.SUNSET_PORTALSTONE} count={28} noLink />
         <ul>
           <li><i>Acquired in Mistsong Summit from dailies, rare drops from trash, and one from each boss that must be
             shared.</i></li>
         </ul>
       </li>
       <li>
-        <ItemLink item={ITEM.ABYSSAL_SHARD} count={144} noLink />
+        <ItemLink id={ITEM.ABYSSAL_SHARD} count={144} noLink />
         <ul>
           <li><i>Acquired in normal and greater dungeons from dailies, rare drops from trash, and handfuls as personal
             loot from bosses.</i></li>
         </ul>
       </li>
       <li>
-        <ItemLink item={ITEM.PRIME_LUNARITE} count={6} plural="" noLink />
+        <ItemLink id={ITEM.PRIME_LUNARITE} count={6} plural="" noLink />
         <ul>
           <li><i>Acquired by combining up tiers of Lunarite, which is acquired from salvaging Lunagems. Can be
             traded.</i></li>
         </ul>
       </li>
       <li>
-        <ItemLink item={ITEM.ETERNAL_WINTER_CHILL} count={5} noLink />
+        <ItemLink id={ITEM.ETERNAL_WINTER_CHILL} count={5} noLink />
         <ul>
           <li><i>Acquired sparingly in greater dungeons and as handfuls inside Supply Crates that drop from Serpentis.
             Can be traded.</i></li>
         </ul>
       </li>
       <li>
-        <ItemLink item={ITEM.HEAT_OF_ETERNAL_SUMMER} count={12} name="Heats of Eternal Summer" noLink />
+        <ItemLink id={ITEM.HEAT_OF_ETERNAL_SUMMER} count={12} name="Heats of Eternal Summer" noLink />
         <ul>
           <li><i>Acquired sparingly in greater dungeons and as handfuls inside Supply Crates that drop from Serpentis.
             Can be traded.</i></li>
         </ul>
       </li>
       <li>
-        <ItemLink item={material} count={3} noLink />
+        <ItemLink id={material} count={3} noLink />
         <ul>
           <li><i>A rare drop from {gatherFrom}. Can be traded.</i></li>
         </ul>
@@ -714,10 +714,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={500}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={95} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={95} plural="" noLink /></li>
       </ul>
     </GILDA_HOW_TO>,
   },
@@ -740,10 +740,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={500}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={95} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={95} plural="" noLink /></li>
       </ul>
     </GILDA_HOW_TO>,
   },
@@ -767,10 +767,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.STURDY_INGOT} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={2} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.STURDY_INGOT} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={2} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural="" noLink /></li>
       </ul>
     </GILDA_HOW_TO>,
   },
@@ -793,10 +793,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.STURDY_INGOT} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={2} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural={''} noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.STURDY_INGOT} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={2} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={5} plural={''} noLink /></li>
       </ul>
     </GILDA_HOW_TO>,
   },
@@ -819,13 +819,13 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
       <p>
-        On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+        On Legacy, this mount can also be acquired outright for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.
       </p>
     </GILDA_HOW_TO>,
   },
@@ -847,7 +847,7 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} /> or
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} /> or
         purchased for <Currency type={CURRENCY.CREDIT} count={3500} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -872,12 +872,12 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.BEAUTIFULLY_COLORED_FABRIC} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
-      <p>On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+      <p>On Legacy, this mount can also be acquired outright for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.
       </p>
     </GILDA_HOW_TO>,
   },
@@ -900,12 +900,12 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={10} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
-      <p>On Legacy, this mount can also be acquired outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+      <p>On Legacy, this mount can also be acquired outright for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.
       </p>
     </GILDA_HOW_TO>,
   },
@@ -928,10 +928,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
       <p>On Legacy, this mount can be purchased outright for <Currency type={CURRENCY.CREDIT} count={1345} inline />.
       </p>
@@ -957,10 +957,10 @@ const MOUNT = [
     ],
     obtainText: <GILDA_HOW_TO gilda={350}>
       <ul>
-        <li><ItemLink item={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
-        <li><ItemLink item={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
-        <li><ItemLink item={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
-        <li><ItemLink item={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.BLANK_REGRADE_SCROLL} count={50} noLink /></li>
+        <li><ItemLink id={ITEM.FINE_LEATHER} count={20} plural="" noLink /></li>
+        <li><ItemLink id={ITEM.PRISMATIC_DIAMOND} count={5} noLink /></li>
+        <li><ItemLink id={ITEM.ONYX_ARCHEUM_ESSENCE} count={80} plural="" noLink /></li>
       </ul>
       <p>On Legacy, this mount can be purchased outright for <Currency type={CURRENCY.CREDIT} count={1345} inline />.
       </p>
@@ -1351,7 +1351,7 @@ const MOUNT = [
       <p>After obtaining a <Link to="/mounts/stormdarter">Stormdarter</Link>, this quest will be available from
         any Honor Point Collector.</p>
       <p>To complete this quest, you must summon a level 50 Stormdarter and have&nbsp;
-        <ItemLink item={ITEM.HONORFORGED_MEDAL} count={15} /> (costs&nbsp;
+        <ItemLink id={ITEM.HONORFORGED_MEDAL} count={15} /> (costs&nbsp;
         <Currency type={CURRENCY.HONOR} count="30,000" inline /> from the Honor Shop).</p>
       <p>As a reward, you will receive an Essence-fed Stormdarter which can be consumed to grant you a level 30 Thunder
         Dash.</p>
@@ -1387,18 +1387,18 @@ const MOUNT = [
       <p>After obtaining a <Link to="/mounts/polaris-bjorne">Polaris Bjorne</Link>, this quest
         will be available from the daru Morudo in Mirage Isle.</p>
       <p>To complete this quest, you must summon a level 50 Polaris Bjorne and have a <ItemLink
-        item={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
+        id={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
         type={CURRENCY.COIN} count={1000000} inline /> from any Stablehand) and <ItemLink
-        item={ITEM.HONEY} count={500} plural="" />.</p>
+        id={ITEM.HONEY} count={500} plural="" />.</p>
       <p>As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an
         Ebonfur Bjorne.</p>
       <Typography color="primary"><span className="dropdown-icon Quest" /> Going Bear-zerk</Typography>
       <p>After obtaining a Fleetpaw Bjorne (current obtainment method is unknown), this quest will be available
         from the daru Garini in Mirage Isle.</p>
       <p>To complete this quest, you must summon a level 50 Fleetpaw Bjorne and have a <ItemLink
-        item={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
+        id={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
         type={CURRENCY.COIN} count={1000000} inline /> from any Stablehand) and <ItemLink
-        item={ITEM.HONEY} count={500} plural="" />.</p>
+        id={ITEM.HONEY} count={500} plural="" />.</p>
       <p>As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an
         Ebonfur Bjorne.</p>
     </>,
@@ -1556,7 +1556,7 @@ const MOUNT = [
         Sunspeck Sea:</p>
       <ul>
         <li>
-          <ItemLink item={ITEM.CHILLED_SEAFOAM} count={35} plural="" noLink />
+          <ItemLink id={ITEM.CHILLED_SEAFOAM} count={35} plural="" noLink />
           <ul>
             <li>Drops from the final boss, Dahuta. Only one drops per kill and only one player will get it. Can be
               traded.
@@ -1564,7 +1564,7 @@ const MOUNT = [
           </ul>
         </li>
         <li>
-          <ItemLink item={ITEM.ABYSSAL_CRYSTAL} count={10} noLink />
+          <ItemLink id={ITEM.ABYSSAL_CRYSTAL} count={10} noLink />
           <ul>
             <li>Drops from bosses in Greater dungeons or higher as personal loot and from daily quests. Can also be
               crafted, though expensive.
@@ -1572,7 +1572,7 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
-      <p>On Legacy, Fuchsiafin can also be created using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
+      <p>On Legacy, Fuchsiafin can also be created using <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
     </>,
   },
   {
@@ -1701,7 +1701,7 @@ const MOUNT = [
       CURRENCY.MANASTORM,
     ],
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1744,7 +1744,7 @@ const MOUNT = [
     obtainText: <>
       <p>This mount can be purchased for <Currency type={CURRENCY.VOCATION} count="600,000" inline /> from
         the Vocation Shop.</p>
-      <p>On Legacy, this mount can also be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
+      <p>On Legacy, this mount can also be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
     </>,
   },
   {
@@ -1847,10 +1847,10 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -1873,7 +1873,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -1895,7 +1895,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={80} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -1949,7 +1949,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -1973,7 +1973,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -1997,7 +1997,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2043,7 +2043,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2065,7 +2065,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2087,7 +2087,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={250} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={250} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2112,7 +2112,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={550} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={550} />.
       </p>
       <p>On Legacy, this mount is no longer obtainable.</p>
     </>,
@@ -2136,7 +2136,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2169,17 +2169,17 @@ const MOUNT = [
         buttonFloat="right"
       />
       <p>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
-        this mount by using <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
+        this mount by using <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
         Essence.</p>
       <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
         Drill Camp in Hasla, to complete the quest <span className="dropdown-icon Quest" />&nbsp;
         <Typography color="primary" component="span">A Bolt of Crimson Lightning</Typography> in exchange for a Crimson
         Lightning.</p>
       <p>
-        Alternatively, this mount can be obtained outright for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        Alternatively, this mount can be obtained outright for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>On Unchained, this mount can only be acquired using the first method above by purchasing a Crimson Lightning
-        Essence for <ItemLink item={ITEM.DILIGENCE_COIN} count={150} />, and then completing the associated quest.</p>
+        Essence for <ItemLink id={ITEM.DILIGENCE_COIN} count={150} />, and then completing the associated quest.</p>
     </>,
   },
   {
@@ -2202,10 +2202,10 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -2229,10 +2229,10 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -2255,7 +2255,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={150} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2278,7 +2278,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2301,7 +2301,7 @@ const MOUNT = [
       CURRENCY.CREDIT,
     ],
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} /> or
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> or
         purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2345,7 +2345,7 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
         </p>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.
         </p>
       </>,
   },
@@ -2369,10 +2369,10 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={200} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -2395,7 +2395,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>
-        On Legacy, this mount can be obtained for <ItemLink item={ITEM.MANASTORM_CRYSTAL} count={100} />.
+        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.
       </p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -2419,7 +2419,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>On Legacy, this mount cannot currently be obtained.</p>
-      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
   {
@@ -2441,7 +2441,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>On Legacy, this mount cannot currently be obtained.</p>
-      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
   {
@@ -2463,7 +2463,7 @@ const MOUNT = [
     ],
     obtainText: <>
       <p>On Legacy, this mount cannot currently be obtained.</p>
-      <p>On Unchained, this mount can be purchased for <ItemLink item={ITEM.DILIGENCE_COIN} count={140} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
     </>,
   },
   {
@@ -2589,13 +2589,13 @@ const MOUNT = [
       <p>The materials needed are as follows:</p>
       <ul>
         <li>
-          <ItemLink item={ITEM.BLUE_SALT_BOND} count={30} noLink />
+          <ItemLink id={ITEM.BLUE_SALT_BOND} count={30} noLink />
           <ul>
             <li>Obtained from various Blue Salt quests, such as Supply Demand daily quests.</li>
           </ul>
         </li>
         <li>
-          <ItemLink item={ITEM.TERRITORY_COIN} count={30} noLink />
+          <ItemLink id={ITEM.TERRITORY_COIN} count={30} noLink />
           <ul>
             <li>
               Obtained from various castle-related activities, usually in the form as Territory Pence (100 Pence = 1
@@ -2604,13 +2604,13 @@ const MOUNT = [
           </ul>
         </li>
         <li>
-          <ItemLink item={ITEM.BLAZING_WIND_SPIRIT_LEATHER} count={1} noLink />
+          <ItemLink id={ITEM.BLAZING_WIND_SPIRIT_LEATHER} count={1} noLink />
           <ul>
             <li>Highest tier of leather; quite expensive to craft. Can be traded.</li>
           </ul>
         </li>
         <li>
-          <ItemLink item={ITEM.BLAZING_CLOUDSPUN_FABRIC} count={1} noLink />
+          <ItemLink id={ITEM.BLAZING_CLOUDSPUN_FABRIC} count={1} noLink />
           <ul>
             <li>Highest tier of fabric; quite expensive to craft. Can be traded.</li>
           </ul>
@@ -2641,7 +2641,7 @@ const MOUNT = [
         On Legacy, this mount used to be obtainable from the Seaside Treasure Chest.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -2667,7 +2667,7 @@ const MOUNT = [
         On Legacy, this mount used to be obtainable from the Manticore Archeum Supply Crate.
       </p>
       <p>
-        On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
       </p>
     </>,
   },
@@ -2691,7 +2691,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2715,7 +2715,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2739,7 +2739,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2763,7 +2763,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2787,7 +2787,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2812,7 +2812,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2836,7 +2836,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2860,7 +2860,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2885,7 +2885,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2910,7 +2910,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 2</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2935,7 +2935,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2960,7 +2960,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -2985,7 +2985,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -3010,7 +3010,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -3035,7 +3035,7 @@ const MOUNT = [
     obtainText: <>
       <p>
         This mount can be acquired by purchasing the <Typography component="span" color="primary">Capturing
-        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink item={ITEM.KYRIOS_BADGE} count={800} />.
+        Toolbox Ver. 3</Typography> from the Arena Shop for <ItemLink id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
   },
@@ -3122,7 +3122,7 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Brave Bison Crate.
         </p>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
         </p>
       </>,
   },
@@ -3150,7 +3150,7 @@ const MOUNT = [
           They were also given away during a promotional period.
         </p>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
         </p>
       </>,
   },
@@ -3177,7 +3177,7 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Striped Death Supply Crate.
         </p>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
         </p>
       </>,
   },
@@ -3201,7 +3201,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
         </p>
       </>,
   },
@@ -3228,7 +3228,7 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Emberpaw Crate.
         </p>
         <p>
-          On Unchained, this mount can be obtained for <ItemLink item={ITEM.DILIGENCE_COIN} count={400} />.
+          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
         </p>
       </>,
   },

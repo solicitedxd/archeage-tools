@@ -1,0 +1,355 @@
+.folio-header {
+  .MuiToolbar-root {
+    padding-right: 0;
+  }
+
+  .MuiAutocomplete-root {
+    flex: 1;
+    max-width: 300px;
+    margin: 0 8px;
+    align-self: center;
+  }
+
+  .MuiInputBase-root {
+    color: #FFFFFF;
+  }
+
+  .MuiRadio-root {
+    color: rgba(255, 255, 255, 0.54);
+  }
+
+  .MuiFormLabel-root {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .MuiInput-underline:before {
+    border-color: rgba(255, 255, 255, 0.42);
+  }
+
+  .MuiInput-underline:hover:not(.Mui-disabled):before {
+    border-color: rgba(255, 255, 255, 0.87);
+  }
+
+  .MuiFormLabel-root.Mui-focused,
+  .MuiRadio-root.Mui-checked {
+    color: #FFFFFF;
+  }
+
+  .MuiInput-underline:after {
+    border-color: #FFFFFF;
+  }
+}
+
+.folio-no-option {
+  display: none;
+}
+
+.vocation-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    text-decoration: none;
+    margin: 12px;
+
+    .vocation {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      img {
+        display: block;
+        width: 92px;
+        opacity: 0.75;
+        border-radius: 4px;
+
+        -webkit-transition: opacity .3s ease-in-out;
+        -ms-transition: opacity .3s ease-in-out;
+        transition: opacity .3s ease-in-out;
+      }
+
+      p {
+        text-align: center;
+      }
+    }
+  }
+
+  a:hover .vocation {
+
+    img {
+      box-shadow: 0 3px 5px -1px rgba(255, 255, 190, 0.2), 0 5px 8px 0 rgba(255, 255, 190, 0.14), 0 1px 14px 0 rgba(255, 255, 190, 0.12);
+      opacity: 1;
+    }
+
+    p {
+      text-shadow: 0 3px 5px rgba(255, 255, 190, 0.2), 0 5px 8px rgba(255, 255, 190, 0.14), 0 1px 14px rgba(255, 255, 190, 0.12);
+    }
+  }
+}
+
+.recipe-wrapper {
+  display: flex;
+  padding: 16px;
+
+  .recipe-list {
+    max-height: calc(100vh - 128px - 88px - 40px - 16px - 48px);
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding: 0 !important;
+    min-width: 375px;
+
+    .MuiListItemAvatar-root.extended {
+      min-width: 64px;
+    }
+
+    .recipe-category {
+      .category-title {
+        //display: flex;
+        //align-items: center;
+      }
+
+      .category-children {
+        padding-left: 16px;
+      }
+    }
+  }
+}
+
+.recipe-viewer-inline {
+  flex: 1;
+  margin-left: 16px;
+}
+
+.recipe-viewer {
+  color: #82571A;
+
+  .craft-container {
+    max-width: 372px;
+  }
+
+  .craft-header, .MuiTypography-h6:not(.title-text) {
+    color: #5C421E;
+  }
+
+  .craft-section {
+    & + .craft-section {
+      margin-top: 12px;
+    }
+
+    .MuiTypography-subtitle2 {
+      margin-left: 16px;
+    }
+  }
+
+  .MuiTypography-subtitle2.craft-req-prof {
+    margin-left: 91px;
+  }
+
+  .craft-locked {
+    color: #C23E37;
+  }
+
+  .craft-result {
+
+    .item-block {
+      display: flex;
+      align-items: center;
+
+      p {
+        margin: 0 0 0 8px;
+        color: #BB986E;
+      }
+    }
+  }
+
+  .craft-materials {
+    display: flex;
+    margin-top: 6px;
+    justify-content: space-between;
+  }
+
+  .craft-cost {
+    margin: 6px 0 4px;
+    float: right;
+    width: 120px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .sale {
+      margin-top: 2px;
+      display: inline-flex;
+      align-items: center;
+
+      .icon {
+        width: 35px;
+        height: 22px;
+        background: url(../images/discount.png);
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      p {
+        margin: 0 0 0 4px;
+        font-size: 0.8rem;
+      }
+    }
+
+    h6 {
+      display: inline-block;
+    }
+
+    .craft-gold {
+      .currency {
+        font-size: 13px;
+        margin-top: 2px;
+      }
+    }
+  }
+
+  .craft-item {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #E0D8BF;
+    border-radius: 2px;
+    background: rgba(234, 229, 208, 0.8);
+
+    &.sm {
+      width: 46px;
+      height: 46px;
+
+      .item-icon {
+        width: 44px;
+        height: 44px;
+
+        img {
+          width: 44px;
+          height: 44px;
+        }
+
+        &:before, &:after {
+          background-size: 44px;
+          width: 44px;
+          height: 44px;
+        }
+      }
+    }
+  }
+
+  .material-breakdown {
+    width: 100%;
+    overflow: auto;
+
+    .material-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .MuiInputLabel-root {
+        display: inline-block;
+        color: #82571A;
+      }
+
+      .MuiInput-root {
+        width: 62px;
+        margin-left: 6px;
+      }
+    }
+
+    .material-item {
+      margin: 0 0 6px;
+
+      .collapsed-desc {
+        margin-left: 12px;
+      }
+
+      & > .MuiTypography-body1 {
+        white-space: nowrap;
+      }
+
+      .material-choice {
+        margin-left: 6px;
+
+        .material-option {
+        }
+      }
+    }
+
+    .row-complete {
+      opacity: 0.5;
+
+      &:hover {
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+.dark-mode {
+  .recipe-viewer {
+    color: #A7C2E7;
+
+    .craft-header, .MuiTypography-h6:not(.title-text) {
+      color: #7DA8E5;
+    }
+
+    .craft-item {
+      border-color: #1F2841;
+      background: rgba(20, 26, 46, 0.8);
+    }
+
+    .craft-cost .currency {
+      color: #A7C2E7;
+    }
+
+    .material-breakdown {
+      .material-header {
+        .MuiInputLabel-root {
+          color: #A7C2E7;
+        }
+      }
+    }
+  }
+}
+
+.famed-icon {
+  width: 47px;
+  height: 22px;
+  background: url(../images/grade_11.png) no-repeat;
+  display: inline-block;
+  vertical-align: middle;
+
+  &.locked {
+    background-position: 0 -22px;
+  }
+}
+
+.mobile {
+  .folio-header {
+    .MuiToolbar-root {
+      padding: 0;
+    }
+  }
+
+  .recipe-wrapper {
+    .recipe-list {
+      min-width: fit-content;
+    }
+  }
+}
+
+.recipe-tooltip {
+  line-height: normal;
+
+  .MuiTypography-body1, .currency {
+    font-size: 0.8rem;
+  }
+
+  .currency {
+    color: #FFFFFF;
+  }
+}

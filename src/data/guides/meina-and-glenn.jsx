@@ -2,6 +2,7 @@ import { Typography } from '@material-ui/core';
 import Ability from 'components/Ability';
 import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import React from 'react';
 
@@ -11,6 +12,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 6, 2019',
 };
+
+const category = GUIDE_CATEGORY.BOSSES;
 
 const sections = [
   {
@@ -98,4 +101,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

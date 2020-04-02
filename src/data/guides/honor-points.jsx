@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import React from 'react';
 
@@ -10,6 +11,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 14, 2019',
 };
+
+const category = GUIDE_CATEGORY.GAMEPLAY;
 
 const sections = [
   {
@@ -159,4 +162,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };

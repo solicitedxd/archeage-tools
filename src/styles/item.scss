@@ -12,73 +12,90 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-}
-
-.item-icon:after, .item-icon.unidentified:before, .item-icon.quest:before {
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 48px;
-  height: 48px;
-  content: "";
-}
-
-.item-icon.unidentified:before {
-  background-image: url('../images/item/unidentified.png');
-}
-
-.item-icon.quest:before {
-  background-image: url('../images/item/quest.png');
-}
-
-.item-icon img {
-  height: 48px;
-  width: 48px;
-  display: block;
-}
-
-.item-icon .count {
-  position: absolute;
-  bottom: 2px;
-  right: 4px;
-  color: white;
-  text-shadow: -1px -1px 0 #000000,
-  1px -1px 0 #000000,
-  -1px 1px 0 #000000,
-  1px 1px 0 #000000;
-  font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
-}
-
-span[data-quality] {
-  display: block;
-}
-
-span.inline[data-quality] {
-  display: inline-block;
-  cursor: help;
-  margin: 0 4px 0 0;
-  vertical-align: -4px;
-  height: 20px;
-}
-
-.inline > .item-icon {
-  width: 18px;
-  height: 18px;
 
   img {
-    width: 18px;
-    height: 18px;
+    height: 48px;
+    width: 48px;
+    display: block;
   }
 
   .count {
-    display: none;
+    position: absolute;
+    bottom: 3px;
+    right: 5px;
+    color: white;
+    text-shadow: -1px -1px 0 #000000,
+    1px -1px 0 #000000,
+    -1px 1px 0 #000000,
+    1px 1px 0 #000000;
+    font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
+    font-size: 12px;
   }
 
-  &.unidentified:before, &:after, &.quest:before {
-    background-size: 18px;
-    width: 18px;
-    height: 18px;
+  &:after, &:before {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+    content: "";
+  }
+
+  &.unidentified:before {
+    background-image: url('../images/item/top_unconfirmed.png');
+  }
+
+  &.quest:before {
+    background-image: url('../images/item/top_quest_y.png');
+  }
+
+  &.seed:before {
+    background-image: url('../images/item/top_seed.png');
+  }
+
+  &.bundle:before {
+    background-image: url('../images/item/top_colony.png');
+  }
+
+  &.ribbon:before {
+    background-image: url('../images/item/top_ribbon_red.png');
+  }
+
+  &.tier-up:before {
+    background-image: url('../images/item/top_tier_up.png');
+  }
+
+  &.wrapped:before {
+    background-image: url('../images/item/packing.png');
+  }
+
+  &.inline {
+    display: inline-block;
+    cursor: help;
+    margin: 0 4px 0 0;
+    vertical-align: -4px;
+    height: 20px;
+
+    &.item-icon {
+      width: 18px;
+      height: 18px;
+
+      img {
+        width: 18px;
+        height: 18px;
+      }
+
+      .count {
+        display: none;
+      }
+
+      &:before, &:after {
+        background-size: 18px;
+        width: 18px;
+        height: 18px;
+      }
+    }
   }
 }
 
@@ -87,92 +104,193 @@ span.inline[data-quality] {
   cursor: help;
 }
 
-[data-quality="Poor"] {
-  .item-icon:after {
+.item-result {
+  display: flex;
+  align-items: center;
+
+  .item-icon {
+    margin-right: 8px;
+  }
+}
+
+[data-grade="0"] {
+  &.item-icon:after {
     background-image: url('../images/grades/0poor.png');
   }
 
   .quality-color {
     color: #949293;
   }
+
+  .quality-bar {
+    background-color: #949293;
+  }
 }
 
-[data-quality="Basic"] {
-  .item-icon:after {
+[data-grade="1"] {
+  &.item-icon:after {
     background-image: url('../images/grades/1common.png');
   }
 
   .quality-color {
     color: #BA976D;
   }
+
+  .quality-bar {
+    background-color: #BA976D;
+  }
 }
 
-[data-quality="Grand"] {
-  .item-icon:after {
+[data-grade="2"] {
+  &.item-icon:after {
     background-image: url('../images/grades/2uncommon.png');
   }
 
   .quality-color {
     color: #77B064;
   }
+
+  .quality-bar {
+    background-color: #77B064;
+  }
 }
 
-[data-quality="Rare"] {
-  .item-icon:after {
+[data-grade="3"] {
+  &.item-icon:after {
     background-image: url('../images/grades/3rare.png');
   }
 
   .quality-color {
     color: #558FD6;
   }
+
+  .quality-bar {
+    background-color: #558FD6;
+  }
 }
 
-[data-quality="Arcane"] {
-  .item-icon:after {
+[data-grade="4"] {
+  &.item-icon:after {
     background-image: url('../images/grades/4ancient.png');
   }
 
   .quality-color {
     color: #CB72D8;
   }
+
+  .quality-bar {
+    background-color: #CB72D8;
+  }
 }
 
-[data-quality="Heroic"] {
-  .item-icon:after {
+[data-grade="5"] {
+  &.item-icon:after {
     background-image: url('../images/grades/5heroic.png');
   }
 
   .quality-color {
     color: #D78B06;
   }
+
+  .quality-bar {
+    background-color: #D78B06;
+  }
 }
 
-[data-quality="Unique"] {
-  .item-icon:after {
+[data-grade="6"] {
+  &.item-icon:after {
     background-image: url('../images/grades/6unique.png');
   }
 
   .quality-color {
     color: #E17853;
   }
+
+  .quality-bar {
+    background-color: #E17853;
+  }
 }
 
-[data-quality="Celestial"] {
-  .item-icon:after {
+[data-grade="7"] {
+  &.item-icon:after {
     background-image: url('../images/grades/7artifact.png');
   }
 
   .quality-color {
     color: #F85252;
   }
+
+  .quality-bar {
+    background-color: #F85252;
+  }
 }
 
-[data-quality="Divine"] {
-  .item-icon:after {
+[data-grade="8"] {
+  &.item-icon:after {
     background-image: url('../images/grades/8wonder.png');
   }
 
   .quality-color {
     color: #CF7D5D;
+  }
+
+  .quality-bar {
+    background-color: #CF7D5D;
+  }
+}
+
+[data-grade="9"] {
+  &.item-icon:after {
+    background-image: url('../images/grades/9epic.png');
+  }
+
+  .quality-color {
+    color: #8FA5CA;
+  }
+
+  .quality-bar {
+    background-color: #8FA5CA;
+  }
+}
+
+[data-grade="10"] {
+  &.item-icon:after {
+    background-image: url('../images/grades/10legendary.png');
+  }
+
+  .quality-color {
+    color: #BF7900;
+  }
+
+  .quality-bar {
+    background-color: #BF7900;
+  }
+}
+
+[data-grade="11"] {
+  &.item-icon:after {
+    background-image: url('../images/grades/11mythic.png');
+  }
+
+  .quality-color {
+    color: #C90B0B;
+  }
+
+  .quality-bar {
+    background-color: #C90B0B;
+  }
+}
+
+[data-grade="12"] {
+  &.item-icon:after {
+    background-image: url('../images/grades/12arche.png');
+  }
+
+  .quality-color {
+    color: #CF7D5D;
+  }
+
+  .quality-bar {
+    background-color: #CF7D5D;
   }
 }

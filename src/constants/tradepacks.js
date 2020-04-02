@@ -2,19 +2,23 @@ import ITEM from 'data/items';
 import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
+export const SET_OUTLET = 'SET_OUTLET';
 export const SET_CRAFT_LARDER = 'SET_CRAFT_LARDER';
 export const SET_DEGRADATION = 'SET_DEGRADATION';
 export const SET_FRESHNESS = 'SET_FRESHNESS';
 export const SET_INTEREST = 'SET_INTEREST';
 export const SET_PERCENTAGE = 'SET_PERCENTAGE';
 export const SET_PERCENTAGE_DEFAULT = 'SET_PERCENTAGE_DEFAULT';
-export const SET_PRICE = 'SET_PRICE';
-export const SET_PROFICIENCY = 'SET_PROFICIENCY';
 export const SET_QUANTITY = 'SET_QUANTITY';
 export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_TRANSPORTATION_QUANTITY = 'SET_TRANSPORTATION_QUANTITY';
 export const SET_WAR = 'SET_WAR';
 export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
+
+export const SELL_LABOR = 70;
+export const BUY_CARGO_LABOR = 75;
+export const SELL_CARGO_LABOR = 175;
+export const LARDER_HARVEST_LABOR = 65;
 
 export const PACK_TYPE = Object.freeze({
   NORMAL: 'Normal',
@@ -34,6 +38,12 @@ export const AGED_PACK = Object.freeze([
   PACK_TYPE.CHEESE,
   PACK_TYPE.HONEY,
 ]);
+
+export const AGED_PACK_RECIPE = Object.freeze({
+  [PACK_TYPE.SALVE]: 11294,
+  [PACK_TYPE.CHEESE]: 11293,
+  [PACK_TYPE.HONEY]: 11292,
+});
 
 export const NO_FRESHNESS = Object.freeze([
   PACK_TYPE.BLUE_SALT,

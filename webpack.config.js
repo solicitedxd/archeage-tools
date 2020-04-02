@@ -3,6 +3,7 @@ const path = require('path');
 const loaders = require('./webpack.loaders');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const pkg = require('./package.json');
 
 const { join, resolve } = path;
@@ -23,7 +24,7 @@ module.exports = {
   output: {
     publicPath: '/',
     path: join(root, 'public'),
-    filename: 'bundle.[hash].js',
+    filename: 'bundle.js',
   },
   resolve: {
     alias: {
@@ -46,7 +47,7 @@ module.exports = {
     rules: loaders,
   },
   devServer: {
-    contentBase: './public',
+    contentBase: join(root, 'public'),
     // do not print bundle build stats
     noInfo: true,
     // enable HMR
@@ -55,6 +56,10 @@ module.exports = {
     inline: true,
     // serve index.html in place of 404 responses to allow HTML5 history
     historyApiFallback: true,
+    allowedHosts: [
+      'localhost',
+      '.mokulu.io',
+    ],
     port: PORT,
     host: HOST,
   },
@@ -66,6 +71,9 @@ module.exports = {
       __VERSION__: JSON.stringify(pkg.version),
       __DEVELOPMENT__: true,
     }),
+    new CopyWebpackPlugin([
+      { from: join(root, 'static') },
+    ]),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),

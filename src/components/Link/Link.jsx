@@ -25,13 +25,13 @@ class Link extends Component {
 
   // scroll to top for guide links
   handleClick = (e) => {
-    const { to } = this.props;
+    const { to, onClick } = this.props;
 
     if (to && !to.match(/#[\w -]+/)) {
       scrollToTop();
     }
-    if (this.props.onClick) {
-      this.props.onClick(e);
+    if (onClick) {
+      onClick(e);
     }
   };
 
@@ -40,7 +40,7 @@ class Link extends Component {
     return (
       <MuiLink
         {...other}
-        component={RouterLink}
+        component={other.to ? RouterLink : null}
         onClick={this.handleClick}
       >
         {children}

@@ -3,14 +3,6 @@ import { FACTION } from 'constants/map';
 
 export const sortReward = (a, b) => a.type > b.type ? 1 : -1;
 
-export const sortItems = (a, b) => {
-  const nameA = a.item ? a.item.name : a.type;
-  const nameB = b.item ? b.item.name : b.type;
-
-  if (nameA === nameB) return 0;
-  return nameA > nameB ? 1 : -1;
-};
-
 const isItem = ({ type }) => (type === CURRENCY.ITEM || type === CURRENCY.GILDA || type === CURRENCY.BLUE_SALT_BOND);
 
 export const splitRewards = (rewards) => {

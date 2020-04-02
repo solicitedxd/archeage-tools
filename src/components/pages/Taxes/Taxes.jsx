@@ -1,17 +1,18 @@
 import {
   AppBar,
+  Button,
   Checkbox,
-  FormControl,
   FormControlLabel,
-  InputLabel,
-  MenuItem,
   Paper,
-  Select,
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import ListAltIcon from '@material-ui/icons/ListAlt';
+import { openDialog } from 'actions/display';
+import { calculateLabor } from 'actions/proficiencies';
 import cn from 'classnames';
-import { PROFICIENCY } from 'constants/proficiencies';
+import { DIALOG_PROFICIENCY } from 'constants/display';
+import { CONSTRUCTION } from 'constants/proficiencies';
 import {
   HOUSING_TYPES,
   TAX_BURDEN,
@@ -32,16 +33,11 @@ class Taxes extends Component {
     this.state = {
       properties,
       showHostile: false,
-      proficiency: PROFICIENCY[0].name,
     };
   }
 
   toggleHostile = (e, checked) => {
     this.setState({ showHostile: checked });
-  };
-
-  handleProficiency = (e, value) => {
-    this.setState({ proficiency: value.key });
   };
 
   setValue = (key, index, value) => {
@@ -58,24 +54,32 @@ class Taxes extends Component {
   };
 
   render() {
-    const { mobile } = this.props;
-    const { properties, showHostile, proficiency: proficiencyName } = this.state;
-    const proficiency = PROFICIENCY.find(prof => prof.name === proficiencyName);
+    const { openDialog, calculateLabor, mobile } = this.props;
+    const { properties, showHostile } = this.state;
 
-    const propertyCount = Object.values(properties)
-    .map(values => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (showHostile ? 1 : 0)))
+    // regular land tax
+    const regularProperties = Object.entries(properties).filter(([key]) => !key.includes('EXEMPT'));
+    let propertyCount = regularProperties
+    .map(([, values]) => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (showHostile ? 1 : 0)))
     .reduce((a, b) => a + b) || 0;
     const taxBurden = TAX_BURDEN[Math.min(propertyCount, 10)];
     let hostileIncrease = 0;
-    const taxesPerWeek = Math.round(Object.keys(properties).map(key => {
-      const [friendly, hostile] = properties[key];
+    let taxesPerWeek = Math.round(regularProperties.map(([key, value]) => {
+      const [friendly, hostile] = value;
       const friendlyCost = (friendly || 0) * HOUSING_TYPES[key].base;
       const hostileCost = (hostile || 0) * HOUSING_TYPES[key].base * (showHostile ? 1 : 0);
       hostileIncrease += hostileCost;
       return (friendlyCost + hostileCost);
     }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100) + (hostileIncrease * 3));
 
-    const laborCost = Math.ceil(taxesPerWeek / 5) * (300 * proficiency.cost);
+    const exemptProperties = Object.entries(properties).filter(([key]) => key.includes('EXEMPT'));
+    // high tax exempt farms
+    propertyCount += exemptProperties
+    .map(([, values]) => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (showHostile ? 1 : 0)))
+    .reduce((a, b) => a + b) || 0;
+    taxesPerWeek += (exemptProperties.map(([key, value]) => value[0] * HOUSING_TYPES[key].base).reduce((a, b) => a + b));
+
+    const laborCost = Math.ceil(taxesPerWeek / 5) * (calculateLabor(300, CONSTRUCTION));
 
     setTitle('Tax Calculator');
 
@@ -84,7 +88,7 @@ class Taxes extends Component {
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Taxes Calculator</Typography>
+              <Typography variant="subtitle1" className="title-text">Tax Calculator</Typography>
             </Toolbar>
           </AppBar>
           <div className="calculator-totals">
@@ -106,34 +110,16 @@ class Taxes extends Component {
                 <Typography>{laborCost}</Typography>
               </div>
             </div>
-            <FormControl>
-              <InputLabel htmlFor="proficiency">Construction Proficiency</InputLabel>
-              <Select
-                value={proficiencyName}
-                onChange={this.handleProficiency}
-                inputProps={{
-                  name: 'proficiency',
-                  id: 'proficiency',
-                }}
-                renderValue={() => (
-                  <div className="proficiency-row" data-quality={proficiency.quality}>
-                    <span className={cn('proficiency-icon', proficiency.name)} />
-                    <span className="quality-color">{proficiency.name}</span>
-                  </div>
-                )}
-              >
-                {PROFICIENCY.map(proficiency => (
-                  <MenuItem value={proficiency.name} key={proficiency.name} data-quality={proficiency.quality}>
-                    <span className={cn('proficiency-icon', proficiency.name)} />
-                    <span className="quality-color">{proficiency.name}</span>
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
             <FormControlLabel
               control={<Checkbox onChange={this.toggleHostile} checked={showHostile} color="primary" />}
               label="Show Hostile Options"
             />
+            <Button
+              startIcon={<ListAltIcon />}
+              onClick={() => openDialog(DIALOG_PROFICIENCY)}
+            >
+              Configure Proficiency
+            </Button>
           </div>
         </Paper>
         <Paper className="section calculator-container">
@@ -157,4 +143,9 @@ const mapStateToProps = ({ display: { mobile } }) => ({
   mobile,
 });
 
-export default connect(mapStateToProps, null)(Taxes);
+const mapDispatchToProps = {
+  openDialog,
+  calculateLabor,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Taxes);

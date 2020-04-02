@@ -7,8 +7,6 @@ import {
   FormControl,
   FormControlLabel,
   IconButton,
-  Input,
-  InputAdornment,
   InputLabel,
   MenuItem,
   Select,
@@ -18,20 +16,20 @@ import {
   TableCell,
   TableHead,
   TableRow,
-  TextField,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { fetchRecipe } from 'actions/gameData';
+import { calculateLabor } from 'actions/proficiencies';
 import {
   setCraftLarder,
   setDegradation,
   setFreshness,
   setInterest,
   setPercentage,
-  setPrice,
   setQuantity,
   setSupply,
   setTransportationQuantity,
@@ -40,27 +38,33 @@ import {
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
+import ItemPrice from 'components/Item/ItemPrice';
+import NumberField from 'components/NumberField';
 import { CURRENCY } from 'constants/items';
 import {
   CONTINENT,
   ZONE,
 } from 'constants/map';
-import { PROFICIENCY } from 'constants/proficiencies';
+import {
+  COMMERCE,
+  HUSBANDRY,
+} from 'constants/proficiencies';
 import {
   AGED_PACK,
+  AGED_PACK_RECIPE,
+  BUY_CARGO_LABOR,
   CARGO,
   CARGO_OUTLET,
   CARGO_SUPPLY,
+  LARDER_HARVEST_LABOR,
   NO_FRESHNESS,
   OUTLET_ZONE,
   PACK_TYPE,
+  SELL_CARGO_LABOR,
+  SELL_LABOR,
   TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
-import ITEM from 'data/items';
-import TRADE_PACKS, {
-  LARDER_BASE,
-  PACK_COSTS,
-} from 'data/tradepacks';
+import TRADE_PACKS from 'data/tradepacks';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
@@ -69,7 +73,6 @@ import {
   oneOf,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { maxDecimals } from 'utils/thunderstruck';
 
 const getZonePrefix = (zone) => {
   if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
@@ -79,6 +82,11 @@ const getZonePrefix = (zone) => {
     return zone;
   }
   return zone.split(' ')[0];
+};
+
+const getPackRecipe = ({ originZone, packType }) => {
+  const recipeId = pathOr(null, [originZone, 'packs', packType, 'recipeId'])(TRADE_PACKS);
+  return recipeId === null ? AGED_PACK_RECIPE[packType] || null : recipeId;
 };
 
 class PackViewer extends Component {
@@ -102,6 +110,13 @@ class PackViewer extends Component {
     unitSize: 1,
   };
 
+  componentWillReceiveProps(nextProps) {
+    const packRecipe = getPackRecipe(nextProps);
+    if (packRecipe) {
+      fetchRecipe(packRecipe);
+    }
+  }
+
   setTransportExpand = (transportExpand) => {
     this.setState({ transportExpand });
   };
@@ -110,25 +125,17 @@ class PackViewer extends Component {
     this.setState({ unitSize });
   };
 
-  getLaborCost = (cost, proficiency) => {
-    const { proficiencies } = this.props;
-    const proficiencyRank = PROFICIENCY.find(prof => prof.name === proficiencies[proficiency]);
-    return Math.round(cost * proficiencyRank.cost);
-  };
-
   render() {
-    const { open, onClose, originZone, packType, sellZone } = this.props;
+    const { open, onClose, originZone, packType, sellZone, recipe } = this.props;
     const { transportExpand, unitSize } = this.state;
-    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, transportationQty, war } = this.props;
-    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setPrice, setQuantity, setSupply, setTransportationQuantity, setWar } = this.props;
+    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war } = this.props;
+    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor } = this.props;
 
     // do nothing if value is missing
     if (originZone === null || packType === null || sellZone === null) return null;
 
-    const packCosts = PACK_COSTS[packType] || {};
-
     // spread the costs into the pack details first, to allow individual packs to overwrite costs
-    const pack = { ...packCosts, ...pathOr({}, [originZone, 'packs', packType])(TRADE_PACKS) };
+    const pack = pathOr({}, [originZone, 'packs', packType])(TRADE_PACKS);
     const freshness = pathOr({}, [originZone, 'freshness'])(TRADE_PACKS);
     const freshnessLevels = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'] || {};
     const profitLevel = pathOr('HIGH', [originZone, packType, sellZone])(profitLevels);
@@ -136,10 +143,8 @@ class PackViewer extends Component {
     const quantity = pathOr(1, [originZone, packType])(quantities);
 
     const percentage = pathOr(percentageDefault, [originZone, packType, sellZone])(percentages);
-
-    if (packCosts.materials && packCosts.materials !== pack.materials) {
-      pack.materials = [].concat(pack.materials, packCosts.materials);
-    }
+    const isAgedPack = AGED_PACK.includes(packType);
+    const sellLabor = sellZone === CARGO ? SELL_CARGO_LABOR : SELL_LABOR;
 
     // construct a pack name, if no special name is given
     let packName = pack.name;
@@ -203,29 +208,39 @@ class PackViewer extends Component {
       packValue = 0;
     }
 
-    const isAgedPack = AGED_PACK.includes(packType);
-
-    let { labor, gold, sellLabor } = pack;
-
     // sell labor
-    let totalLabor = this.getLaborCost(sellLabor, 'commerce');
-    // craft labor
-    totalLabor += this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce');
+    let totalLabor = calculateLabor(sellLabor, recipe.vocation);
 
-    const materials = pack.materials ? [...pack.materials] : [];
-    if (isAgedPack && craftLarder) {
-      [...LARDER_BASE.materials, ...pack.larderMaterials].forEach((mat, i) =>
-        materials.splice(1 + i, 0, { ...mat, indent: true }),
-      );
-      gold += LARDER_BASE.gold;
-      totalLabor += this.getLaborCost(LARDER_BASE.labor, 'commerce');
+    // define initial
+    let materials = recipe.materials || [];
+    let craftGold;
+    let craftLabor = isAgedPack
+      ? calculateLabor(LARDER_HARVEST_LABOR, HUSBANDRY)
+      : calculateLabor(recipe.labor, recipe.vocation);
+    // cargo pack, modify
+    if (sellZone === CARGO) {
+      craftLabor = calculateLabor(BUY_CARGO_LABOR, COMMERCE);
     }
-    let totalGold = gold;
+    let totalGold = 0;
+
+    if (isAgedPack && recipe.item) {
+      materials = [{ item: recipe.item, quantity: 1 }];
+      craftGold = 0;
+    } else {
+      craftGold = recipe.gold;
+    }
+    if (isAgedPack && craftLarder) {
+      (recipe.materials || []).forEach((mat) => materials.push({ ...mat, indent: true }));
+      craftGold += recipe.gold;
+      totalLabor += calculateLabor(recipe.labor, recipe.vocation);
+    }
+
+    totalGold += craftGold;
+    totalLabor += craftLabor;
+
     materials.forEach(mat => {
-      if (!mat.indent && craftLarder && isAgedPack) {
-        return;
-      }
-      totalGold += (prices[mat.item.name] || 0) * 10000 * mat.count;
+      if (!mat.indent && craftLarder && isAgedPack) return;
+      totalGold += (prices[mat.item] || 0) * 10000 * mat.quantity;
     });
     if (sellZone === CARGO) {
       totalGold = CARGO_SUPPLY[supplyLevel].price;
@@ -237,23 +252,23 @@ class PackViewer extends Component {
     totalGold *= quantity;
 
     const transportCosts = {};
-    TRANSPORTATION_FUEL.forEach((item) => {
-      transportCosts[item.name] = Math.round((prices[item.name] || 0) * pathOr(0, [originZone, sellZone,
-        item.name])(transportationQty) * 10000);
+    TRANSPORTATION_FUEL.forEach((itemId) => {
+      transportCosts[itemId] = Math.round((prices[itemId] || 0) * pathOr(0, [originZone, sellZone,
+        itemId])(transportationQty) * 10000);
     });
 
     const transportTotal = Object.values(transportCosts).reduce((a, b) => a + b);
+    totalGold += transportTotal;
 
-    const profit = packValue - totalGold - transportTotal;
+    const profit = packValue - totalGold;
 
-    const itemShowCost = (material) => (
-      (!material.item.bindsOnPickup || material.item.allowPricing) &&
-      ((material.item === ITEM.MULTI_PURPOSE_AGING_LARDER && !craftLarder) || (material.item !== ITEM.MULTI_PURPOSE_AGING_LARDER)));
+    const showItemCost = (material) => (!isAgedPack || (isAgedPack && (craftLarder && material.indent || !craftLarder)));
 
     return (
       <Dialog
         open={open}
         onClose={onClose}
+        fullScreen={mobile}
         maxWidth="xl"
       >
         <AppBar position="static">
@@ -264,20 +279,17 @@ class PackViewer extends Component {
             </IconButton>
           </Toolbar>
         </AppBar>
-        <DialogContent className="body-container">
+        <DialogContent className="body-container pack-container">
           <div className="pack-header">
             <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
             <div className="pack-quantity">
               <Typography variant="caption" color="primary">Quantity:</Typography>
-              <TextField
+              <NumberField
                 id="pack-qty"
                 hiddenLabel
-                type="number"
                 margin="none"
-                InputProps={{
-                  min: 0,
-                  max: 999,
-                }}
+                min={1}
+                max={1000}
                 value={quantity}
                 onChange={setQuantity(originZone, packType)}
               />
@@ -296,7 +308,7 @@ class PackViewer extends Component {
             </Tooltip>
           </div>
           {sellZone !== CARGO &&
-          <Table size="small">
+          <Table size="small" className="material-table">
             <TableHead>
               <TableRow>
                 <TableCell>
@@ -326,27 +338,15 @@ class PackViewer extends Component {
             </TableHead>
             <TableBody>
               {materials.map(material => (
-                <TableRow key={`material-${material.item.name}`}>
+                <TableRow key={`material-${material.item}`}>
                   <TableCell>
                     {material.indent &&
                     <span className="material-indent" />}
-                    <ItemLink item={material.item} />
+                    <ItemLink id={material.item} />
                   </TableCell>
                   <TableCell align="right">
-                    {itemShowCost(material) ?
-                      <Input
-                        id={`mat-cost-${material.item.name}`}
-                        value={maxDecimals(Number(prices[material.item.name] || 0) * unitSize, 4)}
-                        onChange={setPrice(material.item.name, unitSize)}
-                        type="number"
-                        inputProps={{
-                          style: { textAlign: 'right', width: 120 },
-                          min: 0,
-                          max: 10000,
-                          step: 0.0001,
-                        }}
-                        endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                      /> :
+                    {showItemCost(material) ?
+                      <ItemPrice itemId={material.item} unitSize={unitSize} /> :
                       '--'}
                   </TableCell>
                   {isAgedPack &&
@@ -360,44 +360,44 @@ class PackViewer extends Component {
                   </TableCell>}
                   <TableCell align="right">
                     {quantity > 1 ?
-                      <Tooltip title={`${material.count} per pack`}>
-                        <span>{material.count * quantity}</span>
+                      <Tooltip title={`${material.quantity} per pack`}>
+                        <span>{material.quantity * quantity}</span>
                       </Tooltip> :
-                      material.count
+                      material.quantity
                     }
                   </TableCell>
                   <TableCell align="right">
-                    {itemShowCost(material) ?
+                    {showItemCost(material) ?
                       <Currency
                         type={CURRENCY.COIN}
-                        count={Math.round((prices[material.item.name] || 0) * 10000 * material.count * quantity)}
+                        count={Math.round((prices[material.item] || 0) * 10000 * material.quantity * quantity)}
                       /> :
                       '--'}
                   </TableCell>
                 </TableRow>
               ))}
-              {gold > 0 &&
+              {craftGold > 0 &&
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Cost</TableCell>
-                <TableCell align="right"><Currency type={CURRENCY.COIN} count={gold * quantity} /></TableCell>
+                <TableCell align="right"><Currency type={CURRENCY.COIN} count={craftGold * quantity} /></TableCell>
               </TableRow>}
               {isAgedPack && craftLarder &&
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Labor</TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(LARDER_BASE.labor, 'commerce') * quantity}
+                  {calculateLabor(recipe.labor, recipe.vocation) * quantity}
                 </TableCell>
               </TableRow>}
-              {labor > 0 &&
+              {craftLabor > 0 &&
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>
                   {isAgedPack ? 'Harvest Labor' : 'Craft Labor'}
                 </TableCell>
                 <TableCell align="right">
-                  {this.getLaborCost(labor, isAgedPack ? 'husbandry' : 'commerce') * quantity}
+                  {craftLabor * quantity}
                 </TableCell>
               </TableRow>}
             </TableBody>
@@ -434,43 +434,28 @@ class PackViewer extends Component {
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {TRANSPORTATION_FUEL.map((item, i) => (
-                      <TableRow key={`transportation-${item.name}-${i}`}>
+                    {TRANSPORTATION_FUEL.map((itemId, i) => (
+                      <TableRow key={`transportation-${itemId}-${i}`}>
                         <TableCell>
-                          <ItemLink item={item} />
+                          <ItemLink id={itemId} />
                         </TableCell>
                         <TableCell align="right">
-                          <Input
-                            id={`transp-mat-cost-${item.name}`}
-                            value={maxDecimals(prices[item.name] || 0, 4)}
-                            onChange={setPrice(item.name)}
-                            type="number"
-                            inputProps={{
-                              style: { textAlign: 'right', width: 120 },
-                              min: 0,
-                              max: 10000,
-                              step: 0.0001,
-                            }}
-                            endAdornment={<InputAdornment position="end">g</InputAdornment>}
-                          />
+                          <ItemPrice itemId={itemId} />
                         </TableCell>
                         <TableCell align="right">
-                          <TextField
-                            id={`transp-mat-qty-${item.name}`}
+                          <NumberField
+                            id={`transp-mat-qty-${itemId}`}
                             hiddenLabel
-                            type="number"
                             margin="none"
-                            InputProps={{
-                              min: 0,
-                              max: 99,
-                            }}
+                            min={0}
+                            max={100}
                             className="quantity"
-                            value={pathOr(0, [originZone, sellZone, item.name])(transportationQty)}
-                            onChange={setTransportationQuantity(originZone, sellZone, item.name)}
+                            value={pathOr(0, [originZone, sellZone, itemId])(transportationQty)}
+                            onChange={setTransportationQuantity(originZone, sellZone, itemId)}
                           />
                         </TableCell>
                         <TableCell align="right">
-                          <Currency type={CURRENCY.COIN} count={transportCosts[item.name]} />
+                          <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
                         </TableCell>
                       </TableRow>
                     ))}
@@ -485,8 +470,7 @@ class PackViewer extends Component {
                 </Table>
               </div>
             </Collapse>
-          </>
-          }
+          </>}
           {sellZone === CARGO &&
           <div className="sell-config">
             <FormControl>
@@ -525,13 +509,12 @@ class PackViewer extends Component {
                     Labor Cost
                   </TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(labor, 'commerce')}
+                    {craftLabor}
                   </TableCell>
                 </TableRow>
               </TableBody>
             </Table>
-          </div>
-          }
+          </div>}
           <Typography variant="h6" style={{ margin: '8px 0 4px' }}>Selling at {sellZone === CARGO ? packType
             : sellZone}</Typography>
           <div className="sell-config">
@@ -609,7 +592,7 @@ class PackViewer extends Component {
                 <TableRow>
                   <TableCell>Sell Labor</TableCell>
                   <TableCell align="right">
-                    {this.getLaborCost(sellLabor, 'commerce') * quantity}
+                    {calculateLabor(sellLabor, COMMERCE) * quantity}
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
@@ -658,9 +641,15 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks }) => ({
-  ...tradepacks,
-});
+const mapStateToProps = ({ tradepacks, display: { mobile }, itemPrice, gameData: { recipes } }, props) => {
+  const recipeId = getPackRecipe(props);
+  return {
+    ...tradepacks,
+    mobile,
+    prices: itemPrice,
+    recipe: recipes[recipeId] || {},
+  };
+};
 
 const mapDispatchToProps = {
   setCraftLarder,
@@ -668,11 +657,11 @@ const mapDispatchToProps = {
   setFreshness,
   setInterest,
   setPercentage,
-  setPrice,
   setQuantity,
   setSupply,
   setTransportationQuantity,
   setWar,
+  calculateLabor,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackViewer);

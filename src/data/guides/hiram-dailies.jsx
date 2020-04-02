@@ -1,6 +1,7 @@
 import { Typography } from '@material-ui/core';
 import Item from 'components/Item';
 import MapEmbed from 'components/MapEmbed';
+import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
 import ITEM from 'data/items';
 import React from 'react';
@@ -11,6 +12,8 @@ const meta = {
   author: 'Mokulu',
   lastUpdated: 'Nov 5, 2019',
 };
+
+const category = GUIDE_CATEGORY.DAILIES;
 
 const sections = [
   {
@@ -233,4 +236,4 @@ const sections = [
   },
 ];
 
-export default { name, meta, sections };
+export default { name, meta, category, sections };
