@@ -17,8 +17,8 @@ export default [
     path: '/mounts',
   },
   {
-    name: 'Crops',
-    path: '/crops',
+    name: 'Trees',
+    path: '/thunderstruck',
   },
   {
     name: 'Dailies',
