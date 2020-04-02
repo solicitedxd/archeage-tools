@@ -11,6 +11,7 @@ import DailyResetIcon from 'images/event/daily_reset.png';
 import DGSIcon from 'images/event/delphinad_ghost_ships.png';
 import DragonBlackIcon from 'images/event/dragon_black.png';
 import DragonRedIcon from 'images/event/dragon_red.png';
+import EventIcon from 'images/event/event.png';
 import FallOfHiramIcon from 'images/event/fall_of_hiram.png';
 import FishFestIcon from 'images/event/fish_fest.png';
 import GoldenPlainsIcon from 'images/event/goldplain.png';
@@ -301,6 +302,23 @@ export const REAL_TIME_EVENTS = Object.freeze([
       ],
       EU: [
         { time: '16:00:00', duration: '09:00:00' },
+      ],
+    },
+  },
+  {
+    icon: EventIcon,
+    name: 'The Yata Lantern',
+    type: EVENT_TYPE.REAL_TIME_EVENT,
+    times: {
+      NA: [
+        { time: '00:00:00', duration: '00:15:00' },
+        { time: '05:00:00', duration: '00:15:00' },
+        { time: '19:00:00', duration: '00:15:00' },
+      ],
+      EU: [
+        { time: '00:00:00', duration: '00:15:00' },
+        { time: '14:00:00', duration: '00:15:00' },
+        { time: '19:00:00', duration: '00:15:00' },
       ],
     },
   },

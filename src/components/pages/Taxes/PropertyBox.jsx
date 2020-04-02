@@ -46,7 +46,7 @@ class PropertyBox extends Component {
           <Tooltip title={
             <>
               <div dangerouslySetInnerHTML={{ __html: properties.join('<br />') }} />
-              {exempt && <div>&nbsp;<br />[These farms do not count towards<br />tax rate increases.]</div>}
+              {exempt && <div>&nbsp;<br />[Does not impact tax rate increase.]</div>}
             </>
           }>
             <HelpIcon fontSize="small" color="primary" className="help-icon" />
