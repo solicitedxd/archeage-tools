@@ -906,7 +906,7 @@ export default Object.freeze({
     freshness: FRESHNESS.LUXURY,
     packs: {
       [PACK_TYPE.NORMAL]: {
-        recipeId: 6227,
+        recipeId: 6228,
         sell: {
           [ZONE.TWO_CROWNS]: 12.0228,
           [ZONE.CINDERSTONE_MOOR]: 10.6411,
