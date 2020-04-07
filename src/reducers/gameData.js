@@ -1,5 +1,8 @@
 import {
   DATA_CATEGORIES,
+  DATA_EVENT_REPLACE,
+  DATA_EVENT_TYPES,
+  DATA_EVENTS,
   DATA_ITEM,
   DATA_RECIPE,
   DATA_VOCATION,
@@ -43,6 +46,24 @@ const gameData = (state = initialState, action) => {
         ...state,
         categories: action.categories,
         subCategories: action.subCategories,
+      };
+    case DATA_EVENTS:
+      return {
+        ...state,
+        events: action.events,
+      };
+    case DATA_EVENT_REPLACE:
+      return {
+        ...state,
+        events: {
+          ...state.events,
+          [action.event.id]: action.event,
+        },
+      };
+    case DATA_EVENT_TYPES:
+      return {
+        ...state,
+        eventTypes: action.eventTypes,
       };
     default:
       return state;
