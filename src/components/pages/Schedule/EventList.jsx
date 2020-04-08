@@ -1,32 +1,29 @@
 import {
   AppBar,
+  Icon,
   Paper,
   Toolbar,
-  Tooltip,
   Typography,
 } from '@material-ui/core';
-import HelpOutlineRoundedIcon from '@material-ui/icons/HelpOutlineRounded';
-import { EVENT_TYPE } from 'constants/schedule';
-import {
-  GAME_TIME_EVENTS,
-  REAL_TIME_EVENTS,
-} from 'data/schedule';
+import cn from 'classnames';
+import { TYPE_ICON } from 'constants/schedule';
 import React, { Component } from 'react';
 import {
-  bool,
+  array,
+  number,
   string,
 } from 'react-proptypes';
 import EventCard from './EventCard';
 
 class EventList extends Component {
   static propTypes = {
-    type: string.isRequired,
-    regionNA: bool,
+    id: number.isRequired,
+    name: string.isRequired,
+    color: string.isRequired,
+    events: array.isRequired,
   };
 
-  static defaultProps = {
-    regionNA: true,
-  };
+  static defaultProps = {};
 
   state = {
     times: {},
@@ -66,43 +63,15 @@ class EventList extends Component {
   };
 
   render() {
-    const { type, regionNA } = this.props;
-
-    let events = [];
-    switch (type) {
-      case EVENT_TYPE.REAL_TIME_EVENT:
-        events = [...REAL_TIME_EVENTS.filter(event => event.type === type)];
-        break;
-      case EVENT_TYPE.GAME_TIME_EVENT:
-        events = [...GAME_TIME_EVENTS];
-        break;
-      case EVENT_TYPE.WORLD_BOSSES:
-        events = [...REAL_TIME_EVENTS.filter(event => event.type === type)];
-        break;
-      default:
-    }
+    const { id, name, color, events } = this.props;
 
     return (
       <Paper className="event-list">
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography variant="subtitle1" className="title-text">{type}</Typography>
-            {type === EVENT_TYPE.GAME_TIME_EVENT &&
-            <Tooltip title={
-              <>
-                <Typography>In-Game Time</Typography>
-                <Typography variant="caption" component="p">In-Game Time estimation is approximate. All servers may vary
-                  by a minute or so.</Typography>
-                <Typography variant="caption" component="p">Each in-game hour spans 10 minutes of real-life time, with a
-                  full in-game day occurring in 4 hours of real-life time.</Typography>
-                <Typography variant="caption" component="p">Events and bosses spawn at the specified time, but may be
-                  completed or killed by other players before the timer's in-progress duration is over.</Typography>
-              </>
-            }>
-              <HelpOutlineRoundedIcon
-                style={{ cursor: 'help' }}
-              />
-            </Tooltip>}
+            <div className={cn('event-bar', color)} />
+            <Icon><img src={TYPE_ICON(id)} alt={name} /></Icon>
+            <Typography className="title-text">{name}</Typography>
           </Toolbar>
         </AppBar>
         {events
@@ -111,9 +80,9 @@ class EventList extends Component {
           <EventCard
             {...event}
             key={event.name}
-            regionNA={regionNA}
+            regionNA={true}
             onUpdateTime={this.setTime}
-            type={type}
+            type={id}
           />),
         )}
       </Paper>
