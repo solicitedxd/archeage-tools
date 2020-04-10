@@ -19,6 +19,16 @@ export const DAY = Object.freeze({
   SATURDAY: 'Saturday',
 });
 
+export const DAY_ABBR = Object.freeze({
+  SUNDAY: 'S',
+  MONDAY: 'M',
+  TUESDAY: 'T',
+  WEDNESDAY: 'W',
+  THURSDAY: 'Th',
+  FRIDAY: 'F',
+  SATURDAY: 'Sa',
+});
+
 export const TYPE_ICON = (id) => ({
   1: InstanceIcon,
   2: PvpIcon,

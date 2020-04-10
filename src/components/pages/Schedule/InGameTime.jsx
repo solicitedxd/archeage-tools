@@ -68,7 +68,7 @@ class InGameTime extends Component {
     }
 
     return (
-      <Typography className="title-text">
+      <Typography>
         <Tooltip title={
           <>
             <Typography>In-Game Time</Typography>

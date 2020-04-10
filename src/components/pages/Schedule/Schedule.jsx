@@ -7,6 +7,7 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
 import ToggleOffIcon from '@material-ui/icons/ToggleOff';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import {
@@ -15,6 +16,7 @@ import {
 } from 'actions/gameData';
 import { setRegion } from 'actions/schedule';
 import cn from 'classnames';
+import IfPerm from 'components/IfPerm';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
@@ -27,6 +29,7 @@ import { objectHasProperties } from 'utils/object';
 import { getDayKey } from 'utils/schedule';
 import { deepCopy } from 'utils/skills';
 import { setTitle } from 'utils/string';
+import EditEvent from './EditEvent';
 import EventList from './EventList';
 import InGameTime from './InGameTime';
 
@@ -45,6 +48,8 @@ class Schedule extends Component {
   state = {
     events: [],
     width: 0,
+    editOpen: false,
+    editId: null,
   };
 
   ref = React.createRef();
@@ -193,9 +198,13 @@ class Schedule extends Component {
 
   _handleResize = debounce(this.handleResize, 100);
 
+  setEditOpen = (editOpen, editId) => () => {
+    this.setState({ editOpen, editId });
+  };
+
   render() {
     const { regionNA, setRegion, eventTypes, mobile } = this.props;
-    const { events, width } = this.state;
+    const { events, width, editOpen, editId } = this.state;
 
     // max cols = 3
     // min cols = 1
@@ -213,9 +222,8 @@ class Schedule extends Component {
               <Typography className="title-text">
                 {moment.tz(moment.tz.guess()).format('z')} Schedule
               </Typography>
-              {!mobile &&
-              <InGameTime mobile={mobile} />}
-              <Typography variant="overline">
+              {!mobile && <InGameTime mobile={mobile} />}
+              <Typography variant="overline" className="region-opt">
                 NA
                 <Tooltip title="Toggle Regional Times">
                   <IconButton color="inherit" aria-label="Reset" onClick={() => setRegion(!regionNA)}>
@@ -224,6 +232,13 @@ class Schedule extends Component {
                 </Tooltip>
                 EU
               </Typography>
+              <IfPerm permission="event.edit">
+                <Tooltip title="Add new event">
+                  <IconButton onClick={this.setEditOpen(true, null)}>
+                    <AddIcon />
+                  </IconButton>
+                </Tooltip>
+              </IfPerm>
             </Toolbar>
           </AppBar>
         </Paper>
@@ -243,6 +258,11 @@ class Schedule extends Component {
             </div>
           ))}
         </div>
+        <EditEvent
+          onClose={this.setEditOpen(false, null)}
+          open={editOpen}
+          id={editId}
+        />
       </div>
     );
   }

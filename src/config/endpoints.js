@@ -24,7 +24,7 @@ export default {
     vocations: '/service/vocations',
     searchByProduct: '/service/search/product',
     searchByMaterial: '/service/search/material',
-    event: '/service/event/{eventId}',
+    event: '/service/events/${eventId}',
     events: '/service/events',
     eventTypes: '/service/events/types',
     users: '/service/users?usernames=${names}',
