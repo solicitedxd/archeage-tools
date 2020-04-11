@@ -36,7 +36,7 @@
     }
 
     .event-list {
-      margin-bottom: 24px;
+      margin-bottom: 25px;
 
       .MuiToolbar-root {
         padding-left: 16px;
@@ -55,19 +55,19 @@
         position: relative;
 
         &.running {
-          background: rgba(224, 190, 17, 0.10);
+          background: rgba(224, 190, 17, 0.1);
 
           .event-icon {
-            background: rgba(168, 136, 17, 0.24);
+            background: rgba(168, 136, 17, 0.15);
           }
         }
 
         & + .event-card {
-          border-top: 1px solid darkgray;
+          border-top: 1px solid rgba(169, 169, 169, 0.2);
         }
 
         .event-icon {
-          background: rgba(60, 150, 135, 0.25);
+          //background: rgba(60, 150, 135, 0.1);
           width: 56px;
           height: 56px;
         }
@@ -75,13 +75,41 @@
     }
   }
 
+  .MuiCardHeader-action {
+    position: relative;
+  }
+
   .ev-status {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: flex-end;
-    margin: 16px 6px 0 0;
-    height: 44px;
+    padding: 8px 8px 0;
+    height: 56px;
+    right: 0;
+    text-align: right;
+  }
+
+  .ev-status-wrapper {
+    margin-right: 2px;
+    margin-bottom: -3px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .ev-btn {
+    display: flex;
+  }
+
+  .running .ev-status-wrapper {
+    .MuiTypography-caption {
+      margin: 0 4px;
+      padding-bottom: 1px;
+    }
   }
 
   /* event statuses */
@@ -93,6 +121,7 @@
     background-repeat: no-repeat;
     width: 42px;
     height: 24px;
+    display: inline-block;
   }
 
   .ev-status-waiting {
@@ -277,6 +306,18 @@
   .schedule-container {
     .region-opt {
       margin: 0;
+    }
+  }
+}
+
+.dark-mode {
+  .schedule-container {
+    .schedule-categories {
+      .event-list {
+        .event-icon {
+          background: rgba(60, 150, 135, 0.2);
+        }
+      }
     }
   }
 }

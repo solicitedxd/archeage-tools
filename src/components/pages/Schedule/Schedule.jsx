@@ -255,7 +255,7 @@ class Schedule extends Component {
               </Typography>
               <IfPerm permission="event.edit">
                 <Tooltip title="Add new event">
-                  <IconButton onClick={this.setEditOpen(true, null)}>
+                  <IconButton onClick={this.setEditOpen(true, null)} color="inherit">
                     <AddIcon />
                   </IconButton>
                 </Tooltip>

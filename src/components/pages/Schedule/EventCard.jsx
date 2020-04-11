@@ -2,10 +2,14 @@ import {
   Avatar,
   Card,
   CardHeader,
+  IconButton,
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import cn from 'classnames';
+import IfPerm from 'components/IfPerm';
 import Link from 'components/Link';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
@@ -79,9 +83,9 @@ class EventCard extends Component {
     const remaining = (remainingTime >= 0) ? hhmmssFromDate(remainingTime) : '';
 
     return (
-      <Card square>
+      <Card square className="event-card">
         <CardHeader
-          className={cn('event-card', { running })}
+          className={cn({ running })}
           avatar={
             <div style={{ position: 'relative' }}>
               {nextDay && <Tooltip title={nextDay}>
@@ -94,10 +98,24 @@ class EventCard extends Component {
           subheader={`${label}: ${upcoming}`}
           action={
             <div className="ev-status">
-              {running && <div className={`ev-status-in-progress`} />}
-              <Typography variant="caption">
-                {remaining}
-              </Typography>
+              <div className="ev-status-wrapper">
+                {running && <div className="ev-status-in-progress" />}
+                <Typography variant="caption">
+                  {remaining}
+                </Typography>
+              </div>
+              <div className="ev-btn">
+                <IfPerm permission="event.edit">
+                  <IconButton size="small" onClick={onEdit(true, id)}>
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </IfPerm>
+                <Tooltip title="See more times">
+                  <IconButton size="small">
+                    <ExpandMoreIcon />
+                  </IconButton>
+                </Tooltip>
+              </div>
             </div>
           }
         />
