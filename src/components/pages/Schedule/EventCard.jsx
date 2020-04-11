@@ -74,13 +74,13 @@ class EventCard extends Component {
       }
     }
 
-    const remainingTime = timer.diff(moment.utc());
-    const remaining = (remainingTime > 0) ? hhmmssFromDate(remainingTime) : '';
+    const remainingTime = timer.diff(moment.utc().milliseconds(0));
+    const remaining = (remainingTime >= 0) ? hhmmssFromDate(remainingTime) : '';
 
     return (
-      <Card>
+      <Card square>
         <CardHeader
-          className={cn('event-card', { running: Boolean(running) })}
+          className={cn('event-card', { running })}
           avatar={
             <div style={{ position: 'relative' }}>
               {nextDay && <Tooltip title={nextDay}>

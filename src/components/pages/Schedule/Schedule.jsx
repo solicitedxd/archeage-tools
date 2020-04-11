@@ -24,7 +24,6 @@ import { equals } from 'ramda';
 import React, { Component } from 'react';
 import { bool } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { arrayToMap } from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import { getDayKey } from 'utils/schedule';
 import { deepCopy } from 'utils/skills';
@@ -84,7 +83,8 @@ class Schedule extends Component {
   setupEvents = (events) => {
     this.handleResize();
     events = Object.values(events).filter(e => !e.disabled).map(this.calculateNextStart);
-    this.setState({ events: arrayToMap(events) }, () => {
+    events.sort(this.sortEvents);
+    this.setState({ events }, () => {
       this.interval = setInterval(this.doTick, 1000);
       this.doTick();
     });
@@ -181,16 +181,36 @@ class Schedule extends Component {
     return hh + (mm / 60) + (ss / (60 * 60));
   };
 
+  sortEvents = (a, b) => {
+    if (a.activeTime || b.activeTime) {
+      if (a.activeTime && !b.activeTime) {
+        return -1;
+      }
+      if (!a.activeTime && b.activeTime) {
+        return 1;
+      }
+
+      return a.activeTime.endTime.diff(b.activeTime.endTime);
+    }
+    return a.nextTime.startTime.diff(b.nextTime.startTime);
+  };
+
   doTick = () => {
     const { events } = this.state;
     const now = moment.utc().milliseconds(0);
 
-    Object.entries(events).map(([key, event]) => {
+    let sort = false;
+
+    events.forEach((event, i) => {
       if (event.timer && now.isSameOrAfter(event.timer)) {
-        events[key] = this.calculateNextStart(event);
+        events[i] = this.calculateNextStart(event);
+        sort = true;
       }
-      return event;
     });
+
+    if (sort) {
+      events.sort(this.sortEvents);
+    }
 
     this.setState({ events, now });
   };
@@ -256,7 +276,7 @@ class Schedule extends Component {
                 <EventList
                   key={`event-list-${type.id}`}
                   {...type}
-                  events={Object.values(events).filter(e => e.eventType === type.id)}
+                  events={events.filter(e => e.eventType === type.id)}
                   onEdit={this.setEditOpen}
                 />
               ))}
