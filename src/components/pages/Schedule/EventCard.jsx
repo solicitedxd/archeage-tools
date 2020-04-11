@@ -68,10 +68,11 @@ class EventCard extends Component {
       if (activeTime.name) {
         upcoming = `${nextTime.name} at ${upcoming}`;
         displayName = `${name}${activeTime.name ? `: ${activeTime.name}` : ''}`;
-        if (nextTime.inGameTime) {
-          upcoming += ` (${nextTime.inGameTime})`;
-        }
       }
+    }
+
+    if (nextTime.gameTime) {
+      upcoming += ` [${nextTime.gameTime.substr(0, 5)}]`;
     }
 
     const remainingTime = timer.diff(moment.utc().milliseconds(0));

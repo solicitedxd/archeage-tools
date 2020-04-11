@@ -41,8 +41,8 @@ class EventList extends Component {
 
     return (
       <Paper className="event-list">
-        <AppBar position="static">
-          <Toolbar variant="dense" className={color}>
+        <AppBar position="static" className={color}>
+          <Toolbar variant="dense">
             <Icon><img src={`/images/event_type/${icon}.png`} alt={name} /></Icon>
             <Typography className="title-text">{name}</Typography>
           </Toolbar>

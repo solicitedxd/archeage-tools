@@ -56,22 +56,22 @@ class Schedule extends Component {
   interval = null;
 
   componentDidMount() {
-    const { fetchEventTypes, fetchEvents, events, eventTypes } = this.props;
+    const { fetchEventTypes, fetchEvents, events, regionNA } = this.props;
     fetchEventTypes();
     fetchEvents();
 
     if (objectHasProperties(events)) {
-      this.setupEvents(events, eventTypes);
+      this.setupEvents(events, regionNA);
     }
 
     window.addEventListener('resize', this._handleResize);
   }
 
   UNSAFE_componentWillUpdate(nextProps) {
-    const { events } = nextProps;
+    const { events, regionNA } = nextProps;
 
-    if (!equals(events, this.props.events)) {
-      this.setupEvents(events);
+    if (!equals(events, this.props.events) || regionNA !== this.props.regionNA) {
+      this.setupEvents(events, regionNA);
     }
   }
 
@@ -80,9 +80,9 @@ class Schedule extends Component {
     window.removeEventListener('resize', this._handleResize);
   }
 
-  setupEvents = (events) => {
+  setupEvents = (events, regionNA) => {
     this.handleResize();
-    events = Object.values(events).filter(e => !e.disabled).map(this.calculateNextStart);
+    events = Object.values(events).filter(e => !e.disabled).map(this.calculateNextStart(regionNA));
     events.sort(this.sortEvents);
     this.setState({ events }, () => {
       this.interval = setInterval(this.doTick, 1000);
@@ -90,8 +90,7 @@ class Schedule extends Component {
     });
   };
 
-  calculateNextStart = (event) => {
-    const { regionNA } = this.props;
+  calculateNextStart = (regionNA) => (event) => {
     const region = regionNA ? 'NA' : 'EU';
     const now = moment.utc().milliseconds(0);
     let { times } = event;

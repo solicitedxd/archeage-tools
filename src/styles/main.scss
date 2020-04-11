@@ -84,6 +84,11 @@ header.site-header {
   display: block;
   position: relative;
   margin: 0 20px;
+
+  .MuiToolbar-root:first-child {
+    padding-right: 16px;
+    border-radius: 3px;
+  }
 }
 
 footer.site-footer {
