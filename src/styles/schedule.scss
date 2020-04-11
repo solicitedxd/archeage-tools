@@ -41,14 +41,6 @@
       overflow: hidden;
 
       .MuiToolbar-root {
-        padding-left: 0;
-
-        .event-bar {
-          width: 6px;
-          height: 48px;
-          margin-right: 12px;
-        }
-
         .MuiIcon-root {
           margin-right: 6px;
         }
@@ -176,28 +168,27 @@
     background-position: -133px -102px;
   }
 
-}
-
-.event-bar {
-  &.GOLD {
-    background-color: #F1C40F;
+  /* Header colors */
+  .GOLD {
+    background-color: #E8B600;
   }
 
-  &.LUMINOUS_VIVID_PINK {
-    background-color: #FD0061;
+  .BLUE {
+    background-color: #0099EE;
   }
 
-  &.RED {
-    background-color: #E74C3C;
+  .RED {
+    background-color: #F93A2F;
   }
 
-  &.GREEN {
-    background-color: #2ECC71;
+  .GREEN {
+    background-color: #0EC268;
   }
 
-  &.ORANGE {
-    background-color: #E67E22;
+  .PURPLE {
+    background-color: #A652BB;
   }
+
 }
 
 .event-form {

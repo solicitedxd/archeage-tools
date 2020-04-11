@@ -5,11 +5,10 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
-import cn from 'classnames';
-import { TYPE_ICON } from 'constants/schedule';
 import React, { Component } from 'react';
 import {
   array,
+  func,
   number,
   string,
 } from 'react-proptypes';
@@ -21,6 +20,7 @@ class EventList extends Component {
     name: string.isRequired,
     color: string.isRequired,
     events: array.isRequired,
+    onEdit: func.isRequired,
   };
 
   static defaultProps = {};
@@ -63,14 +63,13 @@ class EventList extends Component {
   };
 
   render() {
-    const { id, name, color, events } = this.props;
+    const { id, name, icon, color, events, onEdit } = this.props;
 
     return (
       <Paper className="event-list">
         <AppBar position="static">
-          <Toolbar variant="dense">
-            <div className={cn('event-bar', color)} />
-            <Icon><img src={TYPE_ICON(id)} alt={name} /></Icon>
+          <Toolbar variant="dense" className={color}>
+            <Icon><img src={`/images/event_type/${icon}.png`} alt={name} /></Icon>
             <Typography className="title-text">{name}</Typography>
           </Toolbar>
         </AppBar>
@@ -83,6 +82,7 @@ class EventList extends Component {
             regionNA={true}
             onUpdateTime={this.setTime}
             type={id}
+            onEdit={onEdit}
           />),
         )}
       </Paper>

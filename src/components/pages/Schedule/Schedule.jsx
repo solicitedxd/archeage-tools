@@ -97,8 +97,12 @@ class Schedule extends Component {
     let { times } = event;
     let activeTime = null;
     let nextTime = {};
+
+    // skip if there are no times
+    if (!times) return;
+
     // only look through one region's times
-    times = times.filter(time => time.region === (region)).sort((a, b) => this.toInt(a) - this.toInt(b));
+    times = times.filter(time => !time.region || time.region === (region)).sort((a, b) => this.toInt(a) - this.toInt(b));
     if (times.length > 0) {
       // duplicate the last occurrence to yesterday
       const lastTime = deepCopy(times[times.length - 1]);
@@ -253,6 +257,7 @@ class Schedule extends Component {
                   key={`event-list-${type.id}`}
                   {...type}
                   events={Object.values(events).filter(e => e.eventType === type.id)}
+                  onEdit={this.setEditOpen}
                 />
               ))}
             </div>

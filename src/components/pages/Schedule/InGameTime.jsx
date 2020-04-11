@@ -56,7 +56,6 @@ class InGameTime extends Component {
         <Paper className="event-list">
           <AppBar position="static">
             <Toolbar variant="dense">
-              <div className='event-bar' />
               <Icon>
                 <div className="clock-icon" />
               </Icon>

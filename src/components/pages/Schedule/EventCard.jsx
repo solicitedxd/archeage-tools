@@ -12,6 +12,7 @@ import moment_tz from 'moment-timezone';
 import React, { Component } from 'react';
 import {
   bool,
+  func,
   number,
   object,
   string,
@@ -33,6 +34,7 @@ class EventCard extends Component {
     activeTime: object,
     nextTime: object,
     link: string,
+    onEdit: func.isRequired,
   };
 
   static defaultProps = {
@@ -44,7 +46,7 @@ class EventCard extends Component {
   };
 
   render() {
-    const { id, name, icon, gameTime, link, timer, activeTime, nextTime } = this.props;
+    const { id, name, icon, link, timer, activeTime, nextTime, onEdit } = this.props;
     const tz = moment.tz.guess();
     const running = Boolean(activeTime);
     let upcoming = 'Unknown';

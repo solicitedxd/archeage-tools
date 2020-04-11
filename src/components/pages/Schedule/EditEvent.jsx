@@ -1,6 +1,7 @@
 import {
   AppBar,
   Avatar,
+  Box,
   Button,
   Checkbox,
   Chip,
@@ -24,6 +25,7 @@ import {
 import AddIcon from '@material-ui/icons/Add';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
+import { setEvent } from 'actions/gameData';
 import config from 'config';
 import {
   DAY,
@@ -38,6 +40,7 @@ import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
+import { getDayNum } from 'utils/schedule';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 import * as EventIcon from '../../../images/event/';
@@ -67,18 +70,32 @@ class EditEvent extends Component {
     avatarSelect: null,
     editTime: false,
     timeData: {},
+    loading: false,
+    error: null,
   };
 
+  form = React.createRef();
+
   UNSAFE_componentWillReceiveProps(nextProps) {
+    if (!this.props.open && nextProps.open) {
+      this.setState({
+        formData: {},
+        avatarSelect: null,
+        editTime: false,
+        timeData: {},
+        loading: false,
+        error: null,
+      });
+    }
     if (nextProps.id !== this.props.id && nextProps.open) {
       this.loadEvent(nextProps.id);
     }
   }
 
   loadEvent = (id) => {
-    xhr.get(substitute(config.endpoints.service.event, { eventId: id }))
+    xhr.get(substitute(`${config.endpoints.service.event}?showIds=true`, { eventId: id }))
     .then(({ data }) => {
-      this.setState({ formData: data, avatarSelect: null });
+      this.setState({ formData: data });
     })
     .catch(() => null);
   };
@@ -88,13 +105,42 @@ class EditEvent extends Component {
     this.setState({ formData: { ...formData, [field]: value } });
   };
 
-  handleChangeTime = (field, value) => {
+  handleChangeTime = (field, value, cb = () => null) => {
     const { timeData } = this.state;
-    this.setState({ timeData: { ...timeData, [field]: value } });
+    if (field === 'days') {
+      value = value.sort((a, b) => getDayNum(a) - getDayNum(b));
+    }
+    this.setState({ timeData: { ...timeData, [field]: value } }, cb);
   };
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { formData } = this.state;
+    if (!formData.icon) {
+      this.setState({ error: 'Icon is required.' });
+      return;
+    }
+    if (!formData.name) {
+      this.setState({ error: 'Event Name is required.' });
+      return;
+    }
+    if (!formData.eventType) {
+      this.setState({ error: 'Type is required.' });
+      return;
+    }
+
+    this.setState({ loading: true, error: null });
+
+    xhr.post(config.endpoints.service.events, formData)
+    .then(({ data }) => {
+      this.props.setEvent(data);
+      this.props.onClose();
+    })
+    .catch(error => {
+      const message = pathOr('Failed to save event.', ['data', 'errorMessage'])(error);
+      console.log(error);
+      this.setState({ error: message, loading: false });
+    });
   };
 
   toggleAvatar = (e) => {
@@ -122,25 +168,38 @@ class EditEvent extends Component {
   saveTime = (e) => {
     e.preventDefault();
 
-    const { formData, timeData } = this.state;
+    const { formData, timeData, editTime } = this.state;
     if (!formData.times) {
       formData.times = [];
     }
     const { times } = formData;
+    const timeId = times[editTime] || {};
     // overwrite days
-    times.push({ ...timeData, days: !timeData.days || timeData.days.length === 0 ? Object.keys(DAY) : timeData.days });
+    const timeRecord = {
+      reminderTime: '00:15:00',
+      ...timeId,
+      ...timeData,
+      // empty array implies all 7 days
+      days: (timeData.days || []).length === 7 ? [] : (timeData.days || []),
+    };
+    if (editTime === true) {
+      times.push(timeRecord);
+    } else {
+      times[editTime] = timeRecord;
+    }
     this.setState({ formData: { ...formData, times }, editTime: false });
   };
 
   handleTime = (e) => {
     let { value } = e.target;
+    if (!value) return null;
     let [hh, mm] = value.split(':');
     return `${hh}:${mm}:00`;
   };
 
   render() {
     const { id, open, onClose, mobile, eventTypes } = this.props;
-    const { formData: { name, icon, eventType, description, link, times, disabled }, avatarSelect, editTime, timeData } = this.state;
+    const { formData: { name, icon, eventType, description, link, times, disabled }, avatarSelect, editTime, timeData, error, loading } = this.state;
 
     return (
       <Dialog
@@ -157,10 +216,10 @@ class EditEvent extends Component {
           </Toolbar>
         </AppBar>
         <DialogContent>
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
+          <form autoComplete="off" onSubmit={this.handleSubmit} ref={this.form}>
             <div className="event-form">
               <div className="avatar-opt">
-                <Avatar src={`/images/event/${icon}.png`} onClick={this.toggleAvatar} />
+                <Avatar src={icon ? `/images/event/${icon}.png` : null} onClick={this.toggleAvatar} />
                 <Typography>{icon || 'Select an icon.'}</Typography>
               </div>
               <TextField
@@ -205,7 +264,7 @@ class EditEvent extends Component {
                 <FormControlLabel
                   control={
                     <Checkbox
-                      checked={disabled}
+                      checked={disabled || false}
                       onChange={(_, disabled) => this.handleChange('disabled', disabled)}
                       name="disabled"
                     />}
@@ -218,7 +277,7 @@ class EditEvent extends Component {
                   {(times || []).map((time, timeId) => (
                     <Chip
                       key={`time-${timeId}`}
-                      icon={<Avatar>{time.region}</Avatar>}
+                      icon={<Avatar>{time.region || 'GT'}</Avatar>}
                       label={`${time.time} ${time.days.length > 0 && time.days.length < 7
                         ? time.days.map(day => DAY_ABBR[day]).join('') : ''}`}
                       onClick={this.editTime(timeId)}
@@ -237,9 +296,12 @@ class EditEvent extends Component {
           </form>
           {editTime !== false &&
           <Paper elevation={3}>
-            <form onSubmit={this.saveTime} className="time-form">
+            <form autoComplete="off" onSubmit={this.saveTime} className="time-form">
               <Typography>{editTime === true ? 'Add Time' : 'Edit Time'}</Typography>
-              <FormControl required style={{ width: 75 }}>
+              <FormControl
+                style={{ width: 75 }}
+                disabled={Boolean(timeData.gameTime)}
+              >
                 <InputLabel id="region-label" shrink>Region</InputLabel>
                 <Select
                   labelId="region-label"
@@ -247,12 +309,12 @@ class EditEvent extends Component {
                   value={timeData.region || ''}
                   onChange={(e) => this.handleChangeTime('region', e.target.value)}
                 >
-                  {['NA', 'EU'].map(region => (
+                  {[null, 'NA', 'EU'].map(region => (
                     <MenuItem
                       value={region}
                       key={`region-${region}`}
                     >
-                      {region}
+                      {region || 'None'}
                     </MenuItem>
                   ))}
                 </Select>
@@ -292,7 +354,14 @@ class EditEvent extends Component {
                 margin="dense"
                 type="time"
                 value={timeData.gameTime || ''}
-                onChange={(e) => this.handleChangeTime('gameTime', this.handleTime(e))}
+                onChange={(e) => {
+                  const gameTime = this.handleTime(e);
+                  this.handleChangeTime('gameTime', gameTime, () => {
+                    if (gameTime) {
+                      this.handleChangeTime('region', null);
+                    }
+                  });
+                }}
                 InputLabelProps={{
                   shrink: true,
                 }}
@@ -322,6 +391,32 @@ class EditEvent extends Component {
                   shrink: true,
                 }}
                 placeholder="Alternate message for when this event starts."
+              />
+              <TextField
+                id="reminder-time"
+                label="Reminder Time"
+                margin="dense"
+                type="time"
+                value={timeData.reminderTime || ''}
+                onChange={(e) => this.handleChangeTime('reminderTime', this.handleTime(e))}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                inputProps={{
+                  step: 900,
+                }}
+              />
+              <TextField
+                className="start-message"
+                id="time-reminder-message"
+                label="Reminder Message"
+                margin="dense"
+                value={timeData.reminderMessage || ''}
+                onChange={(e) => this.handleChangeTime('reminderMessage', e.target.value)}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+                placeholder="Alternate message for when this event is starting soon."
               />
               <FormControl className="day-select">
                 <InputLabel id="time-days-label">Days</InputLabel>
@@ -379,12 +474,18 @@ class EditEvent extends Component {
               ))}
             </div>
           </Popover>
+          {error &&
+          <Box color="error.main">
+            <Typography>{error}</Typography>
+          </Box>}
           <DialogActions>
-            <Button>
+            <Button onClick={onClose}>
               Cancel
             </Button>
             <Button
               color="primary"
+              onClick={() => this.form.current.dispatchEvent(new Event('submit'))}
+              disabled={loading}
             >
               Save
             </Button>
@@ -400,6 +501,8 @@ const mapStateToProps = ({ gameData: { eventTypes }, display: { mobile } }) => (
   eventTypes,
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+  setEvent,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditEvent);

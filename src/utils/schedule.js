@@ -7,3 +7,7 @@ export const getDayKey = (dayNum) => {
 export const getDay = (dayNum) => {
   return Object.values(DAY).find((day, id) => id === dayNum);
 };
+
+export const getDayNum = (day) => {
+  return Object.keys(DAY).indexOf(day.toUpperCase());
+};
