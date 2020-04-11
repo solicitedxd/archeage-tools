@@ -54,7 +54,7 @@
       .event-card {
         position: relative;
 
-        &.running {
+        .running {
           background: rgba(224, 190, 17, 0.1);
 
           .event-icon {
@@ -70,6 +70,16 @@
           //background: rgba(60, 150, 135, 0.1);
           width: 56px;
           height: 56px;
+        }
+
+        .timer-table {
+          .MuiTableCell-sizeSmall {
+            padding: 6px 6px 6px 16px;
+          }
+
+          .MuiTableCell-sizeSmall:last-child {
+            padding-right: 16px;
+          }
         }
       }
     }

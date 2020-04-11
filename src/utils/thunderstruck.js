@@ -9,12 +9,12 @@ export const toSeconds = (time) => {
 
 export const timeFormat = 'MMM D h:mm:ss A';
 
-export const hhmmssFromDate = (date) => {
+export const hhmmssFromDate = (date, leadTimes = true) => {
   const timeMatch = new Date(date).toUTCString().match(/, (\d\d).+(\d\d):(\d\d):(\d\d)/);
   const days = parseInt(timeMatch[1]) - 1;
-  const hours = timeMatch[2];
-  const minutes = timeMatch[3];
-  const seconds = timeMatch[4];
+  const hours = leadTimes || days > 0 ? timeMatch[2] : parseInt(timeMatch[2]);
+  const minutes = leadTimes || hours > 0 ? timeMatch[3] : parseInt(timeMatch[3]);
+  const seconds = leadTimes || minutes > 0 ? timeMatch[4] : parseInt(timeMatch[4]);
   let remaining = [];
   if (days > 0) {
     remaining.push(days);
@@ -22,10 +22,8 @@ export const hhmmssFromDate = (date) => {
   if (days > 0 || hours > 0) {
     remaining.push(hours);
   }
-  if (days > 0 || hours > 0 || minutes > 0 || seconds > 0) {
-    remaining.push(minutes);
-    remaining.push(seconds);
-  }
+  remaining.push(minutes);
+  remaining.push(seconds);
   return remaining.join(':');
 };
 

@@ -277,6 +277,7 @@ class Schedule extends Component {
                   {...type}
                   events={events.filter(e => e.eventType === type.id)}
                   onEdit={this.setEditOpen}
+                  region={regionNA ? 'NA' : 'EU'}
                 />
               ))}
             </div>

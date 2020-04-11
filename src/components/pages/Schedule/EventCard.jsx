@@ -1,8 +1,15 @@
 import {
   Avatar,
   Card,
+  CardContent,
   CardHeader,
+  Collapse,
   IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Tooltip,
   Typography,
 } from '@material-ui/core';
@@ -21,7 +28,10 @@ import {
   object,
   string,
 } from 'react-proptypes';
-import { getDay } from 'utils/schedule';
+import {
+  getDay,
+  getDayKey,
+} from 'utils/schedule';
 import { hhmmssFromDate } from 'utils/thunderstruck';
 
 // to prevent import org from removing the import
@@ -39,6 +49,7 @@ class EventCard extends Component {
     nextTime: object,
     link: string,
     onEdit: func.isRequired,
+    region: string.isRequired,
   };
 
   static defaultProps = {
@@ -49,8 +60,20 @@ class EventCard extends Component {
     link: null,
   };
 
+  state = {
+    expanded: false,
+  };
+
+  toggleExpand = () => {
+    const { expanded } = this.state;
+    this.setState({ expanded: !expanded });
+  };
+
   render() {
-    const { id, name, icon, link, timer, activeTime, nextTime, onEdit } = this.props;
+    const { id, name, icon, link, timer, activeTime, nextTime, onEdit, description, times, region } = this.props;
+    const { expanded } = this.state;
+    const filteredTimes = times.filter(time => !time.region || time.region === region);
+    const now = moment.utc().milliseconds(0);
     const tz = moment.tz.guess();
     const running = Boolean(activeTime);
     let upcoming = 'Unknown';
@@ -63,7 +86,7 @@ class EventCard extends Component {
       if (nextTime.days.length > 0 && nextTime.days.length < 7) {
         nextDay = getDay(upcomingTime.day());
       }
-      const format = (upcomingTime.day() !== moment().day()) ? 'ddd h:mm A' : 'h:mm A';
+      const format = (upcomingTime.date() !== moment().date()) ? 'ddd h:mm A' : 'h:mm A';
       upcoming = upcomingTime.format(format);
     }
 
@@ -79,7 +102,7 @@ class EventCard extends Component {
       upcoming += ` [${nextTime.gameTime.substr(0, 5)}]`;
     }
 
-    const remainingTime = timer.diff(moment.utc().milliseconds(0));
+    const remainingTime = timer.diff(now);
     const remaining = (remainingTime >= 0) ? hhmmssFromDate(remainingTime) : '';
 
     return (
@@ -111,14 +134,91 @@ class EventCard extends Component {
                   </IconButton>
                 </IfPerm>
                 <Tooltip title="See more times">
-                  <IconButton size="small">
-                    <ExpandMoreIcon />
+                  <IconButton size="small" onClick={this.toggleExpand}>
+                    <ExpandMoreIcon className={cn('rotate-btn', { rotated: expanded })} />
                   </IconButton>
                 </Tooltip>
               </div>
             </div>
           }
         />
+        <Collapse in={expanded} timeout="auto" unmountOnExit>
+          <CardContent>
+            <Typography component="div">
+              {Boolean(description) &&
+              <p>{description}</p>}
+              {nextTime.gameTime &&
+              <p>The next occurrence is at the in-game time of {nextTime.gameTime.substr(0, 5)}.</p>}
+              <Table size="small" stickyHeader className="timer-table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      Upcoming Occurrences
+                    </TableCell>
+                    <TableCell align="right">
+                      Countdown
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredTimes
+                  // need to create multiple entries for some that only have one or two time slots
+                  .reduce((objTimes, time) => {
+                    const createMoment = (day) => {
+                      const [hh, mm, ss] = time.time.split(':');
+                      const startMoment = moment.utc().hour(hh).minute(mm).second(ss).millisecond(0);
+                      // don't show past occurrences today
+                      if (startMoment.isSameOrBefore(now)) {
+                        startMoment.add(1, 'day');
+                      }
+                      // skip days for day-specific times
+                      while (day && day !== getDayKey(startMoment.day())) {
+                        startMoment.add(1, 'day');
+                      }
+                      return startMoment.tz(tz);
+                    };
+                    if (filteredTimes.length < 3) {
+                      if (time.days.length < 7) {
+                        time.days.forEach(day => {
+                          objTimes.push({ ...time, day, startMoment: createMoment(day) });
+                        });
+                      } else {
+                        // for events that happen every day with less than 3 time slots per day
+                        // we want to show the next 3 occurrences
+                        const next3Times = [];
+                        time.days.forEach(day => {
+                          next3Times.push({ ...time, day, startMoment: createMoment(day) });
+                        });
+                        next3Times.sort((a, b) => a.startMoment.diff(b.startMoment));
+                        next3Times.splice(3);
+                        objTimes = objTimes.concat(next3Times);
+                      }
+                    } else {
+                      objTimes.push({ ...time, startMoment: createMoment() });
+                    }
+                    return objTimes;
+                  }, [])
+                  // sort entries
+                  .sort((a, b) => a.startMoment.diff(b.startMoment))
+                  // display entries
+                  .map((time, i) => (
+                    <TableRow key={`${name}-time-${i}`}>
+                      <TableCell>
+                        {time.startMoment.format('ddd h:mm A')}
+                      </TableCell>
+                      <TableCell>
+                        {time.name}
+                      </TableCell>
+                      <TableCell align="right">
+                        {hhmmssFromDate(time.startMoment.diff(now))}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Typography>
+          </CardContent>
+        </Collapse>
       </Card>
     );
   }

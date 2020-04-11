@@ -21,6 +21,7 @@ class EventList extends Component {
     color: string.isRequired,
     events: array.isRequired,
     onEdit: func.isRequired,
+    region: string.isRequired,
   };
 
   static defaultProps = {};
@@ -37,7 +38,7 @@ class EventList extends Component {
   };
 
   render() {
-    const { id, name, icon, color, events, onEdit } = this.props;
+    const { id, name, icon, color, events, onEdit, region } = this.props;
 
     return (
       <Paper className="event-list">
@@ -56,6 +57,7 @@ class EventList extends Component {
             onUpdateTime={this.setTime}
             type={id}
             onEdit={onEdit}
+            region={region}
           />),
         )}
       </Paper>

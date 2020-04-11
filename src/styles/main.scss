@@ -196,6 +196,14 @@ footer.site-footer {
   }
 }
 
+.rotate-btn {
+  transition: transform 200ms, fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+
+  &.rotated {
+    transform: rotate(180deg);
+  }
+}
+
 .MuiList-root.nested-list {
   .MuiListItem-root {
     padding-left: 72px;
