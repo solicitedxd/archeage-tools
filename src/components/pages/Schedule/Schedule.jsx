@@ -188,10 +188,8 @@ class Schedule extends Component {
       if (!a.activeTime && b.activeTime) {
         return 1;
       }
-
-      return a.activeTime.endTime.diff(b.activeTime.endTime);
     }
-    return a.nextTime.startTime.diff(b.nextTime.startTime);
+    return a.timer.diff(b.timer);
   };
 
   doTick = () => {
@@ -202,7 +200,7 @@ class Schedule extends Component {
 
     events.forEach((event, i) => {
       if (event.timer && now.isSameOrAfter(event.timer)) {
-        events[i] = this.calculateNextStart(event);
+        events[i] = this.calculateNextStart(this.props.regionNA)(event);
         sort = true;
       }
     });
