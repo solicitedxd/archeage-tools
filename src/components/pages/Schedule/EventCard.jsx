@@ -37,6 +37,21 @@ import { hhmmssFromDate } from 'utils/thunderstruck';
 // to prevent import org from removing the import
 moment_tz;
 
+const createMoment = (time, day) => {
+  const now = moment.utc().milliseconds(0);
+  const [hh, mm, ss] = time.time.split(':');
+  const startMoment = moment.utc().hour(hh).minute(mm).second(ss).millisecond(0);
+  // don't show past occurrences today
+  if (startMoment.isSameOrBefore(now)) {
+    startMoment.add(1, 'day');
+  }
+  // skip days for day-specific times
+  while (day && day !== getDayKey(startMoment.day())) {
+    startMoment.add(1, 'day');
+  }
+  return startMoment.tz(moment.tz.guess());
+};
+
 class EventCard extends Component {
   static propTypes = {
     id: number.isRequired,
@@ -164,37 +179,24 @@ class EventCard extends Component {
                   {filteredTimes
                   // need to create multiple entries for some that only have one or two time slots
                   .reduce((objTimes, time) => {
-                    const createMoment = (day) => {
-                      const [hh, mm, ss] = time.time.split(':');
-                      const startMoment = moment.utc().hour(hh).minute(mm).second(ss).millisecond(0);
-                      // don't show past occurrences today
-                      if (startMoment.isSameOrBefore(now)) {
-                        startMoment.add(1, 'day');
-                      }
-                      // skip days for day-specific times
-                      while (day && day !== getDayKey(startMoment.day())) {
-                        startMoment.add(1, 'day');
-                      }
-                      return startMoment.tz(tz);
-                    };
-                    if (filteredTimes.length < 3) {
-                      if (time.days.length < 7) {
-                        time.days.forEach(day => {
-                          objTimes.push({ ...time, day, startMoment: createMoment(day) });
-                        });
+                    if (time.days.length < 7) {
+                      time.days.forEach(day => {
+                        objTimes.push({ ...time, day, startMoment: createMoment(time, day) });
+                      });
+                    } else {
+                      if (filteredTimes.length > 3) {
+                        objTimes.push({ ...time, startMoment: createMoment(time) });
                       } else {
                         // for events that happen every day with less than 3 time slots per day
                         // we want to show the next 3 occurrences
                         const next3Times = [];
                         time.days.forEach(day => {
-                          next3Times.push({ ...time, day, startMoment: createMoment(day) });
+                          next3Times.push({ ...time, day, startMoment: createMoment(time, day) });
                         });
                         next3Times.sort((a, b) => a.startMoment.diff(b.startMoment));
                         next3Times.splice(3);
                         objTimes = objTimes.concat(next3Times);
                       }
-                    } else {
-                      objTimes.push({ ...time, startMoment: createMoment() });
                     }
                     return objTimes;
                   }, [])
