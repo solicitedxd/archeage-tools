@@ -11,3 +11,12 @@ export const getDay = (dayNum) => {
 export const getDayNum = (day) => {
   return Object.keys(DAY).indexOf(day.toUpperCase());
 };
+
+export const getHhmmss = (time) => {
+  return time.split(':');
+};
+
+export const hhmmssToInt = (time) => {
+  const [hh, mm, ss] = getHhmmss(time);
+  return hh + (mm / 60) + (ss / (60 * 60));
+};

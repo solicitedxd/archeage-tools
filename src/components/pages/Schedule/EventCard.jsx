@@ -33,6 +33,7 @@ import {
   getDayKey,
 } from 'utils/schedule';
 import { hhmmssFromDate } from 'utils/thunderstruck';
+import AlertSelect from './AlertSelect';
 
 // to prevent import org from removing the import
 moment_tz;
@@ -148,6 +149,7 @@ class EventCard extends Component {
                     <EditIcon fontSize="small" />
                   </IconButton>
                 </IfPerm>
+                <AlertSelect id={id} nextTime={nextTime} />
                 <Tooltip title="See more times">
                   <IconButton size="small" onClick={this.toggleExpand}>
                     <ExpandMoreIcon className={cn('rotate-btn', { rotated: expanded })} />
@@ -157,7 +159,7 @@ class EventCard extends Component {
             </div>
           }
         />
-        <Collapse in={expanded} timeout="auto" unmountOnExit>
+        <Collapse in={expanded} timeout="auto" unmountOnExit mountOnEnter>
           <CardContent>
             <Typography component="div">
               {Boolean(description) &&

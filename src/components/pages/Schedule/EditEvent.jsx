@@ -28,6 +28,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { setEvent } from 'actions/gameData';
 import config from 'config';
 import {
+  ALERT_DEFAULT,
   DAY,
   DAY_ABBR,
 } from 'constants/schedule';
@@ -176,7 +177,7 @@ class EditEvent extends Component {
     const timeId = times[editTime] || {};
     // overwrite days
     const timeRecord = {
-      reminderTime: '00:15:00',
+      reminderTime: ALERT_DEFAULT,
       ...timeId,
       ...timeData,
       // empty array implies all 7 days

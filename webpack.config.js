@@ -29,6 +29,7 @@ module.exports = {
   resolve: {
     alias: {
       actions: join(src, 'actions'),
+      audio: join(src, 'audio'),
       components: join(src, 'components'),
       config: join(src, 'config', 'development.js'),
       constants: join(src, 'constants'),

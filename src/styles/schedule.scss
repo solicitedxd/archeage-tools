@@ -312,6 +312,25 @@
   }
 }
 
+.notif-fade {
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.alert-menu {
+  .MuiListItemIcon-root {
+    min-width: 32px;
+    text-align: left;
+  }
+
+  .MuiListItemText-dense {
+    margin: 0;
+  }
+}
+
 .mobile {
   .schedule-container {
     .region-opt {

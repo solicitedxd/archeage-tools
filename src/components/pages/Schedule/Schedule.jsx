@@ -8,13 +8,19 @@ import {
   Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
+import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
 import ToggleOffIcon from '@material-ui/icons/ToggleOff';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import {
   fetchEvents,
   fetchEventTypes,
 } from 'actions/gameData';
-import { setRegion } from 'actions/schedule';
+import {
+  clearAlerts,
+  setRegion,
+} from 'actions/schedule';
+import EnchantResult from 'audio/enchant_result.mp3';
+import QuestAccept2 from 'audio/quest_accept_2.mp3';
 import cn from 'classnames';
 import IfPerm from 'components/IfPerm';
 import debounce from 'lodash.debounce';
@@ -22,10 +28,16 @@ import moment from 'moment';
 import moment_tz from 'moment-timezone';
 import { equals } from 'ramda';
 import React, { Component } from 'react';
-import { bool } from 'react-proptypes';
+import {
+  bool,
+  func,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { objectHasProperties } from 'utils/object';
-import { getDayKey } from 'utils/schedule';
+import {
+  getDayKey,
+  hhmmssToInt,
+} from 'utils/schedule';
 import { deepCopy } from 'utils/skills';
 import { setTitle } from 'utils/string';
 import EditEvent from './EditEvent';
@@ -38,10 +50,13 @@ moment_tz;
 class Schedule extends Component {
   static propTypes = {
     regionNA: bool,
+    clearAlerts: func.isRequired,
+    hasAlerts: bool,
   };
 
   static defaultProps = {
     regionNA: true,
+    hasAlerts: false,
   };
 
   state = {
@@ -50,6 +65,9 @@ class Schedule extends Component {
     editOpen: false,
     editId: null,
   };
+
+  reminderAlert = new Audio(EnchantResult);
+  startingAlert = new Audio(QuestAccept2);
 
   ref = React.createRef();
 
@@ -101,7 +119,7 @@ class Schedule extends Component {
     if (!times) return;
 
     // only look through one region's times
-    times = times.filter(time => !time.region || time.region === (region)).sort((a, b) => this.toInt(a) - this.toInt(b));
+    times = times.filter(time => !time.region || time.region === (region)).sort((a, b) => hhmmssToInt(a.time) - hhmmssToInt(b.time));
     if (times.length > 0) {
       // duplicate the last occurrence to yesterday
       const lastTime = deepCopy(times[times.length - 1]);
@@ -175,11 +193,6 @@ class Schedule extends Component {
     return event;
   };
 
-  toInt = (time) => {
-    const [hh, mm, ss] = time.time.split(':');
-    return hh + (mm / 60) + (ss / (60 * 60));
-  };
-
   sortEvents = (a, b) => {
     if (a.activeTime || b.activeTime) {
       if (a.activeTime && !b.activeTime) {
@@ -205,6 +218,8 @@ class Schedule extends Component {
       }
     });
 
+    // this.reminderAlert.play();
+
     if (sort) {
       events.sort(this.sortEvents);
     }
@@ -224,7 +239,7 @@ class Schedule extends Component {
   };
 
   render() {
-    const { regionNA, setRegion, eventTypes, mobile } = this.props;
+    const { regionNA, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
     const { events, width, editOpen, editId } = this.state;
 
     // max cols = 3
@@ -253,6 +268,13 @@ class Schedule extends Component {
                 </Tooltip>
                 EU
               </Typography>
+              <Tooltip title="Clear all alerts">
+                <span>
+                  <IconButton disabled={!hasAlerts} onClick={clearAlerts}>
+                    <NotificationsOffIcon />
+                  </IconButton>
+                </span>
+              </Tooltip>
               <IfPerm permission="event.edit">
                 <Tooltip title="Add new event">
                   <IconButton onClick={this.setEditOpen(true, null)} color="inherit">
@@ -293,17 +315,19 @@ class Schedule extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { regionNA }, gameData: { events, eventTypes }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { regionNA, alerts }, gameData: { events, eventTypes }, display: { mobile } }) => ({
   regionNA,
   mobile,
   events,
   eventTypes,
+  hasAlerts: objectHasProperties(alerts),
 });
 
 const mapDispatchToProps = {
   setRegion,
   fetchEventTypes,
   fetchEvents,
+  clearAlerts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
