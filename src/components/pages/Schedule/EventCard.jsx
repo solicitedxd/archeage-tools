@@ -86,7 +86,7 @@ class EventCard extends Component {
   };
 
   render() {
-    const { id, name, icon, link, timer, activeTime, nextTime, onEdit, description, times, region } = this.props;
+    const { id, name, icon, link, timer, activeTime, nextTime, onEdit, description, times, region, disabled } = this.props;
     const { expanded } = this.state;
     const filteredTimes = times.filter(time => !time.region || time.region === region);
     const now = moment.utc().milliseconds(0);
@@ -124,7 +124,7 @@ class EventCard extends Component {
     return (
       <Card square className="event-card">
         <CardHeader
-          className={cn({ running })}
+          className={cn({ running, disabled })}
           avatar={
             <div style={{ position: 'relative' }}>
               {nextDay && <Tooltip title={nextDay}>

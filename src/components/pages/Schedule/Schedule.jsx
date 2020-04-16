@@ -11,6 +11,8 @@ import AddIcon from '@material-ui/icons/Add';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
 import ToggleOffIcon from '@material-ui/icons/ToggleOff';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import {
   fetchEvents,
   fetchEventTypes,
@@ -64,6 +66,7 @@ class Schedule extends Component {
     width: 0,
     editOpen: false,
     editId: null,
+    showDisabled: false,
   };
 
   reminderAlert = new Audio(EnchantResult);
@@ -100,11 +103,17 @@ class Schedule extends Component {
 
   setupEvents = (events, regionNA) => {
     this.handleResize();
-    events = Object.values(events).filter(e => !e.disabled).map(this.calculateNextStart(regionNA));
+    events = Object.values(events);
+    if (!this.state.showDisabled) {
+      events = events.filter(e => !e.disabled);
+    }
+    events = events.map(this.calculateNextStart(regionNA));
     events.sort(this.sortEvents);
     this.setState({ events }, () => {
-      this.interval = setInterval(this.doTick, 1000);
-      this.doTick();
+      if (!this.interval) {
+        this.interval = setInterval(this.doTick, 1000);
+        this.doTick();
+      }
     });
   };
 
@@ -238,9 +247,15 @@ class Schedule extends Component {
     this.setState({ editOpen, editId });
   };
 
+  setShowDisabled = (showDisabled) => () => {
+    const { events, regionNA } = this.props;
+
+    this.setState({ showDisabled }, () => this.setupEvents(events, regionNA));
+  };
+
   render() {
     const { regionNA, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
-    const { events, width, editOpen, editId } = this.state;
+    const { events, width, editOpen, editId, showDisabled } = this.state;
 
     // max cols = 3
     // min cols = 1
@@ -276,11 +291,18 @@ class Schedule extends Component {
                 </span>
               </Tooltip>
               <IfPerm permission="event.edit">
-                <Tooltip title="Add new event">
-                  <IconButton onClick={this.setEditOpen(true, null)} color="inherit">
-                    <AddIcon />
-                  </IconButton>
-                </Tooltip>
+                <>
+                  <Tooltip title={showDisabled ? 'Hide Disabled' : 'Show Disabled'}>
+                    <IconButton onClick={this.setShowDisabled(!showDisabled)} color="inherit">
+                      {showDisabled ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Add new event">
+                    <IconButton onClick={this.setEditOpen(true, null)} color="inherit">
+                      <AddIcon />
+                    </IconButton>
+                  </Tooltip>
+                </>
               </IfPerm>
             </Toolbar>
           </AppBar>
