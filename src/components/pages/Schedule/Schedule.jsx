@@ -339,7 +339,7 @@ const mapStateToProps = ({ calendar: { regionNA, alerts }, gameData: { events, e
   mobile,
   events,
   eventTypes,
-  hasAlerts: objectHasProperties(alerts),
+  hasAlerts: objectHasProperties(alerts) && Object.values(alerts).reduce((a, b) => (a.length || 0) + (b.length || 0), 0) > 0,
 });
 
 const mapDispatchToProps = {
