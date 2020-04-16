@@ -142,7 +142,7 @@ class Schedule extends Component {
     }
 
     // loop through times until we get to the time that starts
-    times.some(occurrence => {
+    times.forEach(occurrence => {
       const { days, time, duration, yesterday, tomorrow } = occurrence;
 
       // create the start time from 00:00:00 format
@@ -182,12 +182,9 @@ class Schedule extends Component {
       }
 
       // times are sorted, so find the next occurrence that is after right now as the next time
-      if (startTime.isAfter(now)) {
+      if (startTime.isAfter(now) && (!nextTime.startTime || nextTime.startTime.isAfter(startTime))) {
         nextTime = occurrence;
-        return true;
       }
-
-      return false;
     });
 
     if (activeTime) {
