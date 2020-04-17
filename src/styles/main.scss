@@ -738,3 +738,8 @@ blockquote cite:before {
     color: #FF0000;
   }
 }
+
+/* Safari landscape fix */
+html {
+  -webkit-text-size-adjust: 100%;
+}

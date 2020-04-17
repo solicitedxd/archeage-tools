@@ -8,7 +8,8 @@ import {
   MenuItem,
   Tooltip,
 } from '@material-ui/core';
-import CheckIcon from '@material-ui/icons/Check';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CloseIcon from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { setAlert } from 'actions/schedule';
@@ -101,13 +102,13 @@ class AlertSelect extends Component {
           </ListItem>
           <MenuItem disabled selected dense={!mobile}>
             <ListItemIcon>
-              <CheckIcon fontSize={mobile ? 'default' : 'small'} />
+              <CheckBoxIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Audio Cue</ListItemText>
           </MenuItem>
           <MenuItem selected={false} dense={!mobile} divider>
             <ListItemIcon>
-              {/*<CheckIcon fontSize={mobile ? 'default' : 'small'} />*/}
+              {/*<CheckBoxIcon fontSize="small" />*/}
               <span />
             </ListItemIcon>
             <ListItemText>Audio Message</ListItemText>
@@ -126,14 +127,14 @@ class AlertSelect extends Component {
           </ListItem>
           {Object.entries(ALERT_OPTIONS).map(([key, option]) => (
             <MenuItem
-              selected={eventAlerts.includes(key)}
               dense={!mobile}
               onClick={setAlert(id, key)}
               key={`alert-opt-${randomString(16)}-${key}`}
             >
               <ListItemIcon>
-                {eventAlerts.includes(key) ?
-                  <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
+                {eventAlerts.includes(key)
+                  ? <CheckBoxIcon fontSize="small" />
+                  : <CheckBoxOutlineBlankIcon fontSize="small" />}
               </ListItemIcon>
               <ListItemText>{substitute(option.name, { time: getReminderTime(nextTime, option) / 60 })}</ListItemText>
             </MenuItem>

@@ -408,7 +408,7 @@ class Schedule extends Component {
             <div className="schedule-column" style={{ width: `${colWidth}%` }} key={`event-col-${col}`}>
               {col === 0 && mobile && <InGameTime mobile={mobile} />}
               {Object.values(eventTypes)
-              .filter((type, i) => (i + (mobile ? 1 : (cols === 2 && i > 1 && i < 4 ? 1 : 0))) % cols === col)
+              .filter((type, i) => (i + (cols === 2 && i > 1 && i < 4 ? 1 : 0)) % cols === col)
               .map(type => (
                 <EventList
                   key={`event-list-${type.id}`}
