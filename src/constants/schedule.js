@@ -8,6 +8,7 @@ export const SET_REGION = 'SET_REGION';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_ALERTS = 'CLEAR_ALERTS';
 export const SET_VOLUME = 'SET_VOLUME';
+export const SET_SPEAK = 'SET_SPEAK';
 
 export const VOLUME_DEFAULT = 70;
 

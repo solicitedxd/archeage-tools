@@ -12,7 +12,11 @@ import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CloseIcon from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
-import { setAlert } from 'actions/schedule';
+import {
+  CAN_SPEAK,
+  setAlert,
+  setSpeak,
+} from 'actions/schedule';
 import cn from 'classnames';
 import { ALERT_OPTIONS } from 'constants/schedule';
 import { pathOr } from 'ramda';
@@ -58,10 +62,11 @@ class AlertSelect extends Component {
   };
 
   render() {
-    const { id, alerts, mobile, setAlert, nextTime } = this.props;
+    const { id, alerts, mobile, setAlert, speak, setSpeak, nextTime } = this.props;
     const { menu } = this.state;
     const menuOpen = Boolean(menu);
     const eventAlerts = pathOr([], [id])(alerts);
+    const isSpeak = pathOr(false, [id])(speak);
 
     return (
       <>
@@ -100,16 +105,22 @@ class AlertSelect extends Component {
           <ListItem tabIndex={null} dense={!mobile}>
             <ListItemText>Alert Types:</ListItemText>
           </ListItem>
-          <MenuItem disabled selected dense={!mobile}>
+          <MenuItem disabled dense={!mobile}>
             <ListItemIcon>
               <CheckBoxIcon fontSize="small" />
             </ListItemIcon>
             <ListItemText>Audio Cue</ListItemText>
           </MenuItem>
-          <MenuItem selected={false} dense={!mobile} divider>
+          <MenuItem
+            onClick={setSpeak(id, !isSpeak)}
+            dense={!mobile}
+            disabled={!CAN_SPEAK}
+            divider
+          >
             <ListItemIcon>
-              {/*<CheckBoxIcon fontSize="small" />*/}
-              <span />
+              {isSpeak
+                ? <CheckBoxIcon fontSize="small" />
+                : <CheckBoxOutlineBlankIcon fontSize="small" />}
             </ListItemIcon>
             <ListItemText>Audio Message</ListItemText>
           </MenuItem>
@@ -145,13 +156,15 @@ class AlertSelect extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { alerts }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { alerts, speak }, display: { mobile } }) => ({
   alerts,
+  speak,
   mobile,
 });
 
 const mapDispatchToProps = {
   setAlert,
+  setSpeak,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AlertSelect);

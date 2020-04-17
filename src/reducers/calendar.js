@@ -2,6 +2,7 @@ import {
   CLEAR_ALERTS,
   SET_ALERT,
   SET_REGION,
+  SET_SPEAK,
   SET_VOLUME,
 } from 'constants/schedule';
 import initialState from 'initialStates/calendar';
@@ -44,6 +45,14 @@ const calendar = (state = getItem('calendar', initialState), action) => {
       return {
         ...state,
         volume: action.volume,
+      };
+    case SET_SPEAK:
+      return {
+        ...state,
+        speak: {
+          ...state.speak,
+          [action.eventId]: action.value,
+        },
       };
     default:
       return state;

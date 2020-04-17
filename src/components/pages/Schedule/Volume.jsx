@@ -42,7 +42,8 @@ class Volume extends Component {
   }
 
   handleOpenMenu = () => {
-    this.setState({ menu: this.menuRef.current });
+    const { volume: _volume } = this.props;
+    this.setState({ menu: this.menuRef.current, volume: _volume });
   };
 
   handleCloseMenu = () => {

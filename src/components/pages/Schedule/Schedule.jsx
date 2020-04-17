@@ -21,8 +21,11 @@ import {
 } from 'actions/gameData';
 import {
   clearAlerts,
+  getReminderMessage,
+  getStartMessage,
   setRegion,
   setVolume,
+  speak,
 } from 'actions/schedule';
 import cn from 'classnames';
 import IfPerm from 'components/IfPerm';
@@ -126,6 +129,7 @@ class Schedule extends Component {
   componentWillUnmount() {
     this.interval && clearInterval(this.interval);
     window.removeEventListener('resize', this._handleResize);
+    window.removeEventListener('click', this.confirmInteraction);
   }
 
   playCue = (cue) => {
@@ -141,10 +145,12 @@ class Schedule extends Component {
     })
     .catch(() => {
       this.setState({ interacted: false });
+      window.addEventListener('click', this.confirmInteraction);
     });
   };
 
   confirmInteraction = () => {
+    window.removeEventListener('click', this.confirmInteraction);
     this.setState({ interacted: true }, () => this.playCue(ALERT_CUE.TEST));
   };
 
@@ -264,7 +270,7 @@ class Schedule extends Component {
   };
 
   doTick = () => {
-    const { alerts } = this.props;
+    const { alerts, speak, doSpeak, getStartMessage, getReminderMessage } = this.props;
     const { events } = this.state;
     const now = moment.utc().milliseconds(0);
 
@@ -272,7 +278,7 @@ class Schedule extends Component {
     let cue = null;
     let alertQueue = [];
 
-    const triggerCue = (value) => {
+    const triggerAlert = (value) => {
       if (moment().month() === 3 && moment().date() === 1) value = ALERT_CUE.OTHER;
 
       if (!cue || cue.priority < value.priority) {
@@ -281,31 +287,47 @@ class Schedule extends Component {
     };
 
     events.forEach((event, i) => {
-      const startDiff = event.nextTime.startTime.diff(now);
-      if (event.timer && now.isSameOrAfter(event.timer)) {
-        events[i] = this.calculateNextStart(this.props.regionNA)(event);
-        sort = true;
-      }
-
       // calculate alert
       const eventAlerts = pathOr([], [event.id])(alerts);
+      const isSpeak = pathOr(false, [event.id])(speak);
+      const startDiff = event.nextTime.startTime.diff(now);
       eventAlerts.forEach(alert => {
         if (startDiff === getReminderTime(event.nextTime, ALERT_OPTIONS[alert]) * 1000) {
           if (startDiff === 0) {
             if (event.eventType === EVENT_TYPE_OTHER) {
-              triggerCue(ALERT_CUE.START_OTHER);
+              triggerAlert(ALERT_CUE.START_OTHER);
             } else {
-              triggerCue(ALERT_CUE.START);
+              triggerAlert(ALERT_CUE.START);
+            }
+            if (isSpeak) {
+              alertQueue.push(getStartMessage(event, event.nextTime));
             }
           } else {
-            triggerCue(ALERT_CUE.REMINDER);
+            triggerAlert(ALERT_CUE.REMINDER);
+            if (isSpeak) {
+              alertQueue.push(getReminderMessage(event, event.nextTime));
+            }
           }
         }
       });
+
+      // check if event timer is ended to start the next timer
+      if (event.timer && now.isSameOrAfter(event.timer)) {
+        events[i] = this.calculateNextStart(this.props.regionNA)(event);
+        sort = true;
+      }
     });
 
     // play the cue
     Boolean(cue) && this.playCue(cue);
+    let delay = 0;
+    if (cue && alertQueue.length > 0) {
+      delay = 500;
+    }
+
+    alertQueue.length > 0 && setTimeout(() => {
+      alertQueue.forEach(message => doSpeak(message));
+    }, delay);
 
     if (sort) {
       events.sort(this.sortEvents);
@@ -355,7 +377,7 @@ class Schedule extends Component {
       <div className="schedule-container">
         {interacted === false &&
         <div className="section">
-          <Alert severity="error" variant="filled" onClose={this.confirmInteraction}>
+          <Alert severity="error" variant="filled" onClose={() => null}>
             <AlertTitle>Playback Error</AlertTitle>
             Alert sounds cannot play until you interact with the page. Simply close this message to interact.
           </Alert>
@@ -431,13 +453,14 @@ class Schedule extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { regionNA, alerts, volume }, gameData: { events, eventTypes }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { regionNA, alerts, speak, volume }, gameData: { events, eventTypes }, display: { mobile } }) => ({
   regionNA,
   mobile,
   events,
   eventTypes,
   alerts,
   hasAlerts: objectHasProperties(alerts) && Object.values(alerts).map(a => a.length || 0).reduce((a, b) => a + b, 0) > 0,
+  speak,
   volume,
 });
 
@@ -447,6 +470,9 @@ const mapDispatchToProps = {
   fetchEvents,
   clearAlerts,
   setVolume,
+  doSpeak: speak,
+  getStartMessage,
+  getReminderMessage,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule);
