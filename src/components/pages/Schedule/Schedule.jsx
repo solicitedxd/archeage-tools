@@ -22,6 +22,7 @@ import {
 import {
   clearAlerts,
   setRegion,
+  setVolume,
 } from 'actions/schedule';
 import cn from 'classnames';
 import IfPerm from 'components/IfPerm';
@@ -29,6 +30,7 @@ import {
   ALERT_CUE,
   ALERT_OPTIONS,
   EVENT_TYPE_OTHER,
+  VOLUME_DEFAULT,
 } from 'constants/schedule';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
@@ -54,6 +56,7 @@ import { setTitle } from 'utils/string';
 import EditEvent from './EditEvent';
 import EventList from './EventList';
 import InGameTime from './InGameTime';
+import Volume from './Volume';
 
 // prevent optimize imports from removing
 moment_tz;
@@ -86,7 +89,7 @@ class Schedule extends Component {
   interval = null;
 
   componentDidMount() {
-    const { fetchEventTypes, fetchEvents, events, regionNA, hasAlerts } = this.props;
+    const { fetchEventTypes, fetchEvents, events, regionNA, hasAlerts, volume } = this.props;
     fetchEventTypes();
     fetchEvents();
 
@@ -98,8 +101,12 @@ class Schedule extends Component {
 
     // preload audio cues
     Object.values(ALERT_CUE).forEach(cue => {
-      this.alerts[cue.name] = new Audio(cue.file);
-      this.alerts[cue.name].load();
+      const alert = this.alerts[cue.name] = new Audio(cue.file);
+      alert.load();
+      alert.setVolume = function (volume) {
+        this.volume = volume / 100;
+      };
+      alert.setVolume(volume || VOLUME_DEFAULT);
     });
 
     // test for page interaction, otherwise display an error banner
@@ -124,7 +131,10 @@ class Schedule extends Component {
   playCue = (cue) => {
     const { interacted } = this.state;
 
-    this.alerts[cue.name]
+    const alert = this.alerts[cue.name];
+    alert.pause();
+    alert.currentTime = 0;
+    alert
     .play()
     .then(() => {
       !interacted && this.setState({ interacted: true });
@@ -321,6 +331,14 @@ class Schedule extends Component {
     this.setState({ showDisabled }, () => this.setupEvents(events, regionNA));
   };
 
+  setVolume = (e, volume) => {
+    this.props.setVolume(volume);
+    Object.values(this.alerts).forEach(alert => alert.setVolume(volume));
+    this.playCue(ALERT_CUE.REMINDER);
+  };
+
+  _setVolume = debounce(this.setVolume, 75);
+
   render() {
     const { regionNA, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
     const { events, width, editOpen, editId, showDisabled, interacted } = this.state;
@@ -365,6 +383,7 @@ class Schedule extends Component {
                   </IconButton>
                 </span>
               </Tooltip>
+              <Volume setVolume={this._setVolume} />
               <IfPerm permission="event.edit">
                 <>
                   <Tooltip title={showDisabled ? 'Hide Disabled' : 'Show Disabled'}>
@@ -412,13 +431,14 @@ class Schedule extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { regionNA, alerts }, gameData: { events, eventTypes }, display: { mobile } }) => ({
+const mapStateToProps = ({ calendar: { regionNA, alerts, volume }, gameData: { events, eventTypes }, display: { mobile } }) => ({
   regionNA,
   mobile,
   events,
   eventTypes,
   alerts,
   hasAlerts: objectHasProperties(alerts) && Object.values(alerts).map(a => a.length || 0).reduce((a, b) => a + b, 0) > 0,
+  volume,
 });
 
 const mapDispatchToProps = {
@@ -426,6 +446,7 @@ const mapDispatchToProps = {
   fetchEventTypes,
   fetchEvents,
   clearAlerts,
+  setVolume,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Schedule);

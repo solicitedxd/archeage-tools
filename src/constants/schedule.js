@@ -7,6 +7,9 @@ import QuestAccept2 from 'audio/quest_accept_2.mp3';
 export const SET_REGION = 'SET_REGION';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_ALERTS = 'CLEAR_ALERTS';
+export const SET_VOLUME = 'SET_VOLUME';
+
+export const VOLUME_DEFAULT = 70;
 
 export const ALERT_OPTIONS = Object.freeze({
   EVENT_START: {

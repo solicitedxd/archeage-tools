@@ -2,6 +2,7 @@ import {
   CLEAR_ALERTS,
   SET_ALERT,
   SET_REGION,
+  SET_VOLUME,
 } from 'constants/schedule';
 import initialState from 'initialStates/calendar';
 import { pathOr } from 'ramda';
@@ -38,6 +39,11 @@ const calendar = (state = getItem('calendar', initialState), action) => {
       return {
         ...state,
         alerts: {},
+      };
+    case SET_VOLUME:
+      return {
+        ...state,
+        volume: action.volume,
       };
     default:
       return state;
