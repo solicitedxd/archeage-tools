@@ -208,7 +208,12 @@ class Schedule extends Component {
         return 1;
       }
     }
-    return a.timer.diff(b.timer);
+    const diff = a.timer.diff(b.timer);
+    if (diff === 0) {
+      if (a.name > b.name) return 1;
+      if (b.name > a.name) return -1;
+    }
+    return diff;
   };
 
   doTick = () => {
