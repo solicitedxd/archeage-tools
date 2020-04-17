@@ -2,22 +2,18 @@ import {
   IconButton,
   ListItem,
   ListItemIcon,
+  ListItemSecondaryAction,
   ListItemText,
   Menu,
   MenuItem,
   Tooltip,
 } from '@material-ui/core';
 import CheckIcon from '@material-ui/icons/Check';
+import CloseIcon from '@material-ui/icons/Close';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { setAlert } from 'actions/schedule';
 import cn from 'classnames';
-import {
-  ALERT_1,
-  ALERT_2,
-  ALERT_3,
-  ALERT_DEFAULT,
-  ALERT_START,
-} from 'constants/schedule';
+import { ALERT_OPTIONS } from 'constants/schedule';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
@@ -27,7 +23,11 @@ import {
   object,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { hhmmssToInt } from 'utils/schedule';
+import { getReminderTime } from 'utils/schedule';
+import {
+  randomString,
+  substitute,
+} from 'utils/string';
 
 class AlertSelect extends Component {
   static propTypes = {
@@ -68,8 +68,15 @@ class AlertSelect extends Component {
           <IconButton
             size="small"
             onClick={this.handleOpenMenu}
+            className="super-btn"
           >
-            <NotificationsIcon fontSize="small" className={cn({ 'notif-fade': eventAlerts.length === 0 })} />
+            <NotificationsIcon
+              fontSize="small"
+              className={cn({ 'notif-fade': eventAlerts.length === 0 })}
+              color={eventAlerts.length > 0 ? 'primary' : 'inherit'}
+            />
+            {eventAlerts.length > 0 &&
+            <div className="super-text color-white">{eventAlerts.length}</div>}
           </IconButton>
         </Tooltip>
         <Menu
@@ -107,41 +114,30 @@ class AlertSelect extends Component {
           </MenuItem>
           <ListItem tabIndex={null} dense={!mobile}>
             <ListItemText>Alert Times:</ListItemText>
+            <ListItemSecondaryAction>
+              <Tooltip title="Clear all">
+                <span>
+                  <IconButton size="small" onClick={setAlert(id, '')} disabled={eventAlerts.length === 0}>
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </span>
+              </Tooltip>
+            </ListItemSecondaryAction>
           </ListItem>
-          <MenuItem selected={eventAlerts.includes(ALERT_START)} dense={!mobile} onClick={setAlert(id, ALERT_START)}>
-            <ListItemIcon>
-              {eventAlerts.includes(ALERT_START) ?
-                <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
-            </ListItemIcon>
-            <ListItemText>Start of Event</ListItemText>
-          </MenuItem>
-          <MenuItem selected={eventAlerts.includes(ALERT_1)} dense={!mobile} onClick={setAlert(id, ALERT_1)}>
-            <ListItemIcon>
-              {eventAlerts.includes(ALERT_1) ?
-                <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
-            </ListItemIcon>
-            <ListItemText>
-              {Math.floor(hhmmssToInt(nextTime.reminderTime || ALERT_DEFAULT) / 3 * 60)} minutes before
-            </ListItemText>
-          </MenuItem>
-          <MenuItem selected={eventAlerts.includes(ALERT_2)} dense={!mobile} onClick={setAlert(id, ALERT_2)}>
-            <ListItemIcon>
-              {eventAlerts.includes(ALERT_2) ?
-                <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
-            </ListItemIcon>
-            <ListItemText>
-              {Math.floor(hhmmssToInt(nextTime.reminderTime || ALERT_DEFAULT) * 60)} minutes before
-            </ListItemText>
-          </MenuItem>
-          <MenuItem selected={eventAlerts.includes(ALERT_3)} dense={!mobile} onClick={setAlert(id, ALERT_3)}>
-            <ListItemIcon>
-              {eventAlerts.includes(ALERT_3) ?
-                <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
-            </ListItemIcon>
-            <ListItemText>
-              {Math.floor(hhmmssToInt(nextTime.reminderTime || ALERT_DEFAULT) * 120)} minutes before
-            </ListItemText>
-          </MenuItem>
+          {Object.entries(ALERT_OPTIONS).map(([key, option]) => (
+            <MenuItem
+              selected={eventAlerts.includes(key)}
+              dense={!mobile}
+              onClick={setAlert(id, key)}
+              key={`alert-opt-${randomString(16)}-${key}`}
+            >
+              <ListItemIcon>
+                {eventAlerts.includes(key) ?
+                  <CheckIcon fontSize={mobile ? 'default' : 'small'} /> : <span />}
+              </ListItemIcon>
+              <ListItemText>{substitute(option.name, { time: getReminderTime(nextTime, option) / 60 })}</ListItemText>
+            </MenuItem>
+          ))}
         </Menu>
       </>
     );

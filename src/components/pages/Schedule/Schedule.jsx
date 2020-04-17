@@ -13,6 +13,8 @@ import ToggleOffIcon from '@material-ui/icons/ToggleOff';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import Alert from '@material-ui/lab/Alert';
+import AlertTitle from '@material-ui/lab/AlertTitle';
 import {
   fetchEvents,
   fetchEventTypes,
@@ -21,14 +23,20 @@ import {
   clearAlerts,
   setRegion,
 } from 'actions/schedule';
-import EnchantResult from 'audio/enchant_result.mp3';
-import QuestAccept2 from 'audio/quest_accept_2.mp3';
 import cn from 'classnames';
 import IfPerm from 'components/IfPerm';
+import {
+  ALERT_CUE,
+  ALERT_OPTIONS,
+  EVENT_TYPE_OTHER,
+} from 'constants/schedule';
 import debounce from 'lodash.debounce';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
-import { equals } from 'ramda';
+import {
+  equals,
+  pathOr,
+} from 'ramda';
 import React, { Component } from 'react';
 import {
   bool,
@@ -38,6 +46,7 @@ import { connect } from 'react-redux';
 import { objectHasProperties } from 'utils/object';
 import {
   getDayKey,
+  getReminderTime,
   hhmmssToInt,
 } from 'utils/schedule';
 import { deepCopy } from 'utils/skills';
@@ -67,17 +76,17 @@ class Schedule extends Component {
     editOpen: false,
     editId: null,
     showDisabled: false,
+    interacted: null,
   };
 
-  reminderAlert = new Audio(EnchantResult);
-  startingAlert = new Audio(QuestAccept2);
+  alerts = {};
 
   ref = React.createRef();
 
   interval = null;
 
   componentDidMount() {
-    const { fetchEventTypes, fetchEvents, events, regionNA } = this.props;
+    const { fetchEventTypes, fetchEvents, events, regionNA, hasAlerts } = this.props;
     fetchEventTypes();
     fetchEvents();
 
@@ -86,6 +95,17 @@ class Schedule extends Component {
     }
 
     window.addEventListener('resize', this._handleResize);
+
+    // preload audio cues
+    Object.values(ALERT_CUE).forEach(cue => {
+      this.alerts[cue.name] = new Audio(cue.file);
+      this.alerts[cue.name].load();
+    });
+
+    // test for page interaction, otherwise display an error banner
+    if (hasAlerts) {
+      this.playCue(ALERT_CUE.TEST);
+    }
   }
 
   UNSAFE_componentWillUpdate(nextProps) {
@@ -100,6 +120,23 @@ class Schedule extends Component {
     this.interval && clearInterval(this.interval);
     window.removeEventListener('resize', this._handleResize);
   }
+
+  playCue = (cue) => {
+    const { interacted } = this.state;
+
+    this.alerts[cue.name]
+    .play()
+    .then(() => {
+      !interacted && this.setState({ interacted: true });
+    })
+    .catch(() => {
+      this.setState({ interacted: false });
+    });
+  };
+
+  confirmInteraction = () => {
+    this.setState({ interacted: true }, () => this.playCue(ALERT_CUE.TEST));
+  };
 
   setupEvents = (events, regionNA) => {
     this.handleResize();
@@ -217,19 +254,48 @@ class Schedule extends Component {
   };
 
   doTick = () => {
+    const { alerts } = this.props;
     const { events } = this.state;
     const now = moment.utc().milliseconds(0);
 
     let sort = false;
+    let cue = null;
+    let alertQueue = [];
+
+    const triggerCue = (value) => {
+      if (moment().month() === 3 && moment().date() === 1) value = ALERT_CUE.OTHER;
+
+      if (!cue || cue.priority < value.priority) {
+        cue = value;
+      }
+    };
 
     events.forEach((event, i) => {
+      const startDiff = event.nextTime.startTime.diff(now);
       if (event.timer && now.isSameOrAfter(event.timer)) {
         events[i] = this.calculateNextStart(this.props.regionNA)(event);
         sort = true;
       }
+
+      // calculate alert
+      const eventAlerts = pathOr([], [event.id])(alerts);
+      eventAlerts.forEach(alert => {
+        if (startDiff === getReminderTime(event.nextTime, ALERT_OPTIONS[alert]) * 1000) {
+          if (startDiff === 0) {
+            if (event.eventType === EVENT_TYPE_OTHER) {
+              triggerCue(ALERT_CUE.START_OTHER);
+            } else {
+              triggerCue(ALERT_CUE.START);
+            }
+          } else {
+            triggerCue(ALERT_CUE.REMINDER);
+          }
+        }
+      });
     });
 
-    // this.reminderAlert.play();
+    // play the cue
+    Boolean(cue) && this.playCue(cue);
 
     if (sort) {
       events.sort(this.sortEvents);
@@ -257,7 +323,7 @@ class Schedule extends Component {
 
   render() {
     const { regionNA, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
-    const { events, width, editOpen, editId, showDisabled } = this.state;
+    const { events, width, editOpen, editId, showDisabled, interacted } = this.state;
 
     // max cols = 3
     // min cols = 1
@@ -269,6 +335,13 @@ class Schedule extends Component {
 
     return (
       <div className="schedule-container">
+        {interacted === false &&
+        <div className="section">
+          <Alert severity="error" variant="filled" onClose={this.confirmInteraction}>
+            <AlertTitle>Playback Error</AlertTitle>
+            Alert sounds cannot play until you interact with the page. Simply close this message to interact.
+          </Alert>
+        </div>}
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -287,7 +360,7 @@ class Schedule extends Component {
               </Typography>
               <Tooltip title="Clear all alerts">
                 <span>
-                  <IconButton disabled={!hasAlerts} onClick={clearAlerts}>
+                  <IconButton disabled={!hasAlerts} onClick={clearAlerts} color="inherit">
                     <NotificationsOffIcon />
                   </IconButton>
                 </span>
@@ -344,7 +417,8 @@ const mapStateToProps = ({ calendar: { regionNA, alerts }, gameData: { events, e
   mobile,
   events,
   eventTypes,
-  hasAlerts: objectHasProperties(alerts) && Object.values(alerts).reduce((a, b) => (a.length || 0) + (b.length || 0), 0) > 0,
+  alerts,
+  hasAlerts: objectHasProperties(alerts) && Object.values(alerts).map(a => a.length || 0).reduce((a, b) => a + b, 0) > 0,
 });
 
 const mapDispatchToProps = {

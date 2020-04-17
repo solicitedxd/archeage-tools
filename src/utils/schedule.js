@@ -1,4 +1,7 @@
-import { DAY } from 'constants/schedule';
+import {
+  ALERT_DEFAULT,
+  DAY,
+} from 'constants/schedule';
 
 export const getDayKey = (dayNum) => {
   return Object.keys(DAY).find((key, id) => id === dayNum);
@@ -19,4 +22,15 @@ export const getHhmmss = (time) => {
 export const hhmmssToInt = (time) => {
   const [hh, mm, ss] = getHhmmss(time);
   return hh + (mm / 60) + (ss / (60 * 60));
+};
+
+export const getReminderTime = (eventTime, reminderOption) => {
+  let { multiplier } = reminderOption;
+  const reminderTime = hhmmssToInt(eventTime.reminderTime || ALERT_DEFAULT);
+
+  if (reminderTime < .5 && multiplier === 0.5) {
+    multiplier = 0.33;
+  }
+
+  return Math.round(reminderTime * multiplier * 60) * 60;
 };
