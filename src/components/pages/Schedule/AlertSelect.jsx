@@ -119,7 +119,7 @@ class AlertSelect extends Component {
           >
             <ListItemIcon>
               {isSpeak
-                ? <CheckBoxIcon fontSize="small" />
+                ? <CheckBoxIcon fontSize="small" color="primary" />
                 : <CheckBoxOutlineBlankIcon fontSize="small" />}
             </ListItemIcon>
             <ListItemText>Audio Message</ListItemText>
@@ -144,7 +144,7 @@ class AlertSelect extends Component {
             >
               <ListItemIcon>
                 {eventAlerts.includes(key)
-                  ? <CheckBoxIcon fontSize="small" />
+                  ? <CheckBoxIcon fontSize="small" color="primary" />
                   : <CheckBoxOutlineBlankIcon fontSize="small" />}
               </ListItemIcon>
               <ListItemText>{substitute(option.name, { time: getReminderTime(nextTime, option) / 60 })}</ListItemText>
