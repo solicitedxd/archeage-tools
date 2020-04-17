@@ -2,6 +2,9 @@ import { setNotification } from 'actions/notification';
 import config from 'config';
 import {
   DATA_CATEGORIES,
+  DATA_EVENT_REPLACE,
+  DATA_EVENT_TYPES,
+  DATA_EVENTS,
   DATA_ITEM,
   DATA_RECIPE,
   DATA_VOCATION,
@@ -203,4 +206,36 @@ export const fetchCategories = () => (dispatch, getState) => {
   .catch(() => {
     dispatch(setNotification('Failed to fetch category data.', NOTIFICATION_TYPE.WARNING));
   });
+};
+
+export const fetchEventTypes = () => (dispatch, getState) => {
+  const { eventTypes } = getState().gameData;
+
+  if (objectHasProperties(eventTypes)) return;
+
+  xhr.get(config.endpoints.service.eventTypes)
+  .then(({ data }) => {
+    dispatch({ type: DATA_EVENT_TYPES, eventTypes: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch event type data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchEvents = () => (dispatch, getState) => {
+  const { events } = getState().gameData;
+
+  if (objectHasProperties(events)) return;
+
+  xhr.get(config.endpoints.service.events)
+  .then(({ data }) => {
+    dispatch({ type: DATA_EVENTS, events: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch events data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const setEvent = (event) => (dispatch) => {
+  dispatch({ type: DATA_EVENT_REPLACE, event });
 };

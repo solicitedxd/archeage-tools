@@ -1,4 +1,6 @@
 export default {
+  eventTypes: {},
+  events: {},
   items: {},
   categories: {},
   subCategories: {},

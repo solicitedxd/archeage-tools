@@ -8,6 +8,7 @@ import {
   SESSION_WINDOW,
   SESSION_WINDOW_CLOSE,
 } from 'constants/session';
+import Cookies from 'js-cookie';
 import { pathOr } from 'ramda';
 import xhr from 'utils/xhr';
 
@@ -115,7 +116,7 @@ export const logout = () => (dispatch) => {
 };
 
 export const hasPermission = (permission) => (dispatch, getState) => {
-  const permissions = pathOr([], ['session', 'permissions'])(getState());
+  const permissions = Cookies.get('access_token') ? pathOr([], ['session', 'permissions'])(getState()) : [];
 
   if (permissions.includes(permission.toLowerCase())) {
     return true;

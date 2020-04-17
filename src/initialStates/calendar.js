@@ -1,5 +1,6 @@
 export default {
-  time: null,
-  completed: [],
   regionNA: true,
+  alerts: {},
+  speak: {},
+  volume: 70,
 };

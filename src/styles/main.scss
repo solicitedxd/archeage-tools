@@ -84,6 +84,11 @@ header.site-header {
   display: block;
   position: relative;
   margin: 0 20px;
+
+  .MuiToolbar-root:first-child {
+    padding-right: 16px;
+    border-radius: 3px;
+  }
 }
 
 footer.site-footer {
@@ -188,6 +193,14 @@ footer.site-footer {
 
   &.Settings {
     background-position: -33px -165px;
+  }
+}
+
+.rotate-btn {
+  transition: transform 200ms, fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms !important;
+
+  &.rotated {
+    transform: rotate(180deg);
   }
 }
 
@@ -687,6 +700,10 @@ blockquote cite:before {
   }
 }
 
+.color-white {
+  color: #FFFFFF;
+}
+
 /**
  * Role colors.
  */
@@ -720,4 +737,9 @@ blockquote cite:before {
   .alert-red {
     color: #FF0000;
   }
+}
+
+/* Safari landscape fix */
+html {
+  -webkit-text-size-adjust: 100%;
 }

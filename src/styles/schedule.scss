@@ -1,0 +1,389 @@
+.schedule-container {
+  .clock-icon {
+    height: 20px;
+    width: 20px;
+    background-image: url(../images/clocks.png);
+    display: inline-block;
+    cursor: help;
+    margin-right: 2px;
+    vertical-align: -3px;
+  }
+
+  .region-opt {
+    margin: 2px 0 -2px 12px;
+  }
+
+  .schedule-categories {
+    display: flex;
+    margin: -10px auto 0;
+
+    .schedule-column {
+      margin: 10px 10px 0;
+      flex-grow: 1;
+
+      &:first-child {
+        margin-left: 0;
+      }
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+
+    .clock-icon {
+      vertical-align: 0;
+      margin-right: 0;
+    }
+
+    .event-list {
+      margin-bottom: 25px;
+
+      .MuiToolbar-root {
+        padding-left: 16px;
+        padding-right: 16px;
+
+        .MuiIcon-root {
+          margin-right: 6px;
+        }
+
+        p {
+          margin: 0;
+        }
+      }
+
+      .event-card {
+        position: relative;
+
+        .running {
+          background: rgba(224, 190, 17, 0.1);
+
+          .event-icon {
+            background: rgba(168, 136, 17, 0.15);
+          }
+        }
+
+        .disabled .MuiCardHeader-title {
+          text-decoration: line-through;
+        }
+
+        & + .event-card {
+          border-top: 1px solid rgba(169, 169, 169, 0.2);
+        }
+
+        .event-icon {
+          //background: rgba(60, 150, 135, 0.1);
+          width: 56px;
+          height: 56px;
+        }
+
+        .timer-table {
+          .MuiTableCell-sizeSmall {
+            padding: 6px 6px 6px 16px;
+          }
+
+          .MuiTableCell-sizeSmall:last-child {
+            padding-right: 16px;
+          }
+        }
+      }
+    }
+  }
+
+  .MuiCardHeader-action {
+    position: relative;
+  }
+
+  .ev-status {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 8px 8px 0;
+    height: 56px;
+    right: 0;
+    text-align: right;
+  }
+
+  .ev-status-wrapper {
+    margin-right: 2px;
+    margin-bottom: -3px;
+    height: 24px;
+
+    display: flex;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .ev-btn {
+    display: flex;
+  }
+
+  .running .ev-status-wrapper {
+    .MuiTypography-caption {
+      margin: 0 4px;
+      padding-bottom: 1px;
+    }
+  }
+
+  /* event statuses */
+  .ev-status-waiting,
+  .ev-status-ended,
+  .ev-status-in-progress,
+  .ev-status-standby {
+    background-image: url(../images/period.png);
+    background-repeat: no-repeat;
+    width: 42px;
+    height: 24px;
+    display: inline-block;
+  }
+
+  .ev-status-waiting {
+    background: none;
+  }
+
+  .ev-status-in-progress {
+    background-position: 0 0;
+  }
+
+  .ev-status-standby {
+    background-position: 0 -48px;
+  }
+
+  .ev-status-ended {
+    background-position: 0 -24px;
+  }
+
+  .ev-type {
+    width: 30px;
+    height: 23px;
+    background-image: url(../images/quest_notifier.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    z-index: 1;
+  }
+
+  .ev-daily {
+    background-position: -56px -32px;
+  }
+
+  .ev-repeatable {
+    background-position: -86px -40px;
+  }
+
+  .ev-day {
+    width: 42px;
+    height: 24px;
+    background-image: url(../images/quest_notifier.png);
+    background-repeat: no-repeat;
+    position: absolute;
+    top: -8px;
+    right: -14px;
+    z-index: 1;
+  }
+
+  .ev-day.day-Monday {
+    background-position: -1px -76px;
+  }
+
+  .ev-day.day-Tuesday {
+    background-position: -45px -76px;
+  }
+
+  .ev-day.day-Wednesday {
+    background-position: -89px -76px;
+  }
+
+  .ev-day.day-Thursday {
+    background-position: -1px -102px;
+  }
+
+  .ev-day.day-Friday {
+    background-position: -45px -102px;
+  }
+
+  .ev-day.day-Saturday {
+    background-position: -89px -102px;
+  }
+
+  .ev-day.day-Sunday {
+    background-position: -133px -102px;
+  }
+
+  /* Header colors */
+  .GOLD {
+    background-color: #E8B600;
+  }
+
+  .BLUE {
+    background-color: #0099EE;
+  }
+
+  .RED {
+    background-color: #F93A2F;
+  }
+
+  .GREEN {
+    background-color: #0EC268;
+  }
+
+  .PURPLE {
+    background-color: #A652BB;
+  }
+
+}
+
+.event-form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  & > * + * {
+    margin-top: 8px !important;
+    min-width: 150px !important;
+  }
+
+  .avatar-opt {
+    display: flex;
+    align-items: center;
+
+    .MuiAvatar-root {
+      margin-right: 8px;
+      cursor: pointer;
+    }
+  }
+
+  .times {
+    flex: 1;
+  }
+
+  .chips {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+
+    .MuiChip-icon {
+      font-size: 0.75rem;
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.avatar-select {
+  margin: 16px;
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 40px);
+  grid-gap: 1rem;
+  justify-content: space-between;
+
+  .MuiAvatar-root {
+    cursor: pointer;
+  }
+}
+
+.time-form {
+  margin-top: 8px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
+  .MuiTypography-root {
+    flex: 0 1 100%;
+  }
+
+  .day-select {
+    flex: 0 1 80%;
+  }
+
+  .start-message {
+    flex: 0 1 65%;
+  }
+}
+
+.day-chips {
+  display: flex;
+  flex-wrap: wrap;
+
+  .day-chip {
+    margin: 2px;
+  }
+}
+
+.notif-fade {
+  opacity: 0.3;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.super-btn {
+  position: relative;
+
+  .super-text {
+    position: absolute;
+    font-size: 0.5rem;
+  }
+}
+
+.volume-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 275px;
+  padding: 8px;
+
+  & > * {
+    padding: 8px 0;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding: 0;
+    }
+  }
+
+  .vol-slider {
+    height: 200px;
+  }
+}
+
+.alert-menu {
+  .MuiListItemIcon-root {
+    min-width: 32px;
+    text-align: left;
+  }
+
+  .MuiListItemText-dense {
+    margin: 0;
+  }
+}
+
+.mobile {
+  .schedule-container {
+    .region-opt {
+      margin: 0;
+    }
+  }
+}
+
+.dark-mode {
+  .schedule-container {
+    .schedule-categories {
+      .event-list {
+        .event-icon {
+          background: rgba(60, 150, 135, 0.2);
+        }
+      }
+    }
+  }
+}

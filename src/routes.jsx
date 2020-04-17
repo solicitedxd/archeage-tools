@@ -8,7 +8,7 @@ import NewsPost from 'components/pages/Home/NewsPost';
 import Main from 'components/pages/Main';
 import Mounts from 'components/pages/Mounts';
 import NotFound from 'components/pages/NotFound';
-import Calendar from 'components/pages/Schedule';
+import Schedule from 'components/pages/Schedule';
 import Skills from 'components/pages/Skills';
 import Taxes from 'components/pages/Taxes';
 import Thunderstruck from 'components/pages/Thunderstruck';
@@ -22,7 +22,7 @@ export default (
     <Switch>
       <Route path="/dailies" exact component={Dailies} />
       <Route path="/skills" exact component={Skills} />
-      <Route path="/schedule" exact component={Calendar} />
+      <Route path="/schedule/:eventId?" exact component={Schedule} />
       <Route path="/taxes" exact component={Taxes} />
       <Route path="/thunderstruck" exact component={Thunderstruck} />
       <Route path="/crops" exact component={Thunderstruck} />

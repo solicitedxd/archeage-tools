@@ -1,265 +1,228 @@
 import {
   Avatar,
   Card,
+  CardContent,
   CardHeader,
+  Collapse,
+  IconButton,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import EditIcon from '@material-ui/icons/Edit';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import cn from 'classnames';
+import IfPerm from 'components/IfPerm';
 import Link from 'components/Link';
-import { EVENT_TYPE } from 'constants/schedule';
 import moment from 'moment';
 import moment_tz from 'moment-timezone';
 import React, { Component } from 'react';
 import {
-  array,
   bool,
   func,
+  number,
   object,
-  oneOfType,
   string,
 } from 'react-proptypes';
-import { getDay } from 'utils/calendar';
+import {
+  getDay,
+  getDayKey,
+} from 'utils/schedule';
 import { hhmmssFromDate } from 'utils/thunderstruck';
+import AlertSelect from './AlertSelect';
 
 // to prevent import org from removing the import
 moment_tz;
 
+const createMoment = (time, day) => {
+  const now = moment.utc().milliseconds(0);
+  const [hh, mm, ss] = time.time.split(':');
+  const startMoment = moment.utc().hour(hh).minute(mm).second(ss).millisecond(0);
+  // don't show past occurrences today
+  if (startMoment.isSameOrBefore(now)) {
+    startMoment.add(1, 'day');
+  }
+  // skip days for day-specific times
+  while (day && day !== getDayKey(startMoment.day())) {
+    startMoment.add(1, 'day');
+  }
+  return startMoment.tz(moment.tz.guess());
+};
+
 class EventCard extends Component {
   static propTypes = {
-    icon: string.isRequired,
+    id: number.isRequired,
     name: string.isRequired,
-    type: string.isRequired,
+    icon: string.isRequired,
+    eventType: number.isRequired,
+    gameTime: bool,
+    timer: object,
+    activeTime: object,
+    nextTime: object,
     link: string,
-    days: object,
-    times: oneOfType([object, array]),
-    regionNA: bool,
-    onUpdateTime: func.isRequired,
+    onEdit: func.isRequired,
+    region: string.isRequired,
   };
 
   static defaultProps = {
-    days: {},
-    times: {},
-    regionNA: true,
+    gameTime: false,
+    timer: moment(),
+    activeTime: {},
+    nextTime: {},
     link: null,
   };
 
   state = {
-    times: [],
-    days: [],
-    nextOccurrence: {},
-    running: null,
-    regionNA: true,
-    time: 0,
+    expanded: false,
   };
 
-  timer = null;
-
-  componentDidMount() {
-    this.timer = setInterval(this.handleTick, 250);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timer);
-  }
-
-  getTimes = () => {
-    const { regionNA, times: timesRaw, days: daysRaw } = this.props;
-    let times = [];
-    if (timesRaw) {
-      if (Array.isArray(timesRaw)) {
-        times = [...timesRaw];
-      } else {
-        times = timesRaw[regionNA ? 'NA' : 'EU'] || [];
-      }
-    }
-    if (times.length === 0) {
-      this.setState({ nextOccurrence: {}, running: null, time: 0 });
-      return {};
-    }
-    const days = daysRaw && daysRaw[regionNA ? 'NA' : 'EU'] || [];
-    return { times, days };
-  };
-
-  createEventTime = (days, daysRaw) => (time, yesterday) => {
-    const now = moment.utc().milliseconds(0);
-    const { name, inGameTime } = time;
-
-    let running = null;
-
-    if (time.days) {
-      days = time.days;
-    } else {
-      days = daysRaw;
-    }
-    const [hh, mm, ss] = time.time.split(':');
-    const startTime = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
-    if (yesterday === true) {
-      startTime.subtract(1, 'day');
-    }
-    let endTime;
-    if (time.duration) {
-      const [hh2, mm2, ss2] = time.duration.split(':');
-      endTime = moment(startTime);
-      endTime.add(hh2, 'hours');
-      endTime.add(mm2, 'minutes');
-      endTime.add(ss2, 'seconds');
-    }
-    // if the event only starts on specific days, we need to move it to that day first
-    while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
-      startTime.add(1, 'day');
-      endTime && endTime.add(1, 'day');
-    }
-    // check if the event is running, if so, we want to show a running timer
-    if (!startTime.isAfter(now) && endTime && endTime.isAfter(now)) {
-      running = { ...time, time: moment(startTime) };
-      if (endTime) {
-        running.ends = moment(endTime);
-      }
-    }
-    // move the start time forward for events that have already started
-    while (!startTime.isAfter(now)) {
-      startTime.add(1, 'day');
-      endTime && endTime.add(1, 'day');
-    }
-    // now that the day has been progressed, move the day forward to an appropriate day
-    while (days.length > 0 && !days.includes(getDay(startTime.day()))) {
-      startTime.add(1, 'day');
-      endTime && endTime.add(1, 'day');
-    }
-
-    return { ...time, time: startTime, ends: endTime, name, inGameTime, running };
-  };
-
-  toInt = (time) => {
-    const [hh, mm, ss] = time.time.split(':');
-    return hh + (mm / 60) + (ss / (60 * 60));
-  };
-
-  getNextOccurrence = () => {
-    const { times: timesRaw, days: daysRaw } = this.getTimes();
-    if (!timesRaw) return;
-    let days = daysRaw;
-
-    const createTime = this.createEventTime(days, daysRaw);
-    const times = timesRaw.map(createTime);
-
-    const lastTime = timesRaw.sort((a, b) => this.toInt(a) - this.toInt(b))[timesRaw.length - 1];
-    times.push(createTime(lastTime, true));
-    const running = (times.find(t => t.running !== null) || {}).running;
-
-    const nextOccurrence = {
-      time: null,
-      ends: null,
-      duration: null,
-      day: null,
-    };
-
-    let time;
-
-    if (times.length === 1) {
-      time = times[0];
-    } else if (times.length > 1) {
-      time = times.sort((a, b) => a.time > b.time ? 1 : -1)[0];
-    }
-
-    if (time) {
-      nextOccurrence.time = time.time;
-      nextOccurrence.ends = time.ends;
-      nextOccurrence.day = (days.length >= 1);
-      nextOccurrence.name = time.name || null;
-      nextOccurrence.runningName = times.length > 1 ? times[times.length - 1].name : null;
-      nextOccurrence.inGameTime = time.inGameTime;
-    }
-
-    this.props.onUpdateTime(this.props.name, { next: nextOccurrence, running });
-    this.setState({ nextOccurrence, running });
-  };
-
-  handleTick = () => {
-    const { nextOccurrence, running, regionNA: regionPrev } = this.state;
-    const { regionNA } = this.props;
-
-    // prevent state update upon unload
-    if (this.timer === null) return;
-
-    const today = moment.utc();
-    let time = 0;
-
-    if (running) {
-      time = running.ends.diff(today);
-    } else if (nextOccurrence.time) {
-      time = nextOccurrence.time.diff(today);
-    }
-
-    this.setState({ time: time, regionNA }, () => {
-      if (time <= 0 || regionPrev !== regionNA) {
-        this.getNextOccurrence();
-      }
-    });
+  toggleExpand = () => {
+    const { expanded } = this.state;
+    this.setState({ expanded: !expanded });
   };
 
   render() {
-    const { icon, name, inGameTime, type, link } = this.props;
-    let { nextOccurrence, running, time: remainingTime } = this.state;
+    const { id, name, icon, link, timer, activeTime, nextTime, onEdit, description, times, region, disabled } = this.props;
+    const { expanded } = this.state;
+    const filteredTimes = times.filter(time => !time.region || time.region === region);
+    const now = moment.utc().milliseconds(0);
     const tz = moment.tz.guess();
+    const running = Boolean(activeTime);
     let upcoming = 'Unknown';
     let label = 'Upcoming';
     let nextDay = null;
-    let displayName = `${name}${nextOccurrence.name ? `: ${nextOccurrence.name}` : ''}`;
+    let displayName = `${name}${nextTime.name ? `: ${nextTime.name}` : ''}`;
 
-    if (nextOccurrence.time) {
-      const upcomingTime = nextOccurrence.time.tz(tz);
-      if (nextOccurrence.day) {
+    if (nextTime.startTime) {
+      const upcomingTime = nextTime.startTime.tz(tz);
+      if (nextTime.days.length > 0 && nextTime.days.length < 7) {
         nextDay = getDay(upcomingTime.day());
       }
-      const format = (upcomingTime.day() !== moment().day()) ? 'ddd h:mm A' : 'h:mm A';
+      const format = (upcomingTime.date() !== moment().date()) ? 'ddd h:mm A' : 'h:mm A';
       upcoming = upcomingTime.format(format);
     }
 
     if (running) {
       label = 'Next';
-      if (nextOccurrence.runningName) {
-        upcoming = `${nextOccurrence.name} at ${upcoming}`;
-        displayName = `${name}${nextOccurrence.runningName ? `: ${nextOccurrence.runningName}` : ''}`;
+      if (activeTime.name) {
+        upcoming = `${nextTime.name} at ${upcoming}`;
+        displayName = `${name}${activeTime.name ? `: ${activeTime.name}` : ''}`;
       }
     }
 
-    if (type === EVENT_TYPE.GAME_TIME_EVENT) {
-      if (running && nextOccurrence.runningName) {
-        upcoming = `${nextOccurrence.name} at ${nextOccurrence.inGameTime || inGameTime}`;
-        label = 'Next';
-      } else {
-        upcoming = nextOccurrence.inGameTime || inGameTime;
-        label = 'In-Game Time';
-      }
+    if (nextTime.gameTime) {
+      upcoming += ` [${nextTime.gameTime.substr(0, 5)}]`;
     }
 
-    const remaining = (remainingTime > 0) ? hhmmssFromDate(remainingTime) : '';
+    const remainingTime = timer.diff(now);
+    const remaining = (remainingTime >= 0) ? hhmmssFromDate(remainingTime) : '';
 
     return (
-      <Card>
+      <Card square className="event-card">
         <CardHeader
-          className={cn('event-card', { running: Boolean(running) })}
+          className={cn({ running, disabled })}
           avatar={
             <div style={{ position: 'relative' }}>
               {nextDay && <Tooltip title={nextDay}>
                 <div className={`ev-day day-${nextDay}`} />
               </Tooltip>}
-              <Avatar aria-label={name} src={icon} className="event-icon" />
+              <Avatar aria-label={name} src={`/images/event/${icon}.png`} className="event-icon" />
             </div>
           }
           title={link ? <Link to={link}>{displayName}</Link> : displayName}
           subheader={`${label}: ${upcoming}`}
           action={
             <div className="ev-status">
-              {running && <div className={`ev-status-in-progress`} />}
-              <Typography variant="caption">
-                {remaining}
-              </Typography>
+              <div className="ev-status-wrapper">
+                {running && <div className="ev-status-in-progress" />}
+                <Typography variant="caption">
+                  {remaining}
+                </Typography>
+              </div>
+              <div className="ev-btn">
+                <IfPerm permission="event.edit">
+                  <IconButton size="small" onClick={onEdit(true, id)}>
+                    <EditIcon fontSize="small" />
+                  </IconButton>
+                </IfPerm>
+                <AlertSelect id={id} nextTime={nextTime} />
+                <Tooltip title="See more times">
+                  <IconButton size="small" onClick={this.toggleExpand}>
+                    <ExpandMoreIcon className={cn('rotate-btn', { rotated: expanded })} />
+                  </IconButton>
+                </Tooltip>
+              </div>
             </div>
           }
         />
+        <Collapse in={expanded} timeout="auto" unmountOnExit mountOnEnter>
+          <CardContent>
+            <Typography component="div">
+              {Boolean(description) &&
+              <p>{description}</p>}
+              {nextTime.gameTime &&
+              <p>The next occurrence is at the in-game time of {nextTime.gameTime.substr(0, 5)}.</p>}
+              <Table size="small" stickyHeader className="timer-table">
+                <TableHead>
+                  <TableRow>
+                    <TableCell colSpan={2}>
+                      Upcoming Occurrences
+                    </TableCell>
+                    <TableCell align="right">
+                      Countdown
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {filteredTimes
+                  // need to create multiple entries for some that only have one or two time slots
+                  .reduce((objTimes, time) => {
+                    if (time.days.length < 7) {
+                      time.days.forEach(day => {
+                        objTimes.push({ ...time, day, startMoment: createMoment(time, day) });
+                      });
+                    } else {
+                      if (filteredTimes.length > 3) {
+                        objTimes.push({ ...time, startMoment: createMoment(time) });
+                      } else {
+                        // for events that happen every day with less than 3 time slots per day
+                        // we want to show the next 3 occurrences
+                        const next3Times = [];
+                        time.days.forEach(day => {
+                          next3Times.push({ ...time, day, startMoment: createMoment(time, day) });
+                        });
+                        next3Times.sort((a, b) => a.startMoment.diff(b.startMoment));
+                        next3Times.splice(3);
+                        objTimes = objTimes.concat(next3Times);
+                      }
+                    }
+                    return objTimes;
+                  }, [])
+                  // sort entries
+                  .sort((a, b) => a.startMoment.diff(b.startMoment))
+                  // display entries
+                  .map((time, i) => (
+                    <TableRow key={`${name}-time-${i}`}>
+                      <TableCell>
+                        {time.startMoment.format('ddd h:mm A')}
+                      </TableCell>
+                      <TableCell>
+                        {time.name}
+                      </TableCell>
+                      <TableCell align="right">
+                        {hhmmssFromDate(time.startMoment.diff(now))}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </Typography>
+          </CardContent>
+        </Collapse>
       </Card>
     );
   }
