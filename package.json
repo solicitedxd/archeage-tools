@@ -8,7 +8,7 @@
         "start": "webpack-dev-server --progress --profile --colors",
         "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
-    "repository": "git@bitbucket.org:mokulu-io/archeage-tools.git",
+    "repository": "https://github.com/Mokulu-io/archeage-tools",
     "author": "Mokulu",
     "private": true,
     "dependencies": {
