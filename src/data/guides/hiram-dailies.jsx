@@ -37,7 +37,7 @@ const sections = [
       'This quest has a level requirement of 50 and requires you to kill 50 enemies in Diamond Shores.',
       <Typography variant="subtitle1">Rewards</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
       </div>,
     ],
   },
@@ -58,8 +58,8 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
+        <Item id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -82,8 +82,8 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
+        <Item id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -107,8 +107,8 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.MYSTERIOUS_HIRAM_INFUSION} count={5} />
-        <Item {...ITEM.HIRAM_AWAKENING_SCROLL} count={10} />
+        <Item id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={5} />
+        <Item id={ITEM.HIRAM_AWAKENING_SCROLL} count={10} />
       </div>,
       <Typography variant="body2">I recommend taking the Awakening Scrolls until all of your gear is at least Radiant
         tier Hiram.</Typography>,
@@ -133,24 +133,24 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
+        <Item id={ITEM.RADIANT_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">Mutated Animals</Typography>,
       'Mutated Animals requires you to kill 50 mutated animals in the Western Hiram Mountains.',
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
+        <Item id={ITEM.RADIANT_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">The Abyssal Legion</Typography>,
       'The Abyssal Legion requires you to kill 50 abyssal legion affiliated enemies in the Western Hiram Mountains.',
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={3} />
-        <Item {...ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
+        <Item id={ITEM.RADIANT_HIRAM_INFUSION} count={3} />
+        <Item id={ITEM.RADIANT_HIRAM_AWAKENING_SCROLL} count={7} />
       </div>,
       <Typography variant="h6">Recommendations</Typography>,
       'The easiest way to do these three quests is to teleport to the Hiram Cave in Western Hiram Mountains, get the ' +
@@ -195,7 +195,7 @@ const sections = [
       'performs an attack where it barrels forward dealing massive damage to all players in its path.',
       <Typography variant="subtitle1">Rewards</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
+        <Item id={ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="h6">Haradium Abominations</Typography>,
       'Animal Control requires you to kill 50 haradium abominations in the Eastern Hiram Mountains.',
@@ -204,8 +204,8 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={10} />
-        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={2} />
+        <Item id={ITEM.RADIANT_HIRAM_INFUSION} count={10} />
+        <Item id={ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={2} />
       </div>,
       <Typography variant="body2">I recommend taking the Radiant Hiram Infusions unless you've got most of your
         Brilliant tier Hiram gear at Epic and need the additional Awakening scrolls for awakening.</Typography>,
@@ -218,7 +218,7 @@ const sections = [
       'spreading out will help prevent taking large amounts of damage.',
       <Typography variant="subtitle1">Rewards</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
+        <Item id={ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={5} />
       </div>,
       <Typography variant="h6">Stop the Abyssal Legion</Typography>,
       'Stop the Abyssal Legion is an elite-difficulty quest that requires you to kill 50 abyssal legion enemies in the ' +
@@ -227,8 +227,8 @@ const sections = [
       <Typography variant="subtitle1">Rewards</Typography>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.RADIANT_HIRAM_INFUSION} count={20} />
-        <Item {...ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={4} />
+        <Item id={ITEM.RADIANT_HIRAM_INFUSION} count={20} />
+        <Item id={ITEM.BRILLIANT_HIRAM_AWAKENING_SCROLL} count={4} />
       </div>,
       <Typography variant="body2">I recommend taking the Radiant Hiram Infusions unless you've got most of your
         Brilliant tier Hiram gear at Epic and need the additional Awakening scrolls for awakening.</Typography>,

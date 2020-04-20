@@ -21,15 +21,15 @@ const ARarePerfume = ({ faction }) => (
   <>
     <Typography variant="h6">A Rare Perfume</Typography>
     <Typography>A Rare Perfume is acquired from the {faction} Wanderer in any major city. You must create
-      a <ItemLink item={ITEM.CONDENSED_SCENT} /> by using one of the Perfume Mortars located behind the
+      a <ItemLink id={ITEM.CONDENSED_SCENT} /> by using one of the Perfume Mortars located behind the
       NPC.</Typography>
     <Typography>To create the condensed scent in the mortar, you will need 10 Labor and <b>one</b> of the
       following:</Typography>
     <ul>
-      <li><Typography><ItemLink item={ITEM.CHOPPED_PRODUCE} count={30} plural={''} /></Typography></li>
-      <li><Typography><ItemLink item={ITEM.DRIED_FLOWERS} count={30} plural={''} /></Typography></li>
-      <li><Typography><ItemLink item={ITEM.GROUND_GRAIN} count={30} plural={''} /></Typography></li>
-      <li><Typography><ItemLink item={ITEM.GROUND_SPICES} count={30} plural={''} /></Typography></li>
+      <li><Typography><ItemLink id={ITEM.CHOPPED_PRODUCE} count={30} plural={''} /></Typography></li>
+      <li><Typography><ItemLink id={ITEM.DRIED_FLOWERS} count={30} plural={''} /></Typography></li>
+      <li><Typography><ItemLink id={ITEM.GROUND_GRAIN} count={30} plural={''} /></Typography></li>
+      <li><Typography><ItemLink id={ITEM.GROUND_SPICES} count={30} plural={''} /></Typography></li>
     </ul>
     <Typography>These items can be acquired by either growing the raw materials and then processing them into these
       items yourself or by looking up and buying the cheapest set of 30 from the Auction House.</Typography>
@@ -45,7 +45,7 @@ const sections = [
   {
     title: 'Introduction',
     paragraphs: [
-      <Typography>Welcome to my introductory <ItemLink item={ITEM.GILDA_STAR} /> daily guide. There are currently over
+      <Typography>Welcome to my introductory <ItemLink id={ITEM.GILDA_STAR} /> daily guide. There are currently over
         100 possible Gilda Stars that can be obtained in a day, but not all of them are feasible or easy to
         do.</Typography>,
       'This guide will highlight the ways that you can obtain Gilda Stars from various daily quests and events. There are currently 52 Gilda Stars listed in this guide.',
@@ -137,7 +137,7 @@ const sections = [
               },
             ]}
             />
-            <Typography>There are a total of <ItemLink item={ITEM.GILDA_STAR} count={8} /> that can be easily obtained
+            <Typography>There are a total of <ItemLink id={ITEM.GILDA_STAR} count={8} /> that can be easily obtained
               every day from the Blue Salt Brotherhood. The quest locations are listed in the above maps and detailed
               how-tos are available below.</Typography>
             <hr />
@@ -221,8 +221,8 @@ const sections = [
               ]}
             />
             <Typography>
-              To raise each animal, you will need approximately <ItemLink item={ITEM.WATER} count={2} plural={''} />
-              &nbsp;and <ItemLink item={ITEM.VITA_ROOT} count={2} /> per animal. Water can be drawn from wells and Vita
+              To raise each animal, you will need approximately <ItemLink id={ITEM.WATER} count={2} plural={''} />
+              &nbsp;and <ItemLink id={ITEM.VITA_ROOT} count={2} /> per animal. Water can be drawn from wells and Vita
               Roots
               can be grown from Vita Seeds that are purchased from nearby stablehands.
             </Typography>
@@ -332,7 +332,7 @@ const sections = [
               },
             ]}
             />
-            <Typography>There are a total of <ItemLink item={ITEM.GILDA_STAR} count={8} /> that can be easily obtained
+            <Typography>There are a total of <ItemLink id={ITEM.GILDA_STAR} count={8} /> that can be easily obtained
               every day from the Blue Salt Brotherhood. The quest locations are listed in the above maps and detailed
               how-tos are available below.</Typography>
             <hr />
@@ -416,8 +416,8 @@ const sections = [
               ]}
             />
             <Typography>
-              To raise each animal, you will need approximately <ItemLink item={ITEM.WATER} count={2} plural={''} />
-              &nbsp;and <ItemLink item={ITEM.VITA_ROOT} count={2} /> per animal. Water can be drawn from wells and Vita
+              To raise each animal, you will need approximately <ItemLink id={ITEM.WATER} count={2} plural={''} />
+              &nbsp;and <ItemLink id={ITEM.VITA_ROOT} count={2} /> per animal. Water can be drawn from wells and Vita
               Roots
               can be grown from Vita Seeds that are purchased from nearby stablehands.
             </Typography>
@@ -806,7 +806,7 @@ const sections = [
       <Typography>One pack must be taken to your alliance's bridge and the other goes to your base's
         walls.</Typography>,
       <Typography>To craft the two necessary packs for gilda you need&nbsp;
-        <ItemLink item={ITEM.STARLIGHT_ARCHEUM_DUST} count={6 * 2} />.</Typography>,
+        <ItemLink id={ITEM.STARLIGHT_ARCHEUM_DUST} count={6 * 2} />.</Typography>,
     ],
   },
 ];

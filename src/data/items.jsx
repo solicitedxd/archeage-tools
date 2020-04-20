@@ -1,10 +1,9 @@
 import { QUALITY } from 'constants/items';
 import React from 'react';
-// import * as Icon from '../images/item/';
+
 const Icon = {};
 
 const Green = ({ children }) => <span className="tt-green">{children}</span>;
-const BGreen = ({ children }) => <span className="tt-bgreen">{children}</span>;
 const Blue = ({ children }) => <span className="tt-blue">{children}</span>;
 const Yellow = ({ children }) => <span className="tt-yellow">{children}</span>;
 const Orange = ({ children }) => <span className="tt-orange">{children}</span>;
@@ -51,64 +50,13 @@ const ITEM = Object.freeze({
   ECO_FRIENDLY_FUEL: 26548,
   AXLE_GREASE: 42314,
   RECOVERY_POUCH_KIT: 19034,
-  CHOPPED_PRODUCE: {
-    name: 'Chopped Produce',
-    icon: Icon.ChoppedProduce,
-    type: 'Material',
-    description: <span>
-      Vegetables such as <Yellow>potatoes</Yellow> and <Yellow>carrots</Yellow> chopped with a <Yellow>Blue Salt Knife</Yellow> into bite-size pieces.
-      Blue Salt Knives can be purchased from <Blue>general merchants</Blue>.<br />
-      Used in cooking, local specialties, and various crafts.
-    </span>,
-    price: 20,
-  },
-  DRIED_FLOWERS: {
-    name: 'Dried Flowers',
-    icon: Icon.DriedFlowers,
-    type: 'Material',
-    description: <span>
-      Flowers such as <Yellow>azaleas</Yellow> and <Yellow>roses</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
-      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
-      Used in cooking, local specialties, and various crafts.
-    </span>,
-    price: 20,
-  },
-  GROUND_GRAIN: {
-    name: 'Ground Grain',
-    icon: Icon.GroundGrain,
-    type: 'Material',
-    description: <span>
-      Grain such as <Yellow>barley</Yellow> and <Yellow>rice</Yellow> ground with a <Yellow>Blue Salt Knife</Yellow>.
-      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
-      Used in cooking, local specialties, and various crafts.
-    </span>,
-    price: 20,
-  },
-  GROUND_SPICES: {
-    name: 'Ground Spices',
-    icon: Icon.GroundSpices,
-    type: 'Material',
-    description: <span>
-      Spices such as <Yellow>iris</Yellow> and <Yellow>mint</Yellow> processed with a <Yellow>Blue Salt Knife</Yellow>.
-      Blue Salt Knives are sold by <Blue>general merchants</Blue>.<br />
-      Used in cooking, local specialties, and various crafts.
-    </span>,
-    price: 20,
-  },
+  CHOPPED_PRODUCE: 30898,
+  DRIED_FLOWERS: 30900,
+  GROUND_GRAIN: 30902,
+  GROUND_SPICES: 30901,
   HONEY: 28481,
   CARROT: 7998,
-  STARLIGHT_ARCHEUM_DUST: {
-    name: 'Starlight Archeum Dust',
-    icon: Icon.StarlightDust,
-    type: 'Archeum',
-    description: <span>
-      Pure, condensed magic, trapped in physical form. Energy from the stars makes it especially useful in handicrafting.<br /><br />
-      A lack of magic--or life force--creates monsters, changes the climate, and weakens the barriers that protect the world from other dimensions.
-      Using Archeum releases healing magic back into nature.
-      <Use>Alchemy: Spend 5 Labor to combine 5 Starlight Archeum Dusts into 1 Starlight Archeum Shard. Auto-use: shift+right-click</Use>
-    </span>,
-    price: 50,
-  },
+  STARLIGHT_ARCHEUM_DUST: 16349,
   MYSTERIOUS_ABYSSAL_ENHANCER: 46576,
   NORYETTE_EARRING: {
     name: 'Noryette Earring',
@@ -413,99 +361,10 @@ const ITEM = Object.freeze({
   },
   BLUE_SALT_KNIFE: 8326,
   BLUE_SALT_HAMMER: 8329,
-  REDTALON_HELM: {
-    name: 'Redtalon Helm',
-    icon: Icon.RedtalonHelm,
-    type: 'Pet Gear',
-    quality: QUALITY.ARCANE,
-    bindsOnPickup: true,
-    petLevel: 50,
-    durability: 85,
-    slot: 'Head',
-    stats: {
-      'Physical Defense': 550,
-      'Magic Defense': 550,
-    },
-    tempering: true,
-    sockets: 5,
-    description: <span>A protective helm for mounts and battle pets.</span>,
-    additionalEffect: <span>
-      Physical Defense +418<br />
-      Continuous Health Regen +17<br />
-      Post-Cast Mana Regen +14
-    </span>,
-    price: 2888,
-  },
-  REDTALON_ARMOR: {
-    name: 'Redtalon Armor',
-    icon: Icon.RedtalonArmor,
-    type: 'Pet Gear',
-    quality: QUALITY.ARCANE,
-    bindsOnPickup: true,
-    petLevel: 50,
-    durability: 140,
-    slot: 'Chest',
-    stats: {
-      'Physical Defense': 917,
-      'Magic Defense': 917,
-    },
-    tempering: true,
-    sockets: 6,
-    description: <span>Protects a <Orange>battle pet's</Orange> body and increases its critical attacks.</span>,
-    additionalEffect: <span>
-      Max Health +2100<br />
-      Max Mana +1380<br />
-      Melee Critical Rate +8.8%<br />
-      Ranged Critical Rate +8.8%<br />
-      Magic Critical Rate +8.8%
-    </span>,
-    price: 4125,
-  },
-  REDTALON_SADDLE: {
-    name: 'Redtalon Saddle',
-    icon: Icon.RedtalonSaddle,
-    type: 'Pet Gear',
-    quality: QUALITY.ARCANE,
-    bindsOnPickup: true,
-    petLevel: 50,
-    durability: 25,
-    slot: 'Chest',
-    stats: {
-      'Physical Defense': 183,
-      'Magic Defense': 183,
-    },
-    tempering: true,
-    sockets: 3,
-    description: <span>A special saddle for increased riding stability. It can only be equipped on mounts.</span>,
-    additionalEffect: <span>
-      Max Health +1750<br />
-      Max Mana +1150<br />
-      Move Speed +3.0%
-    </span>,
-    price: 825,
-  },
-  REDTALON_LEGGUARDS: {
-    name: 'Redtalon Legguards',
-    icon: Icon.RedtalonLegguards,
-    type: 'Pet Gear',
-    quality: QUALITY.ARCANE,
-    bindsOnPickup: true,
-    petLevel: 50,
-    durability: 55,
-    slot: 'Feet',
-    stats: {
-      'Physical Defense': 367,
-      'Magic Defense': 367,
-    },
-    tempering: true,
-    sockets: 4,
-    description: <span>Protection for the legs of mounts and battle pets.</span>,
-    additionalEffect: <span>
-      Move Speed +11.0%<br />
-      Evasion +8.8%
-    </span>,
-    price: 2063,
-  },
+  REDTALON_HELM: 28082,
+  REDTALON_ARMOR: 28083,
+  REDTALON_SADDLE: 28080,
+  REDTALON_LEGGUARDS: 28081,
   LABYRINTH_VALUABLES_CHEST: 28334,
   CARMILAS_MEMORY: 27137,
   SUNSET_PORTALSTONE: 39780,

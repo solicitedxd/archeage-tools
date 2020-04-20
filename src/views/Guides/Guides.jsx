@@ -8,8 +8,8 @@ import Link from 'components/Link';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import React, { Component } from 'react';
 import {
+  delimitName,
   setTitle,
-  slug,
 } from 'utils/string';
 import * as AllGuides from '../../data/guides';
 
@@ -45,7 +45,7 @@ class Guides extends Component {
                     {Object.entries(section.children).filter(g => !g.disabled).map(([id, guide]) => (
                       <li key={`gc-${id}`}>
                         <Typography>
-                          <Link to={`/guides/${slug(guide.name)}`} color="primary">
+                          <Link to={`/guides/${delimitName(id)}`} color="primary">
                             {guide.name}
                           </Link>
                         </Typography>

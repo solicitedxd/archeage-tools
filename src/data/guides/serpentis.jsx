@@ -40,10 +40,10 @@ const sections = [
       <Typography variant="subtitle1">Notable Loot</Typography>,
       <Typography variant="caption" color="primary">You will get one of these every run:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.REDTALON_HELM} />
-        <Item {...ITEM.REDTALON_ARMOR} />
-        <Item {...ITEM.REDTALON_SADDLE} />
-        <Item {...ITEM.REDTALON_LEGGUARDS} />
+        <Item id={ITEM.REDTALON_HELM} />
+        <Item id={ITEM.REDTALON_ARMOR} />
+        <Item id={ITEM.REDTALON_SADDLE} />
+        <Item id={ITEM.REDTALON_LEGGUARDS} />
       </div>,
       <Typography variant="h5">Abyssal Trap</Typography>,
       'The Abyssal Trap will always be the first room you get in every run of Serpentis.',
@@ -123,11 +123,11 @@ const sections = [
     paragraphs: [
       <Typography variant="subtitle1">Notable Loot</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.LABYRINTH_VALUABLES_CHEST} />
+        <Item id={ITEM.LABYRINTH_VALUABLES_CHEST} />
       </div>,
       <Typography variant="caption" color="primary">Chance of:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.CARMILAS_MEMORY} />
+        <Item id={ITEM.CARMILAS_MEMORY} />
       </div>,
       <Typography variant="h5">Sanctuary of Darkness</Typography>,
       'The Distorted Duaxini deals magic damage with two primary attacks and has a stacking damage buff as the fight goes on.',
@@ -187,9 +187,9 @@ const sections = [
       <br />,
       <Typography variant="caption" color="primary">You can get up to 2 of one of these:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.SUNPOINT} />
-        <Item {...ITEM.MOONPOINT} />
-        <Item {...ITEM.STARPOINT} />
+        <Item id={ITEM.SUNPOINT} />
+        <Item id={ITEM.MOONPOINT} />
+        <Item id={ITEM.STARPOINT} />
       </div>,
       <Typography variant="h5">Lerman</Typography>,
       'Work in progress...',
@@ -204,8 +204,8 @@ const sections = [
     paragraphs: [
       <Typography variant="subtitle1">Notable Loot</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.SUNGLOW_LUNAGEM} />
-        <Item {...ITEM.MYSTERIOUS_GEM} />
+        <Item id={ITEM.SUNGLOW_LUNAGEM} />
+        <Item id={ITEM.MYSTERIOUS_GEM} />
       </div>,
       <Typography variant="h5">Sirothe the Infernal</Typography>,
       <Typography variant="h6">Abilities</Typography>,

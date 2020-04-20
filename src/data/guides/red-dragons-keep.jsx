@@ -26,7 +26,7 @@ export const sections = Object.freeze([
       <Typography>This instance is only available on certain days of the week. To see when it's
         available next, please see the <Link to="/schedule">Event Schedule</Link> page.</Typography>,
       <Typography>For successfully killing the Red Dragon, you'll receive a <ItemLink
-        item={ITEM.RED_DRAGON_POUCH} /> that contains a bunch of goodies.</Typography>,
+        id={ITEM.RED_DRAGON_POUCH} /> that contains a bunch of goodies.</Typography>,
       'The fight has several phases, switching back and forth between the dragon being in flight and grounded.',
     ],
   },

@@ -14,7 +14,7 @@ const name = 'ArchePass';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Feb 19, 2020',
+  lastUpdated: 'Apr 19, 2020',
 };
 
 const category = GUIDE_CATEGORY.GAMEPLAY;
@@ -29,8 +29,8 @@ const sections = [
         float="right"
       />,
       <Typography>The ArchePass is a weekly mission system unique to ArcheAge Unchained with the main rewards consisting
-        of <ItemLink item={ITEM.DILIGENCE_COIN} plural="s" /> and&nbsp;
-        <ItemLink item={ITEM.BOUND_LABOR_RECHARGER} plural="s" />.</Typography>,
+        of <ItemLink id={ITEM.DILIGENCE_COIN} plural="s" /> and&nbsp;
+        <ItemLink id={ITEM.BOUND_LABOR_RECHARGER} plural="s" />.</Typography>,
       'There are four passes: a Basic pass (which has ludicrous point requirements for the rewards), and quarterly rotating Combat, Equipment, and Vocation passes.',
       'The quarterly passes will change every 3 months. The basis pass is refreshed every year.',
       <Lightbox
@@ -75,12 +75,12 @@ const sections = [
     title: 'Missions',
     paragraphs: [
       <Typography>
-        Every mission rewards 1500 ArchePass points and either 1 or 2 <ItemLink item={ITEM.DILIGENCE_COIN} />.
+        Every mission rewards 1500 ArchePass points and either 1 or 2 <ItemLink id={ITEM.DILIGENCE_COIN} />.
       </Typography>,
       'You can complete 12 missions per week, which is shared across all passes.',
       'You are allotted 6 mission change attempts per day, also shared across all passes.',
       <Typography variant="h6">With the Watch</Typography>,
-      <Typography variant="subtitle2">Requires <ItemLink item={ITEM.GILDA_STAR} count={5} /> to unlock.</Typography>,
+      <Typography variant="subtitle2">Requires <ItemLink id={ITEM.GILDA_STAR} count={5} /> to unlock.</Typography>,
       <Ability
         name="Kill 10 Hostile Players"
         description="Hostile faction kills only count towards this mission, if the level gap is below 4 levels."
@@ -142,7 +142,7 @@ const sections = [
         ]}
       />,
       <Typography variant="h6">Til It Like It Is</Typography>,
-      <Typography variant="subtitle2">Requires <ItemLink item={ITEM.BLUE_SALT_HAMMER} count={2} /> to
+      <Typography variant="subtitle2">Requires <ItemLink id={ITEM.BLUE_SALT_HAMMER} count={2} /> to
         unlock.</Typography>,
       <Ability
         name="Obtain 500 Vocation Badges"
@@ -173,7 +173,7 @@ const sections = [
         description="Complete 2 Supply Demand quests at Community Centers."
       />,
       <Typography variant="h6">ArcheMaster Challenges</Typography>,
-      <Typography variant="subtitle2">Requires <ItemLink item={ITEM.GILDA_STAR} count={10} /> to unlock.</Typography>,
+      <Typography variant="subtitle2">Requires <ItemLink id={ITEM.GILDA_STAR} count={10} /> to unlock.</Typography>,
       <Ability
         name="10k XP"
         description="Only available for non-ancestral level players."
@@ -238,6 +238,10 @@ const sections = [
           <li>
             Rarely upon logging in, an ArchePass mission will be marked as at 100% progress, but can not be
             completed. <span className="alert-red">A mission in this state must be re-rolled.</span>
+          </li>
+          <li>
+            When at 11/12 weekly missions, completing 2 missions at the same time will both give your pass points as
+            normal, technically reaching 13/12 for the week.
           </li>
         </ul>
       </Typography>,

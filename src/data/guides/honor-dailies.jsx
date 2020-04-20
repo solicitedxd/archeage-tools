@@ -117,7 +117,7 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={900} inline />
-        <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
+        <ItemLink id={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
       </Typography>,
     ],
   },
@@ -160,8 +160,8 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={900} inline />
-        <ItemLink item={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
-        <ItemLink item={ITEM.GILDA_STAR} count={2} />
+        <ItemLink id={ITEM.IMPROVED_INFUSION_SUPPLY_KIT} count={9} />
+        <ItemLink id={ITEM.GILDA_STAR} count={2} />
       </Typography>,
     ],
   },
@@ -195,7 +195,7 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={1800} inline />
-        <ItemLink item={ITEM.CURSED_ARMOR_SCRAP} count={13} />
+        <ItemLink id={ITEM.CURSED_ARMOR_SCRAP} count={13} />
       </Typography>,
     ],
   },
@@ -230,7 +230,7 @@ const sections = [
       <Typography variant="subtitle1" color="primary">Rewards</Typography>,
       <Typography className="reward-list">
         <Currency type="Honor" count={1800} inline />
-        <ItemLink item={ITEM.ACID_GOBBET} count={12} />
+        <ItemLink id={ITEM.ACID_GOBBET} count={12} />
       </Typography>,
     ],
   },
@@ -273,7 +273,7 @@ const sections = [
       />,
       'Lusca Awakening can be obtained from the Seamist Researchers in Marianople and Western Diamond Shores (for Nuia), Austera and Eastern Diamond Shores (for Haranya), or central Diamond Shores near the Mistsong Summit entrance.',
       'The quest pickup point near the Mistsong Summit entrance will always have the quest available while the other four will only be available when the event is ongoing.',
-      <Typography>See the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
+      <Typography>Use the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
         next.</Typography>,
       <MapEmbed
         zone={ZONE.SEA_OF_GRAVES}
@@ -310,7 +310,7 @@ const sections = [
       <Typography>From the Instance menu, you may queue up for the Faction War instance of Golden Plains Battle up to
         three times per day, based on your region's <Link to="/schedule">event schedule</Link>, but requires 4000
         equipment points to enter.</Typography>,
-      <Typography>See the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
+      <Typography>Use the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
         next.</Typography>,
       <Typography>The goal of this instance is to either:<br />
         &nbsp;&nbsp;1. destroy the opposing faction's base.<br />
@@ -334,22 +334,22 @@ const sections = [
     title: 'The Fall of Hiram City',
     paragraphs: [
       'The Fall of Hiram City is a PvE raid instance available a certain times every day. Depending on how well you do, this instance can award up to 1500 Honor Points.',
-      <Typography>See the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
+      <Typography>Use the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
         next.</Typography>,
       <Typography>
         <Typography component="span" color="primary">Best Reward:&nbsp;</Typography>
         <Currency inline type="Honor" count={1500} />
-        <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={20} style={{ marginLeft: 6 }} />
+        <ItemLink id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={20} style={{ marginLeft: 6 }} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Median Reward:&nbsp;</Typography>
         <Currency inline type="Honor" count={1000} />
-        <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={12} style={{ marginLeft: 6 }} />
+        <ItemLink id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={12} style={{ marginLeft: 6 }} />
       </Typography>,
       <Typography>
         <Typography component="span" color="primary">Minimum Reward:&nbsp;</Typography>
         <Currency inline type="Honor" count={800} />
-        <ItemLink item={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={8} style={{ marginLeft: 6 }} />
+        <ItemLink id={ITEM.MYSTERIOUS_HIRAM_INFUSION} count={8} style={{ marginLeft: 6 }} />
       </Typography>,
     ],
   },
@@ -359,7 +359,7 @@ const sections = [
       <Typography>The Red Dragon's Keep is available on certain days of the week, two times per day. You may enter it
         once per day. In the North American region, on days it is available, the Red Dragon's Keep can be entered once
         before daily reset and once after.</Typography>,
-      <Typography>See the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
+      <Typography>Use the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
         next.</Typography>,
       <Typography>Check out the <Link to="/guides/red-dragon-keep">guide</Link> to learn about the fight.</Typography>,
       <Typography variant="subtitle1" color="primary">Killing the Red Dragon awards:</Typography>,
@@ -375,7 +375,7 @@ const sections = [
       <Typography>The Kadum is available on certain days of the week, two times per day. You may enter the instance
         once per day. In the North American region, on days it is available, the Kadum can be fought once before daily
         reset and once after.</Typography>,
-      <Typography>See the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
+      <Typography>Use the <Link to="/schedule">Event Schedule</Link> to see when this instance is available
         next.</Typography>,
       <Typography variant="subtitle1" color="primary">Killing Kadum awards:</Typography>,
       <Typography className="reward-list">
