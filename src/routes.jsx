@@ -1,28 +1,28 @@
-import Dailies from 'components/pages/Dailies';
-import Folio from 'components/pages/Folio';
-import Guides from 'components/pages/Guides';
-import GuideViewer from 'components/pages/GuideViewer';
-import Home from 'components/pages/Home';
-import EditNewsPost from 'components/pages/Home/EditNewsPost';
-import NewsPost from 'components/pages/Home/NewsPost';
-import Main from 'components/pages/Main';
-import Mounts from 'components/pages/Mounts';
-import NotFound from 'components/pages/NotFound';
-import Schedule from 'components/pages/Schedule';
-import Skills from 'components/pages/Skills';
-import Taxes from 'components/pages/Taxes';
-import Thunderstruck from 'components/pages/Thunderstruck';
-import TradePacks from 'components/pages/TradePacks';
 import React from 'react';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
+import Dailies from 'views/Dailies';
+import Folio from 'views/Folio';
+import Guides from 'views/Guides';
+import GuideViewer from 'views/GuideViewer';
+import Home from 'views/Home';
+import EditNewsPost from 'views/Home/EditNewsPost';
+import NewsPost from 'views/Home/NewsPost';
+import Main from 'views/Main';
+import Mounts from 'views/Mounts';
+import NotFound from 'views/NotFound';
+import Schedule from 'views/Schedule';
+import Skills from 'views/Skills';
+import Taxes from 'views/Taxes';
+import Thunderstruck from 'views/Thunderstruck';
+import TradePacks from 'views/TradePacks';
 
 export default (
   <Main>
     <Switch>
       <Route path="/dailies" exact component={Dailies} />
       <Route path="/skills" exact component={Skills} />
-      <Route path="/schedule/:eventId?" exact component={Schedule} />
+      <Route path="/schedule" exact component={Schedule} />
       <Route path="/taxes" exact component={Taxes} />
       <Route path="/thunderstruck" exact component={Thunderstruck} />
       <Route path="/crops" exact component={Thunderstruck} />

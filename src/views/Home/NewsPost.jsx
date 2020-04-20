@@ -19,7 +19,6 @@ import DraftJSRender from 'components/DraftJSRender';
 import IfPerm from 'components/IfPerm/IfPerm';
 import Link from 'components/Link';
 import OptionalTooltip from 'components/OptionalTooltip';
-import EditNewsPost from 'components/pages/Home/EditNewsPost';
 import Username from 'components/Username';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
@@ -32,6 +31,7 @@ import {
   substitute,
 } from 'utils/string';
 import xhr from 'utils/xhr';
+import EditNewsPost from './EditNewsPost';
 
 class NewsPost extends Component {
   static defaultProps = {

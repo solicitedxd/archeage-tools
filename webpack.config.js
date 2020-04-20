@@ -39,6 +39,7 @@ module.exports = {
       reducers: join(src, 'reducers'),
       styles: join(src, 'styles'),
       utils: join(src, 'utils'),
+      views: join(src, 'views'),
       // react hot dom fix
       'react-dom': '@hot-loader/react-dom',
     },

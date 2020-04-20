@@ -45,8 +45,8 @@ import {
   setTitle,
   slug,
 } from 'utils/string';
-import * as Portrait from '../../../images/mount/';
-import * as Icon from '../../../images/mount/icon/';
+import * as Portrait from '../../images/mount';
+import * as Icon from '../../images/mount/icon';
 import MountViewer from './MountViewer';
 
 const SPEED_TIERS = new Map();

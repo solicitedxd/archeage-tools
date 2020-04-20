@@ -24,7 +24,7 @@ import {
   setTitle,
   slug,
 } from 'utils/string';
-import * as Portrait from '../../../images/mount/';
+import * as Portrait from '../../images/mount';
 
 class MountViewer extends Component {
   static propTypes = {

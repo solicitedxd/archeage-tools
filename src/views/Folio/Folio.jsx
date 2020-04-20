@@ -10,8 +10,6 @@ import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fetchCategories } from 'actions/gameData';
 import { push } from 'actions/navigate';
-import RecipeList from 'components/pages/Folio/RecipeList';
-import RecipeViewer from 'components/pages/Folio/RecipeViewer';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -22,8 +20,10 @@ import {
   pascalCase,
   setTitle,
 } from 'utils/string';
-import * as VocationIcon from '../../../images/vocation/';
+import * as VocationIcon from '../../images/vocation';
 import FolioHeader from './FolioHeader';
+import RecipeList from './RecipeList';
+import RecipeViewer from './RecipeViewer';
 
 class Folio extends Component {
   state = {

@@ -11,7 +11,7 @@ import {
   setTitle,
   slug,
 } from 'utils/string';
-import * as AllGuides from '../../../data/guides/';
+import * as AllGuides from '../../data/guides';
 
 // populate guide categories with guides
 const guideCategories = Object.entries(GUIDE_CATEGORY).reduce((obj, [key, cat]) => {

@@ -44,7 +44,7 @@ import { sortBy } from 'utils/array';
 import { getDayNum } from 'utils/schedule';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
-import * as EventIcon from '../../../images/event/';
+import * as EventIcon from '../../images/event';
 
 const getIconName = (url) => {
   try {

@@ -39,7 +39,6 @@ import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import NumberField from 'components/NumberField';
-import Material from 'components/pages/Folio/Material';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import {
   CRAFT_GOLD_SALE,
@@ -58,6 +57,7 @@ import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import { setTitle } from 'utils/string';
+import Material from './Material';
 
 class RecipeViewer extends Component {
   static propTypes = {

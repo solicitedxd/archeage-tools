@@ -12,7 +12,6 @@ import {
 import MenuIcon from '@material-ui/icons/Menu';
 import KeyComponent from 'components/KeyComponent';
 import Link from 'components/Link';
-import NotFound from 'components/pages/NotFound';
 import ScrollToTop from 'components/ScrollToTop';
 import TabContent from 'components/TabContent';
 import React, { Component } from 'react';
@@ -25,7 +24,8 @@ import {
   slug,
   unslug,
 } from 'utils/string';
-import * as Guides from '../../../data/guides/';
+import * as Guides from '../../data/guides';
+import NotFound from '../NotFound';
 
 class GuideViewer extends Component {
   state = {
