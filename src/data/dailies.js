@@ -1095,7 +1095,7 @@ export default [
     name: 'At Death\'s Door',
     zones: [ZONE.THE_FALL_OF_HIRAM_CITY],
     rewards: [{ type: CURRENCY.ITEM, item: ITEM.MYSTERIOUS_HIRAM_INFUSION, count: 20 },
-      { type: CURRENCY.LEADERSHIP, count: 10 },
+      { type: CURRENCY.LEADERSHIP, count: 5 },
       { type: CURRENCY.ITEM, item: ITEM.HONORABLE_VICTORY_4, count: 1, choice: true },
       { type: CURRENCY.ITEM, item: ITEM.HONORABLE_VOCATION_4, count: 1, choice: true }],
     difficulty: DIFFICULTY.EPIC,
