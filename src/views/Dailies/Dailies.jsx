@@ -124,12 +124,13 @@ class Dailies extends Component {
         } else {
           rewardGroup = rewardArray.find(rw => rw.type === reward.type);
         }
+        const rewardCount = (reward.count || 1);
         if (rewardGroup) {
           // increase existing reward group count
-          rewardGroup.count += reward.count || 1;
+          rewardGroup.count += rewardCount;
         } else {
           // create new reward entry
-          const newGroup = { ...reward, count: reward.count || 1 };
+          const newGroup = { ...reward, count: rewardCount };
           if (reward.type === CURRENCY.GILDA) {
             newGroup.item = ITEM.GILDA_STAR;
           }

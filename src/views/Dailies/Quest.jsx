@@ -54,7 +54,7 @@ class Quest extends Component {
   };
 
   render() {
-    const { name, zones: zoneObj, difficulty, rewards, quests, faction, hideMode, hiddenQuests, note } = this.props;
+    const { name, zones: zoneObj, difficulty, rewards, quests, faction, hideMode, hiddenQuests, note, repeatable } = this.props;
     const { rewardItems, rewardItemChoices, rewardXps, rewardCurrencies } = splitRewards(rewards);
     const zones = getZones(zoneObj, faction);
 
@@ -72,8 +72,18 @@ class Quest extends Component {
             onChange={this.handleChange}
             color="primary"
           />}
-          title={<Typography variant="subtitle1" className="quest-name"><span>{name}{difficulty &&
-          <span className={cn('difficulty', difficulty)} />}</span></Typography>}
+          title={
+            <Typography variant="subtitle1" className="quest-name">
+              <span>
+                {name}
+                {difficulty && <span className={cn('difficulty', difficulty)} />}
+                {Boolean(repeatable) &&
+                <Tooltip title={`Can be repeated ${repeatable} times.`}>
+                  <span className="repeatable" />
+                </Tooltip>}
+              </span>
+            </Typography>
+          }
           subheader={<Typography variant="overline">{zones.sort().join(', ')}</Typography>}
           disableTypography
           action={<div className="reward-list">

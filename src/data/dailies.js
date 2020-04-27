@@ -414,7 +414,8 @@ export default [
   {
     name: 'Golden Plains Battle',
     zones: [ZONE.HALCYONA],
-    rewards: [{ type: CURRENCY.HONOR, count: 2000 },
+    repeatable: 3,
+    rewards: [{ type: CURRENCY.HONOR, count: 2000 }, { type: CURRENCY.LEADERSHIP, count: 10 },
       { type: CURRENCY.ITEM, item: ITEM.IMPROVED_INFUSION_SUPPLY_KIT, count: 20 }],
   },
   {
@@ -1103,13 +1104,13 @@ export default [
   {
     name: 'Red Dragon\'s Keep',
     zones: [ZONE.RED_DRAGONS_KEEP],
-    rewards: [{ type: CURRENCY.ITEM, item: ITEM.RED_DRAGON_POUCH, count: 1 }],
+    rewards: [{ type: CURRENCY.ITEM, item: ITEM.RED_DRAGON_POUCH, count: 1 }, { type: CURRENCY.LEADERSHIP, count: 5 }],
     difficulty: DIFFICULTY.MYTHIC,
   },
   {
     name: 'Kadum',
     zones: [ZONE.MISTMERROW_KADUM],
-    rewards: [{ type: CURRENCY.ITEM, item: ITEM.KADUMS_CRATE, count: 1 }],
+    rewards: [{ type: CURRENCY.ITEM, item: ITEM.KADUMS_CRATE, count: 1 }, { type: CURRENCY.LEADERSHIP, count: 5 }],
     difficulty: DIFFICULTY.MYTHIC,
   },
   {
