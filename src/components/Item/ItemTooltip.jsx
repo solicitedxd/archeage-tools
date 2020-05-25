@@ -46,7 +46,7 @@ const TooltipContent = (item) => {
     <>
       <section className="header">
         <div className={cn('item-icon', 'icon', { [overlay]: Boolean(overlay) })} data-grade={grade}>
-          <img src={`/images/item/${icon}.png`} alt="" />
+          <img src={`/images/icon/${icon}.png`} alt="" />
         </div>
         <div className="name" data-grade={grade}>
           <Typography variant="h5" component="h5">{type}</Typography>

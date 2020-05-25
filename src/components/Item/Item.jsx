@@ -54,7 +54,7 @@ class Item extends Component {
     return (
       <ItemTooltip itemId={id} grade={grade} disabled={tooltipDisabled || !name}>
         <span className={cn('item-icon', { [overlay]: Boolean(overlay), inline })} data-grade={grade} data-id={id}>
-          <img src={`/images/item/${icon}.png`} alt={name} />
+          <img src={`/images/icon/${icon}.png`} alt={name} />
           <span className="count">{count}</span>
         </span>
       </ItemTooltip>
