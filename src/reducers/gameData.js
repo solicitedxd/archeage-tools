@@ -4,7 +4,10 @@ import {
   DATA_EVENT_TYPES,
   DATA_EVENTS,
   DATA_ITEM,
+  DATA_MOUNTS,
   DATA_RECIPE,
+  DATA_SKILL,
+  DATA_SKILLSETS,
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
@@ -64,6 +67,29 @@ const gameData = (state = initialState, action) => {
       return {
         ...state,
         eventTypes: action.eventTypes,
+      };
+    case DATA_SKILL:
+      return {
+        ...state,
+        skills: {
+          ...state.skills,
+          ...action.data,
+        },
+      };
+    case DATA_SKILLSETS:
+      return {
+        ...state,
+        skillsets: action.skillsets,
+        classes: action.classes,
+      };
+    case DATA_MOUNTS:
+      return {
+        ...state,
+        mounts: {
+          mounts: action.mounts,
+          types: action.mountTypes,
+          obtainTypes: action.obtainTypes,
+        },
       };
     default:
       return state;

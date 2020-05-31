@@ -13,6 +13,11 @@ import * as WitchcraftIcon from '../images/skill/witchcraft/';
 
 export const MAX_POINTS = 18;
 
+export const DEFAULT_SKILLS = new Array(12).fill(0);
+export const DEFAULT_ANCESTRALS = new Array(6).fill(0);
+export const ANCESTRAL_MAX = 3;
+export const ANCESTRAL_LENGTH = 6;
+
 export const ATTACK = Object.freeze({
   MELEE: 'Melee Attack',
   MAGIC: 'Magic Attack',

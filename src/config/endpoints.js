@@ -28,5 +28,11 @@ export default {
     events: '/service/events',
     eventTypes: '/service/events/types',
     users: '/service/users?usernames=${names}',
+    skills: '/service/skills?ids=${skillIds}',
+    skillsets: '/service/skills/skillsets',
+    classes: '/service/skills/classes',
+    mounts: '/service/mounts',
+    mountTypes: '/service/mounts/types',
+    mountObtainTypes: '/service/mounts/obtainTypes',
   },
 };

@@ -27,7 +27,7 @@ class EffectIcon extends Component {
     return (
       <div className={cn('effect-icon', { 'debuff': negative }, className)}>
         <Tooltip title={<div dangerouslySetInnerHTML={{ __html: tooltip || name }} />}>
-          <img src={icon} alt="" />
+          <img src={`/images/icon/${icon}.png`} alt="" />
         </Tooltip>
       </div>
     );

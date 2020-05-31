@@ -4,7 +4,7 @@ import {
   ELEMENT,
   GLOBAL_CD,
 } from 'constants/skills';
-import { getSkillIdByName } from 'utils/skillsets';
+import { getSkillIdByName } from 'utils/skills';
 import * as Icon from '../../images/skill/defense/';
 
 const skills = Object.freeze([

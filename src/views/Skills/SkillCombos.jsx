@@ -13,6 +13,7 @@ import EffectIcon from 'components/Skill/EffectIcon';
 import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
 import { array } from 'react-proptypes';
+import { connect } from 'react-redux';
 import {
   compareBuff,
   deepCopy,
@@ -213,4 +214,8 @@ class SkillCombos extends Component {
   }
 }
 
-export default SkillCombos;
+const mapStateToProps = ({ gameData: { skillsets } }) => ({
+  skillsets,
+});
+
+export default connect(mapStateToProps, null)(SkillCombos);

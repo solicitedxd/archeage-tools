@@ -4,8 +4,8 @@
 .MuiTooltip-tooltip.archeage-tooltip {
   font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
   width: 216px;
-  background: rgba(82, 80, 63, 0.95);
-  color: #D0BFAC;
+  background: rgba(113, 110, 83, 0.95);
+  color: #D7C8B5;
   padding: 16px;
   border-radius: 3px;
   line-height: 1.2;
@@ -15,10 +15,10 @@
     width: 262px;
   }
 
-  border: 1px solid #34341A;
-  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
-  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
-  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #33341B;
+  border: 1px solid #757548;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #494A2A;
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #494A2A;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #494A2A;
 
   .header {
     display: flex;
@@ -37,7 +37,7 @@
     font-size: 13px;
   }
 
-  section + section:before {
+  section + section:before, section.id:after {
     content: "";
     display: block;
     height: 0;
@@ -134,7 +134,7 @@
   }
 
   .skill-requirements {
-    color: #BE3D36;
+    color: #FF4538;
   }
 
   .passive .skill-requirements:before {
@@ -145,12 +145,8 @@
     display: block;
   }
 
-  .description {
-    padding-bottom: 8px;
-  }
-
   .combos {
-    margin-top: 10px;
+    margin-top: 18px;
   }
 
   .combo-rows {
@@ -202,6 +198,19 @@
   }
 }
 
+.dark-mode .MuiTooltip-tooltip.archeage-tooltip {
+  background: rgba(43, 43, 40, 0.95);
+  border-color: #272725;
+  -webkit-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #2E2E2E;
+  -moz-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #2E2E2E;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.75), inset 0 0 5px 0 #2E2E2E;
+  color: #D0BFAC;
+
+  .icon {
+    background-color: transparent;
+  }
+}
+
 .negative, .negative .currency {
   color: #BE3D36;
 }
@@ -237,7 +246,7 @@
   color: #95B84B;
 }
 
-.text-buff {
+.text-buff, .text-bright_green {
   color: #02FE46;
 }
 
@@ -247,6 +256,10 @@
 
 .text-use, .text-gray {
   color: #919191;
+}
+
+.text-white {
+  color: #FFFFFF;
 }
 
 .text-use {

@@ -7,6 +7,8 @@ import {
   DATA_EVENTS,
   DATA_ITEM,
   DATA_RECIPE,
+  DATA_SKILL,
+  DATA_SKILLSETS,
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
@@ -238,4 +240,95 @@ export const fetchEvents = () => (dispatch, getState) => {
 
 export const setEvent = (event) => (dispatch) => {
   dispatch({ type: DATA_EVENT_REPLACE, event });
+};
+
+/** Skill Batching **/
+
+let skillQueue = new Set();
+
+const fetchSkillQueue = debounce(() => {
+  dispatch(fetchSkills(Array.from(skillQueue)));
+  skillQueue = new Set();
+}, 50);
+
+export const fetchSkill = (skillId) => {
+  if (!skillId || skillId === 'undefined') return;
+  skillQueue.add(skillId);
+
+  fetchSkillQueue();
+};
+
+export const fetchSkills = (...skills) => (dispatch, getState) => {
+  const { skills: storedSkills } = getState().gameData;
+
+  let skillIds = Array.isArray(skills[0]) ? new Set(skills[0]) : new Set(skills);
+  // filter out already fetched skills
+  skillIds = Array.from(skillIds).filter(id => !Boolean(storedSkills[id]));
+  const chunk = 100;
+  for (let i = 0, j = skillIds.length; i < j; i += chunk) {
+    const skillIdStr = skillIds.slice(i, i + chunk).join(',');
+
+    xhr.get(substitute(config.endpoints.service.skills, { skillIds: skillIdStr }))
+    .then(({ data }) => {
+      dispatch({ type: DATA_SKILL, data: arrayToMap(data) });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch skill data.', NOTIFICATION_TYPE.WARNING));
+    });
+  }
+};
+
+export const fetchSkillsets = () => (dispatch, getState) => {
+  const { skillsets } = getState().gameData;
+
+  if (objectHasProperties(skillsets)) return;
+
+  xhr.get(config.endpoints.service.skillsets)
+  .then(({ data: skillsets }) => {
+    xhr.get(config.endpoints.service.classes)
+    .then(({ data: classes }) => {
+      dispatch({ type: DATA_SKILLSETS, skillsets: arrayToMap(skillsets), classes });
+    });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch skillset data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const findClassName = (skillsetIds) => (_, getState) => {
+  const { classes, skillsets } = getState().gameData;
+
+  const classObj = classes.find(c => c.skillsetIds.every(skillSet => skillsetIds.includes(skillSet)));
+
+  if (classObj) {
+    return classObj.name;
+  } else {
+    console.error('Class not found for skillsets: ', skillsetIds, skillsetIds.map(ski => skillsets[ski].name));
+  }
+};
+
+export const getSkillsets = () =>
+  dispatch((_, getState) => {
+    const { skillsets } = getState().gameData;
+    return skillsets;
+  });
+
+export const fetchMounts = () => (dispatch, getState) => {
+  const { mounts } = getState().gameData;
+
+  if (objectHasProperties(mounts.mounts)) return;
+
+  xhr.get(config.endpoints.service.mounts)
+  .then(({ data: mounts }) => {
+    xhr.get(config.endpoints.service.mountTypes)
+    .then(({ data: mountTypes }) => {
+      xhr.get(config.endpoints.service.mountObtainTypes)
+      .then(({ data: obtainTypes }) => {
+        dispatch({ type: DATA_MOUNTS, mounts, mountTypes, obtainTypes });
+      })
+      .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
+    })
+    .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
+  })
+  .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
 };

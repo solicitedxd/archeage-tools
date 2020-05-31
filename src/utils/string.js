@@ -1,11 +1,16 @@
 import { convertFromRaw } from 'draft-js';
 
-export const substitute = (template, obj) => template.replace(/\${([a-z0-9_]+)(\[([0-9]+)])?}/gi, (match, capture, _, index) => {
+export const substitute = (template, obj, showKey) => template.replace(/\${([\w_]+)(\[["']?([\w_]+)["']?])?}/gi, (match, key, _, index) => {
+  let val;
   if (_) {
-    return obj[capture] ? obj[capture][index] : null;
+    val = obj[key] ? obj[key][index] : null;
   } else {
-    return obj[capture];
+    val = obj[key];
   }
+  if (showKey) {
+    val = `<span class="text-white">[${key}]</span> ${val}`;
+  }
+  return val;
 });
 
 export const getNavId = (path) => path && path.substr(1).replace('/', '_');

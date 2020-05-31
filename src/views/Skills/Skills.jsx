@@ -1,32 +1,31 @@
 import {
   AppBar,
-  Button,
-  Dialog,
-  DialogContent,
   IconButton,
   Paper,
-  TextField,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import FileCopyIcon from '@material-ui/icons/FileCopy';
 import ReplayIcon from '@material-ui/icons/Replay';
-import ShareIcon from '@material-ui/icons/Share';
+import {
+  fetchSkillsets,
+  findClassName,
+} from 'actions/gameData';
 import cn from 'classnames';
-import { MAX_POINTS } from 'constants/skills';
-import SKILLSET from 'data/skillsets';
+import {
+  DEFAULT_SKILLS,
+  MAX_POINTS,
+} from 'constants/skills';
+import { equals } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { objectHasProperties } from 'utils/object';
 import {
-  decodeAncestrals,
-  decodeSkillHex,
-  encodeAncestrals,
-  encodeSkillsAsHex,
-  findClassName,
+  decodeSkillString,
+  encodeSkillsets,
   getPointReq,
   getTreePoints,
+  legacyDecodeSkillString,
 } from 'utils/skills';
 import { setTitle } from 'utils/string';
 import SkillCombos from './SkillCombos';
@@ -34,51 +33,55 @@ import SkillTree from './SkillTree';
 
 class Skills extends Component {
   state = {
-    skillTrees: [
-      { treeName: null, skills: [], ancestrals: [] },
-      { treeName: null, skills: [], ancestrals: [] },
-      { treeName: null, skills: [], ancestrals: [] },
+    skillsets: [
+      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
+      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
+      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
     ],
-    share: false,
-    shareCode: null,
-    copied: false,
-  };
-
-  loadBuild = (props) => {
-    const { location } = props;
-    if (location.hash) {
-      const dataString = location.hash.substr(1);
-      this.setState({ skillTrees: this.decodeSkillTrees(dataString) });
-    } else {
-      this.setState({ skillTrees: this.decodeSkillTrees('') });
-    }
   };
 
   componentDidMount() {
-    this.loadBuild(this.props);
+    this.props.fetchSkillsets();
   }
 
+  loadBuild = (props) => {
+    const { location } = props;
+    if (location.hash && location.hash.length > 0) {
+      const dataString = location.hash.substr(1);
+      const isLegacy = dataString.includes('.') || dataString.includes(',');
+      const skillsets = isLegacy ? legacyDecodeSkillString(dataString) : decodeSkillString(dataString);
+      if (isLegacy) {
+        this.updateHash(skillsets);
+      }
+      if (!equals(skillsets, this.state.skillsets)) {
+        this.setState({ skillsets });
+      }
+    } else {
+      this.setState({ skillsets: decodeSkillString('') });
+    }
+  };
+
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.location.hash !== this.props.location.hash) {
+    if (nextProps.location.hash !== this.props.location.hash || objectHasProperties(nextProps.skillsets) !== objectHasProperties(this.props.skillsets)) {
       this.loadBuild(nextProps);
     }
   }
 
-  setSkillTree = (treeId, treeName) => {
-    const { skillTrees: skillTreesOld } = this.state;
-    const skillTrees = [...skillTreesOld];
-    skillTrees[treeId] = { treeName, skills: [], ancestrals: [] };
-    this.setState({ skillTrees });
+  setSkillTree = (treeId, id) => {
+    const { skillsets: skillTreesOld } = this.state;
+    const skillsets = [...skillTreesOld];
+    skillsets[treeId] = { id, skills: DEFAULT_SKILLS, ancestrals: [] };
+    this.updateHash(skillsets);
   };
 
-  setSkill = (treeId, skillId, value) => {
-    const { skillTrees: skillTreesOld } = this.state;
-    const skillTrees = [...skillTreesOld];
-    const skills = [...skillTrees[treeId].skills];
+  setSkill = (setId, skillIndex, value) => {
+    const { skillsets: skillTreesOld } = this.state;
+    const skillsets = [...skillTreesOld];
+    const skills = [...skillsets[setId].skills];
 
     const remainingPoints = MAX_POINTS - this.getSpentPoints();
     const spentPoints = getTreePoints(skills);
-    const currentValue = Boolean(skills[skillId]);
+    const currentValue = Boolean(skills[skillIndex]);
 
     // no change, do nothing
     if (value === currentValue) return;
@@ -88,116 +91,64 @@ class Skills extends Component {
       // no points available, do nothing
       if (remainingPoints === 0) return;
       // not enough points spent to unlock
-      if (spentPoints < getPointReq(skillId)) return;
+      if (spentPoints < getPointReq(skillIndex * 5)) return;
     } else {
       // can't take points out of skills if it would lock out a learned skill
-      if (skillId !== 11 && Boolean(skills[11]) && getPointReq(11) > spentPoints - 2) return;
-      if (skillId !== 7 && Boolean(skills[7]) && getPointReq(7) > spentPoints - 2) return;
-      if (skillId !== 3 && Boolean(skills[3]) && getPointReq(3) > spentPoints - 2) return;
+      if (skillIndex !== 11 && Boolean(skills[11]) && getPointReq(55) > spentPoints - 2) return;
+      if (skillIndex !== 7 && Boolean(skills[7]) && getPointReq(35) > spentPoints - 2) return;
+      if (skillIndex !== 3 && Boolean(skills[3]) && getPointReq(15) > spentPoints - 2) return;
     }
 
-    skills[skillId] = value === true ? 1 : 0;
-    skillTrees[treeId].skills = skills;
-    this.setState({ skillTrees });
+    skills[skillIndex] = value === true ? 1 : 0;
+    skillsets[setId].skills = skills;
+    this.updateHash(skillsets);
   };
 
-  setAncestral = (treeId, ancestralId, value) => {
-    const { skillTrees: skillTreesOld } = this.state;
-    const skillTrees = [...skillTreesOld];
-    const ancestrals = [...skillTrees[treeId].ancestrals];
+  setAncestral = (setId, ancestralId, ancestralIndex) => {
+    const { skillsets: oldSkillsets } = this.state;
+    const skillsets = [...oldSkillsets];
+    const ancestrals = [...skillsets[setId].ancestrals];
 
-    ancestrals[ancestralId] = value;
-    skillTrees[treeId].ancestrals = ancestrals;
-    this.setState({ skillTrees });
+    ancestrals[ancestralId] = ancestralIndex;
+    skillsets[setId].ancestrals = ancestrals;
+    this.updateHash(skillsets);
   };
 
-  resetSkillTree = (treeId) => {
-    const { skillTrees } = this.state;
-    this.setSkillTree(treeId, skillTrees[treeId].treeName);
+  resetSkillTree = (setId) => {
+    const { skillsets } = this.state;
+    this.setSkillTree(setId, skillsets[setId].id);
   };
 
   selectAllTrees = (trees) => {
-    this.setState({
-      skillTrees: [
-        { treeName: trees[0], skills: [], ancestrals: [] },
-        { treeName: trees[1], skills: [], ancestrals: [] },
-        { treeName: trees[2], skills: [], ancestrals: [] },
-      ],
-    });
+    this.updateHash([
+      { id: trees[0], skills: [], ancestrals: [] },
+      { id: trees[1], skills: [], ancestrals: [] },
+      { id: trees[2], skills: [], ancestrals: [] },
+    ]);
   };
 
   resetAllTrees = () => {
-    const { skillTrees } = this.state;
-    this.selectAllTrees(skillTrees.map(tree => tree.treeName));
-  };
-
-  encodeSkillTrees = () => {
-    const { skillTrees } = this.state;
-    return skillTrees.filter(tree => Boolean(tree.treeName)).map(tree => {
-      if (!tree.treeName) {
-        return '';
-      }
-      const ancestrals = encodeAncestrals(tree.ancestrals);
-      return `${tree.treeName}.${encodeSkillsAsHex(tree.skills)}${ancestrals && `.${ancestrals}` || ''}`;
-    }).join(':');
-  };
-
-  decodeSkillTrees = (data) => {
-    const decodedTrees = data.split(':').map(rawTree => {
-      let treeName;
-      let skills;
-      let ancestrals;
-      if (rawTree.indexOf(',') >= 0) {
-        [treeName, skills, ancestrals] = rawTree.split(',');
-      } else {
-        [treeName, skills, ancestrals] = rawTree.split('.');
-      }
-      if (!SKILLSET[treeName] || SKILLSET[treeName].visible === false) {
-        treeName = null;
-        skills = [];
-        ancestrals = [];
-      } else {
-        skills = decodeSkillHex(skills);
-        ancestrals = decodeAncestrals(ancestrals);
-      }
-      return { treeName, skills, ancestrals };
-    });
-    while (decodedTrees.length < 3) {
-      decodedTrees.push({ treeName: null, skills: [], ancestrals: [] });
-    }
-    if (decodedTrees.length > 3) {
-      decodedTrees.unshift(decodedTrees.length - 3);
-    }
-    return decodedTrees;
-  };
-
-  handleShare = () => {
-    this.setState({ share: true, shareCode: this.encodeSkillTrees(), copied: false });
-  };
-
-  handleClose = () => {
-    this.setState({ share: false });
-  };
-
-  handleCopyShare = () => {
-    this.copyTextfield.children[0].select();
-    document.execCommand('copy');
-    this.setState({ copied: true });
+    const { skillsets } = this.state;
+    this.selectAllTrees(skillsets.map(tree => tree.id));
   };
 
   getSpentPoints = () => {
-    return this.state.skillTrees.map(tree => getTreePoints(tree.skills)).reduce((a, b) => a + b);
+    return this.state.skillsets.map(tree => getTreePoints(tree.skills)).reduce((a, b) => a + b);
+  };
+
+  updateHash = (skillsets) => {
+    window.location.hash = '#' + encodeSkillsets(skillsets);
   };
 
   render() {
-    const { skillTrees, share, shareCode, copied } = this.state;
-    const { location, mobile } = this.props;
+    const { skillsets } = this.state;
+    const { mobile, findClassName } = this.props;
 
     let className;
-    if (skillTrees[0].treeName && skillTrees[1].treeName && skillTrees[2].treeName) {
-      className = findClassName(skillTrees[0].treeName, skillTrees[1].treeName, skillTrees[2].treeName);
+    const selectedSkillsets = skillsets.map(sks => sks.id);
+    if (skillsets.every(sks => Boolean(sks.id))) {
+      className = findClassName(selectedSkillsets);
     }
-    const selectedClasses = skillTrees.map(tree => tree.treeName);
 
     const spentPoints = this.getSpentPoints();
     const remainingPoints = MAX_POINTS - spentPoints;
@@ -205,7 +156,7 @@ class Skills extends Component {
     if (className) {
       setTitle(`${className} Build`);
     } else {
-      setTitle('Skill Builder');
+      setTitle('Skill Calculator');
     }
 
     return (
@@ -222,11 +173,6 @@ class Skills extends Component {
                     <ReplayIcon />
                   </IconButton>
                 </Tooltip>
-                <Tooltip title="Share Build" onClick={this.handleShare}>
-                  <IconButton color="inherit" aria-label="Share">
-                    <ShareIcon />
-                  </IconButton>
-                </Tooltip>
               </Toolbar>
             </AppBar>
           </Paper>
@@ -240,55 +186,26 @@ class Skills extends Component {
               setSkill={this.setSkill}
               setAncestral={this.setAncestral}
               resetSkillTree={this.resetSkillTree}
-              skillTree={skillTrees[treeId]}
+              treeData={skillsets[treeId]}
               remainingPoints={remainingPoints}
-              selectedClasses={selectedClasses}
+              selectedSkillset={selectedSkillsets}
             />,
           )}
         </div>
-        <Dialog
-          open={share}
-          onClose={this.handleClose}
-        >
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Share Build</Typography>
-              <IconButton color="inherit" aria-label="Close" onClick={this.handleClose}>
-                <CloseIcon />
-              </IconButton>
-            </Toolbar>
-          </AppBar>
-          <DialogContent>
-            <TextField
-              label="Shareable Link"
-              defaultValue={`${window.location.protocol}//${window.location.host}${location.pathname}#${shareCode}`}
-              InputProps={{
-                readOnly: true,
-                ref: (node) => this.copyTextfield = node,
-              }}
-              fullWidth
-              multiline
-              helperText={copied ? <span style={{ color: 'green' }}>Copied!</span> : null}
-            />
-            <Button
-              onClick={this.handleCopyShare}
-              startIcon={<FileCopyIcon />}
-              color="primary"
-              variant="contained"
-              style={{ marginTop: 8 }}
-            >
-              Copy link
-            </Button>
-          </DialogContent>
-        </Dialog>
-        <SkillCombos skillTrees={skillTrees} />
+        <SkillCombos skillTrees={skillsets} />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ display: { mobile } }) => ({
+const mapStateToProps = ({ display: { mobile }, gameData: { skillsets } }) => ({
   mobile,
+  skillsets,
 });
 
-export default connect(mapStateToProps, null)(Skills);
+const mapDispatchToProps = {
+  findClassName,
+  fetchSkillsets,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Skills);

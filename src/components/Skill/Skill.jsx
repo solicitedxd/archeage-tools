@@ -1,79 +1,78 @@
+import { Skeleton } from '@material-ui/lab';
+import { fetchSkill } from 'actions/gameData';
 import cn from 'classnames';
 import SkillTooltip from 'components/Skill/SkillTooltip';
-import { ELEMENT } from 'constants/skills';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   bool,
   func,
   number,
-  oneOf,
-  string,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
 import { getPointReq } from 'utils/skills';
 
 class Skill extends Component {
   static propTypes = {
-    icon: string.isRequired,
-    passive: bool,
+    id: number.isRequired,
     learned: bool,
     spentPoints: number,
-    slot: number.isRequired,
-    skillset: string.isRequired,
     remainingPoints: number,
     onClick: func,
-    ancestral: bool,
-    element: oneOf(Object.values(ELEMENT)),
-    noRequirement: bool,
-    className: string,
-    disableTooltip: bool,
-    requiredLevel: number,
   };
 
   static defaultProps = {
-    active: false,
-    passive: false,
     learned: false,
     spentPoints: 0,
     remainingPoints: 0,
     onClick: () => {
     },
-    ancestral: false,
-    element: ELEMENT.BASIC,
-    noRequirement: false,
-    className: '',
-    disableTooltip: false,
-    requiredLevel: null,
   };
 
-  state = {};
+  componentDidMount() {
+    fetchSkill(this.props.id);
+  }
 
   render() {
-    const { icon, passive, spentPoints, slot, onClick, learned, skillset, remainingPoints, requiredLevel, ancestral, noRequirement, element, className, disableTooltip } = this.props;
-    const pointsRequired = passive ? slot + 2 : getPointReq(slot);
+    const { spentPoints, onClick, learned, remainingPoints, noRequirement, className, disableTooltip, ancestral } = this.props;
+    const { id, icon, requiredLevel, passive } = this.props;
+    const pointsRequired = passive ? requiredLevel : getPointReq(requiredLevel);
     const disabled = passive ? !learned
       : !learned && !ancestral && (spentPoints < pointsRequired || remainingPoints === 0);
 
+    if (!icon) {
+      return (
+        <span className={cn('skill', className)}>
+          <Skeleton
+            variant="rect"
+            width="100%"
+            height="100%"
+          />
+        </span>
+      );
+    }
+
     return (
       <SkillTooltip
-        skillset={skillset}
-        skillId={slot}
-        passive={passive}
+        skillId={id}
         disabled={disabled && spentPoints < pointsRequired}
         spentPoints={spentPoints}
-        element={element}
         disableTooltip={disableTooltip}
-        requiredLevel={requiredLevel}
       >
         <span
-          className={cn('skill', className, { 'disabled': disabled }, { 'available': !disabled && !learned }, { 'ancestral': ancestral })}
+          className={cn('skill', className, { 'disabled': disabled, 'available': !disabled && !learned, ancestral })}
           onClick={disabled ? null : onClick}
           data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
         >
-          <img src={icon} alt="" />
+          <img src={`/images/icon/${icon}.png`} alt="" />
         </span>
       </SkillTooltip>
     );
   }
 }
 
-export default Skill;
+const mapStateToProps = ({ gameData: { skills } }, { id }) => ({
+  ...pathOr({}, [id])(skills),
+});
+
+export default connect(mapStateToProps, null)(Skill);

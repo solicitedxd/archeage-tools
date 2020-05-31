@@ -5,7 +5,7 @@ import {
   GLOBAL_CD,
   SKILLMOD,
 } from 'constants/skills';
-import { getSkillIdByName } from 'utils/skillsets';
+import { getSkillIdByName } from 'utils/skills';
 import * as Icon from '../../images/skill/auramancy/';
 
 const skills = Object.freeze([

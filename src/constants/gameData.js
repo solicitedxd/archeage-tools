@@ -6,3 +6,6 @@ export const DATA_VOCATION = 'DATA_VOCATION';
 export const DATA_EVENTS = 'DATA_EVENTS';
 export const DATA_EVENT_REPLACE = 'DATA_EVENT_REPLACE';
 export const DATA_EVENT_TYPES = 'DATA_EVENT_TYPES';
+export const DATA_SKILL = 'DATA_SKILL';
+export const DATA_SKILLSETS = 'DATA_SKILLSET';
+export const DATA_MOUNTS = 'DATA_MOUNTS';

@@ -6,7 +6,7 @@ export default [
   {
     name: 'Calculators',
     children: [
-      { name: 'Skill Builder', path: '/skills' },
+      { name: 'Skill Calculator', path: '/skills' },
       { name: 'Crafting Folio', path: '/folio' },
       { name: 'Trade Packs', path: '/trade-packs' },
       { name: 'Land Tax', path: '/taxes' },

@@ -10,8 +10,8 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import ReplayIcon from '@material-ui/icons/Replay';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
+import { fetchSkill } from 'actions/gameData';
 import Skill from 'components/Skill';
-import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
 import {
   array,
@@ -19,6 +19,9 @@ import {
   number,
   object,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
+import { sortBy } from 'utils/array';
+import { objectHasProperties } from 'utils/object';
 import { getTreePoints } from 'utils/skills';
 
 class SkillTree extends Component {
@@ -28,15 +31,15 @@ class SkillTree extends Component {
     setSkill: func.isRequired,
     setAncestral: func.isRequired,
     resetSkillTree: func.isRequired,
-    skillTree: object.isRequired,
+    treeData: object.isRequired,
     remainingPoints: number,
-    selectedClasses: array,
+    selectedSkillset: array,
   };
 
   static defaultProps = {
-    skillTree: null,
+    treeData: null,
     remainingPoints: 0,
-    selectedClasses: [],
+    selectedSkillset: [],
   };
 
   state = {
@@ -47,21 +50,35 @@ class SkillTree extends Component {
     this.setState({ selectingSkillset });
   };
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.treeData.id && this.props.treeData.id !== nextProps.treeData.id && objectHasProperties(nextProps.skillsets)) {
+      nextProps.skillsets[nextProps.treeData.id].ancestrals.forEach(skillId => fetchSkill(skillId));
+    }
+  }
+
   render() {
-    const { skillTree, setSkillTree, resetSkillTree, setSkill, setAncestral, treeId, selectedClasses, remainingPoints } = this.props;
-    const { treeName, skills, ancestrals } = skillTree;
-    const skillSet = SKILLSET[treeName];
+    const { treeData, setSkillTree, resetSkillTree, setSkill, setAncestral, treeId, selectedSkillset, remainingPoints, skillsets, skills } = this.props;
+    const { id: skillsetId, skills: selSkills, ancestrals: selAncestrals } = treeData;
+    const skillset = skillsets[skillsetId] || {};
     const { selectingSkillset } = this.state;
-    const spentPoints = getTreePoints(skills);
+    const spentPoints = getTreePoints(selSkills);
+
+    const basicSkills = skillset.skills || [];
+    const ancestralSkills = (skillset.ancestrals || []).map(id => skills[id] || {});
+    const passiveSkills = skillset.passives || [];
 
     return (
       <Paper className="skill-tree">
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography variant="subtitle1"
-                        className="title-text">{skillSet && !selectingSkillset && skillSet.name || 'Select Skillset'}</Typography>
-            <Typography variant="subtitle2">{skillSet && !selectingSkillset && `${spentPoints}/12`}</Typography>
-            {skillSet &&
+            <Typography
+              variant="subtitle1"
+              className="title-text"
+            >
+              {skillset && !selectingSkillset && skillset.name || 'Select Skillset'}
+            </Typography>
+            <Typography variant="subtitle2">{skillset && !selectingSkillset && `${spentPoints}/12`}</Typography>
+            {skillset &&
             <div>
               {!selectingSkillset &&
               <Tooltip title="Reset Tree">
@@ -77,19 +94,20 @@ class SkillTree extends Component {
             </div>}
           </Toolbar>
         </AppBar>
-        {(!treeName || selectingSkillset) &&
+        {(!skillsetId || selectingSkillset) &&
         <div className="skill-tree-list">
-          {Object.entries(SKILLSET)
-          .filter(([skillTreeId, skillTree]) => !selectedClasses.includes(skillTreeId) && skillTree.visible !== false)
-          .map(([skillTreeId, skillTree]) => {
-            const { name } = skillTree;
+          {Object.values(skillsets)
+          .filter(({ id }) => !selectedSkillset.includes(id))
+          .sort(sortBy('name'))
+          .map((skillTree) => {
+            const { id, name } = skillTree;
             return (
               <Button
                 onClick={() => {
                   this.toggleSelecting(false);
-                  setSkillTree(treeId, skillTreeId);
+                  setSkillTree(treeId, id);
                 }}
-                key={`${treeId}-${skillTreeId}`}
+                key={`${treeId}-${id}`}
                 className="skill-set-button"
               >
                 {name}
@@ -97,80 +115,76 @@ class SkillTree extends Component {
             );
           })}
         </div>}
-        {(treeName && !selectingSkillset) &&
+        {(skillsetId > 0 && !selectingSkillset) &&
         <div className="skill-list-container">
           <Typography variant="overline" className="skill-list-title">Combat</Typography>
           <div className="skill-list combat">
-            {Object.values(skillSet.skills).map((skill, index) => {
-              const ancestral = skillSet.ancestrals.find(anc => anc.skillId === index);
-              if (ancestral) {
-                const ancestralId = skillSet.ancestrals.indexOf(ancestral);
-                if (ancestralId >= 0 && ancestrals[ancestralId] > 0) {
-                  skill = { ...skill, ...ancestral.variants[ancestrals[ancestralId] - 1] };
+            {basicSkills.map((skillId, index) => {
+              // overwrite a skill with ancestral variant
+              const variants = ancestralSkills.filter(s => s.ancestralParentId === skillId).sort(sortBy('ancestralElement'));
+              if (variants.length) {
+                const ancIndex = (variants[0].ancestralLevel - 1) / 3;
+                const ancestralId = selAncestrals[ancIndex];
+                if (ancestralId > 0 && variants[ancestralId - 1]) {
+                  skillId = variants[ancestralId - 1].id;
                 }
               }
+              // skill icon
               return (
-                <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
+                <div className="skill-container" data-col={(index % 4) + 1} key={skillId}>
                   <Skill
-                    skillset={treeName}
-                    slot={index}
-                    onClick={() => setSkill(treeId, index, !Boolean(skills[index]))}
-                    learned={Boolean(skills[index])}
+                    id={skillId}
+                    onClick={() => setSkill(treeId, index, !Boolean(selSkills[index]))}
+                    learned={Boolean(selSkills[index])}
                     spentPoints={spentPoints}
                     remainingPoints={remainingPoints}
-                    {...skill}
                   />
                 </div>);
             })}
           </div>
           <Typography variant="overline" className="skill-list-title">Passive</Typography>
           <div className="skill-list passive">
-            {skillSet.passives.map((skill, index) =>
-              <div className="skill-container" data-col={(index % 4) + 1} key={skill.name}>
+            {passiveSkills.map((passiveId, index) => (
+              <div className="skill-container" data-col={(index % 4) + 1} key={passiveId}>
                 <Skill
-                  skillset={treeName}
-                  passive
+                  id={passiveId}
                   learned={(spentPoints >= index + 2)}
-                  slot={index}
-                  {...skill}
                 />
-              </div>,
+              </div>),
             )}
           </div>
           <Typography variant="overline" className="skill-list-title">Ancestral</Typography>
           <div className="ancestral-list">
-            {skillSet.ancestrals.length === 0 &&
+            {ancestralSkills.length === 0 &&
             <Typography variant="overline" style={{ textAlign: 'center' }}>No ancestrals.</Typography>}
-            {skillSet.ancestrals.map((ancestral, ancestralId) => {
-              const original = skillSet.skills.find((skill, id) => id === ancestral.skillId);
-              const selected = ancestrals[ancestralId];
+            {Array.from(new Set(ancestralSkills.map(s => s.ancestralLevel)))
+            .filter(l => l !== undefined)
+            .map((aLevel, ancestralId) => {
+              const ancestrals = ancestralSkills.filter(s => s.ancestralLevel === aLevel);
+              const original = ancestrals.length && basicSkills.map(id => skills[id] || {}).find(s => s.id === ancestrals[0].ancestralParentId);
+              const selected = selAncestrals[ancestralId];
               return (
-                <div className="ancestral-row" key={ancestralId}>
+                <div className="ancestral-row" key={`ancestral-${skillsetId}-${aLevel}`}>
                   <div className="ancestral-level">
                     <span className="dropdown-icon Ancestral" />
-                    <Typography variant="subtitle1">{(ancestralId * 3) + 1}</Typography>
+                    <Typography variant="subtitle1">{aLevel}</Typography>
                   </div>
                   <div className="ancestral-options">
                     <Skill
-                      skillset={treeName}
+                      id={original.id}
                       ancestral
-                      slot={ancestral.skillId}
                       onClick={() => setAncestral(treeId, ancestralId, 0)}
-                      learned={selected !== 1 && selected !== 2}
+                      learned={!selected || selected === 0}
                       spentPoints={spentPoints}
-                      {...original}
                     />
-                    {ancestral.variants.map((element, id) => (
+                    {ancestrals.sort(sortBy('ancestralElement')).map((ancSkill, index) => (
                       <Skill
-                        key={`${ancestral.skillId}-${element.element}`}
-                        skillset={treeName}
+                        key={`anc-${ancSkill.id}`}
+                        id={ancSkill.id}
                         ancestral
-                        slot={ancestral.skillId}
-                        onClick={() => setAncestral(treeId, ancestralId, id + 1)}
-                        learned={selected === id + 1}
+                        onClick={() => setAncestral(treeId, ancestralId, index + 1)}
+                        learned={selected === index + 1}
                         spentPoints={spentPoints}
-                        {...original}
-                        {...element}
                       />
                     ))}
                   </div>
@@ -185,4 +199,9 @@ class SkillTree extends Component {
   }
 }
 
-export default SkillTree;
+const mapStateToProps = ({ gameData: { skillsets, skills } }) => ({
+  skillsets,
+  skills,
+});
+
+export default connect(mapStateToProps, null)(SkillTree);
