@@ -230,11 +230,6 @@ const legacyDecodeAncestrals = (chars) => {
   return ancestrals;
 };
 
-export const deepCopy = (object) => {
-  if (!object) return;
-  return JSON.parse(JSON.stringify(object));
-};
-
 export const compareBuff = (buff1, buff2) => {
   if (!buff1 && !buff2) return true;
   if (!buff1 || !buff2) return false;
@@ -249,7 +244,7 @@ export const compareBuff = (buff1, buff2) => {
  * @param showKey{boolean} show var keys in text?
  * @returns {string}
  */
-export const substituteVars = (description, varsRaw, passive, showKey) => {
+export const substituteVars = (description, varsRaw, passive = false, showKey = false) => {
   const vars = varsRaw.reduce((obj, props) => {
     const { key, base, baseVariant, ratio, ratioVariant, powerType, text } = props;
     if (key.match(/_detail$/)) {
@@ -298,27 +293,6 @@ export const renderTime = (seconds, useSpace) => {
     }
   }
   return time.trim();
-};
-
-/**
- * @deprecated
- */
-export const prepareComboText = (combo, skill) => {
-  let { text } = combo;
-  const textSub = {
-    b: combo.buff && combo.buff.name,
-    c: combo.causes && combo.causes.name,
-  };
-  Object.keys(skill).forEach(key => {
-    if (key.match(/(damage|healing)/i) && skill[key]) {
-      const { base, ratio, attack } = skill[key];
-      textSub[key] = `&(${base} + ${ratio}% ${attack})&`;
-    } else {
-      textSub[key] = skill[key];
-    }
-  });
-  text = substitute(text, textSub);
-  return encodeColors(text);
 };
 
 /**

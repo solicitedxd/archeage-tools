@@ -19,7 +19,7 @@ import {
 } from 'constants/taxes';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deepCopy } from 'utils/skills';
+import { deepCopy } from 'utils/object';
 import { setTitle } from 'utils/string';
 import PropertyBox from './PropertyBox';
 

@@ -48,13 +48,15 @@ import {
   func,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { objectHasProperties } from 'utils/object';
+import {
+  deepCopy,
+  objectHasProperties,
+} from 'utils/object';
 import {
   getDayKey,
   getReminderTime,
   hhmmssToInt,
 } from 'utils/schedule';
-import { deepCopy } from 'utils/skills';
 import { setTitle } from 'utils/string';
 import EditEvent from './EditEvent';
 import EventList from './EventList';

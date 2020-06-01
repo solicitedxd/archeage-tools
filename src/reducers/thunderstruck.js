@@ -4,7 +4,7 @@ import {
 } from 'constants/thunderstruck';
 import initialState from 'initialStates/thunderstruck';
 import { getItem } from 'utils/localStorage';
-import { deepCopy } from 'utils/skills';
+import { deepCopy } from 'utils/object';
 
 const thunderstruck = (state = getItem('thunderstruck', initialState), action) => {
   const trees = deepCopy(state.trees);

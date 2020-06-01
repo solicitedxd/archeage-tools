@@ -13,6 +13,7 @@ import {
 } from 'actions/gameData';
 import cn from 'classnames';
 import {
+  DEFAULT_ANCESTRALS,
   DEFAULT_SKILLS,
   MAX_POINTS,
 } from 'constants/skills';
@@ -22,21 +23,21 @@ import { connect } from 'react-redux';
 import { objectHasProperties } from 'utils/object';
 import {
   decodeSkillString,
+  defaultSkillset,
   encodeSkillsets,
   getPointReq,
   getTreePoints,
   legacyDecodeSkillString,
 } from 'utils/skills';
 import { setTitle } from 'utils/string';
-import SkillCombos from './SkillCombos';
 import SkillTree from './SkillTree';
 
 class Skills extends Component {
   state = {
     skillsets: [
-      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
-      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
-      { id: null, skills: DEFAULT_SKILLS, ancestrals: [] },
+      defaultSkillset(),
+      defaultSkillset(),
+      defaultSkillset(),
     ],
   };
 
@@ -54,6 +55,7 @@ class Skills extends Component {
         this.updateHash(skillsets);
       }
       if (!equals(skillsets, this.state.skillsets)) {
+        console.log('Updating build', dataString);
         this.setState({ skillsets });
       }
     } else {
@@ -121,9 +123,9 @@ class Skills extends Component {
 
   selectAllTrees = (trees) => {
     this.updateHash([
-      { id: trees[0], skills: [], ancestrals: [] },
-      { id: trees[1], skills: [], ancestrals: [] },
-      { id: trees[2], skills: [], ancestrals: [] },
+      { id: trees[0], skills: DEFAULT_SKILLS, ancestrals: DEFAULT_ANCESTRALS },
+      { id: trees[1], skills: DEFAULT_SKILLS, ancestrals: DEFAULT_ANCESTRALS },
+      { id: trees[2], skills: DEFAULT_SKILLS, ancestrals: DEFAULT_ANCESTRALS },
     ]);
   };
 
@@ -137,7 +139,9 @@ class Skills extends Component {
   };
 
   updateHash = (skillsets) => {
-    window.location.hash = '#' + encodeSkillsets(skillsets);
+    this.setState({ skillsets }, () => {
+      window.location.hash = '#' + encodeSkillsets(skillsets);
+    });
   };
 
   render() {
@@ -192,7 +196,6 @@ class Skills extends Component {
             />,
           )}
         </div>
-        <SkillCombos skillTrees={skillsets} />
       </div>
     );
   }

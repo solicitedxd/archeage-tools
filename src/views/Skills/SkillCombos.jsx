@@ -10,24 +10,29 @@ import ToggleOffIcon from '@material-ui/icons/ToggleOff';
 import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import Skill from 'components/Skill';
 import EffectIcon from 'components/Skill/EffectIcon';
-import SKILLSET from 'data/skillsets';
-import React, { Component } from 'react';
+import { equals } from 'ramda';
+import React, { PureComponent } from 'react';
 import { array } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { sortBy } from 'utils/array';
 import {
-  compareBuff,
   deepCopy,
-  prepareComboText,
-} from 'utils/skills';
+  objectHasProperties,
+} from 'utils/object';
+import { substituteVars } from 'utils/skills';
 
-class SkillCombos extends Component {
+class SkillCombos extends PureComponent {
   static propTypes = {
-    skillTrees: array.isRequired,
+    skillsetData: array.isRequired,
   };
 
   state = {
     showAll: true,
   };
+
+  componentWillUpdate(nextProps, nextState, nextContext) {
+    return (!equals(this.props, nextProps) || !equals(this.state, nextState));
+  }
 
   toggleVisibility = () => {
     const { showAll } = this.state;
@@ -35,25 +40,22 @@ class SkillCombos extends Component {
   };
 
   createComboRow = (combo, sub) => {
-    const { skill, effect, activator, causes, combos } = combo;
+    const { skill, effect, activator, applies, combos } = combo;
     let nodes = [];
     // starting skill
     if (!sub) {
       nodes.push(
         <div className="combo-skill" key={`sk-${Math.random()}`}>
           <Skill
-            skillset={skill.treeName}
-            slot={skill.skillId}
-            learned={skill.learned}
+            id={skill.id}
+            learned={skill.isLearned}
             noRequirement
             remainingPoints={0}
-            {...skill}
           />
           <EffectIcon
             {...effect}
             tooltip={`<span class="text-orange">${skill.name}</span> applies <span class="${effect.negative
-              ? 'tt-debuff'
-              : 'tt-buff'}">${effect.name}</span>`}
+              ? 'tt-debuff' : 'tt-buff'}">${effect.name}</span>`}
           />
         </div>,
       );
@@ -61,20 +63,18 @@ class SkillCombos extends Component {
     }
 
     // comboing skill
-    const comboText = `<span class="text-orange">${activator.name}:</span> ${prepareComboText(causes, activator)}`;
+    const comboText = `<span class="text-orange">${activator.name}:</span> ${substituteVars(applies.text, skill.vars)}`;
     nodes.push(
       <div className="combo-skill" key={`skc-${Math.random()}`}>
         <Skill
-          skillset={activator.treeName}
-          slot={activator.skillId}
-          learned={activator.learned}
+          learned={activator.isLearned}
           noRequirement
           remainingPoints={0}
           {...activator}
         />
-        {causes.causes ?
+        {applies.applies ?
           <EffectIcon
-            {...causes.causes}
+            {...applies.applies}
             tooltip={comboText}
           /> :
           <Tooltip title={<div dangerouslySetInnerHTML={{ __html: comboText }} />}>
@@ -106,93 +106,96 @@ class SkillCombos extends Component {
     return nodes;
   };
 
-  render() {
-    const { skillTrees } = this.props;
-    const { showAll } = this.state;
-    let combos = [];
-    let comboSkills = [];
-    let comboActivators = [];
-
-    skillTrees.forEach(skillTree => {
-      const { treeName, skills, ancestrals } = skillTree;
-      if (!treeName) return;
-      const skillSet = SKILLSET[treeName];
-      let skillList = deepCopy(skillSet.skills);
-      skillSet.ancestrals.forEach((ancestral, ancestralId) => {
-        const selected = ancestrals[ancestralId];
-        if (selected === 1 || selected === 2) {
-          skillList[ancestral.skillId] = {
-            ...skillList[ancestral.skillId],
-            ...ancestral.variants[selected - 1],
-          };
-        }
-      });
-      // embed skill data
-      skillList.forEach((skill, skillId) => {
-        skill.treeName = treeName;
-        skill.learned = skills[skillId] === 1;
-        skill.skillId = skillId;
-      });
-
-      if (!showAll) {
-        skillList = skillList.filter((skill, skillId) => skills[skillId] === 1);
+  findComboSkills = (effect) => {
+    const skills = [];
+    this.comboSkills.forEach(comboSkill => {
+      const skillCombos = comboSkill.combos.filter(combo => equals(combo.effect, effect));
+      if (skillCombos.length > 0) {
+        skills.push({ skill: comboSkill, combos: skillCombos });
       }
-
-      comboSkills = comboSkills.concat(skillList.filter(skill => skill.combos && skill.combos.length > 0));
-      comboActivators = comboActivators.concat(skillList.filter(skill => skill && skill.effects && skill.effects.length > 0));
     });
+    return skills;
+  };
 
-    const findComboSkills = (effect) => {
-      const skills = [];
-      comboSkills.forEach(comboSkill => {
-        const combos = comboSkill.combos.filter(combo => compareBuff(combo.buff, effect));
-        if (combos.length > 0) {
-          skills.push({ skill: comboSkill, combos });
-        }
-      });
-      return skills;
-    };
-
-    const createCombosForEffects = (skill, effects, notSkills) => {
-      const combos = [];
-      // add this skill to the list of subcombos to skip
-      notSkills = deepCopy(notSkills);
-      notSkills.push(skill.name);
-      effects.forEach(effect => {
-        // look for combos on this effect
-        findComboSkills(effect).forEach(comboSkill_ => {
-          const { skill: comboSkill, combos: comboEffects } = comboSkill_;
-          if (notSkills.includes(comboSkill.name)) return;
-          const causeEffects = comboEffects.filter(combo => combo.causes);
-          const subCombos = causeEffects.length > 0
-            ? createCombosForEffects(comboSkill, causeEffects.map(combo => combo.causes), notSkills) : null;
-          comboEffects.forEach(comboEffect => {
-            combos.push({
-              skill,
-              effect,
-              activator: comboSkill,
-              causes: comboEffect,
-              combos: subCombos,
-            });
+  createCombosForEffects = (skill, effects, notSkills) => {
+    const combos = [];
+    // add this skill to the list of subcombos to skip
+    notSkills = deepCopy(notSkills);
+    notSkills.push(skill.id);
+    effects.forEach(effect => {
+      // look for combos on this effect
+      this.findComboSkills(effect).forEach(comboSkill_ => {
+        const { skill: comboSkill, combos: skillCombos } = comboSkill_;
+        if (notSkills.includes(comboSkill.id)) return;
+        const causeEffects = skillCombos.filter(combo => combo.applies);
+        const subCombos = causeEffects.length > 0
+          ? this.createCombosForEffects(comboSkill, causeEffects.map(combo => combo.applies), notSkills) : null;
+        skillCombos.forEach(comboEffect => {
+          this.combos.push({
+            skill,
+            effect,
+            activator: comboSkill,
+            applies: comboEffect,
+            combos: subCombos,
           });
         });
       });
-      return combos;
-    };
+    });
+    return combos;
+  };
 
-    // loop through all activators
-    comboActivators.forEach(skill => {
-      combos = combos.concat(createCombosForEffects(skill, skill.effects, []));
+  combos = [];
+  comboSkills = [];
+  comboActivators = [];
+
+  render() {
+    const { skillsetData, skillsets, skills: skillData } = this.props;
+    const { showAll } = this.state;
+    this.combos = [];
+    this.comboSkills = [];
+    this.comboActivators = [];
+
+    skillsetData.forEach(skillTree => {
+      const { id: skillsetId, skills, ancestrals } = skillTree;
+      if (skillsetId === null || !objectHasProperties(skillsets)) return;
+      const skillset = skillsets[skillsetId];
+      let skillList = skillset.skills.map(s => deepCopy(skillData[s])).filter(s => Boolean(s));
+      if (skillList.length === 0) return;
+      // skillset.ancestrals.forEach((ancestral, ancestralId) => {
+      //   const selected = ancestrals[ancestralId];
+      //   if (selected === 1 || selected === 2) {
+      //     skillList[ancestral.skillId] = {
+      //       ...skillList[ancestral.skillId],
+      //       ...ancestral.variants[selected - 1],
+      //     };
+      //   }
+      // });
+      // embed skill data
+      skillList.forEach((skill, skillId) => {
+        skill.isLearned = skills[skillId] === 1;
+      });
+
+      if (!showAll) {
+        skillList = skillList.filter(s => s.isLearned);
+      }
+
+      this.comboSkills = this.comboSkills.concat(skillList.filter(skill => skill.combos && skill.combos.length > 0));
+      this.comboActivators = this.comboActivators.concat(skillList.filter(skill => skill && skill.effects && skill.effects.length > 0));
     });
 
-    combos = combos.sort((a, b) => a.skill.name > b.skill.name ? 1 : -1);
+    // loop through all activators
+    this.comboActivators.forEach(skill => {
+      this.combos = this.combos.concat(this.createCombosForEffects(skill, skill.effects, []));
+    });
+
+    this.combos = this.combos.sort(sortBy('name'));
 
     return (
       <Paper className="skill-combos section">
         <AppBar position="static">
           <Toolbar variant="dense">
             <Typography variant="subtitle1" className="title-text">{showAll ? 'Available'
-              : 'Learned'} Combos ({combos.length})</Typography>
+              : 'Learned'} Combos ({this.combos.length})</Typography>
             <Tooltip title={`Show ${showAll ? 'Only Learned' : 'All Available'} Combos`}>
               <IconButton color="inherit" aria-label="Toggle Visibility" onClick={this.toggleVisibility}>
                 {showAll ? <ToggleOffIcon /> : <ToggleOnIcon />}
@@ -201,9 +204,9 @@ class SkillCombos extends Component {
           </Toolbar>
         </AppBar>
         <div className="combos-list">
-          {combos.length === 0 &&
+          {this.combos.length === 0 &&
           <Typography>You have no {showAll ? 'available' : 'learned'} combos.</Typography>}
-          {combos.map((combo, index) =>
+          {this.combos.map((combo, index) =>
             <div className="combo-row" key={`c-${index}`}>
               {this.createComboRow(combo)}
             </div>,
@@ -214,8 +217,9 @@ class SkillCombos extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { skillsets } }) => ({
+const mapStateToProps = ({ gameData: { skillsets, skills } }) => ({
   skillsets,
+  skills,
 });
 
 export default connect(mapStateToProps, null)(SkillCombos);
