@@ -67,15 +67,15 @@ class SkillTree extends Component {
     const ancestralSkills = (skillset.ancestrals || []).map(id => skills[id] || {});
     const passiveSkills = skillset.passives || [];
 
+    const showName = skillset && !selectingSkillset;
+
     return (
       <Paper className="skill-tree">
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography
-              variant="subtitle1"
-              className="title-text"
-            >
-              {skillset && !selectingSkillset && skillset.name || 'Select Skillset'}
+            {showName && <span className="skillset-icon" data-id={skillsetId} />}
+            <Typography variant="subtitle1" className="title-text">
+              {showName ? skillset.name : 'Select Skillset'}
             </Typography>
             <Typography variant="subtitle2">{skillset && !selectingSkillset && `${spentPoints}/12`}</Typography>
             {skillset &&
@@ -109,6 +109,7 @@ class SkillTree extends Component {
                 }}
                 key={`${treeId}-${id}`}
                 className="skill-set-button"
+                startIcon={<span className="skillset-icon" data-id={id} />}
               >
                 {name}
               </Button>

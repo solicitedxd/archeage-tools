@@ -16,6 +16,10 @@
     min-width: 272px;
     margin-bottom: 20px;
 
+    .MuiToolbar-root > .skillset-icon {
+      margin: 0 6px 0 -6px;
+    }
+
     .skill-tree-list {
       display: flex;
       flex-direction: column;
@@ -377,6 +381,73 @@
         }
       }
     }
+  }
+}
+
+.skillset-icon {
+  height: 12px;
+  width: 12px;
+  display: inline-block;
+  background: url(../images/skill.png) no-repeat;
+
+  &[data-id="1"] {
+    /* Battlerage */
+    background-position: -171px -213px;
+  }
+
+  &[data-id="2"] {
+    /* Witchcraft */
+    background-position: -224px -198px;
+  }
+
+  &[data-id="3"] {
+    /* Defense */
+    background-position: -183px -213px;
+  }
+
+  &[data-id="4"] {
+    /* Auramancy */
+    background-position: -201px -198px;
+  }
+
+  &[data-id="5"] {
+    /* Occultism */
+    background-position: -213px -186px;
+  }
+
+  &[data-id="6"] {
+    /* Archery */
+    background-position: -219px -169px;
+  }
+
+  &[data-id="7"] {
+    /* Sorcery */
+    background-position: -195px -213px;
+  }
+
+  &[data-id="8"] {
+    /* Shadowplay */
+    background-position: -213px -198px;
+  }
+
+  &[data-id="9"] {
+    /* Songcraft */
+    background-position: -225px -186px;
+  }
+
+  &[data-id="10"] {
+    /* Vitalism */
+    background-position: -201px -186px;
+  }
+
+  &[data-id="11"] {
+    /* Malediction */
+    background-position: -207px -213px;
+  }
+
+  &[data-id="12"] {
+    /* Swiftblade */
+    background-position: -219px -213px;
   }
 }
 
