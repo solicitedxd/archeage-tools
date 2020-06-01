@@ -1,3 +1,24 @@
+.skills-container {
+  .class-select {
+    .MuiFormControl-root {
+      width: 190px;
+      margin-left: 6px;
+    }
+
+    .MuiInputLabel-shrink {
+      display: none;
+    }
+
+    &.MuiAutocomplete-hasPopupIcon .MuiAutocomplete-inputRoot {
+      margin-top: 2px;
+    }
+
+    .MuiInputLabel-formControl {
+      top: -14px;
+    }
+  }
+}
+
 .skill-trees {
   display: flex;
   justify-content: space-between;
@@ -381,6 +402,15 @@
         }
       }
     }
+  }
+}
+
+.class-result {
+  display: flex;
+  align-items: center;
+
+  .skillset-icons {
+    margin-right: 6px;
   }
 }
 

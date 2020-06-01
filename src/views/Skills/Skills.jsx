@@ -2,11 +2,13 @@ import {
   AppBar,
   IconButton,
   Paper,
+  TextField,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
 import ReplayIcon from '@material-ui/icons/Replay';
+import { Autocomplete } from '@material-ui/lab';
 import {
   fetchSkillsets,
   findClassName,
@@ -144,9 +146,13 @@ class Skills extends Component {
     });
   };
 
+  handleSelectClass = (_, c) => {
+    this.selectAllTrees(c.skillsetIds);
+  };
+
   render() {
     const { skillsets } = this.state;
-    const { mobile, findClassName } = this.props;
+    const { mobile, findClassName, classes } = this.props;
 
     let className;
     const selectedSkillsets = skillsets.map(sks => sks.id);
@@ -169,8 +175,51 @@ class Skills extends Component {
           <Paper className="section">
             <AppBar position="static">
               <Toolbar variant="dense">
-                <Typography variant="subtitle1" className="title-text">Skill
-                  Builder{className && `: ${className}`}</Typography>
+                <Typography variant="subtitle1">
+                  Skill Builder:
+                </Typography>
+                <Autocomplete
+                  className="title-text class-select"
+                  autoHighlight
+                  disableClearable
+                  blurOnSelect
+                  size="small"
+                  loading={!objectHasProperties(classes)}
+                  options={classes}
+                  onChange={this.handleSelectClass}
+                  value={{ name: className, skillsetIds: selectedSkillsets }}
+                  getOptionLabel={option => option.name}
+                  renderOption={option => (
+                    <div className="class-result" key={`class-${option.name}`}>
+                      <div className="skillset-icons">
+                        {option.skillsetIds.sort((a, b) => a - b).map(id => (
+                          <span className="skillset-icon" data-id={id} key={`${option.name}-${id}`} />
+                        ))}
+                      </div>
+                      <Typography variant="body2">{option.name}</Typography>
+                    </div>
+                  )}
+                  renderInput={params => (
+                    <TextField
+                      {...params}
+                      label={`Find a class`}
+                      variant="standard"
+                      size="medium"
+                      margin="none"
+                      InputProps={{
+                        ...params.InputProps,
+                        endAdornment: (
+                          <>
+                            {params.InputProps.endAdornment}
+                          </>
+                        ),
+                      }}
+                      InputLabelProps={{
+                        ...params.InputLabelProps,
+                      }}
+                    />
+                  )}
+                />
                 <Typography variant="subtitle2">{spentPoints}/{MAX_POINTS}</Typography>
                 <Tooltip title="Reset All Trees">
                   <IconButton color="inherit" aria-label="Reset" onClick={this.resetAllTrees}>
@@ -201,9 +250,10 @@ class Skills extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, gameData: { skillsets } }) => ({
+const mapStateToProps = ({ display: { mobile }, gameData: { skillsets, classes } }) => ({
   mobile,
   skillsets,
+  classes,
 });
 
 const mapDispatchToProps = {

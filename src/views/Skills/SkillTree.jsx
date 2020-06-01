@@ -67,7 +67,7 @@ class SkillTree extends Component {
     const ancestralSkills = (skillset.ancestrals || []).map(id => skills[id] || {});
     const passiveSkills = skillset.passives || [];
 
-    const showName = skillset && !selectingSkillset;
+    const showName = skillsetId && !selectingSkillset;
 
     return (
       <Paper className="skill-tree">
@@ -77,8 +77,8 @@ class SkillTree extends Component {
             <Typography variant="subtitle1" className="title-text">
               {showName ? skillset.name : 'Select Skillset'}
             </Typography>
-            <Typography variant="subtitle2">{skillset && !selectingSkillset && `${spentPoints}/12`}</Typography>
-            {skillset &&
+            <Typography variant="subtitle2">{showName && `${spentPoints}/12`}</Typography>
+            {skillsetId &&
             <div>
               {!selectingSkillset &&
               <Tooltip title="Reset Tree">
