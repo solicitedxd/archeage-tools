@@ -15,8 +15,8 @@ export const MAX_POINTS = 18;
 
 export const DEFAULT_SKILLS = new Array(12).fill(0);
 export const DEFAULT_ANCESTRALS = new Array(6).fill(0);
-export const ANCESTRAL_MAX = 3;
-export const ANCESTRAL_LENGTH = 6;
+export const ANCESTRAL_MAX = 4;
+export const ANCESTRAL_LENGTH = 7;
 
 export const ATTACK = Object.freeze({
   MELEE: 'Melee Attack',

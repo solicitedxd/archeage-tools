@@ -204,6 +204,7 @@ const decodeAncestrals = (hex) => {
       const bit = bits & (1 << ((i * ANCESTRAL_MAX) + v));
       if (bit >= 1) {
         ancestrals[i] = v + 1;
+        v = ANCESTRAL_MAX;
       }
     }
   }
@@ -230,12 +231,6 @@ const legacyDecodeAncestrals = (chars) => {
   return ancestrals;
 };
 
-export const compareBuff = (buff1, buff2) => {
-  if (!buff1 && !buff2) return true;
-  if (!buff1 || !buff2) return false;
-  return (buff1.id === buff2.id);
-};
-
 /**
  * Substitute variables into a description.
  * @param description{string} description text
@@ -247,7 +242,7 @@ export const compareBuff = (buff1, buff2) => {
 export const substituteVars = (description, varsRaw, passive = false, showKey = false) => {
   const vars = varsRaw.reduce((obj, props) => {
     const { key, base, baseVariant, ratio, ratioVariant, powerType, text } = props;
-    if (key.match(/_detail$/)) {
+    if (key.match(/_detail$/) || (ratio && powerType)) {
       let str = '<span class="text-scale">(';
       str += base !== null ? base : '?base?';
       if (baseVariant) {
