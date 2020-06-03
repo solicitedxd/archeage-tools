@@ -79,9 +79,11 @@ class InGameTime extends Component {
               completed or killed by other players before the timer's in-progress duration is over.</Typography>
           </>
         }>
-          <span className="clock-icon" />
+          <span>
+            <span className="clock-icon" />
+            {time}
+          </span>
         </Tooltip>
-        {time}
       </Typography>
     );
   }

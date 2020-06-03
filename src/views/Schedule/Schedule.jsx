@@ -395,15 +395,15 @@ class Schedule extends Component {
                 {moment.tz(moment.tz.guess()).format('z')} Schedule
               </Typography>
               {!mobile && <InGameTime mobile={mobile} />}
-              <Typography variant="overline" className="region-opt">
-                <Select
-                  id="region-select"
-                  value={region}
-                  onChange={(e) => setRegion(e.target.value)}
-                >
-                  {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
-                </Select>
-              </Typography>
+              <Select
+                id="region-select"
+                value={region}
+                onChange={(e) => setRegion(e.target.value)}
+                className="region-opt"
+              >
+                <MenuItem disabled divider dense>Region:</MenuItem>
+                {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
+              </Select>
               <Tooltip title="Clear all alerts">
                 <span>
                   <IconButton disabled={!hasAlerts} onClick={clearAlerts} color="inherit">
