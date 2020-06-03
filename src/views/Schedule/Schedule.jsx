@@ -2,15 +2,15 @@ import {
   AppBar,
   CircularProgress,
   IconButton,
+  MenuItem,
   Paper,
+  Select,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import NotificationsOffIcon from '@material-ui/icons/NotificationsOff';
-import ToggleOffIcon from '@material-ui/icons/ToggleOff';
-import ToggleOnIcon from '@material-ui/icons/ToggleOn';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import Alert from '@material-ui/lab/Alert';
@@ -33,6 +33,7 @@ import {
   ALERT_CUE,
   ALERT_OPTIONS,
   EVENT_TYPE_OTHER,
+  REGIONS,
   VOLUME_DEFAULT,
 } from 'constants/schedule';
 import debounce from 'lodash.debounce';
@@ -46,6 +47,7 @@ import React, { Component } from 'react';
 import {
   bool,
   func,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
@@ -68,13 +70,13 @@ moment_tz;
 
 class Schedule extends Component {
   static propTypes = {
-    regionNA: bool,
+    region: string,
     clearAlerts: func.isRequired,
     hasAlerts: bool,
   };
 
   static defaultProps = {
-    regionNA: true,
+    region: REGIONS[0],
     hasAlerts: false,
   };
 
@@ -94,12 +96,12 @@ class Schedule extends Component {
   interval = null;
 
   componentDidMount() {
-    const { fetchEventTypes, fetchEvents, events, regionNA, hasAlerts, volume } = this.props;
+    const { fetchEventTypes, fetchEvents, events, region, hasAlerts, volume } = this.props;
     fetchEventTypes();
     fetchEvents();
 
     if (objectHasProperties(events)) {
-      this.setupEvents(events, regionNA);
+      this.setupEvents(events, region);
     }
 
     window.addEventListener('resize', this._handleResize);
@@ -121,10 +123,10 @@ class Schedule extends Component {
   }
 
   UNSAFE_componentWillUpdate(nextProps) {
-    const { events, regionNA } = nextProps;
+    const { events, region } = nextProps;
 
-    if (!equals(events, this.props.events) || regionNA !== this.props.regionNA) {
-      this.setupEvents(events, regionNA);
+    if (!equals(events, this.props.events) || region !== this.props.region) {
+      this.setupEvents(events, region);
     }
   }
 
@@ -156,13 +158,13 @@ class Schedule extends Component {
     this.setState({ interacted: true }, () => this.playCue(ALERT_CUE.TEST));
   };
 
-  setupEvents = (events, regionNA) => {
+  setupEvents = (events, region) => {
     this.handleResize();
     events = Object.values(events);
     if (!this.state.showDisabled) {
       events = events.filter(e => !e.disabled);
     }
-    events = events.map(this.calculateNextStart(regionNA));
+    events = events.map(this.calculateNextStart(region));
     events.sort(this.sortEvents);
     this.setState({ events }, () => {
       if (!this.interval) {
@@ -172,8 +174,7 @@ class Schedule extends Component {
     });
   };
 
-  calculateNextStart = (regionNA) => (event) => {
-    const region = regionNA ? 'NA' : 'EU';
+  calculateNextStart = (region) => (event) => {
     const now = moment.utc().milliseconds(0);
     let { times } = event;
     let activeTime = null;
@@ -263,6 +264,9 @@ class Schedule extends Component {
         return 1;
       }
     }
+    if (!a.timer && b.timer) return 1;
+    if (a.timer && !b.timer) return -1;
+    if (!a.timer && !b.timer) return 0;
     const diff = a.timer.diff(b.timer);
     if (diff === 0) {
       if (a.name > b.name) return 1;
@@ -292,7 +296,7 @@ class Schedule extends Component {
       // calculate alert
       const eventAlerts = pathOr([], [event.id])(alerts);
       const isSpeak = pathOr(false, [event.id])(speak);
-      const startDiff = event.nextTime.startTime.diff(now);
+      const startDiff = event.nextTime.startTime && event.nextTime.startTime.diff(now);
       eventAlerts.forEach(alert => {
         if (startDiff === getReminderTime(event.nextTime, ALERT_OPTIONS[alert]) * 1000) {
           if (startDiff === 0) {
@@ -315,7 +319,7 @@ class Schedule extends Component {
 
       // check if event timer is ended to start the next timer
       if (event.timer && now.isSameOrAfter(event.timer)) {
-        events[i] = this.calculateNextStart(this.props.regionNA)(event);
+        events[i] = this.calculateNextStart(this.props.region)(event);
         sort = true;
       }
     });
@@ -350,9 +354,9 @@ class Schedule extends Component {
   };
 
   setShowDisabled = (showDisabled) => () => {
-    const { events, regionNA } = this.props;
+    const { events, region } = this.props;
 
-    this.setState({ showDisabled }, () => this.setupEvents(events, regionNA));
+    this.setState({ showDisabled }, () => this.setupEvents(events, region));
   };
 
   setVolume = (e, volume) => {
@@ -364,7 +368,7 @@ class Schedule extends Component {
   _setVolume = debounce(this.setVolume, 75);
 
   render() {
-    const { regionNA, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
+    const { region, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
     const { events, width, editOpen, editId, showDisabled, interacted } = this.state;
 
     // max cols = 3
@@ -392,13 +396,13 @@ class Schedule extends Component {
               </Typography>
               {!mobile && <InGameTime mobile={mobile} />}
               <Typography variant="overline" className="region-opt">
-                NA
-                <Tooltip title="Toggle Regional Times">
-                  <IconButton color="inherit" aria-label="Reset" onClick={() => setRegion(!regionNA)}>
-                    {regionNA ? <ToggleOffIcon /> : <ToggleOnIcon />}
-                  </IconButton>
-                </Tooltip>
-                EU
+                <Select
+                  id="region-select"
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                >
+                  {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
+                </Select>
               </Typography>
               <Tooltip title="Clear all alerts">
                 <span>
@@ -439,7 +443,7 @@ class Schedule extends Component {
                   {...type}
                   events={events.filter(e => e.eventType === type.id)}
                   onEdit={this.setEditOpen}
-                  region={regionNA ? 'NA' : 'EU'}
+                  region={region}
                 />
               ))}
             </div>
@@ -455,8 +459,8 @@ class Schedule extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { regionNA, alerts, speak, volume }, gameData: { events, eventTypes }, display: { mobile } }) => ({
-  regionNA,
+const mapStateToProps = ({ calendar: { region, alerts, speak, volume }, gameData: { events, eventTypes }, display: { mobile } }) => ({
+  region,
   mobile,
   events,
   eventTypes,

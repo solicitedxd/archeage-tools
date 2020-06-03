@@ -18,7 +18,7 @@ export const triggerLocalStorageUpdate = [
 ];
 
 export const setRegion = (value) => (dispatch) => {
-  dispatch({ type: SET_REGION, regionNA: value });
+  dispatch({ type: SET_REGION, region: value });
 };
 
 export const setAlert = (eventId, value) => (dispatch) => () => {

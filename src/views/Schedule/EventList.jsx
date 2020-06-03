@@ -53,7 +53,6 @@ class EventList extends Component {
           <EventCard
             {...event}
             key={event.name}
-            regionNA={true}
             onUpdateTime={this.setTime}
             type={id}
             onEdit={onEdit}

@@ -1,5 +1,7 @@
+import { REGIONS } from 'constants/schedule';
+
 export default {
-  regionNA: true,
+  region: REGIONS[0],
   alerts: {},
   speak: {},
   volume: 70,

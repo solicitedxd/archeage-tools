@@ -31,6 +31,7 @@ import {
   ALERT_DEFAULT,
   DAY,
   DAY_ABBR,
+  REGIONS,
 } from 'constants/schedule';
 import {
   bool,
@@ -183,6 +184,7 @@ class EditEvent extends Component {
       // empty array implies all 7 days
       days: (timeData.days || []).length === 7 ? [] : (timeData.days || []),
     };
+    console.log(timeRecord.days);
     if (editTime === true) {
       times.push(timeRecord);
     } else {
@@ -310,7 +312,7 @@ class EditEvent extends Component {
                   value={timeData.region || ''}
                   onChange={(e) => this.handleChangeTime('region', e.target.value)}
                 >
-                  {[null, 'NA', 'EU'].map(region => (
+                  {[null, ...REGIONS].map(region => (
                     <MenuItem
                       value={region}
                       key={`region-${region}`}

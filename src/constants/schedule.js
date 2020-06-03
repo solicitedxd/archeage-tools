@@ -83,3 +83,5 @@ export const DAY_ABBR = Object.freeze({
   FRIDAY: 'F',
   SATURDAY: 'Sa',
 });
+
+export const REGIONS = Object.freeze(['NA', 'EU', 'SEA']);

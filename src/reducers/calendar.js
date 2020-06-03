@@ -14,7 +14,7 @@ const calendar = (state = getItem('calendar', initialState), action) => {
     case SET_REGION:
       return {
         ...state,
-        regionNA: action.regionNA,
+        region: action.region,
       };
     case SET_ALERT:
       const alerts = pathOr([], ['alerts', action.eventId])(state);
