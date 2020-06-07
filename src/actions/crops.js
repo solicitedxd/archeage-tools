@@ -1,6 +1,7 @@
 import {
   ADD_CROP,
   DELETE_CROP,
+  RESTART_CROP,
 } from 'constants/crops';
 
 export const triggerLocalStorageUpdate = [
@@ -14,5 +15,9 @@ export const addCrop = (crop, time, climate, timer, seedbed, note) => (dispatch)
 
 export const removeCrop = (index) => (dispatch) => {
   dispatch({ type: DELETE_CROP, index });
+};
+
+export const restartCrop = (index, time, timer) => (dispatch) => {
+  dispatch({ type: RESTART_CROP, index, time, timer });
 };
 

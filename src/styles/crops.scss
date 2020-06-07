@@ -70,13 +70,17 @@
     display: flex;
     flex-direction: column;
 
+    .inline-link {
+      margin-right: 2px;
+    }
+
     .climate-icons {
       display: inline-block;
       margin-left: 4px;
     }
   }
 
-  .crop-type {
+  .crop-time {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -92,6 +96,8 @@
   }
 
   .crop-delete {
+    width: 96px;
+    text-align: right;
   }
 }
 

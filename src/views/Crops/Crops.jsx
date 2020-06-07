@@ -12,6 +12,8 @@ import {
   Paper,
   Radio,
   RadioGroup,
+  Table,
+  TableBody,
   TextField,
   Toolbar,
   Tooltip,
@@ -21,6 +23,7 @@ import { Autocomplete } from '@material-ui/lab';
 import {
   addCrop,
   removeCrop,
+  restartCrop,
 } from 'actions/crops';
 import { fetchCropItems } from 'actions/gameData';
 import cn from 'classnames';
@@ -176,8 +179,19 @@ class Crops extends Component {
     });
   };
 
+  reharvestCrop = (index, { crop, climate, seedbed }) => {
+    const harvestVal = crop.description.match(HARVEST_REGEX);
+    const cropClimate = crop.description.match(CLIMATE_REGEX);
+    let time = toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0);
+    if (cropClimate && climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed)) {
+      time = Math.ceil(time * 0.7);
+    }
+    const ready = moment().add(time, 'seconds');
+    this.props.restartCrop(index, ready.valueOf(), TIMER_TYPE.HARVEST);
+  };
+
   render() {
-    const { mobile, crops, removeTree, items } = this.props;
+    const { mobile, crops, removeCrop, items } = this.props;
     const { dd, hh, mm, ss, climate, crop, note, timer, seedbed, errors } = this.state;
 
     setTitle('Crop Timers');
@@ -340,8 +354,18 @@ class Crops extends Component {
               <Typography variant="subtitle1" className="title-text">Timers</Typography>
             </Toolbar>
           </AppBar>
-          {crops.map((tree, index) => (
-            <CropTimer {...tree} key={`tree-${index}`} onDelete={() => removeTree(index)} />))}
+          <Table size="small">
+            <TableBody>
+              {crops.map((crop, index) => (
+                <CropTimer
+                  {...crop}
+                  key={`crop-${index}`}
+                  onDelete={() => removeCrop(index)}
+                  onRestart={() => this.reharvestCrop(index, crop)}
+                />
+              ))}
+            </TableBody>
+          </Table>
         </Paper>
       </div>
     );
@@ -373,8 +397,9 @@ const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crop
 
 const mapDispatchToProps = {
   addCrop,
-  removeTree: removeCrop,
+  removeCrop,
   fetchCropItems,
+  restartCrop,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Crops);

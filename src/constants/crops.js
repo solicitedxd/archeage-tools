@@ -1,5 +1,6 @@
 export const ADD_CROP = 'ADD_TREE';
 export const DELETE_CROP = 'DELETE_TREE';
+export const RESTART_CROP = 'RESTART_CROP';
 
 export const MATURES_REGEX = /Matures in(?: approx\.)?(?: \|cORANGE\|)?(?: ?(\d+) d)?(?: ?(\d+) h)?(?: ?(\d+) m)?(?: ?(\d+) s)?/;
 export const HARVEST_REGEX = /Harvest every(?: \|cORANGE\|)?(?: ?(\d+) d)?(?: ?(\d+) h)?(?: ?(\d+) m)?(?: ?(\d+) s)?/;
