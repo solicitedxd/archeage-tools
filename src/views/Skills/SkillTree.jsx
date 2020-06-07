@@ -12,6 +12,7 @@ import ReplayIcon from '@material-ui/icons/Replay';
 import SwapHorizIcon from '@material-ui/icons/SwapHoriz';
 import { fetchSkill } from 'actions/gameData';
 import Skill from 'components/Skill';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
@@ -149,7 +150,7 @@ class SkillTree extends Component {
               <div className="skill-container" data-col={(index % 4) + 1} key={passiveId}>
                 <Skill
                   id={passiveId}
-                  learned={(spentPoints >= index + 2)}
+                  learned={(spentPoints >= pathOr(0, [passiveId, 'requiredLevel'])(skills))}
                 />
               </div>),
             )}
