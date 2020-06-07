@@ -259,8 +259,9 @@ const legacyDecodeAncestrals = (chars) => {
  * @returns {string}
  */
 export const substituteVars = (description, varsRaw, passive = false, showKey = false) => {
-  description = description.replace(/#{([a-z0-9_]+)}/g, '\${$1}');
-  const vars = varsRaw.reduce((obj, props) => {
+  description = description.replace(/#{([a-z0-9_]+)}/, '\${$1}');
+  const availableKeys = (description.match(/\${([\w]+)}/g) || []).map(a => a.match(/\${([\w]+)}/)[1]);
+  const vars = varsRaw.filter(v => availableKeys.includes(v.key)).reduce((obj, props) => {
     const { key, base, baseVariant, ratio, ratioVariant, powerType, text } = props;
     if (key.match(/_detail$/) || (ratio && powerType)) {
       let str = '<span class="text-scale">(';
@@ -282,7 +283,7 @@ export const substituteVars = (description, varsRaw, passive = false, showKey = 
     } else if (key.match(/_range(\d+)?$/)) {
       obj[key] = base + 'm';
     } else {
-      obj[key] = base !== undefined ? base : text;
+      obj[key] = base !== undefined || !text ? base : substituteVars(text, varsRaw, passive, showKey);
     }
     return obj;
   }, {});
