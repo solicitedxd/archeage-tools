@@ -18,8 +18,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import cn from 'classnames';
 import IfPerm from 'components/IfPerm';
 import Link from 'components/Link';
-import moment from 'moment';
-import moment_tz from 'moment-timezone';
+import moment from 'moment-timezone';
 import React, { Component } from 'react';
 import {
   bool,
@@ -34,9 +33,6 @@ import {
 } from 'utils/schedule';
 import { hhmmssFromDate } from 'utils/time';
 import AlertSelect from './AlertSelect';
-
-// to prevent import org from removing the import
-moment_tz;
 
 const createMoment = (time, day) => {
   const now = moment.utc().milliseconds(0);

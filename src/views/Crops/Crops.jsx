@@ -36,8 +36,7 @@ import {
   TIMER_TYPE,
 } from 'constants/crops';
 import { CLIMATE } from 'constants/map';
-import moment from 'moment';
-import moment_tz from 'moment-timezone';
+import moment from 'moment-timezone';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {
@@ -49,8 +48,6 @@ import { objectHasProperties } from 'utils/object';
 import { setTitle } from 'utils/string';
 import { toSeconds } from 'utils/time';
 import CropTimer from './CropTimer';
-
-moment_tz;
 
 class Crops extends Component {
   state = {

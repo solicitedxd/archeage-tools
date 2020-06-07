@@ -37,8 +37,7 @@ import {
   VOLUME_DEFAULT,
 } from 'constants/schedule';
 import debounce from 'lodash.debounce';
-import moment from 'moment';
-import moment_tz from 'moment-timezone';
+import moment from 'moment-timezone';
 import {
   equals,
   pathOr,
@@ -64,9 +63,6 @@ import EditEvent from './EditEvent';
 import EventList from './EventList';
 import InGameTime from './InGameTime';
 import Volume from './Volume';
-
-// prevent optimize imports from removing
-moment_tz;
 
 class Schedule extends Component {
   static propTypes = {
