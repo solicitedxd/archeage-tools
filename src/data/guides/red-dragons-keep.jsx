@@ -6,6 +6,7 @@ import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
+import { SKILL } from 'constants/skills';
 import ITEM from 'data/items';
 import React from 'react';
 
@@ -102,7 +103,7 @@ export const sections = Object.freeze([
         description="The Red Dragon frequently confines nearby players and lifts them into the air. After a short delay, all players are slammed into the ground, taking heavy damage from Fall Shock."
         counters={[
           <>You can cancel the damage of Fall Shock on yourself to prevent the slam by using <SkillLink
-            skillset="Auramancy" name="Shrug It Off" />. You will still take partial damage.</>,
+            id={SKILL.SHRUG_IT_OFF} />. You will still take partial damage.</>,
         ]}
       />,
       <Ability

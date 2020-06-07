@@ -5,6 +5,7 @@ import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
+import { SKILL } from 'constants/skills';
 import ITEM from 'data/items';
 import React from 'react';
 
@@ -27,7 +28,7 @@ const sections = [
       />,
       'Serpentis is a 5-man dungeon located in Exeloch of Auroria. It requires level 50, and I\'d recommend an average gear score of at least 4000 for your group.',
       'Your composition will need at least one healer. If your group\'s average gear score is less than 5000, you should definitely have a dedicated tank.',
-      <Typography>I recommend that at least one person take <SkillLink skillset="Auramancy" name="Protective Wings" />
+      <Typography>I recommend that at least one person take <SkillLink id={SKILL.PROTECTIVE_WINGS} />
         &nbsp;if your group's average gear score is less than 5000.</Typography>,
       'There are a total of 6 rooms to progress through. Three rooms are always the same, and the other three have their own sets of possible rooms.',
       'The boss from room 5 will drop armor and the boss from room 6 will drop weapons.',
@@ -141,7 +142,7 @@ const sections = [
         description="The Duaxini spins around, flinging fire all around. Each fire projectile leaves a pool of fire on the ground that deals magic damage."
         counters={[
           'Don\'t stand still when you see the Duaxini spin to avoid taking massive damage from this ability.',
-          <Typography component="span">Stack and stand in <SkillLink skillset="Auramancy" name="Protective Wings" /> to
+          <Typography component="span">Stack and stand in <SkillLink id={SKILL.PROTECTIVE_WINGS} /> to
             mitigate the damage taken.</Typography>,
         ]}
         deadly
@@ -156,7 +157,7 @@ const sections = [
       />,
       <Typography variant="h6">Tactics</Typography>,
       <Typography>This fight is simple. You either want to stay completely still and stack while using&nbsp;
-        <SkillLink skillset="Auramancy" name="Protective Wings" /> to mitigate the Blazing Twister, or keep moving and
+        <SkillLink id={SKILL.PROTECTIVE_WINGS} /> to mitigate the Blazing Twister, or keep moving and
         spread out.</Typography>,
       'As long as you burn the boss as fast as possible, you won\'t need to worry about getting high Judgement stacks.',
       'I don\'t know what the Ward does. I\'ve only seen it once and didn\'t get a good look at what it does.',
@@ -234,7 +235,7 @@ const sections = [
         counters={[
           'Briefly walk into a  to cleanse the debuff. Don\'t stay too long; when the box disappears it will kill you instead.',
           'Spread from other players, as the landing area of the effect can hit multiple players',
-          <Typography component="span">Use <SkillLink skillset="Shadowplay" name="Stealth" /> during the cast to prevent
+          <Typography component="span">Use <SkillLink id={SKILL.STEALTH} /> during the cast to prevent
             it from targeting you.</Typography>,
         ]}
         deadly

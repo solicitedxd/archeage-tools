@@ -240,6 +240,7 @@ const legacyDecodeAncestrals = (chars) => {
  * @returns {string}
  */
 export const substituteVars = (description, varsRaw, passive = false, showKey = false) => {
+  description = description.replace(/#{([a-z0-9_]+)}/g, '\${$1}');
   const vars = varsRaw.reduce((obj, props) => {
     const { key, base, baseVariant, ratio, ratioVariant, powerType, text } = props;
     if (key.match(/_detail$/) || (ratio && powerType)) {

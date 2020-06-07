@@ -10,7 +10,7 @@ import Ability from 'components/Ability';
 import Item from 'components/Item';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
-import { ELEMENT } from 'constants/skills';
+import { SKILL } from 'constants/skills';
 import ITEM from 'data/items';
 import React, { Fragment } from 'react';
 
@@ -133,19 +133,18 @@ const sections = [
       'Your team should consist of at least one healer, at least one mage, and at least one melee with Auramancy. My team has found at least two melees useful, one with occultism and the other with auramancy.',
       'Below is a list of impactful skills by role:',
       <Typography variant="h6">Mage</Typography>,
-      <Typography>Channel <SkillLink skillset="Sorcery" name="Meteor Strike" element={ELEMENT.WAVE} /> on the center
+      <Typography>Channel <SkillLink id={SKILL.METEOR_STRIKE_WAVE} /> on the center
         enemy of a wave before the pull for maximum opening damage.&nbsp;
-        <SkillLink skillset="Shadowplay" name="Stealth" /> or&nbsp;
-        <SkillLink skillset="Malediction" name="Shadow Cloak" /> can be used to drop aggro after your meteor
+        <SkillLink id={SKILL.STEALTH} /> or&nbsp;
+        <SkillLink id={SKILL.SHADOW_CLOAK} /> can be used to drop aggro after your meteor
         strike.</Typography>,
       <Typography variant="h6">Melee</Typography>,
-      <Typography>Use <SkillLink skillset="Auramancy" name="Vicious Implosion" /> to start the fight, pulling all
+      <Typography>Use <SkillLink id={SKILL.VICIOUS_IMPLOSION} /> to start the fight, pulling all
         enemies into the center area for the mage's meteor strike.</Typography>,
-      <Typography><SkillLink skillset="Occultism" name="Hell Spear" /> combos well after a Vicious Implosion to keep
-        the
-        enemies in a meteor strike.</Typography>,
+      <Typography><SkillLink id={SKILL.HELL_SPEAR} /> combos well after a Vicious Implosion to keep
+        the enemies in a meteor strike.</Typography>,
       <Typography variant="h6">Healer</Typography>,
-      <Typography><SkillLink skillset="Vitalism" name="Skewer" element={ELEMENT.LIFE} /> is helpful to make up for
+      <Typography><SkillLink id={SKILL.LIFE_SKEWER_LIFE} /> is helpful to make up for
         missed cc-rotations.</Typography>,
     ],
   },
@@ -170,18 +169,18 @@ const sections = [
                   <TableCell rowSpan={tier === 0 ? 4 : 5}>Rank {tier + 1} Crate</TableCell>
                   <TableCell rowSpan={tier === 0 ? 4 : 5} className="reward-cell">
                     {rewards.guaranteed.filter(r => !r.oneOf).map((reward, i) => (
-                      <Item {...reward.item} count={reward.count || 1} key={`guaranteed-${tier}-${i}`} />
+                      <Item id={reward.item} count={reward.count || 1} key={`guaranteed-${tier}-${i}`} />
                     ))}
                     {rewards.guaranteed.some(r => r.oneOf) &&
                     <div className="one-of">
                       {rewards.guaranteed.filter(r => r.oneOf).map((reward, i) => (
-                        <Item {...reward.item} count={reward.count || 1} key={`guaranteed-one-${tier}-${i}`} />
+                        <Item id={reward.item} count={reward.count || 1} key={`guaranteed-one-${tier}-${i}`} />
                       ))}
                     </div>}
                   </TableCell>
                   <TableCell rowSpan={tier === 0 ? 4 : 5} className="reward-cell">
                     {rewards.random.map((reward, i) => (
-                      <Item {...reward.item} count={reward.count || 1} key={`random-${tier}-${i}`} />
+                      <Item id={reward.item} count={reward.count || 1} key={`random-${tier}-${i}`} />
                     ))}
                   </TableCell>
                 </TableRow>
@@ -209,8 +208,8 @@ const sections = [
         description="Marian receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Marian consumes all stacks to heal herself."
         counters={[
-          <>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
-            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</>,
+          <>Use <SkillLink id={SKILL.LEECH} /> or
+            <SkillLink id={SKILL.PURGE} /> to steal high stacks of Infinite Passion.</>,
         ]}
       />,
       <Typography variant="h6">Strategy</Typography>,
@@ -226,7 +225,7 @@ const sections = [
         description="Ynga Mk.II's target is periodically assaulted with a barrage of missile that each deal medium damage."
         counters={[
           'If you\'re not equipped to handle large incoming damage, drop your aggro to prevent being the target of this attack.',
-          <>Use defensive abilities, like <SkillLink skillset="Auramancy" name="Thwart" />, to help
+          <>Use defensive abilities, like <SkillLink id={SKILL.THWART} />, to help
             mitigate the incoming damage.</>,
           'Healer: Keep the player who is tanking topped off to prevent this attack from finishing them off.',
         ]}
@@ -261,7 +260,7 @@ const sections = [
         description="Mahra targets an enemy and channels Large Arrow Snipe on the target, dealing lethal damage after 2 seconds."
         counters={[
           'Alternate the use of abilities that interrupt such as Stuns, Impales, and Shackles, to cancel the channel and avoid applying a crowd control school immunity.',
-          <><SkillLink skillset="DEFENSE" name="Invincibility" /> can be used to mitigate the damage
+          <><SkillLink id={SKILL.INVINCIBILITY} /> can be used to mitigate the damage
             instead.</>,
         ]}
         deadly
@@ -287,8 +286,8 @@ const sections = [
         description="Mahra receives stacks of Infinite Passion based on the damage she takes. At
         around one million stacks, Mahra consumes all stacks to heal herself."
         counters={[
-          <>Use <SkillLink skillset="Shadowplay" name="Leech" /> or
-            <SkillLink skillset="Witchcraft" name="Purge" /> to steal high stacks of Infinite Passion.</>,
+          <>Use <SkillLink id={SKILL.LEECH} /> or
+            <SkillLink id={SKILL.PURGE} /> to steal high stacks of Infinite Passion.</>,
         ]}
       />,
       <Ability
@@ -298,13 +297,13 @@ const sections = [
       <Typography variant="h6">Strategy</Typography>,
       'Mehra occasionally sends a blue orb at a player that seeks them out and turns into a lingering mist that deals a lot of damage. This player should try to drop the orb off towards the outside of the arena and then quickly get out of the cloud.',
       <Typography>When Mehra jumps into stealth, she needs to be revealed by being attacked. Non-targeted, ranged AoE
-        spells like <SkillLink skillset="Sorcery" name="Gods' Whip" /> are good to quickly bring her out of
+        spells like <SkillLink id={SKILL.GODS_WHIP_LIGHTNING} /> are good to quickly bring her out of
         stealth.</Typography>,
       <Typography>
         Mehra needs to be interrupted immediately when she starts channeling her Snipe ability on a player. Crowd
         control effects should be rotated as to not apply any specific cc-school immunity. For example: use a <SkillLink
-        skillset="Battlerage" name="Hammer Toss" />, then a&nbsp;
-        <SkillLink skillset="Vitalism" name="Skewer" element={ELEMENT.LIFE} />, then another Stun,
+        id={SKILL.HAMMER_TOSS} />, then a&nbsp;
+        <SkillLink id={SKILL.LIFE_SKEWER_LIFE} />, then another Stun,
         then another Impale.
       </Typography>,
     ],

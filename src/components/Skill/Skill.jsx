@@ -20,6 +20,8 @@ class Skill extends Component {
     remainingPoints: number,
     onClick: func,
     noRequirement: bool,
+    disableTooltip: bool,
+    ancestral: bool,
   };
 
   static defaultProps = {
@@ -29,6 +31,8 @@ class Skill extends Component {
     onClick: () => {
     },
     noRequirement: false,
+    disableTooltip: false,
+    ancestral: false,
   };
 
   componentDidMount() {

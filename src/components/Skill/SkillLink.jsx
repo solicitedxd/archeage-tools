@@ -36,7 +36,7 @@ class SkillLink extends Component {
     return (
       <SkillTooltip skillId={id}>
         <Link className="inline-link">
-          <SkillIcon id={id} className="size-sm" inline />
+          <SkillIcon id={id} className="inline" disableTooltip />
           {text}
         </Link>
       </SkillTooltip>
@@ -44,7 +44,7 @@ class SkillLink extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: skills }, { id }) => ({
+const mapStateToProps = ({ gameData: { skills } }, { id }) => ({
   skill: skills[id] || {},
 });
 

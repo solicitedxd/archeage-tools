@@ -6,6 +6,7 @@ import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
+import { SKILL } from 'constants/skills';
 import ITEM from 'data/items';
 import React from 'react';
 
@@ -88,8 +89,8 @@ const sections = [
       <Typography>
         When Dochul leaps onto a nearby wall, he will cast Triple Murder on a player. Shortly after, he will leap back
         into the arena and knock all players back towards the edges. Use any kind of displacement ability to cancel the
-        knockback and keep yourself in the center, such as <SkillLink skillset="Shadowplay" name="Drop Back" /> or
-        &nbsp;<SkillLink skillset="Auramancy" name="Teleportation" />.
+        knockback and keep yourself in the center, such as <SkillLink id={SKILL.DROP_BACK} /> or
+        &nbsp;<SkillLink id={SKILL.TELEPORTATION} />.
       </Typography>,
       'When Dochul spawns adds, kill them first then go back to attacking Dochul.',
       'When Dochul pins down a player, the healer needs to keep them topped off.',

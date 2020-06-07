@@ -5,6 +5,7 @@ import SkillLink from 'components/Skill/SkillLink';
 import TabContent from 'components/TabContent';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
+import { SKILL } from 'constants/skills';
 import React from 'react';
 
 const name = 'Hounds and Nightmares';
@@ -100,9 +101,9 @@ const sections = [
         unlikely that your group will only pull one. Your group will need to engage one Hound while one person distracts
         the other so the splash damage from the Hand Cannon won't deal devastating damage to your raid.</Typography>,
       <Typography>Those with Songcraft should avoid using&nbsp;
-        <SkillLink skillset="Songcraft" name="[Perform] Ode to Recovery" /> as the aggro generation can put your raid
+        <SkillLink id={SKILL.ODE_TO_RECOVERY} /> as the aggro generation can put your raid
         into jeopardy. Healers should stick to using single-target heals on the player tanking the hound and&nbsp;
-        <SkillLink skillset="Vitalism" name="Mend" /> for raid-wide healing.</Typography>,
+        <SkillLink id={SKILL.MEND} /> for raid-wide healing.</Typography>,
       'The only player that should be in front of the Hound should be the one tanking it, everyone else should be stacked within 5 meters behind it to prevent the Hound from using its Hand Cannon ability.',
       'Use big damage cooldowns during windows of opportunity to burn the Hound, such as right after the immunity phase of a Telekinesis.',
     ],
@@ -182,9 +183,9 @@ const sections = [
         usually spawn a good distance away from each other, and with the nature of using the harpoons to kill the
         Nightmare Army, you'll most likely be able to pull them individually.</Typography>,
       <Typography>Those with Songcraft should avoid using&nbsp;
-        <SkillLink skillset="Songcraft" name="[Perform] Ode to Recovery" /> as the aggro generation can put your raid
+        <SkillLink id={SKILL.ODE_TO_RECOVERY} /> as the aggro generation can put your raid
         into jeopardy. Healers should stick to using single-target heals on the player tanking the hound and&nbsp;
-        <SkillLink skillset="Vitalism" name="Mend" /> for raid-wide healing.</Typography>,
+        <SkillLink id={SKILL.MEND} /> for raid-wide healing.</Typography>,
       'The only player that should be in front of the Nightmare creature should be the one tanking it, everyone else should be stacked within 5 meters behind it to prevent the Hound from using its Hand Cannon ability.',
       'Use big damage cooldowns during windows of opportunity to burn the Hound, such as right after the immunity phase of a Telekinesis.',
       'Keep an eye on the Nightmare\'s buff bar and use Time of Oblivion on the Ghost Hunter Harpoon to neutralize its effect.',

@@ -1,4 +1,4 @@
-import { QUALITY } from 'constants/items';
+import { GRADE } from 'constants/items';
 import React from 'react';
 
 const Icon = {};
@@ -59,89 +59,17 @@ const ITEM = Object.freeze({
   STARLIGHT_ARCHEUM_DUST: 16349,
   MYSTERIOUS_ABYSSAL_ENHANCER: 46576,
   TAX_CERTIFICATE: 31891,
-  NORYETTE_EARRING: {
-    name: 'Noryette Earring',
-    icon: Icon.NoryetteEarring,
-    type: 'Earring',
-    quality: QUALITY.HEROIC,
-    bindsOnPickup: true,
-    reqLevel: 50,
-    synthesisXP: 31840,
-    synthesisGrade: QUALITY.DIVINE,
-    slot: 'Ear',
-    durability: 15,
-    description: <span>
-      <Use title="Combo Effect">Triggers the <Orange>Spiritual Focus Rank 1</Orange> if attacked in the Noryette Challenge.</Use><br /><br />
-      <Use title="Equip effect">Decreases <Blue>PvE Received Damage</Blue> <Orange>-2.0%</Orange>.</Use>
-    </span>,
-  },
-  NORYETTE_RING: {
-    name: 'Noryette Ring',
-    icon: Icon.NoryetteRing,
-    type: 'Ring',
-    quality: QUALITY.HEROIC,
-    bindsOnPickup: true,
-    reqLevel: 50,
-    synthesisXP: 31840,
-    synthesisGrade: QUALITY.DIVINE,
-    slot: 'Finger',
-    durability: 15,
-    description: <span>
-      <Use title="Combo Effect">Triggers the <Orange>Challenger's Valor Rank 1</Orange> when using a skill in the Noryette Challenge.</Use><br /><br />
-      <Use title="Equip Effect">Increaes <Blue>PvE Skill Damage</Blue> <Orange>+2.0%</Orange>.</Use>
-    </span>,
-  },
-  NORYETTE_AWAKENING_SCROLL: {
-    name: 'Noryette Awakening Scroll',
-    icon: Icon.NoryetteAwakeningScroll,
-    type: 'Awakening Materials',
-    quality: QUALITY.RARE,
-    bindsOnPickup: true,
-    description: <span>
-      An awakening scroll, made by the <Blue>Noryette</Blue> family.<br /><br />
-      Can only be used on <Yellow>Noryette Accessories</Yellow> of <Yellow>Divine</Yellow> grade or higher.<br /><br />
-      Can be obtained by clearing Round 20 or higher in the <Blue>Noryette Challenge</Blue>.<br /><br />
-      <Use>Spend <Orange>1</Orange> Noryette Awakening Scroll and <Orange>300</Orange> Labor to awaken the equipment.</Use>
-    </span>,
-    price: 20,
-  },
-  LUMINOUS_NORYETTE_AWAKENING_SCROLL: {
-    name: 'Luminous Noryette Awakening Scroll',
-    icon: Icon.NoryetteAwakeningScroll,
-    type: 'Awakening Materials',
-    quality: QUALITY.HEROIC,
-    bindsOnPickup: true,
-    description: <span>
-      An awakening scroll, made by the <Blue>Noryette</Blue> family.<br /><br />
-      Can only be used on <Yellow>Luminous Noryette Accessories</Yellow> of <Yellow>Legendary</Yellow> grade or higher.<br /><br />
-      Can be obtained by clearing Round 20 or higher in the <Blue>Noryette Challenge</Blue>.<br /><br />
-      <Use>Spend <Orange>1</Orange> Luminous Noryette Awakening Scroll and <Orange>300</Orange> Labor to awaken the equipment.</Use>
-    </span>,
-    price: 30,
-  },
-  MISTSONG_GRINDING_GUARDIAN_SCROLL: {
-    name: 'Mistsong Grinding Guardian Scroll',
-    icon: Icon.GreaterGrindingScroll,
-    type: 'Other',
-    quality: QUALITY.RARE,
-    description: <span>
-      Grants continued dungeon access after you pass your daily entrance limit.<br /><br />
-      <Yellow>Caution:</Yellow><br />
-      Entering the same dungeon after the daily entrance limit was met will consume this scroll.<br />
-      Only for dungeons with a level limit of <Orange>55 or higher</Orange>.<br /><br />
-      <Blue>Valid Dungeons</Blue><br />
-      Mistsong Summit<br />
-      Abyssal Library<br />
-      Noryette Challenge
-    </span>,
-    price: 10000,
-  },
+  NORYETTE_EARRING: 46593,
+  NORYETTE_RING: 46590,
+  NORYETTE_AWAKENING_SCROLL: 46647,
+  LUMINOUS_NORYETTE_AWAKENING_SCROLL: 46648,
+  MISTSONG_GRINDING_GUARDIAN_SCROLL: 39803,
   EXPLORERS_BOW: {
     name: 'Explorer\'s Bow',
     icon: Icon.ExplorersBow,
     type: 'Bow',
-    quality: QUALITY.BASIC,
-    synthesisGrade: QUALITY.ARCANE,
+    quality: GRADE.BASIC,
+    synthesisGrade: GRADE.ARCANE,
     reqLevel: 1,
     bindsOnPickup: true,
     slot: 'Ranged Weapon',
@@ -273,7 +201,7 @@ const ITEM = Object.freeze({
     name: 'Unidentified Story Quest Infusion: Rank 1',
     icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
-    quality: QUALITY.GRAND,
+    quality: GRADE.GRAND,
     unidentified: true,
     bindsOnPickup: true,
     description: <span>
@@ -286,7 +214,7 @@ const ITEM = Object.freeze({
     name: 'Unidentified Story Quest Infusion: Rank 2',
     icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
-    quality: QUALITY.RARE,
+    quality: GRADE.RARE,
     unidentified: true,
     bindsOnPickup: true,
     description: <span>
@@ -299,7 +227,7 @@ const ITEM = Object.freeze({
     name: 'Unidentified Story Quest Infusion: Rank 3',
     icon: Icon.StoryInfusion,
     type: 'Synthesis Materials',
-    quality: QUALITY.ARCANE,
+    quality: GRADE.ARCANE,
     unidentified: true,
     bindsOnPickup: true,
     description: <span>
@@ -313,7 +241,7 @@ const ITEM = Object.freeze({
     icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
-    quality: QUALITY.GRAND,
+    quality: GRADE.GRAND,
     description: <span>
       Used to awaken <Yellow>Ancient</Yellow> Faction Mission Equipment, unlocking higher item grades.<br /><br />
       <Use>Use <Orange>1</Orange> Awakening Scroll to awaken the equipment.</Use>
@@ -324,7 +252,7 @@ const ITEM = Object.freeze({
     icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
-    quality: QUALITY.RARE,
+    quality: GRADE.RARE,
     description: <span>
       Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
       Can only be used on <Yellow>Explorer's Equipment</Yellow> or <Yellow>Heroic</Yellow> grade or higher.<br /><br />
@@ -336,7 +264,7 @@ const ITEM = Object.freeze({
     icon: Icon.StoryAwakeningScroll,
     type: 'Awakening Materials',
     bindsOnPickup: true,
-    quality: QUALITY.ARCANE,
+    quality: GRADE.ARCANE,
     description: <span>
       Used to awaken Explorer's Equipment, unlocking higher item grades.<br />
       Can only be used on <Yellow>Radiant Explorer's Equipment</Yellow> or <Yellow>Unique</Yellow> grade or higher.<br /><br />

@@ -18,7 +18,7 @@ export const CURRENCY = Object.freeze({
   KYRIOS: 'Kyrios Badge',
 });
 
-export const QUALITY = Object.freeze({
+export const GRADE_NAME = Object.freeze({
   POOR: 'Poor',
   BASIC: 'Basic',
   GRAND: 'Grand',
@@ -33,3 +33,20 @@ export const QUALITY = Object.freeze({
   MYTHIC: 'Mythic',
   ETERNAL: 'Eternal',
 });
+
+export const GRADE = Object.freeze({
+  POOR: 0,
+  BASIC: 1,
+  GRAND: 2,
+  RARE: 3,
+  ARCANE: 4,
+  HEROIC: 5,
+  UNIQUE: 6,
+  CELESTIAL: 7,
+  DIVINE: 8,
+  EPIC: 9,
+  LEGENDARY: 10,
+  MYTHIC: 11,
+  ETERNAL: 12,
+});
+

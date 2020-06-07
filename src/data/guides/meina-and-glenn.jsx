@@ -4,6 +4,7 @@ import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import { ZONE } from 'constants/map';
+import { SKILL } from 'constants/skills';
 import React from 'react';
 
 const name = 'Meina and Glenn';
@@ -45,9 +46,9 @@ const sections = [
       />,
       <Typography variant="h6">Tactics</Typography>,
       'The easiest way to kill Meina is with a large group of players and to just burn her as fast as you can.',
-      <Typography>Use <SkillLink skillset="Battlerage" name="Tiger Strike" /> on a rotation to maintain the Overpowered
+      <Typography>Use <SkillLink id={SKILL.TIGER_STRIKE} /> on a rotation to maintain the Overpowered
         debuff, slowing her health regeneration.</Typography>,
-      <Typography>Healers must avoid using <SkillLink skillset="Vitalism" name="Resurgence" />! While Glenn is alive
+      <Typography>Healers must avoid using <SkillLink id={SKILL.RESURGENCE} />! While Glenn is alive
         (regardless of if he was engaged alongside Meina), he will steal this buff and apply a beefed up version of it
         to Meina or himself, causing immense healing.</Typography>,
     ],
@@ -77,7 +78,7 @@ const sections = [
         name="Resurgence"
         description="Glenn steals an active Resurgence buff from a player and applies his own version to either Meina or himself. This heals for immense amounts."
         counters={[
-          <>Healers should not use <SkillLink skillset="Vitalism" name="Resurgence" /> at
+          <>Healers should not use <SkillLink id={SKILL.RESURGENCE} /> at
             all.</>,
         ]}
       />,
@@ -89,13 +90,13 @@ const sections = [
       <Typography>Skewer can easily wipe a raid if players don't get out of the impact zones fast enough. You can be hit
         by multiple Skewers if you stand in an overlapping zone, effectively killing you. De-summon your battle pets and
         mounts before engaging Glenn. Use any kind of movement ability (such as&nbsp;
-        <SkillLink skillset="Auramancy" name="Teleportation" />,&nbsp;
-        <SkillLink skillset="Shadowplay" name="Drop Back" />,&nbsp;
-        <SkillLink skillset="Battlerage" name="Behind Enemy Lines" />) or your glider to get out of Skewer impact zones
+        <SkillLink id={SKILL.TELEPORTATION} />,&nbsp;
+        <SkillLink id={SKILL.DROP_BACK} />,&nbsp;
+        <SkillLink id={SKILL.BEHIND_ENEMY_LINES} />) or your glider to get out of Skewer impact zones
         as fast as possible.</Typography>,
-      <Typography>Use <SkillLink skillset="Battlerage" name="Tiger Strike" /> on a rotation to maintain the Overpowered
+      <Typography>Use <SkillLink id={SKILL.TIGER_STRIKE} /> on a rotation to maintain the Overpowered
         debuff, slowing his health regeneration.</Typography>,
-      <Typography>Healers must avoid using <SkillLink skillset="Vitalism" name="Resurgence" />!</Typography>,
+      <Typography>Healers must avoid using <SkillLink id={SKILL.RESURGENCE} />!</Typography>,
       'Magic DPS must refrain from using spells during Conversion Shield, as all magic damage will heal Glenn.',
     ],
   },

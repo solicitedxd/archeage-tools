@@ -6,7 +6,7 @@ import cn from 'classnames';
 import Currency from 'components/Currency';
 import {
   CURRENCY,
-  QUALITY,
+  GRADE_NAME,
 } from 'constants/items';
 import React from 'react';
 import {
@@ -16,10 +16,8 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import {
-  encodeColors,
-  transformLines,
-} from 'utils/string';
+import { substituteVars } from 'utils/skills';
+import { transformLines } from 'utils/string';
 
 const TooltipContent = (item) => {
   // validate item has content
@@ -41,6 +39,8 @@ const TooltipContent = (item) => {
     }
   }
   price = Math.round(price * ((item.grade * 0.5) + 0.5));
+  // placeholder vars
+  const vars = [];
 
   return (
     <>
@@ -56,7 +56,7 @@ const TooltipContent = (item) => {
             component="h5"
             className="quality-color"
           >
-            {Object.values(QUALITY)[grade]}
+            {Object.values(GRADE_NAME)[grade]}
           </Typography>}
           <Typography variant="h4" component="h4" className="quality-color">{name}</Typography>
         </div>
@@ -98,12 +98,12 @@ const TooltipContent = (item) => {
         {maxGrade &&
         <>
           <p className="text-orange">Maximum Grade</p>
-          <p className="text-orange">(~{Object.values(QUALITY)[maxGrade]})</p>
+          <p className="text-orange">(~{Object.values(GRADE_NAME)[maxGrade]})</p>
         </>}
         {synthesisGrade &&
         <>
           <p className="text-orange">Synthesis Available</p>
-          <p className="text-orange">(~{Object.values(QUALITY)[synthesisGrade]})</p>
+          <p className="text-orange">(~{Object.values(GRADE_NAME)[synthesisGrade]})</p>
         </>}
         {tempering && <p>Tempering Available</p>}
         {salvageable && <p>Mag Salvageable</p>}
@@ -115,7 +115,7 @@ const TooltipContent = (item) => {
       </section>}
       {(description || useEffect || comboEffect || equipEffect) &&
       <section>
-        {description && <p dangerouslySetInnerHTML={{ __html: encodeColors(description) }} />}
+        {description && <p dangerouslySetInnerHTML={{ __html: substituteVars(description, vars) }} />}
         {useEffect &&
         <>
           <p className="text-use">
@@ -123,7 +123,7 @@ const TooltipContent = (item) => {
             <br />}
             Use:
           </p>
-          <p className="text-green" dangerouslySetInnerHTML={{ __html: encodeColors(useEffect) }} />
+          <p className="text-green" dangerouslySetInnerHTML={{ __html: substituteVars(useEffect, vars) }} />
         </>}
         {comboEffect &&
         <>
@@ -132,7 +132,7 @@ const TooltipContent = (item) => {
             <br />}
             Combo Effect
           </p>
-          <p className="text-green" dangerouslySetInnerHTML={{ __html: encodeColors(comboEffect) }} />
+          <p className="text-green" dangerouslySetInnerHTML={{ __html: substituteVars(comboEffect, vars) }} />
         </>}
         {equipEffect &&
         <>
@@ -141,7 +141,7 @@ const TooltipContent = (item) => {
             <br />}
             Equip
           </p>
-          <p className="text-green" dangerouslySetInnerHTML={{ __html: encodeColors(equipEffect) }} />
+          <p className="text-green" dangerouslySetInnerHTML={{ __html: substituteVars(equipEffect, vars) }} />
         </>}
       </section>}
       <section>

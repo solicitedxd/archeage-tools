@@ -32,7 +32,7 @@ const fetchItemQueue = debounce(() => {
 }, 50);
 
 export const fetchItem = (itemId) => {
-  if (!itemId || itemId === 'undefined') return;
+  if (!itemId || itemId === 'undefined' || typeof itemId !== 'number') return;
   itemQueue.add(itemId);
 
   fetchItemQueue();
@@ -273,7 +273,11 @@ export const fetchSkill = (skillId) => {
 };
 
 export const fetchSkills = (...skills) => (dispatch, getState) => {
-  const { skills: storedSkills } = getState().gameData;
+  const { skills: storedSkills, skillsets } = getState().gameData;
+
+  if (!objectHasProperties(skillsets)) {
+    dispatch(fetchSkillsets());
+  }
 
   let skillIds = Array.isArray(skills[0]) ? new Set(skills[0]) : new Set(skills);
   // filter out already fetched skills
