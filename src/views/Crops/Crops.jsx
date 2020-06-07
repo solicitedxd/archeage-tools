@@ -77,7 +77,6 @@ class Crops extends Component {
   handleTimeChange = (key) => (event) => {
     let { value } = event.target;
     value = value.replace(/\D/g, '');
-    console.log(value);
 
     if (value !== '') {
       const num = Number.parseInt(value);
@@ -148,7 +147,6 @@ class Crops extends Component {
     const maturesVal = crop.description.match(MATURES_REGEX);
     const harvestVal = crop.description.match(HARVEST_REGEX);
     const cropClimate = crop.description.match(CLIMATE_REGEX);
-    console.log(crop.name, maturesVal);
     const enteredTime = toSeconds(dd || 0, hh || 0, mm || 0, ss || 0);
     let defaultTime = timer === TIMER_TYPE.HARVEST && harvestVal
       ? toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0)
@@ -156,10 +154,8 @@ class Crops extends Component {
     if (cropClimate && climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed)) {
       defaultTime = Math.ceil(defaultTime * 0.7);
     }
-    console.log(enteredTime > defaultTime, enteredTime === 0, defaultTime, enteredTime);
     const timeToTrack = enteredTime > defaultTime || enteredTime === 0 ? defaultTime : enteredTime;
     const ready = moment().add(timeToTrack, 'seconds');
-    console.log(enteredTime, defaultTime, timeToTrack, ready);
 
     let noteTrim = note.trim();
     if (noteTrim.length > 100) {

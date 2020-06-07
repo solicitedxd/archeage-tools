@@ -57,7 +57,6 @@ class Skills extends Component {
         this.updateHash(skillsets);
       }
       if (!equals(skillsets, this.state.skillsets)) {
-        console.log('Updating build', dataString);
         this.setState({ skillsets });
       }
     } else {

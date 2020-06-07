@@ -62,7 +62,6 @@ class CropTimer extends Component {
     const { crop, time, climate, note, timer, seedbed, onDelete } = this.props;
 
     if (!crop) return null;
-    console.log(crop.description);
 
     const maturesVal = crop.description.match(MATURES_REGEX);
     const harvestVal = crop.description.match(HARVEST_REGEX);
