@@ -19,9 +19,6 @@ import {
 } from 'utils/skills';
 
 const TooltipContent = (skill) => {
-  // validate skill has content
-  if (!skill) return;
-
   // TODO: handle passive increases
   // if (!passive && spentPoints >= 2 && skillSet.passives) {
   //   const percentIncreases = {};
@@ -188,10 +185,10 @@ class SkillTooltip extends Component {
   };
 
   render() {
-    const { children, disableTooltip, ...skill } = this.props;
+    const { children, disableTooltip, skillId, ...skill } = this.props;
     const { shifted } = this.state;
 
-    if (disableTooltip) {
+    if (disableTooltip || !skill.id) {
       return children;
     }
 
@@ -210,7 +207,7 @@ class SkillTooltip extends Component {
             },
           },
         }}
-        id={`skill-${skill.skillId}`}
+        id={`skill-${skillId}`}
       >
         {children}
       </Tooltip>

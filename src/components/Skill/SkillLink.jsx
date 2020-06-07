@@ -1,79 +1,51 @@
 import { Link } from '@material-ui/core';
+import { Skeleton } from '@material-ui/lab';
+import SkillIcon from 'components/Skill/SkillIcon';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import { ELEMENT } from 'constants/skills';
-import SKILLSET from 'data/skillsets';
 import React, { Component } from 'react';
-import {
-  bool,
-  oneOf,
-  string,
-} from 'react-proptypes';
-import Skill from './Skill';
+import { number } from 'react-proptypes';
+import { connect } from 'react-redux';
 
 class SkillLink extends Component {
   static propTypes = {
-    name: string,
-    id: string,
-    skillset: string.isRequired,
-    passive: bool,
-    element: oneOf(Object.values(ELEMENT)),
-  };
-
-  static defaultProps = {
-    element: ELEMENT.BASIC,
-    passive: false,
+    id: number.isRequired,
   };
 
   render() {
-    const { id, name, skillset, passive, element } = this.props;
+    const { id, skill } = this.props;
+    const { name, icon, passive, ancestralElement: element } = skill;
 
-    const skillSetKey = Object.keys(SKILLSET).find(id => id === skillset.toUpperCase());
-    if (!skillSetKey) return;
-
-    const skillSet = SKILLSET[skillSetKey];
-    const skills = passive ? skillSet.passives : skillSet.skills;
-
-    let skill;
-    if (id) {
-      skill = skills.find(s => s.id === id);
-    } else {
-      skill = skills.find(s => s.name === name);
+    let text = '';
+    if (passive) {
+      text += '[Passive] ';
+    } else if (element && element !== ELEMENT.BASIC) {
+      text += `[${element}] `;
     }
-    if (!skill) {
-      return (
-        <Link>
-          Invalid Ability
-        </Link>
+    text += name;
+
+    if (!icon) {
+      text = (
+        <Skeleton
+          variant="text"
+          style={{ display: 'inline-block', marginLeft: 4, width: 80, height: 20, transform: 'none' }}
+        />
       );
     }
-    const slot = skills.indexOf(skill);
-    const ancestral = element !== ELEMENT.BASIC && skillSet.ancestrals.find(anc => anc.skillId === slot).variants.find(anc => anc.element === element);
 
     return (
-      <SkillTooltip
-        skillset={skillset.toUpperCase()}
-        skillId={slot}
-        passive={passive}
-        element={element}
-        spentPoints={5}
-      >
+      <SkillTooltip skillId={id}>
         <Link className="inline-link">
-          <Skill
-            {...skill}
-            {...ancestral || {}}
-            slot={slot}
-            skillset={skillset.toUpperCase()}
-            passive={passive}
-            element={element}
-            learned
-            disableTooltip
-            className="inline"
-          />
-          {element !== ELEMENT.BASIC ? `[${element}] ` : ''}{skill.name}
+          <SkillIcon id={id} className="size-sm" inline />
+          {text}
         </Link>
       </SkillTooltip>
     );
   }
 }
 
-export default SkillLink;
+const mapStateToProps = ({ gameData: skills }, { id }) => ({
+  skill: skills[id] || {},
+});
+
+export default connect(mapStateToProps)(SkillLink);
