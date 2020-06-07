@@ -75,6 +75,7 @@
         "webpack-dev-server": "^3.11.0"
     },
     "resolutions": {
-        "websocket-extensions": "0.1.4"
+        "websocket-extensions": "0.1.4",
+        "minimist": ">=0.2.1"
     }
 }
