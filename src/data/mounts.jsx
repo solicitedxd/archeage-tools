@@ -4,7 +4,10 @@ import ItemLink from 'components/Item/ItemLink';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
-import { CURRENCY } from 'constants/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import { ZONE } from 'constants/map';
 import {
   CRAFTED,
@@ -12,7 +15,6 @@ import {
   MOUNT_TYPE,
   QUEST,
 } from 'constants/mounts';
-import ITEM from 'data/items';
 import React from 'react';
 import { slug } from 'utils/string';
 

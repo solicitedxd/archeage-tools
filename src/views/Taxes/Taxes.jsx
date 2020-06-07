@@ -16,13 +16,15 @@ import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import { DIALOG_PROFICIENCY } from 'constants/display';
-import { CURRENCY } from 'constants/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import { CONSTRUCTION } from 'constants/proficiencies';
 import {
   HOUSING_TYPES,
   TAX_BURDEN,
 } from 'constants/taxes';
-import ITEM from 'data/items';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deepCopy } from 'utils/object';

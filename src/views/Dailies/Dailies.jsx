@@ -20,10 +20,12 @@ import {
 import cn from 'classnames';
 import ScrollToTop from 'components/ScrollToTop';
 import { DAILY_TYPE } from 'constants/dailies';
-import { CURRENCY } from 'constants/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import { CONTINENT } from 'constants/map';
 import dailyQuests from 'data/dailies';
-import ITEM from 'data/items';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import {

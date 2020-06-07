@@ -13,8 +13,10 @@ import cn from 'classnames';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import XP from 'components/XP';
-import { CURRENCY } from 'constants/items';
-import ITEM from 'data/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import React, { Component } from 'react';
 import {
   array,

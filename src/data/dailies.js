@@ -2,12 +2,14 @@ import {
   DAILY_TYPE,
   DIFFICULTY,
 } from 'constants/dailies';
-import { CURRENCY } from 'constants/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import {
   FACTION,
   ZONE,
 } from 'constants/map';
-import ITEM from 'data/items';
 
 export default [
   {

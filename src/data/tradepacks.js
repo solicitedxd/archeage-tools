@@ -1,3 +1,4 @@
+import { ITEM } from 'constants/items';
 import {
   CONTINENT,
   ZONE,
@@ -7,7 +8,6 @@ import {
   FRESHNESS,
   PACK_TYPE,
 } from 'constants/tradepacks';
-import ITEM from './items';
 
 export default Object.freeze({
   // Haranya

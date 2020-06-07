@@ -1,4 +1,4 @@
-import ITEM from 'data/items';
+import { ITEM } from 'constants/items';
 import { ZONE } from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';

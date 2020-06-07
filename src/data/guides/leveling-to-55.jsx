@@ -5,8 +5,8 @@ import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent/TabContent';
 import { GUIDE_CATEGORY } from 'constants/guides';
+import { ITEM } from 'constants/items';
 import { ZONE } from 'constants/map';
-import ITEM from 'data/items';
 import React from 'react';
 
 const name = 'Leveling to 55';
@@ -30,12 +30,12 @@ const sections = [
         quality.</Typography>,
       <Typography variant="subtitle1">Rewards</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.EXPLORERS_BOW} />
+        <Item id={ITEM.EXPLORERS_BOW} />
       </div>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.EXPLORERS_1H_WEAPON_CRATE} count={2} />
-        <Item {...ITEM.EXPLORERS_2H_WEAPON_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_1H_WEAPON_CRATE} count={2} />
+        <Item id={ITEM.EXPLORERS_2H_WEAPON_CRATE} count={1} />
       </div>,
       'The weapon that you pick is pertinent to your class. For classes that scale off of Magic Attack, you\'ll want a Staff (from 2H) or a Scepter (from 1H). Healers use Healing Power, so a Club (1H) or Greatclub (2H) is desired.',
       'There are also different "Weapon Types" that affect melee attacks: Piercing, Slashing, and Crushing.',
@@ -48,15 +48,15 @@ const sections = [
       'Around your 4th story quest, you\'ll receive your first set of armor rewards. Sometime in chapter 2 of story quests, you\'ll receive the last few pieces.',
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.EXPLORERS_CLOTH_CRATE} count={1} />
-        <Item {...ITEM.EXPLORERS_LEATHER_CRATE} count={1} />
-        <Item {...ITEM.EXPLORERS_PLATE_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_CLOTH_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_LEATHER_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_PLATE_CRATE} count={1} />
       </div>,
       <Typography variant="caption" color="primary">Choose One:</Typography>,
       <div className="quest-items">
-        <Item {...ITEM.EXPLORERS_CLOTH_COMPONENT_CRATE} count={1} />
-        <Item {...ITEM.EXPLORERS_LEATHER_COMPONENT_CRATE} count={1} />
-        <Item {...ITEM.EXPLORERS_PLATE_COMPONENT_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_CLOTH_COMPONENT_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_LEATHER_COMPONENT_CRATE} count={1} />
+        <Item id={ITEM.EXPLORERS_PLATE_COMPONENT_CRATE} count={1} />
       </div>,
       'Cloth armor offers high magic defense, 3% increased move speed, 20% reduced debuff duration, and 10% reduced mana costs.',
       'Leather armor provides a balance of both physical and magic defense, 3% increased evasion, increased bow range by 3m, and 20% reduced shackle and trip duration.',
@@ -67,10 +67,10 @@ const sections = [
     title: 'Upgrading your Explorer\'s Gear',
     paragraphs: [
       <Typography>Every so often while doing your story quests, you'll receive <ItemLink
-        item={ITEM.STORY_QUEST_INFUSION_RANK_1} plural="s" />. Use these on your equipment to get them to Arcane
+        id={ITEM.STORY_QUEST_INFUSION_RANK_1} plural="s" />. Use these on your equipment to get them to Arcane
         quality. You will have all of your infusions by around level 25.</Typography>,
       <Typography>After you've acquired all of your infusions, you'll start getting <ItemLink
-        item={ITEM.STORY_AWAKENING_SCROLL_RANK_1} plural="s" />. Do not use them until you get to level 28, or you will
+        id={ITEM.STORY_AWAKENING_SCROLL_RANK_1} plural="s" />. Do not use them until you get to level 28, or you will
         not be able to equip the upgraded gear. These scrolls will turn your Explorer's gear into Brilliant Explorer's
         equipment, increasing the stats but lowing the quality back down to Grand. Every piece of equipment will also
         gain a main stat (ie. Strength, Agility, Stamina, Intelligence, or Spirit). These are acquired at random. Every
@@ -78,19 +78,19 @@ const sections = [
         piece of gear to get a more desirable one, if needed. You will have 1 extra if you are using a two handed
         weapon.</Typography>,
       <Typography>After you've been given all the rank 1 scrolls, story quests will start giving out <ItemLink
-        item={ITEM.STORY_QUEST_INFUSION_RANK_2} plural="s" />. Use these on your equipment to get them to Heroic
+        id={ITEM.STORY_QUEST_INFUSION_RANK_2} plural="s" />. Use these on your equipment to get them to Heroic
         quality. You will have all of your infusions by around level 36 and have exactly enough if using one-handers,
         and 3 extra if using a two-hander.</Typography>,
-      <Typography>Once again, you'll slowly get <ItemLink item={ITEM.STORY_AWAKENING_SCROLL_RANK_2} plural="s" /> until
+      <Typography>Once again, you'll slowly get <ItemLink id={ITEM.STORY_AWAKENING_SCROLL_RANK_2} plural="s" /> until
         you have enough to turn all your equipment into Radiant Explorer's. This upgrade will require level 40 to equip,
         so don't awaken to Radiant until you're level 40! The Radiant Awakening will add a secondary stat to each piece,
         such as resilience, reduced Melee/Magic/Ranged damage received, or critical chance and damage for weapons while
         setting them back to Rare quality. You will have 1 extra scroll if using a two-hander.</Typography>,
       <Typography>After the rank 2 scrolls, story quests will start reward you with <ItemLink
-        item={ITEM.STORY_QUEST_INFUSION_RANK_3} plural="s" />. You will be given enough to get all your gear to Unique
+        id={ITEM.STORY_QUEST_INFUSION_RANK_3} plural="s" />. You will be given enough to get all your gear to Unique
         quality, or have 4 extra if using a two-hander.</Typography>,
       <Typography>At level 50, you'll have two story quests in Diamond Shores that give <ItemLink
-        item={ITEM.STORY_AWAKENING_SCROLL_RANK_3} plural="s" />. Do not use these until you have perfect stats on your
+        id={ITEM.STORY_AWAKENING_SCROLL_RANK_3} plural="s" />. Do not use these until you have perfect stats on your
         Radiant Explorer's gear. More on that below. These scrolls upgrade your gear to the first tier of Hiram gear. It
         cannot be undone. Your armor type or weapons cannot be swapped easily after this (you will have to grind mobs to
         get a new set).</Typography>,
@@ -140,7 +140,7 @@ const sections = [
       'For your armor, Resilience or your biggest counter\'s Received Damage reduction are the better secondary stats. If you get one but you really wanted the other, don\'t worry. When awakening Radiant Explorer\'s to Hiram, it unlocks a second secondary stat (for 3 effects total).',
       'For your weapon, most builds will want to run critical chance and bonus on the main weapon, bow, and off-hand if you\'re running one. Shields and instruments want evasion and flat attack.',
       'Should you not get lucky and get your main stat and one of your desired secondary stats on a piece of gear, you can salvage the piece, get all the infusions and scrolls back, and try again.',
-      <Typography><ItemLink item={ITEM.ADVENTURERS_EVENSTONE} plural="s" /> can be purchased from any Blacksmith or
+      <Typography><ItemLink id={ITEM.ADVENTURERS_EVENSTONE} plural="s" /> can be purchased from any Blacksmith or
         General Merchant and are the only item that can salvage and return your infusions. Armor merchants sell full set
         bundles of all armor pieces. Any set will work. The tier 1 variants have different appearances but they all
         turn into the same at tier 2. Weapon merchants sell the the 1 and 2H crates. You can use this time to switch
@@ -165,7 +165,7 @@ const sections = [
       'Starting at level 45, you can now grind Ancestral level mobs for experience. Usually you can\'t get experience from enemies that are more than 10 levels higher than your own, however Ancestral levels don\'t count in that equation (so they\'re technically level 55).',
       'Find a group and grind mobs in Aegis Island or Western Hiram Mountains and grind until 50.',
       <Typography>At level 50, your green story quests will be available again in Diamond Shores and grant
-        your <ItemLink item={ITEM.STORY_AWAKENING_SCROLL_RANK_3} plural="s" /> to awaken your Explorer gear into Hiram
+        your <ItemLink id={ITEM.STORY_AWAKENING_SCROLL_RANK_3} plural="s" /> to awaken your Explorer gear into Hiram
         gear, which is the endgame gear for most players.</Typography>,
     ],
   },

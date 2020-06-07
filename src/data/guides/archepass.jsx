@@ -4,8 +4,10 @@ import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Lightbox from 'components/Lightbox';
 import { GUIDE_CATEGORY } from 'constants/guides';
-import { CURRENCY } from 'constants/items';
-import ITEM from 'data/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import ArchePass from 'images/guides/ArchePass.png';
 import ArchePassChange from 'images/guides/ArchePass_Change.png';
 import React from 'react';

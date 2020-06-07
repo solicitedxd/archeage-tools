@@ -4,9 +4,9 @@ import Item from 'components/Item';
 import MapEmbed from 'components/MapEmbed';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
+import { ITEM } from 'constants/items';
 import { ZONE } from 'constants/map';
 import { SKILL } from 'constants/skills';
-import ITEM from 'data/items';
 import React from 'react';
 
 const name = 'Serpentis';

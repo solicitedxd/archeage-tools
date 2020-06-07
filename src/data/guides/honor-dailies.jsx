@@ -5,8 +5,8 @@ import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
 import TabContent from 'components/TabContent';
 import { GUIDE_CATEGORY } from 'constants/guides';
+import { ITEM } from 'constants/items';
 import { ZONE } from 'constants/map';
-import ITEM from 'data/items';
 import React from 'react';
 
 const name = 'Honor Dailies';

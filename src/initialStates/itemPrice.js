@@ -1,4 +1,4 @@
-import ITEM from 'data/items';
+import { ITEM } from 'constants/items';
 
 // Default item prices of vendor items
 export default {

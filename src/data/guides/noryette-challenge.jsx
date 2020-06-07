@@ -10,8 +10,8 @@ import Ability from 'components/Ability';
 import Item from 'components/Item';
 import SkillLink from 'components/Skill/SkillLink';
 import { GUIDE_CATEGORY } from 'constants/guides';
+import { ITEM } from 'constants/items';
 import { SKILL } from 'constants/skills';
-import ITEM from 'data/items';
 import React, { Fragment } from 'react';
 
 const name = 'Noryette Challenge';
