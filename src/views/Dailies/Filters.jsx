@@ -30,6 +30,7 @@ import {
 import React, { Component } from 'react';
 import { array } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { toggleValue } from 'utils/array';
 import RewardsDisplay from './RewardsDisplay';
 
 class Filters extends Component {
@@ -47,31 +48,19 @@ class Filters extends Component {
   handleContinentChange = (value) => {
     const { continents: old } = this.props;
     const newValue = [...old];
-    if (newValue.indexOf(value) > -1) {
-      newValue.splice(newValue.indexOf(value), 1);
-    } else {
-      newValue.push(value);
-    }
+    toggleValue(newValue, value);
     this.props.filterContinents(newValue);
   };
   handleRewardChange = (value) => {
     const { rewards: old } = this.props;
     const newValue = [...old];
-    if (newValue.indexOf(value) > -1) {
-      newValue.splice(newValue.indexOf(value), 1);
-    } else {
-      newValue.push(value);
-    }
+    toggleValue(newValue, value);
     this.props.filterRewards(newValue);
   };
   handleTypeChange = (value) => {
     const { types: old } = this.props;
     const newValue = [...old];
-    if (newValue.indexOf(value) > -1) {
-      newValue.splice(newValue.indexOf(value), 1);
-    } else {
-      newValue.push(value);
-    }
+    toggleValue(newValue, value);
     this.props.filterTypes(newValue);
   };
   handleCompleteChange = (event, value) => this.props.filterComplete(value);

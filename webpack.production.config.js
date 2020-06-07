@@ -47,9 +47,11 @@ module.exports = {
       __DEVELOPMENT__: false,
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new CopyWebpackPlugin([
-      { from: join(root, 'static') },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        'static',
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),

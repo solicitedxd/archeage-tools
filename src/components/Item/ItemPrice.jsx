@@ -4,7 +4,7 @@ import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import { number } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { maxDecimals } from 'utils/thunderstruck';
+import { maxDecimals } from 'utils/number';
 
 class ItemPrice extends Component {
   static propTypes = {

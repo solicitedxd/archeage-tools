@@ -1,6 +1,7 @@
 export default {
   eventTypes: {},
   events: {},
+  crops: [],
   items: {},
   categories: {},
   subCategories: {},

@@ -9,7 +9,7 @@ import {
   string,
 } from 'prop-types';
 import React, { PureComponent } from 'react';
-import { maxDecimals } from 'utils/thunderstruck';
+import { maxDecimals } from 'utils/number';
 
 class NumberField extends PureComponent {
   static propTypes = {

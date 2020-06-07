@@ -7,7 +7,7 @@ import {
   VOLUME_DEFAULT,
 } from 'constants/schedule';
 import { pathOr } from 'ramda';
-import { maxDecimals } from 'utils/thunderstruck';
+import { maxDecimals } from 'utils/number';
 
 export const triggerLocalStorageUpdate = [
   SET_REGION,

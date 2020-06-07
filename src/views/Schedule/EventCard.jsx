@@ -32,7 +32,7 @@ import {
   getDay,
   getDayKey,
 } from 'utils/schedule';
-import { hhmmssFromDate } from 'utils/thunderstruck';
+import { hhmmssFromDate } from 'utils/time';
 import AlertSelect from './AlertSelect';
 
 // to prevent import org from removing the import

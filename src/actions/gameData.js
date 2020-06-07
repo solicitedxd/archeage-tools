@@ -2,6 +2,7 @@ import { setNotification } from 'actions/notification';
 import config from 'config';
 import {
   DATA_CATEGORIES,
+  DATA_CROP,
   DATA_EVENT_REPLACE,
   DATA_EVENT_TYPES,
   DATA_EVENTS,
@@ -68,6 +69,19 @@ export const searchItems = (query, searchType) => (dispatch) => new Promise((res
   })
   .catch(() => reject());
 });
+
+export const fetchCropItems = () => (dispatch, getState) => {
+  const { crops } = getState().gameData;
+
+  // do not fetch again
+  if (crops.length > 0) return;
+
+  xhr.get(config.endpoints.service.itemCrops)
+  .then(({ data: cropIds }) => {
+    dispatch(fetchItems(cropIds));
+    dispatch({ type: DATA_CROP, crops: cropIds });
+  });
+};
 
 /** Recipe Batching **/
 let recipeQueue = new Set();

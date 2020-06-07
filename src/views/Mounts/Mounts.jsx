@@ -40,6 +40,7 @@ import NoPortrait from 'images/NoPortrait.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { toggleValue } from 'utils/array';
 import {
   pascalCase,
   setTitle,
@@ -84,11 +85,7 @@ class Mounts extends Component {
   handleObtainChange = (value) => {
     const { obtainTypes: old } = this.state;
     const obtainTypes = [...old];
-    if (obtainTypes.indexOf(value) > -1) {
-      obtainTypes.splice(obtainTypes.indexOf(value), 1);
-    } else {
-      obtainTypes.push(value);
-    }
+    toggleValue(obtainTypes, value);
     this.setState({ obtainTypes });
   };
 

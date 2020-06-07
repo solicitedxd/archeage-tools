@@ -1,0 +1,155 @@
+.crops-container {
+  padding: 8px;
+  display: flex;
+  justify-content: space-evenly;
+
+  .crop-select {
+    .MuiFormControl-root {
+      width: 225px;
+    }
+
+    .MuiFormHelperText-root {
+      margin-top: 4px;
+    }
+  }
+
+  .multi-input {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+
+    .MuiInputBase-input {
+      width: 22px;
+      text-align: right;
+      padding-right: 2px;
+      margin-bottom: -1px;
+
+      &[maxlength="1"] {
+        width: 14px;
+      }
+    }
+  }
+
+  .ts-select {
+    width: 205px;
+    max-width: 22%;
+  }
+
+  .ts-track-button {
+    margin: 8px 0;
+  }
+}
+
+.select-group {
+  .MuiInputLabel-formControl {
+    position: relative;
+  }
+
+  .group-label {
+    margin-bottom: 6px;
+  }
+
+  .MuiFormHelperText-root {
+    margin-top: 4px;
+  }
+}
+
+.crop-timer {
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  &.complete {
+    background: rgba(0, 0, 0, 0.35);
+    text-decoration: line-through;
+    opacity: 0.7;
+  }
+
+  .crop-name {
+    display: flex;
+    flex-direction: column;
+
+    .climate-icons {
+      display: inline-block;
+      margin-left: 4px;
+    }
+  }
+
+  .crop-type {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    &.passed {
+      opacity: 0.5;
+      text-decoration: line-through;
+    }
+  }
+
+  .crop-note {
+    opacity: 0.6;
+  }
+
+  .crop-delete {
+  }
+}
+
+.mobile {
+  .crops-container {
+    display: initial;
+    padding: 8px 0;
+
+    .ts-select {
+      display: block;
+      margin: 4px auto;
+      width: 205px;
+      max-width: initial;
+    }
+
+    .ts-track-button {
+      display: block;
+      width: 79px;
+      margin: auto;
+    }
+  }
+}
+
+.climate-icon {
+  background-image: url(../images/climates.png);
+  background-repeat: no-repeat;
+  height: 32px;
+  display: inline-block;
+
+  &.Temperate {
+    width: 30px;
+  }
+
+  &.Tropical {
+    width: 28px;
+    background-position: -31px 0;
+  }
+
+  &.Arid {
+    width: 24px;
+    background-position: -58px 0;
+  }
+
+  &.Subarctic {
+    width: 28px;
+    background-position: -82px 0;
+  }
+
+  &.Seedbed {
+    width: 32px;
+    background-image: url(../images/seedbed.png);
+  }
+
+  &.small {
+    zoom: 0.5;
+  }
+}
+
+.Mui-disabled .climate-icon {
+  opacity: 0.6;
+}

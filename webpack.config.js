@@ -73,9 +73,11 @@ module.exports = {
       __VERSION__: JSON.stringify(pkg.version),
       __DEVELOPMENT__: true,
     }),
-    new CopyWebpackPlugin([
-      { from: join(root, 'static') },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        'static',
+      ],
+    }),
     new HtmlWebpackPlugin({
       template: './src/template.html',
     }),

@@ -1,6 +1,7 @@
 import { connectRouter } from 'connected-react-router';
 import { combineReducers } from 'redux';
 import calendar from './calendar';
+import crops from './crops';
 import dailies from './dailies';
 import display from './display';
 import folio from './folio';
@@ -10,7 +11,6 @@ import mounts from './mounts';
 import notification from './notification';
 import proficiencies from './proficiencies';
 import session from './session';
-import thunderstruck from './thunderstruck';
 import tradepacks from './tradepacks';
 import users from './users';
 
@@ -26,7 +26,7 @@ const rootReducer = (history) => combineReducers({
   proficiencies,
   router: connectRouter(history),
   session,
-  thunderstruck,
+  crops,
   tradepacks,
   users,
 });
@@ -40,7 +40,7 @@ export const getLocalData = {
   mounts: ({ mounts }) => mounts,
   proficiencies: ({ proficiencies }) => proficiencies,
   session: ({ session }) => session,
-  thunderstruck: ({ thunderstruck }) => thunderstruck,
+  crops: ({ crops }) => crops,
   tradepacks: ({ tradepacks }) => tradepacks,
 };
 

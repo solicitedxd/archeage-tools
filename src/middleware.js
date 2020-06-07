@@ -1,3 +1,4 @@
+import { triggerLocalStorageUpdate as crops } from 'actions/crops';
 import { triggerLocalStorageUpdate as dailies } from 'actions/dailies';
 import { triggerLocalStorageUpdate as display } from 'actions/display';
 import { triggerLocalStorageUpdate as folio } from 'actions/folio';
@@ -5,7 +6,6 @@ import { triggerLocalStorageUpdate as itemPrice } from 'actions/itemPrice';
 import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
 import { triggerLocalStorageUpdate as proficiencies } from 'actions/proficiencies';
 import { triggerLocalStorageUpdate as calendar } from 'actions/schedule';
-import { triggerLocalStorageUpdate as thunderstruck } from 'actions/thunderstruck';
 import { triggerLocalStorageUpdate as tradepacks } from 'actions/tradepacks';
 import { routerMiddleware } from 'connected-react-router';
 import { triggerLocalStorageUpdate as session } from 'constants/session';
@@ -16,13 +16,13 @@ import { setItem } from 'utils/localStorage';
 const keysAndActionTypes = {
   dailies,
   calendar,
+  crops,
   display,
   folio,
   itemPrice,
   mounts,
   proficiencies,
   session,
-  thunderstruck,
   tradepacks,
 };
 

@@ -1,5 +1,6 @@
 import {
   DATA_CATEGORIES,
+  DATA_CROP,
   DATA_EVENT_REPLACE,
   DATA_EVENT_TYPES,
   DATA_EVENTS,
@@ -22,6 +23,11 @@ const gameData = (state = initialState, action) => {
           ...state.items,
           ...action.data,
         },
+      };
+    case DATA_CROP:
+      return {
+        ...state,
+        crops: action.crops,
       };
     case DATA_RECIPE:
       return {

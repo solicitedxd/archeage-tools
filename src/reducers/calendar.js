@@ -7,6 +7,7 @@ import {
 } from 'constants/schedule';
 import initialState from 'initialStates/calendar';
 import { pathOr } from 'ramda';
+import { toggleValue } from 'utils/array';
 import { getItem } from 'utils/localStorage';
 
 const calendar = (state = getItem('calendar', initialState), action) => {
@@ -19,12 +20,7 @@ const calendar = (state = getItem('calendar', initialState), action) => {
     case SET_ALERT:
       const alerts = pathOr([], ['alerts', action.eventId])(state);
       if (action.value !== '') {
-        const index = alerts.indexOf(action.value);
-        if (index >= 0) {
-          alerts.splice(index, 1);
-        } else {
-          alerts.push(action.value);
-        }
+        toggleValue(alerts, action.value);
       } else {
         alerts.splice(0);
       }
