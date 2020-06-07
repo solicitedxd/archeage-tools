@@ -69,7 +69,7 @@ export const legacyDecodeSkillString = (skillString) => {
       ancestrals = [];
       return { id: null, skills, ancestrals };
     } else {
-      skills = decodeSkillHex(skills);
+      skills = legacyDecodeSkillHex(skills);
       ancestrals = legacyDecodeAncestrals(ancestrals);
       return { id: skillset.id, skills, ancestrals };
     }
@@ -90,8 +90,8 @@ export const legacyDecodeSkillString = (skillString) => {
  */
 export const encodeSkillsets = (skillsets) => {
   return skillsets.filter(set => Boolean(set.id)).map(set => {
-    return `${intToHex(set.id - 1)}${encodeSkillsAsHex(set.skills)}${encodeAncestrals(set.ancestrals)}`;
-  }).join(':');
+    return `${intToStr(set.id - 1)}=${encodeSkills(set.skills)}${encodeAncestrals(set.ancestrals)}`;
+  }).join('&');
 };
 
 /**
@@ -100,15 +100,19 @@ export const encodeSkillsets = (skillsets) => {
  * @returns {{id:int,skills:int[],ancestrals:int[]}[]} skillset data
  */
 export const decodeSkillString = (skillString) => {
-  const skillsets = skillString.split(':').map(setString => {
+  const skillsets = skillString.split('&').map(setString => {
     if (setString.length === 0) {
       return defaultSkillset();
     }
 
-    setString = setString.padEnd(5, '0');
-    const id = hexToInt(setString.substr(0, 1)) + 1;
-    const skills = decodeSkillHex(setString.substr(1, 3));
-    const ancestrals = decodeAncestrals(setString.substr(4));
+    const setData = setString.match(/([\w]+)=([\w]{3})([\w]+)?/);
+    if (!setData) {
+      return defaultSkillset();
+    }
+
+    const id = strToInt(setData[1]) + 1;
+    const skills = decodeSkills(setData[2]);
+    const ancestrals = decodeAncestrals(setData[3] || '0');
     return { id, skills, ancestrals };
   });
   while (skillsets.length < 3) {
@@ -121,25 +125,25 @@ export const decodeSkillString = (skillString) => {
 };
 
 /**
- * Converts an integer into a hexadecimal value
+ * Converts an integer into a string value
  * @param int number
  * @returns {string} hexadecimal value
  */
-const intToHex = (int) => int.toString(16);
+const intToStr = (int) => int.toString(36);
 
 /**
- * Converts a hexadecimal value into an integer.
- * @param hex hexadecimal value
+ * Converts a string into an integer.
+ * @param str string value
  * @returns {int} number
  */
-const hexToInt = (hex) => parseInt(hex, 16);
+const strToInt = (str) => parseInt(str, 36);
 
 /**
  * Converts skill array to an integer, then condenses to a hex value
  * @param skills{int[]} skill boolean array
  * @returns {string} hex skill string
  */
-const encodeSkillsAsHex = (skills) => {
+const encodeSkills = (skills) => {
   let bits = 0;
   // prepare the skills and bits
   for (let i = 0; i < 12; i++) {
@@ -151,7 +155,22 @@ const encodeSkillsAsHex = (skills) => {
     }
   }
 
-  return bits.toString(16).padStart(3, 0);
+  return intToStr(bits).padStart(3, 0);
+};
+
+/**
+ * Decodes a skill string into an array.
+ * @param str{string} skill string
+ * @returns {int[]} array of skill booleans
+ */
+const decodeSkills = (str) => {
+  if (!str) return DEFAULT_SKILLS;
+  const bits = strToInt(str);
+  const skills = [];
+  for (let i = 0; i < 12; i++) {
+    skills[i] = (bits & (1 << i)) >= 1 ? 1 : 0;
+  }
+  return skills;
 };
 
 /**
@@ -159,7 +178,7 @@ const encodeSkillsAsHex = (skills) => {
  * @param hex{string} skill hex string
  * @returns {int[]} array of skill booleans
  */
-const decodeSkillHex = (hex) => {
+const legacyDecodeSkillHex = (hex) => {
   if (!hex) return DEFAULT_SKILLS;
   const bits = parseInt(hex, 16);
   const skills = [];
@@ -184,7 +203,7 @@ const encodeAncestrals = (ancestrals) => {
       }
     }
   }
-  return bits.toString(16);
+  return intToStr(bits);
 };
 
 /**
@@ -194,7 +213,7 @@ const encodeAncestrals = (ancestrals) => {
  */
 const decodeAncestrals = (hex) => {
   if (!hex) return DEFAULT_ANCESTRALS;
-  const bits = parseInt(hex, 16);
+  const bits = strToInt(hex);
   const ancestrals = [];
   for (let i = 0; i < ANCESTRAL_LENGTH; i++) {
     // set a default
