@@ -1,22 +1,28 @@
 import {
   AppBar,
-  Button,
   Checkbox,
   FormControlLabel,
+  IconButton,
   Paper,
   Toolbar,
+  Tooltip,
   Typography,
 } from '@material-ui/core';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { openDialog } from 'actions/display';
 import { calculateLabor } from 'actions/proficiencies';
 import cn from 'classnames';
+import Currency from 'components/Currency';
+import ItemLink from 'components/Item/ItemLink';
+import ItemPrice from 'components/Item/ItemPrice';
 import { DIALOG_PROFICIENCY } from 'constants/display';
+import { CURRENCY } from 'constants/items';
 import { CONSTRUCTION } from 'constants/proficiencies';
 import {
   HOUSING_TYPES,
   TAX_BURDEN,
 } from 'constants/taxes';
+import ITEM from 'data/items';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { deepCopy } from 'utils/object';
@@ -54,7 +60,7 @@ class Taxes extends Component {
   };
 
   render() {
-    const { openDialog, calculateLabor, mobile } = this.props;
+    const { openDialog, calculateLabor, mobile, price } = this.props;
     const { properties, showHostile } = this.state;
 
     // regular land tax
@@ -87,8 +93,13 @@ class Taxes extends Component {
       <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Tax Calculator</Typography>
+            <Toolbar>
+              <Typography variant="h5" className="title-text">Tax Calculator</Typography>
+              <Tooltip title="Configure Proficiency">
+                <IconButton onClick={() => openDialog(DIALOG_PROFICIENCY)}>
+                  <ListAltIcon />
+                </IconButton>
+              </Tooltip>
             </Toolbar>
           </AppBar>
           <div className="calculator-totals">
@@ -110,16 +121,23 @@ class Taxes extends Component {
                 <Typography>{laborCost}</Typography>
               </div>
             </div>
+            <Typography component="div">
+              <div className="tax-price">
+                <div><ItemLink id={31891} /> Price:</div>
+                <div><ItemPrice itemId={ITEM.TAX_CERTIFICATE} unitSize={1} /></div>
+              </div>
+              <div className="tax-price">
+                <span>Silver per Labor:</span>
+                <Currency
+                  type={CURRENCY.COIN}
+                  count={(price ? price - 0.0046 : 0) * 5 / calculateLabor(300, CONSTRUCTION) * 10000}
+                />
+              </div>
+            </Typography>
             <FormControlLabel
               control={<Checkbox onChange={this.toggleHostile} checked={showHostile} color="primary" />}
               label="Show Hostile Options"
             />
-            <Button
-              startIcon={<ListAltIcon />}
-              onClick={() => openDialog(DIALOG_PROFICIENCY)}
-            >
-              Configure Proficiency
-            </Button>
           </div>
         </Paper>
         <Paper className="section calculator-container">
@@ -139,8 +157,9 @@ class Taxes extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile } }) => ({
+const mapStateToProps = ({ display: { mobile }, itemPrice }) => ({
   mobile,
+  price: itemPrice[ITEM.TAX_CERTIFICATE],
 });
 
 const mapDispatchToProps = {

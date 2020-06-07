@@ -173,8 +173,8 @@ class Skills extends Component {
         <div className="skills-header">
           <Paper className="section">
             <AppBar position="static">
-              <Toolbar variant="dense">
-                <Typography variant="subtitle1">
+              <Toolbar>
+                <Typography variant="h5">
                   Skill Builder:
                 </Typography>
                 <Autocomplete

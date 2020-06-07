@@ -386,8 +386,8 @@ class Schedule extends Component {
         </div>}
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography className="title-text">
+            <Toolbar>
+              <Typography variant="h5" className="title-text">
                 {moment.tz(moment.tz.guess()).format('z')} Schedule
               </Typography>
               {!mobile && <InGameTime mobile={mobile} />}

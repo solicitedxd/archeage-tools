@@ -78,9 +78,9 @@ class FolioHeader extends Component {
 
     return (
       <AppBar position="static" className="section folio-header">
-        <Toolbar variant="dense">
+        <Toolbar>
           {!mobile &&
-          <Typography variant="h4" className="title-text">Folio</Typography>}
+          <Typography variant="h5" className="title-text">Folio</Typography>}
           <Autocomplete
             open={open}
             onOpen={() => this.setOpen(true)}

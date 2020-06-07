@@ -117,8 +117,8 @@ class TradePacks extends Component {
       <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Trade Pack Calculator</Typography>
+            <Toolbar>
+              <Typography variant="h5" className="title-text">Trade Pack Calculator</Typography>
               <Tooltip title="Reset All Settings">
                 <IconButton color="inherit" aria-label="Reset" onClick={this.requestReset}>
                   <ReplayIcon />

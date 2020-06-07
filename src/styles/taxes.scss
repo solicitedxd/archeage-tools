@@ -31,6 +31,15 @@
   .MuiFormControl-root, .MuiFormControlLabel-root {
     margin: 0 12px;
   }
+
+  .MuiTextField-root {
+    margin: 0;
+  }
+
+  .tax-price {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .mobile {
@@ -52,6 +61,10 @@
 
     .MuiFormControlLabel-root {
       margin: 8px 0 0 0;
+    }
+
+    .MuiTextField-root {
+      margin: -4px 0 0 0;
     }
   }
 }

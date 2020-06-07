@@ -150,8 +150,8 @@ class Dailies extends Component {
       <div className="quest-container">
         <Paper className="section quest-list" style={mainStyle}>
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="h6" className={cn({ 'title-text': !hideMode })}>Daily Checklist</Typography>
+            <Toolbar>
+              <Typography variant="h5" className={cn({ 'title-text': !hideMode })}>Daily Checklist</Typography>
               {hideMode &&
               <Typography variant="overline" style={{ marginLeft: 12 }} className={cn({ 'title-text': hideMode })}>
                 [Hiding] Unmarked quests will never show

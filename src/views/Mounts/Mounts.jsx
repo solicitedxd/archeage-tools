@@ -158,8 +158,8 @@ class Mounts extends Component {
       <>
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Mounts</Typography>
+            <Toolbar>
+              <Typography variant="h5" className="title-text">Mounts</Typography>
               <Tabs
                 value={Number(!displayGrid)}
                 indicatorColor="secondary"

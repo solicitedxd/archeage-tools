@@ -58,6 +58,7 @@ const ITEM = Object.freeze({
   CARROT: 7998,
   STARLIGHT_ARCHEUM_DUST: 16349,
   MYSTERIOUS_ABYSSAL_ENHANCER: 46576,
+  TAX_CERTIFICATE: 31891,
   NORYETTE_EARRING: {
     name: 'Noryette Earring',
     icon: Icon.NoryetteEarring,

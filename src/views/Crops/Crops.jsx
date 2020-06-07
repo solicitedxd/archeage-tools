@@ -197,8 +197,8 @@ class Crops extends Component {
       <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Crop Timer</Typography>
+            <Toolbar>
+              <Typography variant="h5" className="title-text">Crop Timer</Typography>
             </Toolbar>
           </AppBar>
           <div className="crops-container">
