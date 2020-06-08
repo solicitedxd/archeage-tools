@@ -35,7 +35,7 @@ export const getPointReq = (reqLevel) => {
     return 4;
   }
   if (reqLevel === 55) {
-    return 5;
+    return 6;
   }
   return 0;
 };
