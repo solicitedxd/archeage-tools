@@ -99,7 +99,7 @@ class Crops extends Component {
       }
     }
 
-    this.setState({ [key]: Number.parseInt(value) });
+    this.setState({ [key]: value !== '' ? Number.parseInt(value) : '' });
   };
 
   handleSelectClimate = (e, c) => {
@@ -151,7 +151,7 @@ class Crops extends Component {
     let defaultTime = timer === TIMER_TYPE.HARVEST && harvestVal
       ? toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0)
       : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
-    if (cropClimate && climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed)) {
+    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
       defaultTime = Math.ceil(defaultTime * 0.7);
     }
     const timeToTrack = enteredTime > defaultTime || enteredTime === 0 ? defaultTime : enteredTime;
@@ -180,7 +180,7 @@ class Crops extends Component {
     const harvestVal = crop.description.match(HARVEST_REGEX);
     const cropClimate = crop.description.match(CLIMATE_REGEX);
     let time = toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0);
-    if (cropClimate && climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed)) {
+    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
       time = Math.ceil(time * 0.7);
     }
     const ready = moment().add(time, 'seconds');
@@ -279,7 +279,7 @@ class Crops extends Component {
               <FormControlLabel
                 control={<Checkbox size="small" />}
                 label="Seedbed?"
-                disabled={crop.type !== 'Seed'}
+                disabled={crop.type !== 'Seed' || crop.name.includes('Bundle')}
                 checked={seedbed}
                 onChange={this.handleSeedbedChange}
               />

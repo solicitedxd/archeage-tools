@@ -79,7 +79,7 @@ class CropTimer extends Component {
     let totalTime = timer === TIMER_TYPE.HARVEST && harvestVal
       ? harvestTime
       : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
-    if (cropClimate && climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed)) {
+    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
       totalTime = Math.ceil(totalTime * 0.7);
     }
     const now = moment();
