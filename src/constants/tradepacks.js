@@ -1,5 +1,8 @@
 import { ITEM } from 'constants/items';
-import { ZONE } from './map';
+import {
+  CONTINENT,
+  ZONE,
+} from './map';
 
 export const SET_CONTINENT = 'SET_CONTINENT';
 export const SET_OUTLET = 'SET_OUTLET';
@@ -31,6 +34,7 @@ export const PACK_TYPE = Object.freeze({
   BLUE_SALT: 'Blue Salt',
   SPECIAL: 'Special',
   ANTIQUITIES: 'Antiquities',
+  DISGUISED: 'Disguised',
 });
 
 export const AGED_PACK = Object.freeze([
@@ -55,6 +59,19 @@ export const TRANSPORTATION_FUEL = Object.freeze([
   ITEM.CARROT,
   ITEM.ECO_FRIENDLY_FUEL,
   ITEM.AXLE_GREASE,
+]);
+
+const REGULAR_PACK_TYPES = Object.freeze([
+  PACK_TYPE.NORMAL,
+  PACK_TYPE.GILDA,
+  PACK_TYPE.LOCAL,
+  PACK_TYPE.FERTILIZER,
+  PACK_TYPE.SALVE,
+  PACK_TYPE.CHEESE,
+  PACK_TYPE.HONEY,
+  PACK_TYPE.BLUE_SALT,
+  PACK_TYPE.SPECIAL,
+  PACK_TYPE.ANTIQUITIES,
 ]);
 
 export const FRESHNESS = Object.freeze({
@@ -267,6 +284,15 @@ export const FRESHNESS = Object.freeze({
       },
     },
   },
+  DISGUISED: {
+    name: 'Disguised',
+    STANDARD: {
+      HIGH: {
+        modifier: 1.0,
+        time: 'anytime',
+      },
+    },
+  },
 });
 
 export const CARGO = 'Cargo';
@@ -305,3 +331,12 @@ export const CARGO_OUTLET = Object.freeze([
   ZONE.DIAMOND_SHORES,
   ZONE.FREEDICH_ISLAND,
 ]);
+
+export const CONTINENT_PACKS = {
+  [CONTINENT.NUIA.name]: REGULAR_PACK_TYPES,
+  [CONTINENT.HARANYA.name]: REGULAR_PACK_TYPES,
+  [CARGO]: CARGO_OUTLET,
+  [CONTINENT.AURORIA.name]: [
+    PACK_TYPE.DISGUISED,
+  ],
+};

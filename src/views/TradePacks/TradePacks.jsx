@@ -1,6 +1,7 @@
 import {
   AppBar,
   Button,
+  ButtonGroup,
   Checkbox,
   Dialog,
   DialogActions,
@@ -11,9 +12,7 @@ import {
   FormControlLabel,
   IconButton,
   InputLabel,
-  MenuItem,
   Paper,
-  Select,
   Slider,
   Tab,
   Table,
@@ -39,14 +38,16 @@ import {
 import cn from 'classnames';
 import Item from 'components/Item';
 import { DIALOG_PROFICIENCY } from 'constants/display';
-import { CONTINENT } from 'constants/map';
+import {
+  CONTINENT,
+  ZONE,
+} from 'constants/map';
 import {
   AGED_PACK,
   CARGO,
-  CARGO_OUTLET,
+  CONTINENT_PACKS,
   NO_FRESHNESS,
   OUTLET_ZONE,
-  PACK_TYPE,
 } from 'constants/tradepacks';
 import TRADE_PACKS from 'data/tradepacks';
 import React, { Component } from 'react';
@@ -100,12 +101,19 @@ class TradePacks extends Component {
     const { setPercentage, setWar, openDialog } = this.props;
     const { reset, open, packType, originZone } = this.state;
 
-    let continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
-    if (continent !== CARGO) {
+    let continentZones = [];
+    if (continent === CARGO) {
+      continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
+    } else if (continent === CONTINENT.AURORIA.name) {
+      continentZones = [ZONE.NUIMARI, ZONE.HEEDMAR, ZONE.MARCALA, ZONE.CALMLANDS];
+    } else {
       continentZones = Object.values(CONTINENT).find((cont) => cont.name === continent).zones;
     }
 
-    const outletZones = OUTLET_ZONE.filter(zone => continentZones.includes(zone));
+    let outletZones = OUTLET_ZONE.filter(zone => continentZones.includes(zone));
+    if (continent === CONTINENT.AURORIA.name) {
+      outletZones = [ZONE.FREEDICH_ISLAND];
+    }
     let sellZone = outletZones[outlet];
     if (continent === CARGO) {
       sellZone = CARGO;
@@ -119,6 +127,11 @@ class TradePacks extends Component {
           <AppBar position="static">
             <Toolbar>
               <Typography variant="h5" className="title-text">Trade Pack Calculator</Typography>
+              <Tooltip title="Configure Proficiency">
+                <IconButton color="inherit" aria-label="Proficiencies" onClick={() => openDialog(DIALOG_PROFICIENCY)}>
+                  <ListAltIcon />
+                </IconButton>
+              </Tooltip>
               <Tooltip title="Reset All Settings">
                 <IconButton color="inherit" aria-label="Reset" onClick={this.requestReset}>
                   <ReplayIcon />
@@ -127,21 +140,20 @@ class TradePacks extends Component {
             </Toolbar>
           </AppBar>
           <div className="tradepack-settings">
-            <FormControl>
-              <InputLabel htmlFor="continent">Pack Continent</InputLabel>
-              <Select
-                value={continent}
-                onChange={this.setContinent}
-                inputProps={{
-                  name: 'continent',
-                  id: 'continent',
-                }}
-                renderValue={() => <div>{continent}</div>}
-              >
-                <MenuItem value="Haranya">Haranya</MenuItem>
-                <MenuItem value="Nuia">Nuia</MenuItem>
-                <MenuItem value={CARGO}>{CARGO}</MenuItem>
-              </Select>
+            <FormControl className="select-group">
+              <InputLabel className="group-label" shrink>Pack Continent</InputLabel>
+              <ButtonGroup>
+                {Object.keys(CONTINENT_PACKS).map(contName => (
+                  <Button
+                    variant={continent === contName ? 'contained' : 'outlined'}
+                    color={continent === contName ? 'primary' : null}
+                    className={cn({ selected: continent === contName })}
+                    onClick={(e) => this.setContinent(e, contName)}
+                  >
+                    {contName}
+                  </Button>
+                ))}
+              </ButtonGroup>
             </FormControl>
             <div className="pack-percentage">
               <InputLabel shrink style={{ marginBottom: 6 }}>Pack Demands: {percentage}%</InputLabel>
@@ -157,12 +169,6 @@ class TradePacks extends Component {
                 valueLabelFormat={value => `${value}%`}
               />
             </div>
-            <Button
-              startIcon={<ListAltIcon />}
-              onClick={() => openDialog(DIALOG_PROFICIENCY)}
-            >
-              Configure Proficiency
-            </Button>
           </div>
         </Paper>
         <Dialog open={reset}>
@@ -170,7 +176,8 @@ class TradePacks extends Component {
           <DialogContent>
             <DialogContentText>
               Are you sure you want to reset all settings?<br />
-              This will clear all saved percentages and item prices.
+              This will clear all saved pack percentages, item quantities, and freshness selections. It will not clear
+              item prices.
             </DialogContentText>
           </DialogContent>
           <DialogActions>
@@ -212,7 +219,7 @@ class TradePacks extends Component {
                   <TableCell>
                     {continent !== CARGO && 'Pack Origin'}
                   </TableCell>
-                  {(continent === CARGO ? CARGO_OUTLET : Object.values(PACK_TYPE)).map(packType => (
+                  {CONTINENT_PACKS[continent].map(packType => (
                     <TableCell
                       key={`type-head-${packType}`}
                       align="center"
@@ -236,7 +243,7 @@ class TradePacks extends Component {
                       >
                         {zone}{continent === CARGO && 'n Cargo'}
                       </TableCell>
-                      {(continent === CARGO ? CARGO_OUTLET : Object.values(PACK_TYPE)).map(packType => {
+                      {CONTINENT_PACKS[continent].map(packType => {
                         const pack = zonePacks.packs[packType] || { sell: {} };
                         let packValue = pack.sell[sellZone];
                         // modify the pack's value
@@ -257,7 +264,7 @@ class TradePacks extends Component {
                         }
                         const isPack = (zone !== sellZone && packValue);
                         let displayValue = isPack ? `${packValue}g` : '--';
-                        if (isPack && continent === CARGO && pack.item) {
+                        if (isPack && pack.item) {
                           displayValue = <>
                             {Math.round(packValue)}&nbsp;
                             <Item id={pack.item} inline />
@@ -292,14 +299,15 @@ class TradePacks extends Component {
             </Table>
           </div>
           <div className="trade-footer body-container">
-            {continent !== CARGO &&
+            {continent === CARGO &&
+            <FreshnessBlip freshness="Cargo" />}
+            {[CONTINENT.HARANYA.name, CONTINENT.NUIA.name].includes(continent) &&
             <>
               <FreshnessBlip freshness="Luxury" />
               <FreshnessBlip freshness="Fine" />
               <FreshnessBlip freshness="Commercial" />
               <FreshnessBlip freshness="Preserved" />
-            </> ||
-            <FreshnessBlip freshness="Cargo" />}
+            </>}
             <Typography variant="overline">
               Prices shown at {percentage}% demand with high profit{war[sellZone] ? ' and +15% war bonus' : ''}. 2%
               interest is not shown.

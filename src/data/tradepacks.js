@@ -1896,4 +1896,52 @@ export default Object.freeze({
       },
     },
   },
+  [ZONE.NUIMARI]: {
+    freshness: FRESHNESS.DISGUISED,
+    packs: {
+      [PACK_TYPE.DISGUISED]: {
+        name: 'Disguised Auroria Mineral Water',
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [ZONE.FREEDICH_ISLAND]: 36,
+        },
+      },
+    },
+  },
+  [ZONE.HEEDMAR]: {
+    freshness: FRESHNESS.DISGUISED,
+    packs: {
+      [PACK_TYPE.DISGUISED]: {
+        name: 'Disguised Auroria Mineral Water',
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [ZONE.FREEDICH_ISLAND]: 36,
+        },
+      },
+    },
+  },
+  [ZONE.MARCALA]: {
+    freshness: FRESHNESS.DISGUISED,
+    packs: {
+      [PACK_TYPE.DISGUISED]: {
+        name: 'Disguised Flaming Log Bundle',
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [ZONE.FREEDICH_ISLAND]: 37,
+        },
+      },
+    },
+  },
+  [ZONE.CALMLANDS]: {
+    freshness: FRESHNESS.DISGUISED,
+    packs: {
+      [PACK_TYPE.DISGUISED]: {
+        name: 'Disguised Flaming Log Bundle',
+        item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        sell: {
+          [ZONE.FREEDICH_ISLAND]: 38,
+        },
+      },
+    },
+  },
 });

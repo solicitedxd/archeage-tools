@@ -31,7 +31,7 @@ export const triggerLocalStorageUpdate = [
   TRADE_PACK_RESET,
 ];
 
-export const setContinent = (e, { props: { children: continent } }) => (dispatch) => {
+export const setContinent = (e, continent) => (dispatch) => {
   dispatch({ type: SET_CONTINENT, continent });
 };
 

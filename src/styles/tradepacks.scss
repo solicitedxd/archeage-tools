@@ -18,6 +18,7 @@ $Luxury: #D275FF;
 $Fine: #3887FF;
 $Preserved: #36BD4B;
 $Cargo: #FF4053;
+$Disguised: #FFDE45;
 
 .trade-table {
   thead {
@@ -49,6 +50,12 @@ $Cargo: #FF4053;
       &.Cargo td:first-child {
         background-color: $Cargo;
         color: #FFFFFF;
+      }
+
+      &.Disguised td:first-child {
+        background-color: $Disguised;
+        color: rgba(0, 0, 0, 0.87);
+        width: 20%;
       }
 
       td:not(:first-child) {
@@ -107,6 +114,10 @@ $Cargo: #FF4053;
 
 .freshness.Cargo {
   background-color: $Cargo;
+}
+
+.freshness.Disguised {
+  background-color: $Disguised;
 }
 
 .MuiTooltip-tooltip.freshness-tip-container {

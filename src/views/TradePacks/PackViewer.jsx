@@ -563,7 +563,7 @@ class PackViewer extends Component {
                 }
                 label="Zone in War (+15%)"
               />}
-              {sellZone !== CARGO ?
+              {!pack.item ?
                 <Tooltip title={<Currency type={CURRENCY.COIN} count={interest} />}>
                   <FormControlLabel
                     control={
@@ -596,10 +596,10 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
-                    {sellZone === CARGO && pack.item ?
+                    {pack.item ?
                       <>
                         {packValue}&nbsp;
-                        <Item {...pack.item} className="inline" />
+                        <Item id={pack.item} inline />
                       </> :
                       <Currency type={CURRENCY.COIN} count={packValue} />}
                   </TableCell>
@@ -611,12 +611,12 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Total Cost</TableCell>
                   <TableCell align="right">
-                    <Currency type={CURRENCY.COIN} count={totalGold} />
+                    <Currency type={CURRENCY.COIN} count={totalGold || 0} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
                 </TableRow>
-                {sellZone !== CARGO &&
+                {!pack.item &&
                 <TableRow>
                   <TableCell colSpan={2} />
                   <TableCell>Profit</TableCell>
@@ -624,7 +624,7 @@ class PackViewer extends Component {
                     <Currency type={CURRENCY.COIN} count={profit} />
                   </TableCell>
                 </TableRow>}
-                {sellZone !== CARGO &&
+                {!pack.item &&
                 <TableRow>
                   <TableCell colSpan={2} />
                   <TableCell>Silver per Labor</TableCell>
