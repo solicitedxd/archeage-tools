@@ -7,6 +7,7 @@ import {
   DATA_EVENT_TYPES,
   DATA_EVENTS,
   DATA_ITEM,
+  DATA_MOUNTS,
   DATA_RECIPE,
   DATA_SKILL,
   DATA_SKILLSETS,
@@ -15,7 +16,11 @@ import {
 } from 'constants/gameData';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import debounce from 'lodash.debounce';
-import { arrayToMap } from 'utils/array';
+import {
+  arrayToMap,
+  mapValue,
+  reduceMounts,
+} from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
@@ -334,7 +339,7 @@ export const getSkillsets = () =>
 export const fetchMounts = () => (dispatch, getState) => {
   const { mounts } = getState().gameData;
 
-  if (objectHasProperties(mounts.mounts)) return;
+  if (mounts.mounts.length > 0) return;
 
   xhr.get(config.endpoints.service.mounts)
   .then(({ data: mounts }) => {
@@ -342,7 +347,12 @@ export const fetchMounts = () => (dispatch, getState) => {
     .then(({ data: mountTypes }) => {
       xhr.get(config.endpoints.service.mountObtainTypes)
       .then(({ data: obtainTypes }) => {
-        dispatch({ type: DATA_MOUNTS, mounts, mountTypes, obtainTypes });
+        dispatch({
+          type: DATA_MOUNTS,
+          mounts: reduceMounts(mounts),
+          mountTypes: mapValue(mountTypes, 'id', 'name'),
+          obtainTypes: arrayToMap(obtainTypes),
+        });
       })
       .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
     })

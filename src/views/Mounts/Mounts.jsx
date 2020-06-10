@@ -1,7 +1,9 @@
 import {
   AppBar,
   Button,
+  ButtonGroup,
   Checkbox,
+  CircularProgress,
   FormControlLabel,
   InputAdornment,
   InputLabel,
@@ -24,6 +26,7 @@ import AppsIcon from '@material-ui/icons/Apps';
 import CancelIcon from '@material-ui/icons/Cancel';
 import ListIcon from '@material-ui/icons/List';
 import SearchIcon from '@material-ui/icons/Search';
+import { fetchMounts } from 'actions/gameData';
 import {
   setDisplayGrid,
   setOnlyObtainable,
@@ -31,41 +34,53 @@ import {
 import cn from 'classnames';
 import SelectField from 'components/SelectField';
 import SkillIcon from 'components/Skill/SkillIcon';
-import {
-  MOUNT_TYPE,
-  OBTAIN_TYPES,
-} from 'constants/mounts';
-import MOUNT from 'data/mounts';
 import NoPortrait from 'images/NoPortrait.png';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toggleValue } from 'utils/array';
+import {
+  sortBy,
+  sortNumber,
+  toggleValue,
+} from 'utils/array';
+import { objectHasProperties } from 'utils/object';
 import {
   pascalCase,
   setTitle,
-  slug,
 } from 'utils/string';
 import * as Portrait from '../../images/mount';
-import * as Icon from '../../images/mount/icon';
 import MountViewer from './MountViewer';
-
-const SPEED_TIERS = new Map();
 
 class Mounts extends Component {
   state = {
     search: '',
-    mountType: '',
-    speed: '',
+    mountType: 0,
+    speed: 0,
     obtainTypes: [],
-    orderBy: 'speed',
+    orderBy: 'moveSpeed',
     order: 'asc',
   };
 
-  constructor(props) {
-    super(props);
-    SPEED_TIERS.set('', 'All');
-    Array.from(new Set(MOUNT.map(m => m.speed))).sort(this.sort).forEach(speed => SPEED_TIERS.set(speed, `${speed} m/s`));
+  speedTiers = new Map();
+
+  componentDidMount() {
+    this.speedTiers.set(0, 'All');
+    this.props.fetchMounts();
+
+    if (objectHasProperties(this.props.mounts)) {
+      this.updateSpeedTiers(this.props);
+    }
+  }
+
+  UNSAFE_componentWillUpdate(nextProps) {
+    if (!objectHasProperties(this.props.mounts) && objectHasProperties(nextProps.mounts)) {
+      this.updateSpeedTiers(nextProps);
+    }
+  }
+
+  updateSpeedTiers(props) {
+    Array.from(new Set(Object.values(props.mounts).map(m => m[0].moveSpeed).filter(m => m > 0))).forEach(s => this.speedTiers.set(s, `${s} m/s`));
+    this.speedTiers = new Map([...this.speedTiers].sort((a, b) => sortNumber(a[0], b[0])));
   }
 
   setSearch = (e) => {
@@ -73,9 +88,8 @@ class Mounts extends Component {
     this.setState({ search });
   };
 
-  setType = (e, mountTypeKey) => {
-    const mountType = MOUNT_TYPE[mountTypeKey] || '';
-    this.setState({ mountType });
+  setType = (e, mountType) => {
+    this.setState({ mountType: Number(mountType) });
   };
 
   setSpeed = (e, speed) => {
@@ -104,50 +118,74 @@ class Mounts extends Component {
     return 0;
   };
 
+  sortSkills = (a, b) => {
+    const { skills } = this.props;
+    if (!objectHasProperties(skills)) return 0;
+    return sortBy('requiredLevel')(skills[a], skills[b]);
+  };
+
   render() {
     const { search, mountType, obtainTypes, speed, order, orderBy } = this.state;
     const { match: { params: { mount } }, displayGrid, setDisplayGrid, onlyObtainable, setOnlyObtainable } = this.props;
+    const { mounts: mountData, types, mountObtainTypes } = this.props;
 
     if (!mount) {
       setTitle('Mounts');
     }
 
-    const mounts = MOUNT.filter(mount => {
+    const mounts = Object.entries(mountData).filter(([_, mountList]) => {
+      const [mount] = mountList;
       if (search.length > 2 && mount.name.toLowerCase().indexOf(search.toLowerCase()) === -1) {
         return false;
       }
 
-      if (mountType && !mount.types.includes(mountType)) {
+      if (mountType > 0 && !mount.typeIds.includes(mountType)) {
         return false;
       }
 
-      if (obtainTypes.length && (!mount.obtainable || !mount.obtainable.some(r => obtainTypes.includes(r)))) {
+      if (obtainTypes.length && !mount.obtainIds.some(r => obtainTypes.includes(r))) {
         return false;
       }
 
-      if (speed && mount.speed !== Number(speed)) {
+      if (speed > 0 && Number.parseFloat(mount.moveSpeed) !== Number.parseFloat(speed)) {
         return false;
       }
 
-      return !(onlyObtainable && (!mount.obtainable || mount.obtainable.length === 0));
-    }).sort((a, b) => {
+      return !(onlyObtainable && mount.obtainIds.length === 0);
+    }).sort(([, x], [, y]) => {
+      const [a] = x;
+      const [b] = y;
       if (displayGrid) {
-        if (a.speed === b.speed) {
+        if (a.moveSpeed === b.moveSpeed) {
           return this.sort(a.name.toLowerCase(), b.name.toLowerCase());
         } else {
-          return a.speed - b.speed;
+          if (a.moveSpeed === 0) return 1;
+          if (b.moveSpeed === 0) return -1;
+          return a.moveSpeed - b.moveSpeed;
         }
       } else {
-        const f = orderBy === 'name' ? 'speed' : 'name';
+        const f = orderBy === 'name' ? 'moveSpeed' : 'name';
 
         if (a[orderBy] === b[orderBy]) {
-          return this.sort(a[f], b[f]);
+          if (f === 'name') {
+            return this.sort(a.name.toLowerCase(), b.name.toLowerCase());
+          } else {
+            if (a[f] === 0) return 1;
+            if (b[f] === 0) return -1;
+            return a[f] - b[f];
+          }
         } else {
           let sort;
           if (orderBy === 'name') {
-            sort = this.sort(a[orderBy].toLowerCase(), b[orderBy].toLowerCase());
+            sort = this.sort(a.name.toLowerCase(), b.name.toLowerCase());
           } else {
-            sort = this.sort(a[orderBy], b[orderBy]);
+            if (a.moveSpeed === 0) {
+              sort = 1;
+            } else if (b.moveSpeed === 0) {
+              sort = -1;
+            } else {
+              sort = a.moveSpeed - b.moveSpeed;
+            }
           }
           return sort * (order !== 'asc' ? -1 : 1);
         }
@@ -198,17 +236,19 @@ class Mounts extends Component {
             <SelectField
               id="mount-type"
               label="Mount Type"
-              value={mountType || 'All'}
-              options={{ '': 'All', ...MOUNT_TYPE }}
+              value={mountType}
+              options={{ 0: 'All', ...types }}
               onChange={this.setType}
+              renderValue={(v) => (v === 0) ? 'All' : types[v]}
             />
             <SelectField
               id="mount-speed"
               label="Base Speed"
-              value={SPEED_TIERS.get(speed) || 'All'}
-              options={SPEED_TIERS}
+              value={speed}
+              options={this.speedTiers}
               onChange={this.setSpeed}
               controlClassName="small"
+              renderValue={(v) => this.speedTiers.get(v)}
             />
             <FormControlLabel
               control={
@@ -222,53 +262,63 @@ class Mounts extends Component {
             />
             <div className="filter-field">
               <InputLabel shrink style={{ marginBottom: 4 }}>Obtain By</InputLabel>
-              <div className="filter-group reward grid">
-                {OBTAIN_TYPES.sort().map(obtainBy => (
-                  <Tooltip title={obtainBy} key={obtainBy}>
+              <ButtonGroup size="small">
+                {Object.values(mountObtainTypes).map(obtainBy => (
+                  <Tooltip title={obtainBy.name} key={`obt-${obtainBy.id}`}>
                     <Button
-                      variant={obtainTypes.includes(obtainBy) ? 'contained' : 'outlined'}
-                      className={cn({ selected: obtainTypes.includes(obtainBy) })}
-                      onClick={() => this.handleObtainChange(obtainBy)}
+                      variant={obtainTypes.includes(obtainBy.id) ? 'contained' : 'outlined'}
+                      className={cn({ selected: obtainTypes.includes(obtainBy.id) })}
+                      onClick={() => this.handleObtainChange(obtainBy.id)}
                     >
-                      <span className={cn('dropdown-icon', obtainBy)} />
+                      <span className={cn('dropdown-icon', obtainBy.icon)} />
                     </Button>
                   </Tooltip>
                 ))}
-              </div>
+              </ButtonGroup>
             </div>
           </div>
         </Paper>
         {displayGrid ?
           <div className="section">
             <div className="mount-grid">
-              {mounts.map(mount => (
-                <Zoom in unmountOnExit key={mount.name}>
-                  <Paper className="mount">
-                    <Link to={`/mounts/${slug(mount.name)}`}>
-                      <div className="portrait">
-                        <img
-                          src={Portrait[pascalCase(mount.name)] || NoPortrait}
-                          alt={mount.name}
-                        />
-                        {mount.obtainable && mount.obtainable.length > 0 &&
-                        <div className="obtainables">
-                          {mount.obtainable.sort().map(obtainBy => (
-                            <Tooltip title={obtainBy} key={`${pascalCase(mount.name)}-${obtainBy}`}>
-                              <span className={cn('dropdown-icon', obtainBy)} />
-                            </Tooltip>
-                          ))}
-                        </div>}
-                        <Typography className="name">{mount.name}</Typography>
-                        <Typography className="speed" variant="caption">{mount.speed} m/s</Typography>
-                      </div>
-                    </Link>
-                  </Paper>
-                </Zoom>
-              ))}
+              {mounts.map(([mountId, mountList]) => {
+                const [mount] = mountList;
+                return (
+                  <Zoom in unmountOnExit key={mount.id}>
+                    <Paper className="mount">
+                      <Link to={`/mounts/${mountId}`}>
+                        <div className="portrait">
+                          <img
+                            src={Portrait[pascalCase(mount.name)] || NoPortrait}
+                            alt={mount.name}
+                          />
+                          {mount.obtainIds.length > 0 &&
+                          <div className="obtainables">
+                            {mount.obtainIds.sort(sortNumber).map(obtainId => (
+                              <Tooltip
+                                title={mountObtainTypes[obtainId].name}
+                                key={`${pascalCase(mountId)}-${obtainId}`}>
+                                <span className={cn('dropdown-icon', mountObtainTypes[obtainId].icon)} />
+                              </Tooltip>
+                            ))}
+                          </div>}
+                          <Typography className="name">{mount.name}</Typography>
+                          <Typography className="speed" variant="caption">{mount.moveSpeed} m/s</Typography>
+                        </div>
+                      </Link>
+                    </Paper>
+                  </Zoom>
+                );
+              })}
             </div>
             {mounts.length === 0 &&
             <Paper>
-              <Typography className="no-results">No mounts meet the criteria.</Typography>
+              {!objectHasProperties(mountData)
+                ? <CircularProgress color="primary" className="no-results" />
+                : <Typography className="no-results">
+                  No mounts meet the criteria.
+                </Typography>
+              }
             </Paper>}
           </div>
           :
@@ -288,9 +338,9 @@ class Mounts extends Component {
                   </TableCell>
                   <TableCell>
                     <TableSortLabel
-                      active={orderBy === 'speed'}
+                      active={orderBy === 'moveSpeed'}
                       direction={order}
-                      onClick={this.handleSort('speed')}
+                      onClick={this.handleSort('moveSpeed')}
                     >
                       Speed
                     </TableSortLabel>
@@ -300,51 +350,54 @@ class Mounts extends Component {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {mounts.map(mount => (
-                  <TableRow key={mount.name} onClick={() => this.props.history.push(`/mounts/${slug(mount.name)}`)}>
-                    <TableCell className="mount-icon">
-                      {Icon[pascalCase(mount.name)] &&
-                      <Tooltip
-                        title={<img
-                          src={Portrait[pascalCase(mount.name)] || NoPortrait}
-                          alt={mount.name}
-                          className="portrait-tooltip"
-                        />}
-                        placement="right"
-                      >
-                        <img src={Icon[pascalCase(mount.name)]} alt={mount.name} />
-                      </Tooltip>}
-                    </TableCell>
-                    <TableCell>
-                      {mount.name}
-                    </TableCell>
-                    <TableCell>
-                      {mount.speed} m/s
-                    </TableCell>
-                    <TableCell>
-                      <div className="mount-skills">
-                        {mount.skills.map(skill => {
-                          const id = Array.isArray(skill) ? skill[0] : null;
-                          const name = !id ? skill : null;
-                          return (
-                            <SkillIcon key={id || name} skillset="Basic" id={id} name={name} className="size-sm" />
-                          );
-                        })}
-                      </div>
-                    </TableCell>
-                    <TableCell>
-                      {mount.obtainable && mount.obtainable.sort().map(obtainBy => (
-                        <Tooltip title={obtainBy} key={`${pascalCase(mount.name)}-${obtainBy}`}>
-                          <span className={cn('dropdown-icon', obtainBy)} />
+                {mounts.map(([mountId, mountList]) => {
+                  const [mount] = mountList;
+                  return (
+                    <TableRow key={mountId} onClick={() => this.props.history.push(`/mounts/${mountId}`)}>
+                      <TableCell className="mount-icon">
+                        <Tooltip
+                          title={<img
+                            src={Portrait[pascalCase(mount.name)] || NoPortrait}
+                            alt={mount.name}
+                            className="portrait-tooltip"
+                          />}
+                          placement="right"
+                        >
+                          <img src={`/images/icon/${mount.icon}.png`} alt={mount.name} />
                         </Tooltip>
-                      ))}
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {mounts.length === 0 &&
+                      </TableCell>
+                      <TableCell>
+                        {mount.name}
+                      </TableCell>
+                      <TableCell>
+                        {mount.moveSpeed} m/s
+                      </TableCell>
+                      <TableCell>
+                        <div className="mount-skills">
+                          {mount.skillIds.sort(this.sortSkills).map(skillId => (
+                            <SkillIcon key={`${mount.id}-${skillId}`} id={skillId} className="size-sm" />
+                          ))}
+                        </div>
+                      </TableCell>
+                      <TableCell>
+                        {mount.obtainIds.sort(sortNumber).map(obtainId => (
+                          <Tooltip
+                            title={mountObtainTypes[obtainId].name}
+                            key={`${pascalCase(mountId)}-${obtainId}`}>
+                            <span className={cn('dropdown-icon', mountObtainTypes[obtainId].icon)} />
+                          </Tooltip>
+                        ))}
+                      </TableCell>
+                    </TableRow>
+                  );
+                })}
+                {!objectHasProperties(mountData) &&
                 <TableRow className="no-results">
                   <TableCell colSpan="5" align="center">
-                    No mounts meet the criteria.
+                    {mountData.length === 0
+                      ? <CircularProgress color="primary" />
+                      : 'No mounts meet the criteria.'
+                    }
                   </TableCell>
                 </TableRow>}
               </TableBody>
@@ -360,13 +413,18 @@ class Mounts extends Component {
   }
 }
 
-const mapStateToProps = ({ mounts }) => ({
-  ...mounts,
+const mapStateToProps = ({ mounts: mountData, gameData: { skills, mounts: { mounts, types, obtainTypes } } }) => ({
+  ...mountData,
+  mounts,
+  types,
+  mountObtainTypes: obtainTypes,
+  skills,
 });
 
 const mapDispatchToProps = {
   setDisplayGrid,
   setOnlyObtainable,
+  fetchMounts,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Mounts);

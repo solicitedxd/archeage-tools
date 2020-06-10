@@ -219,7 +219,7 @@ const mapStateToProps = ({ gameData: { skills, skillsets } }, { skillId }) => {
   const skill = pathOr({}, [skillId])(skills);
   return {
     ...skill,
-    skillset: pathOr({}, [skill.skillsetId])(skillsets),
+    skillset: pathOr({ id: 0, name: 'Basic' }, [skill.skillsetId])(skillsets),
   };
 };
 

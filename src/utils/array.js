@@ -4,7 +4,17 @@
  * @param asc{boolean} true = asc, false = desc
  * @returns {function({object}, {object})}
  */
+import { slug } from 'utils/string';
+
 export const sortBy = (field, asc = true) => (a, b) => {
+  if (a === undefined) {
+    return 1;
+  }
+
+  if (b === undefined) {
+    return -1;
+  }
+
   if (a[field] === b[field]) {
     return 0;
   }
@@ -21,6 +31,14 @@ export const sortBy = (field, asc = true) => (a, b) => {
 };
 
 /**
+ * Sort by number.
+ * @param a{number}
+ * @param b{number}
+ * @returns {number}
+ */
+export const sortNumber = (a, b) => a - b;
+
+/**
  * Converts an array of objects to a map of object.
  * @param array{array} array of objects
  * @param key{string} key of field to use as map key
@@ -28,6 +46,35 @@ export const sortBy = (field, asc = true) => (a, b) => {
  */
 export const arrayToMap = (array, key = 'id') => array.reduce((obj, item) => {
   obj[item[key]] = item;
+  return obj;
+}, {});
+
+/**
+ * Reduce the mounts array into an object, combine mounts by name.
+ * @param mounts{array}
+ * @returns {object}
+ */
+export const reduceMounts = (mounts) => {
+  return mounts.reduce((obj, mount) => {
+    const key = slug(mount.name);
+    if (obj.hasOwnProperty(key)) {
+      obj[key].push(mount);
+    } else {
+      obj[key] = [mount];
+    }
+    return obj;
+  }, {});
+};
+
+/**
+ * Convert an array of objects into a map of key-value pairs.
+ * @param array{array}
+ * @param key{string}
+ * @param value{string}
+ * @returns {object}
+ */
+export const mapValue = (array, key = 'id', value = 'value') => array.reduce((obj, item) => {
+  obj[item[key]] = item[value];
   return obj;
 }, {});
 

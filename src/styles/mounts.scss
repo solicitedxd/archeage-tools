@@ -12,8 +12,8 @@
   }
 
   & > *.filter-field {
-    flex: 5;
-    min-width: 220px !important;
+    flex: 5.2;
+    overflow: auto;
   }
 
   & > *.small {
@@ -39,9 +39,16 @@
   }
 }
 
+.mobile {
+  .mount-filters > *.filter-field {
+    min-width: 220px !important;
+  }
+}
+
 .no-results {
   padding: 4px 0;
   text-align: center;
+  margin: auto;
 }
 
 .mount-grid {
