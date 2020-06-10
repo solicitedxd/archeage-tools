@@ -39,7 +39,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
-  sortBy,
   sortNumber,
   toggleValue,
 } from 'utils/array';
@@ -116,12 +115,6 @@ class Mounts extends Component {
     if (a < b) return -1;
     if (a > b) return 1;
     return 0;
-  };
-
-  sortSkills = (a, b) => {
-    const { skills } = this.props;
-    if (!objectHasProperties(skills)) return 0;
-    return sortBy('requiredLevel')(skills[a], skills[b]);
   };
 
   render() {
@@ -374,7 +367,7 @@ class Mounts extends Component {
                       </TableCell>
                       <TableCell>
                         <div className="mount-skills">
-                          {mount.skillIds.sort(this.sortSkills).map(skillId => (
+                          {mount.skillIds.map(skillId => (
                             <SkillIcon key={`${mount.id}-${skillId}`} id={skillId} className="size-sm" />
                           ))}
                         </div>
@@ -413,12 +406,11 @@ class Mounts extends Component {
   }
 }
 
-const mapStateToProps = ({ mounts: mountData, gameData: { skills, mounts: { mounts, types, obtainTypes } } }) => ({
+const mapStateToProps = ({ mounts: mountData, gameData: { mounts: { mounts, types, obtainTypes } } }) => ({
   ...mountData,
   mounts,
   types,
   mountObtainTypes: obtainTypes,
-  skills,
 });
 
 const mapDispatchToProps = {
