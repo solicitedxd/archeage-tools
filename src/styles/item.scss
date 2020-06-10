@@ -114,7 +114,7 @@
 }
 
 [data-grade="0"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/0poor.png');
   }
 
@@ -128,7 +128,7 @@
 }
 
 [data-grade="1"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/1common.png');
   }
 
@@ -142,7 +142,7 @@
 }
 
 [data-grade="2"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/2uncommon.png');
   }
 
@@ -156,7 +156,7 @@
 }
 
 [data-grade="3"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/3rare.png');
   }
 
@@ -170,7 +170,7 @@
 }
 
 [data-grade="4"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/4ancient.png');
   }
 
@@ -184,7 +184,7 @@
 }
 
 [data-grade="5"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/5heroic.png');
   }
 
@@ -198,7 +198,7 @@
 }
 
 [data-grade="6"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/6unique.png');
   }
 
@@ -212,7 +212,7 @@
 }
 
 [data-grade="7"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/7artifact.png');
   }
 
@@ -226,7 +226,7 @@
 }
 
 [data-grade="8"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/8wonder.png');
   }
 
@@ -240,7 +240,7 @@
 }
 
 [data-grade="9"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/9epic.png');
   }
 
@@ -254,7 +254,7 @@
 }
 
 [data-grade="10"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/10legendary.png');
   }
 
@@ -268,7 +268,7 @@
 }
 
 [data-grade="11"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/11mythic.png');
   }
 
@@ -282,7 +282,7 @@
 }
 
 [data-grade="12"] {
-  &.item-icon:after {
+  &.item-icon:after, &.mount-header-icon:before {
     background-image: url('../images/grades/12arche.png');
   }
 

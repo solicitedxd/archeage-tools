@@ -13,12 +13,14 @@ import Link from 'components/Link';
 import SkillIcon from 'components/Skill/SkillIcon';
 import MOUNT from 'data/mounts';
 import NoPortrait from 'images/NoPortrait.png';
+import { equals } from 'ramda';
 import React, { Component } from 'react';
 import {
   func,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { objectHasProperties } from 'utils/object';
 import {
   pascalCase,
   setTitle,
@@ -42,26 +44,27 @@ class MountViewer extends Component {
   };
 
   componentDidMount() {
-    const { id } = this.props;
-    if (id) {
+    const { id, mountData } = this.props;
+    if (id && objectHasProperties(mountData)) {
       this.loadMount(id);
     }
   }
 
   componentDidUpdate(prevProps) {
-    const { id } = this.props;
+    const { id, mountData } = this.props;
     // detect change in loaded id
-    if (id && (!prevProps.id || id !== prevProps.id)) {
+    if (id && objectHasProperties(mountData) && ((!prevProps.id || id !== prevProps.id) || !objectHasProperties(prevProps.mountData))) {
       this.loadMount(id);
     }
   }
 
   loadMount(id) {
-    const mount = MOUNT.find(mount => slug(mount.name) === id);
+    const { mountData } = this.props;
+    const mount = mountData[id];
     if (!mount) {
       this.onClose();
     } else {
-      setTitle(mount.name);
+      setTitle(mount[0].name);
       this.setState({ id, open: true });
     }
   }
@@ -73,10 +76,15 @@ class MountViewer extends Component {
 
   render() {
     const { id, open } = this.state;
-    const { mobile } = this.props;
+    const { mobile, mountData, obtainTypes } = this.props;
 
-    const mount = MOUNT.find(mount => slug(mount.name) === id);
-    if (!mount) return null;
+    const mountSet = mountData[id];
+    const mountObtain = MOUNT.find(mount => slug(mount.name) === id);
+    if (!mountSet) return null;
+
+    const [mount, ...altMounts] = mountSet;
+
+    const altSkills = Array.from(new Set(altMounts.map(altMount => altMount.skillIds).filter(s => !equals(s, mount.skillIds)).map(JSON.stringify)), JSON.parse);
 
     return (
       <Dialog
@@ -86,7 +94,12 @@ class MountViewer extends Component {
       >
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography variant="subtitle1" className="title-text">{mount.name}</Typography>
+            <Typography variant="subtitle1" className="title-text">
+              <div className="mount-header-icon" data-grade={mount.gradeId}>
+                <img src={`/images/icon/${mount.icon}.png`} alt={mount.name} />
+              </div>
+              {mount.name}
+            </Typography>
             <Tooltip title="Close">
               <IconButton onClick={this.onClose}>
                 <CloseIcon />
@@ -96,49 +109,79 @@ class MountViewer extends Component {
         </AppBar>
         <DialogContent className={cn('mount-viewer', mobile)}>
           <div className="info">
-            <img src={Portrait[pascalCase(mount.name)] || NoPortrait} alt={mount.name} className="portrait" />
-            {mount.imageCredit &&
-            <Typography variant="caption" component="div" align="right">
-              Image credit: {mount.imageCredit}
-            </Typography>}
-            <div className="obtainables">
-              <Typography color="primary" component="span">Obtain with: </Typography>
-              {mount.obtainable && mount.obtainable.length > 0
-                ? mount.obtainable.map(obtainBy => (
-                  <Tooltip title={obtainBy} key={`${pascalCase(mount.name)}-${obtainBy}`}>
-                    <span className={cn('dropdown-icon', obtainBy)} />
-                  </Tooltip>
-                ))
-                : <Typography component="span">Unobtainable</Typography>}
+            <div className="portrait">
+              <img src={Portrait[pascalCase(mount.name)] || NoPortrait} alt={mount.name} />
+              <div className="left-stats">
+                <Typography component="div" className="obtainables">
+                  {mount.obtainIds && mount.obtainIds.length > 0
+                    ? mount.obtainIds.map(obtainId => (
+                      <Tooltip
+                        title={`Obtainable with ${obtainTypes[obtainId].name}`}
+                        key={`view-obt-${mount.id}-${obtainId}`}
+                      >
+                        <span className={cn('dropdown-icon', obtainTypes[obtainId].icon)} />
+                      </Tooltip>
+                    ))
+                    : 'Unobtainable'}
+                </Typography>
+                {mountObtain && mountObtain.upgrade &&
+                <Typography className="upgrade">
+                  Upgrade: <Link to={`/mounts/${slug(mountObtain.upgrade)}`}>{mountObtain.upgrade}</Link>
+                </Typography>}
+              </div>
+              <div className="right-stats">
+                <Tooltip title="Base Move Speed">
+                  <Typography className="move-speed">{mount.moveSpeed || '?'} m/s</Typography>
+                </Tooltip>
+                {mount.imageCredit &&
+                <Typography className="image-credit">
+                  Image: {mount.imageCredit}
+                </Typography>}
+              </div>
             </div>
-            <Typography className="speed">
-              <Typography color="primary" component="span">Base Move Speed: </Typography>
-              {mount.speed} m/s
+            <Typography variant="h6" className="skill-header">
+              <span>Skills</span>
+              <Tooltip title="Starting Level">
+                <Typography variant="caption">Lv. {mount.level}</Typography>
+              </Tooltip>
             </Typography>
-            {mount.upgrade &&
-            <Typography>
-              Upgrade: <Link to={`/mounts/${slug(mount.upgrade)}`}>{mount.upgrade}</Link>
-            </Typography>
-            }
-            <Typography variant="h6">Skills</Typography>
             <div className="skills">
-              {mount.skills.map(skill => {
-                const id = Array.isArray(skill) ? skill[0] : null;
-                const name = !id ? skill : null;
+              {mount.skillIds.map(skillId => (
+                <SkillIcon key={`viewer-${mount.id}-${skillId}`} id={skillId} />
+              ))}
+            </div>
+            {altSkills.length > 0 &&
+            <>
+              <Tooltip
+                title="There's a possible, alternate variant of this mount that offers a different selection of skills.">
+                <Typography>Alternate Skills</Typography>
+              </Tooltip>
+              {altSkills.map(skillIds => {
+                const altMount = altMounts.find(m => equals(m.skillIds, skillIds));
                 return (
-                  <SkillIcon key={id || name} skillset="Basic" id={id} name={name} />
+                  <div className="skills">
+                    <Typography variant="caption" className="skill-alt">
+                      Lv. {mount.level}
+                    </Typography>
+                    {skillIds.map(skillId => (
+                      <SkillIcon key={`viewer-${altMount.id}-${skillId}`} id={skillId} className="size-sm" />
+                    ))}
+                    {altMount.alternateNote &&
+                    <Typography variant="caption" className="skill-alt-note">{altMount.alternateNote}</Typography>}
+                  </div>
                 );
               })}
-            </div>
+            </>}
           </div>
           <div className="obtain">
             {mount.quote &&
             <blockquote>{mount.quote}</blockquote>}
             <Typography variant="h6">Getting {mount.name}</Typography>
-            {(!mount.obtainable || mount.obtainable.length === 0) &&
-            <Typography className="alert-red">This mount is currently unavailable.</Typography>}
-            {mount.obtainText &&
-            <Typography component="div">{mount.obtainText}</Typography>}
+            {(!mount.obtainIds || mount.obtainIds.length === 0)
+              ? <Typography className="alert-red">This mount is currently unavailable.</Typography>
+              : mountObtain && mountObtain.obtainText
+                ? <Typography component="div">{mountObtain.obtainText}</Typography>
+                : <Typography component="div">Details to obtain this mount have not yet been added.</Typography>}
           </div>
         </DialogContent>
       </Dialog>
@@ -146,8 +189,10 @@ class MountViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile } }) => ({
+const mapStateToProps = ({ display: { mobile }, gameData: { mounts: { mounts, obtainTypes } } }) => ({
   mobile,
+  mountData: mounts,
+  obtainTypes,
 });
 
 export default connect(mapStateToProps, null)(MountViewer);
