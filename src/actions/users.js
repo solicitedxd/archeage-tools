@@ -30,7 +30,7 @@ export const fetchUsers = (...users) => (dispatch, getState) => {
 
   let userNames = Array.isArray(users[0]) ? new Set(users[0]) : new Set(users);
   // filter out already fetched users
-  userNames = Array.from(userNames).filter(name => !Boolean(storedUsers[name]));
+  userNames = Array.from(userNames).filter(name => !storedUsers[name]);
   const chunk = 20;
   for (let i = 0, j = userNames.length; i < j; i += chunk) {
     const names = userNames.slice(i, i + chunk).join(',');

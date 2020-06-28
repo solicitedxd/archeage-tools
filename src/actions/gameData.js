@@ -21,7 +21,10 @@ import {
   mapValue,
   reduceMounts,
 } from 'utils/array';
-import { objectHasProperties } from 'utils/object';
+import {
+  hasProperty,
+  objectHasProperties,
+} from 'utils/object';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 import store from '../store';
@@ -48,7 +51,7 @@ export const fetchItems = (...items) => (dispatch, getState) => {
 
   let itemIds = Array.isArray(items[0]) ? new Set(items[0]) : new Set(items);
   // filter out already fetched items
-  itemIds = Array.from(itemIds).filter(id => !Boolean(storedItems[id]));
+  itemIds = Array.from(itemIds).filter(id => !storedItems[id]);
   const chunk = 100;
   for (let i = 0, j = itemIds.length; i < j; i += chunk) {
     const itemIdStr = itemIds.slice(i, i + chunk).join(',');
@@ -108,7 +111,7 @@ export const fetchRecipes = (...recipes) => (dispatch, getState) => {
 
   let recipeIds = Array.isArray(recipes[0]) ? new Set(recipes[0]) : new Set(recipes);
   // filter out already fetched recipes
-  recipeIds = Array.from(recipeIds).filter(id => !Boolean(storedRecipes[id]));
+  recipeIds = Array.from(recipeIds).filter(id => !storedRecipes[id]);
   const chunk = 100;
   for (let i = 0, j = recipeIds.length; i < j; i += chunk) {
     const recipeIdStr = recipeIds.slice(i, i + chunk).join(',');
@@ -128,7 +131,7 @@ export const searchRecipes = (query, searchType) => (dispatch, getState) => {
     : config.endpoints.service.recipeSearchByMaterial;
 
   const key = `${searchType}-${query}`;
-  if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
+  if (hasProperty(getState().gameData.vocationRecipes, key)) {
     return;
   }
 
@@ -142,7 +145,7 @@ export const searchRecipes = (query, searchType) => (dispatch, getState) => {
 };
 
 export const fetchRecipeByVocation = (vocation) => (dispatch, getState) => {
-  if (getState().gameData.vocationRecipes.hasOwnProperty(vocation)) {
+  if (hasProperty(getState().gameData.vocationRecipes, vocation)) {
     return;
   }
 
@@ -157,7 +160,7 @@ export const fetchRecipeByVocation = (vocation) => (dispatch, getState) => {
 
 export const fetchRecipeByProduct = (itemId) => (dispatch, getState) => {
   const key = `product-${itemId}`;
-  if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
+  if (hasProperty(getState().gameData.vocationRecipes, key)) {
     return;
   }
 
@@ -172,7 +175,7 @@ export const fetchRecipeByProduct = (itemId) => (dispatch, getState) => {
 
 export const fetchRecipeByMaterial = (itemId) => (dispatch, getState) => {
   const key = `material-${itemId}`;
-  if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
+  if (hasProperty(getState().gameData.vocationRecipes, key)) {
     return;
   }
 
@@ -187,7 +190,7 @@ export const fetchRecipeByMaterial = (itemId) => (dispatch, getState) => {
 
 export const fetchRecipeByCategory = (category, subCat1, subCat2) => (dispatch, getState) => {
   const key = `category-${category}-${subCat1}-${subCat2}`;
-  if (getState().gameData.vocationRecipes.hasOwnProperty(key)) {
+  if (hasProperty(getState().gameData.vocationRecipes, key)) {
     return;
   }
 
@@ -286,7 +289,7 @@ export const fetchSkills = (...skills) => (dispatch, getState) => {
 
   let skillIds = Array.isArray(skills[0]) ? new Set(skills[0]) : new Set(skills);
   // filter out already fetched skills
-  skillIds = Array.from(skillIds).filter(id => !Boolean(storedSkills[id]));
+  skillIds = Array.from(skillIds).filter(id => !storedSkills[id]);
   const chunk = 100;
   for (let i = 0, j = skillIds.length; i < j; i += chunk) {
     const skillIdStr = skillIds.slice(i, i + chunk).join(',');

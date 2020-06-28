@@ -46,7 +46,7 @@ export const pascalCase = (s) => {
 };
 
 export const delimitName = (text) => {
-  return text.replace(/([^0-9]{1})([A-Z0-9])/g, '$1-$2').trim().toLowerCase();
+  return text.replace(/([^0-9])([A-Z0-9])/g, '$1-$2').trim().toLowerCase();
 };
 
 export const slug = (text) => {

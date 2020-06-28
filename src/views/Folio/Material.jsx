@@ -32,6 +32,10 @@ class Material extends Component {
     recipes: object,
     materials: object,
     depth: number.isRequired,
+    fetchRecipeByProduct: func.isRequired,
+    proficiencies: object.isRequired,
+    itemPrice: object.isRequired,
+    calculateLabor: func.isRequired,
   };
 
   static defaultProps = {
@@ -85,7 +89,7 @@ class Material extends Component {
           <ItemLink id={item} grade={grade} noLink name={String(quantity)} />
           {(subRecipes.length > 0 || materials.collapsed) &&
           <Tooltip title={materials.collapsed ? 'Expand' : 'Collapse'} placement="top">
-            <div className="collapse" onClick={this.handleUpdateCollapse(!Boolean(materials.collapsed))} />
+            <div className="collapse" onClick={this.handleUpdateCollapse(!materials.collapsed)} />
           </Tooltip>}
         </div>
         <div>

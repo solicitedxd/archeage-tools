@@ -22,6 +22,7 @@ const configureStore = (history) => {
     enhancer(history),
   );
 
+  /* eslint-disable no-undef */
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers
     module.hot.accept('reducers', () => {

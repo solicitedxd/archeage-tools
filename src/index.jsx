@@ -21,6 +21,7 @@ const dom = (
 
 render(dom, document.querySelector('#app'));
 
+/* eslint-disable no-undef */
 if (module && module.hot) {
   module.hot.accept('./index', () => {
     render(

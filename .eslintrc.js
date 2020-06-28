@@ -14,6 +14,7 @@ module.exports = {
         'ecmaVersion': 11,
         'sourceType': 'module',
     },
+    'parser': 'babel-eslint',
     'plugins': [
         'react',
     ],
@@ -57,7 +58,7 @@ module.exports = {
             'error',
             'last',
         ],
-        'complexity': 'error',
+        'complexity': ['error', 30],
         'computed-property-spacing': [
             'error',
             'never',
@@ -166,7 +167,7 @@ module.exports = {
         'no-implicit-globals': 'error',
         'no-implied-eval': 'error',
         'no-inline-comments': 'off',
-        'no-invalid-this': 'error',
+        'no-invalid-this': 'off',
         'no-iterator': 'error',
         'no-label-var': 'error',
         'no-labels': 'error',
@@ -306,7 +307,6 @@ module.exports = {
         'sort-keys': 'off',
         'sort-vars': 'error',
         'space-before-blocks': 'error',
-        'space-before-function-paren': 'error',
         'space-in-parens': [
             'error',
             'never',

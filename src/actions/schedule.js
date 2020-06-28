@@ -62,7 +62,7 @@ export const getReminderMessage = (event, time) => (_, getState) => {
  */
 export const CAN_SPEAK = ('speechSynthesis' in window);
 
-var preferredVoice;
+let preferredVoice;
 
 const loadVoice = () => {
   preferredVoice = Object.freeze(speechSynthesis.getVoices().find(voice => voice.name === 'Google US English'));

@@ -10,7 +10,7 @@ export const toSeconds = (dd, hh, mm, ss) => (dd * (24 * 60 * 60)) + (hh * (60 *
 
 /**
  * Gets hh:mm:ss from a Date.
- * @param date{Date} date
+ * @param date{Date|number} date
  * @param leadTimes{boolean}
  * @returns {string} hh:mm:ss
  */

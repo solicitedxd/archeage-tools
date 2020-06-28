@@ -43,9 +43,9 @@ class CropTimer extends Component {
 
   static defaultProps = {
     note: '',
-    onDelete: () => {
+    'onDelete': () => {
     },
-    onRestart: () => {
+    'onRestart': () => {
     },
   };
 
@@ -100,7 +100,7 @@ class CropTimer extends Component {
               {crop.name}
               <span className="climate-icons">
                 {!seedbed && climate.map(c => (
-                  <span className={cn('climate-icon small', c)} />
+                  <span className={cn('climate-icon small', c)} key={`${crop.id}-c`} />
                 ))}
                 {seedbed &&
                 <span className="climate-icon small Seedbed" />}

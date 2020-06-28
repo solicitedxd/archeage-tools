@@ -21,6 +21,8 @@ import React, { Component } from 'react';
 import {
   array,
   arrayOf,
+  bool,
+  func,
   object,
   oneOfType,
   string,
@@ -38,12 +40,21 @@ class Quest extends Component {
     difficulty: string,
     rewards: arrayOf(object),
     type: string,
+    setQuestStatus: func.isRequired,
+    setQuestHide: func.isRequired,
+    hideMode: bool.isRequired,
+    quests: array.isRequired,
+    faction: array.isRequired,
+    hiddenQuests: array.isRequired,
+    note: string.isRequired,
+    repeatable: bool,
   };
 
   static defaultProps = {
     zones: [],
     difficulty: '',
     type: '',
+    repeatable: false,
   };
 
   handleChange = (e, status) => {
@@ -61,7 +72,7 @@ class Quest extends Component {
     const zones = getZones(zoneObj, faction);
 
     const completed = quests[name] || false;
-    const hidden = !(hiddenQuests && hiddenQuests[name] || false);
+    const hidden = !((hiddenQuests && hiddenQuests[name]) || false);
 
     const checked = hideMode ? hidden : completed;
 
