@@ -46,6 +46,7 @@ class MapEmbed extends Component {
   };
 
   handleOpen = () => this.setState({ open: true });
+
   handleClose = () => this.setState({ open: false });
 
   componentDidMount() {
@@ -82,7 +83,7 @@ class MapEmbed extends Component {
 
     const map = getMapImage(zone);
     let embed;
-    if (Boolean(button)) {
+    if (button) {
       embed = (
         <Button
           onClick={this.handleOpen}
@@ -217,6 +218,7 @@ class MapEmbed extends Component {
                 );
               })}
             </div>
+            {/* eslint-disable-next-line no-undef */}
             {__DEVELOPMENT__ &&
             <Typography>Cursor location: {mouseX === -1 || mouseY === -1 ? 'Out of bounds'
               : `${(Math.round(mouseX / 928 * 1000) / 10)}%, ${(Math.round(mouseY / 556 * 1000) / 10)}%`}</Typography>}

@@ -2,13 +2,13 @@ import {
   InputAdornment,
   TextField,
 } from '@material-ui/core';
+import React, { PureComponent } from 'react';
 import {
   func,
   number,
   object,
   string,
-} from 'prop-types';
-import React, { PureComponent } from 'react';
+} from 'react-proptypes';
 import { maxDecimals } from 'utils/number';
 
 class NumberField extends PureComponent {
@@ -22,6 +22,8 @@ class NumberField extends PureComponent {
     min: number,
     max: number,
     step: number,
+    onFocus: func,
+    onBlur: func,
   };
 
   static defaultProps = {
@@ -90,7 +92,7 @@ class NumberField extends PureComponent {
   };
 
   render() {
-    const { inputStyle, min, max, step, endAdornment, defaultValue, InputProps, ...otherProps } = this.props;
+    const { inputStyle, min, max, step, endAdornment, InputProps, ...otherProps } = this.props;
     const { value } = this.state;
 
     return (

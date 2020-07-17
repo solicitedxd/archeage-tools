@@ -297,7 +297,7 @@ export const substituteVars = (description, varsRaw, passive = false, showKey = 
  * @param useSpace{boolean} put a space between the number and the label?
  * @returns {string} time string
  */
-export const renderTime = (seconds, useSpace) => {
+export const renderTime = (seconds, useSpace = false) => {
   const spacer = useSpace ? ' ' : '';
   let time = '';
   if (Math.abs(seconds) > 0) {

@@ -5,6 +5,7 @@ import React, { Component } from 'react';
 import {
   bool,
   number,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import ItemTooltip from './ItemTooltip';
@@ -12,8 +13,12 @@ import ItemTooltip from './ItemTooltip';
 class Item extends Component {
   static propTypes = {
     id: number.isRequired,
+    name: string,
+    icon: string,
     grade: number,
+    defaultGrade: number,
     count: number,
+    overlay: string,
     tooltipDisabled: bool,
     inline: bool,
   };

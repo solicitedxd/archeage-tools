@@ -9,6 +9,7 @@ import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   bool,
+  node,
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
@@ -18,6 +19,7 @@ import {
   substituteVars,
 } from 'utils/skills';
 
+// eslint-disable-next-line complexity
 const TooltipContent = (skill) => {
   // TODO: handle passive increases
   // if (!passive && spentPoints >= 2 && skillSet.passives) {
@@ -74,7 +76,7 @@ const TooltipContent = (skill) => {
   }
 
   return (
-    <div className={cn({ 'passive': passive })}>
+    <div className={cn({ passive })}>
       {shifted &&
       <section className="id">
         ID: {id}
@@ -158,6 +160,7 @@ class SkillTooltip extends Component {
     disabled: bool,
     spentPoints: number,
     disableTooltip: bool,
+    children: node.isRequired,
   };
 
   static defaultProps = {
@@ -181,6 +184,7 @@ class SkillTooltip extends Component {
   }
 
   setShifted = (e) => {
+    // eslint-disable-next-line no-undef
     this.setState({ shifted: __DEVELOPMENT__ && Boolean(e.shiftKey) });
   };
 
@@ -212,7 +216,7 @@ class SkillTooltip extends Component {
         {children}
       </Tooltip>
     );
-  };
+  }
 }
 
 const mapStateToProps = ({ gameData: { skills, skillsets } }, { skillId }) => {

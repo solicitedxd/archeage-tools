@@ -11,6 +11,7 @@ import {
 import React from 'react';
 import {
   bool,
+  node,
   number,
   oneOfType,
   string,
@@ -19,6 +20,7 @@ import { connect } from 'react-redux';
 import { substituteVars } from 'utils/skills';
 import { transformLines } from 'utils/string';
 
+// eslint-disable-next-line complexity
 const TooltipContent = (item) => {
   // validate item has content
   if (!item) {
@@ -145,9 +147,9 @@ const TooltipContent = (item) => {
         </>}
       </section>}
       <section>
-        {price > 0 ?
-          <div className="shop-price"><p>Shop Price:</p> <Currency type={CURRENCY.COIN} count={price} /></div> :
-          <p className="no-sell">Cannot Sell</p>}
+        {price > 0
+          ? <div className="shop-price"><p>Shop Price:</p> <Currency type={CURRENCY.COIN} count={price} /></div>
+          : <p className="no-sell">Cannot Sell</p>}
       </section>
     </>
   );
@@ -183,6 +185,7 @@ const ItemTooltip = ({ children, disabled, itemId, ...item }) => {
 ItemTooltip.propTypes = {
   itemId: oneOfType([number, string]),
   disabled: bool,
+  children: node,
 };
 
 ItemTooltip.defaultProps = {

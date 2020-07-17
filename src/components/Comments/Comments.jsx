@@ -13,13 +13,14 @@ import { setNotification } from 'actions/notification';
 import IfPerm from 'components/IfPerm';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
-import {
-  array,
-  number,
-  string,
-} from 'prop-types';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import {
+  array,
+  func,
+  number,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
 import {
@@ -35,6 +36,7 @@ class Comments extends Component {
     postId: string.isRequired,
     comments: array,
     commentCount: number,
+    setNotification: func.isRequired,
   };
 
   static defaultProps = {

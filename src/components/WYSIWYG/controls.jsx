@@ -3,6 +3,7 @@ import HorizontalSplitIcon from '@material-ui/icons/HorizontalSplit';
 import TitleIcon from '@material-ui/icons/Title';
 import React from 'react';
 
+// eslint-disable-next-line no-unused-vars
 const uploadImageCallBack = (file) => new Promise((resolve, reject) => {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'https://api.imgur.com/3/image');
@@ -35,6 +36,7 @@ export const customControls = (ref) => [
   {
     name: 'hr',
     type: 'atomic',
+    // eslint-disable-next-line react/display-name
     atomicComponent: () => <hr />,
   },
   {

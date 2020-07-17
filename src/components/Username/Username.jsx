@@ -1,8 +1,8 @@
 import { Typography } from '@material-ui/core';
 import { fetchUser } from 'actions/users';
 import cn from 'classnames';
-import { string } from 'prop-types';
 import React, { Component } from 'react';
+import { string } from 'react-proptypes';
 import { connect } from 'react-redux';
 
 class Username extends Component {
@@ -22,9 +22,9 @@ class Username extends Component {
   };
 
   componentDidMount() {
-    const { user, username, roles } = this.props;
+    const { user, username } = this.props;
 
-    if (!username && !roles) {
+    if (!username) {
       fetchUser(user);
     }
   }

@@ -16,12 +16,18 @@ import {
   fetchMe,
 } from 'actions/session';
 import React, { Component } from 'react';
-import { bool } from 'react-proptypes';
+import {
+  bool,
+  func,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 
 class Login extends Component {
   static propTypes = {
     open: bool.isRequired,
+    closeWindow: func.isRequired,
+    attemptLogin: func.isRequired,
+    fetchMe: func.isRequired,
   };
 
   static defaultProps = {};

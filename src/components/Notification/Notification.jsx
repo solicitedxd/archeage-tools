@@ -13,8 +13,14 @@ import InfoIcon from '@material-ui/icons/Info';
 import WarningIcon from '@material-ui/icons/Warning';
 import cn from 'classnames';
 import { NOTIFICATION_TYPE } from 'constants/notification';
-import PropTypes from 'prop-types';
 import React from 'react';
+import {
+  bool,
+  func,
+  number,
+  oneOf,
+  string,
+} from 'react-proptypes';
 
 const variantIcon = {
   [NOTIFICATION_TYPE.SUCCESS]: CheckCircleIcon,
@@ -86,12 +92,12 @@ const Notification = (props) => {
 };
 
 Notification.propTypes = {
-  className: PropTypes.string,
-  message: PropTypes.string,
-  handleClose: PropTypes.func,
-  variant: PropTypes.oneOf(Object.values(NOTIFICATION_TYPE)).isRequired,
-  duration: PropTypes.number,
-  open: PropTypes.bool,
+  className: string,
+  message: string,
+  handleClose: func,
+  variant: oneOf(Object.values(NOTIFICATION_TYPE)).isRequired,
+  duration: number,
+  open: bool,
 };
 
 export default Notification;

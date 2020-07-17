@@ -8,6 +8,7 @@ import {
   bool,
   func,
   number,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { getPointReq } from 'utils/skills';
@@ -22,6 +23,10 @@ class Skill extends Component {
     noRequirement: bool,
     disableTooltip: bool,
     ancestral: bool,
+    className: string,
+    icon: string,
+    requiredLevel: number,
+    passive: bool,
   };
 
   static defaultProps = {
@@ -66,7 +71,7 @@ class Skill extends Component {
         disableTooltip={disableTooltip}
       >
         <span
-          className={cn('skill', className, { 'disabled': disabled, 'available': !disabled && !learned, ancestral })}
+          className={cn('skill', className, { disabled, 'available': !disabled && !learned, ancestral })}
           onClick={disabled ? null : onClick}
           data-points-req={ancestral || learned || noRequirement || spentPoints >= pointsRequired ? 0 : pointsRequired}
         >

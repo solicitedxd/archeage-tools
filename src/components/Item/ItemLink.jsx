@@ -22,6 +22,7 @@ class ItemLink extends Component {
     style: object,
     noLink: bool,
     name: string,
+    item: object,
   };
 
   static defaultProps = {
@@ -40,7 +41,7 @@ class ItemLink extends Component {
     if (count > 1) {
       text += `${count} `;
     }
-    if (name != null) {
+    if (name !== null) {
       text += name;
     } else {
       text += item.name;
