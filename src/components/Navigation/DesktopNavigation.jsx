@@ -112,22 +112,24 @@ class DesktopNavigation extends Component {
             </IconButton>
           }
         >
-          <ListItem dense divider>
-            <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
-              : 'Account'}</Typography>} />
-          </ListItem>
-          {menuItems}
-          <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
-          <Divider />
-          <MenuItem onClick={this.handleDarkMode}>
-            {darkMode ? 'Light' : 'Dark'} Mode
-            {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
-              className="menu-icon-right" />}
-          </MenuItem>
-          {isMobileBrowser() &&
-          <MenuItem onClick={() => setMobile(true)}>
-            Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
-          </MenuItem>}
+          <>
+            <ListItem dense divider>
+              <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
+                : 'Account'}</Typography>} />
+            </ListItem>
+            {menuItems}
+            <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
+            <Divider />
+            <MenuItem onClick={this.handleDarkMode}>
+              {darkMode ? 'Light' : 'Dark'} Mode
+              {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
+                className="menu-icon-right" />}
+            </MenuItem>
+            {isMobileBrowser() &&
+            <MenuItem onClick={() => setMobile(true)}>
+              Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
+            </MenuItem>}
+          </>
         </NavMenu>
       </>
     );

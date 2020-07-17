@@ -19,12 +19,28 @@ import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
 import Proficiencies from 'components/Proficiencies';
 import React from 'react';
+import {
+  bool,
+  func,
+  node,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import 'styles/index';
 
 class Main extends React.PureComponent {
+  static propTypes = {
+    darkMode: bool,
+    session: object,
+    fetchMe: func,
+    children: node,
+    notification: object,
+    mobile: bool,
+    clearNotification: func.isRequired,
+  };
+
   state = {
     proficienciesOpen: false,
   };
@@ -41,7 +57,7 @@ class Main extends React.PureComponent {
     });
 
     const theme = createMuiTheme({
-      palette: palette,
+      palette,
       typography: createTypography(palette, {
         fontFamily: '"Flareserif821BT-Roman"',
       }),
@@ -100,14 +116,6 @@ class Main extends React.PureComponent {
     }
   }
 
-  openProficiencies = () => {
-    this.setState({ proficienciesOpen: true });
-  };
-
-  closeProficiencies = () => {
-    this.setState({ proficienciesOpen: false });
-  };
-
   render() {
     const { children, notification, darkMode, mobile } = this.props;
     const { clearNotification } = this.props;
@@ -144,6 +152,7 @@ class Main extends React.PureComponent {
           </div>
           <footer className="site-footer">
             <div className="inner-wrapper">
+              {/* eslint-disable-next-line no-undef */}
               <Typography className="title-text">ArcheAge Tools v{__VERSION__}</Typography>
               <Link href="https://www.mokulu.io/privacy-policy" color="inherit" target="_blank">
                 <Typography>Privacy Policy</Typography>

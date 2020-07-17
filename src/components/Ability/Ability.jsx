@@ -47,9 +47,15 @@ const Ability = ({ name, description, counters, deadly }) => (
 
 Ability.propTypes = {
   name: string.isRequired,
-  description: string.isRequired,
-  counters: array.isRequired,
-  deadly: bool.isRequired,
+  description: string,
+  counters: array,
+  deadly: bool,
+};
+
+Ability.defaultProps = {
+  description: null,
+  counters: [],
+  deadly: false,
 };
 
 export default Ability;

@@ -21,6 +21,7 @@ import Link from 'components/Link';
 import moment from 'moment-timezone';
 import React, { Component } from 'react';
 import {
+  array,
   bool,
   func,
   number,
@@ -43,6 +44,7 @@ const createMoment = (time, day) => {
     startMoment.add(1, 'day');
   }
   // skip days for day-specific times
+  // eslint-disable-next-line no-unmodified-loop-condition
   while (day && day !== getDayKey(startMoment.day())) {
     startMoment.add(1, 'day');
   }
@@ -62,6 +64,9 @@ class EventCard extends Component {
     link: string,
     onEdit: func.isRequired,
     region: string.isRequired,
+    description: string,
+    times: array,
+    disabled: bool,
   };
 
   static defaultProps = {
@@ -181,20 +186,18 @@ class EventCard extends Component {
                       time.days.forEach(day => {
                         objTimes.push({ ...time, day, startMoment: createMoment(time, day) });
                       });
+                    } else if (filteredTimes.length > 3) {
+                      objTimes.push({ ...time, startMoment: createMoment(time) });
                     } else {
-                      if (filteredTimes.length > 3) {
-                        objTimes.push({ ...time, startMoment: createMoment(time) });
-                      } else {
-                        // for events that happen every day with less than 3 time slots per day
-                        // we want to show the next 3 occurrences
-                        const next3Times = [];
-                        time.days.forEach(day => {
-                          next3Times.push({ ...time, day, startMoment: createMoment(time, day) });
-                        });
-                        next3Times.sort((a, b) => a.startMoment.diff(b.startMoment));
-                        next3Times.splice(3);
-                        objTimes = objTimes.concat(next3Times);
-                      }
+                      // for events that happen every day with less than 3 time slots per day
+                      // we want to show the next 3 occurrences
+                      const next3Times = [];
+                      time.days.forEach(day => {
+                        next3Times.push({ ...time, day, startMoment: createMoment(time, day) });
+                      });
+                      next3Times.sort((a, b) => a.startMoment.diff(b.startMoment));
+                      next3Times.splice(3);
+                      objTimes = objTimes.concat(next3Times);
                     }
                     return objTimes;
                   }, [])

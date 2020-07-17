@@ -46,6 +46,8 @@ import React, { Component } from 'react';
 import {
   bool,
   func,
+  number,
+  object,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
@@ -69,6 +71,19 @@ class Schedule extends Component {
     region: string,
     clearAlerts: func.isRequired,
     hasAlerts: bool,
+    fetchEvents: func.isRequired,
+    fetchEventTypes: func.isRequired,
+    events: object,
+    volume: number,
+    alerts: object,
+    speak: object,
+    doSpeak: func.isRequired,
+    getStartMessage: func.isRequired,
+    getReminderMessage: func.isRequired,
+    setVolume: func.isRequired,
+    setRegion: func.isRequired,
+    eventTypes: object,
+    mobile: bool,
   };
 
   static defaultProps = {
@@ -104,9 +119,10 @@ class Schedule extends Component {
 
     // preload audio cues
     Object.values(ALERT_CUE).forEach(cue => {
-      const alert = this.alerts[cue.name] = new Audio(cue.file);
+      const alert = new Audio(cue.file);
+      this.alerts[cue.name] = alert;
       alert.load();
-      alert.setVolume = function (volume) {
+      alert.setVolume = (volume) => {
         this.volume = volume / 100;
       };
       alert.setVolume(volume || VOLUME_DEFAULT);
@@ -127,7 +143,9 @@ class Schedule extends Component {
   }
 
   componentWillUnmount() {
-    this.interval && clearInterval(this.interval);
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
     window.removeEventListener('resize', this._handleResize);
     window.removeEventListener('click', this.confirmInteraction);
   }
@@ -141,7 +159,9 @@ class Schedule extends Component {
     alert
     .play()
     .then(() => {
-      !interacted && this.setState({ interacted: true });
+      if (!interacted) {
+        this.setState({ interacted: true });
+      }
     })
     .catch(() => {
       this.setState({ interacted: false });
@@ -321,15 +341,19 @@ class Schedule extends Component {
     });
 
     // play the cue
-    Boolean(cue) && this.playCue(cue);
+    if (cue) {
+      this.playCue(cue);
+    }
     let delay = 0;
     if (cue && alertQueue.length > 0) {
       delay = 500;
     }
 
-    alertQueue.length > 0 && setTimeout(() => {
-      alertQueue.forEach(message => doSpeak(message));
-    }, delay);
+    if (alertQueue.length > 0) {
+      setTimeout(() => {
+        alertQueue.forEach(message => doSpeak(message));
+      }, delay);
+    }
 
     if (sort) {
       events.sort(this.sortEvents);

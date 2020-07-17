@@ -41,7 +41,7 @@ class ItemLink extends Component {
     if (count > 1) {
       text += `${count} `;
     }
-    if (name !== null) {
+    if (name) {
       text += name;
     } else {
       text += item.name;

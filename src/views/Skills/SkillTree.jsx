@@ -35,6 +35,8 @@ class SkillTree extends Component {
     treeData: object.isRequired,
     remainingPoints: number,
     selectedSkillset: array,
+    skillsets: object,
+    skills: object,
   };
 
   static defaultProps = {
@@ -136,7 +138,7 @@ class SkillTree extends Component {
                 <div className="skill-container" data-col={(index % 4) + 1} key={skillId}>
                   <Skill
                     id={skillId}
-                    onClick={() => setSkill(treeId, index, !Boolean(selSkills[index]))}
+                    onClick={() => setSkill(treeId, index, !selSkills[index])}
                     learned={Boolean(selSkills[index])}
                     spentPoints={spentPoints}
                     remainingPoints={remainingPoints}

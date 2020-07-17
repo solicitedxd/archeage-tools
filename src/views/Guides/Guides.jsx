@@ -6,7 +6,7 @@ import {
 } from '@material-ui/core';
 import Link from 'components/Link';
 import { GUIDE_CATEGORY } from 'constants/guides';
-import React, { Component } from 'react';
+import React from 'react';
 import {
   delimitName,
   setTitle,
@@ -25,41 +25,40 @@ const guideCategories = Object.entries(GUIDE_CATEGORY).reduce((obj, [key, cat]) 
   return obj;
 }, {});
 
-class Guides extends Component {
-  render() {
-    setTitle('Guides');
-    return (
-      <>
-        <Paper className="section">
-          <AppBar position="static">
-            <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">Guides</Typography>
-            </Toolbar>
-          </AppBar>
-          <div className="body-container guide-list">
-            {Object.values(guideCategories).map(section => {
-              return (
-                <div className="guide-category" key={`gc-${section.name}`}>
-                  <Typography variant="h6">{section.name}</Typography>
-                  <ul>
-                    {Object.entries(section.children).filter(g => !g.disabled).map(([id, guide]) => (
-                      <li key={`gc-${id}`}>
-                        <Typography>
-                          <Link to={`/guides/${delimitName(id)}`} color="primary">
-                            {guide.name}
-                          </Link>
-                        </Typography>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-          </div>
-        </Paper>
-      </>
-    );
-  }
-}
+const Guides = () => {
+  setTitle('Guides');
+  return (
+    <>
+      <Paper className="section">
+        <AppBar position="static">
+          <Toolbar variant="dense">
+            <Typography variant="subtitle1" className="title-text">Guides</Typography>
+          </Toolbar>
+        </AppBar>
+        <div className="body-container guide-list">
+          {Object.values(guideCategories).map(section => {
+            return (
+              <div className="guide-category" key={`gc-${section.name}`}>
+                <Typography variant="h6">{section.name}</Typography>
+                <ul>
+                  {Object.entries(section.children).filter(g => !g.disabled).map(([id, guide]) => (
+                    <li key={`gc-${id}`}>
+                      <Typography>
+                        <Link to={`/guides/${delimitName(id)}`} color="primary">
+                          {guide.name}
+                        </Link>
+                      </Typography>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </Paper>
+    </>
+  );
+
+};
 
 export default Guides;

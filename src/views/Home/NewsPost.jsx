@@ -24,6 +24,10 @@ import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
 import React, { Component } from 'react';
+import {
+  bool,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { isNumber } from 'utils/number';
 import {
@@ -34,6 +38,11 @@ import xhr from 'utils/xhr';
 import EditNewsPost from './EditNewsPost';
 
 class NewsPost extends Component {
+  static propTypes = {
+    match: object,
+    mobile: bool,
+  };
+
   static defaultProps = {
     match: { params: { postId: null, action: '' } },
   };
@@ -98,15 +107,22 @@ class NewsPost extends Component {
         {mobile && 'Written '} by {mobile ? <Username user={author} /> : author}
       </Typography>;
 
+    let titleNode = <Skeleton variant="text" width={180} />;
+    if (loading) {
+      if (standalone) {
+        titleNode = title;
+      } else {
+        titleNode = <Link to={`/news/${id}`} color="inherit">{title}</Link>;
+      }
+    }
+
     return (
       <>
         <div className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
               <Typography variant="h5" className={cn({ 'title-text': mobile })}>
-                {loading
-                  ? <Skeleton variant="text" width={180} />
-                  : (standalone ? title : <Link to={`/news/${id}`} color="inherit">{title}</Link>)}
+                {titleNode}
               </Typography>
               {!mobile && authorBlock}
               {!mobile && dateBlock}

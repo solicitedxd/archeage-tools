@@ -78,6 +78,7 @@
         "webpack-dev-server": "^3.11.0"
     },
     "resolutions": {
+        "lodash": ">=4.17.19",
         "websocket-extensions": "0.1.4",
         "minimist": ">=0.2.1"
     }

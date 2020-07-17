@@ -21,6 +21,12 @@ import {
 } from 'constants/skills';
 import { equals } from 'ramda';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  object,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { objectHasProperties } from 'utils/object';
 import {
@@ -35,6 +41,15 @@ import { setTitle } from 'utils/string';
 import SkillTree from './SkillTree';
 
 class Skills extends Component {
+  static propTypes = {
+    fetchSkillsets: func.isRequired,
+    findClassName: func.isRequired,
+    location: object,
+    skillsets: object,
+    mobile: bool,
+    classes: string,
+  };
+
   state = {
     skillsets: [
       defaultSkillset(),
@@ -187,7 +202,7 @@ class Skills extends Component {
                   options={classes}
                   onChange={this.handleSelectClass}
                   value={{ name: className, skillsetIds: selectedSkillsets }}
-                  getOptionLabel={option => option.name}
+                  getOptionLabel={option => option.name || ''}
                   renderOption={option => (
                     <div className="class-result" key={`class-${option.name}`}>
                       <div className="skillset-icons">

@@ -28,12 +28,22 @@ import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import {
+  func,
+  object,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 
 class EditNewsPost extends Component {
-  static propTypes = {};
+  static propTypes = {
+    match: object,
+    requiresPermission: func.isRequired,
+    setNotification: func.isRequired,
+    username: string,
+  };
 
   static defaultProps = {};
 

@@ -26,17 +26,31 @@ import {
   TAX_BURDEN,
 } from 'constants/taxes';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  number,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { deepCopy } from 'utils/object';
 import { setTitle } from 'utils/string';
 import PropertyBox from './PropertyBox';
 
 class Taxes extends Component {
+  static propTypes = {
+    openDialog: func.isRequired,
+    calculateLabor: func.isRequired,
+    mobile: bool,
+    price: number,
+  };
+
   constructor() {
     super();
 
     const properties = {};
-    Object.keys(HOUSING_TYPES).forEach(key => properties[key] = ['', '']);
+    Object.keys(HOUSING_TYPES).forEach(key => {
+      properties[key] = ['', ''];
+    });
 
     this.state = {
       properties,
@@ -72,13 +86,13 @@ class Taxes extends Component {
     .reduce((a, b) => a + b) || 0;
     const taxBurden = TAX_BURDEN[Math.min(propertyCount, 10)];
     let hostileIncrease = 0;
-    let taxesPerWeek = Math.round(regularProperties.map(([key, value]) => {
+    let taxesPerWeek = (Math.round(regularProperties.map(([key, value]) => {
       const [friendly, hostile] = value;
       const friendlyCost = (friendly || 0) * HOUSING_TYPES[key].base;
       const hostileCost = (hostile || 0) * HOUSING_TYPES[key].base * (showHostile ? 1 : 0);
       hostileIncrease += hostileCost;
       return (friendlyCost + hostileCost);
-    }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100) + (hostileIncrease * 3));
+    }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100)) + (hostileIncrease * 3));
 
     const exemptProperties = Object.entries(properties).filter(([key]) => key.includes('EXEMPT'));
     // high tax exempt farms

@@ -93,8 +93,8 @@ export const HOUSING_TYPES = Object.freeze({
     base: 25,
     properties: [
       'Chalets',
-      // 'Deserted Cottage',
-      // 'Solariums',
+      'Deserted Cottage',
+      'Solariums',
       'Swept-Roof Manor',
       'Tidal Bungalow',
       'Treehouses',
@@ -125,6 +125,7 @@ export const HOUSING_TYPES = Object.freeze({
     size: '44x44',
     base: 50,
     properties: [
+      'Beanstalk House',
       'Mansions',
       'Spired Chateau',
     ],
@@ -141,13 +142,23 @@ export const HOUSING_TYPES = Object.freeze({
     exempt: true,
   },
   EXEMPT_PAVILION: {
-    name: 'Exempt Pavilion',
+    name: 'Exempt Large Farm',
     size: '24x24',
     base: 15,
     properties: [
       'Solar Pavilion Farm',
       'Lunar Pavilion Farm',
       'Stellar Pavilion Farm',
+      'Mushroom House',
+    ],
+    exempt: true,
+  },
+  EXEMPT_LARGE_UPGRADED: {
+    name: 'Exempt Upgraded Farm',
+    size: '24x24',
+    base: 25,
+    properties: [
+      'Raised Mushroom House',
     ],
     exempt: true,
   },
