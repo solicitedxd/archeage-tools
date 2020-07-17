@@ -23,15 +23,15 @@ import Username from 'components/Username';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
+import { pathOr } from 'ramda';
+import React, { Component } from 'react';
 import {
   array,
   bool,
   func,
   number,
   string,
-} from 'prop-types';
-import { pathOr } from 'ramda';
-import React, { Component } from 'react';
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
 import {
@@ -53,6 +53,7 @@ class Comment extends Component {
     depth: number,
     onUpdateComments: func.isRequired,
     sortAsc: bool,
+    setNotification: func.isRequired,
   };
 
   static defaultProps = {
@@ -128,8 +129,7 @@ class Comment extends Component {
           <Collapse in={!collapsed}>
             {!edit
               ? <DraftJSRender contentState={stringToContentState(body)} />
-              :
-              <EditComment
+              : <EditComment
                 {...this.props}
                 onCancel={this.setEdit(false)}
               />}

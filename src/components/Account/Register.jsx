@@ -18,10 +18,20 @@ import {
 } from 'actions/session';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 
 class Register extends Component {
-  static propTypes = {};
+  static propTypes = {
+    createAccount: func.isRequired,
+    closeWindow: func.isRequired,
+    displayLogin: func.isRequired,
+    setNotification: func.isRequired,
+    open: bool.isRequired,
+  };
 
   static defaultProps = {};
 

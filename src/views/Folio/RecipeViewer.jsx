@@ -50,8 +50,10 @@ import { CURRENCY } from 'constants/items';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
+  bool,
   func,
   number,
+  object,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
@@ -64,6 +66,23 @@ class RecipeViewer extends Component {
     recipeId: number,
     handleClose: func,
     onSizeChange: func,
+    recipes: object.isRequired,
+    fetchRecipe: func.isRequired,
+    fetchRecipeByCategory: func.isRequired,
+    updateFolioInventory: func.isRequired,
+    updateFolioMaterials: func.isRequired,
+    updateFolioQuantity: func.isRequired,
+    materials: object.isRequired,
+    inventory: object.isRequired,
+    items: object.isRequired,
+    proficiencies: object.isRequired,
+    itemPrice: object.isRequired,
+    categories: object.isRequired,
+    subCategories: object.isRequired,
+    calculateLabor: func.isRequired,
+    openDialog: func.isRequired,
+    mobile: bool.isRequired,
+    quantity: number.isRequired,
   };
 
   static defaultProps = {
@@ -164,6 +183,7 @@ class RecipeViewer extends Component {
     this.setState({ auctionCut: checked ? auctionCut : 1 });
   };
 
+  // eslint-disable-next-line complexity
   render() {
     const { items, recipes, proficiencies, itemPrice, categories, subCategories } = this.props;
     const { handleClose, calculateLabor, openDialog } = this.props;
@@ -174,7 +194,9 @@ class RecipeViewer extends Component {
 
     const recipe = recipes[recipeId] || {};
 
-    recipe.name && setTitle(`${recipe.name} - Folio`);
+    if (recipe.name) {
+      setTitle(`${recipe.name} - Folio`);
+    }
 
     const materialList = {};
     let craftGold = Math.round(recipe.gold * (materials.sale ? CRAFT_GOLD_SALE : 1)) * quantity;
@@ -199,16 +221,18 @@ class RecipeViewer extends Component {
             ...mat,
             quantity: Math.ceil(quantity / recipe.quantity) * mat.quantity,
           }, options));
-          craftGold += Math.round(recipe.gold * (options.sale ? CRAFT_GOLD_SALE : 1))
-            * Math.ceil(quantity / recipe.quantity);
+          craftGold += Math.round(recipe.gold * (options.sale ? CRAFT_GOLD_SALE : 1)) *
+            Math.ceil(quantity / recipe.quantity);
           craftLabor += calculateLabor(recipe.labor, recipe.vocation) * Math.ceil(quantity / recipe.quantity);
         }
       }
     });
 
-    recipe.materials && recipe.materials.forEach((mat) => {
-      calculateMatStep({ ...mat, quantity: mat.quantity * quantity }, materials);
-    });
+    if (recipe.materials) {
+      recipe.materials.forEach((mat) => {
+        calculateMatStep({ ...mat, quantity: mat.quantity * quantity }, materials);
+      });
+    }
 
     let rankCategory = {};
     if (recipe.rank) {
@@ -319,15 +343,15 @@ class RecipeViewer extends Component {
                 variant="subtitle2"
                 className={cn('craft-req-prof', { 'craft-locked': (proficiencies[recipe.vocation] || 0) < recipe.requiredProficiency })}
               >
-                {recipe.requiredProficiency === 230000 ?
-                  <>
+                {recipe.requiredProficiency === 230000
+                  ? <>
                     <div
                       className={cn('famed-icon', { locked: (proficiencies[recipe.vocation] || 0) < recipe.requiredProficiency })}
                     />
                     {(proficiencies[recipe.vocation] || 0) < recipe.requiredProficiency &&
                     <span>Max Proficiency Required</span>}
-                  </> :
-                  <>
+                  </>
+                  : <>
                     {recipe.requiredProficiency > 0 && recipe.requiredProficiency}
                   </>}
                 &nbsp;
@@ -588,7 +612,7 @@ const mapStateToProps = ({ gameData: { items, recipes, categories, subCategories
   subCategories,
   itemPrice,
   mobile,
-  ...Object.assign({ materials: {}, quantity: 1, inventory: {} }, folio[recipeId]),
+  ...({ materials: {}, quantity: 1, inventory: {}, ...folio[recipeId] }),
 });
 
 const mapDispatchToProps = {

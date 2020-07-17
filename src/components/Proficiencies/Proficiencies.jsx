@@ -16,11 +16,27 @@ import NumberField from 'components/NumberField';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import { PROFICIENCY_RANK } from 'constants/proficiencies';
 import React, { Component } from 'react';
+import {
+  array,
+  bool,
+  func,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { pascalCase } from 'utils/string';
 import * as VocationIcon from '../../images/vocation/';
 
 class Proficiencies extends Component {
+  static propTypes = {
+    fetchVocations: func.isRequired,
+    proficiencies: object,
+    vocations: array,
+    mobile: bool,
+    updateProficiency: func.isRequired,
+    open: bool,
+    onClose: func.isRequired,
+  };
+
   componentDidMount() {
     this.props.fetchVocations();
   }

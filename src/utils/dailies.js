@@ -1,5 +1,6 @@
 import { CURRENCY } from 'constants/items';
 import { FACTION } from 'constants/map';
+import { hasProperty } from 'utils/object';
 
 export const sortReward = (a, b) => a.type > b.type ? 1 : -1;
 
@@ -19,13 +20,13 @@ export const getZones = (zoneObj, faction) => {
   if (Array.isArray(zoneObj)) {
     zones = zoneObj;
   } else if (zoneObj) {
-    if (zoneObj.hasOwnProperty('all')) {
+    if (hasProperty(zoneObj, 'all')) {
       zones = zoneObj.all;
     }
-    if (zoneObj.hasOwnProperty('nuia') && faction === FACTION.NUIA) {
+    if (hasProperty(zoneObj, 'nuia') && faction === FACTION.NUIA) {
       zones = zones.concat(zoneObj.nuia);
     }
-    if (zoneObj.hasOwnProperty('haranya') && faction === FACTION.HARANYA) {
+    if (hasProperty(zoneObj, 'haranya') && faction === FACTION.HARANYA) {
       zones = zones.concat(zoneObj.haranya);
     }
   }

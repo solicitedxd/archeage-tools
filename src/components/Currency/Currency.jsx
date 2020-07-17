@@ -2,6 +2,12 @@ import { Typography } from '@material-ui/core';
 import cn from 'classnames';
 import { CURRENCY } from 'constants/items';
 import React from 'react';
+import {
+  bool,
+  number,
+  object,
+  string,
+} from 'react-proptypes';
 
 const Currency = ({ type, count, style, inline = false }) => {
   if (type === CURRENCY.COIN) {
@@ -35,6 +41,13 @@ const Currency = ({ type, count, style, inline = false }) => {
       </Typography>
     );
   }
+};
+
+Currency.propTypes = {
+  type: string.isRequired,
+  count: number.isRequired,
+  style: object,
+  inline: bool,
 };
 
 export default Currency;

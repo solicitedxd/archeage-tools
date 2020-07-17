@@ -4,12 +4,16 @@ import SkillIcon from 'components/Skill/SkillIcon';
 import SkillTooltip from 'components/Skill/SkillTooltip';
 import { ELEMENT } from 'constants/skills';
 import React, { Component } from 'react';
-import { number } from 'react-proptypes';
+import {
+  number,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 
 class SkillLink extends Component {
   static propTypes = {
     id: number.isRequired,
+    skill: object,
   };
 
   render() {

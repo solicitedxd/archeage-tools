@@ -7,6 +7,11 @@ import {
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import React from 'react';
+import {
+  array,
+  bool,
+  string,
+} from 'react-proptypes';
 
 const Ability = ({ name, description, counters, deadly }) => (
   <ExpansionPanel elevation={2}>
@@ -39,5 +44,12 @@ const Ability = ({ name, description, counters, deadly }) => (
     </ExpansionPanelDetails>
   </ExpansionPanel>
 );
+
+Ability.propTypes = {
+  name: string.isRequired,
+  description: string.isRequired,
+  counters: array.isRequired,
+  deadly: bool.isRequired,
+};
 
 export default Ability;

@@ -27,6 +27,11 @@ import {
 import { CONTINENT } from 'constants/map';
 import dailyQuests from 'data/dailies';
 import React, { Component } from 'react';
+import {
+  array,
+  bool,
+  func,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
   getKey,
@@ -37,6 +42,21 @@ import Filters from './Filters';
 import Quest from './Quest';
 
 class Dailies extends Component {
+  static propTypes = {
+    displayMobile: func.isRequired,
+    resetFilters: func.isRequired,
+    resetQuests: func.isRequired,
+    resetHide: func.isRequired,
+    hideMode: bool.isRequired,
+    continents: array.isRequired,
+    hiddenQuests: array.isRequired,
+    faction: array.isRequired,
+    hideComplete: bool.isRequired,
+    rewards: array.isRequired,
+    types: array.isRequired,
+    quests: array.isRequired,
+  };
+
   state = {
     filtersOpen: false,
   };
@@ -69,7 +89,7 @@ class Dailies extends Component {
   render() {
     const { continents, faction, rewards, types, hideComplete, quests, hideMode, hiddenQuests } = this.props;
     const { filtersOpen } = this.state;
-    const zonesFromContinents = [].concat.apply([], continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones));
+    const zonesFromContinents = [...continents.map(continent => Object.values(CONTINENT).find((ct) => ct.name === continent).zones)];
     const mainStyle = this.showSettingsMenu() ? { width: '100%' } : { width: '80%', minWidth: '280px' };
 
     // calculate the available and gained rewards
@@ -80,7 +100,7 @@ class Dailies extends Component {
 
     const visibleQuests = dailyQuests.filter(quest => {
       const completed = quests[getKey(quest)] || false;
-      const hidden = hiddenQuests && hiddenQuests[getKey(quest)] || false;
+      const hidden = (hiddenQuests && hiddenQuests[getKey(quest)]) || false;
       let visible = true;
 
       if (!hideMode && hidden) {
@@ -113,7 +133,7 @@ class Dailies extends Component {
       }
 
       // we want to always show rewards for completed quests, but don't want rewards in hideMode
-      if (!visible && !completed || hideMode) {
+      if ((!visible && !completed) || hideMode) {
         return visible;
       }
 

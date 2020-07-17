@@ -32,7 +32,7 @@ class SelectField extends Component {
     },
     value: null,
     options: [],
-    renderValue: (value) => value,
+    'renderValue': (value) => value,
     controlClassName: null,
   };
 

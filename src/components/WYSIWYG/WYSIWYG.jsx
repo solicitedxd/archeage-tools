@@ -65,6 +65,7 @@ class WYSIWYG extends Component {
   };
 
   render() {
+    // eslint-disable-next-line no-unused-vars
     const { value, onSave, type, onCancel, noMargin, maxLength, ...otherProps } = this.props;
     const { editorState } = this.state;
 

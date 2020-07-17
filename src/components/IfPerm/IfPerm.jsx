@@ -1,11 +1,12 @@
 import { hasPermission } from 'actions/session';
+import { Component } from 'react';
 import {
   array,
+  func,
   node,
   oneOfType,
   string,
-} from 'prop-types';
-import React, { Component } from 'react';
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { eqIgnoreCase } from 'utils/string';
 
@@ -14,6 +15,8 @@ class IfPerm extends Component {
     children: oneOfType([array, node]).isRequired,
     permission: string.isRequired,
     orUserIs: string,
+    hasPermission: func.isRequired,
+    username: string,
   };
 
   static defaultProps = {

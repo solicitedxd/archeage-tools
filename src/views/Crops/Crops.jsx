@@ -38,18 +38,36 @@ import {
 import { CLIMATE } from 'constants/map';
 import moment from 'moment-timezone';
 import React, { Component } from 'react';
+import {
+  array,
+  bool,
+  func,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
   arrayToMap,
   sortBy,
   toggleValue,
 } from 'utils/array';
-import { objectHasProperties } from 'utils/object';
+import {
+  hasProperty,
+  objectHasProperties,
+} from 'utils/object';
 import { setTitle } from 'utils/string';
 import { toSeconds } from 'utils/time';
 import CropTimer from './CropTimer';
 
 class Crops extends Component {
+  static propTypes = {
+    fetchCropItems: func.isRequired,
+    addCrop: func.isRequired,
+    restartCrop: func.isRequired,
+    removeCrop: func.isRequired,
+    mobile: bool.isRequired,
+    crops: array.isRequired,
+    items: array.isRequired,
+  };
+
   state = {
     dd: '',
     hh: '',
@@ -64,8 +82,11 @@ class Crops extends Component {
   };
 
   dd = React.createRef();
+
   hh = React.createRef();
+
   mm = React.createRef();
+
   ss = React.createRef();
 
   timeFields = { dd: this.dd, hh: this.hh, mm: this.mm, ss: this.ss };
@@ -113,7 +134,7 @@ class Crops extends Component {
     if (crop.type !== 'Seed' && seedbed) {
       seedbed = false;
     }
-    if (!Boolean(crop.description.match(HARVEST_REGEX)) && timer === TIMER_TYPE.HARVEST) {
+    if (!crop.description.match(HARVEST_REGEX) && timer === TIMER_TYPE.HARVEST) {
       timer = TIMER_TYPE.MATURES;
     }
     this.setState({ crop, seedbed, timer });
@@ -208,7 +229,7 @@ class Crops extends Component {
               disableClearable
               blurOnSelect
               size="small"
-              loading={!Boolean(items.length)}
+              loading={!items.length}
               options={items}
               onChange={this.handleSelectCrop}
               value={crop}
@@ -221,7 +242,7 @@ class Crops extends Component {
               )}
               groupBy={option => option.group}
               renderInput={params => (
-                <FormControl error={errors.hasOwnProperty('crop')}>
+                <FormControl error={hasProperty(errors, 'crop')}>
                   <TextField
                     {...params}
                     label={`Find a crop`}
@@ -255,11 +276,11 @@ class Crops extends Component {
                   value={TIMER_TYPE.HARVEST}
                   control={<Radio size="small" />}
                   label="Harvest"
-                  disabled={!crop.description || !Boolean(crop.description.match(HARVEST_REGEX))}
+                  disabled={!crop.description || !crop.description.match(HARVEST_REGEX)}
                 />
               </RadioGroup>
             </FormControl>
-            <FormControl className="select-group" error={errors.hasOwnProperty('climate')}>
+            <FormControl className="select-group" error={hasProperty(errors, 'climate')}>
               <InputLabel className="group-label" shrink>Climate(s)</InputLabel>
               <ButtonGroup color="secondary">
                 {Object.values(CLIMATE).map(c => (

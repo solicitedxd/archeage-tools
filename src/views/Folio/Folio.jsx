@@ -12,6 +12,12 @@ import { fetchCategories } from 'actions/gameData';
 import { push } from 'actions/navigate';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  object,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { isNumber } from 'utils/number';
@@ -26,6 +32,18 @@ import RecipeList from './RecipeList';
 import RecipeViewer from './RecipeViewer';
 
 class Folio extends Component {
+  static propTypes = {
+    fetchCategories: func.isRequired,
+    match: object.isRequired,
+    params: object.isRequired,
+    vocation: string,
+    recipeId: string,
+    vocations: object.isRequired,
+    mobile: bool.isRequired,
+    items: object.isRequired,
+    categories: object.isRequired,
+  };
+
   state = {
     viewerHeight: 0,
   };
@@ -83,9 +101,9 @@ class Folio extends Component {
     return (
       <>
         <FolioHeader />
-        {vocation ?
+        {vocation
           // show the list of recipes and recipe viewer
-          <div className="section">
+          ? <div className="section">
             <AppBar position="static">
               <Toolbar variant="dense">
                 <Tooltip title="Back">
@@ -125,9 +143,9 @@ class Folio extends Component {
               </Dialog>
               }
             </Paper>
-          </div> :
+          </div>
           // show the vocation list
-          <div className="section">
+          : <div className="section">
             <AppBar position="static">
               <Toolbar variant="dense">
                 <Typography variant="h5" className="title-text">Browse by Vocation</Typography>

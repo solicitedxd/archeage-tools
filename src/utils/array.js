@@ -4,6 +4,7 @@
  * @param asc{boolean} true = asc, false = desc
  * @returns {function({object}, {object})}
  */
+import { hasProperty } from 'utils/object';
 import { slug } from 'utils/string';
 
 export const sortBy = (field, asc = true) => (a, b) => {
@@ -57,7 +58,7 @@ export const arrayToMap = (array, key = 'id') => array.reduce((obj, item) => {
 export const reduceMounts = (mounts) => {
   return mounts.reduce((obj, mount) => {
     const key = slug(mount.name);
-    if (obj.hasOwnProperty(key)) {
+    if (hasProperty(obj, key)) {
       obj[key].push(mount);
     } else {
       obj[key] = [mount];

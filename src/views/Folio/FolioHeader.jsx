@@ -17,6 +17,11 @@ import { push } from 'actions/navigate';
 import Item from 'components/Item';
 import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 
 const searchTypes = [
@@ -25,6 +30,12 @@ const searchTypes = [
 ];
 
 class FolioHeader extends Component {
+  static propTypes = {
+    searchItems: func.isRequired,
+    mobile: bool.isRequired,
+    items: object.isRequired,
+  };
+
   state = {
     open: false,
     loading: false,

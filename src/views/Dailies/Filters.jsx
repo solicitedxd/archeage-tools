@@ -28,7 +28,12 @@ import {
   FACTION,
 } from 'constants/map';
 import React, { Component } from 'react';
-import { array } from 'react-proptypes';
+import {
+  array,
+  bool,
+  func,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { toggleValue } from 'utils/array';
 import RewardsDisplay from './RewardsDisplay';
@@ -37,6 +42,19 @@ class Filters extends Component {
   static propTypes = {
     availableRewards: array,
     claimedRewards: array,
+    filterComplete: func.isRequired,
+    filterContinents: func.isRequired,
+    filterFaction: func.isRequired,
+    filterRewards: func.isRequired,
+    filterTypes: func.isRequired,
+    setHideMode: func.isRequired,
+    setQuestStatus: func.isRequired,
+    continents: array.isRequired,
+    faction: string.isRequired,
+    rewards: array.isRequired,
+    types: array.isRequired,
+    hideMode: bool.isRequired,
+    hideComplete: bool.isRequired,
   };
 
   static defaultProps = {
@@ -45,24 +63,28 @@ class Filters extends Component {
   };
 
   handleFactionChange = (value) => this.props.filterFaction(value);
+
   handleContinentChange = (value) => {
     const { continents: old } = this.props;
     const newValue = [...old];
     toggleValue(newValue, value);
     this.props.filterContinents(newValue);
   };
+
   handleRewardChange = (value) => {
     const { rewards: old } = this.props;
     const newValue = [...old];
     toggleValue(newValue, value);
     this.props.filterRewards(newValue);
   };
+
   handleTypeChange = (value) => {
     const { types: old } = this.props;
     const newValue = [...old];
     toggleValue(newValue, value);
     this.props.filterTypes(newValue);
   };
+
   handleCompleteChange = (event, value) => this.props.filterComplete(value);
 
   toggleHideMode = () => {

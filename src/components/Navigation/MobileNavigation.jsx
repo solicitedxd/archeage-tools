@@ -38,6 +38,7 @@ import {
   bool,
   func,
   object,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { injectPatreon } from 'utils/display';
@@ -53,15 +54,13 @@ class MobileNavigation extends Component {
     open: bool.isRequired,
     handleOpen: func.isRequired,
     handleClose: func.isRequired,
+    myAccountUrl: string,
+    openDialog: func.isRequired,
   };
 
   static defaultProps = {
     mobile: false,
     darkMode: false,
-    setDarkMode: () => {
-    },
-    setMobile: () => {
-    },
   };
 
   state = {
@@ -83,6 +82,7 @@ class MobileNavigation extends Component {
   };
 
   handleCollapse = (menuId) => () => {
+    // eslint-disable-next-line no-unused-vars
     const { expanded: { [menuId]: removed, ...expanded } } = this.state;
     this.setState({ expanded });
   };
@@ -148,17 +148,17 @@ class MobileNavigation extends Component {
             <Divider />
             <ListItem button onClick={this.handleExpand('Account')}>
               <ListItemIcon>
-                {session.avatarSrc ?
-                  <Avatar
+                {session.avatarSrc
+                  ? <Avatar
                     src={session.avatarSrc}
                     className={cn('avatar', 'nav-icon', { [session.avatarPlatform]: true })}
-                  /> :
-                  <span className="nav-icon Account" />}
+                  />
+                  : <span className="nav-icon Account" />}
               </ListItemIcon>
               <ListItemText primary={session.username || 'Account'} />
-              {expanded['Account'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              {expanded.Account ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </ListItem>
-            <Collapse in={expanded['Account']} timeout="auto" unmountOnExit>
+            <Collapse in={expanded.Account} timeout="auto" unmountOnExit>
               <List component="div" disablePadding className="nested-list">
                 {session.isAuthenticated && !session.verified &&
                 <MuiLink href={myAccountUrl} color="inherit" underline="none" onClick={handleClose}>
@@ -173,9 +173,9 @@ class MobileNavigation extends Component {
             <ListItem button onClick={this.handleExpand('Settings')}>
               <ListItemIcon><span className="nav-icon Settings" /></ListItemIcon>
               <ListItemText primary="Settings" />
-              {expanded['Settings'] ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+              {expanded.Settings ? <ExpandLessIcon /> : <ExpandMoreIcon />}
             </ListItem>
-            <Collapse in={expanded['Settings']} timeout="auto" unmountOnExit>
+            <Collapse in={expanded.Settings} timeout="auto" unmountOnExit>
               <List component="div" disablePadding className="nested-list-icons">
                 <ListItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>
                   <ListItemIcon><ListAltIcon /></ListItemIcon>
@@ -198,7 +198,7 @@ class MobileNavigation extends Component {
             {pathOr(0, ['patreon', 'pledge'])(session) === 0 &&
             <ListItem>
               <div style={{ margin: 'auto' }}>
-                {<a href="https://www.patreon.com/bePatron?u=12806740" target="_blank"
+                {<a href="https://www.patreon.com/bePatron?u=12806740" target="_blank" rel="noreferrer"
                     data-patreon-widget-type="become-patron-button">Become a Patron!</a>}
               </div>
             </ListItem>}

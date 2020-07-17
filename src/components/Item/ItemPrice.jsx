@@ -2,7 +2,11 @@ import { setItemPrice } from 'actions/itemPrice';
 import NumberField from 'components/NumberField';
 import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
-import { number } from 'react-proptypes';
+import {
+  func,
+  number,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { maxDecimals } from 'utils/number';
 
@@ -10,6 +14,9 @@ class ItemPrice extends Component {
   static propTypes = {
     itemId: number.isRequired,
     unitSize: number,
+    setItemPrice: func.isRequired,
+    inputStyle: object,
+    itemPrice: object,
   };
 
   static defaultProps = {

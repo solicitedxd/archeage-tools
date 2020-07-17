@@ -12,6 +12,11 @@ import Register from 'components/Account/Register';
 import config from 'config';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import DesktopNavigation from './DesktopNavigation';
 import MobileNavigation from './MobileNavigation';
@@ -19,6 +24,14 @@ import MobileNavigation from './MobileNavigation';
 const myAccountUrl = `http://${config.dev ? 'dev' : 'www'}.mokulu.io/my-account`;
 
 class Navigation extends Component {
+  static propTypes = {
+    logout: func.isRequired,
+    displayLogin: func.isRequired,
+    displayRegister: func.isRequired,
+    session: object,
+    mobile: bool,
+  };
+
   state = {
     userEl: null,
   };
@@ -85,15 +98,14 @@ class Navigation extends Component {
       session.avatarSrc = defaultAvatar;
     }
     switch (session.avatarSrc) {
-      case null:
-        session.avatarPlatform = null;
-        break;
       case patreonAvatar:
         session.avatarPlatform = 'patreon';
         break;
       case discordAvatar:
         session.avatarPlatform = 'discord';
         break;
+      default:
+        session.avatarPlatform = null;
     }
 
     return (

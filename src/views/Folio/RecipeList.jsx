@@ -19,8 +19,10 @@ import Item from 'components/Item';
 import { equals } from 'ramda';
 import React, { Component } from 'react';
 import {
+  bool,
   func,
   number,
+  object,
   oneOfType,
   string,
 } from 'react-proptypes';
@@ -36,6 +38,15 @@ class RecipeList extends Component {
     vocation: string,
     handleClick: func,
     maxHeight: number,
+    recipes: object.isRequired,
+    mobile: bool.isRequired,
+    vocationRecipes: object.isRequired,
+    fetchRecipeByProduct: func.isRequired,
+    fetchRecipeByMaterial: func.isRequired,
+    fetchRecipeByVocation: func.isRequired,
+    searchRecipes: func.isRequired,
+    categories: object.isRequired,
+    subCategories: object.isRequired,
   };
 
   static defaultProps = {};
@@ -135,11 +146,12 @@ class RecipeList extends Component {
       recipeList.some(searchCat);
 
       if (category === null) {
-        category = Object.assign({ id: null }, categories[id], { recipes: [], children: [] });
+        category = { id: null, ...categories[id], recipes: [], children: [] };
 
         let _category = category;
-        while (Boolean(_category.parent)) {
+        while (_category.parent) {
           let parent = getCategory(_category.parent);
+          // eslint-disable-next-line no-loop-func
           if (!parent.children.find(c => equals(c, _category))) {
             parent.children.push(_category);
             parent.children.sort(sortBy('id'));
@@ -157,7 +169,7 @@ class RecipeList extends Component {
         const parent = category;
         category = parent.children.find(c => c.idx === subCat1);
         if (!category) {
-          category = Object.assign({ id: null }, subCategories[subCat1], { recipes: [], children: [] });
+          category = { id: null, ...subCategories[subCat1], recipes: [], children: [] };
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
@@ -169,7 +181,7 @@ class RecipeList extends Component {
         const parent = category;
         category = parent.children.find(c => c.idx === subCat2);
         if (!category) {
-          category = Object.assign({ id: null }, subCategories[subCat2], { recipes: [], children: [] });
+          category = { id: null, ...subCategories[subCat2], recipes: [], children: [] };
           category.idx = category.id;
           category.id = `${category.id}-${randomString(8)}`;
           parent.children.push(category);
@@ -191,14 +203,14 @@ class RecipeList extends Component {
 
   toggleCategory = (id) => () => {
     const { categories } = this.state;
-    this.setState({ categories: { ...categories, [id]: !Boolean(categories[id]) } });
+    this.setState({ categories: { ...categories, [id]: !categories[id] } });
   };
 
   renderRecipeCategory = (category, depth = 1) => {
     const { mobile, handleClick } = this.props;
     const { categories } = this.state;
     const { id } = category;
-    const open = depth > 3 ? Boolean(categories[id]) : !Boolean(categories[id]);
+    const open = depth > 3 ? Boolean(categories[id]) : !categories[id];
 
     return (
       <div className="recipe-category" key={`rcat-${id}`}>

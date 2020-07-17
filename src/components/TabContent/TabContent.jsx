@@ -57,9 +57,9 @@ class TabContent extends Component {
 
     let content;
     if (tabs[value]) {
-      content = !Array.isArray(tabs[value].content) ?
-        tabs[value].content :
-        tabs[value].content.map((node, i) => {
+      content = !Array.isArray(tabs[value].content)
+        ? tabs[value].content
+        : tabs[value].content.map((node, i) => {
           if (typeof node === 'object') {
             return <KeyComponent key={`${title}-${tabs[value].label}-${i}`}>{node}</KeyComponent>;
           }

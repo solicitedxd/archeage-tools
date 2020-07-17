@@ -126,7 +126,7 @@ export const decodeSkillString = (skillString) => {
 
 /**
  * Converts an integer into a string value
- * @param int number
+ * @param int{number} number
  * @returns {string} hexadecimal value
  */
 const intToStr = (int) => int.toString(36);
@@ -155,7 +155,7 @@ const encodeSkills = (skills) => {
     }
   }
 
-  return intToStr(bits).padStart(3, 0);
+  return intToStr(bits).padStart(3, '0');
 };
 
 /**
@@ -259,7 +259,7 @@ const legacyDecodeAncestrals = (chars) => {
  * @returns {string}
  */
 export const substituteVars = (description, varsRaw, passive = false, showKey = false) => {
-  description = description.replace(/#{([a-z0-9_]+)}/, '\${$1}');
+  description = description.replace(/#{([a-z0-9_]+)}/, '${$1}');
   const availableKeys = (description.match(/\${([\w]+)}/g) || []).map(a => a.match(/\${([\w]+)}/)[1]);
   const vars = varsRaw.filter(v => availableKeys.includes(v.key)).reduce((obj, props) => {
     const { key, base, baseVariant, ratio, ratioVariant, powerType, text } = props;
@@ -297,7 +297,7 @@ export const substituteVars = (description, varsRaw, passive = false, showKey = 
  * @param useSpace{boolean} put a space between the number and the label?
  * @returns {string} time string
  */
-export const renderTime = (seconds, useSpace) => {
+export const renderTime = (seconds, useSpace = false) => {
   const spacer = useSpace ? ' ' : '';
   let time = '';
   if (Math.abs(seconds) > 0) {
@@ -310,8 +310,3 @@ export const renderTime = (seconds, useSpace) => {
   }
   return time.trim();
 };
-
-/**
- * @deprecated
- */
-export const getSkillIdByName = (skills, name) => skills.indexOf(skills.find(skill => skill.name === name));

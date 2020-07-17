@@ -26,12 +26,15 @@ const MAX_LENGTH = 1000;
 
 class EditComment extends Component {
   static propTypes = {
+    id: number,
     postId: string.isRequired,
     onCancel: func.isRequired,
     onUpdateComments: func.isRequired,
     depth: number,
     replyUser: string,
     reply: number,
+    requiresPermission: func.isRequired,
+    setNotification: func.isRequired,
   };
 
   static defaultProps = {
@@ -42,7 +45,7 @@ class EditComment extends Component {
 
   constructor(props) {
     super(props);
-    const { depth, onCancel, replyUser, ...otherProps } = props;
+    const { onCancel, ...otherProps } = props;
     if (!props.id) {
       props.requiresPermission('comment.create', onCancel, 'You do not have permission to perform this action.');
     }
@@ -116,14 +119,20 @@ class EditComment extends Component {
   render() {
     const { depth, onCancel, id, replyUser } = this.props;
     const { body, loading } = this.state;
+    let title = 'Editing Comment';
+    if (id) {
+      if (replyUser) {
+        title = `Replying to ${replyUser}`;
+      } else {
+        title = 'New Comment';
+      }
+    }
 
     return (
       <Paper elevation={depth} className="paper-border">
         <div style={{ width: '100%' }} className="body-container">
           <Typography variant="body2">
-            {id
-              ? 'Editing Comment'
-              : (replyUser ? `Replying to ${replyUser}` : 'New Comment')}
+            {title}
           </Typography>
           <WYSIWYG
             type={EDITOR_TYPE.COMMENT}

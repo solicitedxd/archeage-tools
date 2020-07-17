@@ -29,6 +29,7 @@ import {
   bool,
   func,
   object,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
@@ -46,15 +47,13 @@ class DesktopNavigation extends Component {
     session: object.isRequired,
     menuItems: array.isRequired,
     userMenu: object,
+    myAccountUrl: string,
+    openDialog: func.isRequired,
   };
 
   static defaultProps = {
     mobile: false,
     darkMode: false,
-    setDarkMode: () => {
-    },
-    setMobile: () => {
-    },
     userMenu: null,
   };
 
@@ -66,7 +65,7 @@ class DesktopNavigation extends Component {
   UNSAFE_componentWillReceiveProps(nextProps) {
     const wasPatron = this.props.session.patreon && this.props.session.patreon.pledge > 0;
     const isNotPatron = !nextProps.session.patreon || nextProps.session.patreon.pledge === 0;
-    if (wasPatron && isNotPatron || isNotPatron && this.props.mobile !== nextProps.mobile) {
+    if ((wasPatron && isNotPatron) || (isNotPatron && this.props.mobile !== nextProps.mobile)) {
       injectPatreon();
     }
   }
@@ -96,7 +95,7 @@ class DesktopNavigation extends Component {
         <Typography className="user-welcome">Hello, <b>{session.username}</b>!</Typography>}
         {!mobile && pathOr(0, ['patreon', 'pledge'])(session) === 0 &&
         <div className="user-welcome">
-          <a href="https://www.patreon.com/bePatron?u=12806740" target="_blank"
+          <a href="https://www.patreon.com/bePatron?u=12806740" target="_blank" rel="noreferrer"
              data-patreon-widget-type="become-patron-button">Become a Patron!</a>
         </div>}
         <NavMenu
@@ -112,25 +111,24 @@ class DesktopNavigation extends Component {
               </Avatar>
             </IconButton>
           }
-          children={<>
-            <ListItem dense divider>
-              <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
-                : 'Account'}</Typography>} />
-            </ListItem>
-            {menuItems}
-            <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
-            <Divider />
-            <MenuItem onClick={this.handleDarkMode}>
-              {darkMode ? 'Light' : 'Dark'} Mode
-              {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
-                className="menu-icon-right" />}
-            </MenuItem>
-            {isMobileBrowser() &&
-            <MenuItem onClick={() => setMobile(true)}>
-              Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
-            </MenuItem>}
-          </>}
-        />
+        >
+          <ListItem dense divider>
+            <ListItemText primary={<Typography variant="overline">{session.isAuthenticated ? session.username
+              : 'Account'}</Typography>} />
+          </ListItem>
+          {menuItems}
+          <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
+          <Divider />
+          <MenuItem onClick={this.handleDarkMode}>
+            {darkMode ? 'Light' : 'Dark'} Mode
+            {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
+              className="menu-icon-right" />}
+          </MenuItem>
+          {isMobileBrowser() &&
+          <MenuItem onClick={() => setMobile(true)}>
+            Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
+          </MenuItem>}
+        </NavMenu>
       </>
     );
   }
