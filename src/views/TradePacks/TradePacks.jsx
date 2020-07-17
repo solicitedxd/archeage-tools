@@ -51,13 +51,32 @@ import {
 } from 'constants/tradepacks';
 import TRADE_PACKS from 'data/tradepacks';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  number,
+  object,
+  string,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { setTitle } from 'utils/string';
 import FreshnessBlip from './FreshnessBlip';
 import PackViewer from './PackViewer';
 
 class TradePacks extends Component {
-  static propTypes = {};
+  static propTypes = {
+    setOutlet: func.isRequired,
+    setContinent: func.isRequired,
+    resetSettings: func.isRequired,
+    setPercentage: func.isRequired,
+    setWar: func.isRequired,
+    openDialog: func.isRequired,
+    mobile: bool,
+    continent: string,
+    percentage: number,
+    war: object,
+    outlet: number,
+  };
 
   static defaultProps = {};
 
@@ -145,6 +164,7 @@ class TradePacks extends Component {
               <ButtonGroup>
                 {Object.keys(CONTINENT_PACKS).map(contName => (
                   <Button
+                    key={`cont-${contName}`}
                     variant={continent === contName ? 'contained' : 'outlined'}
                     color={continent === contName ? 'primary' : null}
                     className={cn({ selected: continent === contName })}

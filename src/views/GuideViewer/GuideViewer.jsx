@@ -15,6 +15,10 @@ import Link from 'components/Link';
 import ScrollToTop from 'components/ScrollToTop';
 import TabContent from 'components/TabContent';
 import React, { Component } from 'react';
+import {
+  bool,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { Link as RouterLink } from 'react-router-dom';
 import Sticky from 'react-sticky-el';
@@ -28,6 +32,12 @@ import * as Guides from '../../data/guides';
 import NotFound from '../NotFound';
 
 class GuideViewer extends Component {
+  static propTypes = {
+    location: object,
+    mobile: bool,
+    match: object,
+  };
+
   state = {
     toc: false,
   };
@@ -68,20 +78,20 @@ class GuideViewer extends Component {
   render() {
     const { mobile, match: { params: { guide: guideSlug } } } = this.props;
     const { toc } = this.state;
-    const guide = Guides[unslug(guideSlug)];
-    if (!guide) {
+    const guideData = Guides[unslug(guideSlug)];
+    if (!guideData) {
       return <NotFound />;
     }
 
-    setTitle(`${guide.name} Guide`);
+    setTitle(`${guideData.name} Guide`);
 
     return (
       <div className="guide-container">
         <div className="section">
           <div className="guide-viewer">
-            {guide.sections.map((section, sId) =>
+            {guideData.sections.map((section, sId) =>
               (
-                <Paper key={`${slug(guide.name)}-s${sId}`} id={`${slug(section.title)}`}>
+                <Paper key={`${slug(guideData.name)}-s${sId}`} id={`${slug(section.title)}`}>
                   {section.tabContent &&
                   <TabContent title={section.title} tabs={section.tabContent} />}
                   {!section.tabContent && section.paragraphs &&
@@ -93,7 +103,7 @@ class GuideViewer extends Component {
                     </AppBar>
                     <div className="body-container">
                       {section.paragraphs.map((line, pId) => {
-                        const key = `${slug(guide.name)}-s${sId}-p${pId}`;
+                        const key = `${slug(guideData.name)}-s${sId}-p${pId}`;
                         if (typeof line === 'string') {
                           return <Typography key={key}>{line}</Typography>;
                         } else {
@@ -111,14 +121,14 @@ class GuideViewer extends Component {
             <Paper>
               <AppBar position="static">
                 <Toolbar variant="dense">
-                  <Typography variant="subtitle1" className="title-text">{guide.name}</Typography>
+                  <Typography variant="subtitle1" className="title-text">{guideData.name}</Typography>
                 </Toolbar>
               </AppBar>
               <div className="body-container">
-                <Typography variant="subtitle2">Author: {guide.meta.author}</Typography>
-                <Typography variant="subtitle2">Last Updated: {guide.meta.lastUpdated}</Typography>
+                <Typography variant="subtitle2">Author: {guideData.meta.author}</Typography>
+                <Typography variant="subtitle2">Last Updated: {guideData.meta.lastUpdated}</Typography>
                 <Typography variant="subtitle1">Table of Contents</Typography>
-                {guide.sections.map((section, sId) => (
+                {guideData.sections.map((section, sId) => (
                   <Link
                     to={`#${slug(section.title)}`}
                     onClick={() => this.goSection(slug(section.title))}
@@ -143,15 +153,15 @@ class GuideViewer extends Component {
         </Fab>}
         <Drawer anchor="left" open={mobile && toc} onClose={this.closeToC}>
           <List style={{ width: 250 }}>
-            <ListItem><Typography variant="h6">{guide.name}</Typography></ListItem>
+            <ListItem><Typography variant="h6">{guideData.name}</Typography></ListItem>
             <ListItem>
               <Typography variant="subtitle2">
-                Author: {guide.meta.author}<br />
-                Last Updated: {guide.meta.lastUpdated}
+                Author: {guideData.meta.author}<br />
+                Last Updated: {guideData.meta.lastUpdated}
               </Typography>
             </ListItem>
             <hr />
-            {guide.sections.map((section, sId) => (
+            {guideData.sections.map((section, sId) => (
               <RouterLink
                 to={`#${slug(section.title)}`}
                 onClick={() => this.goSection(slug(section.title), 'auto')}

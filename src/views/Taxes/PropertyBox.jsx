@@ -23,6 +23,7 @@ class PropertyBox extends Component {
     properties: array,
     values: array,
     showHostile: bool,
+    exempt: bool,
   };
 
   static defaultProps = {

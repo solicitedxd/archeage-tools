@@ -89,8 +89,13 @@ export const legacyDecodeSkillString = (skillString) => {
  * @returns {string} skill string
  */
 export const encodeSkillsets = (skillsets) => {
-  return skillsets.filter(set => Boolean(set.id)).map(set => {
-    return `${intToStr(set.id - 1)}=${encodeSkills(set.skills)}${encodeAncestrals(set.ancestrals)}`;
+  console.log(skillsets);
+  return skillsets.map(set => {
+    if (set.id) {
+      return `${intToStr(set.id - 1)}=${encodeSkills(set.skills)}${encodeAncestrals(set.ancestrals)}`;
+    } else {
+      return '';
+    }
   }).join('&');
 };
 

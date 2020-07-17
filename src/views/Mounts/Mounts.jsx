@@ -36,6 +36,11 @@ import SelectField from 'components/SelectField';
 import SkillIcon from 'components/Skill/SkillIcon';
 import NoPortrait from 'images/NoPortrait.png';
 import React, { Component } from 'react';
+import {
+  bool,
+  func,
+  object,
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -51,6 +56,19 @@ import * as Portrait from '../../images/mount';
 import MountViewer from './MountViewer';
 
 class Mounts extends Component {
+  static propTypes = {
+    fetchMounts: func.isRequired,
+    mounts: object,
+    match: object,
+    displayGrid: bool,
+    setDisplayGrid: func.isRequired,
+    onlyObtainable: bool,
+    setOnlyObtainable: func.isRequired,
+    types: object,
+    mountObtainTypes: object,
+    history: object,
+  };
+
   state = {
     search: '',
     mountType: 0,
@@ -126,7 +144,7 @@ class Mounts extends Component {
       setTitle('Mounts');
     }
 
-    const mounts = Object.entries(mountData).filter(([_, mountList]) => {
+    const mounts = Object.entries(mountData).filter(([, mountList]) => {
       const [mount] = mountList;
       if (search.length > 2 && mount.name.toLowerCase().indexOf(search.toLowerCase()) === -1) {
         return false;
@@ -171,14 +189,12 @@ class Mounts extends Component {
           let sort;
           if (orderBy === 'name') {
             sort = this.sort(a.name.toLowerCase(), b.name.toLowerCase());
+          } else if (a.moveSpeed === 0) {
+            sort = 1;
+          } else if (b.moveSpeed === 0) {
+            sort = -1;
           } else {
-            if (a.moveSpeed === 0) {
-              sort = 1;
-            } else if (b.moveSpeed === 0) {
-              sort = -1;
-            } else {
-              sort = a.moveSpeed - b.moveSpeed;
-            }
+            sort = a.moveSpeed - b.moveSpeed;
           }
           return sort * (order !== 'asc' ? -1 : 1);
         }
@@ -271,8 +287,8 @@ class Mounts extends Component {
             </div>
           </div>
         </Paper>
-        {displayGrid ?
-          <div className="section">
+        {displayGrid
+          ? <div className="section">
             <div className="mount-grid">
               {mounts.map(([mountId, mountList]) => {
                 const [mount] = mountList;
@@ -314,8 +330,7 @@ class Mounts extends Component {
               }
             </Paper>}
           </div>
-          :
-          <Paper className="section mount-table">
+          : <Paper className="section mount-table">
             <Table size="small">
               <TableHead>
                 <TableRow>

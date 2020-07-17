@@ -16,7 +16,9 @@ import NoPortrait from 'images/NoPortrait.png';
 import { equals } from 'ramda';
 import React, { Component } from 'react';
 import {
+  bool,
   func,
+  object,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
@@ -32,6 +34,9 @@ class MountViewer extends Component {
   static propTypes = {
     id: string,
     onClose: func.isRequired,
+    mountData: object,
+    obtainTypes: object,
+    mobile: bool,
   };
 
   static defaultProps = {
@@ -159,7 +164,7 @@ class MountViewer extends Component {
               {altSkills.map(skillIds => {
                 const altMount = altMounts.find(m => equals(m.skillIds, skillIds));
                 return (
-                  <div className="skills">
+                  <div className="skills" key={`alt-mount-${altMount.id}`}>
                     <Typography variant="caption" className="skill-alt">
                       Lv. {mount.level}
                     </Typography>
@@ -177,6 +182,7 @@ class MountViewer extends Component {
             {mount.quote &&
             <blockquote>{mount.quote}</blockquote>}
             <Typography variant="h6">Getting {mount.name}</Typography>
+            {/* eslint-disable-next-line no-nested-ternary */}
             {(!mount.obtainIds || mount.obtainIds.length === 0)
               ? <Typography className="alert-red">This mount is currently unavailable.</Typography>
               : mountObtain && mountObtain.obtainText

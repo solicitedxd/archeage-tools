@@ -6,6 +6,7 @@ import {
   bool,
   number,
   object,
+  oneOfType,
   string,
 } from 'react-proptypes';
 
@@ -45,7 +46,7 @@ const Currency = ({ type, count, style, inline = false }) => {
 
 Currency.propTypes = {
   type: string.isRequired,
-  count: number.isRequired,
+  count: oneOfType([number, string]).isRequired,
   style: object,
   inline: bool,
 };

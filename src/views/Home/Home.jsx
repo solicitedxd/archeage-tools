@@ -16,6 +16,7 @@ import IfPerm from 'components/IfPerm';
 import config from 'config';
 import { banners } from 'constants/navigation';
 import React, { Component } from 'react';
+import { object } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
   scrollToTop,
@@ -26,6 +27,10 @@ import xhr from 'utils/xhr';
 import NewsPost from './NewsPost';
 
 class Home extends Component {
+  static propTypes = {
+    location: object,
+  };
+
   state = {
     posts: [],
     page: 0,
@@ -60,7 +65,9 @@ class Home extends Component {
       if (Number(data.page) !== 1 || document.location.hash) {
         document.location.hash = `#page=${data.page}`;
       }
-      scroll && scrollToTop();
+      if (scroll) {
+        scrollToTop();
+      }
     })
     .catch(() => {
       this.setState({ error: 'Failed to get news posts.', loading: false });

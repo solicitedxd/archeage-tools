@@ -18,6 +18,7 @@ class EventList extends Component {
   static propTypes = {
     id: number.isRequired,
     name: string.isRequired,
+    icon: string,
     color: string.isRequired,
     events: array.isRequired,
     onEdit: func.isRequired,

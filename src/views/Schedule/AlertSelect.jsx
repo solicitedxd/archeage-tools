@@ -41,12 +41,13 @@ class AlertSelect extends Component {
     mobile: bool,
     setAlert: func,
     nextTime: object.isRequired,
+    speak: object,
+    setSpeak: func.isRequired,
   };
 
   static defaultProps = {
     alerts: [],
     mobile: false,
-    setAlert: () => null,
   };
 
   state = {

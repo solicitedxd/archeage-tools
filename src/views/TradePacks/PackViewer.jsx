@@ -70,6 +70,8 @@ import React, { Component } from 'react';
 import {
   bool,
   func,
+  number,
+  object,
   oneOf,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
@@ -97,6 +99,29 @@ class PackViewer extends Component {
       CONTINENT.NUIA.name]),
     packType: oneOf([...Object.values(PACK_TYPE), ...CARGO_OUTLET]),
     sellZone: oneOf([...OUTLET_ZONE, CARGO]),
+    recipe: object,
+    craftLarder: bool,
+    degradeDemand: bool,
+    freshness: object,
+    showInterest: bool,
+    percentage: number,
+    percentages: object,
+    prices: object,
+    quantities: object,
+    supply: object,
+    mobile: bool,
+    transportationQty: object,
+    war: object,
+    setCraftLarder: func.isRequired,
+    setDegradation: func.isRequired,
+    setFreshness: func.isRequired,
+    setInterest: func.isRequired,
+    setPercentage: func.isRequired,
+    setQuantity: func.isRequired,
+    setSupply: func.isRequired,
+    setTransportationQuantity: func.isRequired,
+    setWar: func.isRequired,
+    calculateLabor: func.isRequired,
   };
 
   static defaultProps = {
@@ -110,7 +135,8 @@ class PackViewer extends Component {
     unitSize: 1,
   };
 
-  componentWillReceiveProps(nextProps) {
+  // eslint-disable-next-line class-methods-use-this
+  UNSAFE_componentWillReceiveProps(nextProps) {
     const packRecipe = getPackRecipe(nextProps);
     if (packRecipe) {
       fetchRecipe(packRecipe);
@@ -125,6 +151,7 @@ class PackViewer extends Component {
     this.setState({ unitSize });
   };
 
+  // eslint-disable-next-line complexity
   render() {
     const { open, onClose, originZone, packType, sellZone, recipe } = this.props;
     const { transportExpand, unitSize } = this.state;
@@ -179,7 +206,7 @@ class PackViewer extends Component {
         for (let i = 1; i <= quantity; i++) {
           demand += ((percentage - degrade) / 130);
           if (i % 4 === 0) {
-            degrade++;
+            degrade += 1;
           }
         }
       } else {
@@ -262,7 +289,7 @@ class PackViewer extends Component {
 
     const profit = packValue - totalGold;
 
-    const showItemCost = (material) => (!isAgedPack || (isAgedPack && (craftLarder && material.indent || !craftLarder)));
+    const showItemCost = (material) => (!isAgedPack || (isAgedPack && ((craftLarder && material.indent) || !craftLarder)));
 
     return (
       <Dialog
@@ -345,9 +372,9 @@ class PackViewer extends Component {
                     <ItemLink id={material.item} />
                   </TableCell>
                   <TableCell align="right">
-                    {showItemCost(material) ?
-                      <ItemPrice itemId={material.item} unitSize={unitSize} /> :
-                      '--'}
+                    {showItemCost(material)
+                      ? <ItemPrice itemId={material.item} unitSize={unitSize} />
+                      : '--'}
                   </TableCell>
                   {isAgedPack &&
                   <TableCell>
@@ -359,20 +386,20 @@ class PackViewer extends Component {
                     />}
                   </TableCell>}
                   <TableCell align="right">
-                    {quantity > 1 ?
-                      <Tooltip title={`${material.quantity} per pack`}>
+                    {quantity > 1
+                      ? <Tooltip title={`${material.quantity} per pack`}>
                         <span>{material.quantity * quantity}</span>
-                      </Tooltip> :
-                      material.quantity
+                      </Tooltip>
+                      : material.quantity
                     }
                   </TableCell>
                   <TableCell align="right">
-                    {showItemCost(material) ?
-                      <Currency
+                    {showItemCost(material)
+                      ? <Currency
                         type={CURRENCY.COIN}
                         count={Math.round((prices[material.item] || 0) * 10000 * material.quantity * quantity)}
-                      /> :
-                      '--'}
+                      />
+                      : '--'}
                   </TableCell>
                 </TableRow>
               ))}
@@ -563,8 +590,8 @@ class PackViewer extends Component {
                 }
                 label="Zone in War (+15%)"
               />}
-              {!pack.item ?
-                <Tooltip title={<Currency type={CURRENCY.COIN} count={interest} />}>
+              {!pack.item
+                ? <Tooltip title={<Currency type={CURRENCY.COIN} count={interest} />}>
                   <FormControlLabel
                     control={
                       <Checkbox
@@ -575,8 +602,8 @@ class PackViewer extends Component {
                     }
                     label="Interest (+2%)"
                   />
-                </Tooltip> :
-                <FormControlLabel
+                </Tooltip>
+                : <FormControlLabel
                   control={
                     <Checkbox
                       checked={showInterest}
@@ -596,12 +623,12 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
-                    {pack.item ?
-                      <>
+                    {pack.item
+                      ? <>
                         {packValue}&nbsp;
                         <Item id={pack.item} inline />
-                      </> :
-                      <Currency type={CURRENCY.COIN} count={packValue} />}
+                      </>
+                      : <Currency type={CURRENCY.COIN} count={packValue} />}
                   </TableCell>
                 </TableRow>
                 <TableRow>

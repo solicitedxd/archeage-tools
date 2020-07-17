@@ -9,11 +9,11 @@ import VolumeDownIcon from '@material-ui/icons/VolumeDown';
 import VolumeMuteIcon from '@material-ui/icons/VolumeMute';
 import VolumeUpIcon from '@material-ui/icons/VolumeUp';
 import { VOLUME_DEFAULT } from 'constants/schedule';
+import React, { Component } from 'react';
 import {
   func,
   number,
-} from 'prop-types';
-import React, { Component } from 'react';
+} from 'react-proptypes';
 import { connect } from 'react-redux';
 
 class Volume extends Component {

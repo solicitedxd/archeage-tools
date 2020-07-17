@@ -37,6 +37,7 @@ import {
   bool,
   func,
   number,
+  object,
 } from 'prop-types';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -61,6 +62,9 @@ class EditEvent extends Component {
     id: number,
     open: bool.isRequired,
     onClose: func.isRequired,
+    setEvent: func.isRequired,
+    mobile: bool,
+    eventTypes: object,
   };
 
   static defaultProps = {
