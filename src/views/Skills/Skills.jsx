@@ -193,7 +193,7 @@ class Skills extends Component {
                   Skill Builder:
                 </Typography>
                 <Autocomplete
-                  className="title-text class-select"
+                  className="title-text class-select color-white"
                   autoHighlight
                   disableClearable
                   blurOnSelect
