@@ -3,7 +3,10 @@ import {
   Typography,
 } from '@material-ui/core';
 import { Skeleton } from '@material-ui/lab';
-import { fetchQuest } from 'actions/gameData';
+import {
+  fetchQuest,
+  fetchQuestCategories,
+} from 'actions/gameData';
 import cn from 'classnames';
 import {
   FLAG_DAILY,
@@ -31,6 +34,7 @@ class QuestLink extends Component {
     region: string,
     flags: array,
     categoryId: number,
+    category: object,
   };
 
   static defaultProps = {};
@@ -39,10 +43,11 @@ class QuestLink extends Component {
 
   componentDidMount() {
     fetchQuest(this.props.id);
+    fetchQuestCategories();
   }
 
   render() {
-    const { id, name, flags: flagsD, style, noLink, region, categoryId } = this.props;
+    const { id, name, flags: flagsD, style, noLink, region, categoryId, category } = this.props;
 
     if (!name) {
       return <Skeleton variant="text" style={{ display: 'inline-block', marginLeft: 4, width: 80 }} />;
@@ -58,6 +63,8 @@ class QuestLink extends Component {
       icon = 'repeat';
     } else if (categoryId === 70) {
       icon = 'vocation';
+    } else if (category.storyCategory) {
+      icon = 'story';
     }
 
     if (noLink) {
@@ -81,10 +88,14 @@ class QuestLink extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { quests }, dailies: { region } }, { id }) => ({
-  ...pathOr({}, [id])(quests),
-  region: region || 'NA',
-});
+const mapStateToProps = ({ gameData: { quests, questCategories }, dailies: { region } }, { id }) => {
+  const quest = pathOr({}, [id])(quests);
+  return {
+    ...quest,
+    region: region || 'NA',
+    category: quest ? questCategories[quest.categoryId] : {},
+  };
+};
 
 const mapDispatchToProps = {};
 

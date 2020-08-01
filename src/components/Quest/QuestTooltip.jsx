@@ -52,8 +52,8 @@ import { encodeColors } from 'utils/string';
 
 // eslint-disable-next-line complexity
 const TooltipContent = (props) => {
-  const { quest, region, rewardTypes, criteriaTypes, titles, vocations, questCategories, shifted, fetchQuestRefData, fetchQuestCategories } = props;
-  const { id, name, categoryId, reqLevel, startNpcId, startItemId, startDoodadId, startLocation, startLevel, endNpcId, endDoodadId, autoComplete, items } = quest;
+  const { quest, region, rewardTypes, criteriaTypes, titles, vocations, shifted, fetchQuestRefData, fetchQuestCategories } = props;
+  const { id, name, categoryId, category, reqLevel, startNpcId, startItemId, startDoodadId, startLocation, startLevel, endNpcId, endDoodadId, autoComplete, items } = quest;
   const { flags: flagsD, preQuests: preQuestsD, rewards: rewardsD, stages: stagesD } = quest;
 
   const filterRegion = (f => f.region === region);
@@ -63,7 +63,7 @@ const TooltipContent = (props) => {
     return (<div />);
   }
 
-  if (!objectHasProperties(questCategories)) {
+  if (!objectHasProperties(quest.category)) {
     fetchQuestCategories();
   }
 
@@ -76,6 +76,8 @@ const TooltipContent = (props) => {
     questIcon = 'daily_quest';
   } else if (categoryId === 70) {
     questIcon = 'vocation_quest';
+  } else if (category.storyCategory) {
+    questIcon = 'story_quest';
   }
 
   return (
@@ -89,7 +91,7 @@ const TooltipContent = (props) => {
           <img src={`/images/quest/${questIcon}.png`} alt="" />
         </div>
         <div className="name">
-          <Typography variant="h5">{pathOr('???', [categoryId, 'name'])(questCategories)}</Typography>
+          <Typography variant="h5">{category.name || '???'}</Typography>
           <Typography variant="h4">{name}</Typography>
         </div>
         {flags.find(f => f.code === FLAG_ELITE) &&
@@ -221,7 +223,6 @@ TooltipContent.propTypes = {
   criteriaTypes: object,
   titles: object,
   vocations: array,
-  questCategories: object,
   shifted: bool,
   fetchQuestCategories: func.isRequired,
   fetchQuestRefData: func.isRequired,
@@ -229,15 +230,20 @@ TooltipContent.propTypes = {
   id: number,
 };
 
-const mapStateToProps2 = ({ gameData: { rewardTypes, questCriteriaTypes, titles, vocations, questCategories, quests }, dailies: { region } }, { id }) => ({
-  rewardTypes,
-  criteriaTypes: questCriteriaTypes,
-  titles,
-  vocations,
-  questCategories,
-  quest: pathOr({}, [id])(quests),
-  region: region || 'NA',
-});
+const mapStateToProps2 = ({ gameData: { rewardTypes, questCriteriaTypes, titles, vocations, questCategories, quests }, dailies: { region } }, { id }) => {
+  const quest = pathOr({}, [id])(quests);
+  if (quest.categoryId) {
+    quest.category = questCategories[quest.categoryId];
+  }
+  return {
+    rewardTypes,
+    criteriaTypes: questCriteriaTypes,
+    titles,
+    vocations,
+    quest,
+    region: region || 'NA',
+  };
+};
 
 const mapDispatchToProps = {
   fetchQuestCategories,
