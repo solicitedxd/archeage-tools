@@ -146,7 +146,7 @@ class MountViewer extends Component {
             </div>
             <Typography variant="h6" className="skill-header">
               <span>Skills</span>
-              <Tooltip title="Starting Level">
+              <Tooltip title="Base Level">
                 <Typography variant="caption">Lv. {mount.level}</Typography>
               </Tooltip>
             </Typography>
@@ -165,9 +165,11 @@ class MountViewer extends Component {
                 const altMount = altMounts.find(m => equals(m.skillIds, skillIds));
                 return (
                   <div className="skills" key={`alt-mount-${altMount.id}`}>
-                    <Typography variant="caption" className="skill-alt">
-                      Lv. {mount.level}
-                    </Typography>
+                    <Tooltip title="Base Level">
+                      <Typography variant="caption" className="skill-alt">
+                        Lv. {mount.level}
+                      </Typography>
+                    </Tooltip>
                     {skillIds.map(skillId => (
                       <SkillIcon key={`viewer-${altMount.id}-${skillId}`} id={skillId} className="size-sm" />
                     ))}
@@ -183,7 +185,7 @@ class MountViewer extends Component {
             <blockquote>{mount.quote}</blockquote>}
             <Typography variant="h6">Getting {mount.name}</Typography>
             {/* eslint-disable-next-line no-nested-ternary */}
-            {(!mount.obtainIds || mount.obtainIds.length === 0)
+            {((!mount.obtainIds || mount.obtainIds.length === 0) && !(mountObtain && mountObtain.obtainText))
               ? <Typography className="alert-red">This mount is currently unavailable.</Typography>
               : mountObtain && mountObtain.obtainText
                 ? <Typography component="div">{mountObtain.obtainText}</Typography>

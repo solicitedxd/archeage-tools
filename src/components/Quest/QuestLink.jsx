@@ -77,7 +77,7 @@ class QuestLink extends Component {
 
     return (
       <QuestTooltip questId={id} disabled={!name}>
-        <span>
+        <span style={{ whiteSpace: 'nowrap' }}>
           <span className={cn('quest-icon', icon)} />
           <Link className="inline-link" style={style}>
             {name}

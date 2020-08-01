@@ -3,6 +3,7 @@ import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import Link from 'components/Link';
 import MapEmbed from 'components/MapEmbed';
+import QuestLink from 'components/Quest/QuestLink';
 import SkillLink from 'components/Skill/SkillLink';
 import {
   CURRENCY,
@@ -10,6 +11,11 @@ import {
 } from 'constants/items';
 import { ZONE } from 'constants/map';
 import React from 'react';
+import {
+  node,
+  number,
+  string,
+} from 'react-proptypes';
 import { slug } from 'utils/string';
 
 const HORSE_HOW_TO = (
@@ -27,8 +33,8 @@ const HORSE_HOW_TO = (
       <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Solzreed with the nearest teleport location being the Community
       Center.</p>
-    <p>For East players: if you've already been to the Solzreed Community Center, you can teleport to that point and the
-      stable is right next to it.<br />
+    <p>For East players: if you&#39;ve already been to the Solzreed Community Center, you can teleport to that point and
+      the stable is right next to it.<br />
       If you have not, the easiest way to get there is to start from the dungeon teleport for Burnt Castle Armory, head
       north across the Feuille Sound and into Solzreed, and then north towards the Community Center.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
@@ -50,8 +56,8 @@ const ELK_HOW_TO = (
     <p>Elk calves can be acquired from the stables west of the Gweonid Community Center for&nbsp;
       <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Gweonid with the nearest teleport location being the Community Center.</p>
-    <p>For East players: if you've already been to the Gweonid Community Center, you can teleport to that point and head
-      west to the stables.<br />
+    <p>For East players: if you&#39;ve already been to the Gweonid Community Center, you can teleport to that point and
+      head west to the stables.<br />
       If you have not, the next easiest way is to take the airship that runs from the Karkasse Community Center to
       Marianople which passes over Gweonid, and jump off when you get close to the stable area. Have either a skill to
       negative fall damage or
@@ -76,7 +82,7 @@ const BOAR_HOW_TO = (
       <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For West players: you can easily go to Aubre Cradle with the nearest teleport location being the Community
       Center.</p>
-    <p>For East players: if you've already been to the Aubre Cradle Community Center, you can teleport to that point
+    <p>For East players: if you&#39;ve already been to the Aubre Cradle Community Center, you can teleport to that point
       and the stable is right next to it.<br />
       If you have not, the trek is not easy nor short. You can start at Solisa in Halcyona, then head north to
       Marianople, north-west into White Arden, and then west into Aubre Cradle. Watch out for guards and other players.
@@ -101,8 +107,8 @@ const SNOWLION_HOW_TO = (
     <p>Snowlion cubs can be acquired from the stables south of Cloudgrain for&nbsp;
       <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Falcorth with the nearest teleport location being Cloudgrain.</p>
-    <p>For West players: if you've already been to the Falcorth Community Center, you can head southwest while avoiding
-      guards to get to the stable master.<br />
+    <p>For West players: if you&#39;ve already been to the Falcorth Community Center, you can head southwest while
+      avoiding guards to get to the stable master.<br />
       If you have not, the easiest way to get there is to start from the Rookborne Community Center, head west over the
       mountains and into Falcorth, and continue through towards Cloudgrain.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
@@ -125,8 +131,8 @@ const LEOMORPH_HOW_TO = (
       <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Arcum Iris with the nearest teleport location being Parchsun
       Settlement.</p>
-    <p>For West players: if you've already been to the Arcum Iris Community Center, you can head east around the city
-      to avoiding guards to get to the stable master.<br />
+    <p>For West players: if you&#39;ve already been to the Arcum Iris Community Center, you can head east around the
+      city to avoiding guards to get to the stable master.<br />
       If you have not, the easiest way to get there is to start from the dungeon teleport for Palace Cellar, head south
       the Mahadevi-Arcum mountains and into Arcum Iris, and continue through towards Parchsun Settlement.</p>
     <p>You can also get this mount by purchasing a Mount Youngster Basket for&nbsp;
@@ -151,7 +157,8 @@ const PANGOLIN_HOW_TO = (
       at Communal Ranch for <Currency type={CURRENCY.COIN} count={1000} inline />.</p>
     <p>For East players: you can easily go to Sunbite Wilds with the nearest teleports of the locations previously
       stated.</p>
-    <p>For West players: if you've already been to the Sunbite Community Center, you can head west around the city at
+    <p>For West players: if you&#39;ve already been to the Sunbite Community Center, you can head west around the city
+      at
       Fleurstad, take the north path and then head over the mountains to get to the Harani Construction Site stables to
       avoid guards to get to the stable master.<br />
       If you have not, the easiest way is to go to the Communal Ranch by starting from Firetalon in Windscour Savannah,
@@ -185,12 +192,17 @@ const GILDA_HOW_TO = ({ children, gilda }) => (
       <ItemLink id={ITEM.GILDA_STAR} count={gilda} /> from the Gilda Start Soul Merchant in Marianople or Austera.
     </p>
     <p>You will also need to purchase a <ItemLink id={ITEM.SMALL_BREATH_OF_LIFE} /> for&nbsp;
-      <ItemLink id={ITEM.GILDA_STAR} count={10} /> if you don't have one already, which must be placed on land that
+      <ItemLink id={ITEM.GILDA_STAR} count={10} /> if you don&#39;t have one already, which must be placed on land that
       you own.</p>
     <p>To soothe the soul and raise the mount, it requires 500 Labor and the following materials:</p>
     {children}
   </>
 );
+
+GILDA_HOW_TO.propTypes = {
+  children: node,
+  gilda: number,
+};
 
 const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, differences }) => (
   <>
@@ -250,13 +262,21 @@ const GALLANT_HOW_TO = ({ animaType, mountFrom, material, gatherFrom, difference
         </ul>
       </li>
     </ul>
-    <p>After you've crafted your Gallant {animaType} Anima, you will need a&nbsp;
+    <p>After you&#39;ve crafted your Gallant {animaType} Anima, you will need a&nbsp;
       <Link to={`/mounts/${slug(mountFrom)}`}>{mountFrom}</Link> of any level and 250 Labor. Use the Anima on the mount
       to upgrade it, but remember to take its armor off first or it will be lost in the process.</p>
     <Typography variant="h6">Skill Differences</Typography>
     {differences}
   </>
 );
+
+GALLANT_HOW_TO.propTypes = {
+  animaType: string,
+  mountFrom: string,
+  material: number,
+  gatherFrom: string,
+  differences: node,
+};
 
 export const DONKEY_HOW_TO = (
   <>
@@ -509,8 +529,7 @@ const MOUNT = [
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
         differences={<p>
-          <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
-          giving this mount three movement abilities.
+          <SkillLink id={32347} /> replaces <SkillLink id={11369} />, giving this mount three movement abilities.
         </p>}
       />,
   },
@@ -523,8 +542,7 @@ const MOUNT = [
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
-          giving this mount three movement abilities.
+          <SkillLink id={32347} /> replaces <SkillLink id={11369} />, giving this mount three movement abilities.
         </p>}
       />,
   },
@@ -537,8 +555,7 @@ const MOUNT = [
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Reckless Charge" /> replaces <SkillLink skillset="Basic" name="Back Kick" />,
-          giving this mount three movement abilities.
+          <SkillLink id={32347} /> replaces <SkillLink id={11369} />, giving this mount three movement abilities.
         </p>}
       />,
   },
@@ -551,9 +568,8 @@ const MOUNT = [
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
-          <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
-          target.
+          <SkillLink id={17155} /> gains a reduced cooldown but loses damage.<br />
+          <SkillLink id={17394} /> loses its combo, but increases subsequent ranged damage on the target.
         </p>}
       />,
   },
@@ -566,9 +582,8 @@ const MOUNT = [
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
-          <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
-          target.
+          <SkillLink id={17155} /> gains a reduced cooldown but loses damage.<br />
+          <SkillLink id={17394} /> loses its combo, but increases subsequent ranged damage on the target.
         </p>}
       />,
   },
@@ -581,9 +596,8 @@ const MOUNT = [
         material={ITEM.AMETHYST}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Mounted Fire Arrow" /> gains a reduced cooldown but loses damage.<br />
-          <SkillLink skillset="Basic" name="Snipe" /> loses its combo, but increases further ranged damage on the
-          target.
+          <SkillLink id={17155} /> gains a reduced cooldown but loses damage.<br />
+          <SkillLink id={17394} /> loses its combo, but increases subsequent ranged damage on the target.
         </p>}
       />,
   },
@@ -596,13 +610,11 @@ const MOUNT = [
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
         differences={<p>
-          <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
+          <SkillLink id={32361} /> replaces <SkillLink id={11017} />, swapping tagging utility for increased stealth
           detection.<br />
-          <SkillLink skillset="Basic" name="Leader of the Pack" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
-          <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
-          <SkillLink skillset="Basic" name="Leader of the Pack" />.
+          <SkillLink id={32436} /> replaces <SkillLink id={17398} />, providing increased speed in group
+          situations.<br />
+          <SkillLink id={32363} /> now shares a cooldown with <SkillLink id={32436} />.
         </p>}
       />,
   },
@@ -616,13 +628,11 @@ const MOUNT = [
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
+          <SkillLink id={32361} /> replaces <SkillLink id={11017} />, swapping tagging utility for increased stealth
           detection.<br />
-          <SkillLink skillset="Basic" name="Leader of the Pack" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
-          <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
-          <SkillLink skillset="Basic" name="Leader of the Pack" />.
+          <SkillLink id={32436} /> replaces <SkillLink id={17398} />, providing increased speed in group
+          situations.<br />
+          <SkillLink id={32363} /> now shares a cooldown with <SkillLink id={32436} />.
         </p>}
       />,
   },
@@ -635,13 +645,11 @@ const MOUNT = [
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Beastsense" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Mounted Arrowshot" />, swapping tagging utility for increased stealth
+          <SkillLink id={32361} /> replaces <SkillLink id={11017} />, swapping tagging utility for increased stealth
           detection.<br />
-          <SkillLink skillset="Basic" name="Leader of the Pack" /> replaces&nbsp;
-          <SkillLink skillset="Basic" name="Anabolica" />, providing high engage speed in group situations.<br />
-          <SkillLink skillset="Basic" name="Dash" /> now shares a cooldown with&nbsp;
-          <SkillLink skillset="Basic" name="Leader of the Pack" />.
+          <SkillLink id={32436} /> replaces <SkillLink id={17398} />, providing increased speed in group
+          situations.<br />
+          <SkillLink id={32363} /> now shares a cooldown with <SkillLink id={32436} />.
         </p>}
       />,
   },
@@ -655,10 +663,9 @@ const MOUNT = [
         material={ITEM.TOPAZ}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
-          seconds on its cooldown.<br />
-          <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
-          <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
+          <SkillLink id={17391} /> gains an additional 3 meter distance, but gains 2 seconds on its cooldown.<br />
+          <SkillLink id={17159} /> grants you bonus move speed after teleporting.<br />
+          <SkillLink id={15581} />&#39;s cooldown and move speed penalty are reduced by half.
         </p>}
       />,
   },
@@ -672,10 +679,9 @@ const MOUNT = [
         material={ITEM.DIAMOND}
         gatherFrom="mining Fortuna veins"
         differences={<p>
-          <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
-          seconds on its cooldown.<br />
-          <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
-          <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
+          <SkillLink id={17391} /> gains an additional 3 meter distance, but gains 2 seconds on its cooldown.<br />
+          <SkillLink id={17159} /> grants you bonus move speed after teleporting.<br />
+          <SkillLink id={15581} />&#39;s cooldown and move speed penalty are reduced by half.
         </p>}
       />,
   },
@@ -688,23 +694,21 @@ const MOUNT = [
         material={ITEM.BLACK_PEARL}
         gatherFrom="farming pearls and harvesting barnacles"
         differences={<p>
-          <SkillLink skillset="Basic" name="Drop Back" /> gains an additional 3 meter distance, but gains 2 additional
-          seconds on its cooldown.<br />
-          <SkillLink skillset="Basic" name="Owner's Escape" /> grants you a move speed increase after teleporting.<br />
-          <SkillLink skillset="Basic" name="Stealth Move" />'s cooldown and move speed penalty are halved.
+          <SkillLink id={17391} /> gains an additional 3 meter distance, but gains 2 seconds on its cooldown.<br />
+          <SkillLink id={17159} /> grants you bonus move speed after teleporting.<br />
+          <SkillLink id={15581} />&#39;s cooldown and move speed penalty are reduced by half.
         </p>}
       />,
   },
   {
     name: 'Thunder Dash',
     obtainText: <>
-      <p color="primary"><span className="dropdown-icon quest" /> Past the Storm, Now the Thunder</p>
-      <p>After obtaining a <Link to="/mounts/stormdarter">Stormdarter</Link>, this quest will be available from
-        any Honor Point Collector.</p>
+      <p>Thunder Dash is an evolved form of <Link to="/mounts/stormdarter">Stormdarter</Link>, which can be
+        obtained from the quest <QuestLink id={5430} />.</p>
       <p>To complete this quest, you must summon a level 50 Stormdarter and have&nbsp;
         <ItemLink id={ITEM.HONORFORGED_MEDAL} count={15} /> (costs&nbsp;
         <Currency type={CURRENCY.HONOR} count="30,000" inline /> from the Honor Shop).</p>
-      <p>As a reward, you will receive an Essence-fed Stormdarter which can be consumed to grant you a level 30 Thunder
+      <p>As a reward, you will receive an <ItemLink id={28240} /> which can be consumed to grant you a level 30 Thunder
         Dash.</p>
     </>,
   },
@@ -719,24 +723,16 @@ const MOUNT = [
         button="View on Map"
         buttonFloat="right"
       />
-      <p color="primary"><span className="dropdown-icon quest" /> Be Prepared for Anything</p>
-      <p>After obtaining a <Link to="/mounts/polaris-bjorne">Polaris Bjorne</Link>, this quest
-        will be available from the daru Morudo in Mirage Isle.</p>
-      <p>To complete this quest, you must summon a level 50 Polaris Bjorne and have a <ItemLink
-        id={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
+      <p>Ebonfur Bjorne is an evolved form of both the <Link to="/mounts/polaris-bjorne">Polaris Bjorne</Link> and the
+        Fleetpaw Bjorne (unknown obtainment method).</p>
+      <p>The Polaris Bjorne can be upgraded by completing <QuestLink id={5813} /> and the Fleetpaw from <QuestLink
+        id={5812} />.</p>
+      <p>Both quests require you to summon a level 50 Polaris or Fleetpaw Bjorne and have a <ItemLink
+        id={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchased for <Currency
         type={CURRENCY.COIN} count={1000000} inline /> from any Stablehand) and <ItemLink
         id={ITEM.HONEY} count={500} plural="" />.</p>
-      <p>As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an
-        Ebonfur Bjorne.</p>
-      <Typography color="primary"><span className="dropdown-icon quest" /> Going Bear-zerk</Typography>
-      <p>After obtaining a Fleetpaw Bjorne (current obtainment method is unknown), this quest will be available
-        from the daru Garini in Mirage Isle.</p>
-      <p>To complete this quest, you must summon a level 50 Fleetpaw Bjorne and have a <ItemLink
-        id={ITEM.PUREBRED_BEAR_CERTIFICATE} count={1} /> (purchase for <Currency
-        type={CURRENCY.COIN} count={1000000} inline /> from any Stablehand) and <ItemLink
-        id={ITEM.HONEY} count={500} plural="" />.</p>
-      <p>As a reward, you will receive an Sealed Ebonfur Bjrone (cannot be traded) which can be consumed to grant you an
-        Ebonfur Bjorne.</p>
+      <p>As a reward, you will receive a <ItemLink id={29769} /> (cannot be traded) which can be consumed to grant you
+        an Ebonfur Bjorne.</p>
     </>,
   },
   {
@@ -768,8 +764,8 @@ const MOUNT = [
       <p>The calf can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
-      <p>When compared to the Striped Yata, this mount has the <SkillLink skillset="Basic" id="Run" /> skill, and is
-        equivalent to the Black Yata.</p>
+      <p>When compared to the Striped Yata, this mount has the <SkillLink id={17092} /> skill, and is equivalent to the
+        Black Yata.</p>
     </>,
   },
   {
@@ -781,8 +777,8 @@ const MOUNT = [
       <p>The calf can be traded and sold on the auction house. As the breeding process can be expensive, it might be
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>Once you have a calf, simply raise it to get this mount.</p>
-      <p>When compared to the Striped Yata, this mount has the <SkillLink skillset="Basic" id="Run" /> skill, and is
-        equivalent to the Palomino Yata.</p>
+      <p>When compared to the Striped Yata, this mount has the <SkillLink id={17092} /> skill, and is equivalent to the
+        Palomino Yata.</p>
     </>,
   },
   {
@@ -796,8 +792,7 @@ const MOUNT = [
         more worthwhile to find a yata breeder and buy a calf from them.</p>
       <p>The the cub is raised, it will either become the Polaris Ursun (which is a battle pet) or the Polaris Bjorne
         (this mount).</p>
-      <p>Note that the upgrade loses 0.3 m/s in speed, but gains the skill <SkillLink skillset="Basic" name="Roll" />.
-      </p>
+      <p>Note that the upgrade loses 0.3 m/s in speed, but gains the skill <SkillLink id={22814} />.</p>
     </>,
   },
   {
@@ -812,8 +807,8 @@ const MOUNT = [
         buttonFloat="right"
       />
       <p>This mount can be obtained by collecting materials from the 5-player dungeon, Sea of Drowned Love. You will
-        need the following materials and can combine them at the workbench "Center of Dahuta's Power" located in the
-        Sunspeck Sea:</p>
+        need the following materials and can combine them at the workbench &#34;Center of Dahuta&#39;s
+        Power&#34; located in the Sunspeck Sea:</p>
       <ul>
         <li>
           <ItemLink id={ITEM.CHILLED_SEAFOAM} count={35} plural="" noLink />
@@ -908,111 +903,84 @@ const MOUNT = [
   },
   {
     name: 'Tamed Owlina',
-    obtainText: <p>Obtained from the quest <Typography color="primary" component="span"><span
-      className="dropdown-icon quest" /> Neverending Disaster</Typography>, the 8th and final quest of the story chapter
-      "Hiram Mountains Chapter 3. Hage's Prophecy". </p>,
+    obtainText: <p>Obtained from the quest <QuestLink id={9195} />, the 8th and final quest of the story chapter
+      &#34;Hiram Mountains Chapter 3. Hage&#39;s Prophecy&#34;. </p>,
   },
   {
     name: 'Frost Dragon',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Typhoon Drake',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Candy-fueled Bestcargot',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={80} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Candy-fueled Fastropod',
-    obtainText: <p>
-      On Legacy, this mount was previously available as a reward from Hallowtide festivities.
-    </p>,
+    obtainText: <p>On Legacy, this mount was previously available as a reward from Hallowtide festivities.</p>,
   },
   {
     name: 'Candy-fueled Shellraiser',
-    obtainText: <p>
-      On Legacy, this mount was previously available as a reward from Hallowtide festivities.
-    </p>,
+    obtainText: <p>On Legacy, this mount was previously available as a reward from Hallowtide festivities.</p>,
   },
   {
     name: 'Flaming Soulscar',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Freezing Soulscar',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Vanhi',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Kamari',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.
-      </p>
+      <p>On Legacy, this mount can be purchased for <Currency type={CURRENCY.CREDIT} count={2500} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Hellwing Pegasus',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Stormwing Pegasus',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Celestial Pegasus',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={250} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={250} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1020,18 +988,14 @@ const MOUNT = [
     name: 'Earthen Roar',
     upgrade: 'Crimson Lightning',
     obtainText: <>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={550} />.
-      </p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={550} />.</p>
       <p>On Legacy, this mount is no longer obtainable.</p>
     </>,
   },
   {
     name: 'Steel Lightning',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1047,12 +1011,10 @@ const MOUNT = [
         buttonFloat="right"
       />
       <p>On Legacy, if you have an <Link to="/mounts/earthen-roar">Earthen Roar</Link>, you can upgrade it into
-        this mount by using <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a Crimson Lightning
-        Essence.</p>
+        this mount by using <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> to obtain a <ItemLink id={8000165} />.
+      </p>
       <p>The essence, along with a level 50 Earthen Roar, can be presented to Hasaru, the Stablehand at the Abandoned
-        Drill Camp in Hasla, to complete the quest <span className="dropdown-icon quest" />&nbsp;
-        <Typography color="primary" component="span">A Bolt of Crimson Lightning</Typography> in exchange for a Crimson
-        Lightning.</p>
+        Drill Camp in Hasla, to complete the quest <QuestLink id={8000006} /> in exchange for a Crimson Lightning.</p>
       <p>
         Alternatively, this mount can be obtained outright for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
       </p>
@@ -1063,40 +1025,28 @@ const MOUNT = [
   {
     name: 'Moonlight Kitsu',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Celestial Kitsu',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Siegeram Taurus',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Stormrose',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1110,39 +1060,27 @@ const MOUNT = [
   },
   {
     name: 'White Reindeer',
-    obtainText: <p>
-      On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
-    </p>,
+    obtainText: <p>On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.</p>,
   },
   {
     name: 'Black Reindeer',
     obtainText:
       <>
-        <p>
-          On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.
-        </p>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.
-        </p>
+        <p>On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.</p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
       </>,
   },
   {
     name: 'Stormwraith Kirin',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Gweonid Vine Giant',
     obtainText: <>
-      <p>
-        On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.
-      </p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1257,7 +1195,7 @@ const MOUNT = [
     name: 'Small Wyvern',
     obtainText: <>
       <p>To obtain this mount, your nation must first own a castle that has the workshop built. After
-        you've obtained this mount, your nation must control a castle to use it.</p>
+        you&#39;ve obtained this mount, your nation must control a castle to use it.</p>
       <p>The materials needed are as follows:</p>
       <ul>
         <li>
@@ -1294,23 +1232,15 @@ const MOUNT = [
   {
     name: 'Aquestria',
     obtainText: <>
-      <p>
-        On Legacy, this mount used to be obtainable from the Seaside Treasure Chest.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount used to be obtainable from the Seaside Treasure Chest.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Golden Manticore',
     obtainText: <>
-      <p>
-        On Legacy, this mount used to be obtainable from the Manticore Archeum Supply Crate.
-      </p>
-      <p>
-        On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-      </p>
+      <p>On Legacy, this mount used to be obtainable from the Manticore Archeum Supply Crate.</p>
+      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
@@ -1515,12 +1445,8 @@ const MOUNT = [
     name: 'Brave Bison',
     obtainText:
       <>
-        <p>
-          On Legacy, this mount was once obtainable from the Brave Bison Crate.
-        </p>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-        </p>
+        <p>On Legacy, this mount was once obtainable from the Brave Bison Crate.</p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1531,42 +1457,30 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Dread Steed Archeum Supply Crate.<br />
           They were also given away during a promotional period.
         </p>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-        </p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
     name: 'Rajani',
     obtainText:
       <>
-        <p>
-          On Legacy, this mount was once obtainable from the Striped Death Supply Crate.
-        </p>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-        </p>
+        <p>On Legacy, this mount was once obtainable from the Striped Death Supply Crate.</p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
     name: 'Shayeera',
     obtainText:
       <>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-        </p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
     name: 'Emberpaw Panther',
     obtainText:
       <>
-        <p>
-          On Legacy, this mount was once obtainable from the Emberpaw Crate.
-        </p>
-        <p>
-          On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.
-        </p>
+        <p>On Legacy, this mount was once obtainable from the Emberpaw Crate.</p>
+        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
