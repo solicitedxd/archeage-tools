@@ -17,8 +17,7 @@ import NpcTooltip from './NpcTooltip';
 
 class NpcLink extends Component {
   static propTypes = {
-    npcId: number.isRequired,
-    id: number,
+    id: number.isRequired,
     name: string,
     style: object,
     noLink: bool,
@@ -29,7 +28,7 @@ class NpcLink extends Component {
   state = {};
 
   componentDidMount() {
-    fetchNpc(this.props.npcId);
+    fetchNpc(this.props.id);
   }
 
   render() {
@@ -57,8 +56,8 @@ class NpcLink extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { npcs } }, { npcId }) => ({
-  ...pathOr({}, [npcId])(npcs),
+const mapStateToProps = ({ gameData: { npcs } }, { id }) => ({
+  ...pathOr({}, [id])(npcs),
 });
 
 const mapDispatchToProps = {};

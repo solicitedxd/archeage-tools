@@ -17,8 +17,7 @@ import { connect } from 'react-redux';
 
 class DoodadLink extends Component {
   static propTypes = {
-    doodadId: number.isRequired,
-    id: number,
+    id: number.isRequired,
     name: string,
     style: object,
     noLink: bool,
@@ -29,7 +28,7 @@ class DoodadLink extends Component {
   state = {};
 
   componentDidMount() {
-    fetchDoodad(this.props.doodadId);
+    fetchDoodad(this.props.id);
   }
 
   render() {
@@ -57,8 +56,8 @@ class DoodadLink extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { doodads } }, { doodadId }) => ({
-  ...pathOr({}, [doodadId])(doodads),
+const mapStateToProps = ({ gameData: { doodads } }, { id }) => ({
+  ...pathOr({}, [id])(doodads),
 });
 
 const mapDispatchToProps = {};

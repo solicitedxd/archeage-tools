@@ -124,10 +124,10 @@ const TooltipContent = (props) => {
       {(reqLevel > 0 || preQuests[0] || startNpcId || startItemId || startDoodadId || startLocation || startLevel) &&
       <section>
         {reqLevel > 0 && <p>Required Level: {reqLevel}</p>}
-        {preQuests[0] && <p>Requires completion of <QuestLink questId={preQuests[0].questId} />.</p>}
-        {startNpcId && <p>Start from <NpcLink npcId={startNpcId} />.</p>}
+        {preQuests[0] && <p>Requires completion of <QuestLink id={preQuests[0].questId} />.</p>}
+        {startNpcId && <p>Start from <NpcLink id={startNpcId} />.</p>}
         {startItemId && <p>Start by using <ItemLink id={startItemId} />.</p>}
-        {startDoodadId && <p>Start from <DoodadLink doodadId={startDoodadId} />.</p>}
+        {startDoodadId && <p>Start from <DoodadLink id={startDoodadId} />.</p>}
         {startLocation && <p>Starts automatically at a certain location.</p>}
         {startLevel > 0 && <p>Starts automatically at level {startLevel}.</p>}
       </section>}
@@ -153,7 +153,7 @@ const TooltipContent = (props) => {
                 const ref = criterion.refs[0];
                 return (
                   <li key={`${id}-stg-${stage.position}-crit-${criterion.position}`}>
-                    {type.code === CRITERIA_TYPE_CHAT && <>Chat with <NpcLink npcId={ref.refId} />.</>}
+                    {type.code === CRITERIA_TYPE_CHAT && <>Chat with <NpcLink id={ref.refId} />.</>}
                     {type.code === CRITERIA_TYPE_COLLECT && <>Collect <ItemLink id={ref.refId} /> ({ref.quantity}).</>}
                     {type.code === CRITERIA_TYPE_OTHER &&
                     <>{criterion.description}{
@@ -161,7 +161,7 @@ const TooltipContent = (props) => {
                       <>: {criterion.refs.map((r, i) => (
                         <NpcLink
                           key={`${id}-stg-${stage.position}-crit-${criterion.position}-ref-${i}`}
-                          npcId={r.refId}
+                          id={r.refId}
                         />)).reduce((a, b) => [a, ', ', b])}
                       </>}
                     </>}
@@ -207,8 +207,8 @@ const TooltipContent = (props) => {
       </section>}
       {(endNpcId || endDoodadId || autoComplete) &&
       <section>
-        {endNpcId && <p>Turn in to <NpcLink npcId={endNpcId} />.</p>}
-        {endDoodadId && <p>Turn in to <NpcLink npcId={endDoodadId} />.</p>}
+        {endNpcId && <p>Turn in to <NpcLink id={endNpcId} />.</p>}
+        {endDoodadId && <p>Turn in to <NpcLink id={endDoodadId} />.</p>}
         {autoComplete && <p>Completes automatically.</p>}
       </section>}
     </div>

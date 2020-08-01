@@ -24,8 +24,7 @@ import QuestTooltip from './QuestTooltip';
 
 class QuestLink extends Component {
   static propTypes = {
-    questId: number.isRequired,
-    id: number,
+    id: number.isRequired,
     name: string,
     style: object,
     noLink: bool,
@@ -39,13 +38,13 @@ class QuestLink extends Component {
   state = {};
 
   componentDidMount() {
-    fetchQuest(this.props.questId);
+    fetchQuest(this.props.id);
   }
 
   render() {
     const { id, name, flags: flagsD, style, noLink, region, categoryId } = this.props;
 
-    if (!id) {
+    if (!name) {
       return <Skeleton variant="text" style={{ display: 'inline-block', marginLeft: 4, width: 80 }} />;
     }
 
@@ -71,19 +70,19 @@ class QuestLink extends Component {
 
     return (
       <QuestTooltip questId={id} disabled={!name}>
-        <>
+        <span>
           <span className={cn('quest-icon', icon)} />
           <Link className="inline-link" style={style}>
             {name}
           </Link>
-        </>
+        </span>
       </QuestTooltip>
     );
   }
 }
 
-const mapStateToProps = ({ gameData: { quests }, dailies: { region } }, { questId }) => ({
-  ...pathOr({}, [questId])(quests),
+const mapStateToProps = ({ gameData: { quests }, dailies: { region } }, { id }) => ({
+  ...pathOr({}, [id])(quests),
   region: region || 'NA',
 });
 
