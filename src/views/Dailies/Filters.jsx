@@ -8,9 +8,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import {
-  filterComplete,
+  setHideCompleted,
   filterContinents,
-  filterFaction,
+  setQuestFaction,
   filterRewards,
   filterTypes,
   resetQuests,
@@ -198,9 +198,9 @@ const mapStateToProps = ({ dailies: { continents, faction, rewards, types, hideC
 });
 
 const mapDispatchToProps = {
-  filterComplete,
+  filterComplete: setHideCompleted,
   filterContinents,
-  filterFaction,
+  filterFaction: setQuestFaction,
   filterRewards,
   filterTypes,
   resetQuests,

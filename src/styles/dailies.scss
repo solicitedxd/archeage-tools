@@ -131,6 +131,115 @@
   }
 }
 
+.daily-container {
+  .MuiToolbar-root {
+    .reset-timer {
+      //display: flex;
+      margin: 7px 0 0 12px;
+
+      span {
+        margin-left: 4px;
+      }
+    }
+
+    .MuiFormControl-root {
+      margin-left: 8px;
+    }
+  }
+
+  .daily-grid {
+    display: grid;
+    grid-gap: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    grid-auto-rows: 10px;
+
+    .daily-category {
+      .MuiToolbar-root {
+        padding-left: 8px;
+        padding-right: 12px;
+
+        .MuiIconButton-root:not(:last-child) {
+          margin-right: 6px;
+        }
+
+        .category-icon {
+          width: 24px;
+          border-radius: 50%;
+        }
+
+        .MuiIcon-root {
+          margin-right: 6px;
+        }
+
+        p {
+          margin: 0;
+        }
+
+        .MuiTypography-body2 {
+          margin-right: 6px;
+        }
+      }
+
+      .quest {
+        position: relative;
+        display: flex;
+        align-items: center;
+        padding-right: 6px;
+
+        .MuiCheckbox-root {
+          flex: 0 0 auto;
+          align-self: flex-start;
+        }
+
+        p {
+          flex: 1 1 auto;
+          padding: 4px 0;
+        }
+
+        &.completed p {
+          text-decoration: line-through;
+        }
+
+        .rewards {
+          flex: 0 0 auto;
+          align-self: flex-start;
+          padding: 6px;
+          height: 30px;
+
+          display: flex;
+          align-items: center;
+
+          .MuiIconButton-root {
+            .MuiSvgIcon-root {
+              font-size: 0.875rem;
+            }
+          }
+        }
+
+        & + .quest {
+          border-top: 1px solid rgba(169, 169, 169, 0.2);
+        }
+
+        .event-icon {
+          //background: rgba(60, 150, 135, 0.1);
+          width: 56px;
+          height: 56px;
+        }
+
+        .timer-table {
+          .MuiTableCell-sizeSmall {
+            padding: 6px 6px 6px 16px;
+          }
+
+          .MuiTableCell-sizeSmall:last-child {
+            padding-right: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
 .MuiDialogContent-root.quest-filters .filter-field {
   margin: 8px 0 0;
 }
@@ -152,13 +261,14 @@
   position: relative;
   font-size: 15px;
   color: #6D4916;
+  padding-right: 19px;
 
-  &:after {
+  &:not(.no-icon):after {
     content: "";
-    position: relative;
+    position: absolute;
     height: 16px;
     width: 16px;
-    margin-left: 2px;
+    right: 2px;
     top: 2px;
     display: inline-block;
     background: url(../images/money_window.png) no-repeat;
@@ -176,11 +286,19 @@
     background-position: -32px -28px;
   }
 
+  &.Honor {
+    padding-right: 15px;
+  }
+
   &.Honor:after {
     width: 12px;
     height: 19px;
     background-position: -49px -32px;
-    top: 5px;
+    top: 2px;
+  }
+
+  &.Leadership {
+    padding-right: 17px;
   }
 
   &.Leadership:after {
@@ -189,16 +307,29 @@
     background-position: -173px -29px;
   }
 
+  &.Items {
+    padding-right: 14px;
+  }
+
   &.Items:after, &.crate:after {
     width: 11px;
     height: 16px;
     background-position: -223px -12px;
   }
 
+  &.Vocation {
+    padding-right: 20px;
+  }
+
   &.Vocation:after, &.vocation:after {
     width: 17px;
     height: 15px;
     background-position: -190px -13px;
+    top: 3px;
+  }
+
+  &.Gilda {
+    padding-right: 21px;
   }
 
   &.Gilda:after, &.gilda:after {
@@ -208,11 +339,19 @@
     top: 3px;
   }
 
+  &.Prestige {
+    padding-right: 17px;
+  }
+
   &.Prestige:after {
     width: 14px;
     height: 18px;
     background-position: -239px -28px;
-    top: 3px;
+    top: 2px;
+  }
+
+  &.Credits {
+    padding-right: 17px;
   }
 
   &.Credits:after, &.credits:after {
@@ -230,10 +369,18 @@
     background-position: -96px -29px;
   }
 
+  &.Ancestral {
+    padding-right: 23px;
+  }
+
   &.Ancestral:after {
     background-position: -219px -29px;
     width: 20px;
     height: 20px;
+  }
+
+  &.diligence {
+    padding-right: 18px;
   }
 
   &.diligence:after {
@@ -242,16 +389,28 @@
     height: 15px;
   }
 
+  &.loyalty {
+    padding-right: 18px;
+  }
+
   &.loyalty:after {
     background-position: -207px -13px;
     width: 15px;
     height: 15px;
   }
 
+  &.manastorm {
+    padding-right: 20px;
+  }
+
   &.manastorm:after {
     background-position: -96px -45px;
     width: 17px;
     height: 15px;
+  }
+
+  &.craft {
+    padding-right: 18px;
   }
 
   &.craft:after {
@@ -261,11 +420,19 @@
     height: 15px;
   }
 
+  &.husbandry {
+    padding-right: 20px;
+  }
+
   &.husbandry:after {
     background-image: url(../images/npc_icon.png);
     background-position: -27px -100px;
     width: 17px;
     height: 17px;
+  }
+
+  &.quest {
+    padding-right: 11px;
   }
 
   &.quest:after {
@@ -277,6 +444,17 @@
 
   &.kyrios:after {
     background-position: -157px -29px;
+  }
+
+  &.Crime {
+    padding-right: 18px;
+  }
+
+  &.Crime:after {
+    background-position: -63px -30px;
+    width: 14px;
+    height: 20px;
+    top: 1px;
   }
 }
 
@@ -290,8 +468,7 @@
     width: 14px;
     top: 1px;
     display: inline-block;
-    background: url(../images/money_window.png) no-repeat;
-    background-position: -242px -49px;
+    background: url(../images/money_window.png) no-repeat -242px -49px;
   }
 }
 
@@ -336,6 +513,106 @@
   }
 }
 
+.quest-flag {
+  width: 30px;
+  height: 23px;
+  background: url(../images/quest_notifier.png) no-repeat;
+
+  &.flag-daily {
+    background-position: -56px -32px;
+  }
+
+  &.flag-weekly {
+    background-position: -117px -37px;
+  }
+
+  &.flag-repeat {
+    background-position: -88px -40px;
+    width: 27px;
+  }
+
+  &.flag-elite, &.flag-epic, &.flag-legendary, &.flag-mythic {
+    width: 33px;
+    height: 30px;
+    background-image: url(../images/quest_level.png);
+  }
+
+  &.flag-epic {
+    background-position: 0 -30px;
+  }
+
+  &.flag-legendary {
+    width: 54px;
+    background-position: 0 -60px;
+  }
+
+  &.flag-mythic {
+    width: 36px;
+    background-position: 0 -90px;
+  }
+
+  &.flag-m, &.flag-t, &.flag-w, &.flag-th, &.flag-f, &.flag-s, &.flag-su {
+    width: 40px;
+    height: 22px;
+  }
+
+  &.flag-m {
+    background-position: -2px -77px;
+  }
+
+  &.flag-t {
+    background-position: -46px -77px;
+  }
+
+  &.flag-w {
+    background-position: -90px -77px;
+  }
+
+  &.flag-th {
+    background-position: -2px -103px;
+  }
+
+  &.flag-f {
+    background-position: -46px -103px;
+  }
+
+  &.flag-s {
+    background-position: -90px -103px;
+  }
+
+  &.flag-su {
+    background-position: -134px -103px;
+  }
+}
+
+.quest-icon {
+  background-image: url(../images/npc_icon.png);
+  background-position: -225px -53px;
+  width: 8px;
+  height: 16px;
+  margin-right: 2px;
+  display: inline-block;
+  vertical-align: -3px;
+
+  &.story {
+    background-position: -224px -5px;
+  }
+
+  &.daily {
+    background-position: -310px -239px;
+  }
+
+  &.repeat {
+    background-position: -218px -173px;
+    width: 19px;
+  }
+
+  &.vocation {
+    background-position: -220px -197px;
+    width: 17px;
+  }
+}
+
 .dark-mode {
   .quest-container {
     .quest-list {
@@ -354,6 +631,20 @@
   .filter-field {
     .label {
       color: rgba(255, 255, 255, 0.84);
+    }
+  }
+}
+
+.mobile {
+  .daily-container {
+    .MuiToolbar-root .reset-timer {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+
+      span {
+        margin: 0;
+      }
     }
   }
 }

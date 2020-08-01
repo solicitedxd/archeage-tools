@@ -1,7 +1,7 @@
 export const SET_ITEM_PRICE = 'SET_ITEM_PRICE';
 
 export const CURRENCY = Object.freeze({
-  COIN: 'Coin',
+  COIN: 'Coins',
   GILDA: 'Gilda Stars',
   HONOR: 'Honor Points',
   VOCATION: 'Vocation Badges',

@@ -21,6 +21,7 @@ class Item extends Component {
     overlay: string,
     tooltipDisabled: bool,
     inline: bool,
+    showCount: bool,
   };
 
   static defaultProps = {
@@ -41,7 +42,7 @@ class Item extends Component {
   }
 
   render() {
-    const { id, name, icon, count, defaultGrade, overlay, inline, tooltipDisabled } = this.props;
+    const { id, name, icon, count, defaultGrade, overlay, inline, tooltipDisabled, showCount } = this.props;
     let { grade } = this.props;
     if (defaultGrade !== grade && defaultGrade > 1) {
       grade = defaultGrade;
@@ -58,7 +59,8 @@ class Item extends Component {
 
     return (
       <ItemTooltip itemId={id} grade={grade} disabled={tooltipDisabled || !name}>
-        <span className={cn('item-icon', { [overlay]: Boolean(overlay), inline })} data-grade={grade} data-id={id}>
+        <span className={cn('item-icon', { [overlay]: Boolean(overlay), inline, showCount })} data-grade={grade}
+              data-id={id}>
           <img src={`/images/icon/${icon}.png`} alt={name} />
           <span className="count">{count}</span>
         </span>

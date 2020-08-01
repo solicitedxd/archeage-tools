@@ -1,12 +1,12 @@
+import { hasProperty } from 'utils/object';
+import { slug } from 'utils/string';
+
 /**
  * Sort comparator method for comparing objects.
  * @param field{string} field to sort by.
  * @param asc{boolean} true = asc, false = desc
  * @returns {function({object}, {object})}
  */
-import { hasProperty } from 'utils/object';
-import { slug } from 'utils/string';
-
 export const sortBy = (field, asc = true) => (a, b) => {
   if (a === undefined) {
     return 1;

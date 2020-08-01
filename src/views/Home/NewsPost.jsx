@@ -108,7 +108,7 @@ class NewsPost extends Component {
       </Typography>;
 
     let titleNode = <Skeleton variant="text" width={180} />;
-    if (loading) {
+    if (!loading) {
       if (standalone) {
         titleNode = title;
       } else {

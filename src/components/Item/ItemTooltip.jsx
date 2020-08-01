@@ -40,7 +40,7 @@ const TooltipContent = (item) => {
       price = price / ((item.defaultGrade * 0.5) + 0.5);
     }
   }
-  price = Math.round(price * ((item.grade * 0.5) + 0.5));
+  price = Math.round(price * ((grade * 0.5) + 0.5));
   // placeholder vars
   const vars = [];
 

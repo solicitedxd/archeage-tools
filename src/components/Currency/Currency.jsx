@@ -1,5 +1,6 @@
 import { Typography } from '@material-ui/core';
 import cn from 'classnames';
+import OptionalTooltip from 'components/OptionalTooltip';
 import { CURRENCY } from 'constants/items';
 import React from 'react';
 import {
@@ -10,7 +11,7 @@ import {
   string,
 } from 'react-proptypes';
 
-const Currency = ({ type, count, style, inline = false }) => {
+const Currency = ({ type, count, style, inline = false, tooltip = false }) => {
   if (type === CURRENCY.COIN) {
     const negative = (count < 0);
     count = Math.abs(Math.round(count));
@@ -33,13 +34,17 @@ const Currency = ({ type, count, style, inline = false }) => {
     );
   } else {
     return (
-      <Typography
-        className={cn('currency', type)}
-        component={inline ? 'span' : 'p'}
-        style={style}
+      <OptionalTooltip
+        title={tooltip && type}
       >
-        {count}
-      </Typography>
+        <Typography
+          className={cn('currency', type)}
+          component={inline ? 'span' : 'p'}
+          style={style}
+        >
+          {count}
+        </Typography>
+      </OptionalTooltip>
     );
   }
 };
@@ -49,6 +54,7 @@ Currency.propTypes = {
   count: oneOfType([number, string]).isRequired,
   style: object,
   inline: bool,
+  tooltip: bool,
 };
 
 export default Currency;

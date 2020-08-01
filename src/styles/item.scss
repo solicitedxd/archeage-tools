@@ -86,8 +86,16 @@
         height: 18px;
       }
 
-      .count {
+      &:not(.showCount) .count {
         display: none;
+      }
+
+      &.showCount .count {
+        font-size: 10px;
+        right: auto;
+        text-align: center;
+        display: inline-block;
+        width: 100%;
       }
 
       &:before, &:after {
