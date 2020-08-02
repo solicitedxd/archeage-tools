@@ -16,6 +16,7 @@ export const SET_QUANTITY = 'SET_QUANTITY';
 export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_TRANSPORTATION_QUANTITY = 'SET_TRANSPORTATION_QUANTITY';
 export const SET_WAR = 'SET_WAR';
+export const SET_AH_CUT = 'SET_AH_CUT';
 export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
 
 export const SELL_LABOR = 70;

@@ -3,6 +3,7 @@ import NumberField from 'components/NumberField';
 import debounce from 'lodash.debounce';
 import React, { Component } from 'react';
 import {
+  bool,
   func,
   number,
   object,
@@ -17,6 +18,7 @@ class ItemPrice extends Component {
     setItemPrice: func.isRequired,
     inputStyle: object,
     itemPrice: object,
+    inTable: bool,
   };
 
   static defaultProps = {
