@@ -278,10 +278,9 @@ GALLANT_HOW_TO.propTypes = {
   differences: node,
 };
 
-export const DONKEY_HOW_TO = (
+const DONKEY_HOW_TO = (
   <>
-    <p>At level 30, you can pick up the quest <Typography color="primary" component="span"><span
-      className="dropdown-icon quest" /> The Basics of Trade</Typography> from the Blue Salt Brotherhood NPC inside the
+    <p>At level 30, you can pick up the quest <QuestLink id={6772} /> from the Blue Salt Brotherhood NPC inside the
       hero hall of Marianople or Austera.</p>
     <p>Completing the quest is very easy; just go to the Dewstone Plains or Mahadevi Community Center and talk to the
       Community Center Manager and pick this foal.</p>
@@ -290,6 +289,60 @@ export const DONKEY_HOW_TO = (
     <p>After you have the foal, raise it to get this donkey mount.</p>
   </>
 );
+
+const STEAMFISH_HOW_TO = ({ recipeItemId, colorItem, colorCount, recipeId, gildaCost, recipeObtain }) => (
+  <>
+    <p>This mount can be obtained via crafting with <Link to={`/folio/machining/${recipeId}`}>this recipe</Link>:</p>
+    <ul>
+      <li>
+        <ItemLink id={recipeItemId} noLink />
+        <ul>
+          <li><i>{gildaCost ? <>Purchased for <ItemLink id={ITEM.GILDA_STAR} count={gildaCost} />. Can be traded.</>
+            : recipeObtain}</i></li>
+        </ul>
+      </li>
+      <li>
+        <ItemLink id={colorItem} count={colorCount} noLink />
+        <ul>
+          <li><i>Can be traded.</i></li>
+        </ul>
+      </li>
+      <li>
+        <ItemLink id={19470} noLink />
+        <ul>
+          <li><i>Crafted; can be traded.</i></li>
+        </ul>
+      </li>
+      <li>
+        <ItemLink id={29277} noLink />
+        <ul>
+          <li><i>Crafted; can be traded.</i></li>
+        </ul>
+      </li>
+      <li>
+        <ItemLink id={16326} count={2} noLink plural="" />
+        <ul>
+          <li><i>Crafted; can be traded.</i></li>
+        </ul>
+      </li>
+      <li>
+        <ItemLink id={29280} noLink />
+        <ul>
+          <li><i>Crafted from acorn beehive gatherables. Can be traded.</i></li>
+        </ul>
+      </li>
+    </ul>
+  </>
+);
+
+STEAMFISH_HOW_TO.propTypes = {
+  recipeItemId: number,
+  colorItem: number,
+  colorCount: number,
+  recipeId: number,
+  gildaCost: number,
+  recipeObtain: node,
+};
 
 const MOUNT = [
   {
@@ -945,14 +998,16 @@ const MOUNT = [
   {
     name: 'Freezing Soulscar',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Vanhi',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -973,14 +1028,16 @@ const MOUNT = [
   {
     name: 'Stormwing Pegasus',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
   {
     name: 'Celestial Pegasus',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={250} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={250} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1025,7 +1082,8 @@ const MOUNT = [
   {
     name: 'Moonlight Kitsu',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
       <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
@@ -1046,7 +1104,8 @@ const MOUNT = [
   {
     name: 'Stormrose',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> or for
+        <ItemLink id={ITEM.LOGIN_BADGE} count={4} /> (acquired by logging in 28 days in a month).</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1073,7 +1132,8 @@ const MOUNT = [
   {
     name: 'Stormwraith Kirin',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} />.</p>
+      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
       <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
@@ -1445,7 +1505,7 @@ const MOUNT = [
     name: 'Brave Bison',
     obtainText:
       <>
-        <p>On Legacy, this mount was once obtainable from the Brave Bison Crate.</p>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
         <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
@@ -1464,7 +1524,7 @@ const MOUNT = [
     name: 'Rajani',
     obtainText:
       <>
-        <p>On Legacy, this mount was once obtainable from the Striped Death Supply Crate.</p>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
         <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
@@ -1472,6 +1532,7 @@ const MOUNT = [
     name: 'Shayeera',
     obtainText:
       <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
         <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
@@ -1479,7 +1540,7 @@ const MOUNT = [
     name: 'Emberpaw Panther',
     obtainText:
       <>
-        <p>On Legacy, this mount was once obtainable from the Emberpaw Crate.</p>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
         <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
@@ -1490,6 +1551,133 @@ const MOUNT = [
   {
     name: 'Pearl Steed',
     upgrade: 'Gallant Pearl Steed',
+  },
+  {
+    name: 'Mechanical Kraken',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Firesnarl Elephant',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Alabaster Manticore',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Celestar',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Deathmaw',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount is available in the 2020 Q2 ArchePass - Combat Pass.</p>
+      </>,
+  },
+  {
+    name: 'Hereafter Hoppington',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Lunaris',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Mr. Mittens',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Ruby Steamfish Submarine',
+    obtainText:
+      <STEAMFISH_HOW_TO
+        recipeId={5719}
+        recipeItemId={29274}
+        gildaCost={250}
+        colorItem={3711}
+        colorCount={200}
+      />,
+  },
+  {
+    name: 'Lapis Steamfish Submarine',
+    obtainText:
+      <STEAMFISH_HOW_TO
+        recipeId={5720}
+        recipeItemId={29275}
+        gildaCost={250}
+        colorItem={3627}
+        colorCount={200}
+      />,
+  },
+  {
+    name: 'Platinum Steamfish Submarine',
+    obtainText:
+      <STEAMFISH_HOW_TO
+        recipeId={5721}
+        recipeItemId={29276}
+        gildaCost={250}
+        colorItem={3564}
+        colorCount={200}
+      />,
+  },
+  {
+    name: 'Chrome Steamfish Submarine',
+    obtainText:
+      <STEAMFISH_HOW_TO
+        recipeId={8902}
+        recipeItemId={34376}
+        recipeObtain={<>Combine <ItemLink id={39703} count={200} />, which are gathered from sunken treasures. Completed
+          design can be traded.</>}
+        colorItem={17774}
+        colorCount={100}
+      />,
+  },
+  {
+    name: 'Andelph Patrol Mech',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.LOGIN_BADGE} count={4} /> (acquired by logging
+          in 28 days in a month).</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Noble Blossomhoof',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be obtained from purchasing the Garden of the Gods Archeum Pack.</p>
+        <p>On Unchained, this mount can be obtained from purchasing the Garden of the Gods Archeum DLC Pack.<br />
+          <i>Note that this version comes with a reduced skill set.</i></p>
+      </>,
   },
 ];
 
