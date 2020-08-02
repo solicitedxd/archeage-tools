@@ -48,10 +48,11 @@ import {
   func,
   number,
   object,
-  string,
   oneOfType,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { sortBy } from 'utils/array';
 import {
   deepCopy,
   objectHasProperties,
@@ -105,6 +106,8 @@ class DailyTracker extends Component {
   resetTick;
 
   componentDidMount() {
+    const { events, lastVisit, festivals, instances, dailyQuests } = this.props;
+
     this.props.fetchQuestRefData();
     this.props.fetchDailyQuests();
     this.props.fetchFestivals();
@@ -112,91 +115,125 @@ class DailyTracker extends Component {
     this.props.fetchEvents();
     window.addEventListener('resize', this._handleResize);
     this.resetTick = setInterval(this.handleTick, 1000);
+
+    if (objectHasProperties(events)) {
+      if (lastVisit) {
+        this.initCheckReset(events);
+      }
+      this.props.updateLastVisit();
+    }
+
+    if (objectHasProperties(festivals) && objectHasProperties(instances) && dailyQuests.length) {
+      this.initQuestData(this.props);
+    }
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const { festivals, instances, dailyQuests, quests, faction, region, events, lastVisit } = nextProps;
-    if (faction !== this.props.faction || nextProps.region !== this.props.region ||
+    const { festivals, instances, dailyQuests, faction, region, events, lastVisit } = nextProps;
+    if (faction !== this.props.faction || region !== this.props.region ||
       (objectHasProperties(festivals) && objectHasProperties(instances) && dailyQuests.length &&
         (!objectHasProperties(this.props.festivals) || !objectHasProperties(this.props.instances) || !this.props.dailyQuests.length))) {
-      let categories = [];
-      const weeklyIds = [];
-
-      categories = categories.concat(deepCopy(Object.values(festivals)).filter(festival => festival.active && festival.regions.includes(region)).map(festival => ({
-        ...festival,
-        id: `festival-${festival.id}`,
-        festival: true,
-      })));
-
-      categories = categories.concat(deepCopy(Object.values(instances)).map(instance => ({
-        ...instance,
-        id: `instance-${instance.id}`,
-        quests: instance.instances.filter(i => i.regions.includes(region)).map(i => ({
-          ...i,
-          id: i.id + QUEST_INSTANCE_OFFSET,
-        })),
-        instance: true,
-      })));
-
-      categories = categories.concat(deepCopy(dailyQuests).filter(dailyCat => {
-        dailyCat.quests = dailyCat.quests.filter(qid => {
-          const quest = quests[qid];
-          const show = Math.floor(quest.factions / (2 ** (faction - 1))) % 2 && quest.flags.find(flag => flag.region === region && (flag.code === FLAG_WEEKLY || flag.code === FLAG_DAILY));
-          if (show && quest.flags.find(flag => flag.region === region && flag.code === FLAG_WEEKLY)) {
-            weeklyIds.push(qid);
-          }
-          return show;
-        });
-        return dailyCat.quests.length > 0;
-      }));
-
-      this.setState({ categories, weeklyIds }, () => {
-        this.handleResize();
-        this.calculateDailyReset();
-      });
+      this.initQuestData(nextProps);
     }
 
     // calculate reset for quests when loading the page on a new day
     if (objectHasProperties(events) && !objectHasProperties(this.props.events)) {
       if (lastVisit) {
-        const lastVisit = moment(lastVisit);
-        let dailyReset = false;
-        let weeklyReset = false;
-
-        // check for daily reset
-        const dailyEvent = events[1];
-        const dailyResetTime = dailyEvent && dailyEvent.times.find(time => time.region === region);
-        if (dailyResetTime) {
-          const [hh, mm, ss] = dailyResetTime.time.split(':');
-          const dailyResetMoment = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
-          dailyReset = lastVisit.isBefore(dailyResetMoment);
-        }
-
-        // check for weekly reset
-        const weeklyEvent = events[2];
-        const weeklyResetTime = weeklyEvent && weeklyEvent.times.find(time => time.region === region);
-        if (weeklyResetTime) {
-          const { time, days } = weeklyResetTime;
-          const [hh, mm, ss] = time.split(':');
-          let weeklyResetMoment = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
-          while (days.length > 0 && !days.includes(getDayKey(weeklyResetMoment.day()))) {
-            // subtract days for yesterday occurrences
-            weeklyResetMoment.add(1, 'day');
-          }
-
-          weeklyReset = lastVisit.isBefore(weeklyResetMoment);
-        }
-
-        if (weeklyReset) {
-          this.props.setQuestStatus(Object.keys(nextProps.completedQuests), false);
-        } else if (dailyReset) {
-          this.props.setQuestStatus(Object.keys(nextProps.completedQuests).filter((questId) => !this.state.weeklyIds.includes(Number.parseInt(questId))), false);
-        }
+        this.initCheckReset(events);
       }
 
       this.props.updateLastVisit();
     }
   }
+
+  initQuestData = (props) => {
+    const { festivals, instances, dailyQuests, quests, faction, region } = props;
+
+    let categories = [];
+    const weeklyIds = [];
+
+    categories = categories.concat(deepCopy(Object.values(festivals)).filter(festival => festival.active && festival.regions.includes(region)).map(festival => ({
+      ...festival,
+      id: `festival-${festival.id}`,
+      festival: true,
+    })));
+
+    categories = categories.concat(deepCopy(Object.values(instances)).map(instance => ({
+      ...instance,
+      id: `instance-${instance.id}`,
+      quests: instance.instances.filter(i => i.regions.includes(region)).map(i => ({
+        ...i,
+        id: i.id + QUEST_INSTANCE_OFFSET,
+      })),
+      instance: true,
+    })));
+
+    categories = categories.concat(deepCopy(dailyQuests).filter(dailyCat => {
+      dailyCat.quests = dailyCat.quests.filter(qid => {
+        const quest = quests[qid];
+        const show = Math.floor(quest.factions / (2 ** (faction - 1))) % 2 && quest.flags.find(flag => flag.region === region && (flag.code === FLAG_WEEKLY || flag.code === FLAG_DAILY));
+        if (show && quest.flags.find(flag => flag.region === region && flag.code === FLAG_WEEKLY)) {
+          weeklyIds.push(qid);
+        }
+        return show;
+      });
+      return dailyCat.quests.length > 0;
+    }).sort((a, b) => {
+      const w = sortBy('sortWeight', false)(a, b);
+      if (w === 0) {
+        return sortBy('name')(a, b);
+      }
+      return w;
+    }));
+
+    this.setState({ categories, weeklyIds }, () => {
+      this.handleResize();
+      this.calculateDailyReset();
+    });
+  };
+
+  initCheckReset = (events) => {
+    const { setQuestStatus, completedQuests, lastVisit: lastVisitRaw, region } = this.props;
+    const { weeklyIds } = this.state;
+    const now = moment.utc();
+    console.log('Checking last visit');
+
+    const lastVisit = moment(lastVisitRaw);
+    let dailyReset = false;
+    let weeklyReset = false;
+
+    // check for daily reset
+    const dailyEvent = events[1];
+    const dailyResetTime = dailyEvent && dailyEvent.times.find(time => time.region === region);
+    if (dailyResetTime) {
+      const [hh, mm, ss] = dailyResetTime.time.split(':');
+      const dailyResetMoment = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
+      while (dailyResetMoment.isAfter(now)) {
+        dailyResetMoment.subtract(1, 'day');
+      }
+      dailyReset = lastVisit.isBefore(dailyResetMoment);
+    }
+
+    // check for weekly reset
+    const weeklyEvent = events[2];
+    const weeklyResetTime = weeklyEvent && weeklyEvent.times.find(time => time.region === region);
+    if (weeklyResetTime) {
+      const { time, days } = weeklyResetTime;
+      const [hh, mm, ss] = time.split(':');
+      let weeklyResetMoment = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
+      while (days.length > 0 && !days.includes(getDayKey(weeklyResetMoment.day())) && weeklyResetMoment.isAfter(now)) {
+        weeklyResetMoment.subtract(1, 'day');
+      }
+
+      weeklyReset = lastVisit.isBefore(weeklyResetMoment);
+    }
+
+    if (weeklyReset) {
+      setQuestStatus(Object.keys(completedQuests), false);
+    } else if (dailyReset) {
+      setQuestStatus(Object.keys(completedQuests).filter((questId) => !weeklyIds.includes(Number.parseInt(questId))), false);
+    }
+  };
 
   componentDidUpdate(prevProps) {
     if (prevProps.showHidden !== this.props.showHidden || prevProps.hideComplete !== this.props.hideComplete) {
@@ -247,6 +284,7 @@ class DailyTracker extends Component {
 
   calculateDailyReset = () => {
     const { events, region } = this.props;
+    const now = moment.utc();
     let dailyReset = null;
     let weeklyReset = null;
 
@@ -256,7 +294,9 @@ class DailyTracker extends Component {
     if (dailyResetTime) {
       const [hh, mm, ss] = dailyResetTime.time.split(':');
       dailyReset = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
-      dailyReset.add(1, 'day');
+      if (dailyReset.isBefore(now)) {
+        dailyReset.add(1, 'day');
+      }
     }
 
     // weekly reset
@@ -266,9 +306,10 @@ class DailyTracker extends Component {
       const { time, days } = weeklyResetTime;
       const [hh, mm, ss] = time.split(':');
       weeklyReset = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
-      weeklyReset.add(1, 'day');
+      if (weeklyReset.isBefore(now)) {
+        weeklyReset.add(1, 'day');
+      }
       while (days.length > 0 && !days.includes(getDayKey(weeklyReset.day()))) {
-        // subtract days for yesterday occurrences
         weeklyReset.add(1, 'day');
       }
     }
