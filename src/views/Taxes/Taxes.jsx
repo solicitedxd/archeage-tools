@@ -12,6 +12,7 @@ import ListAltIcon from '@material-ui/icons/ListAlt';
 import { openDialog } from 'actions/display';
 import { calculateLabor } from 'actions/proficiencies';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Currency from 'components/Currency';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
@@ -168,6 +169,9 @@ class Taxes extends Component {
             />
           ))}
         </Paper>
+        <div className="section">
+          <AdContainer type="horizontal" />
+        </div>
       </div>
     );
   }

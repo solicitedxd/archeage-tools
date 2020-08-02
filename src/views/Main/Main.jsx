@@ -114,8 +114,20 @@ class Main extends React.PureComponent {
 
     if (session.access_token) {
       fetchMe();
-      injectAdsense();
     }
+
+    injectAdsense();
+
+    // prevent adsense from applying height to content wrapper
+    let wrapper = document.getElementById('content-wrapper');
+    const observer = new MutationObserver((() => {
+      wrapper.style.height = '';
+      wrapper.style.minHeight = '';
+    }));
+    observer.observe(wrapper, {
+      attributes: true,
+      attributeFilter: ['style'],
+    });
   }
 
   render() {
@@ -149,7 +161,7 @@ class Main extends React.PureComponent {
               <Navigation />
             </div>
           </header>
-          <div className={cn('content-wrapper', { mobile })}>
+          <div id="content-wrapper" className={cn('content-wrapper', { mobile })}>
             {children}
           </div>
           <footer className="site-footer">

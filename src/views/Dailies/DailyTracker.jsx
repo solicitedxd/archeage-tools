@@ -32,6 +32,7 @@ import {
   fetchInstances,
   fetchQuestRefData,
 } from 'actions/gameData';
+import AdContainer from 'components/AdContainer';
 import {
   FACTIONS,
   FLAG_DAILY,
@@ -430,6 +431,9 @@ class DailyTracker extends Component {
             />
           ))}
         </div>}
+        <div className="section">
+          <AdContainer type="horizontal" />
+        </div>
       </div>
     );
   }

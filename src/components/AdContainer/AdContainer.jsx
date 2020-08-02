@@ -1,10 +1,17 @@
-import { oneOf } from 'prop-types';
+import { equals } from 'ramda';
 import React, { Component } from 'react';
+import { oneOf } from 'react-proptypes';
+import { prepAd } from 'utils/display';
 
 class AdContainer extends Component {
   static propTypes = {
     type: oneOf(['vertical', 'horizontal', 'square', 'feed']).isRequired,
   };
+
+  // eslint-disable-next-line no-unused-vars
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    return !equals(nextProps, this.props);
+  }
 
   render() {
     const { type } = this.props;
@@ -31,11 +38,13 @@ class AdContainer extends Component {
         adProps['data-ad-slot'] = '9682128993';
         adProps['data-ad-layout-key'] = '-fb+5w+4e-db+86';
         adProps['data-ad-format'] = 'fluid';
-        adProps['data-full-width-responsive'] = null;
+        delete adProps['data-full-width-responsive'];
         break;
       default:
         return (<></>);
     }
+
+    prepAd();
 
     return (
       <ins {...adProps} />

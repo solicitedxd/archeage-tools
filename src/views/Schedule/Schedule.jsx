@@ -29,6 +29,7 @@ import {
   speak,
 } from 'actions/schedule';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import IfPerm from 'components/IfPerm';
 import {
   ALERT_CUE,
@@ -477,6 +478,9 @@ class Schedule extends Component {
           open={editOpen}
           id={editId}
         />
+        <div className="section">
+          <AdContainer type="horizontal" />
+        </div>
       </div>
     );
   }

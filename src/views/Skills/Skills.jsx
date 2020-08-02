@@ -14,6 +14,7 @@ import {
   findClassName,
 } from 'actions/gameData';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import {
   DEFAULT_ANCESTRALS,
   DEFAULT_SKILLS,
@@ -258,6 +259,9 @@ class Skills extends Component {
               selectedSkillset={selectedSkillsets}
             />,
           )}
+        </div>
+        <div className="section">
+          <AdContainer type="horizontal" />
         </div>
       </div>
     );

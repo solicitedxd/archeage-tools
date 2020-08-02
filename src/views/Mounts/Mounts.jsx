@@ -32,6 +32,7 @@ import {
   setOnlyObtainable,
 } from 'actions/mounts';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import SelectField from 'components/SelectField';
 import SkillIcon from 'components/Skill/SkillIcon';
 import NoPortrait from 'images/NoPortrait.png';
@@ -416,6 +417,9 @@ class Mounts extends Component {
           id={mount}
           onClose={() => this.props.history.push('/mounts')}
         />
+        <div className="section">
+          <AdContainer type="horizontal" />
+        </div>
       </>
     );
   }
