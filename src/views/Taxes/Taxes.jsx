@@ -169,9 +169,7 @@ class Taxes extends Component {
             />
           ))}
         </Paper>
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

@@ -95,7 +95,7 @@ class Home extends Component {
       <div className="news-container section" key="news-main">
         <div className="home-banners">
           {banners.map(banner => <Banner {...banner} key={banner.name} />)}
-          <AdContainer type="square" />
+          <AdContainer type="square" section={false} />
         </div>
         <div className="news-list">
           {loading && [0, 1, 2, 3, 4].map(i => <NewsPost loading={true} key={`loading-${i}`} />)}

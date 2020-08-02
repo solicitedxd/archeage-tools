@@ -453,6 +453,8 @@ class Schedule extends Component {
             </Toolbar>
           </AppBar>
         </Paper>
+        {mobile &&
+        <AdContainer type="feed" />}
         <div className={cn('section', 'schedule-categories')} ref={this.ref}>
           {!objectHasProperties(eventTypes) &&
           <CircularProgress size={64} color="primary" style={{ width: 'center' }} />}
@@ -478,9 +480,7 @@ class Schedule extends Component {
           open={editOpen}
           id={editId}
         />
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

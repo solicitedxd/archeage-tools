@@ -1,11 +1,20 @@
+import cn from 'classnames';
 import { equals } from 'ramda';
 import React, { Component } from 'react';
-import { oneOf } from 'react-proptypes';
+import {
+  bool,
+  oneOf,
+} from 'react-proptypes';
 import { prepAd } from 'utils/display';
 
 class AdContainer extends Component {
   static propTypes = {
     type: oneOf(['vertical', 'horizontal', 'square', 'feed']).isRequired,
+    section: bool,
+  };
+
+  static defaultProps = {
+    section: true,
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -14,11 +23,10 @@ class AdContainer extends Component {
   }
 
   render() {
-    const { type } = this.props;
+    const { type, section } = this.props;
 
     const adProps = {
       className: 'adsbygoogle',
-      style: { display: 'block', width: '100%' },
       'data-ad-format': 'auto',
       'data-ad-client': 'ca-pub-3564148572601954',
       'data-full-width-responsive': true,
@@ -47,7 +55,9 @@ class AdContainer extends Component {
     prepAd();
 
     return (
-      <ins {...adProps} />
+      <div className={cn({ section })} style={{ width: '100%' }}>
+        <ins {...adProps} style={{ display: 'block' }} />
+      </div>
     );
   }
 }

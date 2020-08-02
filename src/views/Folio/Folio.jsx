@@ -165,9 +165,7 @@ class Folio extends Component {
               </div>
             </Paper>
           </div>}
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </>
     );
   }

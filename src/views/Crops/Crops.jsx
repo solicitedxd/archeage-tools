@@ -386,9 +386,7 @@ class Crops extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

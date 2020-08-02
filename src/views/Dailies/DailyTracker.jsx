@@ -431,9 +431,7 @@ class DailyTracker extends Component {
             />
           ))}
         </div>}
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

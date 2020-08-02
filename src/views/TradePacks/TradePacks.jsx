@@ -342,9 +342,7 @@ class TradePacks extends Component {
           open={open}
           onClose={this.onCloseCalculator}
         />
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

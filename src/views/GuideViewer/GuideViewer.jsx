@@ -115,9 +115,7 @@ class GuideViewer extends Component {
                   </>}
                 </Paper>
                 {sId === Math.floor(guideData.sections.length / 2) - 1 && guideData.sections.length > 3 &&
-                <div className="section">
-                  <AdContainer type="feed" />
-                </div>}
+                <AdContainer type="feed" />}
               </React.Fragment>
               ),
             )}
@@ -148,9 +146,7 @@ class GuideViewer extends Component {
             </Paper>
           </Sticky>}
         </div>
-        <div className="section">
-          <AdContainer type="horizontal" />
-        </div>
+        <AdContainer type="horizontal" />
         <ScrollToTop />
         {mobile &&
         <Fab
