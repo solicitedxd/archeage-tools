@@ -3,7 +3,6 @@ import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
 import Crops from 'views/Crops';
 import Dailies from 'views/Dailies';
-import DailyTracker from 'views/Dailies/DailyTracker';
 import Folio from 'views/Folio';
 import Guides from 'views/Guides';
 import GuideViewer from 'views/GuideViewer';
@@ -22,7 +21,6 @@ export default (
   <Main>
     <Switch>
       <Route path="/dailies" exact component={Dailies} />
-      <Route path="/dailies2" exact component={DailyTracker} />
       <Route path="/skills" exact component={Skills} />
       <Route path="/schedule" exact component={Schedule} />
       <Route path="/taxes" exact component={Taxes} />

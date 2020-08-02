@@ -1,18 +1,11 @@
 import {
   QUEST_COLLAPSE_CATEGORY,
   QUEST_FACTION,
-  QUEST_FILTER_CONTINENT,
-  QUEST_FILTER_REWARD,
-  QUEST_FILTER_TYPE,
   QUEST_HIDE,
   QUEST_HIDE_CATEGORY,
   QUEST_HIDE_COMPLETED,
-  QUEST_HIDE_MODE,
-  QUEST_HIDE_RESET,
   QUEST_LAST_VISIT,
   QUEST_REGION,
-  QUEST_RESET,
-  QUEST_RESET_FILTERS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -21,16 +14,11 @@ import moment from 'moment-timezone';
 export const triggerLocalStorageUpdate = [
   QUEST_COLLAPSE_CATEGORY,
   QUEST_FACTION,
-  QUEST_FILTER_CONTINENT,
-  QUEST_FILTER_REWARD,
-  QUEST_FILTER_TYPE,
   QUEST_HIDE,
   QUEST_HIDE_CATEGORY,
   QUEST_HIDE_COMPLETED,
-  QUEST_HIDE_RESET,
   QUEST_LAST_VISIT,
   QUEST_REGION,
-  QUEST_RESET,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 ];
@@ -43,14 +31,6 @@ export const triggerLocalStorageUpdate = [
  */
 export const setQuestStatus = (questId, completed) => (dispatch) => {
   dispatch({ type: QUEST_STATUS, questId, completed });
-};
-
-/**
- * @deprecated
- * @returns {function(...[*]=)}
- */
-export const resetQuests = () => (dispatch) => {
-  dispatch({ type: QUEST_RESET });
 };
 
 /**
@@ -81,31 +61,6 @@ export const setQuestRegion = (region) => (dispatch) => {
 };
 
 /**
- * @deprecated
- * @returns {function}
- */
-export const filterContinents = (values) => (dispatch) => {
-  dispatch({ type: QUEST_FILTER_CONTINENT, values });
-};
-
-/**
- * @deprecated
- * @param values
- * @returns {function}
- */
-export const filterRewards = (values) => (dispatch) => {
-  dispatch({ type: QUEST_FILTER_REWARD, values });
-};
-
-/**
- * @deprecated
- * @returns {function(...[*]=)}
- */
-export const filterTypes = (values) => (dispatch) => {
-  dispatch({ type: QUEST_FILTER_TYPE, values });
-};
-
-/**
  * Sets the hide status of a quest.
  * @param questId{number} quest id
  * @param hidden{boolean} hide status
@@ -113,30 +68,6 @@ export const filterTypes = (values) => (dispatch) => {
  */
 export const setQuestHide = (questId, hidden) => (dispatch) => {
   dispatch({ type: QUEST_HIDE, questId, hidden });
-};
-
-/**
- * @deprecated
- * @returns {function(...[*]=)}
- */
-export const setHideMode = (value) => (dispatch) => {
-  dispatch({ type: QUEST_HIDE_MODE, value });
-};
-
-/**
- * @deprecated
- * @returns {function(...[*]=)}
- */
-export const resetHide = () => (dispatch) => {
-  dispatch({ type: QUEST_HIDE_RESET });
-};
-
-/**
- * @deprecated
- * @returns {function(...[*]=)}
- */
-export const resetFilters = () => (dispatch) => {
-  dispatch({ type: QUEST_RESET_FILTERS });
 };
 
 /**

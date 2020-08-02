@@ -1,18 +1,11 @@
 import {
   QUEST_COLLAPSE_CATEGORY,
   QUEST_FACTION,
-  QUEST_FILTER_CONTINENT,
-  QUEST_FILTER_REWARD,
-  QUEST_FILTER_TYPE,
   QUEST_HIDE,
   QUEST_HIDE_CATEGORY,
   QUEST_HIDE_COMPLETED,
-  QUEST_HIDE_MODE,
-  QUEST_HIDE_RESET,
   QUEST_LAST_VISIT,
   QUEST_REGION,
-  QUEST_RESET,
-  QUEST_RESET_FILTERS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -41,20 +34,10 @@ const dailies = (state = getItem('dailies', initialState), action) => {
         quests,
       };
     }
-    case QUEST_RESET:
-      return {
-        ...state,
-        quests: {},
-      };
     case QUEST_HIDE_COMPLETED:
       return {
         ...state,
         hideComplete: action.hideCompleted,
-      };
-    case QUEST_FILTER_CONTINENT:
-      return {
-        ...state,
-        continents: action.values,
       };
     case QUEST_FACTION:
       return {
@@ -65,16 +48,6 @@ const dailies = (state = getItem('dailies', initialState), action) => {
       return {
         ...state,
         region: action.region,
-      };
-    case QUEST_FILTER_REWARD:
-      return {
-        ...state,
-        rewards: action.values,
-      };
-    case QUEST_FILTER_TYPE:
-      return {
-        ...state,
-        types: action.values,
       };
     case QUEST_HIDE: {
       const hiddenQuests = { ...state.hiddenQuests };
@@ -88,23 +61,6 @@ const dailies = (state = getItem('dailies', initialState), action) => {
         hiddenQuests,
       };
     }
-    case QUEST_HIDE_MODE:
-      return {
-        ...state,
-        hideMode: action.value,
-      };
-    case QUEST_HIDE_RESET:
-      return {
-        ...state,
-        hiddenQuests: {},
-      };
-    case QUEST_RESET_FILTERS:
-      return {
-        ...state,
-        continents: [],
-        rewards: [],
-        types: [],
-      };
     case QUEST_HIDE_CATEGORY: {
       const hiddenCategories = { ...state.hiddenCategories };
       if (action.hidden) {

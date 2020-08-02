@@ -1,3 +1,3 @@
-import Dailies from './Dailies';
+import Dailies from './DailyTracker';
 
 export default Dailies;
