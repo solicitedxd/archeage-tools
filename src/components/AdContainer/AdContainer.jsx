@@ -5,16 +5,19 @@ import {
   bool,
   oneOf,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
 import { prepAd } from 'utils/display';
 
 class AdContainer extends Component {
   static propTypes = {
     type: oneOf(['vertical', 'horizontal', 'square', 'feed']).isRequired,
     section: bool,
+    hideAds: bool,
   };
 
   static defaultProps = {
     section: true,
+    hideAds: false,
   };
 
   // eslint-disable-next-line no-unused-vars
@@ -23,7 +26,11 @@ class AdContainer extends Component {
   }
 
   render() {
-    const { type, section } = this.props;
+    const { type, section, hideAds } = this.props;
+
+    if (hideAds) {
+      return <></>;
+    }
 
     const adProps = {
       className: 'adsbygoogle',
@@ -62,4 +69,8 @@ class AdContainer extends Component {
   }
 }
 
-export default AdContainer;
+const mapStateToProps = ({ display: { hideAds } }) => ({
+  hideAds,
+});
+
+export default connect(mapStateToProps)(AdContainer);
