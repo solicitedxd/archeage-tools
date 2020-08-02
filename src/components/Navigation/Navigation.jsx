@@ -98,6 +98,9 @@ class Navigation extends Component {
       session.avatarSrc = defaultAvatar;
     }
     switch (session.avatarSrc) {
+      case null:
+        session.avatarPlatform = null;
+        break;
       case patreonAvatar:
         session.avatarPlatform = 'patreon';
         break;

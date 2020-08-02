@@ -1,7 +1,7 @@
 export const SET_ITEM_PRICE = 'SET_ITEM_PRICE';
 
 export const CURRENCY = Object.freeze({
-  COIN: 'Coin',
+  COIN: 'Coins',
   GILDA: 'Gilda Stars',
   HONOR: 'Honor Points',
   VOCATION: 'Vocation Badges',
@@ -158,4 +158,6 @@ export const ITEM = Object.freeze({
   BLAZING_CLOUDSPUN_FABRIC: 28971,
   TERRITORY_PENCE: 40229,
   TERRITORY_RESOURCE_COIN: 48133,
+  LOYALTY_TOKEN: 39314,
+  LOGIN_BADGE: 8000641,
 });

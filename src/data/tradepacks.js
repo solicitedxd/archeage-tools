@@ -1902,6 +1902,8 @@ export default Object.freeze({
       [PACK_TYPE.DISGUISED]: {
         name: 'Disguised Auroria Mineral Water',
         item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        materials: [{ item: 49245, quantity: 5 }, { item: 49244, quantity: 5 }, { item: 49243, quantity: 5 },
+          { item: ITEM.TERRITORY_COIN, quantity: 3 }],
         sell: {
           [ZONE.FREEDICH_ISLAND]: 36,
         },
@@ -1914,6 +1916,8 @@ export default Object.freeze({
       [PACK_TYPE.DISGUISED]: {
         name: 'Disguised Auroria Mineral Water',
         item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        materials: [{ item: 49245, quantity: 5 }, { item: 49244, quantity: 5 }, { item: 49243, quantity: 5 },
+          { item: ITEM.TERRITORY_COIN, quantity: 3 }],
         sell: {
           [ZONE.FREEDICH_ISLAND]: 36,
         },
@@ -1926,6 +1930,8 @@ export default Object.freeze({
       [PACK_TYPE.DISGUISED]: {
         name: 'Disguised Flaming Log Bundle',
         item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        materials: [{ item: 49245, quantity: 5 }, { item: 49244, quantity: 5 }, { item: 49243, quantity: 5 },
+          { item: ITEM.TERRITORY_COIN, quantity: 3 }],
         sell: {
           [ZONE.FREEDICH_ISLAND]: 37,
         },
@@ -1938,6 +1944,8 @@ export default Object.freeze({
       [PACK_TYPE.DISGUISED]: {
         name: 'Disguised Flaming Log Bundle',
         item: ITEM.ONYX_ARCHEUM_ESSENCE,
+        materials: [{ item: 49245, quantity: 5 }, { item: 49244, quantity: 5 }, { item: 49243, quantity: 5 },
+          { item: ITEM.TERRITORY_COIN, quantity: 3 }],
         sell: {
           [ZONE.FREEDICH_ISLAND]: 38,
         },

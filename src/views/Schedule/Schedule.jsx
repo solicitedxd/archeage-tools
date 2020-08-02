@@ -1,6 +1,7 @@
 import {
   AppBar,
   CircularProgress,
+  FormControl,
   IconButton,
   MenuItem,
   Paper,
@@ -415,15 +416,17 @@ class Schedule extends Component {
                 {moment.tz(moment.tz.guess()).format('z')} Schedule
               </Typography>
               {!mobile && <InGameTime mobile={mobile} />}
-              <Select
-                id="region-select"
-                value={region}
-                onChange={(e) => setRegion(e.target.value)}
-                className="region-opt"
-              >
-                <MenuItem disabled divider dense>Region:</MenuItem>
-                {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
-              </Select>
+              <FormControl className="color-white">
+                <Select
+                  id="region-select"
+                  value={region}
+                  onChange={(e) => setRegion(e.target.value)}
+                  className="region-opt"
+                >
+                  <MenuItem disabled divider dense>Region:</MenuItem>
+                  {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
+                </Select>
+              </FormControl>
               <Tooltip title="Clear all alerts">
                 <span>
                   <IconButton disabled={!hasAlerts} onClick={clearAlerts} color="inherit">

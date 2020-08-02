@@ -1,16 +1,12 @@
-import { FACTION } from 'constants/map';
-
 export default {
   quests: {},
-  continents: [],
-  faction: FACTION.NUIA,
+  faction: 1,
+  region: 'NA',
   rewards: [],
-  types: [],
   hideComplete: false,
-  hideMode: false,
   hiddenQuests: {},
+  hiddenCategories: {},
+  showHidden: false,
+  collapsedCategories: {},
+  lastVisit: null,
 };
-
-export const override = ({
-  hideMode: false,
-});

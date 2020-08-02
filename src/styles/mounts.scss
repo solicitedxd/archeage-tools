@@ -14,6 +14,10 @@
   & > *.filter-field {
     flex: 5.2;
     overflow: auto;
+
+    .MuiButton-root .dropdown-icon {
+      padding-bottom: 21px;
+    }
   }
 
   & > *.small {

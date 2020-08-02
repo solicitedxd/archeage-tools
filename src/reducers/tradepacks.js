@@ -1,4 +1,5 @@
 import {
+  SET_AH_CUT,
   SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
@@ -116,6 +117,14 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
               [action.item]: action.value,
             },
           },
+        },
+      };
+    case SET_AH_CUT:
+      return {
+        ...state,
+        ahCut: {
+          ...state.ahCut,
+          [action.itemId]: action.cut,
         },
       };
     case TRADE_PACK_RESET:

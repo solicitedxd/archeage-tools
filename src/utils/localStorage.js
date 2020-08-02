@@ -1,9 +1,7 @@
-import { override as dailiesOverride } from 'initialStates/dailies';
 import { override as displayOverride } from 'initialStates/display';
 import { override as sessionOverride } from 'initialStates/session';
 
 const overrides = {
-  dailies: dailiesOverride,
   display: displayOverride,
   session: sessionOverride,
 };

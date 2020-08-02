@@ -743,3 +743,29 @@ blockquote cite:before {
 html {
   -webkit-text-size-adjust: 100%;
 }
+
+.MuiFormControl-root.color-white, .MuiAutocomplete-root.color-white {
+  .MuiFormLabel-root {
+    color: rgba(255, 255, 255, 0.7);
+
+    &.Mui-focused {
+      color: #FFFFFF;
+    }
+  }
+
+  .MuiInputBase-root {
+    color: #FFFFFF;
+
+    .MuiSelect-icon {
+      color: #FFFFFF;
+    }
+
+    &.MuiInput-underline:before {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.7);
+    }
+  }
+
+  .MuiIconButton-label {
+    color: #FFFFFF;
+  }
+}

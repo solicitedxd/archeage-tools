@@ -3,14 +3,23 @@ import config from 'config';
 import {
   DATA_CATEGORIES,
   DATA_CROP,
+  DATA_DOODAD,
   DATA_EVENT_REPLACE,
   DATA_EVENT_TYPES,
   DATA_EVENTS,
+  DATA_FESTIVALS,
+  DATA_INSTANCES,
   DATA_ITEM,
   DATA_MOUNTS,
+  DATA_NPC,
+  DATA_QUEST,
+  DATA_QUEST_DAILIES,
+  DATA_QUESTCAT,
+  DATA_QUESTREF,
   DATA_RECIPE,
   DATA_SKILL,
   DATA_SKILLSETS,
+  DATA_TITLE,
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
@@ -362,4 +371,221 @@ export const fetchMounts = () => (dispatch, getState) => {
     .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
   })
   .catch(() => dispatch(setNotification('Failed to fetch mount data.', NOTIFICATION_TYPE.WARNING)));
+};
+
+/** Quest Batching **/
+
+let questQueue = new Set();
+
+const fetchQuestQueue = debounce(() => {
+  dispatch(fetchQuests(Array.from(questQueue)));
+  questQueue = new Set();
+}, 50);
+
+export const fetchQuest = (questId) => {
+  if (!questId || questId === 'undefined') return;
+  questQueue.add(questId);
+
+  fetchQuestQueue();
+};
+
+export const fetchQuests = (...quests) => (dispatch, getState) => {
+  const { quests: storedQuests, questCategories, rewardTypes } = getState().gameData;
+
+  if (!objectHasProperties(questCategories)) {
+    dispatch(fetchQuestCategories());
+  }
+
+  if (!objectHasProperties(rewardTypes)) {
+    dispatch(fetchQuestRefData());
+  }
+
+  let questIds = Array.isArray(quests[0]) ? new Set(quests[0]) : new Set(quests);
+  // filter out already fetched quests
+  questIds = Array.from(questIds).filter(id => !storedQuests[id]);
+  const chunk = 100;
+  for (let i = 0, j = questIds.length; i < j; i += chunk) {
+    const questIdStr = questIds.slice(i, i + chunk).join(',');
+
+    xhr.get(substitute(config.endpoints.service.quest, { questIds: questIdStr }))
+    .then(({ data }) => {
+      dispatch({ type: DATA_QUEST, quests: arrayToMap(data) });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch quest data.', NOTIFICATION_TYPE.WARNING));
+    });
+  }
+};
+
+export const fetchQuestCategories = () => (dispatch, getState) => {
+  const { questCategories } = getState().gameData;
+
+  if (objectHasProperties(questCategories)) return;
+
+  xhr.get(config.endpoints.service.questCategories)
+  .then(({ data }) => {
+    dispatch({ type: DATA_QUESTCAT, questCategories: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch quest category data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchQuestRefData = () => (dispatch, getState) => {
+  const { rewardTypes } = getState().gameData;
+
+  if (objectHasProperties(rewardTypes)) return;
+
+  xhr.get(config.endpoints.service.questRefData)
+  .then(({ data: { rewardTypes, criteriaTypes } }) => {
+    dispatch({ type: DATA_QUESTREF, rewardTypes: arrayToMap(rewardTypes), criteriaTypes: arrayToMap(criteriaTypes) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch quest reference data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchDailyQuests = () => (dispatch) => {
+  xhr.get(config.endpoints.service.questDailies)
+  .then(({ data: categories }) => {
+    let quests = [];
+    categories.forEach(cat => {
+      quests = quests.concat(cat.quests);
+      cat.quests = cat.quests.map(q => q.id);
+    });
+    dispatch({ type: DATA_QUEST, quests: arrayToMap(quests) });
+    dispatch({ type: DATA_QUEST_DAILIES, dailies: categories });
+  })
+  .catch((e) => {
+    dispatch(setNotification('Failed to fetch daily quest data.', NOTIFICATION_TYPE.WARNING));
+    console.error(e);
+  });
+};
+
+export const fetchInstances = () => (dispatch) => {
+  xhr.get(config.endpoints.service.instances)
+  .then(({ data }) => {
+    dispatch({ type: DATA_INSTANCES, instances: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch instance data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchFestivals = () => (dispatch) => {
+  xhr.get(config.endpoints.service.festivals)
+  .then(({ data }) => {
+    dispatch({ type: DATA_FESTIVALS, festivals: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch festival data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+/** Title Batching **/
+
+let titleQueue = new Set();
+
+const fetchTitleQueue = debounce(() => {
+  dispatch(fetchTitles(Array.from(titleQueue)));
+  titleQueue = new Set();
+}, 50);
+
+export const fetchTitle = (titleId) => {
+  if (!titleId || titleId === 'undefined') return;
+  titleQueue.add(titleId);
+
+  fetchTitleQueue();
+};
+
+export const fetchTitles = (...titles) => (dispatch, getState) => {
+  const { titles: storedTitles } = getState().gameData;
+
+  let titleIds = Array.isArray(titles[0]) ? new Set(titles[0]) : new Set(titles);
+  // filter out already fetched titles
+  titleIds = Array.from(titleIds).filter(id => !storedTitles[id]);
+  const chunk = 100;
+  for (let i = 0, j = titleIds.length; i < j; i += chunk) {
+    const titleIdStr = titleIds.slice(i, i + chunk).join(',');
+
+    xhr.get(substitute(config.endpoints.service.title, { titleIds: titleIdStr }))
+    .then(({ data }) => {
+      dispatch({ type: DATA_TITLE, titles: arrayToMap(data) });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch title data.', NOTIFICATION_TYPE.WARNING));
+    });
+  }
+};
+
+/** NPC Batching **/
+
+let npcQueue = new Set();
+
+const fetchNpcQueue = debounce(() => {
+  dispatch(fetchNpcs(Array.from(npcQueue)));
+  npcQueue = new Set();
+}, 50);
+
+export const fetchNpc = (npcId) => {
+  if (!npcId || npcId === 'undefined') return;
+  npcQueue.add(npcId);
+
+  fetchNpcQueue();
+};
+
+export const fetchNpcs = (...npcs) => (dispatch, getState) => {
+  const { npcs: storedNpcs } = getState().gameData;
+
+  let npcIds = Array.isArray(npcs[0]) ? new Set(npcs[0]) : new Set(npcs);
+  // filter out already fetched npcs
+  npcIds = Array.from(npcIds).filter(id => !storedNpcs[id]);
+  const chunk = 100;
+  for (let i = 0, j = npcIds.length; i < j; i += chunk) {
+    const npcIdStr = npcIds.slice(i, i + chunk).join(',');
+
+    xhr.get(substitute(config.endpoints.service.npc, { npcIds: npcIdStr }))
+    .then(({ data }) => {
+      dispatch({ type: DATA_NPC, npcs: arrayToMap(data) });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch npc data.', NOTIFICATION_TYPE.WARNING));
+    });
+  }
+};
+
+/** Doodad Batching **/
+
+let doodadQueue = new Set();
+
+const fetchDoodadQueue = debounce(() => {
+  dispatch(fetchDoodads(Array.from(doodadQueue)));
+  doodadQueue = new Set();
+}, 50);
+
+export const fetchDoodad = (doodadId) => {
+  if (!doodadId || doodadId === 'undefined') return;
+  doodadQueue.add(doodadId);
+
+  fetchDoodadQueue();
+};
+
+export const fetchDoodads = (...doodads) => (dispatch, getState) => {
+  const { doodads: fetchedDoodads } = getState().gameData;
+
+  let doodadIds = Array.isArray(doodads[0]) ? new Set(doodads[0]) : new Set(doodads);
+  // filter out already fetched doodads
+  doodadIds = Array.from(doodadIds).filter(id => !fetchedDoodads[id]);
+  const chunk = 100;
+  for (let i = 0, j = doodadIds.length; i < j; i += chunk) {
+    const doodadIdStr = doodadIds.slice(i, i + chunk).join(',');
+
+    xhr.get(substitute(config.endpoints.service.doodad, { doodadIds: doodadIdStr }))
+    .then(({ data }) => {
+      dispatch({ type: DATA_DOODAD, doodads: arrayToMap(data) });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch doodad data.', NOTIFICATION_TYPE.WARNING));
+    });
+  }
 };

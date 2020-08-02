@@ -1,4 +1,5 @@
 import {
+  SET_AH_CUT,
   SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
@@ -16,6 +17,7 @@ import {
 import { validateQuantity } from 'utils/string';
 
 export const triggerLocalStorageUpdate = [
+  SET_AH_CUT,
   SET_CONTINENT,
   SET_OUTLET,
   SET_CRAFT_LARDER,
@@ -83,4 +85,9 @@ export const setTransportationQuantity = (originZone, sellZone, item) => (dispat
 
 export const resetSettings = () => (dispatch) => {
   dispatch({ type: TRADE_PACK_RESET });
+};
+
+export const setAHCut = (itemId) => (dispatch) => (e, cut) => {
+  cut = Number.parseInt(cut);
+  dispatch({ type: SET_AH_CUT, itemId, cut });
 };

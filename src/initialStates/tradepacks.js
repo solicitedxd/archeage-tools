@@ -12,4 +12,5 @@ export default {
   supply: {},
   transportationQty: {},
   war: {},
+  ahCut: {},
 };

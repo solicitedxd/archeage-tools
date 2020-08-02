@@ -4,7 +4,7 @@
 .MuiTooltip-tooltip.archeage-tooltip {
   font-family: "Flareserif821BT-Roman", "Nanum Gothic", "Arial", sans-serif;
   width: 216px;
-  background: rgba(113, 110, 83, 0.95);
+  background: rgba(90, 88, 66, 0.95);
   color: #D7C8B5;
   padding: 16px;
   border-radius: 3px;
@@ -13,6 +13,10 @@
 
   &.spell-tooltip {
     width: 262px;
+  }
+
+  &.quest-tooltip {
+    width: 300px;
   }
 
   border: 1px solid #757548;
@@ -37,7 +41,7 @@
     font-size: 13px;
   }
 
-  section + section:before, section.id:after {
+  section + section:not(.header):before, section.id:after {
     content: "";
     display: block;
     height: 0;
@@ -73,7 +77,6 @@
 
   .icon {
     margin: 0 8px 2px 0;
-    background-color: #AD9D7F;
     vertical-align: middle;
   }
 
@@ -123,7 +126,7 @@
       font-size: 12px;
 
       &:after {
-        top: 3px;
+        top: -1px;
       }
     }
 
@@ -194,7 +197,47 @@
   }
 
   .currency {
-    color: #6D4916;
+    color: #65AAE8;
+  }
+
+  &.quest-tooltip {
+    .icon img {
+      width: 48px;
+    }
+
+    .quest-flag {
+      align-self: center;
+      margin-left: 6px;
+      flex-shrink: 0;
+    }
+
+    .reward-header {
+      font-size: 14px;
+    }
+
+    .reward-option {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .stage-criteria {
+      margin: 4px 0;
+      font-size: 13px;
+    }
+
+    .reward-list {
+      margin: 2px 0;
+      font-size: 13px;
+
+      .currency {
+        font-size: 13px;
+        padding-right: 16px;
+      }
+
+      .currency:after {
+        zoom: 0.8;
+      }
+    }
   }
 }
 
@@ -208,6 +251,10 @@
 
   .icon {
     background-color: transparent;
+  }
+
+  .currency {
+    color: #4D9BDC;
   }
 }
 
