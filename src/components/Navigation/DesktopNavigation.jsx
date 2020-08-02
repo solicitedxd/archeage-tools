@@ -13,10 +13,13 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
   openDialog,
   setDarkMode,
+  setHideAds,
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
@@ -49,17 +52,15 @@ class DesktopNavigation extends Component {
     userMenu: object,
     myAccountUrl: string,
     openDialog: func.isRequired,
+    setHideAds: func.isRequired,
+    hideAds: bool,
   };
 
   static defaultProps = {
     mobile: false,
     darkMode: false,
     userMenu: null,
-  };
-
-  handleDarkMode = () => {
-    const { darkMode, setDarkMode } = this.props;
-    setDarkMode(!darkMode);
+    hideAds: false,
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -80,7 +81,7 @@ class DesktopNavigation extends Component {
   }
 
   render() {
-    const { mobile, setMobile, darkMode, menuItems, session, myAccountUrl, openDialog } = this.props;
+    const { mobile, setMobile, darkMode, setDarkMode, menuItems, session, myAccountUrl, openDialog, hideAds, setHideAds } = this.props;
 
     return (
       <>
@@ -120,15 +121,25 @@ class DesktopNavigation extends Component {
             {menuItems}
             <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
             <Divider />
-            <MenuItem onClick={this.handleDarkMode}>
-              {darkMode ? 'Light' : 'Dark'} Mode
-              {darkMode ? <BrightnessHighIcon className="menu-icon-right" /> : <Brightness4Icon
-                className="menu-icon-right" />}
+            <MenuItem onClick={() => setDarkMode(!darkMode)}>
+              <div className="menu-item-icon">
+                <span>{darkMode ? 'Light' : 'Dark'} Mode</span>
+                {darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}
+              </div>
             </MenuItem>
             {isMobileBrowser() &&
             <MenuItem onClick={() => setMobile(true)}>
-              Switch to Mobile <PhoneIphoneIcon className="menu-icon-right" />
+              <div className="menu-item-icon">
+                <span>Switch to Mobile</span>
+                <PhoneIphoneIcon />
+              </div>
             </MenuItem>}
+            <MenuItem onClick={() => setHideAds(!hideAds)}>
+              <div className="menu-item-icon">
+                <span>{hideAds ? 'Show' : 'Hide'} Ads</span>
+                {hideAds ? <VisibilityIcon /> : <VisibilityOffIcon />}
+              </div>
+            </MenuItem>
           </>
         </NavMenu>
       </>
@@ -144,6 +155,7 @@ const mapDispatchToProps = {
   setDarkMode,
   setMobile,
   openDialog,
+  setHideAds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DesktopNavigation);

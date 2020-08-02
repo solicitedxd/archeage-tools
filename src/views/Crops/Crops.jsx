@@ -27,6 +27,7 @@ import {
 } from 'actions/crops';
 import { fetchCropItems } from 'actions/gameData';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
 import {
   CLIMATE_REGEX,
@@ -385,6 +386,7 @@ class Crops extends Component {
             </TableBody>
           </Table>
         </Paper>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

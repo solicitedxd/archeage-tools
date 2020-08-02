@@ -105,8 +105,15 @@ footer.site-footer {
   }
 }
 
-.menu-icon-right {
-  margin-left: 8px;
+.menu-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+
+  .MuiSvgIcon-root {
+    margin-left: 8px;
+  }
 }
 
 .avatar {

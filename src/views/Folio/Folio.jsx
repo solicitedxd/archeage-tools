@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fetchCategories } from 'actions/gameData';
 import { push } from 'actions/navigate';
+import AdContainer from 'components/AdContainer';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
@@ -164,6 +165,7 @@ class Folio extends Component {
               </div>
             </Paper>
           </div>}
+        <AdContainer type="horizontal" />
       </>
     );
   }

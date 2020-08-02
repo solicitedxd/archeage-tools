@@ -36,6 +36,7 @@ import {
   setWar,
 } from 'actions/tradepacks';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import {
@@ -341,6 +342,7 @@ class TradePacks extends Component {
           open={open}
           onClose={this.onCloseCalculator}
         />
+        <AdContainer type="horizontal" />
       </div>
     );
   }

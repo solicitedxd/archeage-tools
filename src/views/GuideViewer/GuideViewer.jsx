@@ -10,6 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
+import AdContainer from 'components/AdContainer';
 import KeyComponent from 'components/KeyComponent';
 import Link from 'components/Link';
 import ScrollToTop from 'components/ScrollToTop';
@@ -89,9 +90,9 @@ class GuideViewer extends Component {
       <div className="guide-container">
         <div className="section">
           <div className="guide-viewer">
-            {guideData.sections.map((section, sId) =>
-              (
-                <Paper key={`${slug(guideData.name)}-s${sId}`} id={`${slug(section.title)}`}>
+            {guideData.sections.map((section, sId) => (
+              <React.Fragment key={`${slug(guideData.name)}-s${sId}`}>
+                <Paper id={`${slug(section.title)}`}>
                   {section.tabContent &&
                   <TabContent title={section.title} tabs={section.tabContent} />}
                   {!section.tabContent && section.paragraphs &&
@@ -113,6 +114,9 @@ class GuideViewer extends Component {
                     </div>
                   </>}
                 </Paper>
+                {sId === Math.floor(guideData.sections.length / 2) - 1 && guideData.sections.length > 3 &&
+                <AdContainer type="feed" />}
+              </React.Fragment>
               ),
             )}
           </div>
@@ -142,6 +146,7 @@ class GuideViewer extends Component {
             </Paper>
           </Sticky>}
         </div>
+        <AdContainer type="horizontal" />
         <ScrollToTop />
         {mobile &&
         <Fab
