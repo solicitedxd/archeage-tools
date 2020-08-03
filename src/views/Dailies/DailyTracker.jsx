@@ -437,20 +437,26 @@ class DailyTracker extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, gameData: { dailyQuests, festivals, instances, quests, events }, dailies: { faction, showHidden, hideComplete, region, quests: completedQuests, lastVisit } }) => ({
-  mobile,
-  region: region || 'NA',
-  dailyQuests,
-  festivals,
-  instances,
-  quests,
-  faction,
-  showHidden,
-  hideComplete,
-  events,
-  completedQuests,
-  lastVisit,
-});
+const mapStateToProps = ({ display: { mobile }, gameData: { dailyQuests, festivals, instances, quests, events }, dailies: { faction, showHidden, hideComplete, region, quests: completedQuests = {}, lastVisit } }) => {
+  if (typeof faction === 'string') {
+    faction = 1;
+  }
+
+  return {
+    mobile,
+    region: region || 'NA',
+    dailyQuests,
+    festivals,
+    instances,
+    quests,
+    faction,
+    showHidden,
+    hideComplete,
+    events,
+    completedQuests,
+    lastVisit,
+  };
+};
 
 const mapDispatchToProps = {
   fetchDailyQuests,

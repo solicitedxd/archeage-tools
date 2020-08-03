@@ -151,16 +151,16 @@ const mapStateToProps = ({ dailies: { collapsedCategories, hiddenCategories, hid
   }
 
   return ({
-    collapsed: pathOr(false, [id])(collapsedCategories) === true,
-    hidden: pathOr(false, [id])(hiddenCategories) === true && !showHidden,
-    isHidden: pathOr(false, [id])(hiddenCategories) === true,
+    collapsed: pathOr(false, [id])(collapsedCategories || {}) === true,
+    hidden: pathOr(false, [id])(hiddenCategories || {}) === true && !showHidden,
+    isHidden: pathOr(false, [id])(hiddenCategories || {}) === true,
     hideComplete,
     showHidden,
-    completedQuests: Object.keys(completedQuests).filter(key => quests.includes(Number.parseInt(key))).reduce((obj, key) => {
+    completedQuests: Object.keys(completedQuests || {}).filter(key => quests.includes(Number.parseInt(key))).reduce((obj, key) => {
       obj[key] = completedQuests[key];
       return obj;
     }, {}),
-    hiddenQuests: Object.keys(hiddenQuests).filter(key => quests.includes(Number.parseInt(key))).reduce((obj, key) => {
+    hiddenQuests: Object.keys(hiddenQuests || {}).filter(key => quests.includes(Number.parseInt(key))).reduce((obj, key) => {
       obj[key] = hiddenQuests[key];
       return obj;
     }, {}),
