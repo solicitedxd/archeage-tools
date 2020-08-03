@@ -33,6 +33,7 @@ import {
   fetchQuestRefData,
 } from 'actions/gameData';
 import AdContainer from 'components/AdContainer';
+import ScrollToTop from 'components/ScrollToTop';
 import {
   FACTIONS,
   FLAG_DAILY,
@@ -431,6 +432,7 @@ class DailyTracker extends Component {
             />
           ))}
         </div>}
+        <ScrollToTop />
         <AdContainer type="horizontal" />
       </div>
     );
