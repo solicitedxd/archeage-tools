@@ -29,7 +29,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import 'styles/index';
-import { injectAdsense } from 'utils/display';
+import { watchAdStyle } from 'utils/display';
 
 class Main extends React.PureComponent {
   static propTypes = {
@@ -116,17 +116,9 @@ class Main extends React.PureComponent {
       fetchMe();
     }
 
-    injectAdsense();
-
     // prevent adsense from applying height to content wrapper
-    let wrapper = document.getElementById('content-wrapper');
-    const observer = new MutationObserver((() => {
-      wrapper.style.height = '';
-      wrapper.style.minHeight = '';
-    }));
-    observer.observe(wrapper, {
-      attributes: true,
-      attributeFilter: ['style'],
+    window.ready('.content-wrapper, .MuiDialog-container', (element) => {
+      watchAdStyle(element);
     });
   }
 
@@ -161,7 +153,7 @@ class Main extends React.PureComponent {
               <Navigation />
             </div>
           </header>
-          <div id="content-wrapper" className={cn('content-wrapper', { mobile })}>
+          <div className={cn('content-wrapper', { mobile })}>
             {children}
           </div>
           <footer className="site-footer">

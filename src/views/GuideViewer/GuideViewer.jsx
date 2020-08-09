@@ -144,6 +144,7 @@ class GuideViewer extends Component {
                 ))}
               </div>
             </Paper>
+            <AdContainer type="square" />
           </Sticky>}
         </div>
         <AdContainer type="horizontal" />

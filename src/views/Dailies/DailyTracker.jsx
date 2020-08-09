@@ -188,6 +188,13 @@ class DailyTracker extends Component {
       return w;
     }));
 
+    const adCount = 8;
+    const categoryCount = categories.length;
+    for (let i = 0; i < adCount; i++) {
+      const pos = (Math.floor(categoryCount / adCount) * (i + 1)) + i;
+      categories.splice(pos, 0, 'ad');
+    }
+
     this.setState({ categories, weeklyIds }, () => {
       this.handleResize();
       this.calculateDailyReset();
@@ -424,13 +431,22 @@ class DailyTracker extends Component {
         {categories.length > 0 &&
         <div className="section daily-grid" ref={this.ref}>
           {categories
-          .map(questCat => (
-            <DailyCategory
-              key={`quest-cat-${questCat.id}`}
-              onUpdate={this._handleResize}
-              {...questCat}
-            />
-          ))}
+          .map((questCat, i) => {
+            if (questCat === 'ad') {
+              return (
+                <div className="daily-category" key={`quest-ad-${i}`}>
+                  <AdContainer section={false} content={true} type="feed" />
+                </div>
+              );
+            }
+            return (
+              <DailyCategory
+                key={`quest-cat-${questCat.id}`}
+                onUpdate={this._handleResize}
+                {...questCat}
+              />
+            );
+          })}
         </div>}
         <ScrollToTop />
         <AdContainer type="horizontal" />

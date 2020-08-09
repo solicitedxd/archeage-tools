@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Link from 'components/Link';
 import SkillIcon from 'components/Skill/SkillIcon';
 import MOUNT from 'data/mounts';
@@ -96,6 +97,7 @@ class MountViewer extends Component {
         open={open}
         onClose={this.onClose}
         maxWidth="lg"
+        fullScreen={mobile}
       >
         <AppBar position="static">
           <Toolbar variant="dense">
@@ -192,6 +194,7 @@ class MountViewer extends Component {
                 : <Typography component="div">Details to obtain this mount have not yet been added.</Typography>}
           </div>
         </DialogContent>
+        <AdContainer section={false} type="horizontal-fixed" />
       </Dialog>
     );
   }
