@@ -10,10 +10,10 @@ import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import { fetchCategories } from 'actions/gameData';
 import { push } from 'actions/navigate';
-import AdContainer from 'components/AdContainer';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
+  array,
   bool,
   func,
   object,
@@ -36,10 +36,10 @@ class Folio extends Component {
   static propTypes = {
     fetchCategories: func.isRequired,
     match: object.isRequired,
-    params: object.isRequired,
+    params: object,
     vocation: string,
     recipeId: string,
-    vocations: object.isRequired,
+    vocations: array,
     mobile: bool.isRequired,
     items: object.isRequired,
     categories: object.isRequired,
@@ -165,7 +165,6 @@ class Folio extends Component {
               </div>
             </Paper>
           </div>}
-        <AdContainer type="horizontal" />
       </>
     );
   }

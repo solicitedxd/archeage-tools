@@ -188,9 +188,18 @@ class DailyTracker extends Component {
       return w;
     }));
 
+    const adCount = 8;
+    const categoryCount = categories.length;
+    for (let i = 0; i < adCount; i++) {
+      const pos = (Math.floor(categoryCount / adCount) * (i + 1)) + i;
+      categories.splice(pos, 0, 'ad');
+    }
+
     this.setState({ categories, weeklyIds }, () => {
       this.handleResize();
       this.calculateDailyReset();
+
+      setTimeout(this.handleResize, 5000);
     });
   };
 
@@ -252,13 +261,14 @@ class DailyTracker extends Component {
     const grid = document.getElementsByClassName('daily-grid')[0];
     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    const rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap)) + item.style.marginBottom;
-    item.style.gridRowEnd = 'span ' + rowSpan;
+    const contentElement = item.querySelector('.content');
+    if (contentElement) {
+      const rowSpan = Math.ceil((contentElement.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap)) + item.style.marginBottom;
+      item.style.gridRowEnd = 'span ' + rowSpan;
+    }
   };
 
   handleResize = () => {
-    // const { width } = this.ref.current.getBoundingClientRect();
-    // this.setState({ width });
     const allItems = document.getElementsByClassName('daily-category');
     for (let i = 0; i < allItems.length; i++) {
       this.resizeGridItem(allItems[i]);
@@ -424,13 +434,22 @@ class DailyTracker extends Component {
         {categories.length > 0 &&
         <div className="section daily-grid" ref={this.ref}>
           {categories
-          .map(questCat => (
-            <DailyCategory
-              key={`quest-cat-${questCat.id}`}
-              onUpdate={this._handleResize}
-              {...questCat}
-            />
-          ))}
+          .map((questCat, i) => {
+            if (questCat === 'ad') {
+              return (
+                <div className="daily-category" key={`quest-ad-${i}`}>
+                  <AdContainer section={false} content={true} type="feed" />
+                </div>
+              );
+            }
+            return (
+              <DailyCategory
+                key={`quest-cat-${questCat.id}`}
+                onUpdate={this._handleResize}
+                {...questCat}
+              />
+            );
+          })}
         </div>}
         <ScrollToTop />
         <AdContainer type="horizontal" />

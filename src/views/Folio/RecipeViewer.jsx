@@ -34,6 +34,7 @@ import {
 import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
@@ -67,7 +68,6 @@ class RecipeViewer extends Component {
     handleClose: func,
     onSizeChange: func,
     recipes: object.isRequired,
-    fetchRecipe: func.isRequired,
     fetchRecipeByCategory: func.isRequired,
     updateFolioInventory: func.isRequired,
     updateFolioMaterials: func.isRequired,
@@ -450,6 +450,7 @@ class RecipeViewer extends Component {
               ))}
             </Collapse>
           </div>
+          <AdContainer type="horizontal" data-id={recipeId} />
           <Divider />
           <div className="material-breakdown">
             <div className="material-header">
@@ -521,19 +522,25 @@ class RecipeViewer extends Component {
               </TableBody>
             </Table>
           </div>
-          {recipe.item && items[recipe.item] && !items[recipe.item].bindsOnPickup &&
+          {recipe.item && items[recipe.item] &&
           <>
             <Divider />
             <div className="material-breakdown">
               <div className="material-header">
-                <Typography variant="h6">Crafting Profits</Typography>
+                <Typography variant="h6" style={{ display: 'inline-block' }}>Crafting Profits</Typography>
+                {items[recipe.item].bindsOnPickup &&
+                <Typography
+                  variant="body2"
+                  style={{ placeSelf: 'start', flex: 1, marginLeft: 6 }}
+                >
+                  (Binds on Pickup)
+                </Typography>}
               </div>
               <Table size={mobile ? 'medium' : 'small'}>
                 <TableHead>
                   <TableRow>
-                    <TableCell width={20} />
-                    <TableCell align="right">Gold per unit</TableCell>
-                    <TableCell align="right">AH Cut</TableCell>
+                    <TableCell>Gold per unit</TableCell>
+                    <TableCell>AH Cut</TableCell>
                     <TableCell />
                     <TableCell />
                   </TableRow>
@@ -541,19 +548,9 @@ class RecipeViewer extends Component {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <ItemLink
-                        id={recipe.item}
-                        grade={recipe.grade}
-                        noLink
-                        name=""
-                        count={quantity * recipe.quantity}
-                        style={{ whiteSpace: 'nowrap' }}
-                      />
-                    </TableCell>
-                    <TableCell align="right">
                       <ItemPrice itemId={recipe.item} unitSize={1} />
                     </TableCell>
-                    <TableCell align="right">
+                    <TableCell>
                       <Tooltip title={<Typography variant="subtitle1">10% Auction Cut</Typography>}>
                         <Checkbox
                           checked={auctionCut === String(STANDARD_AH_CUT)}
@@ -580,7 +577,7 @@ class RecipeViewer extends Component {
                     </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell colSpan={3} />
+                    <TableCell colSpan={2} />
                     <TableCell align="right">Profit:</TableCell>
                     <TableCell align="right">
                       <Currency type={CURRENCY.COIN} count={(salePrice - totalGold)} />
@@ -588,7 +585,7 @@ class RecipeViewer extends Component {
                   </TableRow>
                   {craftLabor > 0 &&
                   <TableRow>
-                    <TableCell colSpan={3} />
+                    <TableCell colSpan={2} />
                     <TableCell align="right">Silver per Labor:</TableCell>
                     <TableCell align="right">
                       <Currency type={CURRENCY.COIN} count={(salePrice - totalGold) / craftLabor} />
