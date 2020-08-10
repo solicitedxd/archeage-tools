@@ -198,6 +198,8 @@ class DailyTracker extends Component {
     this.setState({ categories, weeklyIds }, () => {
       this.handleResize();
       this.calculateDailyReset();
+
+      setTimeout(this.handleResize, 5000);
     });
   };
 
@@ -259,13 +261,14 @@ class DailyTracker extends Component {
     const grid = document.getElementsByClassName('daily-grid')[0];
     const rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
     const rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-    const rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap)) + item.style.marginBottom;
-    item.style.gridRowEnd = 'span ' + rowSpan;
+    const contentElement = item.querySelector('.content');
+    if (contentElement) {
+      const rowSpan = Math.ceil((contentElement.getBoundingClientRect().height + rowGap) / (rowHeight + rowGap)) + item.style.marginBottom;
+      item.style.gridRowEnd = 'span ' + rowSpan;
+    }
   };
 
   handleResize = () => {
-    // const { width } = this.ref.current.getBoundingClientRect();
-    // this.setState({ width });
     const allItems = document.getElementsByClassName('daily-category');
     for (let i = 0; i < allItems.length; i++) {
       this.resizeGridItem(allItems[i]);

@@ -13,7 +13,7 @@ const RELOAD_TIME = 60 * 20;
 
 class AdContainer extends Component {
   static propTypes = {
-    type: oneOf(['vertical', 'horizontal', 'horizontal-fixed', 'square', 'feed']).isRequired,
+    type: oneOf(['vertical', 'horizontal', 'square', 'feed']).isRequired,
     section: bool,
     content: bool,
     hideAds: bool,
@@ -46,6 +46,12 @@ class AdContainer extends Component {
     return !equals(nextProps, this.props) || !equals(nextProps, this.state);
   }
 
+  componentDidUpdate(prevProps) {
+    if (!equals(prevProps, this.props)) {
+      this.setState({ elapsedTime: 0 });
+    }
+  }
+
   doTick = () => {
     const { elapsedTime } = this.state;
     this.setState({ elapsedTime: elapsedTime + 1 });
@@ -55,7 +61,7 @@ class AdContainer extends Component {
     const { type, section, content, hideAds } = this.props;
     const { elapsedTime } = this.state;
 
-    if (hideAds || (elapsedTime > 0 && elapsedTime % RELOAD_TIME === 0)) {
+    if (hideAds || elapsedTime % RELOAD_TIME === 0) {
       return <></>;
     }
 
@@ -74,13 +80,11 @@ class AdContainer extends Component {
         adProps['data-ad-slot'] = '2929018380';
         break;
       case 'horizontal':
-        adProps['data-ad-slot'] = '3169170468';
-        break;
-      case 'horizontal-fixed':
         adProps['data-ad-slot'] = '3199298892';
-        adProps.style = { display: 'block', width: 728, height: 90 };
+        adProps.style = { display: 'block', height: 90 };
         delete adProps['data-ad-format'];
-        style.margin = 'auto';
+        style.marginLeft = 'auto';
+        style.marginRight = 'auto';
         delete style.width;
         break;
       case 'square':
@@ -96,7 +100,7 @@ class AdContainer extends Component {
         return (<></>);
     }
 
-    if (elapsedTime === 0 || (elapsedTime > 1 && elapsedTime % RELOAD_TIME === 1)) {
+    if (elapsedTime === 1 || (elapsedTime > 1 && elapsedTime % RELOAD_TIME === 1)) {
       prepAd();
     }
 

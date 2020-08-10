@@ -691,7 +691,7 @@ class PackViewer extends Component {
               </TableBody>
             </Table>
           </div>
-          <AdContainer section={false} type="horizontal-fixed" />
+          <AdContainer section={false} type="horizontal" />
         </DialogContent>
       </Dialog>
     );

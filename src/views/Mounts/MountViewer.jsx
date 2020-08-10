@@ -194,7 +194,7 @@ class MountViewer extends Component {
                 : <Typography component="div">Details to obtain this mount have not yet been added.</Typography>}
           </div>
         </DialogContent>
-        <AdContainer section={false} type="horizontal-fixed" />
+        <AdContainer section={false} type="horizontal" />
       </Dialog>
     );
   }
