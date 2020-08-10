@@ -262,7 +262,10 @@
   font-size: 15px;
   color: #6D4916;
   padding-right: 19px;
-  display: inline-block;
+
+  &.currency {
+    display: inline-block;
+  }
 
   &:not(.no-icon):after {
     content: "";
