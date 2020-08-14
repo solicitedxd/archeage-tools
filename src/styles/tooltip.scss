@@ -200,6 +200,23 @@
     color: #65AAE8;
   }
 
+  .set-items {
+    display: flex;
+    margin: 2px 4px 4px;
+    width: 168px;
+    flex-wrap: wrap;
+  }
+
+  .set-effects {
+    margin: 0;
+    padding-inline-start: 12px;
+
+    li {
+      list-style: none;
+      font-size: 13px;
+    }
+  }
+
   &.quest-tooltip {
     .icon img {
       width: 48px;

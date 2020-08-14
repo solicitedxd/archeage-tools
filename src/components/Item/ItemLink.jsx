@@ -30,6 +30,7 @@ class ItemLink extends Component {
     count: 1,
     style: {},
     noLink: false,
+    name: null,
   };
 
   state = {};
@@ -38,11 +39,15 @@ class ItemLink extends Component {
     const { id, item, plural, count, style, noLink, name } = this.props;
 
     let text = '';
+    let width = 80;
     if (count > 1) {
       text += `${count} `;
     }
-    if (name) {
+    if (name !== null) {
       text += name;
+      if (name === '') {
+        width = 20;
+      }
     } else {
       text += item.name;
       if (count !== 1 || plural !== null) {
@@ -51,7 +56,7 @@ class ItemLink extends Component {
     }
 
     if (!item.icon) {
-      text = <Skeleton variant="text" style={{ display: 'inline-block', marginLeft: 4, width: 80 }} />;
+      text = <Skeleton variant="text" style={{ display: 'inline-block', marginLeft: 4, width }} />;
     }
 
     if (noLink) {

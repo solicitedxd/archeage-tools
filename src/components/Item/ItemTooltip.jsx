@@ -4,9 +4,11 @@ import {
 } from '@material-ui/core';
 import cn from 'classnames';
 import Currency from 'components/Currency';
+import ItemLink from 'components/Item/ItemLink';
 import {
   CURRENCY,
   GRADE_NAME,
+  STAT_MULTIPLIERS,
 } from 'constants/items';
 import React from 'react';
 import {
@@ -17,8 +19,12 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { maxDecimalsFloor } from 'utils/number';
 import { substituteVars } from 'utils/skills';
-import { transformLines } from 'utils/string';
+import {
+  encodeColors,
+  transformLines,
+} from 'utils/string';
 
 // eslint-disable-next-line complexity
 const TooltipContent = (item) => {
@@ -27,11 +33,44 @@ const TooltipContent = (item) => {
     return <div />;
   }
 
-  const { name, icon, type, bindsOnPickup, overlay, remainingTime, reqLevel, salvageable, equip } = item;
-  const { slot, attackSpeed, weaponType, minDamage, maxDamage, magicAttack, healingPower, additionalEffect, petLevel, maxGrade, synthesisGrade, synthesisXp, durability, tempering, bindsOnEquip, stats } = equip || {};
+  const { name, icon, type, bindsOnPickup, overlay, remainingTime, reqLevel, salvageable, equip, itemSet } = item;
+  const { slot, attackSpeed, weaponType, additionalEffect, petLevel, maxGrade, synthesisGrade, synthesisXp, tempering, bindsOnEquip, stats } = equip || {};
+  let { minDamage, maxDamage, magicAttack, healingPower, durability } = equip || {};
   const { description, useEffect } = item;
   const { comboEffect, equipEffect } = equip || {};
+
+  // based on grade, let's modify stats
   const grade = item.grade || item.defaultGrade;
+  // modify dps
+  if (minDamage) {
+    minDamage *= STAT_MULTIPLIERS.DPS[grade];
+  }
+  if (maxDamage) {
+    maxDamage *= STAT_MULTIPLIERS.DPS[grade];
+  }
+  if (magicAttack) {
+    magicAttack *= STAT_MULTIPLIERS.DPS[grade];
+  }
+  if (healingPower) {
+    healingPower *= STAT_MULTIPLIERS.DPS[grade];
+  }
+
+  if (stats) {
+    stats.forEach(stat => {
+      if (stat.name === 'Physical Defense' || stat.name === 'Magic Defense') {
+        stat.value *= STAT_MULTIPLIERS.ARMOR[grade];
+      } else {
+        stat.value *= STAT_MULTIPLIERS.OTHER[grade];
+      }
+    });
+  }
+
+  // durability
+  if (durability) {
+    durability *= STAT_MULTIPLIERS.DURABILITY[grade];
+  }
+
+  // modify price
   let price = item.price;
   if (item.defaultGrade !== 1) {
     if (item.defaultGrade === 0) {
@@ -79,21 +118,25 @@ const TooltipContent = (item) => {
       <section>
         <p>{slot}</p>
         {attackSpeed > 0 && <p><span className="text-gray">Attack Speed</span> {attackSpeed.toFixed(1)}</p>}
-        {durability > 0 && <p><span className="text-gray">Dura</span> {durability}/{durability}</p>}
+        {durability > 0 &&
+        <p><span className="text-gray">Dura</span> {Math.floor(durability)}/{Math.floor(durability)}</p>}
         {weaponType && <p><span className="text-gray">{weaponType}</span> Weapon Type</p>}
       </section>}
       {((minDamage > 0 && maxDamage > 0 && attackSpeed > 0) || magicAttack > 0 || healingPower > 0 || (stats && stats.length > 0)) &&
       <section>
         {minDamage > 0 && maxDamage > 0 && attackSpeed > 0 &&
         <p>
-          <span
-            className="text-gray">DPS</span> {Math.round((minDamage + maxDamage) / 2 / attackSpeed * 10) / 10} ({minDamage} - {maxDamage})
+          <span className="text-gray">DPS</span>&nbsp;
+          {Math.floor((minDamage + maxDamage) / 2 / attackSpeed * 10) / 10} ({Math.floor(minDamage)} - {Math.floor(maxDamage)})
         </p>}
-        {magicAttack > 0 && <p><span className="text-gray">Magic Attack</span> +{magicAttack}</p>}
-        {healingPower > 0 && <p><span className="text-gray">Healing Power</span> +{healingPower}</p>}
-        {stats && stats.map(({ name, value }) => (
-          <p key={name}><span className="text-gray">{name}</span> {value}</p>
-        ))}
+        {magicAttack > 0 && <p><span className="text-gray">Magic Attack</span> +{Math.floor(magicAttack)}</p>}
+        {healingPower > 0 && <p><span className="text-gray">Healing Power</span> +{Math.floor(healingPower)}</p>}
+        {stats && stats.map(({ name, value }) => {
+          const precision = (['Move Speed', 'Cast Time'].includes(name)) ? 1 : 0;
+          return (
+            <p key={name}><span className="text-gray">{name}</span> {maxDecimalsFloor(value, precision)}</p>
+          );
+        })}
       </section>}
       {(maxGrade || synthesisGrade || tempering || salvageable) &&
       <section>
@@ -145,6 +188,22 @@ const TooltipContent = (item) => {
           </p>
           <p className="text-green" dangerouslySetInnerHTML={{ __html: substituteVars(equipEffect, vars) }} />
         </>}
+      </section>}
+      {itemSet &&
+      <section>
+        <p className="text-yellow">{itemSet.name} ({itemSet.items.length})</p>
+        <p className="set-items">
+          {itemSet.items.map(itemId => <ItemLink id={itemId} noLink name="" key={`${item.id}-set-${itemId}`} />)}
+        </p>
+        <p className="text-dark_green">Set Effect</p>
+        <ul className="set-effects">
+          {itemSet.effects.map(effect => (
+            <li
+              key={`${item.id}-eqp-${effect.equipCount}`}
+              dangerouslySetInnerHTML={{ __html: `(${effect.equipCount}Set) ${encodeColors(effect.effectText)}` }}
+            />
+          ))}
+        </ul>
       </section>}
       <section>
         {price > 0

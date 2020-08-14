@@ -70,6 +70,18 @@
     background-image: url('../images/item/packing.png');
   }
 
+  &.erenor:before {
+    background-image: url(../images/item/top_seal_ipnir.png);
+  }
+
+  &.erenor2:before {
+    background-image: url(../images/item/top_seal_ipnir_2.png);
+  }
+
+  &.leviathan {
+    background-image: url(../images/item/top_leviathan.png);
+  }
+
   &.inline {
     display: inline-block;
     cursor: help;
