@@ -1547,10 +1547,100 @@ const MOUNT = [
   {
     name: 'Onyx Steed',
     upgrade: 'Gallant Onyx Steed',
+    obtainText:
+      <>
+        <p>This mount can be crafted at your faction's castle Territory Crafting Workebench.</p>
+        <p>Crafting an Onyx Steed will require the following materials:</p>
+        <ul>
+          <li>
+            <ItemLink id={ITEM.BLUE_SALT_BOND} count={150} noLink />
+            <ul>
+              <li><i>Acquired from dailies at community centers. On Unchained, from occasional Equipment Pass
+                rewards.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.TERRITORY_COIN} count={160} noLink />
+            <ul>
+              <li><i>Acquired from combining <ItemLink id={ITEM.TERRITORY_PENCE} count={100} plural="" /> from territory
+                daily quests.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_SUNRIDGE_INGOT} count={10} noLink />
+            <ul>
+              <li><i>The highest tier of ingot. Can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_WIND_SPIRIT_LEATHER} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of leather; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_CLOUDSPUN_FABRIC} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of fabric; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_NURI_FOREST_LUMBER} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of lumber; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+        </ul>
+      </>,
   },
   {
     name: 'Pearl Steed',
     upgrade: 'Gallant Pearl Steed',
+    obtainText:
+      <>
+        <p>This mount can be crafted at your faction's castle Territory Crafting Workebench.</p>
+        <p>Crafting an Onyx Steed will require the following materials:</p>
+        <ul>
+          <li>
+            <ItemLink id={ITEM.BLUE_SALT_BOND} count={150} noLink />
+            <ul>
+              <li><i>Acquired from dailies at community centers. On Unchained, from occasional Equipment Pass
+                rewards.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.TERRITORY_COIN} count={160} noLink />
+            <ul>
+              <li><i>Acquired from combining <ItemLink id={ITEM.TERRITORY_PENCE} count={100} plural="" /> from territory
+                daily quests.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_SUNRIDGE_INGOT} count={10} noLink />
+            <ul>
+              <li><i>The highest tier of ingot. Can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_WIND_SPIRIT_LEATHER} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of leather; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_CLOUDSPUN_FABRIC} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of fabric; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+          <li>
+            <ItemLink id={ITEM.BLAZING_NURI_FOREST_LUMBER} count={10} plural="" noLink />
+            <ul>
+              <li><i>The highest tier of lumber; can be crafted or traded.</i></li>
+            </ul>
+          </li>
+        </ul>
+      </>,
   },
   {
     name: 'Mechanical Kraken',
@@ -1674,9 +1764,62 @@ const MOUNT = [
     name: 'Noble Blossomhoof',
     obtainText:
       <>
-        <p>On Legacy, this mount can be obtained from purchasing the Garden of the Gods Archeum Pack.</p>
+        <p>On Legacy, this mount was previously obtainable by purchasing the Garden of the Gods Archeum Pack, which is
+          no longer available.</p>
         <p>On Unchained, this mount can be obtained from purchasing the Garden of the Gods Archeum DLC Pack.<br />
           <i>Note that this version comes with a reduced skill set.</i></p>
+      </>,
+  },
+  {
+    name: 'Gallant Onyx Steed',
+    obtainText:
+      <>
+        <p>This mount can be obtained by using a <ItemLink id={47385} /> (purchased for <Currency
+          type={CURRENCY.KYRIOS} count={8000} />) on an <Link to={'/mounts/onyx-steed'}>Onyx Steed</Link>.</p>
+      </>,
+  },
+  {
+    name: 'Gallant Pearl Steed',
+    obtainText:
+      <>
+        <p>This mount can be obtained by using a <ItemLink id={47385} /> (purchased for <Currency
+          type={CURRENCY.KYRIOS} count={8000} />) on a <Link to={'/mounts/pearl-steed'}>Pearl Steed</Link>.</p>
+      </>,
+  },
+  {
+    name: 'Alabaster Steed',
+    upgrade: 'Gallant Alabaster Steed',
+    obtainText:
+      <>
+        <p>This mount can be purchased for <Currency type={CURRENCY.KYRIOS} count={5000} /> from the Arena Shop.</p>
+      </>,
+  },
+  {
+    name: 'Gallant Alabaster Steed',
+    obtainText:
+      <>
+        <p>This mount can be obtained by using a <ItemLink id={47385} /> (purchased for <Currency
+          type={CURRENCY.KYRIOS} count={8000} />) on an <Link to={'/mounts/alabaster-steed'}>Alabaster Steed</Link>.</p>
+      </>,
+  },
+  {
+    name: 'Hellwraith Kirin',
+    obtainText:
+      <>
+        <p>On Legacy, this mount comes as a part of the <ItemLink id={8003601} />, which can only be purchased
+          for <Currency type={CURRENCY.CREDIT} count={12000} /> until August 16, 2020.</p>
+        <p>On Unchanined, this mount comes as a part of the <ItemLink id={8003602} /> as a "juvenile" with no skills,
+          which can only be purchased for <Currency type={CURRENCY.CREDIT} count={10000} /> until August 16, 2020.</p>
+        <p>There is speculation that the juvenile can be upgraded into a regular with <ItemLink id={8003599} />,
+          but this item is not available yet.</p>
+      </>,
+  },
+  {
+    name: 'Gloomwraith Kirin',
+    obtainText:
+      <>
+        <p>On Legacy, this mount is obtainable by purchasing the Ipnysh Sanctuary Archeum Pack.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
       </>,
   },
 ];
