@@ -6,6 +6,7 @@ import {
   SET_FRESHNESS,
   SET_INTEREST,
   SET_OUTLET,
+  SET_PACK_REGION,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_QUANTITY,
@@ -19,11 +20,12 @@ import { validateQuantity } from 'utils/string';
 export const triggerLocalStorageUpdate = [
   SET_AH_CUT,
   SET_CONTINENT,
-  SET_OUTLET,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
   SET_FRESHNESS,
   SET_INTEREST,
+  SET_OUTLET,
+  SET_PACK_REGION,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_QUANTITY,
@@ -32,6 +34,15 @@ export const triggerLocalStorageUpdate = [
   SET_WAR,
   TRADE_PACK_RESET,
 ];
+
+/**
+ * Sets the publisher region for trade pack prices.
+ * @param region{string} region code
+ * @returns {function} redux dispatch call
+ */
+export const setPackRegion = (region) => (dispatch) => {
+  dispatch({ type: SET_PACK_REGION, region });
+};
 
 export const setContinent = (e, continent) => (dispatch) => {
   dispatch({ type: SET_CONTINENT, continent });

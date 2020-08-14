@@ -12,7 +12,9 @@ import {
   FormControlLabel,
   IconButton,
   InputLabel,
+  MenuItem,
   Paper,
+  Select,
   Slider,
   Tab,
   Table,
@@ -32,6 +34,7 @@ import {
   resetSettings,
   setContinent,
   setOutlet,
+  setPackRegion,
   setPercentage,
   setWar,
 } from 'actions/tradepacks';
@@ -49,8 +52,10 @@ import {
   CONTINENT_PACKS,
   NO_FRESHNESS,
   OUTLET_ZONE,
+  PACK_REGIONS,
 } from 'constants/tradepacks';
-import TRADE_PACKS from 'data/tradepacks';
+import TRADE_PACKS_NA from 'data/tradepacks/na';
+import TRADE_PACKS_SEA from 'data/tradepacks/sea';
 import React, { Component } from 'react';
 import {
   bool,
@@ -77,9 +82,13 @@ class TradePacks extends Component {
     percentage: number,
     war: object,
     outlet: number,
+    region: string,
+    setPackRegion: func.isRequired,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    region: 'NA',
+  };
 
   state = {
     reset: false,
@@ -117,9 +126,11 @@ class TradePacks extends Component {
   };
 
   render() {
-    const { mobile, continent, percentage, war, outlet } = this.props;
-    const { setPercentage, setWar, openDialog } = this.props;
+    const { mobile, continent, percentage, war, outlet, region } = this.props;
+    const { setPercentage, setWar, openDialog, setPackRegion } = this.props;
     const { reset, open, packType, originZone } = this.state;
+
+    const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
 
     let continentZones = [];
     if (continent === CARGO) {
@@ -146,7 +157,7 @@ class TradePacks extends Component {
         <Paper className="section">
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h5" className="title-text">Trade Pack Calculator</Typography>
+              <Typography variant={mobile ? 'h6' : 'h5'} className="title-text">Trade Pack Calculator</Typography>
               <Tooltip title="Configure Proficiency">
                 <IconButton color="inherit" aria-label="Proficiencies" onClick={() => openDialog(DIALOG_PROFICIENCY)}>
                   <ListAltIcon />
@@ -157,13 +168,30 @@ class TradePacks extends Component {
                   <ReplayIcon />
                 </IconButton>
               </Tooltip>
+              <FormControl className="color-white">
+                <InputLabel id="region-label">Publisher</InputLabel>
+                <Select
+                  labelId="region-label"
+                  id="region-select"
+                  value={region}
+                  onChange={(e) => setPackRegion(e.target.value)}
+                  className="region-opt"
+                >
+                  {Object.entries(PACK_REGIONS).map(([region, publisher]) => (
+                    <MenuItem key={`region-${region}`} value={region}>{publisher}</MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
             </Toolbar>
           </AppBar>
           <div className="tradepack-settings">
             <FormControl className="select-group">
               <InputLabel className="group-label" shrink>Pack Continent</InputLabel>
               <ButtonGroup>
-                {Object.keys(CONTINENT_PACKS).map(contName => (
+                {Object.keys(CONTINENT_PACKS)
+                // only show auroria to NA
+                .filter(c => c !== CONTINENT.AURORIA.name || region === 'NA')
+                .map(contName => (
                   <Button
                     key={`cont-${contName}`}
                     variant={continent === contName ? 'contained' : 'outlined'}
@@ -176,6 +204,17 @@ class TradePacks extends Component {
                 ))}
               </ButtonGroup>
             </FormControl>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  color="primary"
+                  checked={war[sellZone] || false}
+                  onChange={setWar(sellZone)}
+                  disabled={continent === CARGO || outlet !== 2}
+                />
+              }
+              label="War (+15%)"
+            />
             <div className="pack-percentage">
               <InputLabel shrink style={{ marginBottom: 6 }}>Pack Demands: {percentage}%</InputLabel>
               <Slider
@@ -206,6 +245,8 @@ class TradePacks extends Component {
             <Button color="primary" onClick={this.handleReset}>Confirm</Button>
           </DialogActions>
         </Dialog>
+        {mobile &&
+        <AdContainer type="horizontal" />}
         <Paper className="section">
           <AppBar position="static" color="primary">
             <Toolbar variant="dense">
@@ -221,16 +262,6 @@ class TradePacks extends Component {
               </Tabs>}
               {continent === CARGO &&
               <Typography variant="subtitle1" className="title-text">Cargo</Typography>}
-              {continent !== CARGO && outlet === 2 &&
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={war[sellZone] || false}
-                    onChange={setWar(sellZone)}
-                  />
-                }
-                label="War (+15%)"
-              />}
             </Toolbar>
           </AppBar>
           <div style={{ overflow: 'auto' }}>
@@ -252,7 +283,7 @@ class TradePacks extends Component {
               </TableHead>
               <TableBody>
                 {continentZones.map(zone => {
-                  const zonePacks = TRADE_PACKS[zone] || { packs: {} };
+                  const zonePacks = tradePackData[zone] || { packs: {} };
                   const freshness = zonePacks.freshness;
                   return (
                     <TableRow
@@ -329,6 +360,8 @@ class TradePacks extends Component {
               <FreshnessBlip freshness="Commercial" />
               <FreshnessBlip freshness="Preserved" />
             </>}
+            {continent === CONTINENT.AURORIA.name &&
+            <FreshnessBlip freshness="Disguised" />}
             <Typography variant="overline">
               Prices shown at {percentage}% demand with high profit{war[sellZone] ? ' and +15% war bonus' : ''}. 2%
               interest is not shown.
@@ -348,12 +381,13 @@ class TradePacks extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, war, outlet } }) => ({
+const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, war, outlet, region } }) => ({
   mobile,
   continent,
   outlet,
   percentage,
   war,
+  region,
 });
 
 const mapDispatchToProps = {
@@ -363,6 +397,7 @@ const mapDispatchToProps = {
   setWar,
   resetSettings,
   openDialog,
+  setPackRegion,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TradePacks);

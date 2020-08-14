@@ -13,4 +13,5 @@ export default {
   transportationQty: {},
   war: {},
   ahCut: {},
+  region: 'NA',
 };

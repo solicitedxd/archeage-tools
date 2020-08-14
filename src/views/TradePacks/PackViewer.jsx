@@ -42,6 +42,7 @@ import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import NumberField from 'components/NumberField';
+import OptionalTooltip from 'components/OptionalTooltip';
 import SelectField from 'components/SelectField';
 import { CURRENCY } from 'constants/items';
 import {
@@ -59,6 +60,7 @@ import {
   CARGO,
   CARGO_OUTLET,
   CARGO_SUPPLY,
+  FRESHNESS,
   LARDER_HARVEST_LABOR,
   NO_FRESHNESS,
   OUTLET_ZONE,
@@ -67,7 +69,8 @@ import {
   SELL_LABOR,
   TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
-import TRADE_PACKS from 'data/tradepacks';
+import TRADE_PACKS_NA from 'data/tradepacks/na';
+import TRADE_PACKS_SEA from 'data/tradepacks/sea';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
@@ -76,6 +79,7 @@ import {
   number,
   object,
   oneOf,
+  string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 
@@ -89,8 +93,9 @@ const getZonePrefix = (zone) => {
   return zone.split(' ')[0];
 };
 
-const getPackRecipe = ({ originZone, packType }) => {
-  const recipeId = pathOr(null, [originZone, 'packs', packType, 'recipeId'])(TRADE_PACKS);
+const getPackRecipe = ({ originZone, packType, region }) => {
+  const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
+  const recipeId = pathOr(null, [originZone, 'packs', packType, 'recipeId'])(tradePackData);
   return recipeId === null ? AGED_PACK_RECIPE[packType] || null : recipeId;
 };
 
@@ -127,12 +132,14 @@ class PackViewer extends Component {
     calculateLabor: func.isRequired,
     ahCut: object,
     setAHCut: func.isRequired,
+    region: string,
   };
 
   static defaultProps = {
     originZone: null,
     packType: null,
     sellZone: null,
+    region: 'NA',
   };
 
   state = {
@@ -158,19 +165,21 @@ class PackViewer extends Component {
 
   // eslint-disable-next-line complexity
   render() {
-    const { open, onClose, originZone, packType, sellZone, recipe } = this.props;
+    const { open, onClose, originZone, packType, sellZone, recipe, region } = this.props;
     const { transportExpand, unitSize } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war, ahCut } = this.props;
     const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut } = this.props;
 
     // do nothing if value is missing
     if (originZone === null || packType === null || sellZone === null) return null;
+    const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
 
     // spread the costs into the pack details first, to allow individual packs to overwrite costs
-    const pack = pathOr({}, [originZone, 'packs', packType])(TRADE_PACKS);
-    const freshness = pathOr({}, [originZone, 'freshness'])(TRADE_PACKS);
+    const pack = pathOr({}, [originZone, 'packs', packType])(tradePackData);
+    const freshness = pathOr({}, [originZone, 'freshness'])(tradePackData);
     const freshnessLevels = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'] || {};
-    const profitLevel = pathOr('HIGH', [originZone, packType, sellZone])(profitLevels);
+    const profitLevel = freshness.name === FRESHNESS.DISGUISED.name ? 'REGULAR' : pathOr('HIGH', [originZone, packType,
+      sellZone])(profitLevels);
     const supplyLevel = sellZone === CARGO && (supply[originZone] || Object.keys(CARGO_SUPPLY)[0]);
     const quantity = pathOr(1, [originZone, packType])(quantities);
 
@@ -598,20 +607,8 @@ class PackViewer extends Component {
                 }
                 label="Zone in War (+15%)"
               />}
-              {!pack.item
-                ? <Tooltip title={<Currency type={CURRENCY.COIN} count={interest} />}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={showInterest}
-                        onChange={setInterest}
-                        color="primary"
-                      />
-                    }
-                    label="Interest (+2%)"
-                  />
-                </Tooltip>
-                : <FormControlLabel
+              <OptionalTooltip title={!pack.item && <Currency type={CURRENCY.COIN} count={interest} />}>
+                <FormControlLabel
                   control={
                     <Checkbox
                       checked={showInterest}
@@ -620,7 +617,8 @@ class PackViewer extends Component {
                     />
                   }
                   label="Interest (+2%)"
-                />}
+                />
+              </OptionalTooltip>
             </div>
             <Table size="small" className="totals-table">
               <TableBody>
