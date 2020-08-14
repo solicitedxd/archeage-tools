@@ -545,7 +545,7 @@ export default Object.freeze({
         name: 'Ynystere Space-Time Fragment',
         recipeId: 10314,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 37.6694,
+          [ZONE.SOLIS_HEADLANDS]: 37.6695,
           [ZONE.VILLANELLE]: 34.1068,
         },
       },
@@ -611,7 +611,7 @@ export default Object.freeze({
         name: 'Rookborne Hide Rug',
         recipeId: 10315,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 48.9158,
+          [ZONE.SOLIS_HEADLANDS]: 48.9157,
           [ZONE.VILLANELLE]: 25.9383,
           [ZONE.YNYSTERE]: 24.9282,
         },
@@ -916,7 +916,7 @@ export default Object.freeze({
         recipeId: 6205,
         sell: {
           [ZONE.TWO_CROWNS]: 33.7826,
-          [ZONE.CINDERSTONE_MOOR]: 32.5661,
+          [ZONE.CINDERSTONE_MOOR]: 32.5662,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -969,7 +969,7 @@ export default Object.freeze({
         sell: {
           [ZONE.TWO_CROWNS]: 38.8415,
           [ZONE.SOLZREED_PENINSULA]: 35.3302,
-          [ZONE.CINDERSTONE_MOOR]: 40.3069,
+          [ZONE.CINDERSTONE_MOOR]: 40.3068,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1539,7 +1539,7 @@ export default Object.freeze({
         sell: {
           [ZONE.TWO_CROWNS]: 34.1963,
           [ZONE.SOLZREED_PENINSULA]: 36.4618,
-          [ZONE.CINDERSTONE_MOOR]: 35.6619,
+          [ZONE.CINDERSTONE_MOOR]: 35.6618,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1606,7 +1606,7 @@ export default Object.freeze({
         sell: {
           [ZONE.TWO_CROWNS]: 36.818,
           [ZONE.SOLZREED_PENINSULA]: 41.889,
-          [ZONE.CINDERSTONE_MOOR]: 38.2832,
+          [ZONE.CINDERSTONE_MOOR]: 38.2831,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1781,7 +1781,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.SPECIAL]: {
-        name: 'Karkasse Bulge',
+        name: 'Karkasse Bugle',
         recipeId: 10323,
         sell: {
           [ZONE.TWO_CROWNS]: 38.5782,
