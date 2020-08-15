@@ -78,8 +78,20 @@
     background-image: url(../images/item/top_seal_ipnir_2.png);
   }
 
-  &.leviathan {
+  &.leviathan:before {
     background-image: url(../images/item/top_leviathan.png);
+  }
+
+  &.chroma:before {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    top: 2px;
+    right: 3px;
+    left: auto;
+    border: 1px solid #000000;
+    box-shadow: 0 0 3px #000000;
   }
 
   &.inline {
@@ -114,6 +126,14 @@
         background-size: 18px;
         width: 18px;
         height: 18px;
+      }
+
+      &.chroma:before {
+        background-size: auto;
+        width: 2px;
+        height: 2px;
+        top: 1px;
+        right: 1px;
       }
     }
   }
