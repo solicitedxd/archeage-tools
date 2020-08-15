@@ -1809,7 +1809,7 @@ const MOUNT = [
         <p>On Legacy, this mount comes as a part of the <ItemLink id={8003601} />, which can only be purchased
           for <Currency type={CURRENCY.CREDIT} count={12000} /> until August 16, 2020.</p>
         <p>On Unchanined, this mount comes as a part of the <ItemLink id={8003602} /> as a "juvenile" with no skills,
-          which can only be purchased for <Currency type={CURRENCY.CREDIT} count={10000} /> until August 16, 2020.</p>
+          which can only be purchased for <Currency type={CURRENCY.CREDIT} count={10000} /> until August 27, 2020.</p>
         <p>There is speculation that the juvenile can be upgraded into a regular with <ItemLink id={8003599} />,
           but this item is not available yet.</p>
       </>,
