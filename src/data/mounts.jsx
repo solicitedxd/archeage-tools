@@ -1803,6 +1803,15 @@ const MOUNT = [
       </>,
   },
   {
+    name: 'Mistwraith Kirin',
+    itemName: 'Blue Stormwraith Kirin',
+    obtainText:
+      <>
+        <p>On Legacy, this mount was once obtainable from the Mistwraith Kirin Crate.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      </>,
+  },
+  {
     name: 'Hellwraith Kirin',
     obtainText:
       <>

@@ -185,7 +185,11 @@ class MountViewer extends Component {
           <div className="obtain">
             {mount.quote &&
             <blockquote>{mount.quote}</blockquote>}
-            <Typography variant="h6">Getting {mount.name}</Typography>
+            <Typography variant="h6">
+              Getting {mount.name}
+              {mountObtain && mountObtain.itemName &&
+              <Typography component="span"> ({mountObtain.itemName})</Typography>}
+            </Typography>
             {/* eslint-disable-next-line no-nested-ternary */}
             {((!mount.obtainIds || mount.obtainIds.length === 0) && !(mountObtain && mountObtain.obtainText))
               ? <Typography className="alert-red">This mount is currently unavailable.</Typography>

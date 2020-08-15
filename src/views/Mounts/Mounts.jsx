@@ -35,7 +35,9 @@ import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import SelectField from 'components/SelectField';
 import SkillIcon from 'components/Skill/SkillIcon';
+import MOUNT_OBTAIN from 'data/mounts';
 import NoPortrait from 'images/NoPortrait.png';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   bool,
@@ -148,7 +150,8 @@ class Mounts extends Component {
 
     const mounts = Object.entries(mountData).filter(([, mountList]) => {
       const [mount] = mountList;
-      if (search.length > 2 && mount.name.toLowerCase().indexOf(search.toLowerCase()) === -1) {
+      const mountObtain = MOUNT_OBTAIN.find(m => m.name === mount.name);
+      if (search.length > 2 && mount.name.toLowerCase().indexOf(search.toLowerCase()) === -1 && pathOr('', ['itemName'])(mountObtain).toLowerCase().indexOf(search.toLowerCase()) === -1) {
         return false;
       }
 
