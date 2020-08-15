@@ -63,6 +63,7 @@ import {
   FRESHNESS,
   LARDER_HARVEST_LABOR,
   NO_FRESHNESS,
+  NO_WAR_BONUS,
   OUTLET_ZONE,
   PACK_TYPE,
   SELL_CARGO_LABOR,
@@ -232,7 +233,7 @@ class PackViewer extends Component {
         packValue *= freshnessLevels[profitLevel].modifier;
       }
       // modify war bonus
-      if (war[sellZone]) {
+      if (war[sellZone] && !NO_WAR_BONUS.includes(packType)) {
         packValue *= 1.15;
       }
       interest = Math.round(packValue * .02 * 10000);
@@ -603,6 +604,7 @@ class PackViewer extends Component {
                     checked={war[sellZone] || false}
                     onChange={setWar(sellZone)}
                     color="primary"
+                    disabled={NO_WAR_BONUS.includes(packType)}
                   />
                 }
                 label="Zone in War (+15%)"

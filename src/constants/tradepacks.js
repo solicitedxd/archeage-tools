@@ -79,6 +79,10 @@ const REGULAR_PACK_TYPES = Object.freeze([
   PACK_TYPE.ANTIQUITIES,
 ]);
 
+export const NO_WAR_BONUS = Object.freeze([
+  PACK_TYPE.BLUE_SALT,
+]);
+
 export const FRESHNESS = Object.freeze({
   LUXURY: {
     name: 'Luxury',

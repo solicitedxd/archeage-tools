@@ -51,6 +51,7 @@ import {
   CARGO,
   CONTINENT_PACKS,
   NO_FRESHNESS,
+  NO_WAR_BONUS,
   OUTLET_ZONE,
   PACK_REGIONS,
 } from 'constants/tradepacks';
@@ -308,7 +309,7 @@ class TradePacks extends Component {
                             packValue *= packFreshness.HIGH.modifier;
                           }
                           // modify war bonus
-                          if (war[sellZone]) {
+                          if (war[sellZone] && !NO_WAR_BONUS.includes(packType)) {
                             packValue *= 1.15;
                           }
                           // round to fixed 4 decimal
