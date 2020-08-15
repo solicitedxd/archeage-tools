@@ -25,8 +25,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6214,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 35.4716,
-          [ZONE.VILLANELLE]: 35.4258,
+          [ZONE.SOLIS_HEADLANDS]: 31.9245,
+          [ZONE.VILLANELLE]: 32.946,
           [ZONE.YNYSTERE]: 40.6232,
         },
       },
@@ -83,8 +83,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6216,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 36.3463,
-          [ZONE.VILLANELLE]: 36.3001,
+          [ZONE.SOLIS_HEADLANDS]: 32.2084,
+          [ZONE.VILLANELLE]: 33.7591,
           [ZONE.YNYSTERE]: 41.4976,
         },
       },
@@ -128,8 +128,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11037,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 93.2792,
-          [ZONE.VILLANELLE]: 93.2193,
+          [ZONE.SOLIS_HEADLANDS]: 88.6152,
+          [ZONE.VILLANELLE]: 88.5583,
           [ZONE.YNYSTERE]: 95.1837,
         },
       },
@@ -149,8 +149,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9347,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 37.1424,
-          [ZONE.VILLANELLE]: 37.0964,
+          [ZONE.SOLIS_HEADLANDS]: 33.4282,
+          [ZONE.VILLANELLE]: 34.4996,
           [ZONE.YNYSTERE]: 42.2944,
         },
       },
@@ -207,8 +207,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6217,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 34.2737,
-          [ZONE.VILLANELLE]: 34.2277,
+          [ZONE.SOLIS_HEADLANDS]: 30.8463,
+          [ZONE.VILLANELLE]: 31.8318,
           [ZONE.YNYSTERE]: 39.4253,
         },
       },
@@ -265,8 +265,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6215,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 32.3630,
-          [ZONE.VILLANELLE]: 32.3171,
+          [ZONE.SOLIS_HEADLANDS]: 29.1268,
+          [ZONE.VILLANELLE]: 30.0548,
           [ZONE.YNYSTERE]: 37.5149,
         },
       },
@@ -310,8 +310,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11035,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 88.0827,
-          [ZONE.VILLANELLE]: 88.0228,
+          [ZONE.SOLIS_HEADLANDS]: 83.6786,
+          [ZONE.VILLANELLE]: 83.6215,
           [ZONE.YNYSTERE]: 94.8038,
         },
       },
@@ -330,7 +330,7 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6213,
         sell: {
-          [ZONE.VILLANELLE]: 34.6798,
+          [ZONE.VILLANELLE]: 31.2119,
           [ZONE.YNYSTERE]: 35.7619,
         },
       },
@@ -381,7 +381,7 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6219,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 34.6798,
+          [ZONE.SOLIS_HEADLANDS]: 30.5182,
           [ZONE.YNYSTERE]: 35.1977,
         },
       },
@@ -433,8 +433,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6218,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 37.3823,
-          [ZONE.VILLANELLE]: 32.7020,
+          [ZONE.SOLIS_HEADLANDS]: 33.6441,
+          [ZONE.VILLANELLE]: 30.4129,
           [ZONE.YNYSTERE]: 32.4957,
         },
       },
@@ -478,8 +478,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11036,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 94.6308,
-          [ZONE.VILLANELLE]: 88.5251,
+          [ZONE.SOLIS_HEADLANDS]: 88.4798,
+          [ZONE.VILLANELLE]: 86.7419,
           [ZONE.YNYSTERE]: 88.2557,
         },
       },
@@ -498,8 +498,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6223,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 35.7619,
-          [ZONE.VILLANELLE]: 35.1977,
+          [ZONE.SOLIS_HEADLANDS]: 32.1857,
+          [ZONE.VILLANELLE]: 32.7339,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -537,15 +537,15 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11042,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 92.5172,
-          [ZONE.VILLANELLE]: 91.7807,
+          [ZONE.SOLIS_HEADLANDS]: 87.8914,
+          [ZONE.VILLANELLE]: 87.1917,
         },
       },
       [PACK_TYPE.SPECIAL]: {
         name: 'Ynystere Space-Time Fragment',
         recipeId: 10314,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 37.6694,
+          [ZONE.SOLIS_HEADLANDS]: 37.6695,
           [ZONE.VILLANELLE]: 34.1068,
         },
       },
@@ -565,8 +565,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6222,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 40.8900,
-          [ZONE.VILLANELLE]: 36.0698,
+          [ZONE.SOLIS_HEADLANDS]: 35.7290,
+          [ZONE.VILLANELLE]: 32.5679,
           [ZONE.YNYSTERE]: 35.8571,
         },
       },
@@ -611,7 +611,7 @@ export default Object.freeze({
         name: 'Rookborne Hide Rug',
         recipeId: 10315,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 48.9158,
+          [ZONE.SOLIS_HEADLANDS]: 48.9157,
           [ZONE.VILLANELLE]: 25.9383,
           [ZONE.YNYSTERE]: 24.9282,
         },
@@ -632,8 +632,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6220,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 38.2522,
-          [ZONE.VILLANELLE]: 38.2062,
+          [ZONE.SOLIS_HEADLANDS]: 34.4269,
+          [ZONE.VILLANELLE]: 35.5319,
           [ZONE.YNYSTERE]: 40.3453,
         },
       },
@@ -699,8 +699,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6221,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 39.7172,
-          [ZONE.VILLANELLE]: 39.6716,
+          [ZONE.SOLIS_HEADLANDS]: 35.7454,
+          [ZONE.VILLANELLE]: 36.8946,
           [ZONE.YNYSTERE]: 39.3631,
         },
       },
@@ -744,8 +744,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11044,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 97.6775,
-          [ZONE.VILLANELLE]: 97.6174,
+          [ZONE.SOLIS_HEADLANDS]: 92.7937,
+          [ZONE.VILLANELLE]: 92.7366,
           [ZONE.YNYSTERE]: 97.2148,
         },
       },
@@ -782,8 +782,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6224,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 42.3719,
-          [ZONE.VILLANELLE]: 42.2717,
+          [ZONE.SOLIS_HEADLANDS]: 38.1348,
+          [ZONE.VILLANELLE]: 39.3127,
           [ZONE.YNYSTERE]: 42.0647,
         },
       },
@@ -857,8 +857,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9351,
         sell: {
-          [ZONE.SOLIS_HEADLANDS]: 40.3343,
-          [ZONE.VILLANELLE]: 37.3360,
+          [ZONE.SOLIS_HEADLANDS]: 36.3010,
+          [ZONE.VILLANELLE]: 34.7225,
           [ZONE.YNYSTERE]: 37.1299,
         },
       },
@@ -915,8 +915,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6205,
         sell: {
-          [ZONE.TWO_CROWNS]: 33.7826,
-          [ZONE.CINDERSTONE_MOOR]: 32.5661,
+          [ZONE.TWO_CROWNS]: 28.7152,
+          [ZONE.CINDERSTONE_MOOR]: 32.5662,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -967,9 +967,9 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6202,
         sell: {
-          [ZONE.TWO_CROWNS]: 38.8415,
-          [ZONE.SOLZREED_PENINSULA]: 35.3302,
-          [ZONE.CINDERSTONE_MOOR]: 40.3069,
+          [ZONE.TWO_CROWNS]: 36.5110,
+          [ZONE.SOLZREED_PENINSULA]: 31.7972,
+          [ZONE.CINDERSTONE_MOOR]: 40.3068,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1012,8 +1012,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11039,
         sell: {
-          [ZONE.TWO_CROWNS]: 96.5346,
-          [ZONE.SOLZREED_PENINSULA]: 91.9539,
+          [ZONE.TWO_CROWNS]: 91.7079,
+          [ZONE.SOLZREED_PENINSULA]: 87.3562,
           [ZONE.CINDERSTONE_MOOR]: 98.4466,
         },
       },
@@ -1033,8 +1033,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6207,
         sell: {
-          [ZONE.TWO_CROWNS]: 36.4784,
-          [ZONE.SOLZREED_PENINSULA]: 32.9671,
+          [ZONE.TWO_CROWNS]: 34.2898,
+          [ZONE.SOLZREED_PENINSULA]: 29.011,
           [ZONE.CINDERSTONE_MOOR]: 37.9443,
         },
       },
@@ -1078,8 +1078,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11038,
         sell: {
-          [ZONE.TWO_CROWNS]: 90.4356,
-          [ZONE.SOLZREED_PENINSULA]: 93.8565,
+          [ZONE.TWO_CROWNS]: 85.9139,
+          [ZONE.SOLZREED_PENINSULA]: 85.4094,
           [ZONE.CINDERSTONE_MOOR]: 92.3472,
         },
       },
@@ -1099,8 +1099,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9331,
         sell: {
-          [ZONE.TWO_CROWNS]: 37.9876,
-          [ZONE.SOLZREED_PENINSULA]: 38.5125,
+          [ZONE.TWO_CROWNS]: 35.7084,
+          [ZONE.SOLZREED_PENINSULA]: 34.6612,
           [ZONE.CINDERSTONE_MOOR]: 39.4533,
         },
       },
@@ -1157,8 +1157,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9335,
         sell: {
-          [ZONE.TWO_CROWNS]: 36.0773,
-          [ZONE.SOLZREED_PENINSULA]: 36.6019,
+          [ZONE.TWO_CROWNS]: 33.9127,
+          [ZONE.SOLZREED_PENINSULA]: 32.9417,
           [ZONE.CINDERSTONE_MOOR]: 37.5424,
         },
       },
@@ -1215,8 +1215,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6204,
         sell: {
-          [ZONE.TWO_CROWNS]: 34.5679,
-          [ZONE.SOLZREED_PENINSULA]: 32.9102,
+          [ZONE.TWO_CROWNS]: 32.4939,
+          [ZONE.SOLZREED_PENINSULA]: 29.6191,
           [ZONE.CINDERSTONE_MOOR]: 36.0335,
         },
       },
@@ -1273,8 +1273,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6206,
         sell: {
-          [ZONE.TWO_CROWNS]: 34.1666,
-          [ZONE.SOLZREED_PENINSULA]: 36.7888,
+          [ZONE.TWO_CROWNS]: 32.1166,
+          [ZONE.SOLZREED_PENINSULA]: 33.1099,
           [ZONE.CINDERSTONE_MOOR]: 35.6319,
         },
       },
@@ -1326,8 +1326,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11041,
         sell: {
-          [ZONE.TWO_CROWNS]: 90.4353,
-          [ZONE.SOLZREED_PENINSULA]: 93.8563,
+          [ZONE.TWO_CROWNS]: 85.9136,
+          [ZONE.SOLZREED_PENINSULA]: 89.1636,
           [ZONE.CINDERSTONE_MOOR]: 92.3471,
         },
       },
@@ -1347,8 +1347,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6203,
         sell: {
-          [ZONE.TWO_CROWNS]: 32.4957,
-          [ZONE.SOLZREED_PENINSULA]: 34.1449,
+          [ZONE.TWO_CROWNS]: 30.5459,
+          [ZONE.SOLZREED_PENINSULA]: 30.7304,
           [ZONE.CINDERSTONE_MOOR]: 33.9608,
         },
       },
@@ -1392,8 +1392,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11040,
         sell: {
-          [ZONE.TWO_CROWNS]: 88.2557,
-          [ZONE.SOLZREED_PENINSULA]: 90.4075,
+          [ZONE.TWO_CROWNS]: 83.8428,
+          [ZONE.SOLZREED_PENINSULA]: 85.8871,
           [ZONE.CINDERSTONE_MOOR]: 90.1674,
         },
       },
@@ -1412,7 +1412,7 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6208,
         sell: {
-          [ZONE.SOLZREED_PENINSULA]: 33.9673,
+          [ZONE.SOLZREED_PENINSULA]: 29.8911,
           [ZONE.CINDERSTONE_MOOR]: 31.4654,
         },
       },
@@ -1470,8 +1470,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6210,
         sell: {
-          [ZONE.TWO_CROWNS]: 31.4654,
-          [ZONE.SOLZREED_PENINSULA]: 32.5662,
+          [ZONE.TWO_CROWNS]: 29.5775,
+          [ZONE.SOLZREED_PENINSULA]: 29.3096,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1509,8 +1509,8 @@ export default Object.freeze({
       [PACK_TYPE.BLUE_SALT]: {
         recipeId: 11043,
         sell: {
-          [ZONE.TWO_CROWNS]: 86.9118,
-          [ZONE.SOLZREED_PENINSULA]: 88.3478,
+          [ZONE.TWO_CROWNS]: 82.5662,
+          [ZONE.SOLZREED_PENINSULA]: 83.9303,
         },
       },
       [PACK_TYPE.SPECIAL]: {
@@ -1537,9 +1537,9 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6211,
         sell: {
-          [ZONE.TWO_CROWNS]: 34.1963,
-          [ZONE.SOLZREED_PENINSULA]: 36.4618,
-          [ZONE.CINDERSTONE_MOOR]: 35.6619,
+          [ZONE.TWO_CROWNS]: 31.1186,
+          [ZONE.SOLZREED_PENINSULA]: 32.8156,
+          [ZONE.CINDERSTONE_MOOR]: 35.6618,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1604,9 +1604,9 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6209,
         sell: {
-          [ZONE.TWO_CROWNS]: 36.818,
-          [ZONE.SOLZREED_PENINSULA]: 41.889,
-          [ZONE.CINDERSTONE_MOOR]: 38.2832,
+          [ZONE.TWO_CROWNS]: 34.609,
+          [ZONE.SOLZREED_PENINSULA]: 37.7001,
+          [ZONE.CINDERSTONE_MOOR]: 38.2831,
         },
       },
       [PACK_TYPE.LOCAL]: {
@@ -1671,8 +1671,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 6212,
         sell: {
-          [ZONE.TWO_CROWNS]: 35.5071,
-          [ZONE.SOLZREED_PENINSULA]: 37.5569,
+          [ZONE.TWO_CROWNS]: 33.3766,
+          [ZONE.SOLZREED_PENINSULA]: 33.8013,
           [ZONE.CINDERSTONE_MOOR]: 36.9727,
         },
       },
@@ -1738,8 +1738,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9343,
         sell: {
-          [ZONE.TWO_CROWNS]: 37.593,
-          [ZONE.SOLZREED_PENINSULA]: 39.9505,
+          [ZONE.TWO_CROWNS]: 35.3374,
+          [ZONE.SOLZREED_PENINSULA]: 35.9556,
           [ZONE.CINDERSTONE_MOOR]: 39.0587,
         },
       },
@@ -1781,7 +1781,7 @@ export default Object.freeze({
         },
       },
       [PACK_TYPE.SPECIAL]: {
-        name: 'Karkasse Bulge',
+        name: 'Karkasse Bugle',
         recipeId: 10323,
         sell: {
           [ZONE.TWO_CROWNS]: 38.5782,
@@ -1805,8 +1805,8 @@ export default Object.freeze({
       [PACK_TYPE.GILDA]: {
         recipeId: 9339,
         sell: {
-          [ZONE.TWO_CROWNS]: 38.8901,
-          [ZONE.SOLZREED_PENINSULA]: 41.864,
+          [ZONE.TWO_CROWNS]: 36.5567,
+          [ZONE.SOLZREED_PENINSULA]: 37.6777,
           [ZONE.CINDERSTONE_MOOR]: 40.3555,
         },
       },

@@ -1,3 +1,4 @@
+import { CONTINENT } from 'constants/map';
 import {
   SET_AH_CUT,
   SET_CONTINENT,
@@ -6,6 +7,7 @@ import {
   SET_FRESHNESS,
   SET_INTEREST,
   SET_OUTLET,
+  SET_PACK_REGION,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
   SET_QUANTITY,
@@ -132,6 +134,15 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...initialState,
         continent: state.continent,
         proficiencies: state.proficiencies,
+        region: state.region,
+      };
+    case SET_PACK_REGION:
+      return {
+        ...state,
+        region: action.region,
+        // change the continent for SEA if it's Auroria
+        continent: (action.region === 'SEA' && state.continent === CONTINENT.AURORIA.name) ? CONTINENT.NUIA.name
+          : state.continent,
       };
     default:
       return state;

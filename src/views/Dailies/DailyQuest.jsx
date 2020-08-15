@@ -99,7 +99,7 @@ class DailyQuest extends Component {
               inline
               tooltip
             />))}
-          <Tooltip title={hidden ? 'Show Quest' : 'Hide Quest'}>
+          <Tooltip title={`${hidden ? 'Show' : 'Hide'} ${instance ? 'Instance' : 'Quest'}`}>
             <IconButton onClick={() => setQuestHide(id, !hidden)} size="small" color="inherit">
               {hidden
                 ? <VisibilityIcon />

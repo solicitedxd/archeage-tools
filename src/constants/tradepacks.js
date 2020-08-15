@@ -1,3 +1,4 @@
+import { QUEST_REGIONS } from 'constants/dailies';
 import { ITEM } from 'constants/items';
 import {
   CONTINENT,
@@ -17,12 +18,15 @@ export const SET_SUPPLY = 'SET_SUPPLY';
 export const SET_TRANSPORTATION_QUANTITY = 'SET_TRANSPORTATION_QUANTITY';
 export const SET_WAR = 'SET_WAR';
 export const SET_AH_CUT = 'SET_AH_CUT';
+export const SET_PACK_REGION = 'SET_PACK_REGION';
 export const TRADE_PACK_RESET = 'TRADE_PACK_RESET';
 
 export const SELL_LABOR = 70;
 export const BUY_CARGO_LABOR = 75;
 export const SELL_CARGO_LABOR = 175;
 export const LARDER_HARVEST_LABOR = 65;
+
+export const PACK_REGIONS = QUEST_REGIONS;
 
 export const PACK_TYPE = Object.freeze({
   NORMAL: 'Normal',
@@ -288,7 +292,7 @@ export const FRESHNESS = Object.freeze({
   DISGUISED: {
     name: 'Disguised',
     STANDARD: {
-      HIGH: {
+      REGULAR: {
         modifier: 1.0,
         time: 'anytime',
       },

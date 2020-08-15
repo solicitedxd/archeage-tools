@@ -261,10 +261,14 @@
   position: relative;
   font-size: 15px;
   color: #6D4916;
-  padding-right: 19px;
+  padding-right: 20px;
 
   &.currency {
     display: inline-block;
+
+    &:not(.no-icon):after {
+      right: 0;
+    }
   }
 
   &:not(.no-icon):after {
@@ -291,7 +295,7 @@
   }
 
   &.Honor {
-    padding-right: 15px;
+    padding-right: 16px;
   }
 
   &.Honor:after {
@@ -302,7 +306,7 @@
   }
 
   &.Leadership {
-    padding-right: 17px;
+    padding-right: 18px;
   }
 
   &.Leadership:after {
@@ -311,8 +315,8 @@
     background-position: -173px -29px;
   }
 
-  &.Items {
-    padding-right: 14px;
+  &.Items, &.crate {
+    padding-right: 15px;
   }
 
   &.Items:after, &.crate:after {
@@ -322,7 +326,7 @@
   }
 
   &.Vocation {
-    padding-right: 20px;
+    padding-right: 21px;
   }
 
   &.Vocation:after, &.vocation:after {
@@ -333,7 +337,7 @@
   }
 
   &.Gilda {
-    padding-right: 21px;
+    padding-right: 22px;
   }
 
   &.Gilda:after, &.gilda:after {
@@ -343,8 +347,8 @@
     top: 1px;
   }
 
-  &.Prestige {
-    padding-right: 17px;
+  &.Prestige, &.Credits {
+    padding-right: 18px;
   }
 
   &.Prestige:after {
@@ -352,10 +356,6 @@
     height: 18px;
     background-position: -239px -28px;
     top: 2px;
-  }
-
-  &.Credits {
-    padding-right: 17px;
   }
 
   &.Credits:after, &.credits:after {
@@ -374,7 +374,7 @@
   }
 
   &.Ancestral {
-    padding-right: 23px;
+    padding-right: 24px;
   }
 
   &.Ancestral:after {
@@ -383,18 +383,14 @@
     height: 20px;
   }
 
-  &.diligence {
-    padding-right: 18px;
+  &.diligence, &.loyalty {
+    padding-right: 19px;
   }
 
   &.diligence:after {
     background-position: -79px -45px;
     width: 15px;
     height: 15px;
-  }
-
-  &.loyalty {
-    padding-right: 18px;
   }
 
   &.loyalty:after {
@@ -404,7 +400,7 @@
   }
 
   &.manastorm {
-    padding-right: 20px;
+    padding-right: 21px;
   }
 
   &.manastorm:after {
@@ -414,7 +410,7 @@
   }
 
   &.craft {
-    padding-right: 18px;
+    padding-right: 19px;
   }
 
   &.craft:after {
@@ -436,7 +432,7 @@
   }
 
   &.quest {
-    padding-right: 11px;
+    padding-right: 12px;
   }
 
   &.quest:after {
@@ -446,6 +442,7 @@
     height: 16px;
   }
 
+  &.Kyrios:after,
   &.kyrios:after {
     background-position: -157px -29px;
   }

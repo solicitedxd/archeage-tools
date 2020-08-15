@@ -3,9 +3,16 @@
   padding: 12px 6px;
   align-items: stretch;
 
-  .MuiFormControl-root, .pack-percentage {
+  & > * {
     margin: 0 12px;
     flex: 1 0;
+  }
+
+  .pack-percentage {
+    .MuiSlider-root {
+      margin: 0 12px;
+      width: calc(100% - 24px);
+    }
   }
 }
 
@@ -216,6 +223,10 @@ $Disguised: #FFDE45;
   thead .MuiTableCell-root {
     border-radius: 4px 4px 0 0;
     color: #FFFFFF;
+
+    &.Disguised {
+      color: rgba(0, 0, 0, 0.87);
+    }
   }
 
   .MuiTableCell-root {
