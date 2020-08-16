@@ -207,7 +207,6 @@ class DailyTracker extends Component {
     const { setQuestStatus, completedQuests, lastVisit: lastVisitRaw, region } = this.props;
     const { weeklyIds } = this.state;
     const now = moment.utc();
-    console.log('Checking last visit');
 
     const lastVisit = moment(lastVisitRaw);
     let dailyReset = false;

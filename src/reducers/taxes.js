@@ -8,7 +8,7 @@ import initialState from 'initialStates/taxes';
 import { getItem } from 'utils/localStorage';
 import { deepCopy } from 'utils/object';
 
-const taxes = (state = getItem('crops', initialState), action) => {
+const taxes = (state = getItem('taxes', initialState), action) => {
   const buildings = deepCopy(state.buildings);
   switch (action.type) {
     case TAX_ADD: {

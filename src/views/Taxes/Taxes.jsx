@@ -281,11 +281,14 @@ class Taxes extends Component {
               <div className="form-options">
                 <Tooltip title={
                   <>
-                    <Typography>Hostile Zones</Typography>
-                    <Typography variant="body2">Hostile zones are zones that are controlled by an enemy faction.<br />
+                    <Typography style={{ textDecoration: 'underline' }}>Hostile Zones</Typography>
+                    <Typography variant="body2">
+                      Hostile zones are zones that are controlled by an enemy faction.<br />
                       Housing zones in conflict zones are not considered hostile, but Growlgate Isle is considered
-                      hostile
-                      if you&apos;re not a pirate.</Typography>
+                      hostile if you&apos;re not a pirate.<br />
+                      Placing property in a hostile zone will increase the tax for that property by 100% of its base
+                      tax amount.
+                    </Typography>
                   </>
                 }
                 >
