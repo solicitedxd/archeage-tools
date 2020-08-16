@@ -2,6 +2,7 @@ export default {
   eventTypes: {},
   events: {},
   crops: [],
+  buildings: [],
   items: {},
   categories: {},
   subCategories: {},

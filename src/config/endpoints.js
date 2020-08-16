@@ -14,6 +14,7 @@ export default {
     comments: '/service/comment/byPost/${postId}',
     item: '/service/items?ids=${itemIds}',
     itemCrops: '/service/items/crops',
+    itemBuildings: '/service/items/buildings',
     recipeByProduct: '/service/recipe/product/${itemId}',
     recipeSearchByProduct: '/service/recipe/product',
     recipeByMaterial: '/service/recipe/material/${itemId}',

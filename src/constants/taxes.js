@@ -1,3 +1,12 @@
+export const TAX_ADD = 'TAX_ADD';
+export const TAX_DELETE = 'TAX_DELETE';
+export const TAX_SORT = 'TAX_SORT';
+export const TAX_HOSTILE = 'TAX_HOSTILE';
+
+export const BUILDING_NAME_REGEX = /^(?:(?:Bound )?Design: )?((?:(?! Design| Kit).)*)/;
+export const BUILDING_SIZE_REGEX = /(\d+) ?m x \d+ ?m/;
+export const BUILDING_TYPE_REGEX = /(?:Classification|Category): ([\w ]+\w)/;
+
 export const HOUSING_TYPES = Object.freeze({
   WORKBENCH: {
     name: 'Workbenches',

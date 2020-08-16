@@ -1,44 +1,65 @@
-.calculator-totals {
-  padding: 12px;
+.calculator-box {
   display: flex;
-  align-items: stretch;
+  justify-content: space-between;
 
-  .total-list {
+  .calculator-totals {
     display: flex;
     flex-wrap: wrap;
-    flex: 1 0 48%;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
 
-    & > div {
+    .building-select {
+      & > .MuiFormControl-root {
+        width: 250px;
+      }
+    }
+
+    .form-options {
       display: flex;
-      flex: 1 0 49%;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      p:first-child {
-        color: #82571A;
-        width: 60%;
-      }
+    .place-info {
+      min-width: 250px;
+      width: auto;
+    }
 
-      p:last-child {
-        text-align: right;
-        width: 35%;
+    .total-list {
+      margin-top: 8px;
+      max-width: 100%;
+
+      thead {
+        background-color: rgba(0, 0, 0, 0.67);
+
+        th {
+          color: #FFFFFF;
+          font-size: 15px;
+        }
       }
+    }
+
+    .MuiFormControl-root, .MuiFormControlLabel-root {
+      margin: 0 12px;
+    }
+
+    .MuiTextField-root {
+      margin: 0;
+    }
+
+    .tax-price {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
-  .MuiFormControl-root {
-    flex: 1 0 200px;
-  }
+  & > div:nth-child(2) {
+    max-width: 312px;
 
-  .MuiFormControl-root, .MuiFormControlLabel-root {
-    margin: 0 12px;
-  }
-
-  .MuiTextField-root {
-    margin: 0;
-  }
-
-  .tax-price {
-    display: flex;
-    justify-content: space-between;
+    ins {
+      margin: 6px;
+    }
   }
 }
 
@@ -46,25 +67,23 @@
   .calculator-totals {
     flex-direction: column;
 
-    .total-list {
-      display: block;
+    .building-select {
+      width: 100%;
+      margin-bottom: 8px;
 
-      & > div {
-        flex: initial;
+      & > .MuiFormControl-root {
+        width: 94%;
       }
     }
 
-    .MuiFormControl-root {
-      flex: initial;
-      margin: 8px 0 0 0;
+    .form-options {
+      margin-bottom: 8px;
+      width: 100%;
+      flex-direction: row;
     }
 
-    .MuiFormControlLabel-root {
-      margin: 8px 0 0 0;
-    }
-
-    .MuiTextField-root {
-      margin: -4px 0 0 0;
+    .place-info {
+      max-width: 100%;
     }
   }
 }
@@ -112,18 +131,6 @@
 
     .help-icon {
       cursor: help;
-    }
-  }
-}
-
-.dark-mode {
-  .calculator-totals {
-    .total-list {
-      & > div {
-        p:first-child {
-          color: #7DA8E5;
-        }
-      }
     }
   }
 }

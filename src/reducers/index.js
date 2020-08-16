@@ -11,6 +11,7 @@ import mounts from './mounts';
 import notification from './notification';
 import proficiencies from './proficiencies';
 import session from './session';
+import taxes from './taxes';
 import tradepacks from './tradepacks';
 import users from './users';
 
@@ -27,21 +28,9 @@ const rootReducer = (history) => combineReducers({
   router: connectRouter(history),
   session,
   crops,
+  taxes,
   tradepacks,
   users,
 });
-
-export const getLocalData = {
-  dailies: ({ dailies }) => dailies,
-  calendar: ({ calendar }) => calendar,
-  display: ({ display }) => display,
-  folio: ({ folio }) => folio,
-  itemPrice: ({ itemPrice }) => itemPrice,
-  mounts: ({ mounts }) => mounts,
-  proficiencies: ({ proficiencies }) => proficiencies,
-  session: ({ session }) => session,
-  crops: ({ crops }) => crops,
-  tradepacks: ({ tradepacks }) => tradepacks,
-};
 
 export default rootReducer;
