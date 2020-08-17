@@ -61,7 +61,6 @@ export const createBuilding = (itemId) => (_, getState) => {
 
   const item = items[Number(itemId)];
   if (!item) {
-    console.error('Failed to create building object from item ' + itemId);
     return null;
   }
 

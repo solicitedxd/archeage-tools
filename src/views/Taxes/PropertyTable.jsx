@@ -15,7 +15,7 @@ import {
   deleteBuilding,
   setHostileBuilding,
 } from 'actions/taxes';
-import ItemLink from 'components/Item/ItemLink';
+import Item from 'components/Item';
 import { HOSTILE_FACTION_TAX } from 'constants/taxes';
 import React, { Component } from 'react';
 import {
@@ -77,7 +77,7 @@ class PropertyTable extends Component {
             return (
               <TableRow key={`property-${property.index}`}>
                 <TableCell>
-                  <ItemLink id={property.itemId} name="" /> {property.name}
+                  <Item id={property.itemId} inline /> {property.name}
                 </TableCell>
                 <TableCell>
                   {property.group}

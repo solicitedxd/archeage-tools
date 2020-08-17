@@ -31,7 +31,6 @@ import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
-import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import {
@@ -180,7 +179,9 @@ class Taxes extends Component {
 
     const taxPrice = (
       <>
-        <TableCell colSpan={mobile ? 2 : 1}><ItemLink id={31891} name="" /> Price:</TableCell>
+        <TableCell colSpan={mobile ? 2 : 1}>
+          <Item id={ITEM.TAX_CERTIFICATE} inline /> Price:
+        </TableCell>
         <TableCell align="right" colSpan={mobile ? 2 : 1}>
           <ItemPrice itemId={ITEM.TAX_CERTIFICATE} unitSize={1} />
         </TableCell>
@@ -264,7 +265,7 @@ class Taxes extends Component {
                 <TableBody>
                   <TableRow>
                     <TableCell>
-                      <ItemLink id={ITEM.TAX_CERTIFICATE} name="" /> to Place:
+                      <Item id={ITEM.TAX_CERTIFICATE} inline /> to Place:
                     </TableCell>
                     <TableCell align="right">
                       {placeCost}
@@ -272,7 +273,7 @@ class Taxes extends Component {
                   </TableRow>
                   <TableRow>
                     <TableCell>
-                      Additional <ItemLink id={ITEM.TAX_CERTIFICATE} name="" /> per Week:
+                      Additional <Item id={ITEM.TAX_CERTIFICATE} inline /> per Week:
                     </TableCell>
                     <TableCell align="right">
                       {placeIncrease}
@@ -331,7 +332,7 @@ class Taxes extends Component {
                     {!mobile && taxPrice}
                   </TableRow>
                   <TableRow>
-                    <TableCell><ItemLink id={ITEM.TAX_CERTIFICATE} name="" /> per Week:</TableCell>
+                    <TableCell><Item id={ITEM.TAX_CERTIFICATE} inline /> per Week:</TableCell>
                     <TableCell align="right">{taxesPerWeek}</TableCell>
                     <TableCell>Labor per Week:</TableCell>
                     <TableCell align="right">{laborCost}</TableCell>

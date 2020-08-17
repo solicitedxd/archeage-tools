@@ -17,7 +17,7 @@ import {
   deleteBuilding,
   setHostileBuilding,
 } from 'actions/taxes';
-import ItemLink from 'components/Item/ItemLink';
+import Item from 'components/Item';
 import { HOSTILE_FACTION_TAX } from 'constants/taxes';
 import React, { Component } from 'react';
 import {
@@ -54,7 +54,7 @@ class PropertyList extends Component {
         <Card className="property-card" key={`property-${property.index}`} variant="outlined">
           <CardContent>
             <Typography variant="h6">
-              <ItemLink id={property.itemId} name="" /> {property.name}
+              <Item id={property.itemId} inline /> {property.name}
             </Typography>
             <Typography className="property-type" color="textSecondary" gutterBottom>
               {property.group}
