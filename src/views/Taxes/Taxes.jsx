@@ -41,8 +41,8 @@ import {
 import { CONSTRUCTION } from 'constants/proficiencies';
 import {
   BUILDING_NAME_REGEX,
-  HOUSING_TYPES,
-  TAX_BURDEN,
+  HEAVY_TAX_RATE,
+  HOSTILE_FACTION_TAX,
 } from 'constants/taxes';
 import React, { Component } from 'react';
 import {
@@ -61,7 +61,8 @@ import {
   hasProperty,
 } from 'utils/object';
 import { setTitle } from 'utils/string';
-import PropertyBox from './PropertyBox';
+import PropertyList from './PropertyList';
+import PropertyTable from './PropertyTable';
 
 class Taxes extends Component {
   static propTypes = {
@@ -81,21 +82,11 @@ class Taxes extends Component {
     direction: bool,
   };
 
-  constructor() {
-    super();
-
-    const properties = {};
-    Object.keys(HOUSING_TYPES).forEach(key => {
-      properties[key] = ['', ''];
-    });
-
-    this.state = {
-      properties,
-      hostile: false,
-      options: [],
-      building: {},
-    };
-  }
+  state = {
+    hostile: false,
+    options: [],
+    building: {},
+  };
 
   componentDidMount() {
     this.props.fetchBuildingItems();
@@ -146,35 +137,46 @@ class Taxes extends Component {
     this.setState({ properties });
   };
 
+  calculateTax = (property, heavyTaxRate) => {
+    const { baseTax } = property;
+    if (!baseTax) return { baseTax: 0, heavyTaxFee: 0, hostileFee: 0, totalTax: 0 };
+
+    const heavyTaxFee = !property.exempt ? Math.round(baseTax * heavyTaxRate) : 0;
+    const hostileFee = property.hostile ? baseTax * HOSTILE_FACTION_TAX : 0;
+    return { baseTax, heavyTaxFee, hostileFee, totalTax: (baseTax + heavyTaxFee + hostileFee) };
+  };
+
+  calculateTaxes = (properties, heavyTaxRate) => properties.map(property => this.calculateTax(property, heavyTaxRate).totalTax).reduce((a, b) => a + b, 0);
+
   render() {
-    const { openDialog, calculateLabor, mobile, price } = this.props;
-    const { properties, hostile, options, building } = this.state;
+    const { openDialog, calculateLabor, mobile, price, buildings, createBuilding } = this.props;
+    const { hostile, options, building } = this.state;
 
-    // regular land tax
-    const regularProperties = Object.entries(properties).filter(([key]) => !key.includes('EXEMPT'));
-    let propertyCount = regularProperties
-    .map(([, values]) => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (hostile ? 1 : 0)))
-    .reduce((a, b) => a + b) || 0;
-    const taxBurden = TAX_BURDEN[Math.min(propertyCount, 10)];
-    let hostileIncrease = 0;
-    let taxesPerWeek = (Math.round(regularProperties.map(([key, value]) => {
-      const [friendly, hostile] = value;
-      const friendlyCost = (friendly || 0) * HOUSING_TYPES[key].base;
-      const hostileCost = (hostile || 0) * HOUSING_TYPES[key].base * (hostile ? 1 : 0);
-      hostileIncrease += hostileCost;
-      return (friendlyCost + hostileCost);
-    }).reduce((a, b) => a + b) * ((taxBurden + 100) / 100)) + (hostileIncrease * 3));
+    setTitle('Tax Calculator');
 
-    const exemptProperties = Object.entries(properties).filter(([key]) => key.includes('EXEMPT'));
-    // high tax exempt farms
-    propertyCount += exemptProperties
-    .map(([, values]) => (parseInt(values[0]) || 0) + ((parseInt(values[1]) || 0) * (hostile ? 1 : 0)))
-    .reduce((a, b) => a + b) || 0;
-    taxesPerWeek += (exemptProperties.map(([key, value]) => value[0] * HOUSING_TYPES[key].base).reduce((a, b) => a + b));
+    const properties = buildings.map(({ itemId, hostile }, index) => ({ ...createBuilding(itemId), hostile, index }));
+    const heavyTaxProperties = properties.map(property => property.exempt ? 0 : 1).reduce((a, b) => a + b, 0);
+
+    const heavyTaxRate = HEAVY_TAX_RATE[Math.min(heavyTaxProperties, 10)];
+    const taxesPerWeek = this.calculateTaxes(properties, heavyTaxRate);
 
     const laborCost = Math.ceil(taxesPerWeek / 5) * (calculateLabor(300, CONSTRUCTION));
 
-    setTitle('Tax Calculator');
+    // pending property
+    const pendingProperty = building.itemId ? ({ ...createBuilding(building.itemId), hostile }) : null;
+    let placeCost = 0;
+    let placeIncrease = 0;
+    if (pendingProperty) {
+      const { baseTax, deposit, hostile, exempt } = pendingProperty;
+      const newHeavyProperties = heavyTaxProperties + (exempt ? 0 : 1);
+      const newHeavyRate = HEAVY_TAX_RATE[Math.min(newHeavyProperties, 10)];
+      const heavyTaxFee = !exempt ? Math.round(newHeavyRate * baseTax) : 0;
+      const hostileFee = hostile ? baseTax * HOSTILE_FACTION_TAX : 0;
+      const taxRate = baseTax + heavyTaxFee + hostileFee;
+      const newTaxes = this.calculateTaxes([...properties, pendingProperty], newHeavyRate);
+      placeIncrease = newTaxes - taxesPerWeek;
+      placeCost = taxRate + deposit;
+    }
 
     const taxPrice = (
       <>
@@ -265,7 +267,7 @@ class Taxes extends Component {
                       <ItemLink id={ITEM.TAX_CERTIFICATE} name="" /> to Place:
                     </TableCell>
                     <TableCell align="right">
-                      0
+                      {placeCost}
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -273,7 +275,7 @@ class Taxes extends Component {
                       Additional <ItemLink id={ITEM.TAX_CERTIFICATE} name="" /> per Week:
                     </TableCell>
                     <TableCell align="right">
-                      0
+                      {placeIncrease}
                     </TableCell>
                   </TableRow>
                 </TableBody>
@@ -284,10 +286,10 @@ class Taxes extends Component {
                     <Typography style={{ textDecoration: 'underline' }}>Hostile Zones</Typography>
                     <Typography variant="body2">
                       Hostile zones are zones that are controlled by an enemy faction.<br />
-                      Housing zones in conflict zones are not considered hostile, but Growlgate Isle is considered
-                      hostile if you&apos;re not a pirate.<br />
-                      Placing property in a hostile zone will increase the tax for that property by 100% of its base
-                      tax amount.
+                      Conflict zones are not considered hostile, but Growlgate Isle is considered hostile if you&apos;re
+                      not a pirate.<br />
+                      Placing property in a hostile zone will incur a hostile faction tax of
+                      +{HOSTILE_FACTION_TAX * 100}%.
                     </Typography>
                   </>
                 }
@@ -306,7 +308,7 @@ class Taxes extends Component {
                   Add Property
                 </Button>
               </div>
-              <Table size="small" className="total-list">
+              <Table size="small" className="total-list" stickyHeader>
                 <TableHead>
                   <TableRow>
                     <TableCell colSpan={mobile ? 4 : 6}>
@@ -317,9 +319,15 @@ class Taxes extends Component {
                 <TableBody>
                   <TableRow>
                     <TableCell>Properties:</TableCell>
-                    <TableCell align="right">{propertyCount}</TableCell>
-                    <TableCell>Tax Rate:</TableCell>
-                    <TableCell align="right">{taxBurden + 100}%</TableCell>
+                    <TableCell align="right">
+                      {properties.length}
+                      {heavyTaxProperties !== properties.length &&
+                      <Tooltip title="Heavy Tax Properties">
+                        <span>&nbsp;<span className="hint">({heavyTaxProperties})</span></span>
+                      </Tooltip>}
+                    </TableCell>
+                    <TableCell>Heavy Tax Rate:</TableCell>
+                    <TableCell align="right">+{(heavyTaxRate * 100)}%</TableCell>
                     {!mobile && taxPrice}
                   </TableRow>
                   <TableRow>
@@ -352,18 +360,17 @@ class Taxes extends Component {
               <Typography variant="h6" className="title-text">Properties</Typography>
             </Toolbar>
           </AppBar>
-          <div className="calculator-container">
-            {Object.keys(HOUSING_TYPES).map(key => (
-              <PropertyBox
-                {...HOUSING_TYPES[key]}
-                onChange={(key, index) => (e) => this.setValue(key, index, e.target.value)}
-                values={properties[key]}
-                key={key}
-                id={key}
-                showHostile={hostile}
-              />
-            ))}
-          </div>
+          {mobile
+            ? <PropertyList
+              calculateTax={this.calculateTax}
+              heavyTaxProperties={heavyTaxProperties}
+              heavyTaxRate={heavyTaxRate}
+            />
+            : <PropertyTable
+              calculateTax={this.calculateTax}
+              heavyTaxProperties={heavyTaxProperties}
+              heavyTaxRate={heavyTaxRate}
+            />}
         </Paper>
         <AdContainer type="horizontal" />
       </div>
