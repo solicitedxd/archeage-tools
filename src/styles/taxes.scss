@@ -1,129 +1,110 @@
-.calculator-totals {
-  padding: 12px;
+.calculator-box {
   display: flex;
-  align-items: stretch;
+  justify-content: space-between;
 
-  .total-list {
+  .calculator-totals {
     display: flex;
     flex-wrap: wrap;
-    flex: 1 0 48%;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
 
-    & > div {
+    .building-select {
+      & > .MuiFormControl-root {
+        width: 250px;
+      }
+    }
+
+    .form-options {
       display: flex;
-      flex: 1 0 49%;
+      flex-direction: column;
+      align-items: center;
+    }
 
-      p:first-child {
-        color: #82571A;
-        width: 60%;
-      }
+    .place-info {
+      min-width: 250px;
+      width: auto;
+    }
 
-      p:last-child {
-        text-align: right;
-        width: 35%;
-      }
+    .total-list {
+      margin-top: 8px;
+      max-width: 100%;
+    }
+
+    .MuiFormControl-root, .MuiFormControlLabel-root {
+      margin: 0 12px;
+    }
+
+    .MuiTextField-root {
+      margin: 0;
+    }
+
+    .tax-price {
+      display: flex;
+      justify-content: space-between;
     }
   }
 
-  .MuiFormControl-root {
-    flex: 1 0 200px;
+  & > div:nth-child(2) {
+    max-width: 312px;
+
+    ins {
+      margin: 6px;
+    }
+  }
+}
+
+.property-card {
+  .property-type {
+    font-size: 12px;
+    margin-left: 30px;
   }
 
-  .MuiFormControl-root, .MuiFormControlLabel-root {
-    margin: 0 12px;
+  table {
+    tr:last-child {
+      background-color: rgba(224, 190, 17, 0.15);
+    }
   }
 
-  .MuiTextField-root {
-    margin: 0;
-  }
-
-  .tax-price {
+  .property-actions {
     display: flex;
     justify-content: space-between;
+    margin-top: 8px;
+    margin-bottom: -8px;
   }
+}
+
+.property-table {
+  tbody tr td:nth-child(6) {
+    color: #009688;
+  }
+}
+
+.hint {
+  cursor: help;
 }
 
 .mobile {
   .calculator-totals {
     flex-direction: column;
 
-    .total-list {
-      display: block;
+    .building-select {
+      width: 100%;
+      margin-bottom: 8px;
 
-      & > div {
-        flex: initial;
+      & > .MuiFormControl-root {
+        width: 94%;
       }
     }
 
-    .MuiFormControl-root {
-      flex: initial;
-      margin: 8px 0 0 0;
+    .form-options {
+      margin-bottom: 8px;
+      width: 100%;
+      flex-direction: row;
     }
 
-    .MuiFormControlLabel-root {
-      margin: 8px 0 0 0;
-    }
-
-    .MuiTextField-root {
-      margin: -4px 0 0 0;
-    }
-  }
-}
-
-.calculator-container {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: stretch;
-  width: 100%;
-
-  .property-box {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 12px;
-    flex-grow: 1;
-
-    .property-name {
-      display: flex;
-      align-items: center;
-      margin-left: 20px;
-
-      .help-icon {
-        margin-left: 8px;
-      }
-    }
-
-    .property-size {
-      font-size: 12px;
-      margin-top: -6px;
-    }
-
-    .property-input {
-      display: flex;
-      align-items: center;
-
-      .MuiTextField-root {
-        max-width: 215px;
-      }
-
-      .help-icon {
-        margin: 10px 0 0 6px;
-      }
-    }
-
-    .help-icon {
-      cursor: help;
-    }
-  }
-}
-
-.dark-mode {
-  .calculator-totals {
-    .total-list {
-      & > div {
-        p:first-child {
-          color: #7DA8E5;
-        }
-      }
+    .place-info {
+      max-width: 100%;
     }
   }
 }

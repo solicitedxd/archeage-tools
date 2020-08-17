@@ -5,9 +5,10 @@ import { slug } from 'utils/string';
  * Sort comparator method for comparing objects.
  * @param field{string} field to sort by.
  * @param asc{boolean} true = asc, false = desc
+ * @param subSort{function} how to sort equal values
  * @returns {function({object}, {object})}
  */
-export const sortBy = (field, asc = true) => (a, b) => {
+export const sortBy = (field, asc = true, subSort) => (a, b) => {
   if (a === undefined) {
     return 1;
   }
@@ -17,7 +18,7 @@ export const sortBy = (field, asc = true) => (a, b) => {
   }
 
   if (a[field] === b[field]) {
-    return 0;
+    return subSort ? subSort(a, b) : 0;
   }
 
   if (a[field] === null) {

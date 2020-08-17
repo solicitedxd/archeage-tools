@@ -6,10 +6,10 @@ import { triggerLocalStorageUpdate as itemPrice } from 'actions/itemPrice';
 import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
 import { triggerLocalStorageUpdate as proficiencies } from 'actions/proficiencies';
 import { triggerLocalStorageUpdate as calendar } from 'actions/schedule';
+import { triggerLocalStorageUpdate as taxes } from 'actions/taxes';
 import { triggerLocalStorageUpdate as tradepacks } from 'actions/tradepacks';
 import { routerMiddleware } from 'connected-react-router';
 import { triggerLocalStorageUpdate as session } from 'constants/session';
-import { getLocalData } from 'reducers';
 import thunk from 'redux-thunk';
 import { setItem } from 'utils/localStorage';
 
@@ -23,6 +23,7 @@ const keysAndActionTypes = {
   mounts,
   proficiencies,
   session,
+  taxes,
   tradepacks,
 };
 
@@ -33,7 +34,7 @@ const updateLocalAfterActions = (store) => (next) => (action) => {
   Object.keys(keysAndActionTypes).forEach((key) => {
     const actionTypes = keysAndActionTypes[key];
     if (actionTypes.includes(action.type)) {
-      setItem(key, getLocalData[key](state));
+      setItem(key, state[key]);
     }
   });
 

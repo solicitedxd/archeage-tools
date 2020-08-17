@@ -89,6 +89,8 @@ class AdContainer extends Component {
         break;
       case 'square':
         adProps['data-ad-slot'] = '7247537348';
+        adProps.style = { display: 'inline-block', height: 250, width: 300 };
+        delete adProps['data-ad-format'];
         break;
       case 'feed':
         adProps['data-ad-slot'] = '9682128993';

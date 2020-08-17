@@ -1,180 +1,27 @@
-export const HOUSING_TYPES = Object.freeze({
-  WORKBENCH: {
-    name: 'Workbenches',
-    size: '8x8',
-    base: 5,
-    properties: [
-      'Private Leatherworking Table',
-      'Private Loom',
-      'Private Masonry Table',
-      'Private Sawmill',
-      'Private Smelter',
-    ],
-  },
-  SMALL_FARM: {
-    name: 'Small Farms',
-    size: '8x8',
-    base: 5,
-    properties: [
-      'Scarecrow Garden',
-    ],
-  },
-  MEDIUM_FARM: {
-    name: 'Medium Farms',
-    size: '16x16',
-    base: 10,
-    properties: [
-      'Scarecrow Farm',
-      'Aquafarm',
-    ],
-  },
-  LARGE_FARM: {
-    name: 'Large Farms',
-    size: '24x24',
-    base: 15,
-    properties: [
-      'Gazebo Farm',
-      'Thatched Farmhouse',
-    ],
-  },
-  FARMHOUSE_UPGRADED: {
-    name: 'Upgraded Farmhouses',
-    size: '24x24',
-    base: 25,
-    properties: [
-      'Harvester\'s Farmhouse',
-      'Miner\'s Farmhouse',
-      'Rancher\'s Farmhouse',
-    ],
-  },
-  SMALL_HOUSE: {
-    name: 'Small Houses',
-    size: '16x16',
-    base: 10,
-    properties: [
-      'Cottages',
-      'Swept-Roof Villa',
-    ],
-  },
-  SMALL_HOUSE_UPGRADED: {
-    name: 'Raised Houses',
-    size: '16x16',
-    base: 15,
-    properties: [
-      'Raised:',
-      '- Cottages',
-      '- Swept-Roof Villa',
-    ],
-  },
-  MEDIUM_HOUSE: {
-    name: 'Medium Houses',
-    size: '24x24',
-    base: 15,
-    properties: [
-      'Breezy Bungalow',
-      'Manors',
-      'Townhouses',
-      'Swept-Roof Chalet',
-    ],
-  },
-  MEDIUM_HOUSE_UPGRADED: {
-    name: 'Medium House (Upgraded)',
-    size: '24x24',
-    base: 25,
-    properties: [
-      'Apothecary\'s, Armorer\'s, Tradesman\'s:',
-      '- Manors',
-      '- Townhouses',
-    ],
-  },
-  LARGE_HOUSE: {
-    name: 'Large Houses',
-    size: '28x28',
-    base: 25,
-    properties: [
-      'Chalets',
-      'Deserted Cottage',
-      'Solariums',
-      'Swept-Roof Manor',
-      'Tidal Bungalow',
-      'Treehouses',
-      'Villas',
-    ],
-  },
-  LARGE_HOUSE_UPGRADED: {
-    name: 'Large Houses (Upgraded)',
-    size: '28x28',
-    base: 40,
-    properties: [
-      'Apothecary\'s, Armorer\'s, Tradesman\'s:',
-      '- Chalets',
-      '- Villas',
-    ],
-  },
-  EXEMPT_PUBLIC_BUILDING: {
-    name: 'Public Buildings',
-    size: '28x28',
-    base: 25,
-    properties: [
-      'Fellowship Plaza',
-    ],
-    exempt: true,
-  },
-  MANSION: {
-    name: 'Mansions',
-    size: '44x44',
-    base: 50,
-    properties: [
-      'Beanstalk House',
-      'Mansions',
-      'Spired Chateau',
-    ],
-  },
-  EXEMPT_FARM: {
-    name: 'Exempt Farms',
-    size: '16x16',
-    base: 10,
-    properties: [
-      'Solar Scarecrow Farm',
-      'Lunar Scarecrow Farm',
-      'Stellar Scarecrow Farm',
-    ],
-    exempt: true,
-  },
-  EXEMPT_PAVILION: {
-    name: 'Exempt Large Farm',
-    size: '24x24',
-    base: 15,
-    properties: [
-      'Solar Pavilion Farm',
-      'Lunar Pavilion Farm',
-      'Stellar Pavilion Farm',
-      'Mushroom House',
-    ],
-    exempt: true,
-  },
-  EXEMPT_LARGE_UPGRADED: {
-    name: 'Exempt Upgraded Farm',
-    size: '24x24',
-    base: 25,
-    properties: [
-      'Raised Mushroom House',
-    ],
-    exempt: true,
-  },
-});
+export const TAX_ADD = 'TAX_ADD';
+export const TAX_DELETE = 'TAX_DELETE';
+export const TAX_SORT = 'TAX_SORT';
+export const TAX_HOSTILE = 'TAX_HOSTILE';
 
-export const TAX_BURDEN = Object.freeze([
+export const BUILDING_NAME_REGEX = /^(?:(?:Bound )?Design: )?(?:Full[ -]Kit: )?((?:(?! Design| Kit).)*)/;
+export const BUILDING_SIZE_REGEX = /(\d+) ?m x \d+ ?m/;
+export const BUILDING_TYPE_REGEX = /(?:Classification|Category): ([\w ]+\w)/;
+export const BUILDING_DEPOSIT_REGEX = /Security Deposit: [^\d]+(\d+)/;
+export const BUILDING_TAXES_REGEX = /Taxes: [^\d]+(\d+)/;
+
+export const HEAVY_TAX_RATE = Object.freeze([
   0,
   0,
   0,
-  100,
-  150,
-  200,
-  250,
-  400,
-  500,
-  500,
-  500,
+  1,
+  1.5,
+  2,
+  2.5,
+  4,
+  5,
+  5,
+  5,
 ]);
+
+export const HOSTILE_FACTION_TAX = 3;
 

@@ -1,4 +1,5 @@
 import {
+  DATA_BUILDINGS,
   DATA_CATEGORIES,
   DATA_CROP,
   DATA_DOODAD,
@@ -37,6 +38,11 @@ const gameData = (state = initialState, action) => {
       return {
         ...state,
         crops: action.crops,
+      };
+    case DATA_BUILDINGS:
+      return {
+        ...state,
+        buildings: action.buildings,
       };
     case DATA_RECIPE:
       return {

@@ -1,6 +1,7 @@
 import { setNotification } from 'actions/notification';
 import config from 'config';
 import {
+  DATA_BUILDINGS,
   DATA_CATEGORIES,
   DATA_CROP,
   DATA_DOODAD,
@@ -97,6 +98,19 @@ export const fetchCropItems = () => (dispatch, getState) => {
   .then(({ data: cropIds }) => {
     dispatch(fetchItems(cropIds));
     dispatch({ type: DATA_CROP, crops: cropIds });
+  });
+};
+
+export const fetchBuildingItems = () => (dispatch, getState) => {
+  const { buildings } = getState().gameData;
+
+  // do not fetch again
+  if (buildings.length > 0) return;
+
+  xhr.get(config.endpoints.service.itemBuildings)
+  .then(({ data: buildingIds }) => {
+    dispatch(fetchItems(buildingIds));
+    dispatch({ type: DATA_BUILDINGS, buildings: buildingIds });
   });
 };
 
