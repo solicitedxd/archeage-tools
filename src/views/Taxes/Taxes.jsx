@@ -89,22 +89,32 @@ class Taxes extends Component {
 
   componentDidMount() {
     this.props.fetchBuildingItems();
+
+    if (countProperties(this.props.items) === this.props.buildingIds.length) {
+      this.initBuildings();
+    }
   }
 
   componentDidUpdate(prevProps) {
-    const { items, buildingIds, createBuilding } = this.props;
+    const { items, buildingIds } = this.props;
 
     if (countProperties(prevProps.items) !== prevProps.buildingIds.length && countProperties(items) === buildingIds.length) {
-      const buildingOptions = {};
-      Object.entries(items).forEach(([itemId, item]) => {
-        const [, name] = (item.name.match(BUILDING_NAME_REGEX) || [null, null]);
-        if (!hasProperty(buildingOptions, name)) {
-          buildingOptions[name] = createBuilding(itemId);
-        }
-      });
-      this.setState({ options: Object.values(buildingOptions).sort(sortBy('group', true, sortBy('size'))) });
+      this.initBuildings();
     }
   }
+
+  initBuildings = () => {
+    const { items, createBuilding } = this.props;
+
+    const buildingOptions = {};
+    Object.entries(items).forEach(([itemId, item]) => {
+      const [, name] = (item.name.match(BUILDING_NAME_REGEX) || [null, null]);
+      if (!hasProperty(buildingOptions, name)) {
+        buildingOptions[name] = createBuilding(itemId);
+      }
+    });
+    this.setState({ options: Object.values(buildingOptions).sort(sortBy('group', true, sortBy('size'))) });
+  };
 
   handleSelectBuilding = (e, building) => {
     this.setState({ building });
