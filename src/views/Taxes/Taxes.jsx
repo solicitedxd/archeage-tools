@@ -199,6 +199,7 @@ class Taxes extends Component {
   render() {
     const { openDialog, calculateLabor, mobile, price, buildings, createBuilding, characters } = this.props;
     const { hostile, options, building, character, editId, editOpen, selectedOnly } = this.state;
+    const characterList = characters.length > 0 ? characters : ['Character 1'];
 
     setTitle('Tax Calculator');
 
@@ -209,13 +210,13 @@ class Taxes extends Component {
       character,
     }));
     const characterProperties = properties.filter(filterByCharacter(character));
-    const heavyTaxProperties = characters.map((_, i) => countAll(properties.filter(filterByCharacter(i)).map(p => p.exempt
+    const heavyTaxProperties = characterList.map((_, i) => countAll(properties.filter(filterByCharacter(i)).map(p => p.exempt
       ? 0 : 1)));
 
-    const heavyTaxRate = characters.map((_, i) => HEAVY_TAX_RATE[Math.min(heavyTaxProperties[i] || 0, 8)]);
-    const taxesPerWeek = characters.map((_, i) => this.calculateTaxes(properties.filter(filterByCharacter(i)), heavyTaxRate[i]));
+    const heavyTaxRate = characterList.map((_, i) => HEAVY_TAX_RATE[Math.min(heavyTaxProperties[i] || 0, 8)]);
+    const taxesPerWeek = characterList.map((_, i) => this.calculateTaxes(properties.filter(filterByCharacter(i)), heavyTaxRate[i]));
 
-    const laborCost = characters.map((_, i) => Math.ceil(taxesPerWeek[i] / 5) * (calculateLabor(300, CONSTRUCTION)));
+    const laborCost = characterList.map((_, i) => Math.ceil(taxesPerWeek[i] / 5) * (calculateLabor(300, CONSTRUCTION)));
 
     // pending property
     const pendingProperty = building.itemId ? ({ ...createBuilding(building.itemId), hostile }) : null;
@@ -500,18 +501,18 @@ class Taxes extends Component {
           <AppBar position="static">
             <Toolbar variant="dense">
               <Tabs
-                value={Math.min(character, (characters.length || 1) - 1)}
+                value={Math.min(character, characterList.length - 1)}
                 onChange={this.setCharacter}
                 variant={mobile ? 'scrollable' : 'standard'}
               >
-                {(characters.length > 0 ? characters : ['Character 1'])
-                .map((name, id) => (
+                {characterList.map((name, id) => (
                   <Tab
                     key={`tax-character-${id}`}
                     value={id}
                     label={
                       <span>
                         {name}
+                        {characters.length > 0 &&
                         <IconButton
                           color="inherit"
                           size="small"
@@ -522,7 +523,7 @@ class Taxes extends Component {
                           style={{ marginLeft: 12 }}
                         >
                           <EditIcon />
-                        </IconButton>
+                        </IconButton>}
                       </span>
                     }
                   />

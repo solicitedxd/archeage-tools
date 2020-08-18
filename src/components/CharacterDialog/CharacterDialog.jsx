@@ -104,11 +104,12 @@ class CharacterDialog extends Component {
     const { characters, characterId, open, onClose } = this.props;
     const { name, error } = this.state;
     const characterName = pathOr(null, [characterId])(characters);
+    const validChar = !(characterId === null || characterName === null);
 
     return (
       <Dialog open={open} onClose={onClose}>
         <DialogTitle>
-          {(characterId === null || characterName === null)
+          {!validChar
             ? 'Add Character'
             : `Edit [${characterName}]`}
         </DialogTitle>
@@ -128,7 +129,8 @@ class CharacterDialog extends Component {
           </form>
         </DialogContent>
         <DialogActions>
-          <Button onClick={this.handleDelete} classes={{ label: 'text-red' }}>Delete</Button>
+          {validChar &&
+          <Button onClick={this.handleDelete} classes={{ label: 'text-red' }}>Delete</Button>}
           <Button onClick={onClose}>Cancel</Button>
           <Button color="primary" onClick={this.handleSave}>Confirm</Button>
         </DialogActions>

@@ -27,7 +27,6 @@ import { filterByCharacter } from 'utils/array';
 
 class PropertyTable extends Component {
   static propTypes = {
-    createBuilding: func.isRequired,
     deleteBuilding: func.isRequired,
     setHostileBuilding: func.isRequired,
     calculateTax: func.isRequired,
