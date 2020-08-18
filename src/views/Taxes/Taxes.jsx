@@ -512,7 +512,6 @@ class Taxes extends Component {
                     label={
                       <span>
                         {name}
-                        {characters.length > 0 &&
                         <IconButton
                           color="inherit"
                           size="small"
@@ -523,7 +522,7 @@ class Taxes extends Component {
                           style={{ marginLeft: 12 }}
                         >
                           <EditIcon />
-                        </IconButton>}
+                        </IconButton>
                       </span>
                     }
                   />
