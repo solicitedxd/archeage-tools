@@ -455,7 +455,7 @@ class Taxes extends Component {
                             {Object.entries(heavyTaxRate).map(([id, rate]) => (
                               <TableRow key={`rate-row-${id}`}>
                                 <TableCell>
-                                  {characters[id]}
+                                  {characterList[id]}
                                 </TableCell>
                                 <TableCell align="right">
                                   +{rate * 100}%
