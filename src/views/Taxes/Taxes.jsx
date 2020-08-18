@@ -503,7 +503,7 @@ class Taxes extends Component {
               <Tabs
                 value={Math.min(character, characterList.length - 1)}
                 onChange={this.setCharacter}
-                variant={mobile ? 'scrollable' : 'standard'}
+                variant="scrollable"
               >
                 {characterList.map((name, id) => (
                   <Tab
