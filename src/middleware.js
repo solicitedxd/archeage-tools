@@ -4,6 +4,7 @@ import { triggerLocalStorageUpdate as display } from 'actions/display';
 import { triggerLocalStorageUpdate as folio } from 'actions/folio';
 import { triggerLocalStorageUpdate as itemPrice } from 'actions/itemPrice';
 import { triggerLocalStorageUpdate as mounts } from 'actions/mounts';
+import { triggerLocalStorageUpdate as myGame } from 'actions/myGame';
 import { triggerLocalStorageUpdate as proficiencies } from 'actions/proficiencies';
 import { triggerLocalStorageUpdate as calendar } from 'actions/schedule';
 import { triggerLocalStorageUpdate as taxes } from 'actions/taxes';
@@ -21,6 +22,7 @@ const keysAndActionTypes = {
   folio,
   itemPrice,
   mounts,
+  myGame,
   proficiencies,
   session,
   taxes,

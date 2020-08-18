@@ -8,6 +8,7 @@ import folio from './folio';
 import gameData from './gameData';
 import itemPrice from './itemPrice';
 import mounts from './mounts';
+import myGame from './myGame';
 import notification from './notification';
 import proficiencies from './proficiencies';
 import session from './session';
@@ -23,6 +24,7 @@ const rootReducer = (history) => combineReducers({
   gameData,
   itemPrice,
   mounts,
+  myGame,
   notification,
   proficiencies,
   router: connectRouter(history),

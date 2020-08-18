@@ -5,17 +5,22 @@ import {
   FormControl,
   FormControlLabel,
   IconButton,
+  Link,
   Paper,
+  Tab,
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
+  Tabs,
   TextField,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import AddIcon from '@material-ui/icons/Add';
+import EditIcon from '@material-ui/icons/Edit';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import { Autocomplete } from '@material-ui/lab';
 import { openDialog } from 'actions/display';
@@ -29,14 +34,17 @@ import {
 } from 'actions/taxes';
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
+import CharacterDialog from 'components/CharacterDialog/CharacterDialog';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemPrice from 'components/Item/ItemPrice';
+import OptionalTooltip from 'components/OptionalTooltip';
 import { DIALOG_PROFICIENCY } from 'constants/display';
 import {
   CURRENCY,
   ITEM,
 } from 'constants/items';
+import { MAX_CHARACTERS } from 'constants/myGame';
 import { CONSTRUCTION } from 'constants/proficiencies';
 import {
   BUILDING_NAME_REGEX,
@@ -53,7 +61,11 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { sortBy } from 'utils/array';
+import {
+  countAll,
+  filterByCharacter,
+  sortBy,
+} from 'utils/array';
 import {
   countProperties,
   deepCopy,
@@ -79,12 +91,17 @@ class Taxes extends Component {
     buildings: arrayOf(object),
     sort: string,
     direction: bool,
+    characters: arrayOf(string),
   };
 
   state = {
     hostile: false,
     options: [],
     building: {},
+    character: 0,
+    editId: null,
+    editOpen: false,
+    selectedOnly: false,
   };
 
   componentDidMount() {
@@ -121,10 +138,10 @@ class Taxes extends Component {
   };
 
   addProperty = () => {
-    const { building, hostile } = this.state;
+    const { building, hostile, character } = this.state;
 
     if (building.itemId) {
-      this.props.addBuilding(building.itemId, hostile);
+      this.props.addBuilding(building.itemId, hostile, character);
       this.setState({ building: {} });
     }
   };
@@ -157,19 +174,48 @@ class Taxes extends Component {
 
   calculateTaxes = (properties, heavyTaxRate) => properties.map(property => this.calculateTax(property, heavyTaxRate).totalTax).reduce((a, b) => a + b, 0);
 
+  setCharacter = (e, character) => {
+    this.setState({ character });
+  };
+
+  handleEditCharacter = (characterId) => {
+    this.setState({
+      editId: characterId,
+      editOpen: true,
+    });
+  };
+
+  handleEditClose = () => {
+    this.setState({ editOpen: false });
+  };
+
+  handleSelectedOnly = (selectedOnly) => (e) => {
+    e.preventDefault();
+    this.setState({ selectedOnly });
+    return false;
+  };
+
+  // eslint-disable-next-line complexity
   render() {
-    const { openDialog, calculateLabor, mobile, price, buildings, createBuilding } = this.props;
-    const { hostile, options, building } = this.state;
+    const { openDialog, calculateLabor, mobile, price, buildings, createBuilding, characters } = this.props;
+    const { hostile, options, building, character, editId, editOpen, selectedOnly } = this.state;
 
     setTitle('Tax Calculator');
 
-    const properties = buildings.map(({ itemId, hostile }, index) => ({ ...createBuilding(itemId), hostile, index }));
-    const heavyTaxProperties = properties.map(property => property.exempt ? 0 : 1).reduce((a, b) => a + b, 0);
+    const properties = buildings.map(({ itemId, hostile, character }, index) => ({
+      ...createBuilding(itemId),
+      hostile,
+      index,
+      character,
+    }));
+    const characterProperties = properties.filter(filterByCharacter(character));
+    const heavyTaxProperties = characters.map((_, i) => countAll(properties.filter(filterByCharacter(i)).map(p => p.exempt
+      ? 0 : 1)));
 
-    const heavyTaxRate = HEAVY_TAX_RATE[Math.min(heavyTaxProperties, 10)];
-    const taxesPerWeek = this.calculateTaxes(properties, heavyTaxRate);
+    const heavyTaxRate = characters.map((_, i) => HEAVY_TAX_RATE[Math.min(heavyTaxProperties[i] || 0, 8)]);
+    const taxesPerWeek = characters.map((_, i) => this.calculateTaxes(properties.filter(filterByCharacter(i)), heavyTaxRate[i]));
 
-    const laborCost = Math.ceil(taxesPerWeek / 5) * (calculateLabor(300, CONSTRUCTION));
+    const laborCost = characters.map((_, i) => Math.ceil(taxesPerWeek[i] / 5) * (calculateLabor(300, CONSTRUCTION)));
 
     // pending property
     const pendingProperty = building.itemId ? ({ ...createBuilding(building.itemId), hostile }) : null;
@@ -177,13 +223,13 @@ class Taxes extends Component {
     let placeIncrease = 0;
     if (pendingProperty) {
       const { baseTax, deposit, hostile, exempt } = pendingProperty;
-      const newHeavyProperties = heavyTaxProperties + (exempt ? 0 : 1);
-      const newHeavyRate = HEAVY_TAX_RATE[Math.min(newHeavyProperties, 10)];
+      const newHeavyProperties = heavyTaxProperties[character] + (exempt ? 0 : 1);
+      const newHeavyRate = HEAVY_TAX_RATE[Math.min(newHeavyProperties, 8)];
       const heavyTaxFee = !exempt ? Math.round(newHeavyRate * baseTax) : 0;
       const hostileFee = hostile ? baseTax * HOSTILE_FACTION_TAX : 0;
       const taxRate = baseTax + heavyTaxFee + hostileFee;
-      const newTaxes = this.calculateTaxes([...properties, pendingProperty], newHeavyRate);
-      placeIncrease = newTaxes - taxesPerWeek;
+      const newTaxes = this.calculateTaxes([...characterProperties, pendingProperty], newHeavyRate);
+      placeIncrease = newTaxes - taxesPerWeek[character];
       placeCost = taxRate + deposit;
     }
 
@@ -322,8 +368,26 @@ class Taxes extends Component {
               <Table size="small" className="total-list" stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell colSpan={mobile ? 4 : 6}>
+                    <TableCell colSpan={2}>
                       Tax Totals
+                    </TableCell>
+                    <TableCell colSpan={mobile ? 2 : 4} align="right">
+                      [
+                      <Link
+                        onClick={this.handleSelectedOnly(false)}
+                        style={{ textDecoration: !selectedOnly ? 'underline' : 'none', cursor: 'pointer' }}
+                        color="inherit"
+                      >
+                        All Characters
+                      </Link>
+                      &nbsp;|&nbsp;
+                      <Link
+                        onClick={this.handleSelectedOnly(true)}
+                        style={{ textDecoration: selectedOnly ? 'underline' : 'none', cursor: 'pointer' }}
+                        color="inherit"
+                      >
+                        Selected Character
+                      </Link>]
                     </TableCell>
                   </TableRow>
                 </TableHead>
@@ -331,21 +395,88 @@ class Taxes extends Component {
                   <TableRow>
                     <TableCell>Properties:</TableCell>
                     <TableCell align="right">
-                      {properties.length}
-                      {heavyTaxProperties !== properties.length &&
+                      {selectedOnly ? characterProperties.length : properties.length}
+                      {((selectedOnly && heavyTaxProperties[character] !== characterProperties.length) || (!selectedOnly && countAll(Object.values(heavyTaxProperties)) !== properties.length)) &&
                       <Tooltip title="Heavy Tax Properties">
-                        <span>&nbsp;<span className="hint">({heavyTaxProperties})</span></span>
+                        <span>&nbsp;<span className="hint">
+                          ({selectedOnly ? (heavyTaxProperties[character] || 0)
+                          : countAll(Object.values(heavyTaxProperties))})
+                        </span></span>
                       </Tooltip>}
                     </TableCell>
-                    <TableCell>Heavy Tax Rate:</TableCell>
-                    <TableCell align="right">+{(heavyTaxRate * 100)}%</TableCell>
+                    <TableCell>
+                      <Tooltip
+                        title={
+                          <Table size="small" stickyHeader>
+                            <TableHead>
+                              <TableRow>
+                                <TableCell>
+                                  Properties
+                                </TableCell>
+                                <TableCell align="right">
+                                  Rate
+                                </TableCell>
+                              </TableRow>
+                            </TableHead>
+                            <TableBody>
+                              {HEAVY_TAX_RATE.filter((_, i) => i > 0).map((rate, id) => (
+                                <TableRow key={`rate-tip-${id}`}>
+                                  <TableCell>
+                                    {id + 1}{id + 2 === HEAVY_TAX_RATE.length && '+'}
+                                  </TableCell>
+                                  <TableCell align="right">
+                                    +{rate * 100}%
+                                  </TableCell>
+                                </TableRow>
+                              ))}
+                            </TableBody>
+                          </Table>
+                        }
+                      >
+                        <span className="hint">Heavy Tax Rate:</span>
+                      </Tooltip>
+                    </TableCell>
+                    <TableCell align="right">
+                      <OptionalTooltip
+                        title={!selectedOnly &&
+                        <Table size="small" stickyHeader>
+                          <TableHead>
+                            <TableRow>
+                              <TableCell>
+                                Character
+                              </TableCell>
+                              <TableCell align="right">
+                                Rate
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {Object.entries(heavyTaxRate).map(([id, rate]) => (
+                              <TableRow key={`rate-row-${id}`}>
+                                <TableCell>
+                                  {characters[id]}
+                                </TableCell>
+                                <TableCell align="right">
+                                  +{rate * 100}%
+                                </TableCell>
+                              </TableRow>
+                            ))}
+                          </TableBody>
+                        </Table>}
+                      >
+                        <span>+{(selectedOnly ? heavyTaxRate[character]
+                          : Object.values(heavyTaxRate).reduce((max, v) => v > max ? v : max, 0)) * 100}%</span>
+                      </OptionalTooltip>
+                    </TableCell>
                     {!mobile && taxPrice}
                   </TableRow>
                   <TableRow>
                     <TableCell><Item id={ITEM.TAX_CERTIFICATE} inline /> per Week:</TableCell>
-                    <TableCell align="right">{taxesPerWeek}</TableCell>
+                    <TableCell align="right">{selectedOnly ? taxesPerWeek[character]
+                      : countAll(Object.values(taxesPerWeek))}</TableCell>
                     <TableCell>Labor per Week:</TableCell>
-                    <TableCell align="right">{laborCost}</TableCell>
+                    <TableCell align="right">{selectedOnly ? laborCost[character]
+                      : countAll(Object.values(laborCost))}</TableCell>
                     {!mobile && taxSilverPerLabor}
                   </TableRow>
                   {mobile &&
@@ -368,28 +499,76 @@ class Taxes extends Component {
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="h6" className="title-text">Properties</Typography>
+              <Tabs
+                value={Math.min(character, (characters.length || 1) - 1)}
+                onChange={this.setCharacter}
+                variant={mobile ? 'scrollable' : 'standard'}
+              >
+                {(characters.length > 0 ? characters : ['Character 1'])
+                .map((name, id) => (
+                  <Tab
+                    key={`tax-character-${id}`}
+                    value={id}
+                    label={
+                      <span>
+                        {name}
+                        <IconButton
+                          color="inherit"
+                          size="small"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            this.handleEditCharacter(id);
+                          }}
+                          style={{ marginLeft: 12 }}
+                        >
+                          <EditIcon />
+                        </IconButton>
+                      </span>
+                    }
+                  />
+                ))}
+              </Tabs>
+              <Tooltip title="Add Character">
+                <span>
+                <IconButton
+                  onClick={() => this.handleEditCharacter(null)}
+                  color="inherit"
+                  disabled={characters.length >= MAX_CHARACTERS}
+                >
+                  <AddIcon />
+                </IconButton>
+                </span>
+              </Tooltip>
             </Toolbar>
           </AppBar>
           {mobile
             ? <PropertyList
               calculateTax={this.calculateTax}
-              heavyTaxProperties={heavyTaxProperties}
-              heavyTaxRate={heavyTaxRate}
+              properties={properties}
+              heavyTaxProperties={heavyTaxProperties[character]}
+              heavyTaxRate={heavyTaxRate[character]}
+              character={character}
             />
             : <PropertyTable
               calculateTax={this.calculateTax}
-              heavyTaxProperties={heavyTaxProperties}
-              heavyTaxRate={heavyTaxRate}
+              properties={properties}
+              heavyTaxProperties={heavyTaxProperties[character]}
+              heavyTaxRate={heavyTaxRate[character]}
+              character={character}
             />}
         </Paper>
         <AdContainer type="horizontal" />
+        <CharacterDialog
+          characterId={editId}
+          open={editOpen}
+          onClose={this.handleEditClose}
+        />
       </div>
     );
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, gameData: { items, buildings }, taxes, itemPrice }) => ({
+const mapStateToProps = ({ display: { mobile }, gameData: { items, buildings }, taxes, itemPrice, myGame: { characters } }) => ({
   mobile,
   price: itemPrice[ITEM.TAX_CERTIFICATE],
   ...taxes,
@@ -398,6 +577,7 @@ const mapStateToProps = ({ display: { mobile }, gameData: { items, buildings }, 
     return obj;
   }, {}),
   buildingIds: buildings,
+  characters,
 });
 
 const mapDispatchToProps = {

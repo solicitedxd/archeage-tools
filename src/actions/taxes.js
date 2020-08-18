@@ -1,3 +1,4 @@
+import { MY_CHARACTERS_DELETE } from 'constants/myGame';
 import {
   BUILDING_DEPOSIT_REGEX,
   BUILDING_NAME_REGEX,
@@ -15,16 +16,18 @@ export const triggerLocalStorageUpdate = [
   TAX_DELETE,
   TAX_HOSTILE,
   TAX_SORT,
+  MY_CHARACTERS_DELETE,
 ];
 
 /**
  * Adds a building to your list of tax buildings.
  * @param itemId{number} itemId for the building
  * @param hostile{boolean} is in hostile land
+ * @param character{number} character id that owns it
  * @returns {function} redux dispatch call
  */
-export const addBuilding = (itemId, hostile) => (dispatch) => {
-  dispatch({ type: TAX_ADD, itemId, hostile });
+export const addBuilding = (itemId, hostile, character) => (dispatch) => {
+  dispatch({ type: TAX_ADD, itemId, hostile, character });
 };
 
 /**

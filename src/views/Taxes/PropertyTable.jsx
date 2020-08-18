@@ -11,7 +11,6 @@ import {
 } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import {
-  createBuilding,
   deleteBuilding,
   setHostileBuilding,
 } from 'actions/taxes';
@@ -24,6 +23,7 @@ import {
   number,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { filterByCharacter } from 'utils/array';
 
 class PropertyTable extends Component {
   static propTypes = {
@@ -33,7 +33,8 @@ class PropertyTable extends Component {
     calculateTax: func.isRequired,
     heavyTaxProperties: number,
     heavyTaxRate: number,
-    buildings: array,
+    properties: array,
+    character: number,
   };
 
   static defaultProps = {
@@ -41,9 +42,9 @@ class PropertyTable extends Component {
   };
 
   render() {
-    const { buildings, createBuilding, deleteBuilding, setHostileBuilding, calculateTax, heavyTaxProperties, heavyTaxRate } = this.props;
+    const { properties: buildings, deleteBuilding, setHostileBuilding, calculateTax, heavyTaxProperties, heavyTaxRate, character } = this.props;
 
-    const properties = buildings.map(({ itemId, hostile }, index) => ({ ...createBuilding(itemId), hostile, index }));
+    const properties = buildings.filter(filterByCharacter(character));
 
     return (
       <Table className="property-table" size="small" stickyHeader>
@@ -143,13 +144,11 @@ class PropertyTable extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items }, taxes: { buildings } }) => ({
-  buildings,
+const mapStateToProps = ({ gameData: { items } }) => ({
   items,
 });
 
 const mapDispatchToProps = {
-  createBuilding,
   deleteBuilding,
   setHostileBuilding,
 };

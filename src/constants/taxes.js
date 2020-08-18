@@ -19,8 +19,6 @@ export const HEAVY_TAX_RATE = Object.freeze([
   2.5,
   4,
   5,
-  5,
-  5,
 ]);
 
 export const HOSTILE_FACTION_TAX = 3;

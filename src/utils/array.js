@@ -93,3 +93,17 @@ export const toggleValue = (array, value) => {
     array.push(value);
   }
 };
+
+/**
+ * Filter an array by the given character
+ * @param character character to filter by
+ * @returns {function(*): boolean|boolean} filter function for character
+ */
+export const filterByCharacter = (character) => (i) => i.character === character || (i.character === undefined && character === 0);
+
+/**
+ * Count the values on an array of numbers.
+ * @param array{array} array of numbers
+ * @returns {number} total count
+ */
+export const countAll = (array) => array.reduce((a, b) => a + b, 0);
