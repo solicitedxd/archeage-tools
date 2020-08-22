@@ -1,5 +1,3 @@
-import MomentUtils from '@date-io/moment';
-import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import { ConnectedRouter as Router } from 'connected-react-router';
 import React from 'react';
 import { render } from 'react-dom';
@@ -13,13 +11,11 @@ import store from './store';
 
 const dom = (
   <AppContainer>
-    <MuiPickersUtilsProvider utils={MomentUtils}>
-      <Provider store={store}>
-        <Router history={history}>
-          {routes}
-        </Router>
-      </Provider>
-    </MuiPickersUtilsProvider>
+    <Provider store={store}>
+      <Router history={history}>
+        {routes}
+      </Router>
+    </Provider>
   </AppContainer>
 );
 

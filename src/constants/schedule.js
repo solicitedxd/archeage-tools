@@ -94,6 +94,8 @@ export const SCHEDULE_COLS = Object.freeze({
   3: [[0, 3, 5, 8], [1, 4, 6, 9], [2, 7]],
 });
 
+export const CARGO_ID = 9000;
+
 export const CARGO_SCHEDULE = Object.freeze([
   {
     text: 'docked in Solis Headlands',

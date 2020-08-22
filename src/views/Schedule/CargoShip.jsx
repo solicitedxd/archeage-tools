@@ -7,7 +7,9 @@ import {
   FormControl,
   FormControlLabel,
   FormLabel,
+  Icon,
   IconButton,
+  Input,
   Paper,
   Radio,
   RadioGroup,
@@ -20,8 +22,7 @@ import {
   Settings,
   Share,
 } from '@material-ui/icons';
-import { KeyboardTimePicker } from '@material-ui/pickers';
-import { setCargoShip } from 'actions/calendar';
+import { setCargoShip } from 'actions/schedule';
 import cn from 'classnames';
 import CopyDialog from 'components/CopyDialog';
 import { ZONE } from 'constants/map';
@@ -34,9 +35,8 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { hhmmssFromSeconds } from 'utils/thunderstruck';
+import { hhmmssFromDate } from 'utils/time';
 
-const maximumDuration = () => moment().hour(0).minute(20).second(0).millisecond(0);
 const getNextIndex = (index) => index + 1 === CARGO_SCHEDULE.length ? 0 : index + 1;
 
 class CargoShip extends Component {
@@ -55,7 +55,8 @@ class CargoShip extends Component {
     share: false,
     setup: {
       port: '',
-      duration: maximumDuration(),
+      mm: '',
+      ss: '',
     },
     stepIndex: 0,
     endTime: 0,
@@ -64,39 +65,56 @@ class CargoShip extends Component {
 
   interval = null;
 
+  mm = React.createRef();
+
+  ss = React.createRef();
+
   toggleDialog = () => {
     const { open } = this.state;
     if (open) {
-      this.setState({ open: !open });
+      this.setState({ open: false });
     } else {
-      this.setState({ open: !open, setup: { port: '', duration: maximumDuration(), timestamp: null } });
+      this.setState({ open: true, setup: { port: '', mm: '', ss: '' } });
     }
   };
 
   handleSetupChange = (field) => (e, v) => {
     let value = pathOr(v, ['target', 'value'])(e);
-    if (field === 'duration') {
-      value = e;
-      if (value && value.isAfter(maximumDuration())) {
-        value = maximumDuration();
-      }
-    }
     this.setState({ setup: { ...this.state.setup, [field]: value } });
+  };
+
+  handleTimeChange = (key) => (event) => {
+    let { value } = event.target;
+    value = value.replace(/\D/g, '');
+
+    if (value !== '') {
+      const num = Number.parseInt(value);
+      let max = 59;
+      if (key === 'mm') {
+        max = 20;
+      }
+      value = Math.min(num, max);
+    }
+
+    if (key === 'mm' && String(value).length === 2) {
+      this.ss.current.select();
+    }
+
+    this.setState({ setup: { ...this.state.setup, [key]: value !== '' ? Number.parseInt(value) : '' } });
   };
 
   handleEnter = (e) => {
     const { setup } = this.state;
-    if (e.key === 'Enter' && setup.port && setup.duration) {
+    if (e.key === 'Enter' && setup.port && (String(setup.mm).length !== 0 || String(setup.ss).length !== 0)) {
       this.submitSetup();
     }
   };
 
   submitSetup = () => {
     const { setup } = this.state;
-    // convert the duration moment to seconds
-    const durMoment = setup.duration;
-    const duration = (durMoment.minutes() * 60) + durMoment.seconds();
-    const props = { ...setup, endTime: moment().add(duration, 'seconds').format() };
+    const { port, mm, ss } = setup;
+    const duration = (mm * 60) + ss;
+    const props = { port, endTime: moment().add(duration, 'seconds').format() };
     this.props.setCargoShip(props);
     this.initialize(props);
     this.toggleDialog();
@@ -153,7 +171,8 @@ class CargoShip extends Component {
   };
 
   timerTick = () => {
-    let { stepIndex, endTime, shipPosition } = this.state;
+    let { stepIndex, endTime } = this.state;
+    let shipPosition;
     const now = moment();
     let step = CARGO_SCHEDULE[stepIndex];
     let timeRemaining = endTime.diff(now) / 1000;
@@ -194,10 +213,10 @@ class CargoShip extends Component {
       message = 'Initialize the timer by clicking the Settings cog.';
     } else {
       const endSec = endTime.diff(now) / 1000;
-      message = <React.Fragment>
+      message = <>
         The cargo ship is {step.text}.<br />
-        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromSeconds(endSec)}.
-      </React.Fragment>;
+        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromDate(endSec * 1000)}.
+      </>;
       const arriveMin = Math.round(endSec / 60);
       shareMessage = `Cargo ship is ${step.port ? `leaving ${step.portFrom}`
         : `arriving at ${step.portTo}`} in ${Math.floor(endSec / 60) === 0 ? 'less than a minute'
@@ -205,9 +224,10 @@ class CargoShip extends Component {
     }
 
     return [
-      <Paper className="cargo-ship" key="cargo-timer">
+      <Paper className="cargo-ship event-list" key="cargo-timer">
         <AppBar position="static">
           <Toolbar variant="dense">
+            <Icon><img src={'/images/event_type/exploration.png'} alt="Cargo Ship" /></Icon>
             <Typography variant="subtitle1" className="title-text">Cargo Ship</Typography>
             <Tooltip title="Setup Timer">
               <IconButton onClick={this.toggleDialog}>
@@ -215,9 +235,11 @@ class CargoShip extends Component {
               </IconButton>
             </Tooltip>
             <Tooltip title="Share Timer">
-              <IconButton className="cargo-settings-btn" onClick={this.toggleShare} disabled={!port || !endTime}>
-                <Share />
-              </IconButton>
+              <span>
+                <IconButton className="cargo-settings-btn" onClick={this.toggleShare} disabled={!port || !endTime}>
+                  <Share />
+                </IconButton>
+              </span>
             </Tooltip>
           </Toolbar>
         </AppBar>
@@ -231,7 +253,7 @@ class CargoShip extends Component {
           </Tooltip>
           <div
             className={cn('cargo-icon ship', { moving: !Boolean(step.port), reverse: step.reverse })}
-            style={{ [step.reverse ? 'left' : 'right']: `${((shipPosition / step.duration) * 308) - 10}px` }}
+            style={{ [step.reverse ? 'left' : 'right']: `${(shipPosition / step.duration) * 100}%` }}
           />
         </div>
         <div className="cargo-text">
@@ -277,19 +299,29 @@ class CargoShip extends Component {
           <FormControl component="fieldset">
             <FormLabel component="legend">What is the remaining time on the "Cargo Ship Anchored" buff?</FormLabel>
             <div className="duration-pick">
-              <KeyboardTimePicker
-                ampm={false}
-                views={['minutes', 'seconds']}
-                format="mm:ss"
-                value={setup.duration}
-                onChange={this.handleSetupChange('duration')}
-                onKeyPress={this.handleEnter}
-                open={false}
-                KeyboardButtonProps={{
-                  style: {
-                    display: 'none',
-                  },
+              <Input
+                id="mm"
+                placeholder="20"
+                endAdornment="m"
+                inputProps={{
+                  maxLength: 2,
+                  ref: this.mm,
                 }}
+                value={setup.mm}
+                onChange={this.handleTimeChange('mm')}
+                onKeyPress={this.handleEnter}
+              />
+              <Input
+                id="ss"
+                placeholder="00"
+                endAdornment="s"
+                inputProps={{
+                  maxLength: 2,
+                  ref: this.ss,
+                }}
+                value={setup.ss}
+                onChange={this.handleTimeChange('ss')}
+                onKeyPress={this.handleEnter}
               />
             </div>
           </FormControl>
@@ -298,7 +330,7 @@ class CargoShip extends Component {
           <Button
             onClick={this.submitSetup}
             color="primary"
-            disabled={!setup.port || !setup.duration}
+            disabled={!setup.port || (String(setup.mm).length === 0 && String(setup.ss).length === 0)}
           >
             Update
           </Button>

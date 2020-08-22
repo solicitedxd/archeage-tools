@@ -138,7 +138,7 @@
       color: #009688;
       position: relative;
       height: 2px;
-      margin: 16px 16px 0;
+      margin: 16px 24px 0;
       padding: 11px 0;
       box-sizing: content-box;
 
@@ -312,6 +312,23 @@
 
   .ORANGE {
     background-color: #E67E22;
+  }
+}
+
+.duration-pick {
+  //margin-top: 16px;
+  display: flex;
+  //justify-content: space-between;
+
+  .MuiInputBase-root + .MuiInputBase-root {
+    margin-left: 8px;
+  }
+
+  .MuiInputBase-input {
+    width: 22px;
+    text-align: right;
+    padding-right: 2px;
+    margin-bottom: -1px;
   }
 }
 
