@@ -34,6 +34,7 @@ import IfPerm from 'components/IfPerm';
 import {
   ALERT_CUE,
   ALERT_OPTIONS,
+  CARGO_ID,
   EVENT_TYPE_OTHER,
   REGIONS,
   SCHEDULE_COLS,
@@ -64,6 +65,7 @@ import {
   hhmmssToInt,
 } from 'utils/schedule';
 import { setTitle } from 'utils/string';
+import CargoShip from './CargoShip';
 import EditEvent from './EditEvent';
 import EventList from './EventList';
 import InGameTime from './InGameTime';
@@ -394,6 +396,10 @@ class Schedule extends Component {
     const { region, setRegion, eventTypes, mobile, hasAlerts, clearAlerts } = this.props;
     const { events, width, editOpen, editId, showDisabled, interacted } = this.state;
 
+    // add the cargo ship timer
+    const eventTypeList = Object.values(eventTypes);
+    eventTypeList.push({ id: CARGO_ID, name: 'Cargo Ship', icon: 'exploration' });
+
     // max cols = 3
     // min cols = 1
     // min col size = 350
@@ -462,18 +468,21 @@ class Schedule extends Component {
           {Array.from(Array(cols)).map((_, col) => (
             <div className="schedule-column" style={{ width: `${colWidth}%` }} key={`event-col-${col}`}>
               {col === 0 && mobile && <InGameTime mobile={mobile} />}
-              {Object.values(eventTypes)
+              {Object.values(eventTypeList)
               // .filter((type, i) => (i + (cols === 2 && i > 1 && i < 4 ? 1 : 0)) % cols === col)
               .filter((_, i) => SCHEDULE_COLS[cols][col].includes(i))
-              .map(type => (
-                <EventList
-                  key={`event-list-${type.id}`}
-                  {...type}
-                  events={events.filter(e => e.eventType === type.id)}
-                  onEdit={this.setEditOpen}
-                  region={region}
-                />
-              ))}
+              .map(type =>
+                type.id === CARGO_ID
+                  ? (<CargoShip key={`event-list-${type.id}`} />)
+                  : (
+                    <EventList
+                      key={`event-list-${type.id}`}
+                      {...type}
+                      events={events.filter(e => e.eventType === type.id)}
+                      onEdit={this.setEditOpen}
+                      region={region}
+                    />
+                  ))}
             </div>
           ))}
         </div>

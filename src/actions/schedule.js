@@ -1,6 +1,7 @@
 import {
   CLEAR_ALERTS,
   SET_ALERT,
+  SET_CARGO_SHIP,
   SET_REGION,
   SET_SPEAK,
   SET_VOLUME,
@@ -10,9 +11,10 @@ import { pathOr } from 'ramda';
 import { maxDecimals } from 'utils/number';
 
 export const triggerLocalStorageUpdate = [
-  SET_REGION,
-  SET_ALERT,
   CLEAR_ALERTS,
+  SET_ALERT,
+  SET_REGION,
+  SET_CARGO_SHIP,
   SET_SPEAK,
   SET_VOLUME,
 ];
@@ -27,6 +29,10 @@ export const setAlert = (eventId, value) => (dispatch) => () => {
 
 export const clearAlerts = () => (dispatch) => {
   dispatch({ type: CLEAR_ALERTS });
+};
+
+export const setCargoShip = (cargoShip) => (dispatch) => {
+  dispatch({ type: SET_CARGO_SHIP, cargoShip });
 };
 
 export const setVolume = (volume) => (dispatch) => {

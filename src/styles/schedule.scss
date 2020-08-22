@@ -126,6 +126,83 @@
     }
   }
 
+  .cargo-ship {
+    margin-top: 20px;
+
+    .cargo-settings-btn {
+      margin-right: -12px;
+      color: #FFFFFF;
+    }
+
+    .cargo-slider {
+      color: #009688;
+      position: relative;
+      height: 2px;
+      margin: 16px 24px 0;
+      padding: 11px 0;
+      box-sizing: content-box;
+
+      .cargo-rail {
+        width: 100%;
+        height: 2px;
+        opacity: 0.5;
+        position: absolute;
+        border-radius: 1px;
+        background-color: currentColor;
+      }
+
+      .cargo-icon {
+        display: inline-block;
+        background: url(../images/npc_icon.png) no-repeat;
+        width: 22px;
+        height: 22px;
+        position: absolute;
+
+        &.austera {
+          background-position: -386px -97px;
+          top: 0;
+          left: -12px;
+        }
+
+        &.two-crowns {
+          background-position: -409px -97px;
+          top: 0;
+          right: -12px;
+        }
+
+        &.ship {
+          width: 17px;
+          height: 20px;
+          background-position: -412px -122px;
+          top: -8px;
+
+          &.moving {
+            animation: sailing 2.5s infinite;
+            animation-timing-function: linear;
+          }
+
+          &.reverse {
+            transform: scaleX(-1);
+
+            &.moving {
+              animation: sailing-reverse 2.5s infinite;
+              animation-timing-function: linear;
+            }
+          }
+        }
+      }
+    }
+
+    .cargo-text {
+      margin: 6px 12px;
+      padding-bottom: 8px;
+
+      .MuiTypography-body1 {
+        font-size: 0.9rem;
+      }
+    }
+  }
+
   /* event statuses */
   .ev-status-waiting,
   .ev-status-ended,
@@ -235,6 +312,23 @@
 
   .ORANGE {
     background-color: #E67E22;
+  }
+}
+
+.duration-pick {
+  //margin-top: 16px;
+  display: flex;
+  //justify-content: space-between;
+
+  .MuiInputBase-root + .MuiInputBase-root {
+    margin-left: 8px;
+  }
+
+  .MuiInputBase-input {
+    width: 22px;
+    text-align: right;
+    padding-right: 2px;
+    margin-bottom: -1px;
   }
 }
 
