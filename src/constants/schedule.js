@@ -3,8 +3,10 @@ import AudioTest from 'audio/empty.mp3';
 import UnpackLaunch from 'audio/interaction_unpack_launch.mp3';
 import MailAlarm from 'audio/mail_alarm.mp3';
 import QuestAccept2 from 'audio/quest_accept_2.mp3';
+import { ZONE } from 'constants/map';
 
 export const SET_REGION = 'SET_REGION';
+export const SET_CARGO_SHIP = 'SET_CARGO_SHIP';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_ALERTS = 'CLEAR_ALERTS';
 export const SET_VOLUME = 'SET_VOLUME';
@@ -91,3 +93,32 @@ export const SCHEDULE_COLS = Object.freeze({
   2: [[0, 3, 4, 5, 7, 9], [1, 2, 6, 8]],
   3: [[0, 3, 5, 8], [1, 4, 6, 9], [2, 7]],
 });
+
+export const CARGO_SCHEDULE = Object.freeze([
+  {
+    text: 'docked in Solis Headlands',
+    port: ZONE.SOLIS_HEADLANDS,
+    portFrom: 'Austera',
+    reverse: true,
+    duration: 1200,
+  },
+  {
+    text: 'sailing to Two Crowns',
+    sailing: true,
+    portTo: 'Two Crowns',
+    duration: 621,
+  },
+  {
+    text: 'docked in Two Crowns',
+    port: ZONE.TWO_CROWNS,
+    portFrom: ZONE.TWO_CROWNS,
+    duration: 1200,
+  },
+  {
+    text: 'sailing to Solis Headlands',
+    sailing: true,
+    portTo: 'Austera',
+    reverse: true,
+    duration: 648,
+  },
+]);

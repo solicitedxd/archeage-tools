@@ -1,6 +1,7 @@
 import {
   CLEAR_ALERTS,
   SET_ALERT,
+  SET_CARGO_SHIP,
   SET_REGION,
   SET_SPEAK,
   SET_VOLUME,
@@ -49,6 +50,11 @@ const calendar = (state = getItem('calendar', initialState), action) => {
           ...state.speak,
           [action.eventId]: action.value,
         },
+      };
+    case SET_CARGO_SHIP:
+      return {
+        ...state,
+        cargoShip: action.cargoShip,
       };
     default:
       return state;
