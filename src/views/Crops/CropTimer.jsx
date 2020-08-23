@@ -69,13 +69,14 @@ class CropTimer extends Component {
 
   render() {
     const { crop, time, climate, note, timer, seedbed, onDelete, onRestart } = this.props;
+    console.log(this.props);
 
     if (!crop) return null;
 
     const maturesVal = crop.description.match(MATURES_REGEX);
     const harvestVal = crop.description.match(HARVEST_REGEX);
     const cropClimate = crop.description.match(CLIMATE_REGEX);
-    const harvestTime = harvestVal && toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0);
+    const harvestTime = harvestVal && toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0);
     let totalTime = timer === TIMER_TYPE.HARVEST && harvestVal
       ? harvestTime
       : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);

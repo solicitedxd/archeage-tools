@@ -171,7 +171,7 @@ class Crops extends Component {
     const cropClimate = crop.description.match(CLIMATE_REGEX);
     const enteredTime = toSeconds(dd || 0, hh || 0, mm || 0, ss || 0);
     let defaultTime = timer === TIMER_TYPE.HARVEST && harvestVal
-      ? toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0)
+      ? toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0)
       : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
     if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
       defaultTime = Math.ceil(defaultTime * 0.7);
@@ -201,7 +201,7 @@ class Crops extends Component {
   reharvestCrop = (index, { crop, climate, seedbed }) => {
     const harvestVal = crop.description.match(HARVEST_REGEX);
     const cropClimate = crop.description.match(CLIMATE_REGEX);
-    let time = toSeconds(harvestVal[1] || 0, harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0);
+    let time = toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0);
     if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
       time = Math.ceil(time * 0.7);
     }
@@ -394,15 +394,21 @@ class Crops extends Component {
 
 const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crops, items } }) => {
   const cropItems = Object.values(items)
-  .filter(item => crops.includes(item.id) && !item.name.match(/(Greenhouse|Unidentified|^Bound|^Topiary Sapling$|.* Cherry Sapling|Cornu|Kelp|Graywisp|Dawnleaf|Wild Ginseng|Yellow Yam)/i) && item.description.includes('\r\nMatures in'))
+  .filter(item => crops.includes(item.id) && !item.name.match(/(Greenhouse|Unidentified|^Bound|^Topiary Sapling$|.* Cherry Sapling|Cornu|Kelp|Graywisp|Dawnleaf|Wild Ginseng|Yellow Yam|Golden Lamb|Hatching Egg)/i))
   .sort(sortBy('grade'));
   cropItems.forEach(item => {
     if (item.name.match(/(Wood ?lot)/i)) {
-      item.group = CROP_GROUP[3];
+      item.group = CROP_GROUP[4];
     } else if (item.name.match(/Bundle/i)) {
-      item.group = CROP_GROUP[2];
+      item.group = CROP_GROUP[3];
     } else if (item.type === 'Seed') {
       item.group = CROP_GROUP[0];
+    } else if (item.type === 'Livestock') {
+      if (item.name.match(/(Cage|Coop|Pen)/i)) {
+        item.group = CROP_GROUP[5];
+      } else {
+        item.group = CROP_GROUP[2];
+      }
     } else {
       item.group = CROP_GROUP[1];
     }
