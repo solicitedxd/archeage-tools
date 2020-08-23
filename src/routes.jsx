@@ -24,7 +24,7 @@ export default (
       <Route path="/skills" exact component={Skills} />
       <Route path="/schedule" exact component={Schedule} />
       <Route path="/taxes" exact component={Taxes} />
-      <Route path="/thunderstruck" exact component={Crops} />
+      <Route path="/my-farm" exact component={Crops} />
       <Route path="/crops" exact component={Crops} />
       <Route path="/guides" exact component={Guides} />
       <Route path="/guides/:guide?" component={GuideViewer} />

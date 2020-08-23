@@ -25,7 +25,10 @@ import {
   removeCrop,
   restartCrop,
 } from 'actions/crops';
-import { fetchCropItems } from 'actions/gameData';
+import {
+  fetchClimates,
+  fetchCropItems,
+} from 'actions/gameData';
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
@@ -36,13 +39,13 @@ import {
   MATURES_REGEX,
   TIMER_TYPE,
 } from 'constants/crops';
-import { CLIMATE } from 'constants/map';
 import moment from 'moment-timezone';
 import React, { Component } from 'react';
 import {
   array,
   bool,
   func,
+  object,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import {
@@ -67,6 +70,8 @@ class Crops extends Component {
     mobile: bool.isRequired,
     crops: array.isRequired,
     items: array.isRequired,
+    fetchClimates: func.isRequired,
+    climates: object.isRequired,
   };
 
   state = {
@@ -94,6 +99,7 @@ class Crops extends Component {
 
   componentDidMount() {
     this.props.fetchCropItems();
+    this.props.fetchClimates();
   }
 
   handleTimeChange = (key) => (event) => {
@@ -210,17 +216,17 @@ class Crops extends Component {
   };
 
   render() {
-    const { mobile, crops, removeCrop, items } = this.props;
+    const { mobile, crops, removeCrop, items, climates } = this.props;
     const { dd, hh, mm, ss, climate, crop, note, timer, seedbed, errors } = this.state;
 
-    setTitle('Crop Timers');
+    setTitle('My Farm Timers');
 
     return (
       <div className={cn('tool-container', { mobile })}>
         <Paper className="section">
           <AppBar position="static">
             <Toolbar>
-              <Typography variant="h5" className="title-text">Crop Timer</Typography>
+              <Typography variant="h5" className="title-text">My Farm Timers</Typography>
             </Toolbar>
           </AppBar>
           <div className="crops-container">
@@ -246,7 +252,7 @@ class Crops extends Component {
                 <FormControl error={hasProperty(errors, 'crop')}>
                   <TextField
                     {...params}
-                    label={`Find a crop`}
+                    label={`Find a crop, tree, or livestock`}
                     variant="standard"
                     size="medium"
                     InputProps={{
@@ -284,15 +290,15 @@ class Crops extends Component {
             <FormControl className="select-group" error={hasProperty(errors, 'climate')}>
               <InputLabel className="group-label" shrink>Climate(s)</InputLabel>
               <ButtonGroup color="secondary">
-                {Object.values(CLIMATE).map(c => (
-                  <Tooltip title={c} key={c}>
+                {Object.values(climates).map(c => (
+                  <Tooltip title={c.name} key={`climate-${c.id}`}>
                     <Button
-                      variant={climate.includes(c) && !seedbed ? 'contained' : 'outlined'}
-                      className={cn({ selected: climate.includes(c) })}
-                      onClick={(e) => this.handleSelectClimate(e, c)}
+                      variant={climate.includes(c.name) && !seedbed ? 'contained' : 'outlined'}
+                      className={cn({ selected: climate.includes(c.name) })}
+                      onClick={(e) => this.handleSelectClimate(e, c.name)}
                       disabled={seedbed}
                     >
-                      <span className={cn('climate-icon small', c)} />
+                      <span className={cn('climate-icon small', c.name)} />
                     </Button>
                   </Tooltip>
                 ))}
@@ -392,7 +398,7 @@ class Crops extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crops, items } }) => {
+const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crops, items, climates } }) => {
   const cropItems = Object.values(items)
   .filter(item => crops.includes(item.id) && !item.name.match(/(Greenhouse|Unidentified|^Bound|^Topiary Sapling$|.* Cherry Sapling|Cornu|Kelp|Graywisp|Dawnleaf|Wild Ginseng|Yellow Yam|Golden Lamb|Hatching Egg)/i))
   .sort(sortBy('grade'));
@@ -418,6 +424,7 @@ const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crop
     mobile,
     crops: myCrops.map(crop => ({ ...crop, crop: itemMap[crop.crop] })),
     items: cropItems.sort((a, b) => CROP_GROUP.indexOf(a.group) - CROP_GROUP.indexOf(b.group)),
+    climates,
   };
 };
 
@@ -426,6 +433,7 @@ const mapDispatchToProps = {
   removeCrop,
   fetchCropItems,
   restartCrop,
+  fetchClimates,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Crops);
