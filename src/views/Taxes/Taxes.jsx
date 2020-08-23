@@ -110,6 +110,8 @@ class Taxes extends Component {
     if (countProperties(this.props.items) === this.props.buildingIds.length) {
       this.initBuildings();
     }
+
+    window.addEventListener('keypress', this.onEnter);
   }
 
   componentDidUpdate(prevProps) {
@@ -119,6 +121,16 @@ class Taxes extends Component {
       this.initBuildings();
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('keypress', this.onEnter);
+  }
+
+  onEnter = (e) => {
+    if (this.state.building.itemId && e.key === 'Enter') {
+      this.addProperty();
+    }
+  };
 
   initBuildings = () => {
     const { items, createBuilding } = this.props;
