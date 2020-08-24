@@ -210,7 +210,7 @@ const TooltipContent = (props) => {
       {(endNpcId || endDoodadId || autoComplete) &&
       <section>
         {endNpcId && <p>Turn in to <NpcLink id={endNpcId} />.</p>}
-        {endDoodadId && <p>Turn in to <NpcLink id={endDoodadId} />.</p>}
+        {endDoodadId && <p>Turn in to <DoodadLink id={endDoodadId} />.</p>}
         {autoComplete && <p>Completes automatically.</p>}
       </section>}
     </div>
