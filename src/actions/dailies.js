@@ -1,5 +1,6 @@
 import {
   QUEST_COLLAPSE_CATEGORY,
+  QUEST_COMPLETE_GROUPS,
   QUEST_FACTION,
   QUEST_HIDE,
   QUEST_HIDE_CATEGORY,
@@ -30,6 +31,10 @@ export const triggerLocalStorageUpdate = [
  * @returns {function} redux dispatch call
  */
 export const setQuestStatus = (questId, completed) => (dispatch) => {
+  if (typeof questId === 'number') {
+    questId = QUEST_COMPLETE_GROUPS.find(qList => qList.includes(questId)) || questId;
+  }
+
   dispatch({ type: QUEST_STATUS, questId, completed });
 };
 

@@ -46,4 +46,73 @@ export const FACTIONS = Object.freeze({
   PIRATE: { id: 3, name: 'Pirate' },
 });
 
+export const QUEST_CATEGORY = Object.freeze({
+  AURORIA_TERRITORIES: 155,
+  ALL_IN_THE_FAMILY: 160,
+});
 
+export const QUEST_COMPLETE_GROUPS = Object.freeze([
+  // cargo delivery
+  [8635, 8636],
+  // blue salt dailies
+  [5077, 5078],
+  [5079, 5080],
+]);
+
+export const RESIDENCE_QUESTS = Object.freeze({
+  8345: [5, 6, 21, 3, 13, 4, 9, 7, 24, 10], // Chipping In
+  8347: [1, 12, 93, 99, 25, 19], // Weave No Man Behind
+  8348: [18, 8, 15, 23], // Building a Reputation
+  8349: [17, 20], // Smelting Hearts
+  8350: [27, 26, 22, 11, 16, 14, 2], // Lend Me a Tanner
+
+  8559: [24, 9, 4, 13, 7], // Trade Outlet: Ynystere or Villanelle
+  8560: [12, 25, 99], // Trade Outlet: Austera or Ynystere
+  8561: [11, 16, 14], // Trade Outlet: Haranya
+  8562: [17], // Trade Outlet: Austera or Villanelle
+  8588: [5, 6, 3, 10, 21], // Trade Outlet: Cinderstone or Two Crowns
+  8589: [1, 19, 93], // Trade Outlet: Nuia
+  8590: [2, 23, 26, 27], // Trade Outlet: Nuia
+  8591: [20], // Trade Outlet: Solzreed or Two Crowns
+  8592: [23, 15], // Trade Outlet: Haranya
+  8593: [8, 18], // Trade Outlet: Solzreed or Cinderstone
+});
+
+export const CASTLE_QUESTS = Object.freeze({
+  // Calmlands
+  10145: [44],
+  9381: [44],
+  9386: [44],
+  9380: [44],
+  10156: [44],
+  9385: [44],
+  9604: [44],
+  10153: [44],
+  // Marcala
+  10146: [43],
+  9372: [43],
+  9373: [43],
+  9378: [43],
+  10155: [43],
+  9377: [43],
+  9603: [43],
+  10152: [43],
+  // Heedmar
+  10147: [33],
+  9356: [33],
+  9357: [33],
+  9362: [33],
+  10144: [33],
+  9361: [33],
+  9601: [33],
+  10149: [33],
+  // Nuimari
+  10148: [34],
+  9364: [34],
+  9365: [34],
+  9370: [34],
+  10154: [34],
+  9369: [34],
+  9602: [34],
+  10151: [34],
+});
