@@ -24,6 +24,7 @@ const display = (state = getItem('display', initialState), action) => {
       return {
         ...state,
         dialog: action.dialog,
+        dialogFunc: action.dialogFunc,
       };
     case CLOSE_DIALOG:
       return {

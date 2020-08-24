@@ -8,7 +8,10 @@ import {
 } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
-import { fetchCategories } from 'actions/gameData';
+import {
+  fetchCategories,
+  fetchVocations,
+} from 'actions/gameData';
 import { push } from 'actions/navigate';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -35,6 +38,7 @@ import RecipeViewer from './RecipeViewer';
 class Folio extends Component {
   static propTypes = {
     fetchCategories: func.isRequired,
+    fetchVocations: func.isRequired,
     match: object.isRequired,
     params: object,
     vocation: string,
@@ -51,6 +55,7 @@ class Folio extends Component {
 
   componentDidMount() {
     this.props.fetchCategories();
+    this.props.fetchVocations();
   }
 
   getProps = () => {
@@ -179,6 +184,7 @@ const mapStateToProps = ({ gameData: { vocations, categories, items }, display: 
 
 const mapDispatchToProps = {
   fetchCategories,
+  fetchVocations,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Folio);

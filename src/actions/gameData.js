@@ -615,13 +615,14 @@ export const fetchContinents = () => (dispatch, getState) => {
   xhr.get(config.endpoints.service.continents)
   .then(({ data }) => {
     let zones = [];
-    continents.forEach(continent => {
+    data.forEach(continent => {
       zones = zones.concat(continent.zones);
       continent.zones = continent.zones.map(z => z.id);
     });
     dispatch({ type: DATA_CONTINENTS, continents: arrayToMap(data), zones: arrayToMap(zones) });
   })
-  .catch(() => {
+  .catch((e) => {
+    console.error(e);
     dispatch(setNotification('Failed to fetch continent zone data.', NOTIFICATION_TYPE.WARNING));
   });
 };

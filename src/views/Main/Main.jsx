@@ -15,9 +15,9 @@ import { clearNotification } from 'actions/notification';
 import { fetchMe } from 'actions/session';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
+import Proficiencies from 'components/MyGame';
 import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
-import Proficiencies from 'components/Proficiencies';
 import React from 'react';
 import {
   bool,

@@ -135,3 +135,11 @@
     background-position: -171px -135px;
   }
 }
+
+.residence-wrapper {
+  padding: 12px;
+
+  .MuiAutocomplete-root + .MuiAutocomplete-root {
+    margin-top: 12px;
+  }
+}
