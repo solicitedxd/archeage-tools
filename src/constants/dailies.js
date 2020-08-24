@@ -116,3 +116,14 @@ export const CASTLE_QUESTS = Object.freeze({
   9602: [34],
   10151: [34],
 });
+
+export const BOND_BOARDS = Object.freeze([
+  // Fabric
+  { questIds: [9044, 9147, 9148], boardIds: [13520, 13524, 13525, 13526, 13529, 13540] },
+  // Leather
+  { questIds: [9046, 9142, 9143], boardIds: [13527, 13530, 13532, 13534, 13537, 13539, 13545, 13546] },
+  // Iron Ingots
+  { questIds: [9047, 9137, 9138], boardIds: [13521, 13528, 13538, 11665, 13542, 13531, 13547] },
+  // Lumber
+  { questIds: [9049, 9152, 9153], boardIds: [13523, 13509, 13536, 13544, 13543, 13535, 13533, 13541] },
+]);
