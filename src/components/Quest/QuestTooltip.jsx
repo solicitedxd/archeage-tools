@@ -332,4 +332,4 @@ const mapStateToProps = ({ gameData: { quests } }, { questId }) => ({
   quest: pathOr({}, [questId])(quests),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestTooltip);
+export default connect(mapStateToProps, null)(QuestTooltip);

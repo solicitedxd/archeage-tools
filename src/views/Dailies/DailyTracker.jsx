@@ -31,6 +31,7 @@ import {
   fetchFestivals,
   fetchInstances,
   fetchQuestRefData,
+  fetchVocations,
 } from 'actions/gameData';
 import AdContainer from 'components/AdContainer';
 import ScrollToTop from 'components/ScrollToTop';
@@ -90,6 +91,7 @@ class DailyTracker extends Component {
     setQuestStatus: func.isRequired,
     lastVisit: oneOfType([string, object]),
     updateLastVisit: func.isRequired,
+    fetchVocations: func.isRequired,
   };
 
   static defaultProps = {};
@@ -110,6 +112,7 @@ class DailyTracker extends Component {
   componentDidMount() {
     const { events, lastVisit, festivals, instances, dailyQuests } = this.props;
 
+    this.props.fetchVocations();
     this.props.fetchQuestRefData();
     this.props.fetchDailyQuests();
     this.props.fetchFestivals();
@@ -491,6 +494,7 @@ const mapDispatchToProps = {
   fetchQuestRefData,
   setQuestStatus,
   updateLastVisit,
+  fetchVocations,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DailyTracker);
