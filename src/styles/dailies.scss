@@ -240,10 +240,6 @@
   }
 }
 
-.MuiDialogContent-root.quest-filters .filter-field {
-  margin: 8px 0 0;
-}
-
 .quest-filters {
   .reward-panel-texts {
     display: flex;
@@ -262,6 +258,7 @@
   font-size: 15px;
   color: #6D4916;
   padding-right: 20px;
+  min-height: 22px;
 
   &.currency {
     display: inline-block;
@@ -294,10 +291,12 @@
     background-position: -32px -28px;
   }
 
+  &.honor,
   &.Honor {
     padding-right: 16px;
   }
 
+  &.honor:after,
   &.Honor:after {
     width: 12px;
     height: 19px;
@@ -305,26 +304,33 @@
     top: 2px;
   }
 
+  &.leadership,
   &.Leadership {
     padding-right: 18px;
   }
 
+  &.leadership:after,
   &.Leadership:after {
     width: 14px;
     height: 15px;
     background-position: -173px -29px;
   }
 
-  &.Items, &.crate {
+  &.item,
+  &.Items,
+  &.crate {
     padding-right: 15px;
   }
 
-  &.Items:after, &.crate:after {
+  &.item:after,
+  &.Items:after,
+  &.crate:after {
     width: 11px;
     height: 16px;
     background-position: -223px -12px;
   }
 
+  &.vocation,
   &.Vocation {
     padding-right: 21px;
   }
@@ -336,6 +342,7 @@
     top: 3px;
   }
 
+  &.gilda,
   &.Gilda {
     padding-right: 22px;
   }
@@ -347,10 +354,12 @@
     top: 1px;
   }
 
+  &.prestige, &.credits,
   &.Prestige, &.Credits {
     padding-right: 18px;
   }
 
+  &.prestige:after,
   &.Prestige:after {
     width: 14px;
     height: 18px;
@@ -365,10 +374,12 @@
     top: 1px;
   }
 
+  &.bsb:after,
   &.Blue:after {
     background-position: -189px -29px;
   }
 
+  &.guildxp:after,
   &.Guild.XP:after {
     background-position: -96px -29px;
   }
@@ -447,10 +458,12 @@
     background-position: -157px -29px;
   }
 
+  &.crimepoints,
   &.Crime {
     padding-right: 18px;
   }
 
+  &.crimepoints:after,
   &.Crime:after {
     background-position: -63px -30px;
     width: 14px;
@@ -477,40 +490,9 @@
   display: block;
   margin: 8px 12px;
 
-  &:last-child {
-    padding-bottom: 8px;
-  }
-
-  .label {
-    color: rgba(0, 0, 0, 0.54);
-  }
-
-  .filter-group {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: stretch;
-    justify-content: center;
-
-    &.grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 64px);
-    }
-
-    button {
-      border-radius: 0;
-
-      &.selected {
-        background-color: #B2DFDB;
-      }
-    }
-
-    &:not(.rewards) button {
-      flex-grow: 1;
-    }
-
-    button.hideSelected {
-      background-color: #C1C1C1;
-    }
+  &.padded {
+    margin: 0 auto;
+    padding: 8px 12px;
   }
 }
 
@@ -627,12 +609,6 @@
 
   .currency {
     color: #4D9BDC;
-  }
-
-  .filter-field {
-    .label {
-      color: rgba(255, 255, 255, 0.84);
-    }
   }
 }
 

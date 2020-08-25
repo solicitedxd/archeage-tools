@@ -7,6 +7,7 @@ import {
   QUEST_HIDE_COMPLETED,
   QUEST_LAST_VISIT,
   QUEST_REGION,
+  QUEST_REWARDS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -20,6 +21,7 @@ export const triggerLocalStorageUpdate = [
   QUEST_HIDE_COMPLETED,
   QUEST_LAST_VISIT,
   QUEST_REGION,
+  QUEST_REWARDS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 ];
@@ -110,4 +112,13 @@ export const setCollapseCategory = (categoryId, collapsed) => (dispatch) => {
  */
 export const updateLastVisit = () => (dispatch) => {
   dispatch({ type: QUEST_LAST_VISIT, lastVisit: moment.utc() });
+};
+
+/**
+ * Updates the quest reward filter.
+ * @param rewards filter list
+ * @returns {function} redux dispatch call
+ */
+export const setRewardFilter = (rewards) => (dispatch) => {
+  dispatch({ type: QUEST_REWARDS, rewards });
 };

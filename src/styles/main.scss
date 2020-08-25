@@ -84,7 +84,7 @@ header.site-header {
   position: relative;
   margin: 0 20px;
 
-  .MuiToolbar-root:first-child {
+  .MuiAppBar-root:first-child .MuiToolbar-root {
     padding-right: 16px;
     border-radius: 3px;
   }

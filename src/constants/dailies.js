@@ -1,6 +1,7 @@
 export const QUEST_STATUS = 'QUEST_STATUS';
 export const QUEST_FACTION = 'QUEST_FACTION';
 export const QUEST_REGION = 'QUEST_REGION';
+export const QUEST_REWARDS = 'QUEST_REWARDS';
 export const QUEST_HIDE_COMPLETED = 'QUEST_HIDE_COMPLETED';
 export const QUEST_HIDE = 'QUEST_HIDE';
 export const QUEST_SHOW_HIDDEN = 'QUEST_SHOW_HIDDEN';
@@ -30,6 +31,10 @@ export const REWARD_XP = 'XP';
 export const REWARD_COINS = 'Coins';
 export const REWARD_PROFICIENCY = 'Proficiency';
 export const REWARD_TITLE = 'Title';
+export const REWARD_FAMILY_XP = 'Family XP';
+
+export const REWARD_GILDA = 101;
+export const REWARD_BSB = 102;
 
 export const CRITERIA_TYPE_CHAT = 'CHAT';
 export const CRITERIA_TYPE_COLLECT = 'COLLECT';
@@ -45,6 +50,19 @@ export const FACTIONS = Object.freeze({
   HARANYAN: { id: 2, name: 'Haranyan' },
   PIRATE: { id: 3, name: 'Pirate' },
 });
+
+export const HIDDEN_REWARDS = Object.freeze([
+  REWARD_XP,
+  REWARD_COINS,
+  REWARD_PROFICIENCY,
+  REWARD_TITLE,
+  REWARD_FAMILY_XP,
+]);
+
+export const CUSTOM_REWARDS = Object.freeze([
+  { id: REWARD_GILDA, name: 'Gilda Stars', icon: 'gilda' },
+  { id: REWARD_BSB, name: 'Blue Salt Bonds', icon: 'bsb' },
+]);
 
 export const QUEST_CATEGORY = Object.freeze({
   AURORIA_TERRITORIES: 155,
