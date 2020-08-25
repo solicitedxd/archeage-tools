@@ -10,6 +10,12 @@ import {
   Icon,
   IconButton,
   Input,
+  ListItem,
+  ListItemIcon,
+  ListItemSecondaryAction,
+  ListItemText,
+  Menu,
+  MenuItem,
   Paper,
   Radio,
   RadioGroup,
@@ -22,19 +28,37 @@ import {
   Settings,
   Share,
 } from '@material-ui/icons';
-import { setCargoShip } from 'actions/schedule';
+import CheckBoxIcon from '@material-ui/icons/CheckBox';
+import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
+import CloseIcon from '@material-ui/icons/Close';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import {
+  CAN_SPEAK,
+  setAlert,
+  setCargoShip,
+  setSpeak,
+  speak,
+} from 'actions/schedule';
 import cn from 'classnames';
 import CopyDialog from 'components/CopyDialog';
 import { ZONE } from 'constants/map';
-import { CARGO_SCHEDULE } from 'constants/schedule';
+import {
+  CARGO_ALERTS,
+  CARGO_ID,
+  CARGO_SCHEDULE,
+} from 'constants/schedule';
 import moment from 'moment';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
+  arrayOf,
+  bool,
+  func,
   oneOf,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { randomString } from 'utils/string';
 import { hhmmssFromDate } from 'utils/time';
 
 const getNextIndex = (index) => index + 1 === CARGO_SCHEDULE.length ? 0 : index + 1;
@@ -43,6 +67,14 @@ class CargoShip extends Component {
   static propTypes = {
     port: oneOf([ZONE.SOLIS_HEADLANDS, ZONE.TWO_CROWNS]),
     endTime: string,
+    setCargoShip: func.isRequired,
+    setAlert: func.isRequired,
+    setSpeak: func.isRequired,
+    alerts: arrayOf(string),
+    speak: bool,
+    mobile: bool,
+    playCue: func.isRequired,
+    doSpeak: func.isRequired,
   };
 
   static defaultProps = {
@@ -61,6 +93,7 @@ class CargoShip extends Component {
     stepIndex: 0,
     endTime: 0,
     shipPosition: 0,
+    menu: null,
   };
 
   interval = null;
@@ -68,6 +101,14 @@ class CargoShip extends Component {
   mm = React.createRef();
 
   ss = React.createRef();
+
+  handleOpenMenu = (e) => {
+    this.setState({ menu: e.target });
+  };
+
+  handleCloseMenu = () => {
+    this.setState({ menu: null });
+  };
 
   toggleDialog = () => {
     const { open } = this.state;
@@ -171,6 +212,7 @@ class CargoShip extends Component {
   };
 
   timerTick = () => {
+    const { alerts, speak, playCue, doSpeak } = this.props;
     let { stepIndex, endTime } = this.state;
     let shipPosition;
     const now = moment();
@@ -194,6 +236,22 @@ class CargoShip extends Component {
     } else {
       shipPosition = timeRemaining;
     }
+
+    // check if alert
+    const alert = alerts
+    .map(aId => CARGO_ALERTS[aId])
+    .find(a => (a.portFrom === step.portFrom || a.portTo === step.portTo) && a.duration === Math.round(timeRemaining));
+
+    if (alert) {
+      const { cue, speech } = alert;
+      console.log(alert, cue, speech);
+      playCue(cue);
+
+      if (speak) {
+        setTimeout(() => doSpeak(speech), 500);
+      }
+    }
+
     this.setState({ stepIndex, timeRemaining, shipPosition, endTime });
   };
 
@@ -202,8 +260,8 @@ class CargoShip extends Component {
   };
 
   render() {
-    const { port } = this.props;
-    const { open, setup, stepIndex, endTime, shipPosition, share } = this.state;
+    const { port, alerts, setAlert, speak, setSpeak, mobile } = this.props;
+    const { open, setup, stepIndex, endTime, shipPosition, share, menu } = this.state;
     const now = moment();
     const step = CARGO_SCHEDULE[stepIndex];
     let message;
@@ -230,16 +288,29 @@ class CargoShip extends Component {
             <Icon><img src={'/images/event_type/exploration.png'} alt="Cargo Ship" /></Icon>
             <Typography variant="subtitle1" className="title-text">Cargo Ship</Typography>
             <Tooltip title="Setup Timer">
-              <IconButton onClick={this.toggleDialog}>
+              <IconButton onClick={this.toggleDialog} color="inherit">
                 <Settings />
               </IconButton>
             </Tooltip>
             <Tooltip title="Share Timer">
               <span>
-                <IconButton className="cargo-settings-btn" onClick={this.toggleShare} disabled={!port || !endTime}>
+                <IconButton onClick={this.toggleShare} disabled={!port || !endTime} color="inherit">
                   <Share />
                 </IconButton>
               </span>
+            </Tooltip>
+            <Tooltip title="Configure alerts">
+              <IconButton
+                onClick={this.handleOpenMenu}
+                className="super-btn"
+              >
+                <NotificationsIcon
+                  className={cn({ 'notif-fade': alerts.length === 0 })}
+                  color="inherit"
+                />
+                {alerts.length > 0 &&
+                <Typography className="super-text" color="primary">{alerts.length}</Typography>}
+              </IconButton>
             </Tooltip>
           </Toolbar>
         </AppBar>
@@ -252,7 +323,7 @@ class CargoShip extends Component {
             <div className="cargo-icon two-crowns" />
           </Tooltip>
           <div
-            className={cn('cargo-icon ship', { moving: !Boolean(step.port), reverse: step.reverse })}
+            className={cn('cargo-icon ship', { moving: !step.port, reverse: step.reverse })}
             style={{ [step.reverse ? 'left' : 'right']: `${(shipPosition / step.duration) * 100}%` }}
           />
         </div>
@@ -297,7 +368,8 @@ class CargoShip extends Component {
             </RadioGroup>
           </FormControl>
           <FormControl component="fieldset">
-            <FormLabel component="legend">What is the remaining time on the "Cargo Ship Anchored" buff?</FormLabel>
+            <FormLabel component="legend">What is the remaining time on the &quot;Cargo Ship
+              Anchored&quot; buff?</FormLabel>
             <div className="duration-pick">
               <Input
                 id="mm"
@@ -339,21 +411,95 @@ class CargoShip extends Component {
       <CopyDialog
         open={share}
         handleClose={this.toggleShare}
-        title="Share Cargo Timer"
+        title="Share Ship Timer"
         label="Cargo Ship Status"
         value={shareMessage}
         key="share-cargo"
       />,
+      <Menu
+        id="alert-menu"
+        anchorEl={menu}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        getContentAnchorEl={null}
+        open={Boolean(menu)}
+        onClose={this.handleCloseMenu}
+        className="alert-menu"
+        autoFocus={false}
+        key="alert-menu"
+        variant="menu"
+      >
+        <ListItem tabIndex={null} dense={!mobile}>
+          <ListItemText>Alert Types:</ListItemText>
+        </ListItem>
+        <MenuItem disabled dense={!mobile}>
+          <ListItemIcon>
+            <CheckBoxIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText>Audio Cue</ListItemText>
+        </MenuItem>
+        <MenuItem
+          onClick={setSpeak(CARGO_ID, !speak)}
+          dense={!mobile}
+          disabled={!CAN_SPEAK}
+          divider
+        >
+          <ListItemIcon>
+            {speak
+              ? <CheckBoxIcon fontSize="small" color="primary" />
+              : <CheckBoxOutlineBlankIcon fontSize="small" />}
+          </ListItemIcon>
+          <ListItemText>Audio Message</ListItemText>
+        </MenuItem>
+        <ListItem tabIndex={null} dense={!mobile}>
+          <ListItemText>Alert Times:</ListItemText>
+          <ListItemSecondaryAction>
+            <Tooltip title="Clear all">
+                <span>
+                  <IconButton size="small" onClick={setAlert(CARGO_ID, '')} disabled={alerts.length === 0}>
+                    <CloseIcon fontSize="small" />
+                  </IconButton>
+                </span>
+            </Tooltip>
+          </ListItemSecondaryAction>
+        </ListItem>
+        {Object.entries(CARGO_ALERTS).map(([key, option]) => (
+          <MenuItem
+            dense={!mobile}
+            onClick={setAlert(CARGO_ID, key)}
+            key={`alert-opt-${randomString(16)}-${key}`}
+          >
+            <ListItemIcon>
+              {alerts.includes(key)
+                ? <CheckBoxIcon fontSize="small" color="primary" />
+                : <CheckBoxOutlineBlankIcon fontSize="small" />}
+            </ListItemIcon>
+            <ListItemText>{option.name}</ListItemText>
+          </MenuItem>
+        ))}
+      </Menu>,
     ];
   }
 }
 
-const mapStateToProps = ({ calendar: { cargoShip } }) => ({
+const mapStateToProps = ({ calendar: { cargoShip, alerts, speak }, display: { mobile } }) => ({
   ...cargoShip,
+  alerts: pathOr([], [CARGO_ID])(alerts),
+  speak: pathOr(false, [CARGO_ID])(speak),
+  mobile,
 });
 
 const mapDispatchToProps = {
   setCargoShip,
+  setAlert,
+  setSpeak,
+  doSpeak: speak,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(CargoShip);

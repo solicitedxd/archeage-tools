@@ -1,3 +1,4 @@
+import AuctionBid from 'audio/auction_bidding.mp3';
 import BattlefieldCount from 'audio/battlefield_count.mp3';
 import AudioTest from 'audio/empty.mp3';
 import UnpackLaunch from 'audio/interaction_unpack_launch.mp3';
@@ -54,6 +55,11 @@ export const ALERT_CUE = Object.freeze({
     priority: 3,
     file: UnpackLaunch,
   },
+  SHIP_LEAVING: {
+    name: 'ship_leaving',
+    priority: 4,
+    file: AuctionBid,
+  },
 
   OTHER: {
     name: 'other',
@@ -100,15 +106,15 @@ export const CARGO_SCHEDULE = Object.freeze([
   {
     text: 'docked in Solis Headlands',
     port: ZONE.SOLIS_HEADLANDS,
-    portFrom: 'Austera',
+    portFrom: ZONE.AUSTERA,
     reverse: true,
     duration: 1200,
   },
   {
     text: 'sailing to Two Crowns',
     sailing: true,
-    portTo: 'Two Crowns',
-    duration: 621,
+    portTo: ZONE.TWO_CROWNS,
+    duration: 621.25,
   },
   {
     text: 'docked in Two Crowns',
@@ -119,8 +125,81 @@ export const CARGO_SCHEDULE = Object.freeze([
   {
     text: 'sailing to Solis Headlands',
     sailing: true,
-    portTo: 'Austera',
+    portTo: ZONE.AUSTERA,
     reverse: true,
-    duration: 648,
+    duration: 648.25,
   },
 ]);
+
+export const CARGO_ALERTS = Object.freeze({
+  ARRIVE_SOLIS_3: {
+    name: 'Arriving in Solis in 3 min',
+    portTo: ZONE.AUSTERA,
+    duration: 180,
+    speech: 'The cargo ship will arrive at the Solis Headlands port in 3 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  ARRIVED_SOLIS: {
+    name: 'Arrived in Solis',
+    portTo: ZONE.AUSTERA,
+    duration: 0,
+    speech: 'The cargo ship has arrived at the Solis Headlands port.',
+    cue: ALERT_CUE.SHIP_LEAVING,
+  },
+  LEAVE_SOLIS_10: {
+    name: 'Leaving Solis in 10 min',
+    portFrom: ZONE.AUSTERA,
+    duration: 600,
+    speech: 'The cargo ship will leave the Solis Headlands port in 10 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVE_SOLIS_5: {
+    name: 'Leaving Solis in 5 min',
+    portFrom: ZONE.AUSTERA,
+    duration: 300,
+    speech: 'The cargo ship will leave the Solis Headlands port in 5 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVING_SOLIS: {
+    name: 'Leaving Solis Port',
+    portFrom: ZONE.AUSTERA,
+    duration: 0,
+    speech: 'The cargo ship is leaving the Solis Headlands port.',
+    cue: ALERT_CUE.SHIP_LEAVING,
+  },
+  ARRIVE_TC_3: {
+    name: 'Arriving in Two Crowns in 3 min',
+    portTo: ZONE.TWO_CROWNS,
+    duration: 180,
+    speech: 'The cargo ship will arrive at the Two Crowns port in 3 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  ARRIVED_TC: {
+    name: 'Arrived in Two Crowns',
+    portTo: ZONE.TWO_CROWNS,
+    duration: 0,
+    speech: 'The cargo ship has arrived at the Two Crowns port.',
+    cue: ALERT_CUE.SHIP_LEAVING,
+  },
+  LEAVE_TC_10: {
+    name: 'Leaving Two Crowns in 10 min',
+    portFrom: ZONE.TWO_CROWNS,
+    duration: 600,
+    speech: 'The cargo ship will leave the Two Crowns port in 10 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVE_TC_5: {
+    name: 'Leaving Two Crowns in 5 min',
+    portFrom: ZONE.TWO_CROWNS,
+    duration: 300,
+    speech: 'The cargo ship will leave the Two Crowns port in 5 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVING_TC: {
+    name: 'Leaving Two Crowns Port',
+    portFrom: ZONE.TWO_CROWNS,
+    duration: 0,
+    speech: 'The cargo ship is leaving the Two Crowns port.',
+    cue: ALERT_CUE.SHIP_LEAVING,
+  },
+});

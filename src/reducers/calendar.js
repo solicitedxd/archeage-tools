@@ -18,7 +18,7 @@ const calendar = (state = getItem('calendar', initialState), action) => {
         ...state,
         region: action.region,
       };
-    case SET_ALERT:
+    case SET_ALERT: {
       const alerts = pathOr([], ['alerts', action.eventId])(state);
       if (action.value !== '') {
         toggleValue(alerts, action.value);
@@ -33,6 +33,7 @@ const calendar = (state = getItem('calendar', initialState), action) => {
           [action.eventId]: alerts,
         },
       };
+    }
     case CLEAR_ALERTS:
       return {
         ...state,

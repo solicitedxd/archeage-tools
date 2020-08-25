@@ -69,7 +69,6 @@ class CropTimer extends Component {
 
   render() {
     const { crop, time, climate, note, timer, seedbed, onDelete, onRestart } = this.props;
-    console.log(this.props);
 
     if (!crop) return null;
 
