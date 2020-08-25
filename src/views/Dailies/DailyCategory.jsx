@@ -82,6 +82,12 @@ class DailyCategory extends Component {
     rewards: arrayOf(number),
   };
 
+  static defaultProps = {
+    rewards: [],
+    castles: [],
+    residence: [],
+  };
+
   componentDidUpdate(prevProps) {
     if (prevProps.collapsed !== this.props.collapsed ||
       (!equals(prevProps.completedQuests, this.props.completedQuests) && this.props.hideComplete && !this.props.showHidden) ||
