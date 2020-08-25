@@ -39,7 +39,10 @@ import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemPrice from 'components/Item/ItemPrice';
 import OptionalTooltip from 'components/OptionalTooltip';
-import { DIALOG_PROFICIENCY } from 'constants/display';
+import {
+  DIALOG_MY_GAME,
+  PROFICIENCIES,
+} from 'constants/display';
 import {
   CURRENCY,
   ITEM,
@@ -110,6 +113,8 @@ class Taxes extends Component {
     if (countProperties(this.props.items) === this.props.buildingIds.length) {
       this.initBuildings();
     }
+
+    window.addEventListener('keypress', this.onEnter);
   }
 
   componentDidUpdate(prevProps) {
@@ -119,6 +124,16 @@ class Taxes extends Component {
       this.initBuildings();
     }
   }
+
+  componentWillUnmount() {
+    window.removeEventListener('keypress', this.onEnter);
+  }
+
+  onEnter = (e) => {
+    if (this.state.building.itemId && e.key === 'Enter') {
+      this.addProperty();
+    }
+  };
 
   initBuildings = () => {
     const { items, createBuilding } = this.props;
@@ -270,7 +285,7 @@ class Taxes extends Component {
             <Toolbar>
               <Typography variant="h5" className="title-text">Tax Calculator</Typography>
               <Tooltip title="Configure Proficiency">
-                <IconButton onClick={() => openDialog(DIALOG_PROFICIENCY)} color="inherit">
+                <IconButton onClick={() => openDialog(DIALOG_MY_GAME, PROFICIENCIES)} color="inherit">
                   <ListAltIcon />
                 </IconButton>
               </Tooltip>

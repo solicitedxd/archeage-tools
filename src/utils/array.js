@@ -107,3 +107,16 @@ export const filterByCharacter = (character) => (i) => i.character === character
  * @returns {number} total count
  */
 export const countAll = (array) => array.reduce((a, b) => a + b, 0);
+
+/**
+ * Filter for daily quest list to only show residential/castle quests that the user designates.
+ * @param questId quest id
+ * @param zoneMap map of quest id to zone ids
+ * @param userZones list of user zones
+ * @returns {boolean} user can see quest, will return true for 0 user zones
+ */
+export const questZoneCheck = (questId, zoneMap, userZones) => {
+  const zoneList = zoneMap[questId] || [];
+
+  return userZones.length === 0 || zoneList.length === 0 || (zoneList.some(z => userZones.includes(z)));
+};

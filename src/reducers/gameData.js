@@ -1,6 +1,8 @@
 import {
   DATA_BUILDINGS,
   DATA_CATEGORIES,
+  DATA_CLIMATES,
+  DATA_CONTINENTS,
   DATA_CROP,
   DATA_DOODAD,
   DATA_EVENT_REPLACE,
@@ -172,6 +174,20 @@ const gameData = (state = initialState, action) => {
           ...state.doodads,
           ...action.doodads,
         },
+      };
+    case DATA_CONTINENTS:
+      return {
+        ...state,
+        continents: action.continents,
+        zones: {
+          ...state.zones,
+          ...action.zones,
+        },
+      };
+    case DATA_CLIMATES:
+      return {
+        ...state,
+        climates: action.climates,
       };
     default:
       return state;

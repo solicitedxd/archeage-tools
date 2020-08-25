@@ -17,8 +17,8 @@ export default [
     path: '/mounts',
   },
   {
-    name: 'Crops',
-    path: '/crops',
+    name: 'My Farm',
+    path: '/my-farm',
   },
   {
     name: 'Dailies',
@@ -48,6 +48,6 @@ export const banners = [
   { name: 'Daily Checklist', info: 'Keep track of your daily quests.', path: '/dailies' },
   { name: 'Skill Builder', info: 'Build and share skillset setups.', path: '/skills' },
   { name: 'Mount Gallery', info: 'See available mounts and details on how to get them.', path: '/mounts' },
-  { name: 'Crop Timers', info: 'Keep time of your planted crops, trees, and livestock.', path: '/crops' },
+  { name: 'My Farm Timers', info: 'Keep time of your planted crops, trees, and livestock.', path: '/my-farm' },
   { name: 'Tax Calculator', info: 'Calculate the cost of property tax.', path: '/taxes' },
 ];

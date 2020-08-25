@@ -14,6 +14,7 @@ import QuestTooltip from 'components/Quest/QuestTooltip';
 import {
   REWARD_COINS,
   REWARD_ITEM,
+  REWARD_PROFICIENCY,
   REWARD_XP,
 } from 'constants/dailies';
 import {
@@ -61,11 +62,13 @@ class DailyQuest extends Component {
     const typeItem = pathOr(null, ['id'])(rewardTypes.find(t => t.name === REWARD_ITEM));
     const typeXp = pathOr(null, ['id'])(rewardTypes.find(t => t.name === REWARD_XP));
     const typeCoin = pathOr(null, ['id'])(rewardTypes.find(t => t.name === REWARD_COINS));
+    const typeProf = pathOr(null, ['id'])(rewardTypes.find(t => t.name === REWARD_PROFICIENCY));
 
     const itemRewards = rewards
       ? rewards.filter(r => r.typeId === typeItem && (r.region === region || !r.region) && !r.optional) : [];
     const currencyRewards = rewards
-      ? rewards.filter(r => r.typeId !== typeItem && r.typeId !== typeXp && r.typeId !== typeCoin && (r.region === region || !r.region))
+      ? rewards.filter(r => r.typeId !== typeItem && r.typeId !== typeXp && r.typeId !== typeCoin && r.typeId !== typeProf &&
+        (r.region === region || !r.region))
       : [];
 
     const maxRewards = instance ? 3 : 2;

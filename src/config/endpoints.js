@@ -45,5 +45,9 @@ export default {
     instances: '/service/instances',
     npc: '/service/npcs?ids=${npcIds}',
     doodad: '/service/doodads?ids=${doodadIds}',
+    climates: '/service/zones/climates',
+    continents: '/service/zones/continents',
+    tradePacks: '/service/trade-packs',
+    tradePackRef: '/service/trade-packs/reference',
   },
 };

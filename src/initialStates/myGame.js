@@ -7,6 +7,7 @@ import { getItem } from 'utils/localStorage';
 export default {
   characters: [],
   residence: [],
+  castles: [],
   proficiencies: { 0: getItem('proficiencies', proficiencies) },
   region: getItem('calendar', calendar).region,
   publisher: getItem('dailies', dailies).region || Object.keys(QUEST_REGIONS)[0],

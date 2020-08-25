@@ -473,7 +473,7 @@ class Schedule extends Component {
               .filter((_, i) => SCHEDULE_COLS[cols][col].includes(i))
               .map(type =>
                 type.id === CARGO_ID
-                  ? (<CargoShip key={`event-list-${type.id}`} />)
+                  ? (<CargoShip key={`event-list-${type.id}`} playCue={this.playCue} />)
                   : (
                     <EventList
                       key={`event-list-${type.id}`}

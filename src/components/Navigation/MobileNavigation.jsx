@@ -32,7 +32,7 @@ import { push } from 'actions/navigate';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
-import { DIALOG_PROFICIENCY } from 'constants/display';
+import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -177,9 +177,9 @@ class MobileNavigation extends Component {
             </ListItem>
             <Collapse in={expanded.Settings} timeout="auto" unmountOnExit>
               <List component="div" disablePadding className="nested-list-icons">
-                <ListItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>
+                <ListItem button onClick={() => openDialog(DIALOG_MY_GAME)}>
                   <ListItemIcon><ListAltIcon /></ListItemIcon>
-                  <ListItemText primary="Proficiencies" />
+                  <ListItemText primary="My ArcheAge" />
                 </ListItem>
                 <ListItem button onClick={() => setDarkMode(!darkMode)}>
                   <ListItemIcon>{darkMode ? <BrightnessHighIcon /> : <Brightness4Icon />}</ListItemIcon>

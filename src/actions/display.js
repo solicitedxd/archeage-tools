@@ -19,8 +19,8 @@ export const setDarkMode = (darkMode) => (dispatch) => {
   dispatch({ type: DARK_MODE, darkMode });
 };
 
-export const openDialog = (dialogName) => (dispatch) => {
-  dispatch({ type: OPEN_DIALOG, dialog: dialogName });
+export const openDialog = (dialogName, dialogFunc) => (dispatch) => {
+  dispatch({ type: OPEN_DIALOG, dialog: dialogName, dialogFunc });
 };
 
 export const closeDialog = () => (dispatch) => {

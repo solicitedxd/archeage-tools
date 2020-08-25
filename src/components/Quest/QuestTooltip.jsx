@@ -13,6 +13,7 @@ import ItemLink from 'components/Item/ItemLink';
 import NpcLink from 'components/Npc/NpcLink';
 import QuestLink from 'components/Quest/QuestLink';
 import {
+  BOND_BOARDS,
   CRITERIA_TYPE_CHAT,
   CRITERIA_TYPE_COLLECT,
   CRITERIA_TYPE_OTHER,
@@ -80,6 +81,8 @@ const TooltipContent = (props) => {
     questIcon = 'story_quest';
   }
 
+  const bondBoards = BOND_BOARDS.find(b => b.questIds.includes(id));
+
   return (
     <div>
       {shifted &&
@@ -129,7 +132,11 @@ const TooltipContent = (props) => {
         {preQuests[0] && <p>Requires completion of <QuestLink id={preQuests[0].questId} />.</p>}
         {startNpcId && <p>Start from <NpcLink id={startNpcId} />.</p>}
         {startItemId && <p>Start by using <ItemLink id={startItemId} />.</p>}
-        {startDoodadId && <p>Start from <DoodadLink id={startDoodadId} />.</p>}
+        {startDoodadId &&
+        <p>Start from {bondBoards
+          ? bondBoards.boardIds.map(bid => <DoodadLink id={bid} key={`${id}-${bid}`} />).reduce((a, b) => [a, ', ', b])
+          : <DoodadLink id={startDoodadId} />}.
+        </p>}
         {startLocation && <p>Starts automatically at a certain location.</p>}
         {startLevel > 0 && <p>Starts automatically at level {startLevel}.</p>}
       </section>}
@@ -210,7 +217,7 @@ const TooltipContent = (props) => {
       {(endNpcId || endDoodadId || autoComplete) &&
       <section>
         {endNpcId && <p>Turn in to <NpcLink id={endNpcId} />.</p>}
-        {endDoodadId && <p>Turn in to <NpcLink id={endDoodadId} />.</p>}
+        {endDoodadId && <p>Turn in to <DoodadLink id={endDoodadId} />.</p>}
         {autoComplete && <p>Completes automatically.</p>}
       </section>}
     </div>
@@ -325,4 +332,4 @@ const mapStateToProps = ({ gameData: { quests } }, { questId }) => ({
   quest: pathOr({}, [questId])(quests),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(QuestTooltip);
+export default connect(mapStateToProps, null)(QuestTooltip);

@@ -27,4 +27,7 @@ export default {
   titles: {},
   npcs: {},
   doodads: {},
+  continents: {},
+  zones: {},
+  climates: {},
 };

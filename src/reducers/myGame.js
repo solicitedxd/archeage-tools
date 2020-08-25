@@ -1,7 +1,9 @@
 import {
+  MY_CASTLES,
   MY_CHARACTERS_ADD,
   MY_CHARACTERS_DELETE,
   MY_CHARACTERS_RENAME,
+  MY_RESIDENCE,
 } from 'constants/myGame';
 import { PROFICIENCY_UPDATE } from 'constants/proficiencies';
 import initialState from 'initialStates/myGame';
@@ -47,6 +49,18 @@ const taxes = (state = getItem('myGame', initialState), action) => {
             ...other,
           },
         },
+      };
+    }
+    case MY_RESIDENCE: {
+      return {
+        ...state,
+        residence: action.residence,
+      };
+    }
+    case MY_CASTLES: {
+      return {
+        ...state,
+        castles: action.castles,
       };
     }
     default:

@@ -1,9 +1,14 @@
 import {
   AppBar,
+  Button,
+  ButtonGroup,
   CircularProgress,
+  Divider,
   FormControl,
   IconButton,
   InputLabel,
+  ListItemIcon,
+  Menu,
   MenuItem,
   Paper,
   Select,
@@ -13,6 +18,7 @@ import {
 } from '@material-ui/core';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 import DoubleArrowIcon from '@material-ui/icons/DoubleArrow';
+import FilterListIcon from '@material-ui/icons/FilterList';
 import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
@@ -22,6 +28,7 @@ import {
   setQuestFaction,
   setQuestRegion,
   setQuestStatus,
+  setRewardFilter,
   setShowHidden,
   updateLastVisit,
 } from 'actions/dailies';
@@ -31,13 +38,17 @@ import {
   fetchFestivals,
   fetchInstances,
   fetchQuestRefData,
+  fetchVocations,
 } from 'actions/gameData';
+import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import ScrollToTop from 'components/ScrollToTop';
 import {
+  CUSTOM_REWARDS,
   FACTIONS,
   FLAG_DAILY,
   FLAG_WEEKLY,
+  HIDDEN_REWARDS,
   QUEST_INSTANCE_OFFSET,
   QUEST_REGIONS,
 } from 'constants/dailies';
@@ -54,7 +65,10 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { sortBy } from 'utils/array';
+import {
+  sortBy,
+  toggleValue,
+} from 'utils/array';
 import {
   deepCopy,
   objectHasProperties,
@@ -90,6 +104,10 @@ class DailyTracker extends Component {
     setQuestStatus: func.isRequired,
     lastVisit: oneOfType([string, object]),
     updateLastVisit: func.isRequired,
+    fetchVocations: func.isRequired,
+    rewards: array,
+    setRewardFilter: func.isRequired,
+    rewardTypes: object,
   };
 
   static defaultProps = {};
@@ -101,6 +119,7 @@ class DailyTracker extends Component {
     dailyReset: null,
     weeklyReset: null,
     resetTimer: 0,
+    rewardMenu: null,
   };
 
   ref = React.createRef();
@@ -111,10 +130,11 @@ class DailyTracker extends Component {
     const { events, lastVisit, festivals, instances, dailyQuests } = this.props;
 
     this.props.fetchQuestRefData();
-    this.props.fetchDailyQuests();
+    this.props.fetchVocations();
     this.props.fetchFestivals();
     this.props.fetchInstances();
     this.props.fetchEvents();
+    this.props.fetchDailyQuests();
     window.addEventListener('resize', this._handleResize);
     this.resetTick = setInterval(this.handleTick, 1000);
 
@@ -328,10 +348,25 @@ class DailyTracker extends Component {
     this.setState({ dailyReset, weeklyReset }, this._handleResize);
   };
 
+  handleRewardOpen = (e) => {
+    this.setState({ rewardMenu: e.currentTarget });
+  };
+
+  handleRewardClose = () => {
+    this.setState({ rewardMenu: null });
+  };
+
+  toggleRewardFilter = (value) => {
+    const { rewards: rewardsOld, setRewardFilter } = this.props;
+    let rewards = [...rewardsOld];
+    toggleValue(rewards, value);
+    setRewardFilter(rewards);
+  };
+
   render() {
-    const { region, faction, showHidden, hideComplete, mobile } = this.props;
+    const { region, faction, rewards, rewardTypes, showHidden, hideComplete, mobile } = this.props;
     const { setQuestRegion, setQuestFaction, setShowHidden, setHideCompleted, setCollapseCategory } = this.props;
-    const { categories, dailyReset, weeklyReset } = this.state;
+    const { categories, dailyReset, weeklyReset, rewardMenu } = this.state;
 
     setTitle('Daily Tracker');
 
@@ -375,6 +410,48 @@ class DailyTracker extends Component {
             </IconButton>
           </span>
         </Tooltip>
+        <Tooltip title="Filter by Rewards">
+          <IconButton onClick={this.handleRewardOpen} size="small" color="inherit">
+            <FilterListIcon />
+          </IconButton>
+        </Tooltip>
+        <Menu
+          id="reward-filter-menu"
+          anchorEl={rewardMenu}
+          keepMounted
+          open={Boolean(rewardMenu)}
+          onClose={this.handleRewardClose}
+          variant="menu"
+        >
+          {Object.values(rewardTypes)
+          .filter(type => !HIDDEN_REWARDS.includes(type.name))
+          .map(type => (
+            <MenuItem
+              key={`reward-type-${type.id}`}
+              selected={rewards.includes(type.id)}
+              onClick={() => this.toggleRewardFilter(type.id)}
+            >
+              <ListItemIcon style={{ minWidth: 32 }}>
+                <span className={cn('dropdown-icon', type.icon)} />
+              </ListItemIcon>
+              {type.name}
+            </MenuItem>
+          ))}
+          <Divider />
+          {CUSTOM_REWARDS
+          .map(type => (
+            <MenuItem
+              key={`reward-type-${type.id}`}
+              selected={rewards.includes(type.id)}
+              onClick={() => this.toggleRewardFilter(type.id)}
+            >
+              <ListItemIcon style={{ minWidth: 32 }}>
+                <span className={cn('dropdown-icon', type.icon)} />
+              </ListItemIcon>
+              {type.name}
+            </MenuItem>
+          ))}
+        </Menu>
       </>
     );
 
@@ -426,6 +503,28 @@ class DailyTracker extends Component {
             {ToggleButtons}
           </Toolbar>
         </AppBar>}
+        {mobile &&
+        <AppBar position="static" className="section">
+          <Toolbar variant="dense" disableGutters style={{ overflowX: 'auto' }}>
+            <div className="filter-field padded">
+              <ButtonGroup size="small">
+                {[...Object.values(rewardTypes), ...CUSTOM_REWARDS]
+                .filter(type => !HIDDEN_REWARDS.includes(type.name))
+                .map(type => (
+                  <Tooltip title={type.name} key={`reward-type-${type.id}`}>
+                    <Button
+                      variant={rewards.includes(type.id) ? 'contained' : 'outlined'}
+                      className={cn({ selected: rewards.includes(type.id) })}
+                      onClick={() => this.toggleRewardFilter(type.id)}
+                    >
+                      <span className={cn('dropdown-icon', type.icon)} />
+                    </Button>
+                  </Tooltip>
+                ))}
+              </ButtonGroup>
+            </div>
+          </Toolbar>
+        </AppBar>}
         {categories.length === 0 &&
         <div className="section" style={{ width: 128 }}>
           <CircularProgress size={128} color="primary" />
@@ -457,7 +556,7 @@ class DailyTracker extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, gameData: { dailyQuests, festivals, instances, quests, events }, dailies: { faction, showHidden, hideComplete, region, quests: completedQuests = {}, lastVisit } }) => {
+const mapStateToProps = ({ display: { mobile }, gameData: { dailyQuests, festivals, instances, quests, events, rewardTypes }, dailies: { faction, showHidden, hideComplete, region, quests: completedQuests = {}, lastVisit, rewards } }) => {
   if (typeof faction === 'string') {
     faction = 1;
   }
@@ -475,6 +574,8 @@ const mapStateToProps = ({ display: { mobile }, gameData: { dailyQuests, festiva
     events,
     completedQuests,
     lastVisit,
+    rewards,
+    rewardTypes,
   };
 };
 
@@ -491,6 +592,8 @@ const mapDispatchToProps = {
   fetchQuestRefData,
   setQuestStatus,
   updateLastVisit,
+  fetchVocations,
+  setRewardFilter,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DailyTracker);

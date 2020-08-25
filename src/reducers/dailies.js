@@ -6,6 +6,7 @@ import {
   QUEST_HIDE_COMPLETED,
   QUEST_LAST_VISIT,
   QUEST_REGION,
+  QUEST_REWARDS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -105,6 +106,11 @@ const dailies = (state = getItem('dailies', initialState), action) => {
       return {
         ...state,
         lastVisit: action.lastVisit,
+      };
+    case QUEST_REWARDS:
+      return {
+        ...state,
+        rewards: action.rewards,
       };
     default:
       return state;

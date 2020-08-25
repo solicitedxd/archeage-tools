@@ -41,7 +41,10 @@ import {
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
-import { DIALOG_PROFICIENCY } from 'constants/display';
+import {
+  DIALOG_MY_GAME,
+  PROFICIENCIES,
+} from 'constants/display';
 import {
   CONTINENT,
   ZONE,
@@ -160,7 +163,8 @@ class TradePacks extends Component {
             <Toolbar>
               <Typography variant={mobile ? 'h6' : 'h5'} className="title-text">Trade Pack Calculator</Typography>
               <Tooltip title="Configure Proficiency">
-                <IconButton color="inherit" aria-label="Proficiencies" onClick={() => openDialog(DIALOG_PROFICIENCY)}>
+                <IconButton color="inherit" aria-label="Proficiencies"
+                            onClick={() => openDialog(DIALOG_MY_GAME, PROFICIENCIES)}>
                   <ListAltIcon />
                 </IconButton>
               </Tooltip>

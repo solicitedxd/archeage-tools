@@ -1,11 +1,13 @@
 import {
   QUEST_COLLAPSE_CATEGORY,
+  QUEST_COMPLETE_GROUPS,
   QUEST_FACTION,
   QUEST_HIDE,
   QUEST_HIDE_CATEGORY,
   QUEST_HIDE_COMPLETED,
   QUEST_LAST_VISIT,
   QUEST_REGION,
+  QUEST_REWARDS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 } from 'constants/dailies';
@@ -19,6 +21,7 @@ export const triggerLocalStorageUpdate = [
   QUEST_HIDE_COMPLETED,
   QUEST_LAST_VISIT,
   QUEST_REGION,
+  QUEST_REWARDS,
   QUEST_SHOW_HIDDEN,
   QUEST_STATUS,
 ];
@@ -30,6 +33,10 @@ export const triggerLocalStorageUpdate = [
  * @returns {function} redux dispatch call
  */
 export const setQuestStatus = (questId, completed) => (dispatch) => {
+  if (typeof questId === 'number') {
+    questId = QUEST_COMPLETE_GROUPS.find(qList => qList.includes(questId)) || questId;
+  }
+
   dispatch({ type: QUEST_STATUS, questId, completed });
 };
 
@@ -105,4 +112,13 @@ export const setCollapseCategory = (categoryId, collapsed) => (dispatch) => {
  */
 export const updateLastVisit = () => (dispatch) => {
   dispatch({ type: QUEST_LAST_VISIT, lastVisit: moment.utc() });
+};
+
+/**
+ * Updates the quest reward filter.
+ * @param rewards filter list
+ * @returns {function} redux dispatch call
+ */
+export const setRewardFilter = (rewards) => (dispatch) => {
+  dispatch({ type: QUEST_REWARDS, rewards });
 };

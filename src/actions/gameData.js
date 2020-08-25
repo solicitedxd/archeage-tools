@@ -3,6 +3,8 @@ import config from 'config';
 import {
   DATA_BUILDINGS,
   DATA_CATEGORIES,
+  DATA_CLIMATES,
+  DATA_CONTINENTS,
   DATA_CROP,
   DATA_DOODAD,
   DATA_EVENT_REPLACE,
@@ -602,4 +604,39 @@ export const fetchDoodads = (...doodads) => (dispatch, getState) => {
       dispatch(setNotification('Failed to fetch doodad data.', NOTIFICATION_TYPE.WARNING));
     });
   }
+};
+
+/** Zones **/
+export const fetchContinents = () => (dispatch, getState) => {
+  const { continents } = getState().gameData;
+
+  if (objectHasProperties(continents)) return;
+
+  xhr.get(config.endpoints.service.continents)
+  .then(({ data }) => {
+    let zones = [];
+    data.forEach(continent => {
+      zones = zones.concat(continent.zones);
+      continent.zones = continent.zones.map(z => z.id);
+    });
+    dispatch({ type: DATA_CONTINENTS, continents: arrayToMap(data), zones: arrayToMap(zones) });
+  })
+  .catch((e) => {
+    console.error(e);
+    dispatch(setNotification('Failed to fetch continent zone data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const fetchClimates = () => (dispatch, getState) => {
+  const { climates } = getState().gameData;
+
+  if (objectHasProperties(climates)) return;
+
+  xhr.get(config.endpoints.service.climates)
+  .then(({ data }) => {
+    dispatch({ type: DATA_CLIMATES, climates: arrayToMap(data) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch climate data.', NOTIFICATION_TYPE.WARNING));
+  });
 };

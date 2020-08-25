@@ -23,7 +23,7 @@ import {
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
-import { DIALOG_PROFICIENCY } from 'constants/display';
+import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -119,7 +119,7 @@ class DesktopNavigation extends Component {
                 : 'Account'}</Typography>} />
             </ListItem>
             {menuItems}
-            <MenuItem button onClick={() => openDialog(DIALOG_PROFICIENCY)}>Proficiencies</MenuItem>
+            <MenuItem button onClick={() => openDialog(DIALOG_MY_GAME)}>My ArcheAge</MenuItem>
             <Divider />
             <MenuItem onClick={() => setDarkMode(!darkMode)}>
               <div className="menu-item-icon">

@@ -40,7 +40,10 @@ import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
 import ItemPrice from 'components/Item/ItemPrice';
 import NumberField from 'components/NumberField';
-import { DIALOG_PROFICIENCY } from 'constants/display';
+import {
+  DIALOG_MY_GAME,
+  PROFICIENCIES,
+} from 'constants/display';
 import {
   CRAFT_GOLD_SALE,
   MAX_CRAFT_QTY,
@@ -279,7 +282,7 @@ class RecipeViewer extends Component {
               {recipe.name}
             </Typography>
             <Tooltip title="Configure Proficiency">
-              <IconButton onClick={() => openDialog(DIALOG_PROFICIENCY)} color="inherit">
+              <IconButton onClick={() => openDialog(DIALOG_MY_GAME, PROFICIENCIES)} color="inherit">
                 <ListAltIcon />
               </IconButton>
             </Tooltip>

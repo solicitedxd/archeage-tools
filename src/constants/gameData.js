@@ -20,3 +20,6 @@ export const DATA_INSTANCES = 'DATA_INSTANCES';
 export const DATA_TITLE = 'DATA_TITLE';
 export const DATA_NPC = 'DATA_NPC';
 export const DATA_DOODAD = 'DATA_DOODAD';
+export const DATA_CONTINENTS = 'DATA_CONTINENTS';
+export const DATA_CLIMATES = 'DATA_CLIMATES';
+export const DATA_TRADE_PACKS = 'DATA_TRADE_PACKS';
