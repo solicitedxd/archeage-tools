@@ -110,7 +110,9 @@ class DailyTracker extends Component {
     rewardTypes: object,
   };
 
-  static defaultProps = {};
+  static defaultProps = {
+    rewards: [],
+  };
 
   state = {
     width: 0,
