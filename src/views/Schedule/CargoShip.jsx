@@ -132,7 +132,7 @@ class CargoShip extends Component {
       const num = Number.parseInt(value);
       let max = 59;
       if (key === 'mm') {
-        max = 20;
+        max = 30;
       }
       value = Math.min(num, max);
     }
