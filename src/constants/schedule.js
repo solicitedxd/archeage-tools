@@ -114,7 +114,7 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'sailing to Two Crowns',
     sailing: true,
     portTo: ZONE.TWO_CROWNS,
-    duration: 621.07,
+    duration: 620.95,
   },
   {
     text: 'docked in Two Crowns',
@@ -127,7 +127,7 @@ export const CARGO_SCHEDULE = Object.freeze([
     sailing: true,
     portTo: ZONE.AUSTERA,
     reverse: true,
-    duration: 648.07,
+    duration: 647.95,
   },
 ]);
 
