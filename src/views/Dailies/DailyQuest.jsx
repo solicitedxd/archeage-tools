@@ -67,7 +67,7 @@ class DailyQuest extends Component {
     const itemRewards = rewards
       ? rewards.filter(r => r.typeId === typeItem && (r.region === region || !r.region) && !r.optional) : [];
     const currencyRewards = rewards
-      ? rewards.filter(r => r.typeId !== typeItem && r.typeId !== typeXp && r.typeId !== typeCoin && r.typeId !== typeProf &&
+      ? rewards.filter(r => ![typeItem, typeXp, typeCoin, typeProf].includes(r.typeId) &&
         (r.region === region || !r.region))
       : [];
 
