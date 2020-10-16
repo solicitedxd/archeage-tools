@@ -1831,6 +1831,51 @@ const MOUNT = [
         <p>On Unchained, this mount cannot currently be obtained.</p>
       </>,
   },
+  {
+    name: 'Tamed Crayfish',
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <ItemLink id={49681} /> from the Arena Shop for <ItemLink
+        id={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Earth Elemental',
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <ItemLink id={49681} /> from the Arena Shop for <ItemLink
+        id={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Grub',
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <ItemLink id={49681} /> from the Arena Shop for <ItemLink
+        id={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Mantis',
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <ItemLink id={49681} /> from the Arena Shop for <ItemLink
+        id={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
+  {
+    name: 'Tamed Spider',
+    obtainText: <>
+      <p>
+        This mount can be acquired by purchasing the <ItemLink id={49681} /> from the Arena Shop for <ItemLink
+        id={ITEM.KYRIOS_BADGE} count={800} />.
+      </p>
+    </>,
+  },
 ];
 
 export default MOUNT;
