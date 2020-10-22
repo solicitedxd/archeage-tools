@@ -146,6 +146,7 @@ class PackViewer extends Component {
   state = {
     transportExpand: false,
     unitSize: 1,
+    manualLabor: 0,
   };
 
   // eslint-disable-next-line class-methods-use-this
@@ -164,10 +165,14 @@ class PackViewer extends Component {
     this.setState({ unitSize });
   };
 
+  setManualLabor = (manualLabor) => {
+    this.setState({ manualLabor: manualLabor || 0 });
+  };
+
   // eslint-disable-next-line complexity
   render() {
     const { open, onClose, originZone, packType, sellZone, recipe, region } = this.props;
-    const { transportExpand, unitSize } = this.state;
+    const { transportExpand, unitSize, manualLabor } = this.state;
     const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war, ahCut } = this.props;
     const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut } = this.props;
 
@@ -280,7 +285,7 @@ class PackViewer extends Component {
     }
 
     totalGold += craftGold;
-    totalLabor += craftLabor;
+    totalLabor += craftLabor + manualLabor;
 
     materials.forEach(mat => {
       if (!mat.indent && craftLarder && isAgedPack) return;
@@ -427,6 +432,13 @@ class PackViewer extends Component {
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Cost</TableCell>
                 <TableCell align="right"><Currency type={CURRENCY.COIN} count={craftGold * quantity} /></TableCell>
               </TableRow>}
+              <TableRow>
+                <TableCell colSpan={2} />
+                <TableCell colSpan={isAgedPack ? 2 : 1}>Manual Labor</TableCell>
+                <TableCell align="right">
+                  <NumberField onChange={this.setManualLabor} value={manualLabor} min={0} />
+                </TableCell>
+              </TableRow>
               {isAgedPack && craftLarder &&
               <TableRow>
                 <TableCell colSpan={2} />
@@ -435,14 +447,14 @@ class PackViewer extends Component {
                   {calculateLabor(recipe.labor, recipe.vocation) * quantity}
                 </TableCell>
               </TableRow>}
-              {craftLabor > 0 &&
+              {(craftLabor > 0 || manualLabor > 0) &&
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>
                   {isAgedPack ? 'Harvest Labor' : 'Craft Labor'}
                 </TableCell>
                 <TableCell align="right">
-                  {craftLabor * quantity}
+                  {(craftLabor + manualLabor) * quantity}
                 </TableCell>
               </TableRow>}
             </TableBody>
