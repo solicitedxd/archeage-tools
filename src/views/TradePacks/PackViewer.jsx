@@ -254,7 +254,7 @@ class PackViewer extends Component {
     }
 
     // sell labor
-    let totalLabor = calculateLabor(sellLabor, recipe.vocation);
+    let totalLabor = calculateLabor(sellLabor, recipe.vocation || COMMERCE);
 
     // define initial
     let materials = recipe.materials || pack.materials || [];
