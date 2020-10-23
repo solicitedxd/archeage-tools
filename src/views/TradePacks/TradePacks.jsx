@@ -27,14 +27,20 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import ReplayIcon from '@material-ui/icons/Replay';
 import { openDialog } from 'actions/display';
 import {
+  fetchContinents,
+  fetchTradePacks,
+} from 'actions/gameData';
+import { push } from 'actions/navigate';
+import {
   resetSettings,
-  setContinent,
   setOutlet,
   setPackRegion,
+  setPackTable,
   setPercentage,
   setWar,
 } from 'actions/tradepacks';
@@ -45,23 +51,19 @@ import {
   DIALOG_MY_GAME,
   PROFICIENCIES,
 } from 'constants/display';
+import { CONTINENT } from 'constants/map';
 import {
-  CONTINENT,
-  ZONE,
-} from 'constants/map';
-import {
-  AGED_PACK,
-  CARGO,
   CONTINENT_PACKS,
-  NO_FRESHNESS,
-  NO_WAR_BONUS,
+  FRESHNESS,
   OUTLET_ZONE,
   PACK_REGIONS,
+  PACK_TABLE,
+  PACK_TYPE,
 } from 'constants/tradepacks';
-import TRADE_PACKS_NA from 'data/tradepacks/na';
-import TRADE_PACKS_SEA from 'data/tradepacks/sea';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
+  array,
   bool,
   func,
   number,
@@ -69,42 +71,64 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { setTitle } from 'utils/string';
+import { uniqueValues } from 'utils/array';
+import {
+  setTitle,
+  slug,
+} from 'utils/string';
+import {
+  mapContinentToCargo,
+  mapContinentToTable,
+} from 'utils/tradepacks';
 import FreshnessBlip from './FreshnessBlip';
 import PackViewer from './PackViewer';
 
 class TradePacks extends Component {
   static propTypes = {
     setOutlet: func.isRequired,
-    setContinent: func.isRequired,
+    setPackTable: func.isRequired,
     resetSettings: func.isRequired,
     setPercentage: func.isRequired,
     setWar: func.isRequired,
     openDialog: func.isRequired,
     mobile: bool,
-    continent: string,
+    packTable: number,
     percentage: number,
     war: object,
     outlet: number,
     region: string,
     setPackRegion: func.isRequired,
+    fetchContinents: func.isRequired,
+    fetchTradePacks: func.isRequired,
+    packs: array,
+    freshness: object,
+    types: object,
+    continents: object,
+    zones: object,
+    match: object,
+    location: object,
   };
 
   static defaultProps = {
     region: 'NA',
+    packs: [],
+    freshness: {},
+    types: {},
   };
 
   state = {
     reset: false,
-    open: false,
-    packType: null,
-    originZone: null,
   };
 
   setZone = this.props.setOutlet;
 
-  setContinent = (e, value) => {
-    this.props.setContinent(e, value);
+  componentDidMount() {
+    this.props.fetchContinents();
+    this.props.fetchTradePacks();
+  }
+
+  setPackTable = (e, value) => {
+    this.props.setPackTable(e, value);
     this.props.setOutlet(e, 0);
   };
 
@@ -121,40 +145,70 @@ class TradePacks extends Component {
     this.cancelReset();
   };
 
-  onOpenCalculator = (originZone, packType) => {
-    this.setState({ open: true, originZone, packType });
+  onOpenViewer = (originZoneId, packType) => {
+    const { continents, zones, types, outlet, packTable } = this.props;
+    const outletZones = OUTLET_ZONE[packTable];
+    const sellZoneId = outletZones[outlet] || false;
+
+    const path = [];
+    let to;
+
+    if (packTable === PACK_TABLE.CARGO) {
+      path.push(slug(continents[originZoneId].name));
+      path.push(slug(types[PACK_TYPE.CARGO].name));
+      to = slug(zones[packType].name);
+    } else {
+      path.push(slug(zones[originZoneId].name));
+      path.push(slug(types[packType].name));
+      to = slug(zones[sellZoneId].name);
+    }
+
+    push(`/trade-packs/${path.join('/')}?to=${to}`);
   };
 
-  onCloseCalculator = () => {
-    this.setState({ open: false, originZone: null, packType: null });
+  onCloseViewer = () => {
+    push('/trade-packs');
   };
 
   render() {
-    const { mobile, continent, percentage, war, outlet, region } = this.props;
+    const { mobile, packTable, percentage, war, outlet, region, match, location } = this.props;
     const { setPercentage, setWar, openDialog, setPackRegion } = this.props;
-    const { reset, open, packType, originZone } = this.state;
+    const { packs: tradePackData, freshness: freshnessData, types: packTypes, continents, zones } = this.props;
+    const { reset } = this.state;
 
-    const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
+    const isCargo = packTable === PACK_TABLE.CARGO;
 
-    let continentZones = [];
-    if (continent === CARGO) {
-      continentZones = [CONTINENT.HARANYA.name, CONTINENT.NUIA.name];
-    } else if (continent === CONTINENT.AURORIA.name) {
-      continentZones = [ZONE.NUIMARI, ZONE.HEEDMAR, ZONE.MARCALA, ZONE.CALMLANDS];
+    let continentZones;
+    if (!isCargo) {
+      continentZones = uniqueValues(tradePackData.map(p => p.originZoneId)).filter(zId => continents[packTable].zones.includes(zId));
     } else {
-      continentZones = Object.values(CONTINENT).find((cont) => cont.name === continent).zones;
+      continentZones = [CONTINENT.HARANYA, CONTINENT.NUIA];
     }
 
-    let outletZones = OUTLET_ZONE.filter(zone => continentZones.includes(zone));
-    if (continent === CONTINENT.AURORIA.name) {
-      outletZones = [ZONE.FREEDICH_ISLAND];
-    }
-    let sellZone = outletZones[outlet];
-    if (continent === CARGO) {
-      sellZone = CARGO;
-    }
+    const outletZones = OUTLET_ZONE[packTable];
+    const sellZoneId = outletZones[outlet];
 
     setTitle('Trade Pack Calculator');
+
+    // find pack that's opened by the viewer
+    let viewerPack;
+    const { originZoneName, packTypeName } = match.params;
+    const sellZoneName = new URLSearchParams(location.search).get('to');
+    const viewerPackType = Object.values(packTypes).find(type => slug(type.name) === packTypeName);
+    if (viewerPackType) {
+      let viewerPackZone = Object.values(zones).find(zone => slug(zone.name) === originZoneName);
+      if (viewerPackType.id === PACK_TYPE.CARGO) {
+        viewerPackZone = Object.values(continents).find(cont => slug(cont.name) === originZoneName);
+        viewerPackZone = zones[mapContinentToCargo(viewerPackZone.id)];
+      }
+      viewerPack = tradePackData.find(pack => pack.originZoneId === viewerPackZone.id && pack.packTypeId === viewerPackType.id);
+
+      // disabled disguised packs for SEA region
+      if (viewerPackType.id === PACK_TYPE.DISGUISED && region === 'SEA') {
+        viewerPack = null;
+      }
+    }
+    const viewerSellZoneId = (Object.values(zones).find(zone => slug(zone.name) === sellZoneName) || {}).id;
 
     return (
       <div className={cn('tool-container', { mobile })}>
@@ -163,8 +217,11 @@ class TradePacks extends Component {
             <Toolbar>
               <Typography variant={mobile ? 'h6' : 'h5'} className="title-text">Trade Pack Calculator</Typography>
               <Tooltip title="Configure Proficiency">
-                <IconButton color="inherit" aria-label="Proficiencies"
-                            onClick={() => openDialog(DIALOG_MY_GAME, PROFICIENCIES)}>
+                <IconButton
+                  color="inherit"
+                  aria-label="Proficiencies"
+                  onClick={() => openDialog(DIALOG_MY_GAME, PROFICIENCIES)}
+                >
                   <ListAltIcon />
                 </IconButton>
               </Tooltip>
@@ -193,18 +250,18 @@ class TradePacks extends Component {
             <FormControl className="select-group">
               <InputLabel className="group-label" shrink>Pack Continent</InputLabel>
               <ButtonGroup>
-                {Object.keys(CONTINENT_PACKS)
+                {Object.values(PACK_TABLE)
                 // only show auroria to NA
-                .filter(c => c !== CONTINENT.AURORIA.name || region === 'NA')
-                .map(contName => (
+                .filter(c => c !== PACK_TABLE.AURORIA || region === 'NA')
+                .map(contId => (
                   <Button
-                    key={`cont-${contName}`}
-                    variant={continent === contName ? 'contained' : 'outlined'}
-                    color={continent === contName ? 'primary' : null}
-                    className={cn({ selected: continent === contName })}
-                    onClick={(e) => this.setContinent(e, contName)}
+                    key={`cont-${contId}`}
+                    variant={packTable === contId ? 'contained' : 'outlined'}
+                    color={packTable === contId ? 'primary' : null}
+                    className={cn({ selected: packTable === contId })}
+                    onClick={(e) => this.setPackTable(e, contId)}
                   >
-                    {contName}
+                    {contId === PACK_TABLE.CARGO ? 'Cargo' : pathOr('...', [contId, 'name'])(continents)}
                   </Button>
                 ))}
               </ButtonGroup>
@@ -213,9 +270,9 @@ class TradePacks extends Component {
               control={
                 <Checkbox
                   color="primary"
-                  checked={war[sellZone] || false}
-                  onChange={setWar(sellZone)}
-                  disabled={continent === CARGO || outlet !== 2}
+                  checked={war[sellZoneId] || false}
+                  onChange={setWar(sellZoneId)}
+                  disabled={isCargo || outlet !== 2}
                 />
               }
               label="War (+15%)"
@@ -252,20 +309,23 @@ class TradePacks extends Component {
         </Dialog>
         {mobile &&
         <AdContainer type="horizontal" />}
+        {tradePackData.length === 0 &&
+        <CircularProgress size={72} style={{ display: 'block', margin: 'auto' }} />}
+        {tradePackData.length > 0 &&
         <Paper className="section">
           <AppBar position="static" color="primary">
             <Toolbar variant="dense">
-              {continent !== CARGO &&
+              {!isCargo &&
               <Tabs
                 value={outlet}
                 onChange={this.setZone}
                 className="title-text"
               >
-                {outletZones.map(zone => (
-                  <Tab key={`${continent}-${zone}`} label={zone} />
+                {outletZones.map(zoneId => (
+                  <Tab key={`${packTable}-${zoneId}`} label={zones[zoneId].name} />
                 ))}
               </Tabs>}
-              {continent === CARGO &&
+              {isCargo &&
               <Typography variant="subtitle1" className="title-text">Cargo</Typography>}
             </Toolbar>
           </AppBar>
@@ -274,75 +334,97 @@ class TradePacks extends Component {
               <TableHead>
                 <TableRow>
                   <TableCell>
-                    {continent !== CARGO && 'Pack Origin'}
+                    {!isCargo && 'Pack Origin'}
                   </TableCell>
-                  {CONTINENT_PACKS[continent].map(packType => (
+                  {CONTINENT_PACKS[packTable].map(packTypeId => (
                     <TableCell
-                      key={`type-head-${packType}`}
+                      key={`type-head-${packTypeId}`}
                       align="center"
                     >
-                      {packType}
+                      {isCargo ? zones[packTypeId].name : packTypes[packTypeId].name}
                     </TableCell>
                   ))}
                 </TableRow>
               </TableHead>
               <TableBody>
-                {continentZones.map(zone => {
-                  const zonePacks = tradePackData[zone] || { packs: {} };
-                  const freshness = zonePacks.freshness;
+                {continentZones.map(originZoneId => {
+                  let freshness;
+                  if (isCargo) {
+                    freshness = freshnessData[FRESHNESS.CARGO];
+                  } else if (packTable === PACK_TABLE.AURORIA) {
+                    freshness = freshnessData[FRESHNESS.DISGUISED];
+                  } else {
+                    freshness = Object.values(freshnessData).find(f => f.zoneIds.includes(originZoneId));
+                  }
+                  const zoneName = !isCargo ? zones[originZoneId].name : `${continents[originZoneId].name}n Cargo`;
                   return (
                     <TableRow
-                      key={`pack-row-${zone}`}
+                      key={`pack-row-${originZoneId}`}
                       className={freshness.name}
                     >
                       <TableCell
-                        className={cn({ 'no-pack': zone === sellZone })}
+                        className={cn({ 'no-pack': originZoneId === sellZoneId })}
                       >
-                        {zone}{continent === CARGO && 'n Cargo'}
+                        {zoneName}
                       </TableCell>
-                      {CONTINENT_PACKS[continent].map(packType => {
-                        const pack = zonePacks.packs[packType] || { sell: {} };
-                        let packValue = pack.sell[sellZone];
+                      {CONTINENT_PACKS[packTable].map(packTypeId => {
+                        const packType = isCargo ? packTypes[PACK_TYPE.CARGO]
+                          : packTypes[packTypeId];
+                        const pack = tradePackData.find(p => isCargo
+                          ? (p.packTypeId === PACK_TYPE.CARGO && p.originZoneId === mapContinentToCargo(originZoneId))
+                          : (p.originZoneId === originZoneId && p.packTypeId === packTypeId));
+
+                        let { value: packValue, itemId } = pathOr([], ['values'])(pack)
+                        .find(v => v.sellZoneId === (isCargo ? packTypeId
+                          : sellZoneId) && v.region === region) || {};
                         // modify the pack's value
                         if (packValue) {
                           // modify the percentage
                           packValue = packValue * (percentage / 130);
+
                           // modify the freshness
-                          const packFreshness = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'];
-                          if (packFreshness.HIGH && !NO_FRESHNESS.includes(packType)) {
-                            packValue *= packFreshness.HIGH.modifier;
+                          if (packType.freshness) {
+                            const packFreshness = freshness.profitLevels.find(pL => pL.name === 'High' && pL.aged === packType.aged) || freshness.profitLevels[0];
+                            packValue *= packFreshness.modifier;
                           }
+
                           // modify war bonus
-                          if (war[sellZone] && !NO_WAR_BONUS.includes(packType)) {
+                          if (war[sellZoneId] && packType.warBonus) {
                             packValue *= 1.15;
                           }
+
                           // round to fixed 4 decimal
                           packValue = (Math.round(packValue * 10000) / 10000).toFixed(4);
                         }
-                        const isPack = (zone !== sellZone && packValue);
+
+                        const isPack = originZoneId !== sellZoneId && packValue;
                         let displayValue = isPack ? `${packValue}g` : '--';
-                        if (isPack && pack.item) {
+                        if (isPack && itemId) {
                           displayValue = <>
                             {Math.round(packValue)}&nbsp;
-                            <Item id={pack.item} inline />
+                            <Item id={itemId} inline />
                           </>;
                         }
+
                         const cell = (
                           <TableCell
-                            key={`pack-${zone}-${packType}`}
+                            key={`pack-${originZoneId}-${packTypeId}`}
                             align="right"
                             className={cn({ 'no-pack': !isPack })}
-                            onClick={isPack ? () => this.onOpenCalculator(zone, packType) : null}
+                            onClick={isPack ? () => this.onOpenViewer(originZoneId, packTypeId) : null}
                           >
                             {displayValue}
                           </TableCell>
                         );
+
+                        if (!isPack) return cell;
+
                         return (
                           <Tooltip
-                            title={`Customize ${continent !== CARGO
-                              ? `${pack.name || `${zone} ${packType}`} -> ${sellZone}`
-                              : `${zone}n Cargo -> ${packType}`}`}
-                            key={`pack-${zone}-${packType}`}
+                            title={`Customize ${!isCargo
+                              ? `${(pack && pack.name) || `${zones[originZoneId].name} ${packTypes[packTypeId].name}`} -> ${zones[sellZoneId].name}`
+                              : `${continents[originZoneId].name}n Cargo -> ${zones[packTypeId].name}`}`}
+                            key={`pack-${originZoneId}-${packTypeId}`}
                             classes={{ tooltip: 'nowrap' }}
                           >
                             {cell}
@@ -356,29 +438,27 @@ class TradePacks extends Component {
             </Table>
           </div>
           <div className="trade-footer body-container">
-            {continent === CARGO &&
-            <FreshnessBlip freshness="Cargo" />}
-            {[CONTINENT.HARANYA.name, CONTINENT.NUIA.name].includes(continent) &&
+            {isCargo &&
+            <FreshnessBlip {...freshnessData[FRESHNESS.CARGO]} />}
+            {[PACK_TABLE.NUIA, PACK_TABLE.HARANYA].includes(packTable) &&
             <>
-              <FreshnessBlip freshness="Luxury" />
-              <FreshnessBlip freshness="Fine" />
-              <FreshnessBlip freshness="Commercial" />
-              <FreshnessBlip freshness="Preserved" />
+              <FreshnessBlip {...freshnessData[FRESHNESS.LUXURY]} />
+              <FreshnessBlip {...freshnessData[FRESHNESS.FINE]} />
+              <FreshnessBlip {...freshnessData[FRESHNESS.COMMERCIAL]} />
+              <FreshnessBlip {...freshnessData[FRESHNESS.PRESERVED]} />
             </>}
-            {continent === CONTINENT.AURORIA.name &&
-            <FreshnessBlip freshness="Disguised" />}
+            {packTable === PACK_TABLE.AURORIA &&
+            <FreshnessBlip {...freshnessData[FRESHNESS.DISGUISED]} />}
             <Typography variant="overline">
-              Prices shown at {percentage}% demand with high profit{war[sellZone] ? ' and +15% war bonus' : ''}. 2%
+              Prices shown at {percentage}% demand with high profit{war[sellZoneId] ? ' and +15% war bonus' : ''}. 2%
               interest is not shown.
             </Typography>
           </div>
-        </Paper>
+        </Paper>}
         <PackViewer
-          originZone={originZone}
-          packType={packType}
-          sellZone={sellZone}
-          open={open}
-          onClose={this.onCloseCalculator}
+          pack={viewerPack}
+          sellZoneId={viewerSellZoneId}
+          onClose={this.onCloseViewer}
         />
         <AdContainer type="horizontal" />
       </div>
@@ -386,23 +466,28 @@ class TradePacks extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, tradepacks: { continent, percentage, war, outlet, region } }) => ({
+const mapStateToProps = ({ display: { mobile }, tradepacks: { packTable, continent, percentage, war, outlet, region }, gameData: { tradePacks, continents, zones } }) => ({
   mobile,
-  continent,
+  packTable: packTable || mapContinentToTable(continent),
   outlet,
   percentage,
   war,
   region,
+  ...tradePacks,
+  continents,
+  zones,
 });
 
 const mapDispatchToProps = {
-  setContinent,
+  setPackTable,
   setOutlet,
   setPercentage,
   setWar,
   resetSettings,
   openDialog,
   setPackRegion,
+  fetchContinents,
+  fetchTradePacks,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TradePacks);

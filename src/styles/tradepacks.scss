@@ -149,6 +149,10 @@ $Disguised: #FFDE45;
 
   .totals-table {
     min-width: 400px;
+
+    tr td:nth-child(2n + 1) {
+      padding-right: 0;
+    }
   }
 }
 
@@ -212,10 +216,14 @@ $Disguised: #FFDE45;
   & > :first-child {
     width: 205px;
     margin-right: 16px;
+
+    .MuiFormControl-root {
+      width: 100%;
+    }
   }
 
   .totals-table {
-    width: 504px;
+    width: 510px;
   }
 }
 

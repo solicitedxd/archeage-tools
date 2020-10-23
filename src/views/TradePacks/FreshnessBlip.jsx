@@ -7,13 +7,16 @@ import {
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import { FRESHNESS } from 'constants/tradepacks';
 import React, { Component } from 'react';
-import { oneOf } from 'react-proptypes';
+import {
+  array,
+  string,
+} from 'react-proptypes';
 
 class FreshnessBlip extends Component {
   static propTypes = {
-    freshness: oneOf(Object.values(FRESHNESS).map(f => f.name)).isRequired,
+    name: string,
+    profitLevels: array,
   };
 
   getModifier = (modifier) => {
@@ -24,48 +27,46 @@ class FreshnessBlip extends Component {
     }
   };
 
-  getName = (key) => `${key.substr(0, 1)}${key.toLowerCase().substr(1)}`;
-
   render() {
-    const { freshness } = this.props;
+    const { name, profitLevels } = this.props;
 
-    const data = Object.values(FRESHNESS).find(f => f.name === freshness);
+    const standard = profitLevels.filter(pL => !pL.aged);
+    const aged = profitLevels.filter(pL => pL.aged);
+    const hasAged = aged.length > 0;
 
     return (
       <Tooltip
         title={<Table size="small" className="freshness-table">
           <TableHead>
             <TableRow>
-              <TableCell colSpan={data.AGED ? 4 : 2} align="center" className={`freshness ${freshness}`}>
-                {freshness} Packs
+              <TableCell colSpan={hasAged ? 4 : 2} align="center" className={`freshness ${name}`}>
+                {name} Packs
               </TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.AGED &&
+            {hasAged &&
             <TableRow>
               <TableCell colSpan={2} align="center">Regular</TableCell>
               <TableCell colSpan={2} align="center">Aged</TableCell>
             </TableRow>}
-            {Object.keys(data.STANDARD).map((p, i) => {
-              const STANDARD = data.STANDARD[p];
-              const { AGED } = data;
-              const agedKey = AGED && Object.keys(AGED)[i];
+            {standard.map((standardPL, i) => {
+              const agedPL = aged[i];
               return (
-                <TableRow key={`profit-${p}`} className="profit-row">
+                <TableRow key={`profit-${name}-${standardPL.name}`} className="profit-row">
                   <TableCell>
-                    {this.getName(p)} Profit
+                    {standardPL.name} Profit
                   </TableCell>
                   <TableCell>
-                    {this.getModifier(STANDARD.modifier)} {STANDARD.time}
+                    {this.getModifier(standardPL.modifier)} {standardPL.time}
                   </TableCell>
-                  {AGED &&
+                  {hasAged && agedPL &&
                   <>
                     <TableCell>
-                      {this.getName(agedKey)} Profit
+                      {agedPL.name} Profit
                     </TableCell>
                     <TableCell>
-                      {this.getModifier(AGED[agedKey].modifier)} {AGED[agedKey].time}
+                      {this.getModifier(agedPL.modifier)} {agedPL.time}
                     </TableCell>
                   </>}
                 </TableRow>
@@ -76,7 +77,7 @@ class FreshnessBlip extends Component {
         classes={{ tooltip: 'freshness-tip-container' }}
       >
         <Typography variant="overline" className="freshness-tip">
-          <span className={`blip freshness ${freshness}`} /> {freshness}
+          <span className={`blip freshness ${name}`} /> {name}
         </Typography>
       </Tooltip>
     );

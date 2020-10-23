@@ -9,27 +9,35 @@ import {
   Typography,
 } from '@material-ui/core';
 import CloseIcon from '@material-ui/icons/Close';
+import { fetchContinents } from 'actions/gameData';
 import cn from 'classnames';
 import {
   getMapImage,
   ZONE,
 } from 'constants/map';
+import { pathOr } from 'ramda';
 import React, {
   Component,
   Fragment,
 } from 'react';
 import {
   array,
+  number,
   oneOf,
+  oneOfType,
   string,
+  func,
 } from 'react-proptypes';
+import { connect } from 'react-redux';
 
 class MapEmbed extends Component {
   static propTypes = {
-    zone: string.isRequired,
+    zone: oneOfType([string, number]).isRequired,
     points: array,
     button: string,
     buttonFloat: oneOf(['left', 'right']),
+    zoneName: string,
+    fetchContinents: func.isRequired,
   };
 
   static defaultProps = {
@@ -51,6 +59,7 @@ class MapEmbed extends Component {
 
   componentDidMount() {
     window.addEventListener('mousemove', this.updateCoords);
+    this.props.fetchContinents();
   }
 
   componentWillUnmount() {
@@ -78,7 +87,7 @@ class MapEmbed extends Component {
   };
 
   render() {
-    const { zone, points, button, buttonFloat } = this.props;
+    const { zone, zoneName, points, button, buttonFloat } = this.props;
     const { open, point: hoverPoint, mouseX, mouseY } = this.state;
 
     const map = getMapImage(zone);
@@ -99,7 +108,7 @@ class MapEmbed extends Component {
         <div className="map-embed">
           <div className="map-preview">
             <div className="map-left map-content">
-              <img src={map} alt={zone} onClick={this.handleOpen} />
+              <img src={map} alt={zoneName} onClick={this.handleOpen} />
               {points.map((point, index) => point.coords.map((coord, id) => (
                 <Tooltip
                   key={`point-${zone}-${index}-${id}`}
@@ -122,7 +131,7 @@ class MapEmbed extends Component {
                   style={(zone === ZONE.WESTERN_HIRAM_MOUNTAINS || zone === ZONE.EASTERN_HIRAM_MOUNTAINS)
                     ? { padding: '0 14px' } : {}}
                 >
-                  <Typography variant="subtitle1" className="title-text">{zone}</Typography>
+                  <Typography variant="subtitle1" className="title-text">{zoneName}</Typography>
                 </Toolbar>
               </AppBar>
               <div style={{ padding: '8px 0' }}>
@@ -229,4 +238,12 @@ class MapEmbed extends Component {
   }
 }
 
-export default MapEmbed;
+const mapStateToProps = ({ gameData: { zones } }, { zone }) => ({
+  zoneName: pathOr(zone, [zone, 'name'])(zones),
+});
+
+const mapDispatchToProps = {
+  fetchContinents,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapEmbed);

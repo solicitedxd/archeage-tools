@@ -4,7 +4,6 @@ import {
   Collapse,
   Dialog,
   DialogContent,
-  FormControl,
   FormControlLabel,
   IconButton,
   InputLabel,
@@ -23,14 +22,16 @@ import {
 import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { fetchRecipe } from 'actions/gameData';
+import { getItemPrice } from 'actions/itemPrice';
+import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
 import {
   setAHCut,
   setCraftLarder,
   setDegradation,
-  setFreshness,
   setInterest,
   setPercentage,
+  setProfitLevel,
   setQuantity,
   setSupply,
   setTransportationQuantity,
@@ -44,34 +45,27 @@ import ItemPrice from 'components/Item/ItemPrice';
 import NumberField from 'components/NumberField';
 import OptionalTooltip from 'components/OptionalTooltip';
 import SelectField from 'components/SelectField';
-import { CURRENCY } from 'constants/items';
 import {
-  CONTINENT,
-  ZONE,
-} from 'constants/map';
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
+import { ZONE } from 'constants/map';
 import {
   COMMERCE,
   HUSBANDRY,
 } from 'constants/proficiencies';
 import {
-  AGED_PACK,
-  AGED_PACK_RECIPE,
   BUY_CARGO_LABOR,
-  CARGO,
-  CARGO_OUTLET,
-  CARGO_SUPPLY,
+  CONTINENT_PACKS,
+  DISGUISED_PACK_MATERIALS,
   FRESHNESS,
   LARDER_HARVEST_LABOR,
-  NO_FRESHNESS,
-  NO_WAR_BONUS,
   OUTLET_ZONE,
+  PACK_TABLE,
   PACK_TYPE,
   SELL_CARGO_LABOR,
   SELL_LABOR,
-  TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
-import TRADE_PACKS_NA from 'data/tradepacks/na';
-import TRADE_PACKS_SEA from 'data/tradepacks/sea';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
@@ -79,51 +73,36 @@ import {
   func,
   number,
   object,
-  oneOf,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-
-const getZonePrefix = (zone) => {
-  if ([CONTINENT.NUIA.name, CONTINENT.HARANYA.name].includes(zone)) {
-    return `${zone}n`;
-  }
-  if ([ZONE.ARCUM_IRIS, ZONE.SILENT_FOREST, ZONE.WHITE_ARDEN, ZONE.TWO_CROWNS].includes(zone)) {
-    return zone;
-  }
-  return zone.split(' ')[0];
-};
-
-const getPackRecipe = ({ originZone, packType, region }) => {
-  const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
-  const recipeId = pathOr(null, [originZone, 'packs', packType, 'recipeId'])(tradePackData);
-  return recipeId === null ? AGED_PACK_RECIPE[packType] || null : recipeId;
-};
+import { slug } from 'utils/string';
+import {
+  getZonePrefix,
+  mapCargoToContinent,
+} from 'utils/tradepacks';
 
 class PackViewer extends Component {
   static propTypes = {
-    open: bool.isRequired,
     onClose: func.isRequired,
-    originZone: oneOf([...CONTINENT.HARANYA.zones, ...CONTINENT.NUIA.zones, CONTINENT.HARANYA.name,
-      CONTINENT.NUIA.name, ...CONTINENT.AURORIA.zones]),
-    packType: oneOf([...Object.values(PACK_TYPE), ...CARGO_OUTLET]),
-    sellZone: oneOf([...OUTLET_ZONE, CARGO]),
+    pack: object,
+    sellZoneId: number,
     recipe: object,
     craftLarder: bool,
     degradeDemand: bool,
     freshness: object,
+    packType: object,
     showInterest: bool,
     percentage: number,
-    percentages: object,
-    prices: object,
-    quantities: object,
-    supply: object,
+    quantity: number,
+    profitLevelName: string,
+    supplyLevelName: string,
     mobile: bool,
     transportationQty: object,
-    war: object,
+    war: bool,
     setCraftLarder: func.isRequired,
     setDegradation: func.isRequired,
-    setFreshness: func.isRequired,
+    setProfitLevel: func.isRequired,
     setInterest: func.isRequired,
     setPercentage: func.isRequired,
     setQuantity: func.isRequired,
@@ -134,23 +113,28 @@ class PackViewer extends Component {
     ahCut: object,
     setAHCut: func.isRequired,
     region: string,
+    getItemPrice: func.isRequired,
+    continents: object,
+    zoneName: string,
+    zones: object,
   };
 
   static defaultProps = {
     originZone: null,
     packType: null,
-    sellZone: null,
+    sellZoneId: null,
     region: 'NA',
   };
 
   state = {
     transportExpand: false,
     unitSize: 1,
+    manualLabor: 0,
   };
 
   // eslint-disable-next-line class-methods-use-this
   UNSAFE_componentWillReceiveProps(nextProps) {
-    const packRecipe = getPackRecipe(nextProps);
+    const packRecipe = pathOr(null, ['pack', 'recipeId'])(nextProps);
     if (packRecipe) {
       fetchRecipe(packRecipe);
     }
@@ -164,55 +148,99 @@ class PackViewer extends Component {
     this.setState({ unitSize });
   };
 
+  setManualLabor = (manualLabor) => {
+    this.setState({ manualLabor: manualLabor || 0 });
+  };
+
+  getModifier = (modifier) => {
+    if (modifier >= 1) {
+      return `+${Math.round((modifier - 1) * 100)}%`;
+    } else {
+      return `-${Math.round((1 - modifier) * 100)}%`;
+    }
+  };
+
   // eslint-disable-next-line complexity
   render() {
-    const { open, onClose, originZone, packType, sellZone, recipe, region } = this.props;
-    const { transportExpand, unitSize } = this.state;
-    const { craftLarder, degradeDemand, freshness: profitLevels, showInterest, percentage: percentageDefault, percentages, prices, quantities, supply, mobile, transportationQty, war, ahCut } = this.props;
-    const { setCraftLarder, setDegradation, setFreshness, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut } = this.props;
+    const { onClose, pack, sellZoneId, recipe, region, freshness, packType } = this.props;
+    const { transportExpand, unitSize, manualLabor } = this.state;
+    const { craftLarder, degradeDemand, profitLevelName, showInterest, percentage, quantity, supplyLevelName, mobile, transportationQty, war, ahCut, continents, zoneName, zones } = this.props;
+    const { setCraftLarder, setDegradation, setProfitLevel, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut, getItemPrice } = this.props;
 
     // do nothing if value is missing
-    if (originZone === null || packType === null || sellZone === null) return null;
-    const tradePackData = region === 'NA' ? TRADE_PACKS_NA : TRADE_PACKS_SEA;
+    if (!pack) return null;
 
     // spread the costs into the pack details first, to allow individual packs to overwrite costs
-    const pack = pathOr({}, [originZone, 'packs', packType])(tradePackData);
-    const freshness = pathOr({}, [originZone, 'freshness'])(tradePackData);
-    const freshnessLevels = freshness[AGED_PACK.includes(packType) ? 'AGED' : 'STANDARD'] || {};
-    const profitLevel = freshness.name === FRESHNESS.DISGUISED.name ? 'REGULAR' : pathOr('HIGH', [originZone, packType,
-      sellZone])(profitLevels);
-    const supplyLevel = sellZone === CARGO && (supply[originZone] || Object.keys(CARGO_SUPPLY)[0]);
-    const quantity = pathOr(1, [originZone, packType])(quantities);
+    const profitLevels = freshness.profitLevels.filter(pL => pL.aged === packType.aged);
+    const profitLevel = profitLevels.find(l => l.name === profitLevelName) || profitLevels[0];
+    const supplyLevel = pathOr([], ['supplyLevels'])(packType).find(l => l.name === supplyLevelName);
 
-    const percentage = pathOr(percentageDefault, [originZone, packType, sellZone])(percentages);
-    const isAgedPack = AGED_PACK.includes(packType);
-    const sellLabor = sellZone === CARGO ? SELL_CARGO_LABOR : SELL_LABOR;
-    const ahCutValue = pathOr(0, [pack.item])(ahCut);
+    const isAgedPack = packType.aged;
+    const isCargo = packType.id === PACK_TYPE.CARGO;
+    const isDisguised = packType.id === PACK_TYPE.DISGUISED;
+    const sellLabor = isCargo ? SELL_CARGO_LABOR : SELL_LABOR;
+
+    const { originZoneId } = pack;
+
+    // create outlet lists
+    let outletZones;
+    if (isCargo) {
+      outletZones = CONTINENT_PACKS[PACK_TABLE.CARGO];
+    } else if (isDisguised) {
+      outletZones = OUTLET_ZONE[PACK_TABLE.AURORIA];
+    } else {
+      outletZones = OUTLET_ZONE[zones[sellZoneId].continentId];
+    }
+    outletZones = outletZones
+    .filter(z => z !== originZoneId)
+    .reduce((obj, zoneId) => {
+      obj[zoneId] = zones[zoneId].name;
+      return obj;
+    }, {});
+
+    // create transport fuel items
+    let transportItems;
+    if (isCargo) {
+      transportItems = [
+        ITEM.ECO_FRIENDLY_FUEL,
+        ITEM.CAPTAINS_PROTECTION,
+      ];
+    } else {
+      transportItems = [
+        ITEM.CARROT,
+        ITEM.ECO_FRIENDLY_FUEL,
+        ITEM.AXLE_GREASE,
+      ];
+    }
 
     // construct a pack name, if no special name is given
     let packName = pack.name;
     if (!packName) {
-      if (sellZone === CARGO) {
-        packName = `${getZonePrefix(originZone)} Cargo`;
-      } else if (packType === PACK_TYPE.BLUE_SALT) {
-        packName = `${getZonePrefix(originZone)} Pack`;
-      } else if (packType === PACK_TYPE.ANTIQUITIES) {
-        packName = `${getZonePrefix(originZone)} ${packType}`;
-      } else {
-        packName = `${getZonePrefix(originZone)} ${freshness.name}`;
-        if (packType === PACK_TYPE.SALVE || packType === PACK_TYPE.CHEESE || packType === PACK_TYPE.HONEY) {
-          packName += ` Aged ${packType}`;
-        } else {
-          if (packType !== PACK_TYPE.NORMAL) {
-            packName += ` ${packType}`;
+      switch (pack.packTypeId) {
+        case PACK_TYPE.CARGO:
+          packName = `${continents[mapCargoToContinent(originZoneId)].name} Cargo`;
+          break;
+        case PACK_TYPE.BLUE_SALT:
+          packName = `${getZonePrefix(zoneName, originZoneId)} Pack`;
+          break;
+        case PACK_TYPE.ANTIQUITIES:
+          packName = `${getZonePrefix(zoneName, originZoneId)} ${packType.name}`;
+          break;
+        default:
+          packName = `${getZonePrefix(zoneName, originZoneId)} ${freshness.name}`;
+          if (isAgedPack) {
+            packName += ` Aged ${packType.name}`;
+          } else {
+            if (packType.id !== PACK_TYPE.NORMAL) {
+              packName += ` ${packType.name}`;
+            }
+            packName += ' Specialty';
           }
-          packName += ' Specialty';
-        }
       }
     }
 
     let interest;
-    let packValue = pack.sell[sellZone];
+    let { value: packValue, itemId: packItem } = pack.values.find(v => v.sellZoneId === sellZoneId && v.region === region) || {};
     // modify the pack's value
     if (packValue) {
       // modify the percentage
@@ -229,18 +257,18 @@ class PackViewer extends Component {
         demand = (percentage / 130);
       }
       // modify the freshness
-      if (freshnessLevels[profitLevel] && !NO_FRESHNESS.includes(packType)) {
-        packValue *= freshnessLevels[profitLevel].modifier;
+      if (packType.freshness) {
+        packValue *= profitLevel.modifier;
       }
       // modify war bonus
-      if (war[sellZone] && !NO_WAR_BONUS.includes(packType)) {
+      if (war && packType.warBonus) {
         packValue *= 1.15;
       }
       interest = Math.round(packValue * .02 * 10000);
       if (showInterest) {
         packValue *= 1.02;
       }
-      if (pack.item) {
+      if (packItem) {
         packValue = Math.round(packValue);
       } else {
         packValue = Math.round(packValue * 10000);
@@ -253,17 +281,19 @@ class PackViewer extends Component {
       packValue = 0;
     }
 
-    // sell labor
-    let totalLabor = calculateLabor(sellLabor, recipe.vocation);
+    const ahCutValue = pathOr(0, [packItem])(ahCut);
+
+    // craft labor
+    let totalLabor = calculateLabor(sellLabor, recipe.vocation || COMMERCE);
 
     // define initial
-    let materials = recipe.materials || pack.materials || [];
+    let materials = packType.id === PACK_TYPE.DISGUISED ? DISGUISED_PACK_MATERIALS : recipe.materials || [];
     let craftGold = 0;
     let craftLabor = isAgedPack
       ? calculateLabor(LARDER_HARVEST_LABOR, HUSBANDRY)
       : calculateLabor(recipe.labor, recipe.vocation);
     // cargo pack, modify
-    if (sellZone === CARGO) {
+    if (isCargo) {
       craftLabor = calculateLabor(BUY_CARGO_LABOR, COMMERCE);
     }
     let totalGold = 0;
@@ -280,14 +310,14 @@ class PackViewer extends Component {
     }
 
     totalGold += craftGold;
-    totalLabor += craftLabor;
+    totalLabor += craftLabor + manualLabor;
 
     materials.forEach(mat => {
       if (!mat.indent && craftLarder && isAgedPack) return;
-      totalGold += (prices[mat.item] || 0) * 10000 * mat.quantity;
+      totalGold += getItemPrice(mat.item) * 10000 * mat.quantity;
     });
-    if (sellZone === CARGO) {
-      totalGold = CARGO_SUPPLY[supplyLevel].price;
+    if (isCargo) {
+      totalGold = supplyLevel.value;
     }
     totalGold = Math.round(totalGold);
 
@@ -296,22 +326,21 @@ class PackViewer extends Component {
     totalGold *= quantity;
 
     const transportCosts = {};
-    TRANSPORTATION_FUEL.forEach((itemId) => {
-      transportCosts[itemId] = Math.round((prices[itemId] || 0) * pathOr(0, [originZone, sellZone,
-        itemId])(transportationQty) * 10000);
+    transportItems.forEach((itemId) => {
+      transportCosts[itemId] = Math.round(getItemPrice(itemId) * (transportationQty[itemId] || 0) * 10000);
     });
 
     const transportTotal = Object.values(transportCosts).reduce((a, b) => a + b);
     totalGold += transportTotal;
 
-    const itemPrice = pathOr(0, [pack.item])(prices) * 10000 * (1 - (ahCutValue / 100));
-    const profit = (pack.item ? itemPrice * packValue : packValue) - totalGold;
+    const itemPrice = getItemPrice(packItem) * 10000 * (1 - (ahCutValue / 100));
+    const profit = (packItem ? itemPrice * packValue : packValue) - totalGold;
 
     const showItemCost = (material) => (!isAgedPack || (isAgedPack && ((craftLarder && material.indent) || !craftLarder)));
 
     return (
       <Dialog
-        open={open}
+        open={true}
         onClose={onClose}
         fullScreen={mobile}
         maxWidth="xl"
@@ -326,7 +355,7 @@ class PackViewer extends Component {
         </AppBar>
         <DialogContent className="body-container pack-container">
           <div className="pack-header">
-            <Typography variant="h6">{sellZone === CARGO ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
+            <Typography variant="h6">{isCargo ? 'Purchasing Cargo' : 'Crafting Requirements'}</Typography>
             <div className="pack-quantity">
               <Typography variant="caption" color="primary">Quantity:</Typography>
               <NumberField
@@ -336,7 +365,7 @@ class PackViewer extends Component {
                 min={1}
                 max={1000}
                 value={quantity}
-                onChange={setQuantity(originZone, packType)}
+                onChange={setQuantity(pack.id)}
               />
             </div>
             <Tooltip title={
@@ -352,7 +381,7 @@ class PackViewer extends Component {
               />
             </Tooltip>
           </div>
-          {sellZone !== CARGO &&
+          {!isCargo &&
           <Table size="small" className="material-table">
             <TableHead>
               <TableRow>
@@ -415,7 +444,7 @@ class PackViewer extends Component {
                     {showItemCost(material)
                       ? <Currency
                         type={CURRENCY.COIN}
-                        count={Math.round((prices[material.item] || 0) * 10000 * material.quantity * quantity)}
+                        count={Math.round(getItemPrice(material.item) * 10000 * material.quantity * quantity)}
                       />
                       : '--'}
                   </TableCell>
@@ -427,6 +456,13 @@ class PackViewer extends Component {
                 <TableCell colSpan={isAgedPack ? 2 : 1}>Craft Cost</TableCell>
                 <TableCell align="right"><Currency type={CURRENCY.COIN} count={craftGold * quantity} /></TableCell>
               </TableRow>}
+              <TableRow>
+                <TableCell colSpan={2} />
+                <TableCell colSpan={isAgedPack ? 2 : 1}>Manual Labor</TableCell>
+                <TableCell align="right">
+                  <NumberField onChange={this.setManualLabor} value={manualLabor} min={0} />
+                </TableCell>
+              </TableRow>
               {isAgedPack && craftLarder &&
               <TableRow>
                 <TableCell colSpan={2} />
@@ -435,110 +471,33 @@ class PackViewer extends Component {
                   {calculateLabor(recipe.labor, recipe.vocation) * quantity}
                 </TableCell>
               </TableRow>}
-              {craftLabor > 0 &&
+              {(craftLabor > 0 || manualLabor > 0) &&
               <TableRow>
                 <TableCell colSpan={2} />
                 <TableCell colSpan={isAgedPack ? 2 : 1}>
                   {isAgedPack ? 'Harvest Labor' : 'Craft Labor'}
                 </TableCell>
                 <TableCell align="right">
-                  {craftLabor * quantity}
+                  {(craftLabor + manualLabor) * quantity}
                 </TableCell>
               </TableRow>}
             </TableBody>
           </Table>}
-          {sellZone !== CARGO &&
-          <>
-            <div className="pack-header">
-              <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
-                Transporting to {sellZone}
-              </Typography>
-              <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
-                <ExpandMoreIcon
-                  className={transportExpand ? 'collapsed' : 'expanded'}
-                />
-              </IconButton>
-            </div>
-            <Collapse in={transportExpand}>
-              <div className="transport">
-                <Table size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>
-                        Fuel Item
-                      </TableCell>
-                      <TableCell align="right">
-                        Gold per unit
-                      </TableCell>
-                      <TableCell align="right">
-                        Quantity
-                      </TableCell>
-                      <TableCell align="right">
-                        Total Price
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {TRANSPORTATION_FUEL.map((itemId, i) => (
-                      <TableRow key={`transportation-${itemId}-${i}`}>
-                        <TableCell>
-                          <ItemLink id={itemId} />
-                        </TableCell>
-                        <TableCell align="right">
-                          <ItemPrice itemId={itemId} />
-                        </TableCell>
-                        <TableCell align="right">
-                          <NumberField
-                            id={`transp-mat-qty-${itemId}`}
-                            hiddenLabel
-                            margin="none"
-                            min={0}
-                            max={100}
-                            className="quantity"
-                            value={pathOr(0, [originZone, sellZone, itemId])(transportationQty)}
-                            onChange={setTransportationQuantity(originZone, sellZone, itemId)}
-                          />
-                        </TableCell>
-                        <TableCell align="right">
-                          <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                    <TableRow>
-                      <TableCell colSpan={2} />
-                      <TableCell>Total Cost</TableCell>
-                      <TableCell align="right">
-                        <Currency type={CURRENCY.COIN} count={transportTotal} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-            </Collapse>
-          </>}
-          {sellZone === CARGO &&
+          {isCargo &&
           <div className="sell-config">
-            <FormControl>
-              <InputLabel>Supply</InputLabel>
-              <Select
-                id="select-profit"
-                value={supplyLevel}
-                onChange={setSupply(originZone)}
-                renderValue={() =>
-                  <Typography>
-                    {supplyLevel.substr(0, 1)}{supplyLevel.toLowerCase().substr(1)} Supply:&nbsp;
-                    {CARGO_SUPPLY[supplyLevel].percent}%
-                  </Typography>}
-              >
-                {Object.keys(CARGO_SUPPLY).filter(k => k !== 'name').map(supplyLevel => (
-                  <MenuItem key={supplyLevel}>
-                    {supplyLevel.substr(0, 1)}{supplyLevel.toLowerCase().substr(1)} Supply:&nbsp;
-                    {CARGO_SUPPLY[supplyLevel].percent}%
-                    &nbsp;<Currency type={CURRENCY.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
-                  </MenuItem>
-                ))}
-              </Select>
-            </FormControl>
+            <SelectField
+              id="select-profit"
+              label="Supply"
+              value={supplyLevelName}
+              onChange={setSupply(pack.id)}
+              renderValue={() => <Typography>{supplyLevel.name} Supply: {supplyLevel.percent}%</Typography>}
+              options={packType.supplyLevels.reduce((obj, sL) => {
+                obj[sL.name] = (
+                  <>{sL.name} Supply: {sL.percent}%&nbsp;<Currency type={CURRENCY.COIN} count={sL.value} /></>
+                );
+                return obj;
+              }, {})}
+            />
             <Table size="small" style={{ width: 185 }}>
               <TableBody>
                 <TableRow>
@@ -546,7 +505,7 @@ class PackViewer extends Component {
                     Pack Cost
                   </TableCell>
                   <TableCell align="right">
-                    <Currency type={CURRENCY.COIN} count={CARGO_SUPPLY[supplyLevel].price} />
+                    <Currency type={CURRENCY.COIN} count={supplyLevel.value} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
@@ -560,56 +519,119 @@ class PackViewer extends Component {
               </TableBody>
             </Table>
           </div>}
-          <Typography variant="h6" style={{ margin: '8px 0 4px' }}>Selling at {sellZone === CARGO ? packType
-            : sellZone}</Typography>
+          <div className="pack-header">
+            <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
+              Transporting to {pathOr('', [sellZoneId, 'name'])(zones)}
+            </Typography>
+            <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
+              <ExpandMoreIcon
+                className={transportExpand ? 'collapsed' : 'expanded'}
+              />
+            </IconButton>
+          </div>
+          <Collapse in={transportExpand}>
+            <div className="transport">
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      Fuel Item
+                    </TableCell>
+                    <TableCell align="right">
+                      Gold per unit
+                    </TableCell>
+                    <TableCell align="right">
+                      Quantity
+                    </TableCell>
+                    <TableCell align="right">
+                      Total Price
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {transportItems.map((itemId, i) => (
+                    <TableRow key={`transportation-${itemId}-${i}`}>
+                      <TableCell>
+                        <ItemLink id={itemId} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <ItemPrice itemId={itemId} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <NumberField
+                          id={`transp-mat-qty-${itemId}`}
+                          hiddenLabel
+                          margin="none"
+                          min={0}
+                          max={100}
+                          className="quantity"
+                          value={transportationQty[itemId] || 0}
+                          onChange={setTransportationQuantity(pack.originZoneId, sellZoneId, itemId)}
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  <TableRow>
+                    <TableCell colSpan={2} />
+                    <TableCell>Total Cost</TableCell>
+                    <TableCell align="right">
+                      <Currency type={CURRENCY.COIN} count={transportTotal} />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </Collapse>
+          <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
+            Selling at&nbsp;
+            <SelectField
+              id="selling-at"
+              value={sellZoneId}
+              onChange={(e, zoneId) => push(`?to=${slug(zones[zoneId].name)}`)}
+              renderValue={() => <Typography>{zones[sellZoneId].name}</Typography>}
+              options={outletZones}
+            />
+          </Typography>
           <div className="sell-config">
             <div>
               <InputLabel shrink>Demand: {percentage}%</InputLabel>
               <Slider
-                onChange={setPercentage(originZone, packType, sellZone)}
+                onChange={setPercentage(pack.id, sellZoneId)}
                 value={percentage}
                 defaultValue={130}
                 min={50}
                 max={130}
                 step={1}
               />
-              {!NO_FRESHNESS.includes(packType) &&
-              <FormControl style={{ minWidth: 170 }}>
-                <InputLabel>[{freshness.name}] Freshness</InputLabel>
-                <Select
-                  id="select-profit"
-                  value={profitLevel}
-                  onChange={setFreshness(originZone, packType, sellZone)}
-                  renderValue={() =>
-                    <Typography>
-                      {profitLevel.substr(0, 1)}{profitLevel.toLowerCase().substr(1)} Profit:&nbsp;
-                      {freshnessLevels[profitLevel].modifier >= 1 && `+${Math.round((freshnessLevels[profitLevel].modifier - 1) * 100)}%`}
-                      {freshnessLevels[profitLevel].modifier < 1 && `-${Math.round((1 - freshnessLevels[profitLevel].modifier) * 100)}%`}
-                    </Typography>}
-                >
-                  {Object.keys(freshnessLevels).filter(k => k !== 'name').map(profitLevel => (
-                    <MenuItem key={profitLevel} value={profitLevel}>
-                      {profitLevel.substr(0, 1)}{profitLevel.toLowerCase().substr(1)} Profit:&nbsp;
-                      {freshnessLevels[profitLevel].modifier >= 1 && `+${Math.round((freshnessLevels[profitLevel].modifier - 1) * 100)}%`}
-                      {freshnessLevels[profitLevel].modifier < 1 && `-${Math.round((1 - freshnessLevels[profitLevel].modifier) * 100)}%`}
-                      &nbsp;({freshnessLevels[profitLevel].time})
-                    </MenuItem>
-                  ))}
-                </Select>
-              </FormControl>}
-              {(sellZone === ZONE.YNYSTERE || sellZone === ZONE.CINDERSTONE_MOOR) &&
+              {packType.freshness &&
+              <SelectField
+                id="select-freshness"
+                label={`[${freshness.name}] Freshness`}
+                value={profitLevelName}
+                onChange={setProfitLevel(pack.id, sellZoneId)}
+                renderValue={() =>
+                  <Typography>{profitLevel.name} Profit: {this.getModifier(profitLevel.modifier)}</Typography>}
+                options={profitLevels.reduce((obj, pL) => {
+                  obj[pL.name] = (<>{pL.name} Profit: {this.getModifier(pL.modifier)} ({pL.time})</>);
+                  return obj;
+                }, {})}
+              />}
+              {(sellZoneId === ZONE.YNYSTERE || sellZoneId === ZONE.CINDERSTONE_MOOR) &&
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={war[sellZone] || false}
-                    onChange={setWar(sellZone)}
+                    checked={war}
+                    onChange={setWar(sellZoneId)}
                     color="primary"
-                    disabled={NO_WAR_BONUS.includes(packType)}
+                    disabled={!packType.warBonus}
                   />
                 }
                 label="Zone in War (+15%)"
               />}
-              <OptionalTooltip title={!pack.item && <Currency type={CURRENCY.COIN} count={interest} />}>
+              <OptionalTooltip title={!packItem && <Currency type={CURRENCY.COIN} count={interest} />}>
                 <FormControlLabel
                   control={
                     <Checkbox
@@ -631,10 +653,10 @@ class PackViewer extends Component {
                   </TableCell>
                   <TableCell>Sell Value</TableCell>
                   <TableCell align="right">
-                    {pack.item
+                    {packItem
                       ? <>
                         {packValue}&nbsp;
-                        <Item id={pack.item} inline />
+                        <Item id={packItem} inline />
                       </>
                       : <Currency type={CURRENCY.COIN} count={packValue} />}
                   </TableCell>
@@ -649,16 +671,16 @@ class PackViewer extends Component {
                     <Currency type={CURRENCY.COIN} count={totalGold || 0} />
                   </TableCell>
                 </TableRow>
-                {pack.item &&
+                {packItem &&
                 <TableRow>
                   <TableCell>
                     Auction Cut
                   </TableCell>
-                  <TableCell>
+                  <TableCell align="right">
                     <SelectField
                       id="select-cut"
                       value={ahCutValue}
-                      onChange={setAHCut(pack.item)}
+                      onChange={setAHCut(packItem)}
                       renderValue={() => <Typography>{ahCutValue ? `${ahCutValue}%` : 'None'}</Typography>}
                       options={{ 0: 'None', 5: '5%', 10: '10%' }}
                     />
@@ -669,21 +691,24 @@ class PackViewer extends Component {
                   </TableCell>
                 </TableRow>}
                 <TableRow>
-                  {pack.item
-                    ? <TableCell colSpan={2} rowSpan={2}>
-                      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                        <Item id={pack.item} inline />
-                        <ItemPrice itemId={pack.item} />
-                      </div>
-                    </TableCell>
-                    : <TableCell colSpan={2} rowSpan={2} />}
+                  {packItem
+                    ? <>
+                      <TableCell rowSpan={2}>
+                        <Item id={packItem} inline />
+                      </TableCell>
+                      <TableCell rowSpan={2} align="right">
+                        <ItemPrice itemId={packItem} />
+                      </TableCell>
+                    </>
+                    : <><TableCell rowSpan={2} /><TableCell rowSpan={2} /></>}
                   <TableCell>Profit</TableCell>
                   <TableCell align="right">
                     <Currency type={CURRENCY.COIN} count={profit} />
                   </TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell>Silver per Labor</TableCell>
+                  <TableCell><span className="currency silver" style={{ display: 'inline' }} />&nbsp;per
+                    Labor</TableCell>
                   <TableCell align="right">
                     <Currency type={CURRENCY.COIN} count={Math.round((profit) / totalLabor)} />
                   </TableCell>
@@ -698,20 +723,42 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks, display: { mobile }, itemPrice, gameData: { recipes } }, props) => {
-  const recipeId = getPackRecipe(props);
+const mapStateToProps = ({ tradepacks, display: { mobile }, gameData: { recipes, tradePacks: { types, freshness: freshnessData = {} }, continents, zones } }, { pack, sellZoneId }) => {
+  const tradePack = pack || {};
+  let freshness;
+  if (tradePack.packTypeId === PACK_TYPE.CARGO) {
+    freshness = freshnessData[FRESHNESS.CARGO];
+  } else if (tradePack.packTypeId === PACK_TYPE.DISGUISED) {
+    freshness = freshnessData[FRESHNESS.DISGUISED];
+  } else {
+    freshness = Object.values(freshnessData).find(f => f.zoneIds.includes(tradePack.originZoneId));
+  }
   return {
-    ...tradepacks,
+    region: tradepacks.region,
+    craftLarder: tradepacks.craftLarder,
+    degradeDemand: tradepacks.degradeDemand,
+    showInterest: tradepacks.showInterest,
+    ahCut: tradepacks.ahCut,
+    packType: pathOr({}, [tradePack.packTypeId])(types),
+    freshness,
+    profitLevelName: pathOr('High', ['profitLevel', tradePack.id, sellZoneId])(tradepacks),
+    percentage: pathOr(tradepacks.percentage, ['percentages', tradePack.id, sellZoneId])(tradepacks),
+    quantity: pathOr(1, ['quantities', tradePack.id])(tradepacks),
+    supplyLevelName: pathOr('Limited', ['supply', tradePack.id])(tradepacks),
+    transportationQty: pathOr({}, ['transportationQty', tradePack.originZoneId, sellZoneId])(tradepacks),
+    war: pathOr(false, ['war', sellZoneId])(tradepacks),
     mobile,
-    prices: itemPrice,
-    recipe: recipes[recipeId] || {},
+    recipe: recipes[tradePack.recipeId] || {},
+    continents,
+    zoneName: pathOr('', [tradePack.originZoneId, 'name'])(zones),
+    zones,
   };
 };
 
 const mapDispatchToProps = {
   setCraftLarder,
   setDegradation,
-  setFreshness,
+  setProfitLevel,
   setInterest,
   setPercentage,
   setQuantity,
@@ -720,6 +767,7 @@ const mapDispatchToProps = {
   setWar,
   calculateLabor,
   setAHCut,
+  getItemPrice,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PackViewer);

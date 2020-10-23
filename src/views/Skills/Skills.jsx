@@ -57,6 +57,7 @@ class Skills extends Component {
       defaultSkillset(),
       defaultSkillset(),
     ],
+    updateId: null,
   };
 
   componentDidMount() {
@@ -152,22 +153,31 @@ class Skills extends Component {
   };
 
   getSpentPoints = () => {
-    return this.state.skillsets.map(tree => getTreePoints(tree.skills)).reduce((a, b) => a + b);
+    return this.getTreePoints().reduce((a, b) => a + b);
+  };
+
+  getTreePoints = () => {
+    return this.state.skillsets.map(tree => getTreePoints(tree.skills));
   };
 
   updateHash = (skillsets) => {
-    this.setState({ skillsets }, () => {
-      window.location.hash = '#' + encodeSkillsets(skillsets);
-    });
+    window.location.hash = '#' + encodeSkillsets(skillsets);
   };
 
   handleSelectClass = (_, c) => {
     this.selectAllTrees(c.skillsetIds);
   };
 
+  handleUpdate = (skillId) => {
+    // eslint-disable-next-line no-undef
+    if (__DEVELOPMENT__) {
+      this.setState({ updateId: skillId });
+    }
+  };
+
   render() {
     const { skillsets } = this.state;
-    const { mobile, findClassName, classes } = this.props;
+    const { mobile, findClassName, classes, skillsets: skillsetData } = this.props;
 
     let className;
     const selectedSkillsets = skillsets.map(sks => sks.id);
@@ -177,11 +187,17 @@ class Skills extends Component {
 
     const spentPoints = this.getSpentPoints();
     const remainingPoints = MAX_POINTS - spentPoints;
+    const skillsetPoints = this.getTreePoints();
 
     if (className) {
-      setTitle(`${className} Build`);
+      setTitle(`${className} Build (${skillsetPoints.join('/')})`);
     } else {
-      setTitle('Skill Calculator');
+      const skillsetNames = selectedSkillsets.filter(id => Boolean(id)).map(id => skillsetData[id].name);
+      if (skillsetNames.length > 0) {
+        setTitle(`${skillsetNames.join('/')} Build (${skillsetPoints.splice(0, skillsetNames.length).join('/')}}`);
+      } else {
+        setTitle('Skill Calculator');
+      }
     }
 
     return (

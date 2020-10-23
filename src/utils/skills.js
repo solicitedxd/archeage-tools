@@ -95,7 +95,9 @@ export const encodeSkillsets = (skillsets) => {
     } else {
       return '';
     }
-  }).join('&');
+  })
+  .filter(hash => Boolean(hash))
+  .join('&');
 };
 
 /**

@@ -23,6 +23,7 @@ import {
   DATA_SKILL,
   DATA_SKILLSETS,
   DATA_TITLE,
+  DATA_TRADE_PACKS,
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
@@ -638,5 +639,29 @@ export const fetchClimates = () => (dispatch, getState) => {
   })
   .catch(() => {
     dispatch(setNotification('Failed to fetch climate data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+/** Trade Packs **/
+export const fetchTradePacks = () => (dispatch, getState) => {
+  const { tradePacks } = getState().gameData;
+
+  if (objectHasProperties(tradePacks)) return;
+
+  xhr.get(config.endpoints.service.tradePackRef)
+  .then(({ data: refData }) => {
+    refData.types = arrayToMap(refData.types);
+    refData.freshness = arrayToMap(refData.freshness);
+
+    xhr.get(config.endpoints.service.tradePacks)
+    .then(({ data }) => {
+      dispatch({ type: DATA_TRADE_PACKS, data, refData });
+    })
+    .catch(() => {
+      dispatch(setNotification('Failed to fetch trade pack data.', NOTIFICATION_TYPE.WARNING));
+    });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch trade pack reference data.', NOTIFICATION_TYPE.WARNING));
   });
 };

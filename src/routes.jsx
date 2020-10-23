@@ -28,7 +28,7 @@ export default (
       <Route path="/crops" exact component={Crops} />
       <Route path="/guides" exact component={Guides} />
       <Route path="/guides/:guide?" component={GuideViewer} />
-      <Route path="/trade-packs" component={TradePacks} />
+      <Route path="/trade-packs/:originZoneName?/:packTypeName?" component={TradePacks} />
       <Route path="/mounts/:mount?" component={Mounts} />
       <Route path="/folio/:vocation?/:recipeId?" component={Folio} />
       <Route path="/news/create" component={EditNewsPost} />

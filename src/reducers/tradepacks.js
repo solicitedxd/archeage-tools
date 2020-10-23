@@ -1,15 +1,15 @@
-import { CONTINENT } from 'constants/map';
 import {
+  PACK_TABLE,
   SET_AH_CUT,
-  SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
-  SET_FRESHNESS,
   SET_INTEREST,
   SET_OUTLET,
   SET_PACK_REGION,
+  SET_PACK_TABLE,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
+  SET_PROFIT_LEVEL,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -22,10 +22,10 @@ import { getItem } from 'utils/localStorage';
 
 const tradepacks = (state = getItem('tradepacks', initialState), action) => {
   switch (action.type) {
-    case SET_CONTINENT:
+    case SET_PACK_TABLE:
       return {
         ...state,
-        continent: action.continent,
+        packTable: action.packTable,
       };
     case SET_OUTLET:
       return {
@@ -42,17 +42,14 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         degradeDemand: action.degradeDemand,
       };
-    case SET_FRESHNESS:
+    case SET_PROFIT_LEVEL:
       return {
         ...state,
-        freshness: {
-          ...state.freshness,
-          [action.originZone]: {
-            ...pathOr({}, ['freshness', action.originZone])(state),
-            [action.packType]: {
-              ...pathOr({}, ['freshness', action.originZone, action.packType])(state),
-              [action.sellZone]: action.profit,
-            },
+        profitLevel: {
+          ...state.profitLevel,
+          [action.packId]: {
+            ...pathOr({}, ['profitLevel', action.packId])(state),
+            [action.sellZoneId]: action.profit,
           },
         },
       };
@@ -66,12 +63,9 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         percentages: {
           ...state.percentages,
-          [action.originZone]: {
-            ...pathOr({}, ['percentages', action.originZone])(state),
-            [action.packType]: {
-              ...pathOr({}, ['percentages', action.originZone, action.packType])(state),
-              [action.sellZone]: action.percentage,
-            },
+          [action.packId]: {
+            ...pathOr({}, ['percentages', action.packId])(state),
+            [action.sellZoneId]: action.percentage,
           },
         },
       };
@@ -85,10 +79,7 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         quantities: {
           ...state.quantities,
-          [action.originZone]: {
-            ...pathOr({}, ['quantities', action.originZone])(state),
-            [action.packType]: action.quantity,
-          },
+          [action.packId]: action.quantity,
         },
       };
     case SET_WAR:
@@ -96,7 +87,7 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         war: {
           ...state.war,
-          [action.zone]: action.war,
+          [action.zoneId]: action.war,
         },
       };
     case SET_SUPPLY:
@@ -104,7 +95,7 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         supply: {
           ...state.supply,
-          [action.originZone]: action.supply,
+          [action.packId]: action.supply,
         },
       };
     case SET_TRANSPORTATION_QUANTITY:
@@ -112,10 +103,10 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         transportationQty: {
           ...state.transportationQty,
-          [action.originZone]: {
-            ...pathOr({}, ['transportationQty', action.originZone])(state),
-            [action.sellZone]: {
-              ...pathOr({}, ['transportationQty', action.originZone, action.sellZone])(state),
+          [action.originZoneId]: {
+            ...pathOr({}, ['transportationQty', action.originZoneId])(state),
+            [action.sellZoneId]: {
+              ...pathOr({}, ['transportationQty', action.originZoneId, action.sellZoneId])(state),
               [action.item]: action.value,
             },
           },
@@ -141,8 +132,9 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
         ...state,
         region: action.region,
         // change the continent for SEA if it's Auroria
-        continent: (action.region === 'SEA' && state.continent === CONTINENT.AURORIA.name) ? CONTINENT.NUIA.name
-          : state.continent,
+        packTable: (action.region === 'SEA' && state.packTable === PACK_TABLE.AURORIA)
+          ? PACK_TABLE.NUIA
+          : state.packTable,
       };
     default:
       return state;

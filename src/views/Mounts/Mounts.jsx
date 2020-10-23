@@ -49,6 +49,7 @@ import { Link } from 'react-router-dom';
 import {
   sortNumber,
   toggleValue,
+  uniqueValues,
 } from 'utils/array';
 import { objectHasProperties } from 'utils/object';
 import {
@@ -100,7 +101,7 @@ class Mounts extends Component {
   }
 
   updateSpeedTiers(props) {
-    Array.from(new Set(Object.values(props.mounts).map(m => m[0].moveSpeed).filter(m => m > 0))).forEach(s => this.speedTiers.set(s, `${s} m/s`));
+    uniqueValues(Object.values(props.mounts).map(m => m[0].moveSpeed).filter(m => m > 0)).forEach(s => this.speedTiers.set(s, `${s} m/s`));
     this.speedTiers = new Map([...this.speedTiers].sort((a, b) => sortNumber(a[0], b[0])));
   }
 
