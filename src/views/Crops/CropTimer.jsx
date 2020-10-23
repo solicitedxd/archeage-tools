@@ -20,6 +20,7 @@ import moment from 'moment';
 import React, { Component } from 'react';
 import {
   bool,
+  array,
   func,
   number,
   string,
@@ -33,7 +34,7 @@ class CropTimer extends Component {
   static propTypes = {
     crop: string.isRequired,
     time: number.isRequired,
-    climate: string.isRequired,
+    climate: array.isRequired,
     onDelete: func,
     onRestart: func,
     timer: string.isRequired,

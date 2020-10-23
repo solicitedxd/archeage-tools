@@ -1,7 +1,7 @@
-import { CONTINENT } from 'constants/map';
+import { PACK_TABLE } from 'constants/tradepacks';
 
 export default {
-  continent: CONTINENT.HARANYA.name,
+  packTable: PACK_TABLE.NUIA,
   outlet: 0,
   craftLarder: false,
   degradeDemand: false,
@@ -11,7 +11,10 @@ export default {
   showInterest: true,
   supply: {},
   transportationQty: {},
+  profitLevel: {},
   war: {},
   ahCut: {},
   region: 'NA',
+
+  version: 2,
 };

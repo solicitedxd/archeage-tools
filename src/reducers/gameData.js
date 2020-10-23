@@ -21,6 +21,7 @@ import {
   DATA_SKILL,
   DATA_SKILLSETS,
   DATA_TITLE,
+  DATA_TRADE_PACKS,
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
@@ -188,6 +189,14 @@ const gameData = (state = initialState, action) => {
       return {
         ...state,
         climates: action.climates,
+      };
+    case DATA_TRADE_PACKS:
+      return {
+        ...state,
+        tradePacks: {
+          packs: action.data,
+          ...action.refData,
+        },
       };
     default:
       return state;

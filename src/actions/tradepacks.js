@@ -1,14 +1,14 @@
 import {
   SET_AH_CUT,
-  SET_CONTINENT,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
-  SET_FRESHNESS,
   SET_INTEREST,
   SET_OUTLET,
   SET_PACK_REGION,
+  SET_PACK_TABLE,
   SET_PERCENTAGE,
   SET_PERCENTAGE_DEFAULT,
+  SET_PROFIT_LEVEL,
   SET_QUANTITY,
   SET_SUPPLY,
   SET_TRANSPORTATION_QUANTITY,
@@ -19,10 +19,10 @@ import { validateQuantity } from 'utils/string';
 
 export const triggerLocalStorageUpdate = [
   SET_AH_CUT,
-  SET_CONTINENT,
+  SET_PACK_TABLE,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
-  SET_FRESHNESS,
+  SET_PROFIT_LEVEL,
   SET_INTEREST,
   SET_OUTLET,
   SET_PACK_REGION,
@@ -44,8 +44,8 @@ export const setPackRegion = (region) => (dispatch) => {
   dispatch({ type: SET_PACK_REGION, region });
 };
 
-export const setContinent = (e, continent) => (dispatch) => {
-  dispatch({ type: SET_CONTINENT, continent });
+export const setPackTable = (e, packTable) => (dispatch) => {
+  dispatch({ type: SET_PACK_TABLE, packTable });
 };
 
 export const setOutlet = (e, outlet) => (dispatch) => {
@@ -60,38 +60,38 @@ export const setDegradation = (e, degradeDemand) => (dispatch) => {
   dispatch({ type: SET_DEGRADATION, degradeDemand });
 };
 
-export const setFreshness = (originZone, packType, sellZone) => (dispatch) => (e, { key: profit }) => {
-  dispatch({ type: SET_FRESHNESS, originZone, packType, sellZone, profit });
+export const setProfitLevel = (packId, sellZoneId) => (dispatch) => (e, profit) => {
+  dispatch({ type: SET_PROFIT_LEVEL, packId, sellZoneId, profit });
 };
 
 export const setInterest = (e, showInterest) => (dispatch) => {
   dispatch({ type: SET_INTEREST, showInterest });
 };
 
-export const setPercentage = (originZone, packType, sellZone) => (dispatch) => (e, percentage) => {
-  if (originZone && packType && sellZone) {
-    dispatch({ type: SET_PERCENTAGE, originZone, packType, percentage, sellZone });
+export const setPercentage = (packId, sellZoneId) => (dispatch) => (e, percentage) => {
+  if (packId && sellZoneId) {
+    dispatch({ type: SET_PERCENTAGE, packId, percentage, sellZoneId });
   } else {
     dispatch({ type: SET_PERCENTAGE_DEFAULT, percentage });
   }
 };
 
-export const setQuantity = (originZone, packType) => (dispatch) => (value) => {
+export const setQuantity = (packId) => (dispatch) => (value) => {
   value = validateQuantity(1, 1000)(value);
-  dispatch({ type: SET_QUANTITY, originZone, packType, quantity: Math.abs(value) });
+  dispatch({ type: SET_QUANTITY, packId, quantity: Math.abs(value) });
 };
 
-export const setWar = (zone) => (dispatch) => (e, war) => {
-  dispatch({ type: SET_WAR, zone, war });
+export const setWar = (zoneId) => (dispatch) => (e, war) => {
+  dispatch({ type: SET_WAR, zoneId, war });
 };
 
-export const setSupply = (originZone) => (dispatch) => (e, { key: supply }) => {
-  dispatch({ type: SET_SUPPLY, originZone, supply });
+export const setSupply = (packId) => (dispatch) => (e, supply) => {
+  dispatch({ type: SET_SUPPLY, packId, supply });
 };
 
-export const setTransportationQuantity = (originZone, sellZone, item) => (dispatch) => (value) => {
+export const setTransportationQuantity = (originZoneId, sellZoneId, item) => (dispatch) => (value) => {
   value = validateQuantity(0, 100)(value);
-  dispatch({ type: SET_TRANSPORTATION_QUANTITY, originZone, sellZone, item, value });
+  dispatch({ type: SET_TRANSPORTATION_QUANTITY, originZoneId, sellZoneId, item, value });
 };
 
 export const resetSettings = () => (dispatch) => {

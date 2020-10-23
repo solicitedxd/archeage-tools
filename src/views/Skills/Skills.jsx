@@ -57,6 +57,7 @@ class Skills extends Component {
       defaultSkillset(),
       defaultSkillset(),
     ],
+    updateId: null,
   };
 
   componentDidMount() {
@@ -165,6 +166,13 @@ class Skills extends Component {
 
   handleSelectClass = (_, c) => {
     this.selectAllTrees(c.skillsetIds);
+  };
+
+  handleUpdate = (skillId) => {
+    // eslint-disable-next-line no-undef
+    if (__DEVELOPMENT__) {
+      this.setState({ updateId: skillId });
+    }
   };
 
   render() {

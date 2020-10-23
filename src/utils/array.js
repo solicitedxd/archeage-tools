@@ -120,3 +120,10 @@ export const questZoneCheck = (questId, zoneMap, userZones) => {
 
   return userZones.length === 0 || zoneList.length === 0 || (zoneList.some(z => userZones.includes(z)));
 };
+
+/**
+ * Returns an array with unique values.
+ * @param array{array}
+ * @returns {array}
+ */
+export const uniqueValues = (array) => Array.from(new Set(array));
