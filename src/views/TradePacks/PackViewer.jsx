@@ -23,6 +23,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { fetchRecipe } from 'actions/gameData';
 import { getItemPrice } from 'actions/itemPrice';
+import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
 import {
   setAHCut,
@@ -44,7 +45,10 @@ import ItemPrice from 'components/Item/ItemPrice';
 import NumberField from 'components/NumberField';
 import OptionalTooltip from 'components/OptionalTooltip';
 import SelectField from 'components/SelectField';
-import { CURRENCY } from 'constants/items';
+import {
+  CURRENCY,
+  ITEM,
+} from 'constants/items';
 import { ZONE } from 'constants/map';
 import {
   COMMERCE,
@@ -52,13 +56,15 @@ import {
 } from 'constants/proficiencies';
 import {
   BUY_CARGO_LABOR,
+  CONTINENT_PACKS,
   DISGUISED_PACK_MATERIALS,
   FRESHNESS,
   LARDER_HARVEST_LABOR,
+  OUTLET_ZONE,
+  PACK_TABLE,
   PACK_TYPE,
   SELL_CARGO_LABOR,
   SELL_LABOR,
-  TRANSPORTATION_FUEL,
 } from 'constants/tradepacks';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -70,6 +76,7 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { slug } from 'utils/string';
 import {
   getZonePrefix,
   mapCargoToContinent,
@@ -170,9 +177,41 @@ class PackViewer extends Component {
 
     const isAgedPack = packType.aged;
     const isCargo = packType.id === PACK_TYPE.CARGO;
+    const isDisguised = packType.id === PACK_TYPE.DISGUISED;
     const sellLabor = isCargo ? SELL_CARGO_LABOR : SELL_LABOR;
 
     const { originZoneId } = pack;
+
+    // create outlet lists
+    let outletZones;
+    if (isCargo) {
+      outletZones = CONTINENT_PACKS[PACK_TABLE.CARGO];
+    } else if (isDisguised) {
+      outletZones = OUTLET_ZONE[PACK_TABLE.AURORIA];
+    } else {
+      outletZones = OUTLET_ZONE[zones[sellZoneId].continentId];
+    }
+    outletZones = outletZones
+    .filter(z => z !== originZoneId)
+    .reduce((obj, zoneId) => {
+      obj[zoneId] = zones[zoneId].name;
+      return obj;
+    }, {});
+
+    // create transport fuel items
+    let transportItems;
+    if (isCargo) {
+      transportItems = [
+        ITEM.ECO_FRIENDLY_FUEL,
+        ITEM.CAPTAINS_PROTECTION,
+      ];
+    } else {
+      transportItems = [
+        ITEM.CARROT,
+        ITEM.ECO_FRIENDLY_FUEL,
+        ITEM.AXLE_GREASE,
+      ];
+    }
 
     // construct a pack name, if no special name is given
     let packName = pack.name;
@@ -287,7 +326,7 @@ class PackViewer extends Component {
     totalGold *= quantity;
 
     const transportCosts = {};
-    TRANSPORTATION_FUEL.forEach((itemId) => {
+    transportItems.forEach((itemId) => {
       transportCosts[itemId] = Math.round(getItemPrice(itemId) * (transportationQty[itemId] || 0) * 10000);
     });
 
@@ -444,75 +483,6 @@ class PackViewer extends Component {
               </TableRow>}
             </TableBody>
           </Table>}
-          {!isCargo &&
-          <>
-            <div className="pack-header">
-              <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
-                Transporting to {pathOr('', [sellZoneId, 'name'])(zones)}
-              </Typography>
-              <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
-                <ExpandMoreIcon
-                  className={transportExpand ? 'collapsed' : 'expanded'}
-                />
-              </IconButton>
-            </div>
-            <Collapse in={transportExpand}>
-              <div className="transport">
-                <Table size="small">
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>
-                        Fuel Item
-                      </TableCell>
-                      <TableCell align="right">
-                        Gold per unit
-                      </TableCell>
-                      <TableCell align="right">
-                        Quantity
-                      </TableCell>
-                      <TableCell align="right">
-                        Total Price
-                      </TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {TRANSPORTATION_FUEL.map((itemId, i) => (
-                      <TableRow key={`transportation-${itemId}-${i}`}>
-                        <TableCell>
-                          <ItemLink id={itemId} />
-                        </TableCell>
-                        <TableCell align="right">
-                          <ItemPrice itemId={itemId} />
-                        </TableCell>
-                        <TableCell align="right">
-                          <NumberField
-                            id={`transp-mat-qty-${itemId}`}
-                            hiddenLabel
-                            margin="none"
-                            min={0}
-                            max={100}
-                            className="quantity"
-                            value={transportationQty[itemId] || 0}
-                            onChange={setTransportationQuantity(pack.originZoneId, sellZoneId, itemId)}
-                          />
-                        </TableCell>
-                        <TableCell align="right">
-                          <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
-                        </TableCell>
-                      </TableRow>
-                    ))}
-                    <TableRow>
-                      <TableCell colSpan={2} />
-                      <TableCell>Total Cost</TableCell>
-                      <TableCell align="right">
-                        <Currency type={CURRENCY.COIN} count={transportTotal} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                </Table>
-              </div>
-            </Collapse>
-          </>}
           {isCargo &&
           <div className="sell-config">
             <SelectField
@@ -549,8 +519,81 @@ class PackViewer extends Component {
               </TableBody>
             </Table>
           </div>}
+          <div className="pack-header">
+            <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
+              Transporting to {pathOr('', [sellZoneId, 'name'])(zones)}
+            </Typography>
+            <IconButton className="collapse-btn" onClick={() => this.setTransportExpand(!transportExpand)}>
+              <ExpandMoreIcon
+                className={transportExpand ? 'collapsed' : 'expanded'}
+              />
+            </IconButton>
+          </div>
+          <Collapse in={transportExpand}>
+            <div className="transport">
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TableCell>
+                      Fuel Item
+                    </TableCell>
+                    <TableCell align="right">
+                      Gold per unit
+                    </TableCell>
+                    <TableCell align="right">
+                      Quantity
+                    </TableCell>
+                    <TableCell align="right">
+                      Total Price
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {transportItems.map((itemId, i) => (
+                    <TableRow key={`transportation-${itemId}-${i}`}>
+                      <TableCell>
+                        <ItemLink id={itemId} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <ItemPrice itemId={itemId} />
+                      </TableCell>
+                      <TableCell align="right">
+                        <NumberField
+                          id={`transp-mat-qty-${itemId}`}
+                          hiddenLabel
+                          margin="none"
+                          min={0}
+                          max={100}
+                          className="quantity"
+                          value={transportationQty[itemId] || 0}
+                          onChange={setTransportationQuantity(pack.originZoneId, sellZoneId, itemId)}
+                        />
+                      </TableCell>
+                      <TableCell align="right">
+                        <Currency type={CURRENCY.COIN} count={transportCosts[itemId]} />
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  <TableRow>
+                    <TableCell colSpan={2} />
+                    <TableCell>Total Cost</TableCell>
+                    <TableCell align="right">
+                      <Currency type={CURRENCY.COIN} count={transportTotal} />
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </div>
+          </Collapse>
           <Typography variant="h6" style={{ margin: '8px 0 4px' }}>
-            Selling at {pathOr('', [sellZoneId, 'name'])(zones)}
+            Selling at&nbsp;
+            <SelectField
+              id="selling-at"
+              value={sellZoneId}
+              onChange={(e, zoneId) => push(`?to=${slug(zones[zoneId].name)}`)}
+              renderValue={() => <Typography>{zones[sellZoneId].name}</Typography>}
+              options={outletZones}
+            />
           </Typography>
           <div className="sell-config">
             <div>

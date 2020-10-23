@@ -57,12 +57,6 @@ export const DISGUISED_PACK_MATERIALS = Object.freeze([
   { item: ITEM.TERRITORY_COIN, quantity: 3 },
 ]);
 
-export const TRANSPORTATION_FUEL = Object.freeze([
-  ITEM.CARROT,
-  ITEM.ECO_FRIENDLY_FUEL,
-  ITEM.AXLE_GREASE,
-]);
-
 const REGULAR_PACK_TYPES = Object.freeze([
   PACK_TYPE.NORMAL,
   PACK_TYPE.GILDA,
