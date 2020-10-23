@@ -65,7 +65,7 @@ const getNextIndex = (index) => index + 1 === CARGO_SCHEDULE.length ? 0 : index 
 
 class CargoShip extends Component {
   static propTypes = {
-    port: oneOf([ZONE.SOLIS_HEADLANDS, ZONE.TWO_CROWNS]),
+    port: oneOf([ZONE.SOLIS_HEADLANDS, ZONE.TWO_CROWNS, ZONE.SOLIS_HEADLANDS.toString(), ZONE.TWO_CROWNS.toString()]),
     endTime: string,
     setCargoShip: func.isRequired,
     setAlert: func.isRequired,
@@ -182,7 +182,7 @@ class CargoShip extends Component {
     const now = moment();
 
     let port = portInitial;
-    let step = CARGO_SCHEDULE.find(step => step.port === port);
+    let step = CARGO_SCHEDULE.find(step => step.port === Number.parseInt(port));
     let stepIndex = CARGO_SCHEDULE.indexOf(step);
     let stepEnd = moment(endTimeInitial);
 
@@ -244,7 +244,6 @@ class CargoShip extends Component {
 
     if (alert) {
       const { cue, speech } = alert;
-      console.log(alert, cue, speech);
       playCue(cue);
 
       if (speak) {
@@ -266,6 +265,7 @@ class CargoShip extends Component {
     const step = CARGO_SCHEDULE[stepIndex];
     let message;
     let shareMessage = '';
+    console.log(setup);
 
     if (!port || !endTime) {
       message = 'Initialize the timer by clicking the Settings cog.';
@@ -354,15 +354,15 @@ class CargoShip extends Component {
           <br />
           <FormControl component="fieldset">
             <FormLabel component="legend">What port is the ship at?</FormLabel>
-            <RadioGroup name="port" value={setup.port} onChange={this.handleSetupChange('port')} row>
+            <RadioGroup name="port" value={Number.parseInt(setup.port)} onChange={this.handleSetupChange('port')} row>
               <FormControlLabel
                 control={<Radio color="primary" />}
-                label={ZONE.SOLIS_HEADLANDS}
+                label="Solis Headlands"
                 value={ZONE.SOLIS_HEADLANDS}
               />
               <FormControlLabel
                 control={<Radio color="primary" />}
-                label={ZONE.TWO_CROWNS}
+                label="Two Crowns"
                 value={ZONE.TWO_CROWNS}
               />
             </RadioGroup>
