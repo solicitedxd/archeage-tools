@@ -265,7 +265,6 @@ class CargoShip extends Component {
     const step = CARGO_SCHEDULE[stepIndex];
     let message;
     let shareMessage = '';
-    console.log(setup);
 
     if (!port || !endTime) {
       message = 'Initialize the timer by clicking the Settings cog.';
