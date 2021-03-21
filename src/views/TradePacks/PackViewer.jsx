@@ -195,7 +195,7 @@ class PackViewer extends Component {
       outletZones = OUTLET_ZONE[zones[sellZoneId].continentId];
     }
     outletZones = outletZones
-    .filter(z => z !== originZoneId)
+    .filter(z => pack.values.map(v => v.sellZoneId).includes(z))
     .reduce((obj, zoneId) => {
       obj[zoneId] = zones[zoneId].name;
       return obj;
@@ -232,7 +232,12 @@ class PackViewer extends Component {
         default:
           packName = `${getZonePrefix(zoneName, originZoneId)} ${freshness.name}`;
           if (isAgedPack) {
-            packName += ` Aged ${packType.name}`;
+            let { name } = packType;
+            if (name.indexOf('Rich') >= 0) {
+              name = name.split(' ')[1];
+              packName += ` Rich`;
+            }
+            packName += ` Aged ${name}`;
           } else {
             if (packType.id !== PACK_TYPE.NORMAL) {
               packName += ` ${packType.name}`;
