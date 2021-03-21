@@ -209,11 +209,6 @@ class TradePacks extends Component {
         viewerPackZone = zones[mapContinentToCargo(viewerPackZone.id)];
       }
       viewerPack = tradePackData.find(pack => pack.originZoneId === viewerPackZone.id && pack.packTypeId === viewerPackType.id);
-
-      // disabled disguised packs for SEA region
-      if (viewerPackType.id === PACK_TYPE.DISGUISED && region === 'SEA') {
-        viewerPack = null;
-      }
     }
     const viewerSellZoneId = (Object.values(zones).find(zone => slug(zone.name) === sellZoneName) || {}).id;
 
@@ -261,8 +256,6 @@ class TradePacks extends Component {
               <InputLabel className="group-label" shrink>Pack Continent</InputLabel>
               <ButtonGroup>
                 {Object.values(PACK_TABLE)
-                // only show auroria to NA
-                .filter(c => c !== PACK_TABLE.AURORIA || region === 'NA')
                 .map(contId => (
                   <Button
                     key={`cont-${contId}`}

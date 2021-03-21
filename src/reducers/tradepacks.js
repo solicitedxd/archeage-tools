@@ -1,5 +1,4 @@
 import {
-  PACK_TABLE,
   SET_AH_CUT,
   SET_CRAFT_LARDER,
   SET_DEGRADATION,
@@ -131,10 +130,7 @@ const tradepacks = (state = getItem('tradepacks', initialState), action) => {
       return {
         ...state,
         region: action.region,
-        // change the continent for SEA if it's Auroria
-        packTable: (action.region === 'SEA' && state.packTable === PACK_TABLE.AURORIA)
-          ? PACK_TABLE.NUIA
-          : state.packTable,
+        packTable: state.packTable,
       };
     default:
       return state;
