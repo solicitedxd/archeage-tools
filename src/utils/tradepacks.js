@@ -11,14 +11,24 @@ export const mapContinentToTable = (continent) => ({
   'Auroria': PACK_TABLE.AURORIA,
 })[continent || 'Nuia'];
 
-export const mapContinentToCargo = (continentId) => continentId === CONTINENT.HARANYA ? ZONE.SOLIS_HEADLANDS
-  : ZONE.TWO_CROWNS;
+export const mapContinentToCargo = (continentId) => {
+  switch (continentId) {
+    case CONTINENT.HARANYA:
+      return ZONE.SOLIS_HEADLANDS;
+    case CONTINENT.NUIA:
+      return ZONE.TWO_CROWNS;
+    case CONTINENT.AURORIA:
+      return ZONE.HEEDMAR;
+    default:
+      return null;
+  }
+};
 
 export const mapCargoToContinent = (originZoneId) => originZoneId === ZONE.SOLIS_HEADLANDS ? CONTINENT.HARANYA
   : CONTINENT.NUIA;
 
 export const getZonePrefix = (zone, zoneId) => {
-  if ([ZONE.ARCUM_IRIS, ZONE.SILENT_FOREST, ZONE.WHITE_ARDEN, ZONE.TWO_CROWNS].includes(zoneId)) {
+  if ([ZONE.ARCUM_IRIS, ZONE.SILENT_FOREST, ZONE.WHITE_ARDEN, ZONE.TWO_CROWNS, ZONE.GOLDEN_RUINS].includes(zoneId)) {
     return zone;
   }
   return zone.split(' ')[0];

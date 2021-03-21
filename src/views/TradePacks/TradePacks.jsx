@@ -51,7 +51,10 @@ import {
   DIALOG_MY_GAME,
   PROFICIENCIES,
 } from 'constants/display';
-import { CONTINENT } from 'constants/map';
+import {
+  CONTINENT,
+  ZONE,
+} from 'constants/map';
 import {
   CONTINENT_PACKS,
   FRESHNESS,
@@ -178,15 +181,19 @@ class TradePacks extends Component {
 
     const isCargo = packTable === PACK_TABLE.CARGO;
 
-    let continentZones;
-    if (!isCargo) {
-      continentZones = uniqueValues(tradePackData.map(p => p.originZoneId)).filter(zId => continents[packTable].zones.includes(zId));
-    } else {
-      continentZones = [CONTINENT.HARANYA, CONTINENT.NUIA];
-    }
-
     const outletZones = OUTLET_ZONE[packTable];
     const sellZoneId = outletZones[outlet];
+
+    let continentZones;
+    if (!isCargo) {
+      // only filter out unused zones for Auroria packs
+      let packZoneData = packTable === PACK_TABLE.AURORIA
+        ? tradePackData.filter(p => p.values.find(pV => pV.sellZoneId === sellZoneId)) : tradePackData;
+      // create list of zones that have packs
+      continentZones = uniqueValues(packZoneData.map(p => p.originZoneId)).filter(zId => continents[packTable].zones.includes(zId));
+    } else {
+      continentZones = [CONTINENT.HARANYA, CONTINENT.NUIA, CONTINENT.AURORIA];
+    }
 
     setTitle('Trade Pack Calculator');
 
@@ -209,6 +216,9 @@ class TradePacks extends Component {
       }
     }
     const viewerSellZoneId = (Object.values(zones).find(zone => slug(zone.name) === sellZoneName) || {}).id;
+
+    const cPackTypes = CONTINENT_PACKS[packTable];
+    const currentPackTypes = Array.isArray(cPackTypes) ? cPackTypes : cPackTypes[sellZoneId];
 
     return (
       <div className={cn('tool-container', { mobile })}>
@@ -336,7 +346,7 @@ class TradePacks extends Component {
                   <TableCell>
                     {!isCargo && 'Pack Origin'}
                   </TableCell>
-                  {CONTINENT_PACKS[packTable].map(packTypeId => (
+                  {currentPackTypes.map(packTypeId => (
                     <TableCell
                       key={`type-head-${packTypeId}`}
                       align="center"
@@ -351,7 +361,7 @@ class TradePacks extends Component {
                   let freshness;
                   if (isCargo) {
                     freshness = freshnessData[FRESHNESS.CARGO];
-                  } else if (packTable === PACK_TABLE.AURORIA) {
+                  } else if (packTable === PACK_TABLE.AURORIA && sellZoneId === ZONE.SUNSPECK_SEA) {
                     freshness = freshnessData[FRESHNESS.DISGUISED];
                   } else {
                     freshness = Object.values(freshnessData).find(f => f.zoneIds.includes(originZoneId));
@@ -367,9 +377,8 @@ class TradePacks extends Component {
                       >
                         {zoneName}
                       </TableCell>
-                      {CONTINENT_PACKS[packTable].map(packTypeId => {
-                        const packType = isCargo ? packTypes[PACK_TYPE.CARGO]
-                          : packTypes[packTypeId];
+                      {currentPackTypes.map(packTypeId => {
+                        const packType = isCargo ? packTypes[PACK_TYPE.CARGO] : packTypes[packTypeId];
                         const pack = tradePackData.find(p => isCargo
                           ? (p.packTypeId === PACK_TYPE.CARGO && p.originZoneId === mapContinentToCargo(originZoneId))
                           : (p.originZoneId === originZoneId && p.packTypeId === packTypeId));
@@ -447,7 +456,9 @@ class TradePacks extends Component {
               <FreshnessBlip {...freshnessData[FRESHNESS.COMMERCIAL]} />
               <FreshnessBlip {...freshnessData[FRESHNESS.PRESERVED]} />
             </>}
-            {packTable === PACK_TABLE.AURORIA &&
+            {packTable === PACK_TABLE.AURORIA && sellZoneId === ZONE.HEEDMAR &&
+            <FreshnessBlip {...freshnessData[FRESHNESS.COASTAL]} />}
+            {packTable === PACK_TABLE.AURORIA && sellZoneId === ZONE.SUNSPECK_SEA &&
             <FreshnessBlip {...freshnessData[FRESHNESS.DISGUISED]} />}
             <Typography variant="overline">
               Prices shown at {percentage}% demand with high profit{war[sellZoneId] ? ' and +15% war bonus' : ''}. 2%
@@ -466,7 +477,11 @@ class TradePacks extends Component {
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, tradepacks: { packTable, continent, percentage, war, outlet, region }, gameData: { tradePacks, continents, zones } }) => ({
+const mapStateToProps = ({
+                           display: { mobile },
+                           tradepacks: { packTable, continent, percentage, war, outlet, region },
+                           gameData: { tradePacks, continents, zones },
+                         }) => ({
   mobile,
   packTable: packTable || mapContinentToTable(continent),
   outlet,

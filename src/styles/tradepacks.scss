@@ -26,6 +26,7 @@ $Fine: #3887FF;
 $Preserved: #36BD4B;
 $Cargo: #FF4053;
 $Disguised: #FFDE45;
+$Coastal: #ECADFF;
 
 .trade-table {
   thead {
@@ -63,6 +64,11 @@ $Disguised: #FFDE45;
         background-color: $Disguised;
         color: rgba(0, 0, 0, 0.87);
         width: 20%;
+      }
+
+      &.Coastal td:first-child {
+        background-color: $Coastal;
+        color: rgba(0, 0, 0, 0.87);
       }
 
       td:not(:first-child) {
@@ -125,6 +131,10 @@ $Disguised: #FFDE45;
 
 .freshness.Disguised {
   background-color: $Disguised;
+}
+
+.freshness.Coastal {
+  background-color: $Coastal;
 }
 
 .MuiTooltip-tooltip.freshness-tip-container {

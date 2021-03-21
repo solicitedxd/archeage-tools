@@ -76,7 +76,10 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { slug } from 'utils/string';
+import {
+  setTitle,
+  slug,
+} from 'utils/string';
 import {
   getZonePrefix,
   mapCargoToContinent,
@@ -239,8 +242,13 @@ class PackViewer extends Component {
       }
     }
 
+    setTitle(packName);
+
     let interest;
-    let { value: packValue, itemId: packItem } = pack.values.find(v => v.sellZoneId === sellZoneId && v.region === region) || {};
+    let {
+      value: packValue,
+      itemId: packItem,
+    } = pack.values.find(v => v.sellZoneId === sellZoneId && v.region === region) || {};
     // modify the pack's value
     if (packValue) {
       // modify the percentage

@@ -194,7 +194,7 @@ class Skills extends Component {
     } else {
       const skillsetNames = selectedSkillsets.filter(id => Boolean(id)).map(id => skillsetData[id].name);
       if (skillsetNames.length > 0) {
-        setTitle(`${skillsetNames.join('/')} Build (${skillsetPoints.splice(0, skillsetNames.length).join('/')}}`);
+        setTitle(`${skillsetNames.join('/')} Build (${skillsetPoints.splice(0, skillsetNames.length).join('/')})`);
       } else {
         setTitle('Skill Calculator');
       }
