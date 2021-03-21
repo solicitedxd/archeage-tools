@@ -4,9 +4,11 @@ import {
   Toolbar,
   Typography,
 } from '@material-ui/core';
+import cn from 'classnames';
 import Link from 'components/Link';
 import { GUIDE_CATEGORY } from 'constants/guides';
 import React from 'react';
+import { sortBy } from 'utils/array';
 import {
   delimitName,
   setTitle,
@@ -32,21 +34,28 @@ const Guides = () => {
       <Paper className="section">
         <AppBar position="static">
           <Toolbar variant="dense">
-            <Typography variant="subtitle1" className="title-text">Guides</Typography>
+            <Typography variant="h5" className="title-text">Guides</Typography>
           </Toolbar>
         </AppBar>
         <div className="body-container guide-list">
-          {Object.values(guideCategories).map(section => {
+          {Object.entries(guideCategories).map(([key, section]) => {
             return (
               <div className="guide-category" key={`gc-${section.name}`}>
-                <Typography variant="h6">{section.name}</Typography>
-                <ul>
-                  {Object.entries(section.children).filter(g => !g.disabled).map(([id, guide]) => (
-                    <li key={`gc-${id}`}>
+                <div className={cn('banner', key)}>
+                  <Typography variant="body1" className="cat-name">{section.name}</Typography>
+                </div>
+                <ul className="cat-list">
+                  {Object.entries(section.children)
+                  .sort((a, b) => sortBy('name')(a[1], b[1]))
+                  .map(([id, guide]) => (
+                    <li key={`gc-${id}`} className="guide-item">
                       <Typography>
                         <Link to={`/guides/${delimitName(id)}`} color="primary">
                           {guide.name}
                         </Link>
+                      </Typography>
+                      <Typography variant="caption" className="timestamp">
+                        {guide.meta.lastUpdated}
                       </Typography>
                     </li>
                   ))}

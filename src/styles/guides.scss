@@ -102,12 +102,72 @@
 }
 
 .guide-list {
+  padding: 6px;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  align-items: stretch;
 
   .guide-category {
-    flex-basis: 33.3%;
+    padding: 6px;
+    border-radius: 5px;
+    min-width: 360px;
+    flex: 1;
+
+    &:nth-child(2n) {
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    .banner {
+      width: 240px;
+      height: 94px;
+      position: relative;
+
+      &.GAMEPLAY {
+        background-image: url(../images/guides/banners/gameplay.png);
+      }
+
+      &.DAILIES {
+        background-image: url(../images/guides/banners/dailies.png);
+      }
+
+      &.TRADE {
+        background-image: url(../images/guides/banners/trade.png);
+      }
+
+      &.DUNGEONS {
+        background-image: url(../images/guides/banners/dungeons.png);
+      }
+
+      &.BOSSES {
+        background-image: url(../images/guides/banners/world_bosses.png);
+      }
+
+      &.INSTANCES {
+        background-image: url(../images/guides/banners/instances.png);
+      }
+
+      .cat-name {
+        position: absolute;
+        bottom: 1px;
+        left: 6px;
+      }
+    }
+
+    .cat-list {
+      list-style: none;
+      padding-inline: 4px;
+
+      li {
+        padding: 4px 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        &:nth-child(2n) {
+          background-color: rgba(0, 0, 0, 0.15);
+        }
+      }
+    }
   }
 }
 
@@ -118,4 +178,13 @@
   background: url(../images/npc_icon.png) -340px -239px;
   margin: 0 6px 0 0;
   vertical-align: -2px;
+}
+
+.mobile {
+  .guide-list {
+    .guide-category {
+      min-width: auto;
+      width: 100%;
+    }
+  }
 }

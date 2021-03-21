@@ -9,11 +9,11 @@ import { ITEM } from 'constants/items';
 import { ZONE } from 'constants/map';
 import React from 'react';
 
-const name = 'Leveling to 55';
+const name = 'Getting to Level 55';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Nov 10, 2019',
+  lastUpdated: 'Mar 24, 2021',
 };
 
 const category = GUIDE_CATEGORY.GAMEPLAY;
@@ -39,10 +39,10 @@ const sections = [
       </div>,
       'The weapon that you pick is pertinent to your class. For classes that scale off of Magic Attack, you\'ll want a Staff (from 2H) or a Scepter (from 1H). Healers use Healing Power, so a Club (1H) or Greatclub (2H) is desired.',
       'There are also different "Weapon Types" that affect melee attacks: Piercing, Slashing, and Crushing.',
-      ' - Piercing gives your melee attacks a 50% chance to deal 15% increased damage against plate wearers.',
+      ' - Piercing gives your melee attacks a 50% chance to deal 15% increased damage against cloth wearers.',
       ' - Slashing gives your melee attacks a 50% chance to deal 15% increased damage against leather wearers.',
       ' - Crushing gives your melee attacks a 50% chance to deal 20% increased damage against plate wearers.',
-      'Due to this, your weapon type matters. If you want to counter plate wearers, you have two options, and if you want to counter leather wearers you use a slashing weapon. Attack speed also affects how fast you can use your melee skills and attacks, as well as their damage.',
+      'Due to this, your weapon type matters. Attack speed also affects how fast you can use your melee skills and attacks, as well as their damage.',
       'This Explorer\'s weapon that you choose will be your weapon all the way through leveling and into end game. You will have the option to switch your weapon and class before level 50, when you get locked in. More on that later.',
       <Typography variant="h6">Armor</Typography>,
       'Around your 4th story quest, you\'ll receive your first set of armor rewards. Sometime in chapter 2 of story quests, you\'ll receive the last few pieces.',
@@ -58,9 +58,10 @@ const sections = [
         <Item id={ITEM.EXPLORERS_LEATHER_COMPONENT_CRATE} count={1} />
         <Item id={ITEM.EXPLORERS_PLATE_COMPONENT_CRATE} count={1} />
       </div>,
-      'Cloth armor offers high magic defense, 3% increased move speed, 20% reduced debuff duration, and 10% reduced mana costs.',
+      'Cloth armor offers high magic defense, 3% increased move speed, 20% reduced debuff duration (except Silence and Shackle), 30% reduced silence duration, and 10% reduced mana costs.',
       'Leather armor provides a balance of both physical and magic defense, 3% increased evasion, increased bow range by 3m, and 20% reduced shackle and trip duration.',
       'Plate armor gives high physical defense, 5% increased health, 20% reduced stun and shackle duration, and 10% increased mana costs.',
+      'These effects are considered set bonuses and are only granted when wearing all 7 pieces of the same type of armor.',
     ],
   },
   {
@@ -138,24 +139,19 @@ const sections = [
       'Once you\'re level 45, now is the time to make sure the stats on your Explorer\'s gear is perfect.',
       'For all equipment, your main damage stat (Strength, Agility, Intelligence, or Spirit for healers) is what you want on every piece of gear. However, I\'d recommend Stamina on a shield if that\'s what you\'re running.',
       'For your armor, Resilience or your biggest counter\'s Received Damage reduction are the better secondary stats. If you get one but you really wanted the other, don\'t worry. When awakening Radiant Explorer\'s to Hiram, it unlocks a second secondary stat (for 3 effects total).',
-      'For your weapon, most builds will want to run critical chance and bonus on the main weapon, bow, and off-hand if you\'re running one. Shields and instruments want evasion and flat attack.',
-      'Should you not get lucky and get your main stat and one of your desired secondary stats on a piece of gear, you can salvage the piece, get all the infusions and scrolls back, and try again.',
-      <Typography><ItemLink id={ITEM.ADVENTURERS_EVENSTONE} plural="s" /> can be purchased from any Blacksmith or
-        General Merchant and are the only item that can salvage and return your infusions. Armor merchants sell full set
-        bundles of all armor pieces. Any set will work. The tier 1 variants have different appearances but they all
-        turn into the same at tier 2. Weapon merchants sell the the 1 and 2H crates. You can use this time to switch
-        your armor type or weapons. The above map lists location of blacksmiths, armor, and weapon merchants in the main
-        capitol cities.</Typography>,
-      'I recommend salvaging one piece at a time and make sure you use your Rank 1 Infusions ONLY on your tier 1 "Explorer" gear, your Rank 2 only on "Radiant Explorer" gear, and your Rank 3 only on "Brilliant Explorer". You are only given exactly enough infusions to get your gear to unique. If you use the wrong infusions, there\'s no way to fix it. You do have a couple extra Rank 2 and 3 if you use a 2H weapon.',
+      'For your weapon, after changes to stat caps and critical strike, you want defense or magic defense penetration on the main weapon, bow, and off-hand if you\'re running one. Healers will still prefer critical heal rate and bonus. Shields and instruments will prefer evasion and flat attack.',
+      'Should you not get lucky and get your main stat and one of your desired secondary stats on a piece of gear, you can buy a new piece from a Weapon or Armor merchant and new infusions and upgrade scrolls from a General Merchant.',
+      'You can also use this time to switch your armor type or weapons that you\'re using.',
       'Since upgrading your gear can be gold and labor intensive, the best course of action for rolling your stats is:',
       '- Infuse and awaken item to Radiant.',
       '- Did it roll your main stat?',
-      <Typography>&nbsp;&nbsp;> No? Restart</Typography>,
+      <Typography>&nbsp;&nbsp;&gt; No? Restart</Typography>,
       '- Infuse and awaken item to Brilliant.',
       '- Use your rerolls to get one of you two good secondary stats.',
       '- Do you now have your main stat and one good secondary?',
-      <Typography>&nbsp;&nbsp;> No? Restart</Typography>,
-      <Typography>&nbsp;&nbsp;> Yes? That piece is done, infuse it to Unique.</Typography>,
+      <Typography>&nbsp;&nbsp;&gt; No? Restart</Typography>,
+      <Typography>&nbsp;&nbsp;&gt; Yes? That piece is done, infuse it to Unique.</Typography>,
+      'Unused weapons and armor can be safely discarded.',
       'This will prevent you from wasting labor and gold rerolling your pieces all the the way to T3 Unique only for your rerolls to leave you short of the stats you want. When you do it this way you also keep extra rerolls for when you awaken to Hiram, allowing you to use those to reroll a potential unwanted stat from your third stat.',
     ],
   },
@@ -173,9 +169,9 @@ const sections = [
     title: 'Levels 50 - 55',
     paragraphs: [
       'Grinding in a group will be the best course of action for most players until you get more gear.',
-      'At level 50, you can start doing the Hiram daily for Hiram Infusions in Diamond Shores.',
-      'At level 52, the Sungold Fields, Exeloch, and Reedwind dailies unlock.',
-      'At level 55, the Western and Eastern Hiram Mountains unlock.',
+      'At level 50, you can start doing the Hiram weekly for Hiram Infusions in Diamond Shores.',
+      'At level 52, the Sungold Fields, Exeloch, and Reedwind weeklies unlock.',
+      'At level 55, the Western Hiram Mountain weeklies and Eastern Hiram Mountains dailies unlock.',
       <Typography>You can see all of the Hiram dailies at the <Link to="/guides/hiram-dailies">Hiram Dailies
         guide</Link>.</Typography>,
     ],
