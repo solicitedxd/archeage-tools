@@ -1,3 +1,4 @@
+/* eslint react/jsx-key: 0 */
 import { Typography } from '@material-ui/core';
 import Ability from 'components/Ability';
 import Item from 'components/Item';
@@ -13,10 +14,10 @@ const name = 'Serpentis';
 
 const meta = {
   author: 'Mokulu',
-  lastUpdated: 'Dec 1, 2019',
+  lastUpdated: 'Mar 24, 2021',
 };
 
-const category = GUIDE_CATEGORY.DUNGEONS;
+const category = GUIDE_CATEGORY.INSTANCES;
 
 const sections = [
   {
@@ -25,11 +26,12 @@ const sections = [
       <MapEmbed
         zone={ZONE.EXELOCH}
         points={[{ icon: 'port', label: '[Dungeon] Serpentis', coords: [{ x: 46.9, y: 29.1 }] }]}
+        floatRight
       />,
-      'Serpentis is a 5-man dungeon located in Exeloch of Auroria. It requires level 50, and I\'d recommend an average gear score of at least 4000 for your group.',
+      'Serpentis is a 5-man dungeon located in Exeloch of Auroria, though it can be queued for through the Instance window under the Dungeons tab. It requires level 50, and I\'d recommend an average gear score of at least 4000 for your group.',
       'Your composition will need at least one healer. If your group\'s average gear score is less than 5000, you should definitely have a dedicated tank.',
       <Typography>I recommend that at least one person take <SkillLink id={SKILL.PROTECTIVE_WINGS} />
-        &nbsp;if your group's average gear score is less than 5000.</Typography>,
+        &nbsp;if your group&apos;s average gear score is less than 5000.</Typography>,
       'There are a total of 6 rooms to progress through. Three rooms are always the same, and the other three have their own sets of possible rooms.',
       'The boss from room 5 will drop armor and the boss from room 6 will drop weapons.',
       'Note that when a boss is spawned in a room, other players are prevented from entering that room. Should your group fail to defeat a boss, all players must die to fully reset the boss.',
@@ -38,7 +40,10 @@ const sections = [
   {
     title: 'Room 1',
     paragraphs: [
-      <Typography variant="subtitle1">Notable Loot</Typography>,
+      <Typography variant="h5">Abyssal Trap</Typography>,
+      'The Abyssal Trap will always be the first room you get in every run of Serpentis.',
+      'In ths room, there will be two Serpentis Keepers, located on the left and right sides of the room. When engaged, they will leash together.',
+      <Typography variant="h6">Notable Loot</Typography>,
       <Typography variant="caption" color="primary">You will get one of these every run:</Typography>,
       <div className="quest-items">
         <Item id={ITEM.REDTALON_HELM} />
@@ -46,9 +51,6 @@ const sections = [
         <Item id={ITEM.REDTALON_SADDLE} />
         <Item id={ITEM.REDTALON_LEGGUARDS} />
       </div>,
-      <Typography variant="h5">Abyssal Trap</Typography>,
-      'The Abyssal Trap will always be the first room you get in every run of Serpentis.',
-      'In ths room, there will be two Serpentis Keepers, located on the left and right sides of the room. When engaged, they will leash together.',
       <Typography variant="h6">Abilities</Typography>,
       <Ability
         name="Serpentis Keeper's Trampling"
@@ -70,7 +72,8 @@ const sections = [
   {
     title: 'Room 2',
     paragraphs: [
-      <Typography variant="h5">Creature's Vault</Typography>,
+      'There are three different possible encounters for this room.',
+      <Typography variant="h5">1. Creature&apos;s Vault</Typography>,
       'In this room, you will have to defeat five waves of enemies. Each wave will have a larger, more powerful enemy that usually will have a random buff.',
       'Interact with the box in the center of the room to spawn the first wave. After a box has been interacted with, a wave of enemies will spawn and the next box will appear. The final box is located in the north-east corner.',
       'The final wave includes the boss Balius. There really isn\'t anything difficult about it. Engaging with all area of effect will kill most of the adds.',
@@ -90,7 +93,7 @@ const sections = [
         description="Increases Physical Defense +100%. Casts Impenetrable Barrier every 30 seconds to shield you for the next 10 seconds every time you receive Melee Damage."
         counters={['Magic damage dealers need to focus this enemy.']}
       />,
-      <Typography variant="h5">Nightmare's Embrace</Typography>,
+      <Typography variant="h5">2. Nightmare&apos;s Embrace</Typography>,
       'The goal of this room is to protect Lerman while he performs his ritual. During this time there are 8 waves of enemies to fend off, with wave 8 also including an Awakened Keeper (that acts exactly like a Serpentis Keeper from the Abyssal Trap).',
       'The waves will approach you automatically, and there is a chance that a wave will have a Lost Tribe Shade King. When this enemy dies, he will drop a Stun Bomb at his location.',
       <Ability
@@ -98,7 +101,7 @@ const sections = [
         description="Interact with the Stun Bomb to briefly stun all enemies."
       />,
       'Use the Stun Bomb when you feel like you\'re overwhelmed.',
-      <Typography variant="h5">Mouth of Chaos</Typography>,
+      <Typography variant="h5">3. Mouth of Chaos</Typography>,
       'When you interact with the box to start this room, Conqueror Cellus will instantly spawn and begin attacking.',
       <Typography variant="h6">Abilities</Typography>,
       <Ability
@@ -122,7 +125,9 @@ const sections = [
   {
     title: 'Room 3',
     paragraphs: [
-      <Typography variant="subtitle1">Notable Loot</Typography>,
+      <Typography variant="h5">Sanctuary of Darkness</Typography>,
+      'The Distorted Duaxini deals magic damage with two primary attacks and has a stacking damage buff as the fight goes on.',
+      <Typography variant="h6">Notable Loot</Typography>,
       <div className="quest-items">
         <Item id={ITEM.LABYRINTH_VALUABLES_CHEST} />
       </div>,
@@ -130,8 +135,6 @@ const sections = [
       <div className="quest-items">
         <Item id={ITEM.CARMILAS_MEMORY} />
       </div>,
-      <Typography variant="h5">Sanctuary of Darkness</Typography>,
-      'The Distorted Duaxini deals magic damage with two primary attacks and has a stacking damage buff as the fight goes on.',
       <Typography variant="h6">Abilities</Typography>,
       <Ability
         name="Distorted Duaxini's Flamebolt"
@@ -166,23 +169,24 @@ const sections = [
   {
     title: 'Room 4',
     paragraphs: [
-      <Typography variant="h5">Laboratory of Terrors</Typography>,
-      'During this fight, you will face a single boss at a time along with many adds. The adds have a lot of crowd control, so focus them first.',
+      'There are three different possible encounters for this room.',
+      <Typography variant="h5">1. Laboratory of Terrors</Typography>,
+      'During this fight, you will face a single boss at a time along with many adds. The adds have a lot of crowd control, so cleave them down with the active boss.',
       <Typography variant="h6">Freman</Typography>,
       'Freman awakens first.',
       <Typography variant="h6">Frostcaster Bashu</Typography>,
       'Bashu will awaken after Freman is slain.',
       <Typography variant="h6">Kaizo the Gambler</Typography>,
       'Kaizo awakens last, once you\'ve defeated Bashu.',
-      <Typography variant="h5">Womb of the Crimson Dream</Typography>,
-      <Typography variant="h5">Duskfallen Hall</Typography>,
-      'Work in progress...',
+      <Typography variant="h5">2. Womb of the Crimson Dream</Typography>,
+      <Typography variant="h5">3. Duskfallen Hall</Typography>,
     ],
   },
   {
     title: 'Room 5',
     paragraphs: [
-      <Typography variant="subtitle1">Notable Loot</Typography>,
+      'There are three different possible encounters for this room. The loot pool is the same regardless of the encounter.',
+      <Typography variant="h6">Notable Loot</Typography>,
       <Typography variant="caption">You will get one piece of magic cloth, healing cloth, leather, and plate
         armor.</Typography>,
       <br />,
@@ -193,22 +197,20 @@ const sections = [
         <Item id={ITEM.STARPOINT} />
       </div>,
       <Typography variant="h5">Lerman</Typography>,
-      'Work in progress...',
       <Typography variant="h5">Carmilla</Typography>,
-      'Work in progress...',
       <Typography variant="h5">Fangbow</Typography>,
-      'Work in progress...',
     ],
   },
   {
     title: 'Room 6',
     paragraphs: [
-      <Typography variant="subtitle1">Notable Loot</Typography>,
+      'To enter this room, you must spend 100 Labor to open the gateway. If no one needs anything from this boss, it\'s wise to end the run early to save labor.',
+      <Typography variant="h5">Sirothe the Infernal</Typography>,
+      <Typography variant="h6">Notable Loot</Typography>,
       <div className="quest-items">
         <Item id={ITEM.SUNGLOW_LUNAGEM} />
         <Item id={ITEM.MYSTERIOUS_GEM} />
       </div>,
-      <Typography variant="h5">Sirothe the Infernal</Typography>,
       <Typography variant="h6">Abilities</Typography>,
       <Ability
         name="Melee, Magic, and Ranged Shield"
