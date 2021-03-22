@@ -15,7 +15,7 @@ const meta = {
   lastUpdated: 'Mar 24, 2021',
 };
 
-const category = GUIDE_CATEGORY.TRADE;
+const category = GUIDE_CATEGORY.QUESTS;
 
 const sections = [
   {

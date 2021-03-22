@@ -1,3 +1,4 @@
+/* eslint react/jsx-key: 0 */
 import { Typography } from '@material-ui/core';
 import Ability from 'components/Ability';
 import Item from 'components/Item';
@@ -17,7 +18,7 @@ const meta = {
   lastUpdated: 'Dec 1, 2019',
 };
 
-const category = GUIDE_CATEGORY.DUNGEONS;
+const category = GUIDE_CATEGORY.INSTANCES;
 
 const sections = [
   {

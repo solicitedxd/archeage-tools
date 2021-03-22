@@ -1,3 +1,4 @@
+/* eslint react/jsx-key: 0 */
 import {
   Table,
   TableBody,
@@ -21,7 +22,7 @@ const meta = {
   lastUpdated: 'Nov 10, 2019',
 };
 
-const category = GUIDE_CATEGORY.DUNGEONS;
+const category = GUIDE_CATEGORY.INSTANCES;
 
 const rewards = [
   { // 1
@@ -140,7 +141,7 @@ const sections = [
         strike.</Typography>,
       <Typography variant="h6">Melee</Typography>,
       <Typography>Use <SkillLink id={SKILL.VICIOUS_IMPLOSION} /> to start the fight, pulling all
-        enemies into the center area for the mage's meteor strike.</Typography>,
+        enemies into the center area for the mage&apos;s meteor strike.</Typography>,
       <Typography><SkillLink id={SKILL.HELL_SPEAR} /> combos well after a Vicious Implosion to keep
         the enemies in a meteor strike.</Typography>,
       <Typography variant="h6">Healer</Typography>,
@@ -165,7 +166,7 @@ const sections = [
             {rewards.map((rewards, tier) => (
               <Fragment key={`reward-${tier}`}>
                 <TableRow>
-                  <TableCell rowSpan={tier !== 8 ? 1 : 5}>{tier * 5 + (tier === 0 ? 1 : 0)}</TableCell>
+                  <TableCell rowSpan={tier !== 8 ? 1 : 5}>{(tier * 5) + (tier === 0 ? 1 : 0)}</TableCell>
                   <TableCell rowSpan={tier === 0 ? 4 : 5}>Rank {tier + 1} Crate</TableCell>
                   <TableCell rowSpan={tier === 0 ? 4 : 5} className="reward-cell">
                     {rewards.guaranteed.filter(r => !r.oneOf).map((reward, i) => (
@@ -184,10 +185,10 @@ const sections = [
                     ))}
                   </TableCell>
                 </TableRow>
-                {tier < 8 && <TableRow><TableCell>{tier * 5 + (tier === 0 ? 2 : 1)}</TableCell></TableRow>}
-                {tier < 8 && <TableRow><TableCell>{tier * 5 + (tier === 0 ? 3 : 2)}</TableCell></TableRow>}
-                {tier < 8 && <TableRow><TableCell>{tier * 5 + (tier === 0 ? 4 : 3)}</TableCell></TableRow>}
-                {tier > 0 && tier < 8 && <TableRow><TableCell>{tier * 5 + 4}</TableCell></TableRow>}
+                {tier < 8 && <TableRow><TableCell>{(tier * 5) + (tier === 0 ? 2 : 1)}</TableCell></TableRow>}
+                {tier < 8 && <TableRow><TableCell>{(tier * 5) + (tier === 0 ? 3 : 2)}</TableCell></TableRow>}
+                {tier < 8 && <TableRow><TableCell>{(tier * 5) + (tier === 0 ? 4 : 3)}</TableCell></TableRow>}
+                {tier > 0 && tier < 8 && <TableRow><TableCell>{(tier * 5) + 4}</TableCell></TableRow>}
               </Fragment>
             ))}
           </TableBody>
