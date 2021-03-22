@@ -1,6 +1,7 @@
 import { setNotification } from 'actions/notification';
 import config from 'config';
 import {
+  DATA_BONDS,
   DATA_BUILDINGS,
   DATA_CATEGORIES,
   DATA_CLIMATES,
@@ -20,6 +21,7 @@ import {
   DATA_QUESTCAT,
   DATA_QUESTREF,
   DATA_RECIPE,
+  DATA_SERVERS,
   DATA_SKILL,
   DATA_SKILLSETS,
   DATA_TITLE,
@@ -29,6 +31,7 @@ import {
 } from 'constants/gameData';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import debounce from 'lodash.debounce';
+import { pathOr } from 'ramda';
 import {
   arrayToMap,
   mapValue,
@@ -663,5 +666,41 @@ export const fetchTradePacks = () => (dispatch, getState) => {
   })
   .catch(() => {
     dispatch(setNotification('Failed to fetch trade pack reference data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+/* Servers */
+export const fetchServers = () => (dispatch, getState) => {
+  const { servers } = getState().gameData;
+
+  if (objectHasProperties(servers)) return;
+
+  xhr.get(config.endpoints.service.servers)
+  .then(({ data: servers }) => {
+    dispatch({ type: DATA_SERVERS, servers: arrayToMap(servers) });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch server data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+/* Bluesalt Bonds */
+export const fetchBonds = () => (dispatch) => {
+  xhr.get(config.endpoints.service.bluesaltBonds)
+  .then(({ data: bonds }) => {
+    dispatch({ type: DATA_BONDS, bonds });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch Bluesalt Bonds data.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const updateBonds = (bonds) => (dispatch) => {
+  xhr.post(config.endpoints.service.bluesaltBonds, bonds)
+  .then(() => {
+    fetchBonds();
+  })
+  .catch((e) => {
+    dispatch(setNotification(pathOr('Failed to update bonds.', ['data', 'errorMessage'])(e), NOTIFICATION_TYPE.ERROR));
   });
 };

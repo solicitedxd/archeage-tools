@@ -8,3 +8,4 @@ export const DIALOG_MY_GAME = 'DIALOG_MY_GAME';
 export const CHARACTERS = 'characters';
 export const RESIDENCE = 'residence';
 export const PROFICIENCIES = 'proficiencies';
+export const SERVER = 'server';

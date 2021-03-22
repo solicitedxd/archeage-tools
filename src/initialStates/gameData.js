@@ -31,4 +31,6 @@ export default {
   zones: {},
   climates: {},
   tradePacks: {},
+  servers: {},
+  bonds: [],
 };

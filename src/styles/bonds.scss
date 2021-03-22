@@ -1,0 +1,57 @@
+.bonds-container {
+  display: flex;
+  flex-direction: row-reverse;
+
+  .current-bonds {
+    margin-left: 6px;
+
+    .MuiTableCell-sizeSmall.row-icon {
+      padding: 6px 8px 6px 16px;
+    }
+  }
+
+  .bond-calculator {
+    flex: 1;
+    margin-right: 6px;
+
+    .bond-table {
+      overflow: auto;
+      padding: 6px;
+
+      table {
+        min-width: 710px;
+      }
+    }
+  }
+}
+
+.bond-location-editor {
+  .bond-type {
+    display: flex;
+    margin-top: 8px;
+
+    .bond-zones {
+      margin-left: 12px;
+      display: flex;
+      max-width: 640px;
+      flex-wrap: wrap;
+
+      .bond-zone {
+        width: 160px;
+        margin-bottom: 4px;
+      }
+    }
+  }
+}
+
+.mobile .bonds-container {
+  flex-direction: column;
+
+  .current-bonds {
+    margin: 0;
+  }
+
+  .bond-calculator {
+    margin: 8px 0 0 0;
+  }
+}

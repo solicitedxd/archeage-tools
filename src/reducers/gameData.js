@@ -1,4 +1,5 @@
 import {
+  DATA_BONDS,
   DATA_BUILDINGS,
   DATA_CATEGORIES,
   DATA_CLIMATES,
@@ -18,6 +19,7 @@ import {
   DATA_QUESTCAT,
   DATA_QUESTREF,
   DATA_RECIPE,
+  DATA_SERVERS,
   DATA_SKILL,
   DATA_SKILLSETS,
   DATA_TITLE,
@@ -198,6 +200,21 @@ const gameData = (state = initialState, action) => {
           ...action.refData,
         },
       };
+    case DATA_SERVERS:
+      return {
+        ...state,
+        servers: action.servers,
+      };
+    case DATA_BONDS: {
+      const newIds = action.bonds.map(b => b.id);
+      return {
+        ...state,
+        bonds: [
+          ...state.bonds.filter(b => !newIds.includes(b.id)),
+          ...action.bonds,
+        ],
+      };
+    }
     default:
       return state;
   }

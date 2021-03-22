@@ -4,6 +4,7 @@ import {
   MY_CHARACTERS_DELETE,
   MY_CHARACTERS_RENAME,
   MY_RESIDENCE,
+  MY_SERVER,
 } from 'constants/myGame';
 import { PROFICIENCY_UPDATE } from 'constants/proficiencies';
 import initialState from 'initialStates/myGame';
@@ -63,6 +64,11 @@ const taxes = (state = getItem('myGame', initialState), action) => {
         castles: action.castles,
       };
     }
+    case MY_SERVER:
+      return {
+        ...state,
+        server: action.server,
+      };
     default:
       return state;
   }

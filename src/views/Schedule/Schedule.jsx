@@ -31,12 +31,12 @@ import {
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import IfPerm from 'components/IfPerm';
+import { REGIONS } from 'constants/myGame';
 import {
   ALERT_CUE,
   ALERT_OPTIONS,
   CARGO_ID,
   EVENT_TYPE_OTHER,
-  REGIONS,
   SCHEDULE_COLS,
   VOLUME_DEFAULT,
 } from 'constants/schedule';
@@ -92,7 +92,7 @@ class Schedule extends Component {
   };
 
   static defaultProps = {
-    region: REGIONS[0],
+    region: REGIONS.NA,
     hasAlerts: false,
   };
 
@@ -432,7 +432,8 @@ class Schedule extends Component {
                   className="region-opt"
                 >
                   <MenuItem disabled divider dense>Region:</MenuItem>
-                  {REGIONS.map(region => <MenuItem key={`region-${region}`} value={region}>{region}</MenuItem>)}
+                  {Object.values(REGIONS).map(region => <MenuItem key={`region-${region}`}
+                                                                  value={region}>{region}</MenuItem>)}
                 </Select>
               </FormControl>
               <Tooltip title="Clear all alerts">

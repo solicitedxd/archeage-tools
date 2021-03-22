@@ -1,6 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
+import BlueSaltBonds from 'views/BluesaltBonds';
 import Crops from 'views/Crops';
 import Dailies from 'views/Dailies';
 import Folio from 'views/Folio';
@@ -31,6 +32,7 @@ export default (
       <Route path="/trade-packs/:originZoneName?/:packTypeName?" component={TradePacks} />
       <Route path="/mounts/:mount?" component={Mounts} />
       <Route path="/folio/:vocation?/:recipeId?" component={Folio} />
+      <Route path="/bonds" component={BlueSaltBonds} />
       <Route path="/news/create" component={EditNewsPost} />
       <Route path="/news/:postId/:action?" component={NewsPost} />
       <Route path="/news" exact component={Home} />

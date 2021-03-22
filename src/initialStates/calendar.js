@@ -1,7 +1,7 @@
-import { REGIONS } from 'constants/schedule';
+import { REGIONS } from 'constants/myGame';
 
 export default {
-  region: REGIONS[0],
+  region: REGIONS.NA,
   alerts: {},
   speak: {},
   volume: 70,

@@ -18,6 +18,7 @@ import {
   DIALOG_MY_GAME,
   PROFICIENCIES,
   RESIDENCE,
+  SERVER,
 } from 'constants/display';
 import React, { Component } from 'react';
 import {
@@ -28,11 +29,13 @@ import {
 import { connect } from 'react-redux';
 import Proficiencies from './Proficiencies';
 import Residence from './Residence';
+import Server from './Server';
 
 const initialState = {
   [CHARACTERS]: false,
   [RESIDENCE]: false,
   [PROFICIENCIES]: false,
+  [SERVER]: false,
 };
 
 class MyGame extends Component {
@@ -85,6 +88,14 @@ class MyGame extends Component {
           </Toolbar>
         </AppBar>
         <DialogContent className="my-game-wrapper">
+          <ExpansionPanel expanded={this.state[SERVER]} onChange={this.handleChange(SERVER)}>
+            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+              <Typography>Server</Typography>
+            </ExpansionPanelSummary>
+            <ExpansionPanelDetails>
+              <Server />
+            </ExpansionPanelDetails>
+          </ExpansionPanel>
           {/*
            <ExpansionPanel expanded={this.state[CHARACTERS]} onChange={this.handleChange(CHARACTERS)}>
            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>

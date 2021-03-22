@@ -9,6 +9,7 @@ export default {
   residence: [],
   castles: [],
   proficiencies: { 0: getItem('proficiencies', proficiencies) },
+  server: null,
   region: getItem('calendar', calendar).region,
   publisher: getItem('dailies', dailies).region || Object.keys(QUEST_REGIONS)[0],
   faction: getItem('dailies', dailies).faction,

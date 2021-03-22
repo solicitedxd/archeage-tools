@@ -23,3 +23,5 @@ export const DATA_DOODAD = 'DATA_DOODAD';
 export const DATA_CONTINENTS = 'DATA_CONTINENTS';
 export const DATA_CLIMATES = 'DATA_CLIMATES';
 export const DATA_TRADE_PACKS = 'DATA_TRADE_PACKS';
+export const DATA_SERVERS = 'DATA_SERVERS';
+export const DATA_BONDS = 'DATA_BONDS';

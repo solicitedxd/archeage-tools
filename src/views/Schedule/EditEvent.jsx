@@ -27,11 +27,11 @@ import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
 import { setEvent } from 'actions/gameData';
 import config from 'config';
+import { REGIONS } from 'constants/myGame';
 import {
   ALERT_DEFAULT,
   DAY,
   DAY_ABBR,
-  REGIONS,
 } from 'constants/schedule';
 import {
   bool,
@@ -315,7 +315,7 @@ class EditEvent extends Component {
                   value={timeData.region || ''}
                   onChange={(e) => this.handleChangeTime('region', e.target.value)}
                 >
-                  {[null, ...REGIONS].map(region => (
+                  {[null, ...Object.values(REGIONS)].map(region => (
                     <MenuItem
                       value={region}
                       key={`region-${region}`}

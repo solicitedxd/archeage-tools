@@ -1,4 +1,5 @@
 import { ZONE } from 'constants/map';
+import { REGIONS } from 'constants/myGame';
 
 export const QUEST_STATUS = 'QUEST_STATUS';
 export const QUEST_FACTION = 'QUEST_FACTION';
@@ -43,8 +44,8 @@ export const CRITERIA_TYPE_COLLECT = 'COLLECT';
 export const CRITERIA_TYPE_OTHER = 'OTHER';
 
 export const QUEST_REGIONS = Object.freeze({
-  'NA': 'Gamigo',
-  'SEA': 'LINE',
+  [REGIONS.NA]: 'Gamigo',
+  [REGIONS.SEA]: 'LINE',
 });
 
 export const FACTIONS = Object.freeze({

@@ -10,6 +10,7 @@ export default [
       { name: 'Crafting Folio', path: '/folio' },
       { name: 'Trade Packs', path: '/trade-packs' },
       { name: 'Land Tax', path: '/taxes' },
+      { name: 'Blue Salt Bonds', path: '/bonds' },
     ],
   },
   {

@@ -49,5 +49,7 @@ export default {
     continents: '/service/zones/continents',
     tradePacks: '/service/trade-packs',
     tradePackRef: '/service/trade-packs/reference',
+    servers: '/service/servers',
+    bluesaltBonds: '/service/blue-salt-bonds',
   },
 };
