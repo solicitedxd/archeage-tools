@@ -22,11 +22,12 @@ import React, {
 } from 'react';
 import {
   array,
+  bool,
+  func,
   number,
   oneOf,
   oneOfType,
   string,
-  func,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 
@@ -38,12 +39,14 @@ class MapEmbed extends Component {
     buttonFloat: oneOf(['left', 'right']),
     zoneName: string,
     fetchContinents: func.isRequired,
+    floatRight: bool,
   };
 
   static defaultProps = {
     points: [],
     button: null,
     buttonFloat: null,
+    floatRight: false,
   };
 
   state = {
@@ -87,7 +90,7 @@ class MapEmbed extends Component {
   };
 
   render() {
-    const { zone, zoneName, points, button, buttonFloat } = this.props;
+    const { zone, zoneName, points, button, buttonFloat, floatRight } = this.props;
     const { open, point: hoverPoint, mouseX, mouseY } = this.state;
 
     const map = getMapImage(zone);
@@ -102,6 +105,30 @@ class MapEmbed extends Component {
         >
           {button}
         </Button>
+      );
+    } else if (floatRight) {
+      embed = (
+        <div className="map-embed float-right">
+          <div className="map-preview">
+            <div className="map-left map-content">
+              <img src={map} alt={zoneName} onClick={this.handleOpen} />
+              {points.map((point, index) => point.coords.map((coord, id) => (
+                <Tooltip
+                  key={`point-${zone}-${index}-${id}`}
+                  title={<div dangerouslySetInnerHTML={{
+                    __html: Array.isArray(point.label) ? point.label.join('<br />') : point.label,
+                  }} />}
+                >
+                  <div
+                    className={cn('point', { 'hover-anim': hoverPoint === index })}
+                    style={{ left: `calc(${coord.x}% - 12px)`, top: `calc(${coord.y - 3.4}% - 12px)` }}
+                    data-point={point.icon || index + 1}
+                  />
+                </Tooltip>),
+              ))}
+            </div>
+          </div>
+        </div>
       );
     } else {
       embed = (
@@ -175,7 +202,7 @@ class MapEmbed extends Component {
         >
           <AppBar position="static">
             <Toolbar variant="dense">
-              <Typography variant="subtitle1" className="title-text">{zone}</Typography>
+              <Typography variant="subtitle1" className="title-text">{zoneName}</Typography>
               <Tooltip title="Close">
                 <IconButton onClick={this.handleClose}>
                   <CloseIcon />

@@ -14,7 +14,7 @@
       margin-top: 16px;
     }
 
-    .MuiTypography-h5:not(:first-child), h6:not(:first-child) {
+    .MuiTypography-h5:not(:first-child):not(.first), h6:not(:first-child):not(.first) {
       margin-top: 12px;
     }
 

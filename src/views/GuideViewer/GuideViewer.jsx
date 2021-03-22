@@ -99,7 +99,7 @@ class GuideViewer extends Component {
                   <>
                     <AppBar position="static">
                       <Toolbar variant="dense">
-                        <Typography variant="subtitle1" className="title-text">{section.title}</Typography>
+                        <Typography variant="h5" className="title-text">{section.title}</Typography>
                       </Toolbar>
                     </AppBar>
                     <div className="body-container">

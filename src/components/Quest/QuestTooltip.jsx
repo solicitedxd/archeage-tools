@@ -159,11 +159,13 @@ const TooltipContent = (props) => {
             <ul className="stage-criteria">
               {stage.criteria.sort(sortBy('position')).map(criterion => {
                 const type = criteriaTypes[criterion.typeId];
-                const ref = criterion.refs[0];
+                const [ref] = criterion.refs;
                 return (
                   <li key={`${id}-stg-${stage.position}-crit-${criterion.position}`}>
-                    {type.code === CRITERIA_TYPE_CHAT && <>Chat with <NpcLink id={ref.refId} />.</>}
-                    {type.code === CRITERIA_TYPE_COLLECT && <>Collect <ItemLink id={ref.refId} /> ({ref.quantity}).</>}
+                    {type.code === CRITERIA_TYPE_CHAT && ref && <>Chat with <NpcLink id={ref.refId} />.</>}
+                    {type.code === CRITERIA_TYPE_COLLECT && ref && <>Collect <ItemLink
+                      id={ref.refId} /> ({ref.quantity}).</>}
+                    {!ref && `Ref is broken ${type.code}`}
                     {type.code === CRITERIA_TYPE_OTHER &&
                     <>{criterion.description}{
                       criterion.refs.length > 0 &&

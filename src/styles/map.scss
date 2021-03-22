@@ -5,8 +5,7 @@
     flex-wrap: wrap;
 
     .map-left {
-      $width: 580px;
-      max-width: $width;
+      max-width: 580px;
       max-height: 348px;
       width: 100%;
 
@@ -41,6 +40,15 @@
         }
       }
     }
+  }
+
+  &.float-right {
+    float: right;
+    max-width: 210px;
+    width: 25%;
+    margin-left: 12px;
+    z-index: 1;
+    position: relative;
   }
 }
 
@@ -77,6 +85,7 @@
   height: 24px;
   background: url(../images/npc_icon.png) no-repeat -488px -232px;
   position: absolute;
+  cursor: help;
 
   &.inline-point {
     position: initial;
@@ -140,7 +149,15 @@
   }
 
   &[data-point="quest"] {
-    background-position: -217px -46px;
+    background-position: -216px -48px;
+  }
+
+  &[data-point="repeatable"] {
+    background-position: -216px -168px;
+  }
+
+  &[data-point="vocation"] {
+    background-position: -216px -192px;
   }
 
   &[data-point="daily"] {
@@ -152,11 +169,11 @@
   }
 
   &[data-point="port"] {
-    background-position: -120px -166px;
+    background-position: -120px -168px;
   }
 
   &[data-point="farm"] {
-    background-position: -144px -119px;
+    background-position: -144px -120px;
   }
 
   &[data-point="boss"] {
@@ -164,11 +181,31 @@
   }
 
   &[data-point="stable"] {
-    background-position: -24px -93px;
+    background-position: -24px -96px;
   }
 
   &[data-point="gilda"] {
-    background-position: -48px -20px;
+    background-position: -48px -24px;
+  }
+
+  &[data-point="specialty-workbench"] {
+    background-position: -96px -96px;
+  }
+
+  &[data-point="specialty-buyer"] {
+    background-position: -408px -96px;
+  }
+
+  &[data-point="cargo-seller"] {
+    background-position: -384px -96px;
+  }
+
+  &[data-point="cargo-ship"] {
+    background-position: -408px -120px;
+  }
+
+  &[data-point="nui"] {
+    background-position: -120px -216px;
   }
 }
 
