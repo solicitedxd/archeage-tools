@@ -138,7 +138,7 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'sailing to Solis Headlands',
     sailing: true,
     portTo: ZONE.AUSTERA,
-    duration: 647.95,
+    duration: 646.95,
     next: 'Arrive Solis',
   },
 ]);
