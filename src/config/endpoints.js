@@ -51,5 +51,6 @@ export default {
     tradePackRef: '/service/trade-packs/reference',
     servers: '/service/servers',
     bluesaltBonds: '/service/blue-salt-bonds',
+    cargoTimer: '/service/cargo-ship',
   },
 };

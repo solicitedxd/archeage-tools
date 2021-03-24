@@ -39,6 +39,7 @@ import {
   DIALOG_MY_GAME,
   SERVER,
 } from 'constants/display';
+import { REGIONS } from 'constants/myGame';
 import moment from 'moment-timezone';
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
@@ -114,18 +115,16 @@ class CurrentBonds extends Component {
   saveBonds = () => {
     this.props.updateBonds(this.state.editedBonds.filter(b => b.edited));
     this.closeEdit();
-
-    setTimeout(this.refreshBonds, 2000);
   };
 
   render() {
     const { serverId, servers, bonds, zones, openDialog } = this.props;
     const { refreshAllow, editing, editedBonds } = this.state;
 
-    const server = servers[serverId] || {};
+    const server = servers[serverId];
     const serverName = pathOr('', ['name'])(server);
-    const region = pathOr('NA', ['region'])(server);
-    const [hh, mm, ss] = BOND_CHANGE_TIME[region];
+    const region = pathOr(REGIONS.NA, ['region'])(server);
+    const [hh, mm, ss] = (BOND_CHANGE_TIME[region] || '').split(':');
     const lastChange = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
     if (lastChange.isAfter(moment.now())) {
       lastChange.subtract(1, 'day');

@@ -5,8 +5,4 @@ export default {
   alerts: {},
   speak: {},
   volume: 70,
-  cargoShip: {
-    port: null,
-    endTime: null,
-  },
 };

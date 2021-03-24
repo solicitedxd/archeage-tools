@@ -33,4 +33,5 @@ export default {
   tradePacks: {},
   servers: {},
   bonds: [],
+  cargoTimers: {},
 };

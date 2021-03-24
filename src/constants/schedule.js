@@ -5,9 +5,10 @@ import UnpackLaunch from 'audio/interaction_unpack_launch.mp3';
 import MailAlarm from 'audio/mail_alarm.mp3';
 import QuestAccept2 from 'audio/quest_accept_2.mp3';
 import { ZONE } from 'constants/map';
+import { REGIONS } from 'constants/myGame';
+import { getDayNum } from 'utils/schedule';
 
 export const SET_REGION = 'SET_REGION';
-export const SET_CARGO_SHIP = 'SET_CARGO_SHIP';
 export const SET_ALERT = 'SET_ALERT';
 export const CLEAR_ALERTS = 'CLEAR_ALERTS';
 export const SET_VOLUME = 'SET_VOLUME';
@@ -92,6 +93,15 @@ export const DAY_ABBR = Object.freeze({
   SATURDAY: 'Sa',
 });
 
+export const MAINTENANCE_TIME = Object.freeze({
+  // 5 AM PDT
+  [REGIONS.NA]: getDayNum(DAY.THURSDAY) + ':12:00:00',
+  // 8 AM UTC
+  [REGIONS.EU]: getDayNum(DAY.THURSDAY) + ':08:00:00',
+  // 6 AM UTC+8
+  [REGIONS.SEA]: getDayNum(DAY.WEDNESDAY) + ':22:00:00',
+});
+
 export const SCHEDULE_COLS = Object.freeze({
   1: [[0, 1, 2, 3, 4, 5, 6, 7, 8, 9]],
   2: [[0, 3, 4, 5, 7, 9], [1, 2, 6, 8]],
@@ -105,27 +115,31 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'docked in Solis Headlands',
     port: ZONE.SOLIS_HEADLANDS,
     portFrom: ZONE.AUSTERA,
-    reverse: true,
     duration: 1200,
+    next: 'Depart Solis',
   },
   {
     text: 'sailing to Two Crowns',
+    reverse: true,
     sailing: true,
     portTo: ZONE.TWO_CROWNS,
     duration: 620.95,
+    next: 'Arrive TC',
   },
   {
     text: 'docked in Two Crowns',
+    reverse: true,
     port: ZONE.TWO_CROWNS,
     portFrom: ZONE.TWO_CROWNS,
     duration: 1200,
+    next: 'Depart TC',
   },
   {
     text: 'sailing to Solis Headlands',
     sailing: true,
     portTo: ZONE.AUSTERA,
-    reverse: true,
     duration: 647.95,
+    next: 'Arrive Solis',
   },
 ]);
 

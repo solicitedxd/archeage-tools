@@ -129,11 +129,11 @@ const sections = [
         floatRight
       />,
       <Typography>
-        Every 55 minutes, the cargo ship completes a round-trip between Two Crowns and Solis Headlands. This is the
+        Every 60 minutes, the cargo ship completes a round-trip between Two Crowns and Solis Headlands. This is the
         safest way to take a cargo trade pack between the two continents, but it is slow and you can only take one pack
         at a time. For this quest, this will be your best way.<br />
         The cargo ship stays docked in the Ezna and Austera ports for 20 minutes before departing, then travels to the
-        other continent in about 7 minutes. You can wait at the trade outlet for the ship if you don&apos;t see it
+        other continent in about 10 minutes. You can wait at the trade outlet for the ship if you don&apos;t see it
         already in the port.
       </Typography>,
       <Typography>
@@ -232,11 +232,11 @@ const sections = [
         floatRight
       />,
       <Typography>
-        Every 55 minutes, the cargo ship completes a round-trip between Two Crowns and Solis Headlands. This is the
+        Every 60 minutes, the cargo ship completes a round-trip between Two Crowns and Solis Headlands. This is the
         safest way to take a cargo trade pack between the two continents, but it is slow and you can only take one pack
         at a time. For this quest, this will be your best way.<br />
         The cargo ship stays docked in the Ezna and Austera ports for 20 minutes before departing, then travels to the
-        other continent in about 7 minutes. You can wait at the trade outlet for the ship if you don&apos;t see it
+        other continent in about 10 minutes. You can wait at the trade outlet for the ship if you don&apos;t see it
         already in the port.
       </Typography>,
       <Typography>

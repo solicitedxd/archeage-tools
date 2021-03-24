@@ -1,6 +1,7 @@
 import {
   AppBar,
   Button,
+  Checkbox,
   Dialog,
   DialogActions,
   DialogContent,
@@ -19,55 +20,77 @@ import {
   Paper,
   Radio,
   RadioGroup,
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
   Toolbar,
   Tooltip,
   Typography,
 } from '@material-ui/core';
-import {
-  Close,
-  Settings,
-  Share,
-} from '@material-ui/icons';
 import CheckBoxIcon from '@material-ui/icons/CheckBox';
 import CheckBoxOutlineBlankIcon from '@material-ui/icons/CheckBoxOutlineBlank';
 import CloseIcon from '@material-ui/icons/Close';
+import EditIcon from '@material-ui/icons/Edit';
+import HomeIcon from '@material-ui/icons/Home';
 import NotificationsIcon from '@material-ui/icons/Notifications';
+import { openDialog } from 'actions/display';
+import {
+  fetchCargoTimer,
+  fetchServers,
+  updateCargoTimer,
+} from 'actions/gameData';
 import {
   CAN_SPEAK,
   setAlert,
-  setCargoShip,
   setSpeak,
   speak,
 } from 'actions/schedule';
 import cn from 'classnames';
-import CopyDialog from 'components/CopyDialog';
+import IfPerm from 'components/IfPerm/IfPerm';
+import {
+  DIALOG_MY_GAME,
+  SERVER,
+} from 'constants/display';
 import { ZONE } from 'constants/map';
+import { REGIONS } from 'constants/myGame';
 import {
   CARGO_ALERTS,
   CARGO_ID,
   CARGO_SCHEDULE,
+  MAINTENANCE_TIME,
 } from 'constants/schedule';
+import { pad } from 'lodash';
 import moment from 'moment';
-import { pathOr } from 'ramda';
+import {
+  equals,
+  pathOr,
+} from 'ramda';
 import React, { Component } from 'react';
 import {
   arrayOf,
   bool,
   func,
-  oneOf,
+  number,
+  object,
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { objectHasProperties } from 'utils/object';
 import { randomString } from 'utils/string';
 import { hhmmssFromDate } from 'utils/time';
 
-const getNextIndex = (index) => index + 1 === CARGO_SCHEDULE.length ? 0 : index + 1;
+const getNextIndex = (index) => {
+  let i = index + 1;
+  while (i >= CARGO_SCHEDULE.length) {
+    i -= CARGO_SCHEDULE.length;
+  }
+  return i;
+};
 
 class CargoShip extends Component {
   static propTypes = {
-    port: oneOf([ZONE.SOLIS_HEADLANDS, ZONE.TWO_CROWNS, ZONE.SOLIS_HEADLANDS.toString(), ZONE.TWO_CROWNS.toString()]),
-    endTime: string,
-    setCargoShip: func.isRequired,
     setAlert: func.isRequired,
     setSpeak: func.isRequired,
     alerts: arrayOf(string),
@@ -75,6 +98,13 @@ class CargoShip extends Component {
     mobile: bool,
     playCue: func.isRequired,
     doSpeak: func.isRequired,
+    server: number,
+    servers: object,
+    cargoTimers: object,
+    fetchServers: func.isRequired,
+    fetchCargoTimer: func.isRequired,
+    updateCargoTimer: func.isRequired,
+    openDialog: func.isRequired,
   };
 
   static defaultProps = {
@@ -84,16 +114,17 @@ class CargoShip extends Component {
 
   state = {
     open: false,
-    share: false,
     setup: {
       port: '',
       mm: '',
       ss: '',
+      noLinkedUpdate: false,
     },
     stepIndex: 0,
     endTime: 0,
     shipPosition: 0,
     menu: null,
+    updated: false,
   };
 
   interval = null;
@@ -115,7 +146,7 @@ class CargoShip extends Component {
     if (open) {
       this.setState({ open: false });
     } else {
-      this.setState({ open: true, setup: { port: '', mm: '', ss: '' } });
+      this.setState({ open: true, setup: { port: '', mm: '', ss: '', noLinkedUpdate: false } });
     }
   };
 
@@ -144,6 +175,10 @@ class CargoShip extends Component {
     this.setState({ setup: { ...this.state.setup, [key]: value !== '' ? Number.parseInt(value) : '' } });
   };
 
+  handleNoLink = (e, noLinkedUpdate) => {
+    this.setState({ setup: { ...this.state.setup, noLinkedUpdate } });
+  };
+
   handleEnter = (e) => {
     const { setup } = this.state;
     if (e.key === 'Enter' && setup.port && (String(setup.mm).length !== 0 || String(setup.ss).length !== 0)) {
@@ -152,60 +187,85 @@ class CargoShip extends Component {
   };
 
   submitSetup = () => {
+    const { server: serverId, cargoTimers } = this.props;
     const { setup } = this.state;
-    const { port, mm, ss } = setup;
-    const duration = (mm * 60) + ss;
-    const props = { port, endTime: moment().add(duration, 'seconds').format() };
-    this.props.setCargoShip(props);
-    this.initialize(props);
+    const { port, mm, ss, noLinkedUpdate } = setup;
+    const cargoTimer = cargoTimers[serverId];
+    cargoTimer.port = port;
+    cargoTimer.duration = `00:${pad(mm, 2, '0')}:${pad(ss, 2, '0')}`;
+    cargoTimer.noLinkedUpdate = noLinkedUpdate;
+    this.props.updateCargoTimer(cargoTimer);
     this.toggleDialog();
   };
 
   componentDidMount() {
-    this.initialize(this.props);
+    this.props.fetchServers();
+    this.props.fetchCargoTimer();
+    this.initialize();
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
   }
 
-  initialize = ({ port: portInitial, endTime: endTimeInitial }) => {
+  componentDidUpdate(prevProps) {
+    if (this.props.server !== prevProps.server || !equals(this.props.cargoTimers, prevProps.cargoTimers)) {
+      this.initialize();
+    }
+  }
+
+  initialize = () => {
+    const { server: serverId, servers, cargoTimers } = this.props;
+    if (!serverId || !objectHasProperties(servers) || !objectHasProperties(cargoTimers)) {
+      return;
+    }
+
     // prevent multiple ticks
     if (this.interval) {
       clearInterval(this.interval);
     }
-    // do not attempt to initialize if there's no saved data
-    if (!portInitial) {
+
+    const server = servers[serverId];
+    const region = pathOr(REGIONS.NA, ['region'])(server);
+    const [dd, hh, mm, ss] = (MAINTENANCE_TIME[region] || '').split(':');
+    const lastChange = moment.utc().hour(hh).minute(mm).second(ss).milliseconds(0);
+    if (lastChange.isAfter(moment.now())) {
+      lastChange.subtract(1, 'day');
+    }
+    while (lastChange.weekday() !== Number(dd)) {
+      lastChange.subtract(1, 'day');
+    }
+
+    const cargoTimer = pathOr({}, [serverId])(cargoTimers);
+    const updated = server && objectHasProperties(cargoTimers) && moment(cargoTimer).isAfter(lastChange);
+
+    // do not continue if there is no data
+    if (!updated) {
+      this.setState({ updated });
       return;
     }
 
     const now = moment();
 
-    let port = portInitial;
+    let { port, duration, timestamp } = cargoTimer;
     let step = CARGO_SCHEDULE.find(step => step.port === Number.parseInt(port));
     let stepIndex = CARGO_SCHEDULE.indexOf(step);
-    let stepEnd = moment(endTimeInitial);
+    let stepEnd = moment(timestamp);
+    const [, mm2, ss2] = (duration || '').split(':');
+    stepEnd.add(mm2, 'minute').add(ss2, 'second');
 
-    let lastPortProps = null;
-    // fast-forward the state in case of re-visit
+    // fast-forward the state from the original time
     while (stepEnd.isBefore(now)) {
       stepIndex = getNextIndex(stepIndex);
       step = CARGO_SCHEDULE[stepIndex];
       port = step.port;
       stepEnd.add(step.duration, 'seconds');
-      if (step.port) {
-        lastPortProps = { port: step.port, endTime: stepEnd.format() };
-      }
-    }
-
-    // save the fast-forward
-    if (lastPortProps) {
-      this.props.setCargoShip(lastPortProps);
     }
 
     this.setState({
       stepIndex,
       endTime: stepEnd,
+      updated,
     }, () => {
       this.interval = setInterval(this.timerTick, 1000);
     });
@@ -225,11 +285,6 @@ class CargoShip extends Component {
       step = CARGO_SCHEDULE[stepIndex];
       timeRemaining = step.duration + timeRemaining;
       endTime = moment().add(timeRemaining, 'seconds');
-
-      if (step.port) {
-        // update the save so it doesn't have to fast-forward as much on next load
-        this.props.setCargoShip({ port: step.port, endTime: endTime.format() });
-      }
     }
     if (step.port) {
       shipPosition = 0;
@@ -254,49 +309,33 @@ class CargoShip extends Component {
     this.setState({ stepIndex, timeRemaining, shipPosition, endTime });
   };
 
-  toggleShare = () => {
-    this.setState({ share: !this.state.share });
-  };
-
   render() {
-    const { port, alerts, setAlert, speak, setSpeak, mobile } = this.props;
-    const { open, setup, stepIndex, endTime, shipPosition, share, menu } = this.state;
+    const { alerts, setAlert, speak, setSpeak, servers, server: serverId, mobile, openDialog } = this.props;
+    const { open, setup, stepIndex, endTime, shipPosition, menu, updated } = this.state;
     const now = moment();
+    let eventStepTime = moment(endTime);
     const step = CARGO_SCHEDULE[stepIndex];
-    let message;
-    let shareMessage = '';
 
-    if (!port || !endTime) {
-      message = 'Initialize the timer by clicking the Settings cog.';
-    } else {
-      const endSec = endTime.diff(now) / 1000;
-      message = <>
-        The cargo ship is {step.text}.<br />
-        It will {step.port ? 'depart' : 'arrive'} in {hhmmssFromDate(endSec * 1000)}.
-      </>;
-      const arriveMin = Math.round(endSec / 60);
-      shareMessage = `Cargo ship is ${step.port ? `leaving ${step.portFrom}`
-        : `arriving at ${step.portTo}`} in ${Math.floor(endSec / 60) === 0 ? 'less than a minute'
-        : `${arriveMin} minute${arriveMin > 1 ? 's' : ''}`}.`;
-    }
+    const server = servers[serverId];
+    const serverName = pathOr('???', ['name'])(server);
 
     return [
       <Paper className="cargo-ship event-list" key="cargo-timer">
         <AppBar position="static">
           <Toolbar variant="dense">
             <Icon><img src={'/images/event_type/exploration.png'} alt="Cargo Ship" /></Icon>
-            <Typography variant="subtitle1" className="title-text">Cargo Ship</Typography>
-            <Tooltip title="Setup Timer">
-              <IconButton onClick={this.toggleDialog} color="inherit">
-                <Settings />
-              </IconButton>
-            </Tooltip>
-            <Tooltip title="Share Timer">
-              <span>
-                <IconButton onClick={this.toggleShare} disabled={!port || !endTime} color="inherit">
-                  <Share />
+            <Typography variant="subtitle1" className="title-text">[{serverName}] Cargo Ship</Typography>
+            <IfPerm permission={`cargo.${serverName.toLowerCase()}`}>
+              <Tooltip title={`Edit ${serverName} Timer`}>
+                <IconButton onClick={this.toggleDialog} color="inherit">
+                  <EditIcon />
                 </IconButton>
-              </span>
+              </Tooltip>
+            </IfPerm>
+            <Tooltip title="Change Server">
+              <IconButton onClick={() => openDialog(DIALOG_MY_GAME, SERVER)} color="inherit">
+                <HomeIcon />
+              </IconButton>
             </Tooltip>
             <Tooltip title="Configure alerts">
               <IconButton
@@ -327,9 +366,46 @@ class CargoShip extends Component {
           />
         </div>
         <div className="cargo-text">
-          <Typography>
-            {message}
-          </Typography>
+          {!server &&
+          <Typography>Select a server to see the cargo ship location.</Typography>}
+          {server && !updated &&
+          <Typography>The cargo ship has not been updated since the last maintenance.</Typography>}
+          {server && updated &&
+          <>
+            <Typography>Cargo ship is {step.text}.</Typography>
+            <br />
+            <Table size="small" stickyHeader className="timer-table">
+              <TableHead>
+                <TableRow>
+                  <TableCell>
+                    Event
+                  </TableCell>
+                  <TableCell>
+                    Time
+                  </TableCell>
+                  <TableCell align="right">
+                    Countdown
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {Array.from(Array(CARGO_SCHEDULE.length).keys()).map((_, i) => {
+                  const index = getNextIndex(stepIndex + i - 1);
+                  const step = CARGO_SCHEDULE[index];
+                  if (i > 0) {
+                    eventStepTime.add(step.duration, 'seconds');
+                  }
+                  return (
+                    <TableRow key={`cargo-${i}`}>
+                      <TableCell>{step.next}</TableCell>
+                      <TableCell>{eventStepTime.format('h:mm A')}</TableCell>
+                      <TableCell align="right">{hhmmssFromDate(eventStepTime.diff(now))}</TableCell>
+                    </TableRow>
+                  );
+                })}
+              </TableBody>
+            </Table>
+          </>}
         </div>
       </Paper>,
       <Dialog
@@ -343,7 +419,7 @@ class CargoShip extends Component {
             <Typography variant="subtitle1" className="title-text">Cargo Ship Setup</Typography>
             <Tooltip title="Close">
               <IconButton onClick={this.toggleDialog}>
-                <Close />
+                <CloseIcon />
               </IconButton>
             </Tooltip>
           </Toolbar>
@@ -396,6 +472,14 @@ class CargoShip extends Component {
               />
             </div>
           </FormControl>
+          <FormControl component="fieldset">
+            <FormControlLabel
+              control={<Checkbox color="primary" />}
+              label="Don't Update Sibling Realms"
+              checked={setup.noLinkedUpdate}
+              onChange={this.handleNoLink}
+            />
+          </FormControl>
         </DialogContent>
         <DialogActions>
           <Button
@@ -407,14 +491,6 @@ class CargoShip extends Component {
           </Button>
         </DialogActions>
       </Dialog>,
-      <CopyDialog
-        open={share}
-        handleClose={this.toggleShare}
-        title="Share Ship Timer"
-        label="Cargo Ship Status"
-        value={shareMessage}
-        key="share-cargo"
-      />,
       <Menu
         id="alert-menu"
         anchorEl={menu}
@@ -487,17 +563,27 @@ class CargoShip extends Component {
   }
 }
 
-const mapStateToProps = ({ calendar: { cargoShip, alerts, speak }, display: { mobile } }) => ({
-  ...cargoShip,
+const mapStateToProps = ({
+                           calendar: { alerts, speak },
+                           display: { mobile },
+                           gameData: { cargoTimers, servers },
+                           myGame: { server },
+                         }) => ({
+  cargoTimers,
+  servers,
+  server,
   alerts: pathOr([], [CARGO_ID])(alerts),
   speak: pathOr(false, [CARGO_ID])(speak),
   mobile,
 });
 
 const mapDispatchToProps = {
-  setCargoShip,
   setAlert,
   setSpeak,
+  fetchServers,
+  fetchCargoTimer,
+  updateCargoTimer,
+  openDialog,
   doSpeak: speak,
 };
 

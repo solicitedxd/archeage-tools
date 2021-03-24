@@ -1,6 +1,7 @@
 import {
   DATA_BONDS,
   DATA_BUILDINGS,
+  DATA_CARGO_TIMER,
   DATA_CATEGORIES,
   DATA_CLIMATES,
   DATA_CONTINENTS,
@@ -215,6 +216,11 @@ const gameData = (state = initialState, action) => {
         ],
       };
     }
+    case DATA_CARGO_TIMER:
+      return {
+        ...state,
+        cargoTimers: action.cargoTimers,
+      };
     default:
       return state;
   }

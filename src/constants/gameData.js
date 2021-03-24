@@ -25,3 +25,4 @@ export const DATA_CLIMATES = 'DATA_CLIMATES';
 export const DATA_TRADE_PACKS = 'DATA_TRADE_PACKS';
 export const DATA_SERVERS = 'DATA_SERVERS';
 export const DATA_BONDS = 'DATA_BONDS';
+export const DATA_CARGO_TIMER = 'DATA_CARGO_TIMER';

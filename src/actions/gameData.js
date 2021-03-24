@@ -3,6 +3,7 @@ import config from 'config';
 import {
   DATA_BONDS,
   DATA_BUILDINGS,
+  DATA_CARGO_TIMER,
   DATA_CATEGORIES,
   DATA_CLIMATES,
   DATA_CONTINENTS,
@@ -691,16 +692,38 @@ export const fetchBonds = () => (dispatch) => {
     dispatch({ type: DATA_BONDS, bonds });
   })
   .catch(() => {
-    dispatch(setNotification('Failed to fetch Bluesalt Bonds data.', NOTIFICATION_TYPE.WARNING));
+    dispatch(setNotification('Failed to fetch Blue Salt Bonds data.', NOTIFICATION_TYPE.WARNING));
   });
 };
 
 export const updateBonds = (bonds) => (dispatch) => {
   xhr.post(config.endpoints.service.bluesaltBonds, bonds)
   .then(() => {
-    fetchBonds();
+    dispatch(fetchBonds());
   })
   .catch((e) => {
     dispatch(setNotification(pathOr('Failed to update bonds.', ['data', 'errorMessage'])(e), NOTIFICATION_TYPE.ERROR));
+  });
+};
+
+/* Cargo Ship Timer */
+export const fetchCargoTimer = () => (dispatch) => {
+  xhr.get(config.endpoints.service.cargoTimer)
+  .then(({ data: cargoTimers }) => {
+    dispatch({ type: DATA_CARGO_TIMER, cargoTimers: arrayToMap(cargoTimers, 'serverId') });
+  })
+  .catch(() => {
+    dispatch(setNotification('Failed to fetch Cargo Ship timer.', NOTIFICATION_TYPE.WARNING));
+  });
+};
+
+export const updateCargoTimer = (cargoTimer) => (dispatch) => {
+  xhr.post(config.endpoints.service.cargoTimer, cargoTimer)
+  .then(() => {
+    dispatch(fetchCargoTimer());
+  })
+  .catch((e) => {
+    dispatch(setNotification(pathOr('Failed to cargo ship timer.', ['data',
+      'errorMessage'])(e), NOTIFICATION_TYPE.ERROR));
   });
 };
