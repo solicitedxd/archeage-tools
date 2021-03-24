@@ -61,7 +61,6 @@ import {
   CARGO_SCHEDULE,
   MAINTENANCE_TIME,
 } from 'constants/schedule';
-import { pad } from 'lodash';
 import moment from 'moment';
 import {
   equals,
@@ -77,6 +76,7 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { pad } from 'utils/number';
 import { objectHasProperties } from 'utils/object';
 import { randomString } from 'utils/string';
 import { hhmmssFromDate } from 'utils/time';
@@ -192,7 +192,7 @@ class CargoShip extends Component {
     const { port, mm, ss, noLinkedUpdate } = setup;
     const cargoTimer = cargoTimers[serverId];
     cargoTimer.port = port;
-    cargoTimer.duration = `00:${pad(mm, 2, '0')}:${pad(ss, 2, '0')}`;
+    cargoTimer.duration = `${pad(mm, 2)}:${pad(ss, 2)}`;
     cargoTimer.noLinkedUpdate = noLinkedUpdate;
     this.props.updateCargoTimer(cargoTimer);
     this.toggleDialog();
@@ -251,7 +251,7 @@ class CargoShip extends Component {
     let step = CARGO_SCHEDULE.find(step => step.port === Number.parseInt(port));
     let stepIndex = CARGO_SCHEDULE.indexOf(step);
     let stepEnd = moment(timestamp);
-    const [, mm2, ss2] = (duration || '').split(':');
+    const [mm2, ss2] = (duration || '').split(':');
     stepEnd.add(mm2, 'minute').add(ss2, 'second');
 
     // fast-forward the state from the original time
