@@ -237,7 +237,7 @@ class CargoShip extends Component {
     }
 
     const cargoTimer = pathOr({}, [serverId])(cargoTimers);
-    const updated = server && objectHasProperties(cargoTimers) && moment(cargoTimer).isAfter(lastChange);
+    const updated = server && objectHasProperties(cargoTimers) && moment(cargoTimer.timestamp).isAfter(lastChange);
 
     // do not continue if there is no data
     if (!updated) {
