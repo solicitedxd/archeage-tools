@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch } from 'react-router';
 import { Route } from 'react-router-dom';
-import BlueSaltBonds from 'views/BluesaltBonds';
+import BlueSaltBonds from 'views/BlueSaltBonds';
 import Crops from 'views/Crops';
 import Dailies from 'views/Dailies';
 import Folio from 'views/Folio';
