@@ -1022,7 +1022,7 @@ const MOUNT = [
     name: 'Hellwing Pegasus',
     obtainText: <>
       <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
@@ -1091,7 +1091,7 @@ const MOUNT = [
     name: 'Celestial Kitsu',
     obtainText: <>
       <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={150} />.</p>
-      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
@@ -1106,13 +1106,13 @@ const MOUNT = [
     obtainText: <>
       <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> or for
         <ItemLink id={ITEM.LOGIN_BADGE} count={4} /> (acquired by logging in 28 days in a month).</p>
-      <p>On Unchained, this mount cannot be obtained.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Brown Reindeer',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> or
+      <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} /> or
         purchased for <Currency type={CURRENCY.CREDIT} count={1345} inline />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
@@ -1126,21 +1126,21 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount was once obtainable from the Rudolph Archeum Supply Crate.</p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={140} />.</p>
       </>,
   },
   {
     name: 'Stormwraith Kirin',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
+      <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={200} /> or for
         <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
-      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Gweonid Vine Giant',
     obtainText: <>
-      <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
+      <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.MANASTORM_CRYSTAL} count={100} />.</p>
       <p>On Unchained, this mount cannot be obtained.</p>
     </>,
   },
@@ -1249,7 +1249,19 @@ const MOUNT = [
           </ul>
         </li>
       </ul>
+      <p>You can also swap the freely swap the coloration of this mount between the&nbsp;
+        <Link to="/mounts/onyx-andelph-drakora">Onyx Andelph Drakora</Link> by visiting a Pet Accessory Workbench.</p>
     </>,
+  },
+  {
+    name: 'Onyx Andelph Drakora',
+    obtainText:
+      <>
+        <p>
+          The Onyx Andelph Drakora is a different coloration of the <Link to="/mounts/andelph-drakora">Andelph
+          Drakora</Link>. It can be freely swapped between the two colorations by visiting a Pet Accessory Workbench.
+        </p>
+      </>,
   },
   {
     name: 'Small Wyvern',
@@ -1293,14 +1305,14 @@ const MOUNT = [
     name: 'Aquestria',
     obtainText: <>
       <p>On Legacy, this mount used to be obtainable from the Seaside Treasure Chest.</p>
-      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
     name: 'Golden Manticore',
     obtainText: <>
       <p>On Legacy, this mount used to be obtainable from the Manticore Archeum Supply Crate.</p>
-      <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
     </>,
   },
   {
@@ -1506,7 +1518,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1517,7 +1529,7 @@ const MOUNT = [
           On Legacy, this mount was once obtainable from the Dread Steed Archeum Supply Crate.<br />
           They were also given away during a promotional period.
         </p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1525,7 +1537,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1533,7 +1545,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1541,7 +1553,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={625} />.</p>
-        <p>On Unchained, this mount can be obtained for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1671,7 +1683,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
-        <p>On Unchained, this mount cannot currently be obtained.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1679,7 +1691,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
-        <p>On Unchained, this mount is available in the 2020 Q2 ArchePass - Combat Pass.</p>
+        <p>On Unchained, this mount was available in the 2020 Q2 ArchePass - Combat Pass.</p>
       </>,
   },
   {
@@ -1695,7 +1707,7 @@ const MOUNT = [
     obtainText:
       <>
         <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
-        <p>On Unchained, this mount cannot currently be obtained.</p>
+        <p>On Unchained, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1755,7 +1767,7 @@ const MOUNT = [
     name: 'Andelph Patrol Mech',
     obtainText:
       <>
-        <p>On Legacy, this mount can be obtained for <ItemLink id={ITEM.LOGIN_BADGE} count={4} /> (acquired by logging
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOGIN_BADGE} count={4} /> (acquired by logging
           in 28 days in a month).</p>
         <p>On Unchained, this mount cannot currently be obtained.</p>
       </>,
@@ -1766,8 +1778,9 @@ const MOUNT = [
       <>
         <p>On Legacy, this mount was previously obtainable by purchasing the Garden of the Gods Archeum Pack, which is
           no longer available.</p>
-        <p>On Unchained, this mount can be obtained from purchasing the Garden of the Gods Archeum DLC Pack.<br />
-          <i>Note that this version comes with a reduced skill set.</i></p>
+        <p>On Unchained, this mount was previously obtainable by purchasing the Garden of the Gods Archeum DLC Pack.
+          <br />
+          <i>Note that this version came with a reduced skill set.</i></p>
       </>,
   },
   {
@@ -1815,20 +1828,19 @@ const MOUNT = [
     name: 'Hellwraith Kirin',
     obtainText:
       <>
-        <p>On Legacy, this mount comes as a part of the <ItemLink id={8003601} />, which can only be purchased
-          for <Currency type={CURRENCY.CREDIT} count={12000} /> until August 16, 2020.</p>
-        <p>On Unchanined, this mount comes as a part of the <ItemLink id={8003602} /> as a "juvenile" with no skills,
-          which can only be purchased for <Currency type={CURRENCY.CREDIT} count={10000} /> until August 27, 2020.</p>
-        <p>There is speculation that the juvenile can be upgraded into a regular with <ItemLink id={8003599} />,
-          but this item is not available yet.</p>
+        <p>On Legacy, this mount came as a part of the <ItemLink id={8003601} />, which was only be purchasable until
+          August 16, 2020.</p>
+        <p>On Unchanined, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+        <p>Originally, this mount came as a part of the <ItemLink id={8003602} /> as a "juvenile" with no skills up
+          until August 27, 2020.</p>
       </>,
   },
   {
     name: 'Gloomwraith Kirin',
     obtainText:
       <>
-        <p>On Legacy, this mount is obtainable by purchasing the Ipnysh Sanctuary Archeum Pack.</p>
-        <p>On Unchained, this mount cannot currently be obtained.</p>
+        <p>On Legacy, this mount was once obtainable by purchasing the Ipnysh Sanctuary Archeum Pack.</p>
+        <p>On Unchanined, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
       </>,
   },
   {
@@ -1875,6 +1887,73 @@ const MOUNT = [
         id={ITEM.KYRIOS_BADGE} count={800} />.
       </p>
     </>,
+  },
+  {
+    name: 'Darugon',
+    obtainText: <>
+      <p>On Legacy, this mount is obtainable from the Darugon Crate or purchased for&nbsp;
+        <ItemLink id={ITEM.LOYALTY_TOKEN} count={750} />.</p>
+      <p>On Unchained, it is available as the premium reward track final reward of the advanced pass: Darugon Pass.</p>
+    </>,
+  },
+  {
+    name: 'Reefstalker Wyrm',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchanined, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      </>,
+  },
+  {
+    name: 'Wyrdwind Lion',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>A wrapped version is available from the Akasch Invasion Archeum Pack.</p>
+        <p>On Unchanined, this mount can be purchased for <ItemLink id={ITEM.DILIGENCE_COIN} count={400} />.</p>
+      </>,
+  },
+  {
+    name: 'Nocturne Griffin',
+    obtainText:
+      <>
+        <p>On Legacy, this mount was once obtainable from a limited time promotion with Razer Gaming.</p>
+        <p>On Unchained, this mount is available as a part of the Akasch Invasion Archeum Pack.</p>
+      </>,
+  },
+  {
+    name: 'Tidebreaker Tortoise',
+    obtainText:
+      <>
+        <p>On Legacy, this mount can be purchased for <ItemLink id={ITEM.LOYALTY_TOKEN} count={650} />.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Albino Yata',
+    obtainText:
+      <>
+        <p>On Legacy, this mount cannot currently be obtained.</p>
+        <p>On Unchained, this mount is the part of the reward for Tier 3 of the Recruit-a-Legend Program, given for
+          recruiting 5 friends.</p>
+      </>,
+  },
+  {
+    name: 'Hermit Crab',
+    obtainText:
+      <>
+        <p>On Legacy, this mount was previously obtainable by purchasing the Rise of Nehliya Archeum Pack, which is
+          no longer available.</p>
+        <p>On Unchained, this mount cannot currently be obtained.</p>
+      </>,
+  },
+  {
+    name: 'Golden Wyvern',
+    obtainText:
+      <>
+        <p>The Golden Wyvern is a timed mount that is obtainable by faction heroes while the faction controls a castle
+          zone in Auroria. Only one Golden Wyvern may be present at a time.</p>
+      </>,
   },
 ];
 
