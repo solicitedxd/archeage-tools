@@ -11,10 +11,10 @@ export const BOND_ZONE_MATERIAL = Object.freeze({
   8256: [2, 6, 8, 22, 7, 11],
   // iron
   8318: [3, 10, 20, 4, 24, 13, 99],
-  // leather
-  16327: [5, 1, 18, 26, 25, 17, 15, 23],
   // lumber
-  8337: [9, 12, 14, 16, 19, 21, 27, 93],
+  8337: [5, 1, 18, 26, 25, 17, 15, 23],
+  // leather
+  16327: [9, 12, 14, 16, 19, 21, 27, 93],
 });
 
 export const BOND_QUANTITY = Object.freeze({
