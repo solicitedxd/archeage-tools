@@ -8,13 +8,25 @@ export const BOND_CHANGE_TIME = Object.freeze({
 
 export const BOND_ZONE_MATERIAL = Object.freeze({
   // fabric
-  8256: [2, 6, 8, 22, 7, 11],
+  8256: [
+    2, 6, 8, 22,
+    7, 11,
+  ],
   // iron
-  8318: [3, 10, 20, 4, 24, 13, 99],
+  8318: [
+    3, 10, 20, null,
+    4, 13, 24, 99,
+  ],
   // lumber
-  8337: [5, 1, 18, 26, 25, 17, 15, 23],
+  8337: [
+    1, 5, 18, 26,
+    15, 17, 23, 25,
+  ],
   // leather
-  16327: [9, 12, 14, 16, 19, 21, 27, 93],
+  16327: [
+    19, 21, 27, 93,
+    9, 12, 14, 16,
+  ],
 });
 
 export const BOND_QUANTITY = Object.freeze({

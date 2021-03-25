@@ -218,7 +218,7 @@ class CurrentBonds extends Component {
                 <div className="bond-type" key={`ebsb-${itemId}`}>
                   <Item id={Number(itemId)} count={0} />
                   <div className="bond-zones">
-                    {zoneIds.map(zoneId => (
+                    {zoneIds.map(zoneId => zoneId ? (
                       <FormControl key={`ebsb-z${zoneId}`} className="bond-zone">
                         <InputLabel id={`bsb-${zoneId}-label`}>{pathOr('', [zoneId, 'name'])(zones)}</InputLabel>
                         <Select
@@ -232,7 +232,7 @@ class CurrentBonds extends Component {
                           ))}
                         </Select>
                       </FormControl>
-                    ))}
+                    ) : <FormControl className="bond-zone" />)}
                   </div>
                 </div>
               ))}
