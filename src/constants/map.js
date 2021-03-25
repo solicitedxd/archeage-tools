@@ -67,6 +67,8 @@ import SeaOfGravesMap from 'images/maps/sea/Sea of Graves.png';
 import ShatteredSeaMap from 'images/maps/sea/Shattered Sea.png';
 import StormrawSoundMap from 'images/maps/sea/Stormraw Sound.png';
 import SunspeckSeaMap from 'images/maps/sea/Sunspeck Sea.png';
+import MythsraneGorgeMap from 'images/maps/auroria/Mythsrane Gorge.png';
+import IpynaRidgeMap from 'images/maps/auroria/Ipyna Ridge.png';
 
 export const FACTION = Object.freeze({
   NUIA: 'Nuia',
@@ -195,7 +197,8 @@ export const ZONE = Object.freeze({
   DAIRY_COW_DREAMLAND: 135,
   CIRCLE_OF_AUTHORITY: 136,
   DELPHINAD_MIRAGE: 137,
-  MYSTHRANE_GORGE: 139,
+  MYTHSRANE_GORGE: 139,
+  IPYNA_RIDGE: 140,
 
   REDEMPTION: 'Redemption',
   CITY_OF_TOWERS: 'City of Towers',
@@ -284,6 +287,8 @@ export const getMapImage = (zone) => ({
   [ZONE.GOLDEN_PLAINS_BATTLE]: GoldenPlainsBattleMap,
   [ZONE.MIRAGE_ISLE]: MirageIsleMap,
   [ZONE.MISTSONG_SUMMIT]: MistsongSummitMap,
+  [ZONE.MYTHSRANE_GORGE]: MythsraneGorgeMap,
+  [ZONE.IPYNA_RIDGE]: IpynaRidgeMap,
 })[zone];
 
 export const CONTINENT = Object.freeze({
