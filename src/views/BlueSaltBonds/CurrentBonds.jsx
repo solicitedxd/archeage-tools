@@ -130,7 +130,7 @@ class CurrentBonds extends Component {
       lastChange.subtract(1, 'day');
     }
 
-    const updated = server && bonds.find(b => moment(b.timestamp).isAfter(lastChange));
+    const updated = server && bonds.find(b => moment(b.timestamp).isAfter(lastChange) && b.count > 0);
 
     return (
       <div className="current-bonds">
@@ -227,7 +227,7 @@ class CurrentBonds extends Component {
                           value={(editedBonds.find(b => b.zoneId === zoneId) || {}).count}
                           onChange={this.changeBond(zoneId)}
                         >
-                          {Object.keys(BOND_QUANTITY).map(qty => (
+                          {[0, ...Object.keys(BOND_QUANTITY)].map(qty => (
                             <MenuItem key={`ebsb-${zoneId}-${qty}`} value={qty}>{qty}</MenuItem>
                           ))}
                         </Select>
