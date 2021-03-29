@@ -1804,7 +1804,8 @@ const MOUNT = [
     upgrade: 'Gallant Alabaster Steed',
     obtainText:
       <>
-        <p>This mount can be purchased for <Currency type={CURRENCY.KYRIOS} count={5000} /> from the Arena Shop.</p>
+        <p>This mount was previously available for <Currency type={CURRENCY.KYRIOS} count={5000} /> from the Arena Shop.
+        </p>
       </>,
   },
   {
@@ -1813,6 +1814,22 @@ const MOUNT = [
       <>
         <p>This mount can be obtained by using a <ItemLink id={47385} /> (purchased for <Currency
           type={CURRENCY.KYRIOS} count={8000} />) on an <Link to={'/mounts/alabaster-steed'}>Alabaster Steed</Link>.</p>
+      </>,
+  },
+  {
+    name: 'Obsidian Steed',
+    upgrade: 'Gallant Obsidian Steed',
+    obtainText:
+      <>
+        <p>This mount can be purchased for <Currency type={CURRENCY.KYRIOS} count={5000} /> from the Arena Shop.</p>
+      </>,
+  },
+  {
+    name: 'Gallant Obsidian Steed',
+    obtainText:
+      <>
+        <p>This mount can be obtained by using a <ItemLink id={47385} /> (purchased for <Currency
+          type={CURRENCY.KYRIOS} count={8000} />) on an <Link to={'/mounts/obsidian-steed'}>Obsidian Steed</Link>.</p>
       </>,
   },
   {
@@ -1953,6 +1970,14 @@ const MOUNT = [
       <>
         <p>The Golden Wyvern is a timed mount that is obtainable by faction heroes while the faction controls a castle
           zone in Auroria. Only one Golden Wyvern may be present at a time.</p>
+      </>,
+  },
+  {
+    name: 'Asteria',
+    obtainText:
+      <>
+        <p>This mount is available from the last quest of the Ipyna Ridge saga of racial quests, <QuestLink
+          id={10682} />.</p>
       </>,
   },
 ];
