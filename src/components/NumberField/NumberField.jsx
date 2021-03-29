@@ -2,6 +2,7 @@ import {
   InputAdornment,
   TextField,
 } from '@material-ui/core';
+import debounce from 'lodash.debounce';
 import React, { PureComponent } from 'react';
 import {
   func,
@@ -52,8 +53,16 @@ class NumberField extends PureComponent {
   }
 
   handleChange = (e) => {
+    this.setState({ value: e.target.value });
+
+    this._updateValue();
+  };
+
+  updateValue = () => {
     const { onChange, min, max } = this.props;
-    let value = String(e.target.value).replace(/[^\d\\.]+/g, '');
+    const { value: inputValue } = this.state;
+
+    let value = String(inputValue).replace(/[^\d\\.]+/g, '');
     if (value !== '') {
       if (max) {
         value = Math.min(value, max);
@@ -74,12 +83,19 @@ class NumberField extends PureComponent {
     });
   };
 
+  _updateValue = debounce(this.updateValue, 1000);
+
   handleFocus = (focused) => (e) => {
     const { onFocus, onBlur, min } = this.props;
+    const { value } = this.state;
 
     this.setState({ focused }, () => {
-      if (!focused && this.state.value === '') {
-        this.setState({ value: (min || 0) });
+      if (!focused) {
+        if (value === '') {
+          this.setState({ value: (min || 0) });
+        } else {
+          this.updateValue();
+        }
       }
 
       if (focused && onFocus) {
