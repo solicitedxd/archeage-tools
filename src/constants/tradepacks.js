@@ -132,3 +132,7 @@ export const CONTINENT_PACKS = {
     ],
   },
 };
+
+export const WAR_ZONE = [ZONE.YNYSTERE, ZONE.CINDERSTONE_MOOR];
+
+export const MAX_COMPARE = 4;

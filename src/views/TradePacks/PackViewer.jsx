@@ -6,10 +6,8 @@ import {
   DialogContent,
   FormControlLabel,
   IconButton,
-  InputLabel,
   MenuItem,
   Select,
-  Slider,
   Table,
   TableBody,
   TableCell,
@@ -78,6 +76,7 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { percentModifier } from 'utils/number';
 import {
   setTitle,
   slug,
@@ -157,20 +156,40 @@ class PackViewer extends Component {
     this.setState({ manualLabor: manualLabor || 0 });
   };
 
-  getModifier = (modifier) => {
-    if (modifier >= 1) {
-      return `+${Math.round((modifier - 1) * 100)}%`;
-    } else {
-      return `-${Math.round((1 - modifier) * 100)}%`;
-    }
-  };
-
   // eslint-disable-next-line complexity
   render() {
     const { onClose, pack, sellZoneId, recipe, region, freshness, packType } = this.props;
     const { transportExpand, unitSize, manualLabor } = this.state;
-    const { craftLarder, degradeDemand, profitLevelName, showInterest, percentage, quantity, supplyLevelName, mobile, transportationQty, war, ahCut, continents, zoneName, zones } = this.props;
-    const { setCraftLarder, setDegradation, setProfitLevel, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut, getItemPrice } = this.props;
+    const {
+      craftLarder,
+      degradeDemand,
+      profitLevelName,
+      showInterest,
+      percentage,
+      quantity,
+      supplyLevelName,
+      mobile,
+      transportationQty,
+      war,
+      ahCut,
+      continents,
+      zoneName,
+      zones,
+    } = this.props;
+    const {
+      setCraftLarder,
+      setDegradation,
+      setProfitLevel,
+      setInterest,
+      setPercentage,
+      setQuantity,
+      setSupply,
+      setTransportationQuantity,
+      setWar,
+      calculateLabor,
+      setAHCut,
+      getItemPrice,
+    } = this.props;
 
     // do nothing if value is missing
     if (!pack) return null;
@@ -629,9 +648,9 @@ class PackViewer extends Component {
                 value={profitLevelName}
                 onChange={setProfitLevel(pack.id, sellZoneId)}
                 renderValue={() =>
-                  <Typography>{profitLevel.name} Profit: {this.getModifier(profitLevel.modifier)}</Typography>}
+                  <Typography>{profitLevel.name} Profit: {percentModifier(profitLevel.modifier)}</Typography>}
                 options={profitLevels.reduce((obj, pL) => {
-                  obj[pL.name] = (<>{pL.name} Profit: {this.getModifier(pL.modifier)} ({pL.time})</>);
+                  obj[pL.name] = (<>{pL.name} Profit: {percentModifier(pL.modifier)} ({pL.time})</>);
                   return obj;
                 }, {})}
               />}
@@ -739,7 +758,16 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks, display: { mobile }, gameData: { recipes, tradePacks: { types, freshness: freshnessData = {} }, continents, zones } }, { pack, sellZoneId }) => {
+const mapStateToProps = ({
+                           tradepacks,
+                           display: { mobile },
+                           gameData: {
+                             recipes,
+                             tradePacks: { types, freshness: freshnessData = {} },
+                             continents,
+                             zones,
+                           },
+                         }, { pack, sellZoneId }) => {
   const tradePack = pack || {};
   let freshness;
   if (tradePack.packTypeId === PACK_TYPE.CARGO) {

@@ -1,18 +1,16 @@
 .tradepack-settings {
   display: flex;
   padding: 12px 6px;
-  align-items: stretch;
+  align-items: center;
+  justify-content: space-evenly;
 
   & > * {
     margin: 0 12px;
-    flex: 1 0;
   }
 
   .pack-percentage {
     .MuiFormControl-root {
-      margin: 0 auto;
       width: 102px;
-      display: flex;
     }
   }
 }
@@ -260,6 +258,35 @@ $Coastal: #ECADFF;
 
   .MuiTableCell-body {
     color: #FFFFFF;
+  }
+}
+
+.material-prices {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 760px;
+  justify-content: space-between;
+
+  .item-price {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.compare-packs {
+
+  &.MuiDialogContent-root {
+    padding: 0;
+  }
+
+  .zone-name {
+    width: 220px;
+  }
+
+  .demand {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   }
 }
 

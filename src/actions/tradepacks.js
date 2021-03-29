@@ -68,7 +68,7 @@ export const setInterest = (e, showInterest) => (dispatch) => {
   dispatch({ type: SET_INTEREST, showInterest });
 };
 
-export const setPercentage = (packId, sellZoneId) => (dispatch) => (e, percentage) => {
+export const setPercentage = (packId, sellZoneId) => (dispatch) => (percentage) => {
   if (packId && sellZoneId) {
     dispatch({ type: SET_PERCENTAGE, packId, percentage, sellZoneId });
   } else {

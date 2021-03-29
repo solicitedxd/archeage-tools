@@ -83,7 +83,7 @@ class NumberField extends PureComponent {
     });
   };
 
-  _updateValue = debounce(this.updateValue, 1000);
+  _updateValue = debounce(this.updateValue, 500);
 
   handleFocus = (focused) => (e) => {
     const { onFocus, onBlur, min } = this.props;

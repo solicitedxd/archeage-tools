@@ -12,3 +12,11 @@ export const pad = (str, max) => {
   str = str.toString();
   return str.length < max ? pad('0' + str, max) : str;
 };
+
+export const percentModifier = (modifier) => {
+  if (modifier >= 1) {
+    return `+${Math.round((modifier - 1) * 100)}%`;
+  } else {
+    return `-${Math.round((1 - modifier) * 100)}%`;
+  }
+};
