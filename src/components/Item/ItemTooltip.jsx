@@ -104,8 +104,8 @@ const TooltipContent = (item) => {
       </section>
       {(bindsOnPickup || bindsOnEquip || remainingTime || reqLevel > 0 || petLevel > 0) &&
       <section>
-        {reqLevel > 0 && <p>Req. Level:{reqLevel} ~ <span className="ances-level">55</span></p>}
-        {petLevel > 0 && <p>Pet Level:{petLevel} ~ 55</p>}
+        {reqLevel > 0 && <p>Req. Level: {reqLevel} ~ <span className="ances-level">70</span></p>}
+        {petLevel > 0 && <p>Pet Level: {petLevel} ~ 55</p>}
         {bindsOnPickup && <p>Binds on Pickup</p>}
         {bindsOnEquip && <p>Binds on Equip</p>}
         {remainingTime && <p className="text-orange">Rem. Time: {remainingTime}</p>}
