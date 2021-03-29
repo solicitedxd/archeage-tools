@@ -15,7 +15,6 @@ import {
   MenuItem,
   Paper,
   Select,
-  Slider,
   Tab,
   Table,
   TableBody,
@@ -47,6 +46,7 @@ import {
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
+import NumberField from 'components/NumberField';
 import {
   DIALOG_MY_GAME,
   PROFICIENCIES,
@@ -59,6 +59,8 @@ import {
   CONTINENT_PACKS,
   FRESHNESS,
   OUTLET_ZONE,
+  PACK_PERCENT_MAX,
+  PACK_PERCENT_MIN,
   PACK_REGIONS,
   PACK_TABLE,
   PACK_TYPE,
@@ -278,20 +280,17 @@ class TradePacks extends Component {
                   disabled={isCargo || outlet !== 2}
                 />
               }
+              style={{ justifyContent: 'center' }}
               label="War (+15%)"
             />
             <div className="pack-percentage">
-              <InputLabel shrink style={{ marginBottom: 6 }}>Pack Demands: {percentage}%</InputLabel>
-              <Slider
+              <NumberField
+                label="Pack Demands"
                 onChange={setPercentage(null, null)}
                 value={percentage}
-                defaultValue={130}
-                min={50}
-                max={130}
-                step={1}
-                aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
-                valueLabelFormat={value => `${value}%`}
+                min={PACK_PERCENT_MIN}
+                max={PACK_PERCENT_MAX}
+                endAdornment="%"
               />
             </div>
           </div>

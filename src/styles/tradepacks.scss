@@ -9,9 +9,10 @@
   }
 
   .pack-percentage {
-    .MuiSlider-root {
-      margin: 0 12px;
-      width: calc(100% - 24px);
+    .MuiFormControl-root {
+      margin: 0 auto;
+      width: 102px;
+      display: flex;
     }
   }
 }

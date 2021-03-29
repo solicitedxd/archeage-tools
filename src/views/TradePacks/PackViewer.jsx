@@ -61,6 +61,8 @@ import {
   FRESHNESS,
   LARDER_HARVEST_LABOR,
   OUTLET_ZONE,
+  PACK_PERCENT_MAX,
+  PACK_PERCENT_MIN,
   PACK_TABLE,
   PACK_TYPE,
   SELL_CARGO_LABOR,
@@ -610,14 +612,15 @@ class PackViewer extends Component {
           </Typography>
           <div className="sell-config">
             <div>
-              <InputLabel shrink>Demand: {percentage}%</InputLabel>
-              <Slider
+              <NumberField
+                label="Demand"
                 onChange={setPercentage(pack.id, sellZoneId)}
                 value={percentage}
-                defaultValue={130}
-                min={50}
-                max={130}
-                step={1}
+                defaultValue={PACK_PERCENT_MAX}
+                min={PACK_PERCENT_MIN}
+                max={PACK_PERCENT_MAX}
+                endAdornment="%"
+                style={{ width: 72 }}
               />
               {packType.freshness &&
               <SelectField
