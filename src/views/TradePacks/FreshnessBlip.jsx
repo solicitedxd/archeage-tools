@@ -12,19 +12,12 @@ import {
   array,
   string,
 } from 'react-proptypes';
+import { percentModifier } from 'utils/number';
 
 class FreshnessBlip extends Component {
   static propTypes = {
     name: string,
     profitLevels: array,
-  };
-
-  getModifier = (modifier) => {
-    if (modifier >= 1) {
-      return `+${Math.round((modifier - 1) * 100)}%`;
-    } else {
-      return `-${Math.round((1 - modifier) * 100)}%`;
-    }
   };
 
   render() {
@@ -58,7 +51,7 @@ class FreshnessBlip extends Component {
                     {standardPL.name} Profit
                   </TableCell>
                   <TableCell>
-                    {this.getModifier(standardPL.modifier)} {standardPL.time}
+                    {percentModifier(standardPL.modifier)} {standardPL.time}
                   </TableCell>
                   {hasAged && agedPL &&
                   <>
@@ -66,7 +59,7 @@ class FreshnessBlip extends Component {
                       {agedPL.name} Profit
                     </TableCell>
                     <TableCell>
-                      {this.getModifier(agedPL.modifier)} {agedPL.time}
+                      {percentModifier(agedPL.modifier)} {agedPL.time}
                     </TableCell>
                   </>}
                 </TableRow>

@@ -165,7 +165,7 @@ const TooltipContent = (props) => {
                     {type.code === CRITERIA_TYPE_CHAT && ref && <>Chat with <NpcLink id={ref.refId} />.</>}
                     {type.code === CRITERIA_TYPE_COLLECT && ref && <>Collect <ItemLink
                       id={ref.refId} /> ({ref.quantity}).</>}
-                    {!ref && `Ref is broken ${type.code}`}
+                    {type.code !== CRITERIA_TYPE_OTHER && !ref && `Ref is broken ${type.code}`}
                     {type.code === CRITERIA_TYPE_OTHER &&
                     <>{criterion.description}{
                       criterion.refs.length > 0 &&

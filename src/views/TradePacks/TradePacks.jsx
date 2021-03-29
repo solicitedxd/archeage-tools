@@ -15,7 +15,6 @@ import {
   MenuItem,
   Paper,
   Select,
-  Slider,
   Tab,
   Table,
   TableBody,
@@ -28,7 +27,9 @@ import {
   Typography,
 } from '@material-ui/core';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import LocalAtmIcon from '@material-ui/icons/LocalAtm';
 import ReplayIcon from '@material-ui/icons/Replay';
 import { openDialog } from 'actions/display';
 import {
@@ -47,6 +48,7 @@ import {
 import cn from 'classnames';
 import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
+import NumberField from 'components/NumberField';
 import {
   DIALOG_MY_GAME,
   PROFICIENCIES,
@@ -59,6 +61,8 @@ import {
   CONTINENT_PACKS,
   FRESHNESS,
   OUTLET_ZONE,
+  PACK_PERCENT_MAX,
+  PACK_PERCENT_MIN,
   PACK_REGIONS,
   PACK_TABLE,
   PACK_TYPE,
@@ -84,6 +88,8 @@ import {
   mapContinentToTable,
 } from 'utils/tradepacks';
 import FreshnessBlip from './FreshnessBlip';
+import MaterialPrices from './MaterialPrices';
+import PackCompare from './PackCompare';
 import PackViewer from './PackViewer';
 
 class TradePacks extends Component {
@@ -121,6 +127,8 @@ class TradePacks extends Component {
 
   state = {
     reset: false,
+    prices: false,
+    compare: false,
   };
 
   setZone = this.props.setOutlet;
@@ -173,11 +181,19 @@ class TradePacks extends Component {
     push('/trade-packs');
   };
 
+  togglePrices = () => {
+    this.setState({ prices: !this.state.prices });
+  };
+
+  toggleCompare = () => {
+    this.setState({ compare: !this.state.compare });
+  };
+
   render() {
     const { mobile, packTable, percentage, war, outlet, region, match, location } = this.props;
     const { setPercentage, setWar, openDialog, setPackRegion } = this.props;
     const { packs: tradePackData, freshness: freshnessData, types: packTypes, continents, zones } = this.props;
-    const { reset } = this.state;
+    const { reset, prices, compare } = this.state;
 
     const isCargo = packTable === PACK_TABLE.CARGO;
 
@@ -280,18 +296,20 @@ class TradePacks extends Component {
               }
               label="War (+15%)"
             />
+            <Button
+              startIcon={<LocalAtmIcon />}
+              onClick={this.togglePrices}
+            >
+              Material Prices
+            </Button>
             <div className="pack-percentage">
-              <InputLabel shrink style={{ marginBottom: 6 }}>Pack Demands: {percentage}%</InputLabel>
-              <Slider
+              <NumberField
+                label="Pack Demands"
                 onChange={setPercentage(null, null)}
                 value={percentage}
-                defaultValue={130}
-                min={50}
-                max={130}
-                step={1}
-                aria-labelledby="discrete-slider"
-                valueLabelDisplay="auto"
-                valueLabelFormat={value => `${value}%`}
+                min={PACK_PERCENT_MIN}
+                max={PACK_PERCENT_MAX}
+                endAdornment="%"
               />
             </div>
           </div>
@@ -323,6 +341,7 @@ class TradePacks extends Component {
                 value={outlet}
                 onChange={this.setZone}
                 className="title-text"
+                variant={mobile ? 'scrollable' : 'standard'}
               >
                 {outletZones.map(zoneId => (
                   <Tab key={`${packTable}-${zoneId}`} label={zones[zoneId].name} />
@@ -330,6 +349,14 @@ class TradePacks extends Component {
               </Tabs>}
               {isCargo &&
               <Typography variant="subtitle1" className="title-text">Cargo</Typography>}
+              <Tooltip title="Compare Trade Packs">
+                <IconButton
+                  color="inherit"
+                  onClick={this.toggleCompare}
+                >
+                  <CompareArrowsIcon />
+                </IconButton>
+              </Tooltip>
             </Toolbar>
           </AppBar>
           <div style={{ overflow: 'auto' }}>
@@ -463,6 +490,14 @@ class TradePacks extends Component {
           pack={viewerPack}
           sellZoneId={viewerSellZoneId}
           onClose={this.onCloseViewer}
+        />
+        <MaterialPrices
+          onClose={this.togglePrices}
+          open={prices}
+        />
+        <PackCompare
+          onClose={this.toggleCompare}
+          open={compare}
         />
         <AdContainer type="horizontal" />
       </div>

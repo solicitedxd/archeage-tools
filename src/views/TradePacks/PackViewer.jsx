@@ -6,10 +6,8 @@ import {
   DialogContent,
   FormControlLabel,
   IconButton,
-  InputLabel,
   MenuItem,
   Select,
-  Slider,
   Table,
   TableBody,
   TableCell,
@@ -61,6 +59,8 @@ import {
   FRESHNESS,
   LARDER_HARVEST_LABOR,
   OUTLET_ZONE,
+  PACK_PERCENT_MAX,
+  PACK_PERCENT_MIN,
   PACK_TABLE,
   PACK_TYPE,
   SELL_CARGO_LABOR,
@@ -76,6 +76,7 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
+import { percentModifier } from 'utils/number';
 import {
   setTitle,
   slug,
@@ -155,20 +156,40 @@ class PackViewer extends Component {
     this.setState({ manualLabor: manualLabor || 0 });
   };
 
-  getModifier = (modifier) => {
-    if (modifier >= 1) {
-      return `+${Math.round((modifier - 1) * 100)}%`;
-    } else {
-      return `-${Math.round((1 - modifier) * 100)}%`;
-    }
-  };
-
   // eslint-disable-next-line complexity
   render() {
     const { onClose, pack, sellZoneId, recipe, region, freshness, packType } = this.props;
     const { transportExpand, unitSize, manualLabor } = this.state;
-    const { craftLarder, degradeDemand, profitLevelName, showInterest, percentage, quantity, supplyLevelName, mobile, transportationQty, war, ahCut, continents, zoneName, zones } = this.props;
-    const { setCraftLarder, setDegradation, setProfitLevel, setInterest, setPercentage, setQuantity, setSupply, setTransportationQuantity, setWar, calculateLabor, setAHCut, getItemPrice } = this.props;
+    const {
+      craftLarder,
+      degradeDemand,
+      profitLevelName,
+      showInterest,
+      percentage,
+      quantity,
+      supplyLevelName,
+      mobile,
+      transportationQty,
+      war,
+      ahCut,
+      continents,
+      zoneName,
+      zones,
+    } = this.props;
+    const {
+      setCraftLarder,
+      setDegradation,
+      setProfitLevel,
+      setInterest,
+      setPercentage,
+      setQuantity,
+      setSupply,
+      setTransportationQuantity,
+      setWar,
+      calculateLabor,
+      setAHCut,
+      getItemPrice,
+    } = this.props;
 
     // do nothing if value is missing
     if (!pack) return null;
@@ -610,14 +631,15 @@ class PackViewer extends Component {
           </Typography>
           <div className="sell-config">
             <div>
-              <InputLabel shrink>Demand: {percentage}%</InputLabel>
-              <Slider
+              <NumberField
+                label="Demand"
                 onChange={setPercentage(pack.id, sellZoneId)}
                 value={percentage}
-                defaultValue={130}
-                min={50}
-                max={130}
-                step={1}
+                defaultValue={PACK_PERCENT_MAX}
+                min={PACK_PERCENT_MIN}
+                max={PACK_PERCENT_MAX}
+                endAdornment="%"
+                style={{ width: 72 }}
               />
               {packType.freshness &&
               <SelectField
@@ -626,9 +648,9 @@ class PackViewer extends Component {
                 value={profitLevelName}
                 onChange={setProfitLevel(pack.id, sellZoneId)}
                 renderValue={() =>
-                  <Typography>{profitLevel.name} Profit: {this.getModifier(profitLevel.modifier)}</Typography>}
+                  <Typography>{profitLevel.name} Profit: {percentModifier(profitLevel.modifier)}</Typography>}
                 options={profitLevels.reduce((obj, pL) => {
-                  obj[pL.name] = (<>{pL.name} Profit: {this.getModifier(pL.modifier)} ({pL.time})</>);
+                  obj[pL.name] = (<>{pL.name} Profit: {percentModifier(pL.modifier)} ({pL.time})</>);
                   return obj;
                 }, {})}
               />}
@@ -736,7 +758,16 @@ class PackViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ tradepacks, display: { mobile }, gameData: { recipes, tradePacks: { types, freshness: freshnessData = {} }, continents, zones } }, { pack, sellZoneId }) => {
+const mapStateToProps = ({
+                           tradepacks,
+                           display: { mobile },
+                           gameData: {
+                             recipes,
+                             tradePacks: { types, freshness: freshnessData = {} },
+                             continents,
+                             zones,
+                           },
+                         }, { pack, sellZoneId }) => {
   const tradePack = pack || {};
   let freshness;
   if (tradePack.packTypeId === PACK_TYPE.CARGO) {

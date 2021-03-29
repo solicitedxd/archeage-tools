@@ -28,6 +28,9 @@ export const LARDER_HARVEST_LABOR = 65;
 
 export const PACK_REGIONS = QUEST_REGIONS;
 
+export const PACK_PERCENT_MIN = 50;
+export const PACK_PERCENT_MAX = 130;
+
 export const PACK_TABLE = Object.freeze({
   NUIA: CONTINENT.NUIA,
   HARANYA: CONTINENT.HARANYA,
@@ -129,3 +132,7 @@ export const CONTINENT_PACKS = {
     ],
   },
 };
+
+export const WAR_ZONE = [ZONE.YNYSTERE, ZONE.CINDERSTONE_MOOR];
+
+export const MAX_COMPARE = 4;
