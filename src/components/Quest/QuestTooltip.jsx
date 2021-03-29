@@ -242,7 +242,7 @@ TooltipContent.propTypes = {
 const mapStateToProps2 = ({ gameData: { rewardTypes, questCriteriaTypes, titles, vocations, questCategories, quests }, dailies: { region } }, { id }) => {
   const quest = pathOr({}, [id])(quests);
   if (quest.categoryId) {
-    quest.category = quest ? questCategories[quest.categoryId] : {};
+    quest.category = (quest && questCategories[quest.categoryId]) || {};
   }
   return {
     rewardTypes,

@@ -93,7 +93,7 @@ const mapStateToProps = ({ gameData: { quests, questCategories }, dailies: { reg
   return {
     ...quest,
     region: region || 'NA',
-    category: quest ? questCategories[quest.categoryId] : {},
+    category: (quest && questCategories[quest.categoryId]) || {},
   };
 };
 
