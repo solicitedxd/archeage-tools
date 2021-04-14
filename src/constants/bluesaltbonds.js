@@ -1,3 +1,4 @@
+import { ZONE } from 'constants/map';
 import { REGIONS } from 'constants/myGame';
 
 export const BOND_CHANGE_TIME = Object.freeze({
@@ -34,3 +35,9 @@ export const BOND_QUANTITY = Object.freeze({
   60: 75000,
   100: 125000,
 });
+
+export const CAUTION_ZONES = Object.freeze([
+  ZONE.TWO_CROWNS,
+  ZONE.WHITE_ARDEN,
+  ZONE.DEWSTONE_PLAINS,
+]);

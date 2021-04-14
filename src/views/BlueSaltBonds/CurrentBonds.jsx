@@ -28,12 +28,15 @@ import {
   fetchServers,
   updateBonds,
 } from 'actions/gameData';
-import IfPerm from 'components/IfPerm/IfPerm';
-import Item from 'components/Item/Item';
+import cn from 'classnames';
+import IfPerm from 'components/IfPerm';
+import Item from 'components/Item';
+import OptionalTooltip from 'components/OptionalTooltip';
 import {
   BOND_CHANGE_TIME,
   BOND_QUANTITY,
   BOND_ZONE_MATERIAL,
+  CAUTION_ZONES,
 } from 'constants/bluesaltbonds';
 import {
   DIALOG_MY_GAME,
@@ -45,6 +48,7 @@ import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
+  bool,
   func,
   number,
   object,
@@ -59,6 +63,7 @@ class CurrentBonds extends Component {
     serverId: number,
     servers: object,
     zones: object,
+    mobile: bool,
     fetchServers: func.isRequired,
     fetchBonds: func.isRequired,
     updateBonds: func.isRequired,
@@ -117,8 +122,17 @@ class CurrentBonds extends Component {
     this.closeEdit();
   };
 
+  clearEdit = () => {
+    const { editedBonds } = this.state;
+    editedBonds.forEach(b => {
+      b.count = 0;
+      b.edited = true;
+    });
+    this.setState({ editedBonds });
+  };
+
   render() {
-    const { serverId, servers, bonds, zones, openDialog } = this.props;
+    const { serverId, servers, bonds, zones, openDialog, mobile } = this.props;
     const { refreshAllow, editing, editedBonds } = this.state;
 
     const server = servers[serverId];
@@ -190,8 +204,16 @@ class CurrentBonds extends Component {
                     <TableCell key={`bsb-${itemId}-${qty}`}>
                       {bonds
                       .filter(b => zoneIds.includes(b.zoneId) && b.count === Number(qty))
-                      .map(b => getZonePrefix(pathOr('', [b.zoneId, 'name'])(zones), b.zoneId))
-                      .reduce((a, x, i) => a === null ? [x] : [a, <br key={`b-${itemId}-${qty}-${i}`} />, x], null)}
+                      .map(b => (
+                        <OptionalTooltip
+                          title={CAUTION_ZONES.includes(b.zoneId) ? 'Caution: Faction guards' : null}
+                          key={`bz-${itemId}-${b.zoneId}`}
+                        >
+                          <span className={cn({ 'bsb-caution': CAUTION_ZONES.includes(b.zoneId) })}>
+                            {getZonePrefix(pathOr('', [b.zoneId, 'name'])(zones), b.zoneId)}
+                          </span>
+                        </OptionalTooltip>
+                      )).reduce((a, x, i) => a === null ? [x] : [a, <br key={`b-${itemId}-${qty}-${i}`} />, x], null)}
                     </TableCell>
                   ))}
                 </TableRow>
@@ -203,6 +225,7 @@ class CurrentBonds extends Component {
           open={editing}
           onClose={this.closeEdit}
           maxWidth="xl"
+          fullScreen={mobile}
         >
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -239,6 +262,9 @@ class CurrentBonds extends Component {
             </div>
           </DialogContent>
           <DialogActions>
+            <div style={{ flex: 1 }}>
+              <Button onClick={this.clearEdit}>Set All 0</Button>
+            </div>
             <Button onClick={this.closeEdit}>Cancel</Button>
             <Button color="primary" onClick={this.saveBonds}>Save</Button>
           </DialogActions>
@@ -248,11 +274,12 @@ class CurrentBonds extends Component {
   }
 }
 
-const mapStateToProps = ({ myGame: { server }, gameData: { servers, bonds, zones } }) => ({
+const mapStateToProps = ({ myGame: { server }, gameData: { servers, bonds, zones }, display: { mobile } }) => ({
   serverId: server,
   servers,
   bonds: bonds.filter(b => b.serverId === server),
   zones,
+  mobile,
 });
 
 const mapDispatchToProps = {
