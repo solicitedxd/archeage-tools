@@ -1,12 +1,12 @@
 /**
  * Converts dd hh mm ss to seconds.
- * @param dd{number} days
- * @param hh{number} hours
- * @param mm{number} minutes
- * @param ss{number} seconds
+ * @param days{number} days
+ * @param hours{number} hours
+ * @param minutes{number} minutes
+ * @param seconds{number} seconds
  * @returns {number} seconds
  */
-export const toSeconds = (dd, hh, mm, ss) => (dd * (24 * 60 * 60)) + (hh * (60 * 60)) + (mm * 60) + ss;
+export const toSeconds = (days, hours, minutes, seconds) => (days * (24 * 60 * 60)) + (hours * (60 * 60)) + (minutes * 60) + seconds;
 
 /**
  * Gets hh:mm:ss from a Date.

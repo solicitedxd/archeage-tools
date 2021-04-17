@@ -163,6 +163,7 @@ export const ITEM = Object.freeze({
   TERRITORY_RESOURCE_COIN: 48133,
   LOYALTY_TOKEN: 39314,
   LOGIN_BADGE: 8000641,
+  MINERS_FARMHOUSE: 37144,
 });
 
 export const STAT_MULTIPLIERS = Object.freeze({

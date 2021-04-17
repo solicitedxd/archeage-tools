@@ -30,6 +30,7 @@ import {
   DATA_VOCATION,
   DATA_VOCATION_RECIPE,
 } from 'constants/gameData';
+import { ITEM } from 'constants/items';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import debounce from 'lodash.debounce';
 import { pathOr } from 'ramda';
@@ -103,8 +104,9 @@ export const fetchCropItems = () => (dispatch, getState) => {
 
   xhr.get(config.endpoints.service.itemCrops)
   .then(({ data: cropIds }) => {
-    dispatch(fetchItems(cropIds));
-    dispatch({ type: DATA_CROP, crops: cropIds });
+    const modifiedIds = [...cropIds, ITEM.MINERS_FARMHOUSE];
+    dispatch(fetchItems(modifiedIds));
+    dispatch({ type: DATA_CROP, crops: modifiedIds });
   });
 };
 

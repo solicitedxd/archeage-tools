@@ -11,6 +11,7 @@ import cn from 'classnames';
 import ItemLink from 'components/Item/ItemLink';
 import {
   CLIMATE_REGEX,
+  CROP_CUSTOM,
   HARVEST_REGEX,
   MATURES_REGEX,
   TIME_FORMAT,
@@ -19,8 +20,8 @@ import {
 import moment from 'moment';
 import React, { Component } from 'react';
 import {
-  bool,
   array,
+  bool,
   func,
   number,
   string,
@@ -73,23 +74,44 @@ class CropTimer extends Component {
 
     if (!crop) return null;
 
-    const maturesVal = crop.description.match(MATURES_REGEX);
-    const harvestVal = crop.description.match(HARVEST_REGEX);
-    const cropClimate = crop.description.match(CLIMATE_REGEX);
-    const harvestTime = harvestVal && toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0);
-    let totalTime = timer === TIMER_TYPE.HARVEST && harvestVal
-      ? harvestTime
-      : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
-    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
-      totalTime = Math.ceil(totalTime * 0.7);
-    }
     const now = moment();
     const complete = moment(time);
+
+    let totalTime;
+    let restart;
+    let phase1 = 0.1;
+    let phase2 = 0.5;
+    let showPhase = crop.type === 'Saplings' && timer === TIMER_TYPE.MATURES;
+    if (CROP_CUSTOM[crop.id]) {
+      const cropData = CROP_CUSTOM[crop.id][timer];
+      totalTime = cropData.time;
+      restart = cropData.restart || false;
+      if (cropData.phase1) {
+        phase1 = cropData.phase1;
+      }
+      if (cropData.phase2) {
+        phase2 = cropData.phase2;
+      }
+      if (cropData.showPhase !== undefined) {
+        showPhase = cropData.showPhase;
+      }
+    } else {
+      const maturesVal = crop.description.match(MATURES_REGEX);
+      const harvestVal = crop.description.match(HARVEST_REGEX);
+      const cropClimate = crop.description.match(CLIMATE_REGEX);
+      totalTime = timer === TIMER_TYPE.HARVEST && harvestVal
+        ? toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0)
+        : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
+      if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
+        totalTime = Math.ceil(totalTime * 0.7);
+      }
+      restart = harvestVal && complete.isBefore(now);
+    }
     const completeTimer = complete.isAfter(now) ? hhmmssFromDate(complete.diff(now)) : complete.fromNow();
     const planted = moment(complete).subtract(totalTime, 'seconds');
-    const stage1 = moment(planted).add(totalTime * 0.1, 'seconds');
+    const stage1 = moment(planted).add(totalTime * phase1, 'seconds');
     const stage1Timer = stage1.isAfter(now) ? hhmmssFromDate(stage1.diff(now)) : stage1.fromNow();
-    const stage2 = moment(planted).add(totalTime * 0.5, 'seconds');
+    const stage2 = moment(planted).add(totalTime * phase2, 'seconds');
     const stage2Timer = stage2.isAfter(now) ? hhmmssFromDate(stage2.diff(now)) : stage2.fromNow();
 
     return (
@@ -111,7 +133,7 @@ class CropTimer extends Component {
           </div>
         </TableCell>
         <TableCell>
-          {crop.type === 'Saplings' && timer === TIMER_TYPE.MATURES &&
+          {showPhase &&
           <div className={cn('crop-time', { passed: stage1.isBefore(now) })}>
             <Typography variant="caption" className="crop-note">Phase 1</Typography>
             <Typography>{stage1.format(TIME_FORMAT)}</Typography>
@@ -119,7 +141,7 @@ class CropTimer extends Component {
           </div>}
         </TableCell>
         <TableCell>
-          {crop.type === 'Saplings' && timer === TIMER_TYPE.MATURES &&
+          {showPhase &&
           <div className={cn('crop-time', { passed: stage2.isBefore(now) })}>
             <Typography variant="caption" className="crop-note">Phase 2</Typography>
             <Typography>{stage2.format(TIME_FORMAT)}</Typography>
@@ -136,7 +158,7 @@ class CropTimer extends Component {
           </div>
         </TableCell>
         <TableCell className="crop-delete">
-          {harvestTime && complete.isBefore(now) &&
+          {restart &&
           <Tooltip title="Restart timer with Harvest time.">
             <IconButton onClick={onRestart}>
               <ReplayIcon />

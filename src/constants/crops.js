@@ -1,3 +1,6 @@
+import { ITEM } from 'constants/items';
+import { toSeconds } from 'utils/time';
+
 export const ADD_CROP = 'ADD_TREE';
 export const DELETE_CROP = 'DELETE_TREE';
 export const RESTART_CROP = 'RESTART_CROP';
@@ -13,11 +16,25 @@ export const CROP_GROUP = Object.freeze([
   'Seed Bundles',
   'Woodlots',
   'Pens',
+  'Buildings',
 ]);
 
 export const TIMER_TYPE = Object.freeze({
   MATURES: 'matures',
   HARVEST: 'harvest',
+});
+
+export const CROP_CUSTOM = Object.freeze({
+  [ITEM.MINERS_FARMHOUSE]: {
+    types: [TIMER_TYPE.HARVEST],
+    [TIMER_TYPE.HARVEST]: {
+      time: toSeconds(0, 10, 0, 0),
+      phase1: 0.1,
+      phase2: 0.4,
+      restart: true,
+      showPhase: true,
+    },
+  },
 });
 
 export const TIME_FORMAT = 'MMM D h:mm:ss A';

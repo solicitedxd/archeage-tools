@@ -34,6 +34,7 @@ import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
 import {
   CLIMATE_REGEX,
+  CROP_CUSTOM,
   CROP_GROUP,
   HARVEST_REGEX,
   MATURES_REGEX,
@@ -144,6 +145,9 @@ class Crops extends Component {
     if (!crop.description.match(HARVEST_REGEX) && timer === TIMER_TYPE.HARVEST) {
       timer = TIMER_TYPE.MATURES;
     }
+    if (CROP_CUSTOM[crop.id]) {
+      timer = CROP_CUSTOM[crop.id].types[0];
+    }
     this.setState({ crop, seedbed, timer });
   };
 
@@ -159,6 +163,12 @@ class Crops extends Component {
     this.setState({ note: event.target.value });
   };
 
+  checkEnter = (e) => {
+    if (e.key === 'Enter') {
+      this.addCrop();
+    }
+  };
+
   addCrop = () => {
     const { dd, hh, mm, ss, climate, crop, note, seedbed, timer } = this.state;
     const errors = {};
@@ -172,15 +182,21 @@ class Crops extends Component {
       this.setState({ errors });
       return;
     }
-    const maturesVal = crop.description.match(MATURES_REGEX);
-    const harvestVal = crop.description.match(HARVEST_REGEX);
-    const cropClimate = crop.description.match(CLIMATE_REGEX);
     const enteredTime = toSeconds(dd || 0, hh || 0, mm || 0, ss || 0);
-    let defaultTime = timer === TIMER_TYPE.HARVEST && harvestVal
-      ? toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0)
-      : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
-    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
-      defaultTime = Math.ceil(defaultTime * 0.7);
+    let defaultTime;
+    if (CROP_CUSTOM[crop.id]) {
+      defaultTime = CROP_CUSTOM[crop.id][timer].time;
+    } else {
+      const maturesVal = crop.description.match(MATURES_REGEX);
+      const harvestVal = crop.description.match(HARVEST_REGEX);
+      const cropClimate = crop.description.match(CLIMATE_REGEX);
+
+      defaultTime = timer === TIMER_TYPE.HARVEST && harvestVal
+        ? toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0)
+        : toSeconds(maturesVal[1] || 0, maturesVal[2] || 0, maturesVal[3] || 0, maturesVal[4] || 0);
+      if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
+        defaultTime = Math.ceil(defaultTime * 0.7);
+      }
     }
     const timeToTrack = enteredTime > defaultTime || enteredTime === 0 ? defaultTime : enteredTime;
     const ready = moment().add(timeToTrack, 'seconds');
@@ -204,20 +220,29 @@ class Crops extends Component {
     });
   };
 
-  reharvestCrop = (index, { crop, climate, seedbed }) => {
-    const harvestVal = crop.description.match(HARVEST_REGEX);
-    const cropClimate = crop.description.match(CLIMATE_REGEX);
-    let time = toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0);
-    if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
-      time = Math.ceil(time * 0.7);
+  reharvestCrop = (index, { crop, climate, seedbed, timer }) => {
+    let time;
+    let timerType = TIMER_TYPE.HARVEST;
+    if (CROP_CUSTOM[crop.id]) {
+      time = CROP_CUSTOM[crop.id][timer].time;
+      timerType = timer;
+    } else {
+      const harvestVal = crop.description.match(HARVEST_REGEX);
+      const cropClimate = crop.description.match(CLIMATE_REGEX);
+      time = toSeconds(harvestVal[2] || 0, harvestVal[3] || 0, harvestVal[4] || 0, harvestVal[5] || 0);
+      if (cropClimate && (climate.includes(cropClimate[1]) || (crop.type === 'Seed' && seedbed))) {
+        time = Math.ceil(time * 0.7);
+      }
     }
     const ready = moment().add(time, 'seconds');
-    this.props.restartCrop(index, ready.valueOf(), TIMER_TYPE.HARVEST);
+    this.props.restartCrop(index, ready.valueOf(), timerType);
   };
 
   render() {
     const { mobile, crops, removeCrop, items, climates } = this.props;
     const { dd, hh, mm, ss, climate, crop, note, timer, seedbed, errors } = this.state;
+
+    const cropCustom = CROP_CUSTOM[crop.id];
 
     setTitle('My Farm Timers');
 
@@ -278,12 +303,17 @@ class Crops extends Component {
                 value={timer}
                 onChange={this.handleTimerChange}
               >
-                <FormControlLabel value={TIMER_TYPE.MATURES} control={<Radio size="small" />} label="Matures" />
+                <FormControlLabel
+                  value={TIMER_TYPE.MATURES}
+                  control={<Radio size="small" />}
+                  label="Matures"
+                  disabled={cropCustom && !cropCustom.types.includes(TIMER_TYPE.MATURES)}
+                />
                 <FormControlLabel
                   value={TIMER_TYPE.HARVEST}
                   control={<Radio size="small" />}
                   label="Harvest"
-                  disabled={!crop.description || !crop.description.match(HARVEST_REGEX)}
+                  disabled={(!crop.description || !crop.description.match(HARVEST_REGEX)) && !(cropCustom && cropCustom.types.includes(TIMER_TYPE.HARVEST))}
                 />
               </RadioGroup>
             </FormControl>
@@ -325,6 +355,7 @@ class Crops extends Component {
                   }}
                   value={dd}
                   onChange={this.handleTimeChange('dd')}
+                  onKeyPress={this.checkEnter}
                 />
                 <Input
                   id="hh"
@@ -336,6 +367,7 @@ class Crops extends Component {
                   }}
                   value={hh}
                   onChange={this.handleTimeChange('hh')}
+                  onKeyPress={this.checkEnter}
                 />
                 <Input
                   id="mm"
@@ -347,6 +379,7 @@ class Crops extends Component {
                   }}
                   value={mm}
                   onChange={this.handleTimeChange('mm')}
+                  onKeyPress={this.checkEnter}
                 />
                 <Input
                   id="ss"
@@ -358,6 +391,7 @@ class Crops extends Component {
                   }}
                   value={ss}
                   onChange={this.handleTimeChange('ss')}
+                  onKeyPress={this.checkEnter}
                 />
               </div>
               <Typography variant="overline" style={{ fontSize: 10 }}>Leave blank for default times.</Typography>
@@ -367,6 +401,7 @@ class Crops extends Component {
               label="Note (optional)"
               value={note}
               onChange={this.changeNote}
+              onKeyPress={this.checkEnter}
             />
             <FormControl className="ts-track-button">
               <Button color="primary" variant="contained" onClick={this.addCrop}>Track</Button>
@@ -415,6 +450,8 @@ const mapStateToProps = ({ display: { mobile }, crops: myCrops, gameData: { crop
       } else {
         item.group = CROP_GROUP[2];
       }
+    } else if (item.type === 'Buildings') {
+      item.group = CROP_GROUP[6];
     } else {
       item.group = CROP_GROUP[1];
     }
