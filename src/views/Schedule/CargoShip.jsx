@@ -295,7 +295,7 @@ class CargoShip extends Component {
     // check if alert
     const alert = alerts
     .map(aId => CARGO_ALERTS[aId])
-    .find(a => (a.portFrom === step.portFrom || a.portTo === step.portTo) && a.duration === Math.round(timeRemaining));
+    .find(a => ((step.portFrom && a.portFrom === step.portFrom) || (step.portTo && a.portTo === step.portTo)) && a.duration === Math.round(timeRemaining));
 
     if (alert) {
       const { cue, speech } = alert;
