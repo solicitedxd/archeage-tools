@@ -1,6 +1,7 @@
 import {
   ADD_CROP,
   DELETE_CROP,
+  MARK_CROP,
   RESTART_CROP,
 } from 'constants/crops';
 import initialState from 'initialStates/crops';
@@ -28,6 +29,12 @@ const crops = (state = getItem('crops', initialState), action) => {
         ...crops[action.index],
         time: action.time,
         timer: action.timer,
+      };
+      return crops;
+    case MARK_CROP:
+      crops[action.index] = {
+        ...crops[action.index],
+        mark: action.mark,
       };
       return crops;
     default:

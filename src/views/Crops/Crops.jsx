@@ -1,27 +1,26 @@
-import {
-  AppBar,
-  Button,
-  ButtonGroup,
-  Checkbox,
-  FormControl,
-  FormControlLabel,
-  FormHelperText,
-  FormLabel,
-  Input,
-  InputLabel,
-  Paper,
-  Radio,
-  RadioGroup,
-  Table,
-  TableBody,
-  TextField,
-  Toolbar,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormLabel from '@material-ui/core/FormLabel';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import Paper from '@material-ui/core/Paper';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import { Autocomplete } from '@material-ui/lab';
 import {
   addCrop,
+  markCrop,
   removeCrop,
   restartCrop,
 } from 'actions/crops';
@@ -73,6 +72,7 @@ class Crops extends Component {
     items: array.isRequired,
     fetchClimates: func.isRequired,
     climates: object.isRequired,
+    markCrop: func.isRequired,
   };
 
   state = {
@@ -175,7 +175,7 @@ class Crops extends Component {
     if (!objectHasProperties(crop)) {
       errors.crop = 'Crop is required.';
     }
-    if (climate.length === 0 && !seedbed) {
+    if (climate.length === 0 && !seedbed && !CROP_CUSTOM[crop.id]) {
       errors.climate = 'A climate is required.';
     }
     if (objectHasProperties(errors)) {
@@ -236,6 +236,10 @@ class Crops extends Component {
     }
     const ready = moment().add(time, 'seconds');
     this.props.restartCrop(index, ready.valueOf(), timerType);
+  };
+
+  setMark = (index) => (mark) => {
+    this.props.markCrop(index, mark);
   };
 
   render() {
@@ -422,6 +426,7 @@ class Crops extends Component {
                   key={`crop-${index}`}
                   onDelete={() => removeCrop(index)}
                   onRestart={() => this.reharvestCrop(index, crop)}
+                  onMark={this.setMark(index)}
                 />
               ))}
             </TableBody>
@@ -471,6 +476,7 @@ const mapDispatchToProps = {
   fetchCropItems,
   restartCrop,
   fetchClimates,
+  markCrop,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Crops);

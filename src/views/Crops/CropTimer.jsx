@@ -1,10 +1,8 @@
-import {
-  IconButton,
-  TableCell,
-  TableRow,
-  Tooltip,
-  Typography,
-} from '@material-ui/core';
+import IconButton from '@material-ui/core/IconButton';
+import TableCell from '@material-ui/core/TableCell';
+import TableRow from '@material-ui/core/TableRow';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 import DeleteIcon from '@material-ui/icons/Delete';
 import ReplayIcon from '@material-ui/icons/Replay';
 import cn from 'classnames';
@@ -18,6 +16,7 @@ import {
   TIMER_TYPE,
 } from 'constants/crops';
 import moment from 'moment';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
@@ -38,9 +37,11 @@ class CropTimer extends Component {
     climate: array.isRequired,
     onDelete: func,
     onRestart: func,
+    onMark: func,
     timer: string.isRequired,
     seedbed: bool.isRequired,
     note: string,
+    mark: bool,
   };
 
   static defaultProps = {
@@ -49,6 +50,7 @@ class CropTimer extends Component {
     },
     'onRestart': () => {
     },
+    mark: false,
   };
 
   state = {
@@ -69,8 +71,9 @@ class CropTimer extends Component {
     this.setState({ currentTime: new Date() });
   };
 
+  // eslint-disable-next-line complexity
   render() {
-    const { crop, time, climate, note, timer, seedbed, onDelete, onRestart } = this.props;
+    const { crop, time, climate, note, timer, seedbed, mark, onDelete, onRestart, onMark } = this.props;
 
     if (!crop) return null;
 
@@ -80,20 +83,28 @@ class CropTimer extends Component {
     let totalTime;
     let restart;
     let phase1 = 0.1;
+    let phase1Name = 'Phase 1';
     let phase2 = 0.5;
+    let phase2Name = 'Phase 2';
+    let completeName = timer === TIMER_TYPE.HARVEST ? 'Harvest' : 'Mature';
     let showPhase = crop.type === 'Saplings' && timer === TIMER_TYPE.MATURES;
-    if (CROP_CUSTOM[crop.id]) {
-      const cropData = CROP_CUSTOM[crop.id][timer];
-      totalTime = cropData.time;
-      restart = cropData.restart || false;
-      if (cropData.phase1) {
-        phase1 = cropData.phase1;
+    const customData = pathOr(null, [crop.id, timer])(CROP_CUSTOM);
+    if (customData) {
+      totalTime = customData.time;
+      restart = customData.restart || false;
+      if (customData.phase1) {
+        phase1 = customData.phase1;
+        phase1Name = customData.phase1Name || phase1Name;
       }
-      if (cropData.phase2) {
-        phase2 = cropData.phase2;
+      if (customData.phase2) {
+        phase2 = customData.phase2;
+        phase2Name = customData.phase2Name || phase2Name;
       }
-      if (cropData.showPhase !== undefined) {
-        showPhase = cropData.showPhase;
+      if (customData.showPhase !== undefined) {
+        showPhase = customData.showPhase;
+      }
+      if (customData.completeName) {
+        completeName = customData.completeName;
       }
     } else {
       const maturesVal = crop.description.match(MATURES_REGEX);
@@ -135,7 +146,7 @@ class CropTimer extends Component {
         <TableCell>
           {showPhase &&
           <div className={cn('crop-time', { passed: stage1.isBefore(now) })}>
-            <Typography variant="caption" className="crop-note">Phase 1</Typography>
+            <Typography variant="caption" className="crop-note">{phase1Name}</Typography>
             <Typography>{stage1.format(TIME_FORMAT)}</Typography>
             <Typography variant="subtitle2">{stage1Timer}</Typography>
           </div>}
@@ -143,7 +154,7 @@ class CropTimer extends Component {
         <TableCell>
           {showPhase &&
           <div className={cn('crop-time', { passed: stage2.isBefore(now) })}>
-            <Typography variant="caption" className="crop-note">Phase 2</Typography>
+            <Typography variant="caption" className="crop-note">{phase2Name}</Typography>
             <Typography>{stage2.format(TIME_FORMAT)}</Typography>
             <Typography variant="subtitle2">{stage2Timer}</Typography>
           </div>}
@@ -151,13 +162,21 @@ class CropTimer extends Component {
         <TableCell>
           <div className={cn('crop-time', { passed: complete.isBefore(now) })}>
             <Typography variant="caption" className="crop-note">
-              {timer === TIMER_TYPE.HARVEST ? 'Harvest' : 'Mature'}
+              {completeName}
             </Typography>
             <Typography>{complete.format(TIME_FORMAT)}</Typography>
             <Typography variant="subtitle2">{completeTimer}</Typography>
           </div>
         </TableCell>
         <TableCell className="crop-delete">
+          {customData && customData.mark &&
+          <>
+            <Tooltip title={`Toggle ${customData.mark.name}`}>
+              <IconButton onClick={() => onMark(!mark)}>
+                {React.createElement(mark ? customData.mark.on : customData.mark.off)}
+              </IconButton>
+            </Tooltip>
+          </>}
           {restart &&
           <Tooltip title="Restart timer with Harvest time.">
             <IconButton onClick={onRestart}>
