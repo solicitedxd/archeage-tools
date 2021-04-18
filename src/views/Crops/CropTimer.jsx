@@ -23,6 +23,7 @@ import {
   bool,
   func,
   number,
+  object,
   string,
 } from 'react-proptypes';
 import {
@@ -32,7 +33,7 @@ import {
 
 class CropTimer extends Component {
   static propTypes = {
-    crop: string.isRequired,
+    crop: object,
     time: number.isRequired,
     climate: array.isRequired,
     onDelete: func,

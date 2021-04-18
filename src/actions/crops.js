@@ -43,7 +43,7 @@ export const removeCrop = (index) => (dispatch) => {
  * @returns {function} redux dispatch call
  */
 export const restartCrop = (index, time, timer) => (dispatch) => {
-  dispatch({ type: RESTART_CROP, index, time, timer, mark: false });
+  dispatch({ type: RESTART_CROP, index, time, timer });
 };
 
 /**

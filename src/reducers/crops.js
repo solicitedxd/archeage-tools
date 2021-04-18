@@ -29,6 +29,7 @@ const crops = (state = getItem('crops', initialState), action) => {
         ...crops[action.index],
         time: action.time,
         timer: action.timer,
+        mark: false,
       };
       return crops;
     case MARK_CROP:
