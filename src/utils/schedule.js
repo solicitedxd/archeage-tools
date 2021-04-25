@@ -25,10 +25,12 @@ export const hhmmssToInt = (time) => {
 };
 
 export const getReminderTime = (eventTime, reminderOption) => {
-  let { multiplier } = reminderOption;
+  let { multiplier, time } = reminderOption;
   const reminderTime = hhmmssToInt(eventTime.reminderTime || ALERT_DEFAULT);
 
-  if (reminderTime < .5 && multiplier === 0.5) {
+  if (time && time > 0) {
+    return Math.round(time * 60);
+  } else if (reminderTime < .5 && multiplier === 0.5) {
     multiplier = 0.33;
   }
 

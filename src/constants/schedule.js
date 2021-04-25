@@ -21,6 +21,10 @@ export const ALERT_OPTIONS = Object.freeze({
     name: 'Start of Event',
     multiplier: 0,
   },
+  EVENT_PRE_0: {
+    name: '1 minute before',
+    time: 1,
+  },
   EVENT_PRE_1: {
     name: '${time} minutes before',
     multiplier: 0.5,
@@ -123,7 +127,7 @@ export const CARGO_SCHEDULE = Object.freeze([
     reverse: true,
     sailing: true,
     portTo: ZONE.TWO_CROWNS,
-    duration: 620.75,
+    duration: 621.2,
     next: 'Arrive TC',
   },
   {
@@ -138,7 +142,7 @@ export const CARGO_SCHEDULE = Object.freeze([
     text: 'sailing to Solis Headlands',
     sailing: true,
     portTo: ZONE.AUSTERA,
-    duration: 646.75,
+    duration: 647.25,
     next: 'Arrive Solis',
   },
 ]);
@@ -170,6 +174,13 @@ export const CARGO_ALERTS = Object.freeze({
     portFrom: ZONE.AUSTERA,
     duration: 300,
     speech: 'The cargo ship will leave the Solis Headlands port in 5 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVE_SOLIS_2: {
+    name: 'Leaving Solis in 2 min',
+    portFrom: ZONE.AUSTERA,
+    duration: 120,
+    speech: 'The cargo ship will leave the Solis Headlands port in 2 minutes.',
     cue: ALERT_CUE.REMINDER,
   },
   LEAVING_SOLIS: {
@@ -205,6 +216,13 @@ export const CARGO_ALERTS = Object.freeze({
     portFrom: ZONE.TWO_CROWNS,
     duration: 300,
     speech: 'The cargo ship will leave the Two Crowns port in 5 minutes.',
+    cue: ALERT_CUE.REMINDER,
+  },
+  LEAVE_TC_2: {
+    name: 'Leaving Two Crowns in 2 min',
+    portFrom: ZONE.TWO_CROWNS,
+    duration: 120,
+    speech: 'The cargo ship will leave the Two Crowns port in 2 minutes.',
     cue: ALERT_CUE.REMINDER,
   },
   LEAVING_TC: {
