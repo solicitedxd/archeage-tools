@@ -4,6 +4,7 @@ import {
   SET_REGION,
   SET_SPEAK,
   SET_VOLUME,
+  SPEECH_PRONUNCIATIONS,
   VOLUME_DEFAULT,
 } from 'constants/schedule';
 import { pathOr } from 'ramda';
@@ -81,6 +82,9 @@ export const speak = (text) => (_, getState) => {
 
   const volume = pathOr(VOLUME_DEFAULT, ['calendar', 'volume'])(getState());
   const message = new SpeechSynthesisUtterance();
+  Object.entries(SPEECH_PRONUNCIATIONS).forEach(([key, value]) => {
+    text = text.replace(key, value);
+  });
   message.text = text;
   message.volume = maxDecimals(volume / 150, 2);
   if (preferredVoice) {

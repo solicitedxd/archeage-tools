@@ -233,3 +233,9 @@ export const CARGO_ALERTS = Object.freeze({
     cue: ALERT_CUE.SHIP_LEAVING,
   },
 });
+
+export const SPEECH_PRONUNCIATIONS = Object.freeze({
+  'Akasch': 'Uh kawsh',
+  'Arche': 'ark',
+  'Grimghast': 'Grim ghast',
+});
