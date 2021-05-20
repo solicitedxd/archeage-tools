@@ -93,6 +93,6 @@ export const createBuilding = (itemId) => (_, getState) => {
     group: type,
     deposit: Number(deposit),
     baseTax: Number(baseTax),
-    exempt: Boolean(name.match(/(Solar|Lunar|Stellar|Mushroom|Fellowship|Beanstalk) /)),
+    exempt: Boolean(name.match(/(((Solar|Lunar|Stellar) (Scarecrow|Pavilion))|Mushroom|Fellowship|Beanstalk) /)),
   };
 };
