@@ -34,7 +34,6 @@ import {
 import { push } from 'actions/navigate';
 import { calculateLabor } from 'actions/proficiencies';
 import cn from 'classnames';
-import AdContainer from 'components/AdContainer';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
@@ -453,7 +452,6 @@ class RecipeViewer extends Component {
               ))}
             </Collapse>
           </div>
-          <AdContainer type="horizontal" data-id={recipeId} />
           <Divider />
           <div className="material-breakdown">
             <div className="material-header">
@@ -604,7 +602,13 @@ class RecipeViewer extends Component {
   }
 }
 
-const mapStateToProps = ({ gameData: { items, recipes, categories, subCategories }, proficiencies, itemPrice, display: { mobile }, folio }, { recipeId }) => ({
+const mapStateToProps = ({
+                           gameData: { items, recipes, categories, subCategories },
+                           proficiencies,
+                           itemPrice,
+                           display: { mobile },
+                           folio,
+                         }, { recipeId }) => ({
   items,
   proficiencies,
   recipes,

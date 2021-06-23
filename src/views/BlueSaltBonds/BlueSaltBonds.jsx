@@ -8,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import HomeIcon from '@material-ui/icons/Home';
 import { openDialog } from 'actions/display';
-import AdContainer from 'components/AdContainer';
 import {
   DIALOG_MY_GAME,
   SERVER,
@@ -49,8 +48,6 @@ class BlueSaltBonds extends Component {
           <CurrentBonds />
           <BondCalculator />
         </div>
-
-        <AdContainer type="horizontal" />
       </div>
     );
   }

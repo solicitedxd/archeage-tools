@@ -13,19 +13,15 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
   openDialog,
   setDarkMode,
-  setHideAds,
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
 import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
-import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
@@ -35,15 +31,11 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import {
-  injectPatreon,
-  isMobileBrowser,
-} from 'utils/display';
+import { isMobileBrowser } from 'utils/display';
 import NavMenu from './NavMenu';
 
 class DesktopNavigation extends Component {
   static propTypes = {
-    mobile: bool,
     setMobile: func,
     darkMode: bool,
     setDarkMode: func,
@@ -57,31 +49,13 @@ class DesktopNavigation extends Component {
   };
 
   static defaultProps = {
-    mobile: false,
     darkMode: false,
     userMenu: null,
     hideAds: false,
   };
 
-  UNSAFE_componentWillReceiveProps(nextProps) {
-    const wasPatron = this.props.session.patreon && this.props.session.patreon.pledge > 0;
-    const isNotPatron = !nextProps.session.patreon || nextProps.session.patreon.pledge === 0;
-    if ((wasPatron && isNotPatron) || (isNotPatron && this.props.mobile !== nextProps.mobile)) {
-      injectPatreon();
-    }
-  }
-
-  componentDidMount() {
-    const { session } = this.props;
-
-    // load Patreon button script post-load
-    if (pathOr(0, ['patreon', 'pledge'])(session) === 0) {
-      injectPatreon();
-    }
-  }
-
   render() {
-    const { mobile, setMobile, darkMode, setDarkMode, menuItems, session, myAccountUrl, openDialog, hideAds, setHideAds } = this.props;
+    const { setMobile, darkMode, setDarkMode, menuItems, session, myAccountUrl, openDialog } = this.props;
 
     return (
       <>
@@ -94,11 +68,6 @@ class DesktopNavigation extends Component {
         </Tooltip>}
         {session.isAuthenticated &&
         <Typography className="user-welcome">Hello, <b>{session.username}</b>!</Typography>}
-        {!mobile && pathOr(0, ['patreon', 'pledge'])(session) === 0 &&
-        <div className="user-welcome">
-          <a href="https://www.patreon.com/bePatron?u=12806740" target="_blank" rel="noreferrer"
-             data-patreon-widget-type="become-patron-button">Become a Patron!</a>
-        </div>}
         <NavMenu
           name="My Account"
           button={
@@ -134,12 +103,6 @@ class DesktopNavigation extends Component {
                 <PhoneIphoneIcon />
               </div>
             </MenuItem>}
-            <MenuItem onClick={() => setHideAds(!hideAds)}>
-              <div className="menu-item-icon">
-                <span>{hideAds ? 'Show' : 'Hide'} Ads</span>
-                {hideAds ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </div>
-            </MenuItem>
           </>
         </NavMenu>
       </>
@@ -155,7 +118,6 @@ const mapDispatchToProps = {
   setDarkMode,
   setMobile,
   openDialog,
-  setHideAds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DesktopNavigation);

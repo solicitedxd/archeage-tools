@@ -35,7 +35,6 @@ import {
   setTransportationQuantity,
   setWar,
 } from 'actions/tradepacks';
-import AdContainer from 'components/AdContainer';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
 import ItemLink from 'components/Item/ItemLink';
@@ -751,7 +750,6 @@ class PackViewer extends Component {
               </TableBody>
             </Table>
           </div>
-          <AdContainer section={false} type="horizontal" />
         </DialogContent>
       </Dialog>
     );

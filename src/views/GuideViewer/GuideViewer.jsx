@@ -10,7 +10,6 @@ import {
   Typography,
 } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import AdContainer from 'components/AdContainer';
 import KeyComponent from 'components/KeyComponent';
 import Link from 'components/Link';
 import ScrollToTop from 'components/ScrollToTop';
@@ -114,10 +113,7 @@ class GuideViewer extends Component {
                     </div>
                   </>}
                 </Paper>
-                {(sId + 1) % 3 === 0 &&
-                <AdContainer type="horizontal" />}
-              </React.Fragment>
-              ),
+              </React.Fragment>),
             )}
           </div>
           {!mobile &&
@@ -144,7 +140,6 @@ class GuideViewer extends Component {
                 ))}
               </div>
             </Paper>
-            <AdContainer type="square" />
           </Sticky>}
         </div>
         <ScrollToTop />
