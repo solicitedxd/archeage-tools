@@ -29,7 +29,6 @@ import {
   speak,
 } from 'actions/schedule';
 import cn from 'classnames';
-import AdContainer from 'components/AdContainer';
 import IfPerm from 'components/IfPerm';
 import { REGIONS } from 'constants/myGame';
 import {
@@ -461,8 +460,6 @@ class Schedule extends Component {
             </Toolbar>
           </AppBar>
         </Paper>
-        {mobile &&
-        <AdContainer type="feed" />}
         <div className={cn('section', 'schedule-categories')} ref={this.ref}>
           {!objectHasProperties(eventTypes) &&
           <CircularProgress size={64} color="primary" style={{ width: 'center' }} />}
@@ -492,7 +489,6 @@ class Schedule extends Component {
           open={editOpen}
           id={editId}
         />
-        <AdContainer type="horizontal" />
       </div>
     );
   }

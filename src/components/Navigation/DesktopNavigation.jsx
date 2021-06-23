@@ -13,13 +13,10 @@ import Brightness4Icon from '@material-ui/icons/Brightness4';
 import BrightnessHighIcon from '@material-ui/icons/BrightnessHigh';
 import PersonIcon from '@material-ui/icons/Person';
 import PhoneIphoneIcon from '@material-ui/icons/PhoneIphone';
-import VisibilityIcon from '@material-ui/icons/Visibility';
-import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
   openDialog,
   setDarkMode,
-  setHideAds,
   setMobile,
 } from 'actions/display';
 import cn from 'classnames';
@@ -81,7 +78,7 @@ class DesktopNavigation extends Component {
   }
 
   render() {
-    const { mobile, setMobile, darkMode, setDarkMode, menuItems, session, myAccountUrl, openDialog, hideAds, setHideAds } = this.props;
+    const { mobile, setMobile, darkMode, setDarkMode, menuItems, session, myAccountUrl, openDialog } = this.props;
 
     return (
       <>
@@ -134,12 +131,6 @@ class DesktopNavigation extends Component {
                 <PhoneIphoneIcon />
               </div>
             </MenuItem>}
-            <MenuItem onClick={() => setHideAds(!hideAds)}>
-              <div className="menu-item-icon">
-                <span>{hideAds ? 'Show' : 'Hide'} Ads</span>
-                {hideAds ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </div>
-            </MenuItem>
           </>
         </NavMenu>
       </>
@@ -155,7 +146,6 @@ const mapDispatchToProps = {
   setDarkMode,
   setMobile,
   openDialog,
-  setHideAds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(DesktopNavigation);

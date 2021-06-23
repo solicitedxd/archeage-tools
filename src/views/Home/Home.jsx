@@ -11,7 +11,6 @@ import CreateIcon from '@material-ui/icons/Create';
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import { push } from 'actions/navigate';
-import AdContainer from 'components/AdContainer';
 import Banner from 'components/Banner';
 import IfPerm from 'components/IfPerm';
 import config from 'config';
@@ -95,7 +94,6 @@ class Home extends Component {
       <div className="news-container section" key="news-main">
         <div className="home-banners">
           {banners.map(banner => <Banner {...banner} key={banner.name} />)}
-          <AdContainer type="square" section={false} />
         </div>
         <div className="news-list">
           {loading && [0, 1, 2, 3, 4].map(i => <NewsPost loading={true} key={`loading-${i}`} />)}

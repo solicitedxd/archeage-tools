@@ -29,7 +29,6 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import 'styles/index';
-import { watchAdStyle } from 'utils/display';
 
 class Main extends React.PureComponent {
   static propTypes = {
@@ -115,11 +114,6 @@ class Main extends React.PureComponent {
     if (session.access_token) {
       fetchMe();
     }
-
-    // prevent adsense from applying height to content wrapper
-    window.ready('.content-wrapper, .MuiDialog-container', (element) => {
-      watchAdStyle(element);
-    });
   }
 
   render() {

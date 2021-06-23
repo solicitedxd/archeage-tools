@@ -32,7 +32,6 @@ import {
   setOnlyObtainable,
 } from 'actions/mounts';
 import cn from 'classnames';
-import AdContainer from 'components/AdContainer';
 import SelectField from 'components/SelectField';
 import SkillIcon from 'components/Skill/SkillIcon';
 import MOUNT_OBTAIN from 'data/mounts';
@@ -142,7 +141,7 @@ class Mounts extends Component {
 
   render() {
     const { search, mountType, obtainTypes, speed, order, orderBy } = this.state;
-    const { match: { params: { mount } }, displayGrid, setDisplayGrid, onlyObtainable, setOnlyObtainable, mobile } = this.props;
+    const { match: { params: { mount } }, displayGrid, setDisplayGrid, onlyObtainable, setOnlyObtainable } = this.props;
     const { mounts: mountData, types, mountObtainTypes } = this.props;
 
     if (!mount) {
@@ -293,8 +292,6 @@ class Mounts extends Component {
             </div>
           </div>
         </Paper>
-        {mobile &&
-        <AdContainer type="feed" />}
         {displayGrid
           ? <div className="section">
             <div className="mount-grid">
@@ -424,18 +421,16 @@ class Mounts extends Component {
           id={mount}
           onClose={() => this.props.history.push('/mounts')}
         />
-        <AdContainer type="horizontal" />
       </>
     );
   }
 }
 
-const mapStateToProps = ({ display: { mobile }, mounts: mountData, gameData: { mounts: { mounts, types, obtainTypes } } }) => ({
+const mapStateToProps = ({ mounts: mountData, gameData: { mounts: { mounts, types, obtainTypes } } }) => ({
   ...mountData,
   mounts,
   types,
   mountObtainTypes: obtainTypes,
-  mobile,
 });
 
 const mapDispatchToProps = {

@@ -33,7 +33,6 @@ import {
   setHostileBuilding,
 } from 'actions/taxes';
 import cn from 'classnames';
-import AdContainer from 'components/AdContainer';
 import CharacterDialog from 'components/CharacterDialog/CharacterDialog';
 import Currency from 'components/Currency';
 import Item from 'components/Item';
@@ -507,11 +506,8 @@ class Taxes extends Component {
                 </TableBody>
               </Table>
             </div>
-            {!mobile &&
-            <AdContainer section={false} type="square" />}
           </div>
         </Paper>
-        {mobile && <AdContainer type="feed" />}
         <Paper className="section">
           <AppBar position="static">
             <Toolbar variant="dense">
@@ -572,7 +568,6 @@ class Taxes extends Component {
               character={character}
             />}
         </Paper>
-        <AdContainer type="horizontal" />
         <CharacterDialog
           characterId={editId}
           open={editOpen}
