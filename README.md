@@ -3,7 +3,7 @@
 ## Project Setup
 In order to run, this project requires:
 - [NodeJS](https://nodejs.org/)
-- Node Package Manager ([Yarn](https://yarnpkg.com))
+- Node Package Manager ([Yarn](https://yarnpkg.com) recommended)
 
 Once cloned, run an install:
 `yarn install`
@@ -19,8 +19,8 @@ Then add the following proxies to your httpd.conf:
 ProxyPass /session/ http://www.mokulu.io/session/
 ProxyPassReverse /session/ http://www.mokulu.io/session/
 
-ProxyPass /service/ http://archeage.mokulu.io/service/
-ProxyPassReverse /service/ http://archeage.mokulu.io/service/
+ProxyPass /service/ http://archeage-api.mokulu.io/
+ProxyPassReverse /service/ http://archeage-api.mokulu.io/
 
 ProxyPass / http://localhost:3000/
 ```
@@ -36,7 +36,7 @@ Add this to the site's web.config under `<system.webServer>`:
                 <rule name="ArcheAge Tools Service Proxy" enabled="true" stopProcessing="true">
                     <match url="service/(.*)" />
                     <conditions logicalGrouping="MatchAll" trackAllCaptures="false" />
-                    <action type="Rewrite" url="http://archeage.mokulu.io/service/{R:1}" />
+                    <action type="Rewrite" url="http://archeage-api.mokulu.io/{R:1}" />
                 </rule>
                 <rule name="Mokulu.io Session Proxy" enabled="true" stopProcessing="true">
                     <match url="session/(.*)" />
@@ -75,5 +75,3 @@ Due to cookies being created on the mokulu.io domain, the site will work best by
 
 ## Useful Links
 - [Material UI](https://material-ui.com/)
-
-*To Do: Expose the ArcheAge Service API*
