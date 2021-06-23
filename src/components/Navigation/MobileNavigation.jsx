@@ -31,7 +31,6 @@ import DiscordButton from 'components/DiscordButton';
 import Link from 'components/Link';
 import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
-import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   array,
@@ -41,7 +40,6 @@ import {
   string,
 } from 'react-proptypes';
 import { connect } from 'react-redux';
-import { injectPatreon } from 'utils/display';
 
 class MobileNavigation extends Component {
   static propTypes = {
@@ -99,10 +97,6 @@ class MobileNavigation extends Component {
       openDialog,
     } = this.props;
     const { expanded } = this.state;
-
-    if (pathOr(0, ['patreon', 'pledge'])(session) === 0 && mobile && open) {
-      injectPatreon();
-    }
 
     return (
       <>
@@ -204,13 +198,6 @@ class MobileNavigation extends Component {
               </List>
             </Collapse>
             <Divider />
-            {pathOr(0, ['patreon', 'pledge'])(session) === 0 &&
-            <ListItem>
-              <div style={{ margin: 'auto' }}>
-                {<a href="https://www.patreon.com/bePatron?u=12806740" target="_blank" rel="noreferrer"
-                    data-patreon-widget-type="become-patron-button">Become a Patron!</a>}
-              </div>
-            </ListItem>}
             <ListItem>
               <div style={{ margin: 'auto' }}>
                 <DiscordButton />
