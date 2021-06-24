@@ -66,8 +66,6 @@ class DesktopNavigation extends Component {
             <WarningIcon className="verify-warn" />
           </MuiLink>
         </Tooltip>}
-        {session.isAuthenticated &&
-        <Typography className="user-welcome">Hello, <b>{session.username}</b>!</Typography>}
         <NavMenu
           name="My Account"
           button={

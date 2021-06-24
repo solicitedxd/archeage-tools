@@ -28,6 +28,7 @@ import {
 import { push } from 'actions/navigate';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
+import DonateButton from 'components/DonateButton';
 import Link from 'components/Link';
 import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
@@ -201,6 +202,11 @@ class MobileNavigation extends Component {
             <ListItem>
               <div style={{ margin: 'auto' }}>
                 <DiscordButton />
+              </div>
+            </ListItem>
+            <ListItem>
+              <div style={{ margin: 'auto' }}>
+                <DonateButton />
               </div>
             </ListItem>
           </List>

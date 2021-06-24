@@ -15,6 +15,7 @@ import { clearNotification } from 'actions/notification';
 import { fetchMe } from 'actions/session';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
+import DonateButton from 'components/DonateButton';
 import Proficiencies from 'components/MyGame';
 import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
@@ -157,7 +158,11 @@ class Main extends React.PureComponent {
               <Link href="https://www.mokulu.io/privacy-policy" color="inherit" target="_blank">
                 <Typography>Privacy Policy</Typography>
               </Link>
-              {!mobile && <DiscordButton />}
+              {!mobile &&
+              <>
+                <DiscordButton />
+                <DonateButton />
+              </>}
             </div>
           </footer>
 
