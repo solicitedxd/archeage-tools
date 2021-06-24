@@ -1,5 +1,4 @@
 /** Variables **/
-$patreon: rgb(232, 91, 70);
 $discord: #7289DA;
 $layoutWidth: 1200px;
 
@@ -118,10 +117,6 @@ footer.site-footer {
 .avatar {
   border: 2px solid;
   background-color: #E2E2E2;
-
-  &.patreon {
-    border-color: $patreon;
-  }
 
   &.discord {
     border-color: $discord;
@@ -739,10 +734,6 @@ blockquote cite:before {
  */
 .role-admin {
   color: #9B59B6 !important;
-}
-
-.role-patron {
-  color: #E67E22 !important;
 }
 
 .role-contributor {

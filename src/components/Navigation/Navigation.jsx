@@ -77,19 +77,14 @@ class Navigation extends Component {
       menuItems.push(<MenuItem onClick={this.handleNavigate('login')} key="login">Login</MenuItem>);
       menuItems.push(<MenuItem onClick={this.handleNavigate('register')} key="create">Create Account</MenuItem>);
       session.avatar = null;
-      session.patreon = null;
       session.discord = null;
     }
 
-    const patreonAvatar = pathOr(null, ['patreon', 'avatar'])(session);
     const discordAvatar = pathOr(null, ['discord', 'avatar'])(session);
-    const defaultAvatar = discordAvatar || patreonAvatar;
+    const defaultAvatar = discordAvatar;
     switch (session.avatar) {
       case 0:
         session.avatarSrc = discordAvatar;
-        break;
-      case 1:
-        session.avatarSrc = patreonAvatar;
         break;
       default:
         session.avatarSrc = defaultAvatar;
@@ -100,9 +95,6 @@ class Navigation extends Component {
     switch (session.avatarSrc) {
       case null:
         session.avatarPlatform = null;
-        break;
-      case patreonAvatar:
-        session.avatarPlatform = 'patreon';
         break;
       case discordAvatar:
         session.avatarPlatform = 'discord';
