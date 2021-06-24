@@ -14,6 +14,7 @@ import {
   findClassName,
 } from 'actions/gameData';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import {
   DEFAULT_ANCESTRALS,
   DEFAULT_SKILLS,
@@ -275,6 +276,7 @@ class Skills extends Component {
             />,
           )}
         </div>
+        <AdContainer type="horizontal" />
       </div>
     );
   }

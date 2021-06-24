@@ -5,6 +5,7 @@ export default {
   darkMode: (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
   dialog: null,
   dialogFunc: null,
+  hideAds: false,
 };
 
 export const override = {

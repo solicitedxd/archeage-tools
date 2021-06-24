@@ -3,6 +3,7 @@ import {
   DARK_MODE,
   DISPLAY_MOBILE,
   OPEN_DIALOG,
+  SET_HIDE_ADS,
 } from 'constants/display';
 import initialState from 'initialStates/display';
 import { getItem } from 'utils/localStorage';
@@ -29,6 +30,11 @@ const display = (state = getItem('display', initialState), action) => {
       return {
         ...state,
         dialog: null,
+      };
+    case SET_HIDE_ADS:
+      return {
+        ...state,
+        hideAds: action.hideAds,
       };
     default:
       return state;
