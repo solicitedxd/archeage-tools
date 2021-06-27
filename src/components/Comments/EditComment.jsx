@@ -16,10 +16,7 @@ import {
 import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {
-  getCharCountOfContentString,
-  substitute,
-} from 'utils/string';
+import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 
 const MAX_LENGTH = 1000;
@@ -53,6 +50,7 @@ class EditComment extends Component {
     this.state = {
       ...otherProps,
       loading: false,
+      charCount: 0,
     };
   }
 
@@ -83,13 +81,14 @@ class EditComment extends Component {
 
   handleSave = (body) => {
     const { id, postId, reply, onUpdateComments, onCancel, setNotification } = this.props;
+    const { charCount } = this.state;
 
-    const contentLength = getCharCountOfContentString(body);
-    if (contentLength < 10) {
+    // const contentLength = getCharCountOfContentString(body);
+    if (charCount < 10) {
       setNotification('Please use at least 10 characters.', NOTIFICATION_TYPE.WARNING);
       return;
     }
-    if (contentLength > MAX_LENGTH) {
+    if (charCount > MAX_LENGTH) {
       setNotification(`You cannot use more than ${MAX_LENGTH} characters.`, NOTIFICATION_TYPE.WARNING);
       return;
     }
@@ -116,11 +115,13 @@ class EditComment extends Component {
     });
   };
 
+  handleCharCount = (charCount) => this.setState({ charCount });
+
   render() {
     const { depth, onCancel, id, replyUser } = this.props;
     const { body, loading } = this.state;
     let title = 'Editing Comment';
-    if (id) {
+    if (!id) {
       if (replyUser) {
         title = `Replying to ${replyUser}`;
       } else {
@@ -143,6 +144,7 @@ class EditComment extends Component {
             readOnly={loading}
             noMargin
             maxLength={MAX_LENGTH}
+            getCharCount={this.handleCharCount}
           />
         </div>
       </Paper>

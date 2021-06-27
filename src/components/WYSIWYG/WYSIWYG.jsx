@@ -2,15 +2,13 @@ import {
   Button,
   Typography,
 } from '@material-ui/core';
+import { Editor } from '@toast-ui/react-editor';
 import cn from 'classnames';
 import {
-  customControls,
   EDITOR_TYPE,
-  inlineToolbar,
   toolbar,
 } from 'components/WYSIWYG/controls';
-import { convertToRaw } from 'draft-js';
-import Editor from 'mui-rte';
+import { pathOr } from 'ramda';
 import React, { Component } from 'react';
 import {
   bool,
@@ -19,10 +17,6 @@ import {
   oneOf,
   string,
 } from 'react-proptypes';
-import {
-  getCharCountOfContentState,
-  stringToContentState,
-} from 'utils/string';
 
 class WYSIWYG extends Component {
   static propTypes = {
@@ -33,68 +27,82 @@ class WYSIWYG extends Component {
     type: oneOf(Object.values(EDITOR_TYPE)).isRequired,
     noMargin: bool,
     maxLength: number,
+    height: string,
+    getCharCount: func,
   };
 
   static defaultProps = {
-    value: null,
+    value: '',
     onSave: null,
     noMargin: false,
     maxLength: 0,
+    height: '240px',
   };
 
   state = {
-    editorState: null,
+    remChars: null,
   };
 
   ref = React.createRef();
 
-  setEditorState = (editorState) => {
-    this.setState({ editorState });
-  };
+  componentDidUpdate(prevProps) {
+    if (prevProps.value !== this.props.value) {
+      this.ref.current.editorInst.setMarkdown(this.props.value);
+    }
+  }
 
   handleSave = () => {
-    const { editorState } = this.state;
     const { onSave } = this.props;
+
     if (onSave) {
-      if (editorState) {
-        onSave(JSON.stringify(convertToRaw(editorState.getCurrentContent())));
-      } else {
-        onSave(stringToContentState());
-      }
+      onSave(this.ref.current.editorInst.getMarkdown());
+    }
+  };
+
+  onChange = () => {
+    const { maxLength, getCharCount } = this.props;
+    let text = pathOr('', ['current', 'editorInst', 'wwEditor', 'el', 'innerText'])(this.ref);
+    // remove line breaks
+    text = text.trim();
+    text = text.replaceAll('\r', '');
+    text = text.replaceAll('\n', '');
+    const chars = text.length;
+
+    const remChars = maxLength > 0 && this.ref.current !== null
+      ? Math.max(0, maxLength - chars)
+      : maxLength;
+    if (this.ref.current) {
+      this.setState({ remChars });
+    }
+    if (getCharCount) {
+      getCharCount(chars);
     }
   };
 
   render() {
     // eslint-disable-next-line no-unused-vars
     const { value, onSave, type, onCancel, noMargin, maxLength, ...otherProps } = this.props;
-    const { editorState } = this.state;
-
-    const remChars = maxLength > 0 && editorState !== null
-      ? Math.max(0, maxLength - getCharCountOfContentState(editorState.getCurrentContent()))
-      : maxLength;
+    const { remChars } = this.state;
 
     return (
       <div className={cn('editor-container', { 'no-margin': noMargin })}>
         <Editor
-          {...otherProps}
           ref={this.ref}
-          controls={toolbar[type]}
-          customControls={customControls(this.ref)}
-          inlineToolbar={true}
-          inlineToolbarControls={inlineToolbar[type]}
-          value={value}
-          onChange={this.setEditorState}
-          maxLength={maxLength > 0 ? maxLength : null}
+          initialEditType="wysiwyg"
+          usageStatistics={false}
+          hideModeSwitch={true}
+          initialValue={value}
+          toolbarItems={toolbar[type]}
+          {...otherProps}
+          onChange={this.onChange}
         />
         <div className="buttons">
           {maxLength > 0 &&
           <Typography className={cn('rem-chars', { 'none': remChars === 0 })} variant="body2">
-            Remaining Characters: {remChars}
+            Remaining Characters: {remChars || maxLength}
           </Typography>}
           {onCancel &&
-          <Button
-            onClick={onCancel}
-          >
+          <Button onClick={onCancel}>
             Cancel
           </Button>}
           <Button
