@@ -19,15 +19,19 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import MenuIcon from '@material-ui/icons/Menu';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import WarningIcon from '@material-ui/icons/Warning';
 import {
   openDialog,
   setDarkMode,
+  setHideAds,
   setMobile,
 } from 'actions/display';
 import { push } from 'actions/navigate';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
+import DonateButton from 'components/DonateButton';
 import Link from 'components/Link';
 import { DIALOG_MY_GAME } from 'constants/display';
 import navigation from 'constants/navigation';
@@ -95,6 +99,8 @@ class MobileNavigation extends Component {
       handleOpen,
       handleClose,
       openDialog,
+      hideAds,
+      setHideAds,
     } = this.props;
     const { expanded } = this.state;
 
@@ -195,12 +201,21 @@ class MobileNavigation extends Component {
                   <ListItemIcon><DesktopWindowsIcon /></ListItemIcon>
                   <ListItemText primary="Switch to Desktop" />
                 </ListItem>
+                <ListItem button onClick={() => setHideAds(!hideAds)}>
+                  <ListItemIcon>{hideAds ? <VisibilityIcon /> : <VisibilityOffIcon />}</ListItemIcon>
+                  <ListItemText primary={hideAds ? 'Show Ads' : 'Hide Ads'} />
+                </ListItem>
               </List>
             </Collapse>
             <Divider />
             <ListItem>
               <div style={{ margin: 'auto' }}>
                 <DiscordButton />
+              </div>
+            </ListItem>
+            <ListItem>
+              <div style={{ margin: 'auto' }}>
+                <DonateButton />
               </div>
             </ListItem>
           </List>
@@ -218,6 +233,7 @@ const mapDispatchToProps = {
   setDarkMode,
   setMobile,
   openDialog,
+  setHideAds,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MobileNavigation);

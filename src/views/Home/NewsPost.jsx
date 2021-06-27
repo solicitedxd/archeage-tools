@@ -15,11 +15,11 @@ import { push } from 'actions/navigate';
 import { setNotification } from 'actions/notification';
 import cn from 'classnames';
 import Comments from 'components/Comments/Comments';
-import DraftJSRender from 'components/DraftJSRender';
 import IfPerm from 'components/IfPerm/IfPerm';
 import Link from 'components/Link';
 import OptionalTooltip from 'components/OptionalTooltip';
 import Username from 'components/Username';
+import Viewer from 'components/WYSIWYG/Viewer';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
@@ -31,7 +31,6 @@ import {
 import { connect } from 'react-redux';
 import { isNumber } from 'utils/number';
 import {
-  stringToContentState,
   substitute,
 } from 'utils/string';
 import xhr from 'utils/xhr';
@@ -138,7 +137,8 @@ class NewsPost extends Component {
           </AppBar>
           {!loading &&
           <Paper>
-            <DraftJSRender contentState={stringToContentState(body)} />
+            {/* <DraftJSRender contentState={stringToContentState(body)} />*/}
+            <Viewer value={body} />
             {(!standalone || mobile) &&
             <CardActions className="paper-action" disableSpacing>
               {!standalone &&

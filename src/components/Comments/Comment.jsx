@@ -17,9 +17,9 @@ import ReplyIcon from '@material-ui/icons/Reply';
 import { setNotification } from 'actions/notification';
 import Avatar from 'components/Avatar';
 import EditComment from 'components/Comments/EditComment';
-import DraftJSRender from 'components/DraftJSRender';
 import IfPerm from 'components/IfPerm';
 import Username from 'components/Username';
+import Viewer from 'components/WYSIWYG/Viewer';
 import config from 'config';
 import { NOTIFICATION_TYPE } from 'constants/notification';
 import moment from 'moment';
@@ -34,10 +34,7 @@ import {
 } from 'react-proptypes';
 import { connect } from 'react-redux';
 import { sortBy } from 'utils/array';
-import {
-  stringToContentState,
-  substitute,
-} from 'utils/string';
+import { substitute } from 'utils/string';
 import xhr from 'utils/xhr';
 
 class Comment extends Component {
@@ -99,7 +96,19 @@ class Comment extends Component {
   };
 
   render() {
-    const { id, postId, body, author, createDate, editDate, replies, deleted, depth, onUpdateComments, sortAsc } = this.props;
+    const {
+      id,
+      postId,
+      body,
+      author,
+      createDate,
+      editDate,
+      replies,
+      deleted,
+      depth,
+      onUpdateComments,
+      sortAsc,
+    } = this.props;
     const { collapsed, reply, edit, deleteOpen } = this.state;
     const isEdited = (editDate && editDate !== createDate) && !deleted;
 
@@ -128,7 +137,7 @@ class Comment extends Component {
           </div>
           <Collapse in={!collapsed}>
             {!edit
-              ? <DraftJSRender contentState={stringToContentState(body)} />
+              ? <Viewer value={body} />
               : <EditComment
                 {...this.props}
                 onCancel={this.setEdit(false)}
@@ -196,7 +205,7 @@ class Comment extends Component {
             </Toolbar>
           </AppBar>
           <DialogContent style={{ minHeight: 92 }}>
-            <blockquote><DraftJSRender contentState={stringToContentState(body)} raw /></blockquote>
+            <blockquote><Viewer value={body} /></blockquote>
             <Typography>Are you sure you want to delete this comment?</Typography>
           </DialogContent>
           <DialogActions>

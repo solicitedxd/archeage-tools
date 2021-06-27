@@ -1,5 +1,4 @@
 /** Variables **/
-$patreon: rgb(232, 91, 70);
 $discord: #7289DA;
 $layoutWidth: 1200px;
 
@@ -118,10 +117,6 @@ footer.site-footer {
 .avatar {
   border: 2px solid;
   background-color: #E2E2E2;
-
-  &.patreon {
-    border-color: $patreon;
-  }
 
   &.discord {
     border-color: $discord;
@@ -563,6 +558,26 @@ blockquote cite:before {
   }
 }
 
+.donate-button {
+  height: 29px;
+  display: block;
+  background-color: #0070BA;
+  border-radius: 99px;
+  color: #FFFFFF;
+  text-shadow: none;
+  text-decoration: none;
+  padding: 2px 20px;
+
+  font-size: 14px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 31px;
+
+  &:hover {
+    background-color: #003087;
+  }
+}
+
 .form-control {
   width: 220px;
 
@@ -719,10 +734,6 @@ blockquote cite:before {
  */
 .role-admin {
   color: #9B59B6 !important;
-}
-
-.role-patron {
-  color: #E67E22 !important;
 }
 
 .role-contributor {

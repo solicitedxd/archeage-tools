@@ -15,6 +15,7 @@ import { clearNotification } from 'actions/notification';
 import { fetchMe } from 'actions/session';
 import cn from 'classnames';
 import DiscordButton from 'components/DiscordButton';
+import DonateButton from 'components/DonateButton';
 import Proficiencies from 'components/MyGame';
 import Navigation from 'components/Navigation';
 import Notification from 'components/Notification';
@@ -29,6 +30,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Link as RouterLink } from 'react-router-dom';
 import 'styles/index';
+import { watchAdStyle } from 'utils/display';
 
 class Main extends React.PureComponent {
   static propTypes = {
@@ -114,6 +116,11 @@ class Main extends React.PureComponent {
     if (session.access_token) {
       fetchMe();
     }
+
+    // prevent adsense from applying height to content wrapper
+    window.ready('.content-wrapper, .MuiDialog-container', (element) => {
+      watchAdStyle(element);
+    });
   }
 
   render() {
@@ -157,7 +164,11 @@ class Main extends React.PureComponent {
               <Link href="https://www.mokulu.io/privacy-policy" color="inherit" target="_blank">
                 <Typography>Privacy Policy</Typography>
               </Link>
-              {!mobile && <DiscordButton />}
+              {!mobile &&
+              <>
+                <DiscordButton />
+                <DonateButton />
+              </>}
             </div>
           </footer>
 

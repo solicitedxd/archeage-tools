@@ -142,6 +142,7 @@ class EditNewsPost extends Component {
   render() {
     const { match: { params: { postId, action } } } = this.props;
     const { formData: { title, author, body }, createDate, editDate, loading, deleteConfirm } = this.state;
+    const isEdited = (editDate && editDate !== createDate);
 
     return (
       <div className="section">
@@ -162,10 +163,10 @@ class EditNewsPost extends Component {
                 <Typography variant="h5">{title || 'untitled'}</Typography>
                 <Typography variant="subtitle2" className="news-author title-text">&nbsp;by {author}</Typography>
                 <OptionalTooltip
-                  title={editDate ? `Edited: ${new Date(editDate).toLocaleString(navigator.language || 'en-US')}`
+                  title={isEdited ? `Edited: ${new Date(editDate).toLocaleString(navigator.language || 'en-US')}`
                     : null}
                 >
-                  <Typography variant="overline" className={editDate ? 'mark-tooltip' : ''}>
+                  <Typography variant="overline" className={isEdited ? 'mark-tooltip' : ''}>
                     {moment(createDate).format('MMM DD, YYYY')}
                   </Typography>
                 </OptionalTooltip>
@@ -195,8 +196,9 @@ class EditNewsPost extends Component {
                 type={EDITOR_TYPE.NEWS}
                 value={body}
                 onSave={this.handleSubmit}
-                label="Start typing..."
+                placeholder="Start typing..."
                 readOnly={loading}
+                height="500px"
               />
             </div>
           </form>

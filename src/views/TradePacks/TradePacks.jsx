@@ -46,6 +46,7 @@ import {
   setWar,
 } from 'actions/tradepacks';
 import cn from 'classnames';
+import AdContainer from 'components/AdContainer';
 import Item from 'components/Item';
 import NumberField from 'components/NumberField';
 import {
@@ -327,6 +328,8 @@ class TradePacks extends Component {
             <Button color="primary" onClick={this.handleReset}>Confirm</Button>
           </DialogActions>
         </Dialog>
+        {mobile &&
+        <AdContainer type="horizontal" />}
         {tradePackData.length === 0 &&
         <CircularProgress size={72} style={{ display: 'block', margin: 'auto' }} />}
         {tradePackData.length > 0 &&
@@ -496,6 +499,7 @@ class TradePacks extends Component {
           onClose={this.toggleCompare}
           open={compare}
         />
+        <AdContainer type="horizontal" />
       </div>
     );
   }
