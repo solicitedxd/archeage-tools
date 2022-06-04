@@ -2,9 +2,6 @@
     "name": "@mokulu-io/archeage-tools",
     "version": "2.4.1",
     "description": "ArcheAge Tools App",
-    "engines": {
-        "node": "14.18.2"
-    },
     "main": "''",
     "scripts": {
         "build": "webpack --config webpack.production.config.js --progress --profile --colors",
@@ -35,18 +32,7 @@
         "moment": "^2.26.0",
         "moment-duration-format": "^2.3.2",
         "moment-timezone": "^0.5.31",
-<<<<<<< HEAD
-        "node-fetch": ">=2.6.1",
-        "node-forge": ">=0.10.0",
-        "node-gyp": ">=6.0.0",
-<<<<<<< HEAD
-        "node-sass": "7.0",
-=======
         "node-sass": "^4.14.1",
->>>>>>> parent of 6500f12a (teste)
-=======
-        "node-sass": "^4.14.1",
->>>>>>> parent of cdb56714 (sass)
         "ramda": "^0.27.0",
         "react": "^16.10.2",
         "react-dom": "^16.10.2",
