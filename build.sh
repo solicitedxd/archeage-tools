@@ -1,5 +1,5 @@
 #!/bin/sh
 git pull
 yarn
-yarn run build
+yarn run start
 
