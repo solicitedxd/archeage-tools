@@ -2,9 +2,6 @@
     "name": "@mokulu-io/archeage-tools",
     "version": "2.4.1",
     "description": "ArcheAge Tools App",
-    "engines": {
-        "node": "14.18.2"
-    },
     "main": "''",
     "scripts": {
         "build": "webpack --config webpack.production.config.js --progress --profile --colors",
