@@ -72,7 +72,7 @@ module.exports = {
     new DashboardPlugin(),
     new webpack.DefinePlugin({
       __VERSION__: JSON.stringify(pkg.version),
-      __DEVELOPMENT__: false,
+      __DEVELOPMENT__: true,
     }),
     new CopyWebpackPlugin({
       patterns: [
