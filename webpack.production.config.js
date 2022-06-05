@@ -61,6 +61,7 @@ module.exports = {
     allowedHosts: [
       'localhost',
       '.herokuapp.com',
+      'mokulurage.herokuapp.com'
     ],
     port: PORT,
     host: HOST,
