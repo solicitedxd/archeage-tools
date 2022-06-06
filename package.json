@@ -8,7 +8,7 @@
         "node": "14.18.2"
     },
     "scripts": {
-        "build": "chmod +x node_modules/webpack --config webpack.production.config.js --progress --profile --colors --verbose",
+        "build": "webpack --config webpack.production.config.js --progress --profile --colors --verbose",
         "start": "chmod +x node_modules/webpack-dev-server --progress --profile --colors --verbose",
         "dev": "chmod +x node_modules/webpack-dashboard -- webpack-dev-server --progress --profile --colors --verbose"
     },
