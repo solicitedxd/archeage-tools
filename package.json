@@ -9,8 +9,8 @@
     },
     "scripts": {
         "build": "webpack --config webpack.production.config.js",
-        "start": "chmod +x node_modules/webpack-dev-server",
-        "dev": "chmod +x node_modules/webpack-dashboard -- webpack-dev-server"
+        "start": "webpack-dev-server",
+        "dev": "webpack-dashboard -- webpack-dev-server"
     },
     "repository": "https://github.com/Mokulu-io/archeage-tools",
     "author": "Mokulu",
