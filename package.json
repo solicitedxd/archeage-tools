@@ -7,8 +7,8 @@
         "node": "14.18.2"
     },
     "scripts": {
-        "build": "webpack --config webpack.production.config.js --progress --profile --colors",
-        "start": "webpack-dev-server  --progress --profile --colors",
+        "build": "./node_modules/.bin/webpack --bail",
+        "start": "node ./server",
         "dev": "webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
     "repository": "https://github.com/Mokulu-io/archeage-tools",
