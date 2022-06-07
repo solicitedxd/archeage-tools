@@ -19,7 +19,7 @@ module.exports = {
     'react-hot-loader/patch',
     join(src, 'index'),
   ],
-  mode: 'development',
+  mode: 'production',
   devtool: process.env.WEBPACK_DEVTOOL || 'eval-source-map',
   output: {
     publicPath: '/',
