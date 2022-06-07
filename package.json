@@ -7,7 +7,7 @@
         "node": "14.19.0"
     },
     "scripts": {
-        "build": "./node_modules/.bin/webpack --bail",
+        "build": "./node_modules/.bin/webpack --bail --output public",
         "start": "node ./server",
         "dev": "webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
