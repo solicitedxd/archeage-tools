@@ -8,8 +8,8 @@
     },
     "scripts": {
         "build": "webpack --config webpack.config.js --progress --profile --colors",
-        "start": "webpack -d --config webpack.config.js --content-base public/ --progress --colors",
-        "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors"
+        "start": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors",
+        "dev": "webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
     "repository": "https://github.com/Mokulu-io/archeage-tools",
     "author": "Mokulu",
