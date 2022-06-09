@@ -3,6 +3,11 @@
     "version": "2.4.1",
     "description": "ArcheAge Tools App",
     "main": "''",
+    "engines": {
+        "node": "14.18.2",
+        "yarn": "1.22.15",
+        "npm": "6.14.15"
+    },
     "scripts": {
         "heroku-prebuild": "yarn install --dev",
         "build": "webpack --config webpack.production.config.js --env development --progress --profile --colors",
