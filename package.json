@@ -11,7 +11,7 @@
     "scripts": {
         "heroku-prebuild": "yarn install --dev",
         "build": "webpack --config webpack.production.config.js --env development --progress --profile --colors",
-        "start": "webpack-dev-server --env development --progress --profile --colors",
+        "start": "webpack-dev-server --port $PORT --host 0.0.0.0 --env development --progress --profile --colors",
         "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
     "repository": "https://github.com/Mokulu-io/archeage-tools",
