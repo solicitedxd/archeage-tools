@@ -60,8 +60,7 @@ module.exports = {
     historyApiFallback: true,
     allowedHosts: [
       'localhost',
-      '.herokuapp.com',
-      'mokulurage.herokuapp.com'
+      '.mokulu.io',
     ],
     port: PORT,
     host: HOST,
