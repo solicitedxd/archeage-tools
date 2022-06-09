@@ -7,7 +7,7 @@
         "node": "14.18.2"
     },
     "scripts": {
-        "build": "webpack --config webpack.production.config.js --progress --profile --colors",
+        "build": "webpack --config webpack.config.js --progress --profile --colors",
         "start": "webpack-dev-server -d --config webpack.config.js --content-base public/ --progress --colors",
         "dev": " webpack-dashboard -- webpack-dev-server --progress --profile --colors"
     },
