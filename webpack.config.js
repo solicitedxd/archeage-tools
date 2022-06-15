@@ -66,8 +66,7 @@ module.exports = {
       'mokulurage.herokuapp.com',
         '172.17.0.1',
         '127.0.0.1',
-        'artools.online',
-        'human-rooster-icg5t1n6x7fughljj9vzqwoe.herokudns.com'
+        'artools.online'
     ],
     port: PORT,
     host: HOST,
