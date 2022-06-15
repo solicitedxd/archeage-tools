@@ -49,6 +49,9 @@ module.exports = {
     rules: loaders,
   },
   devServer: {
+    compress: true,
+    public: "artools.online",
+    disableHostCheck: true,
     contentBase: join(root, 'public'),
     // do not print bundle build stats
     noInfo: true,
