@@ -45,8 +45,8 @@ class Home extends Component {
                "My job now is to map event times.\n\n" +
 
                "I'll be honest, I'm doing something very basic, but if you still like it "+
-               "and it's useful, I invite you to donate some gold in the game, send something to ' <b>Dyani</b> ' 🐱 "+
-               "but if you are some kind of dollar tycoon here goes my paypal ' <b>ferna126@hotmail.com</b> '\n\n" +
+               "and it's useful, I invite you to <b>donate</b> ❤ thanks!\n"+
+                   "Made by Mokulu and reused by ' <b>Dyani</b> ' ( in game nick ) 🐱 " +
                "Forgive me for my basic english of 'google translator'...\n\n\n\n"+
                "<img src='https://github.com/fernandogfo/archeage-tools/blob/data/static/images/leprechaun.png?raw=true'>",
                "author":  "Dyani",
