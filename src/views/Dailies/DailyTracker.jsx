@@ -458,102 +458,16 @@ class DailyTracker extends Component {
     );
 
     return (
-      <div className="daily-container">
-        <Paper className="section section-header">
-          <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h5">
-                Daily Tracker
-              </Typography>
-              {!mobile && ResetTimers}
-              <div className="title-text" />
-              {!mobile && ToggleButtons}
-              <FormControl className="color-white">
-                <InputLabel id="faction-label">Faction</InputLabel>
-                <Select
-                  labelId="faction-label"
-                  id="faction-select"
-                  value={Number(faction) || 1}
-                  onChange={(e) => setQuestFaction(e.target.value)}
-                >
-                  {Object.values(FACTIONS).map(faction =>
-                    <MenuItem key={`faction-${faction.id}`} value={faction.id}>{faction.name}</MenuItem>)}
-                </Select>
-              </FormControl>
-              <FormControl className="color-white">
-                <InputLabel id="region-label">Publisher</InputLabel>
-                <Select
-                  labelId="region-label"
-                  id="region-select"
-                  value={region}
-                  onChange={(e) => setQuestRegion(e.target.value)}
-                  className="region-opt"
-                >
-                  {Object.entries(QUEST_REGIONS).map(([region, publisher]) => (
-                    <MenuItem key={`region-${region}`} value={region}>{publisher}</MenuItem>
-                  ))}
-                </Select>
-              </FormControl>
-            </Toolbar>
-          </AppBar>
-        </Paper>
-        {mobile &&
-        <AppBar position="static" className="section">
-          <Toolbar>
-            {ResetTimers}
-            <div className="title-text" />
-            {ToggleButtons}
-          </Toolbar>
-        </AppBar>}
-        {mobile &&
-        <AppBar position="static" className="section">
-          <Toolbar variant="dense" disableGutters style={{ overflowX: 'auto' }}>
-            <div className="filter-field padded">
-              <ButtonGroup size="small">
-                {[...Object.values(rewardTypes), ...CUSTOM_REWARDS]
-                .filter(type => !HIDDEN_REWARDS.includes(type.name))
-                .map(type => (
-                  <Tooltip title={type.name} key={`reward-type-${type.id}`}>
-                    <Button
-                      variant={rewards.includes(type.id) ? 'contained' : 'outlined'}
-                      className={cn({ selected: rewards.includes(type.id) })}
-                      onClick={() => this.toggleRewardFilter(type.id)}
-                    >
-                      <span className={cn('dropdown-icon', type.icon)} />
-                    </Button>
-                  </Tooltip>
-                ))}
-              </ButtonGroup>
-            </div>
-          </Toolbar>
-        </AppBar>}
-        {categories.length === 0 &&
-        <div className="section" style={{ width: 128 }}>
-          <CircularProgress size={128} color="primary" />
-        </div>}
-        {categories.length > 0 &&
-        <div className="section daily-grid" ref={this.ref}>
-          {categories
-          .map((questCat, i) => {
-            if (questCat === 'ad') {
-              return (
-                <div className="daily-category" key={`quest-ad-${i}`}>
-                  <AdContainer section={false} content={true} type="feed" />
-                </div>
-              );
-            }
-            return (
-              <DailyCategory
-                key={`quest-cat-${questCat.id}`}
-                onUpdate={this._handleResize}
-                {...questCat}
-              />
-            );
-          })}
-        </div>}
-        <ScrollToTop />
-        <AdContainer type="horizontal" />
-      </div>
+        <>
+          <iframe
+              src="https://docs.google.com/spreadsheets/d/1TgNlSCWp-5XjJjiTMdfQqH-1oq5gEdC-xnyGq6SV7d8/edit?usp=sharing"
+              frameBorder="0"
+              marginHeight="0"
+              marginWidth="0"
+              width="100%"
+              height="1080"
+              scrolling="auto"></iframe>
+        </>
     );
   }
 }
