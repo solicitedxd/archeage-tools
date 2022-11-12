@@ -21,7 +21,7 @@ export const getHhmmss = (time) => {
 
 export const hhmmssToInt = (time) => {
   const [hh, mm, ss] = getHhmmss(time);
-  return hh + (mm / 60) + (ss / (60 * 60));
+  return hh + mm + ss;
 };
 
 export const getReminderTime = (eventTime, reminderOption) => {
