@@ -19,9 +19,14 @@ export const getHhmmss = (time) => {
   return time.split(':');
 };
 
-export const hhmmssToInt = (time) => {
+export const hhmmssToIntNoPrecision = (time) => {
   const [hh, mm, ss] = getHhmmss(time);
   return hh + mm + ss;
+};
+
+export const hhmmssToInt = (time) => {
+  const [hh, mm, ss] = getHhmmss(time);
+  return hh + (mm / 60) + (ss / (60 * 60));
 };
 
 export const getReminderTime = (eventTime, reminderOption) => {

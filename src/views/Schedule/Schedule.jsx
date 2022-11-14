@@ -63,6 +63,7 @@ import {
   getDayKey,
   getReminderTime,
   hhmmssToInt,
+  hhmmssToIntNoPrecision,
 } from 'utils/schedule';
 import { setTitle } from 'utils/string';
 import CargoShip from './CargoShip';
@@ -205,7 +206,7 @@ class Schedule extends Component {
     if (!times) return;
 
     // only look through one region's times
-    times = times.filter(time => !time.region || time.region === (region)).sort((a, b) => hhmmssToInt(a.time) - hhmmssToInt(b.time));
+    times = times.filter(time => !time.region || time.region === (region)).sort((a, b) => hhmmssToIntNoPrecision(a.time) - hhmmssToIntNoPrecision(b.time));
     if (times.length > 0) {
       // duplicate the last occurrence to yesterday
       const lastTime = deepCopy(times[times.length - 1]);
