@@ -70,7 +70,7 @@ class AdContainer extends Component {
     const adProps = {
       className: 'adsbygoogle',
       'data-ad-format': 'auto',
-      'data-ad-client': 'ca-pub-3564148572601954',
+      'data-ad-client': 'ca-pub-1304749992376341',
       'data-full-width-responsive': true,
       style: { display: 'block' },
     };
