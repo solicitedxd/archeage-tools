@@ -40,7 +40,7 @@ Due to cookies being created on the mokulu.io domain, the site will work best by
 ## Useful Links
 - [Material UI](https://material-ui.com/)
 
-##How to Run at AWS Amplify
+# How to Run at AWS Amplify
 
 I don't know much about React so I just did my best to get the project running.
 Here you have to connect your repository branch and configure how it will run the application in amplify yml
