@@ -420,46 +420,12 @@ class Schedule extends Component {
         </div>}
         <Paper className="section">
           <AppBar position="static">
-            <Toolbar>
-              <Typography variant="h5" className="title-text">
-                {moment.tz(moment.tz.guess()).format('z')} Schedule
-              </Typography>
-              {!mobile && <InGameTime mobile={mobile} />}
-              <FormControl className="color-white">
-                <Select
-                  id="region-select"
-                  value={region}
-                  onChange={(e) => setRegion(e.target.value)}
-                  className="region-opt"
-                >
-                  <MenuItem disabled divider dense>Region:</MenuItem>
-                  {Object.values(REGIONS).map(region => <MenuItem key={`region-${region}`}
-                                                                  value={region}>{region}</MenuItem>)}
-                </Select>
-              </FormControl>
-              <Tooltip title="Clear all alerts">
-                <span>
-                  <IconButton disabled={!hasAlerts} onClick={clearAlerts} color="inherit">
-                    <NotificationsOffIcon />
-                  </IconButton>
-                </span>
-              </Tooltip>
-              <Volume setVolume={this._setVolume} />
-              <IfPerm permission="event.edit">
-                <>
-                  <Tooltip title={showDisabled ? 'Hide Disabled' : 'Show Disabled'}>
-                    <IconButton onClick={this.setShowDisabled(!showDisabled)} color="inherit">
-                      {showDisabled ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                    </IconButton>
-                  </Tooltip>
-                  <Tooltip title="Add new event">
-                    <IconButton onClick={this.setEditOpen(true, null)} color="inherit">
-                      <AddIcon />
-                    </IconButton>
-                  </Tooltip>
-                </>
-              </IfPerm>
-            </Toolbar>
+            <Alert severity="warning" variant="filled">
+              <AlertTitle>DNS UPDATE</AlertTitle>
+              <p style={{fontSize: '1.5rem'}}>
+                Artools DNS UPDATE TO  <span style={{fontWeight: 'bold'}}><a href="https://www.artools.com.br" > https://www.artools.com.br</a></span>
+              </p>
+            </Alert>
           </AppBar>
         </Paper>
         {mobile &&
