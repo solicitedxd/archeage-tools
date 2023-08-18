@@ -39,7 +39,7 @@ class Home extends Component {
                "All credit for the original site to Mokulo and the ArcheRage edits to Dyani\n\n"+
                "\n\n"
 
-               You can contact me on Discord at "Solicited" if you believe there to be any errors\n"+
+               "You can contact me on Discord at "Solicited" if you believe there to be any errors\n"+
      
                "author":  "Solicited",
                "createDate":  "08/18/2023",
