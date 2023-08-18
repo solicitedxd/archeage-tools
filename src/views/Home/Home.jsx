@@ -37,9 +37,9 @@ class Home extends Component {
                "title":  "Welcome to ArcheRage!",
                "body":  "Mokulo's ArcheAge schedule, adapted for ArcheRage by Dyani\n\n " +
                "All credit for the original site to Mokulo and the ArcheRage edits to Dyani\n\n"+
-               "\n\n"
+               "\n\n"+
 
-               "You can contact me on Discord at "Solicited" if you believe there to be any errors\n"+
+               "You can contact me on Discord at "Solicited" if you believe there to be any errors. \n\n"+
      
                "author":  "Solicited",
                "createDate":  "08/18/2023",
