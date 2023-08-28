@@ -421,9 +421,9 @@ class Schedule extends Component {
         <Paper className="section">
           <AppBar position="static">
             <Alert severity="warning" variant="filled">
-              <AlertTitle>DNS UPDATE</AlertTitle>
+              <AlertTitle>NOTICE</AlertTitle>
               <p style={{fontSize: '1.5rem'}}>
-                Artools DNS UPDATE TO  <span style={{fontWeight: 'bold'}}><a href="https://www.artools.com.br" > https://www.artools.com.br</a></span>
+                Vote REAL for September 2023 Haranya Hero!
               </p>
             </Alert>
           </AppBar>
